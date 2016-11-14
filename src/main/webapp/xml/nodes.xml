@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<node pattern="" title="Главная страница">
+	<!--
+	test
+	-->
+	<node pattern="account">
+		<title lang="ru">Аккаунт</title>
+		<title lang="en">Account</title>
+		<menu name="main_menu"/>
+		<node pattern="login">
+			<role>ROLE_NOT_LOGGED</role>
+			<title lang="ru">Войти</title>
+			<title lang="en">Sign in</title>
+			<menu name="main_menu"/>
+			<include value="include/login.jsp" tag="content_include"/>
+		</node>
+		<node pattern="registration">
+			<role>ROLE_NOT_LOGGED</role>
+			<title lang="ru">Регистрация</title>
+			<title lang="en">Registration</title>
+			<menu name="main_menu"/>
+		</node>
+		<node pattern="profile">
+			<role>ROLE_LOGGED</role>
+			<title lang="ru">Профиль</title>
+			<title lang="en">Profile</title>
+			<menu name="main_menu"/>
+		</node>
+		<node pattern="logout" class="logout">
+			<role>ROLE_LOGGED</role>
+			<title lang="ru">Выйти</title>
+			<title lang="en">Sign out</title>
+			<menu name="main_menu"/>
+		</node>
+	</node>
+	<node pattern="about" redirect="rules/">
+		<title lang="ru">О турнирах</title>
+		<title lang="en">About</title>
+		<menu name="main_menu"/>
+		<node pattern="rules">
+			<title lang="ru">Общие правила</title>
+			<title lang="en">Common rules</title>
+			<menu name="main_menu"/>
+		</node>
+		<node pattern="classes">
+			<title lang="ru">Классы кораблей</title>
+			<title lang="en">Ship classes</title>
+			<menu name="main_menu"/>
+		</node>
+	</node>
+	<node pattern="systems" redirect="settlements">
+		<title lang="ru">Системы</title>
+		<title lang="en">Systems</title>
+		<menu name="main_menu"/>
+		<node pattern="settlements">
+			<title lang="ru">Поселения</title>
+			<title lang="en">Settlements</title>
+			<menu name="main_menu"/>
+		</node>
+	</node>
+	<node pattern="tournaments">
+		<title lang="ru">Туриниры</title>
+		<title lang="en">Tounaments</title>
+		<menu name="main_menu"/>
+		<node pattern="coming">
+			<title lang="ru">Предстоящие</title>
+			<title lang="en">Coming</title>
+			<menu name="main_menu"/>
+			<condition>COMING</condition>
+		</node>
+		<node pattern="current">
+			<title lang="ru">Текущие</title>
+			<title lang="en">Current</title>
+			<menu name="main_menu"/>
+			<condition>CURRENT</condition>
+		</node>
+		<node pattern="past">
+			<title lang="ru">Прошедшие</title>
+			<title lang="en">Past</title>
+			<menu name="main_menu"/>
+			<condition>PAST</condition>
+		</node>
+	</node>
+	<node pattern="administration" redirect="ships/">
+		<role>ROLE_ADMINISTRATOR</role>
+		<title lang="ru">Администрирование</title>
+		<title lang="en">Admin</title>
+		<menu name="main_menu"/>
+		<node pattern="ships">
+			<title lang="ru">Корабли</title>
+			<title lang="en">Ships</title>
+			<menu name="main_menu"/>
+		</node>
+		<node pattern="classes">
+			<title lang="ru">Классы кораблей</title>
+			<title lang="en">Ship classes</title>
+			<menu name="main_menu"/>
+		</node>
+		<node pattern="places">
+			<title lang="ru">Места боев</title>
+			<title lang="en">Battle places</title>
+			<menu name="main_menu"/>
+		</node>
+	</node>
+	<node pattern="systems">
+	</node>
+</node>

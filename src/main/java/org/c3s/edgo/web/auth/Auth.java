@@ -1,0 +1,98 @@
+package org.c3s.edgo.web.auth;
+
+import java.util.List;
+
+import org.c3s.annotations.Controller;
+import org.c3s.annotations.Parameter;
+import org.c3s.content.ContentObject;
+import org.c3s.dispatcher.exceptions.SkipSubLevelsExeption;
+import org.c3s.dispatcher.exceptions.StopDispatchException;
+import org.c3s.edgo.common.entity.Role;
+import org.c3s.edgo.common.entity.User;
+import org.c3s.edgo.web.GeneralController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@Controller
+public class Auth extends GeneralController {
+
+	@SuppressWarnings("unused")
+	private static Logger logger = LoggerFactory.getLogger(Auth.class);
+	
+	public void getRoles() {
+		
+		User user = GeneralController.getUser();
+		 
+		if (user != null) {
+			roles.add(AuthRoles.ROLE_LOGGED);
+			List<Role> userRoles = user.getRoles();
+			if (userRoles != null) {
+			AuthRoles role = null;
+				for (Role userRole : userRoles) {
+					try {
+						if ((role = AuthRoles.valueOf(userRole.getRole())) != null) {
+							roles.add(role);
+						}
+					} catch (IllegalArgumentException e) {}
+				}
+			}
+		} else {
+			roles.add(AuthRoles.ROLE_NOT_LOGGED);
+		}
+		
+		StringBuffer sb = new StringBuffer();
+		for (AuthRoles role : roles) {
+			sb.append('|');
+			sb.append(role.name());
+		}
+		sb.append('|');
+		
+		ContentObject.getInstance().setFixedParameters("roles", sb.toString());
+	}
+	
+	
+	private boolean inArray(String[] source, String value, boolean defaultVal) {
+		
+		boolean result = defaultVal;
+		
+		boolean inarr =  false;
+		if (source != null && source.length > 0) {
+			for (String r : source) {
+				if (value.equals(r)) {
+					inarr = true;
+					break;
+				}
+			}
+		}
+		
+		result = inarr?true:result;
+		
+		return result;
+		
+	}
+	
+	public void checkRoles(@Parameter("allow") String[] allow, @Parameter("deny") String[] deny, @Parameter("order") String order) throws StopDispatchException, SkipSubLevelsExeption {
+		
+		boolean allowDeny = !"deny,allow".equals(order); 
+		
+		boolean passAllow = false;
+		boolean passDeny = false;		
+		for(AuthRoles role: roles) {
+			if (inArray(allow, role.name(), false)) {
+				passAllow = true;
+				break;
+			}
+		}
+		for(AuthRoles role: roles) {
+			if (inArray(deny, role.name(), false)) {
+				passDeny = true;
+			}
+		}
+		
+		boolean success = allowDeny?(passDeny?false:true):(passAllow?true:false);
+		
+		if (!success) {
+			throw new SkipSubLevelsExeption();
+		}
+	}
+}

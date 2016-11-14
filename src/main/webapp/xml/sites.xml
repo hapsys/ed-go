@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sites-info>
+	<site name="Common public site" language="suffix">
+		<config>xml/config.xml</config>
+		<alias>192.168.0.10/c3s-edgo</alias>
+		<alias>localhost/c3s-edgo</alias>
+		<alias>edgo.loc</alias>
+		<language ref="ru" default="true"/>
+		<language ref="en"/>
+		<!-- 
+		<language ref="gr"/>
+		 -->
+	</site>
+	<languages>
+		<language>
+			<id>ru</id>
+			<name>русский</name>
+			<prefix>rus</prefix>
+			<suffix>ru</suffix>
+			<encoding>utf-8</encoding>
+		</language>
+		<language>
+			<id>en</id>
+			<name>english</name>
+			<prefix>eng</prefix>
+			<suffix>en</suffix>
+			<encoding>utf-8</encoding>
+		</language>
+		<language>
+			<id>gr</id>
+			<name>germany</name>
+			<prefix>gr</prefix>
+			<suffix>gr</suffix>
+			<encoding>utf-8</encoding>
+		</language>
+	</languages>
+</sites-info>

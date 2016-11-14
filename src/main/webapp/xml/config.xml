@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<modules>
+		<module pattern="/" class="org.c3s.edgo.transaction.TransactionController" action="start"/>
+	
+		<module pattern="/" class="org.c3s.web.modules.lang.LanguageModule" action="processSuffix"/>
+		<module class="org.c3s.edgo.web.auth.Auth" action="getRoles"/>
+		<module pattern="/" class="org.c3s.edgo.web.AjaxCheker" action="isNotAjax">
+			<!-- + Not AJAX MODULES  -->
+			<module class="org.c3s.web.modules.lang.LanguageModule" action="getLanguageSwitch">
+				<param name="type" value="xslt"/>
+				<param name="tag" value="langs"/>
+				<param name="template" value="{directory.stylesheet}/langs.xsl"/>
+			</module>
+			<module class="org.c3s.edgo.web.language.I10nManager" action="init">
+				<param name="content" value="xml/i10n/content.xml"/>
+			</module>
+			<!--
+			-->
+			<module pattern="*" class="org.c3s.web.nodes.xml.NodesModuleXML" action="processNodes">
+				<param name="nodes" value="xml/nodes.xml"/>
+				<module class="org.c3s.web.nodes.path.PathController" action="setPath"/>
+			</module>
+			
+			<module class="org.c3s.web.modules.template.TemplateModule" action="setTemplate">
+				<param name="template" value="{directory.templates}/template.jsp"/>
+			</module>
+			
+			<!-- модули пользователей находятся здесь -->
+			<module pattern="account/">
+				<module pattern="profile/" class="org.c3s.edgo.web.auth.UserController" action="getProfile" is_last="true">
+					<param name="tag" value="view_ctx"/>
+					<param name="template" value="{directory.stylesheet}/account/user.xsl"/>
+				</module>
+			</module>
+			<!-- /модули пользователей находятся здесь -->
+			
+			<module pattern="*" class="org.c3s.web.nodes.path.PathController" action="getPath" is_last="true">
+				<param name="tag" value="path"/>
+				<param name="template" value="{directory.stylesheet}/path.xsl"/>
+				<param name="type" value="xslt"/>
+			</module>		
+			<module pattern="*" class="org.c3s.web.nodes.content.ContentModule" action="process"/>
+			<module pattern="*" class="org.c3s.web.nodes.menu.MenuModule" action="getMenu" instance="main_menu">
+				<param name="tag" value="menu_main"/>
+				<param name="template" value="{directory.stylesheet}/menu.xsl"/>
+				<param name="type" value="xslt"/>
+			</module>
+			<!-- - Not AJAX MODULES  -->
+		</module>
+		<module pattern="/" class="org.c3s.edgo.web.AjaxCheker" action="isAjax">
+			<param name="tag" value="json" inherit="true"/>
+			<param name="ajax_tag" value="json" inherit="true"/>
+			<!-- + AJAX MODULES  -->
+			<module class="org.c3s.web.modules.template.TemplateModule" action="setTemplate">
+				<param name="template" value="{directory.templates}/json.jsp"/>
+				<module pattern="ajax/">
+					<module pattern="profile/">
+						<module class="org.c3s.edgo.web.auth.Auth" action="checkRoles">
+							<param name="order" value="deny,allow"/>
+							<param name="allow" value="ROLE_NOT_LOGGED"/>
+							<module pattern="login/" class="org.c3s.edgo.web.auth.UserController" action="login" is_last="true"/>
+						</module>
+						<module pattern="logout/" class="org.c3s.edgo.web.auth.UserController" action="logout" is_last="true"/>
+						<module class="org.c3s.edgo.web.auth.Auth" action="checkRoles">
+							<param name="order" value="deny,allow"/>
+							<param name="allow" value="ROLE_LOGGED"/>
+							<module pattern="key-update/" class="org.c3s.edgo.web.auth.UserController" action="generateNewKeys" is_last="true"/>
+						</module>
+					</module>
+				</module>
+			</module>
+			<!-- - AJAX MODULES  -->
+		</module>
+		<module pattern="*" class="org.c3s.web.modules.template.TemplateModule" action="showTemplate" is_last="true"/>
+		<module pattern="*" class="org.c3s.edgo.transaction.TransactionController" action="commit" is_last="true"/>
+		<!--
+		-->
+	</modules>
+</config>

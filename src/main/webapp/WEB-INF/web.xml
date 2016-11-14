@@ -1,0 +1,181 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5" metadata-complete="true">
+
+	<!-- /* * Context Parameters */ -->
+	<context-param>
+		<param-name>class.dispatcher</param-name>
+		<param-value>org.c3s.dispatcher.InjectiveDispatcher</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>storage.type.REQUEST</param-name>
+		<param-value>org.c3s.web.storage.RequestStorage</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>storage.type.SESSION</param-name>
+		<param-value>org.c3s.web.storage.SessionStorage</param-value>
+	</context-param>
+
+
+	<context-param>
+		<param-name>template.transformer.class.xml</param-name>
+		<param-value>org.c3s.content.transformers.xml.XSLTransformer</param-value>
+	</context-param>
+	<context-param> 
+		<param-name>template.transformer.class.velocity</param-name> 
+		<param-value>org.c3s.content.transformers.velocity.VelocityTransformer</param-value> 
+	</context-param>
+	<context-param> 
+		<param-name>site.loader.class</param-name> 
+		<param-value>org.c3s.site.SiteLoaderXML</param-value> 
+	</context-param>
+	<context-param> 
+		<param-name>site.loader.parameter</param-name> 
+		<param-value>xml/sites.xml</param-value> 
+	</context-param>
+	<!-- 
+	<context-param> 
+		<param-name>site.loader.class</param-name> 
+		<param-value>org.c3s.site.SiteLoaderJPA</param-value> 
+	</context-param>
+	<context-param> 
+		<param-name>site.loader.parameter</param-name> 
+		<param-value>default</param-value> 
+	</context-param>
+	 -->
+	<context-param>
+		<param-name>log4jContextName</param-name>
+		<param-value>c3s-edgo</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jConfiguration</param-name>
+		<param-value>log4j2.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.c3s.web.listeners.StorageRequestListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.c3s.web.listeners.StorageSessionListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
+	</listener>
+	<filter>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>org.c3s.web.filters.EncodingFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>ControlFilter</filter-name>
+		<filter-class>org.c3s.web.filters.ControlFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>PostFilter</filter-name>
+		<filter-class>org.c3s.web.filters.PostFilter</filter-class>
+		<init-param>
+			<param-name>fileupload.size</param-name>
+			<param-value>2M</param-value>
+		</init-param>
+		<init-param>
+			<param-name>fileupload.size</param-name>
+			<param-value>2M</param-value>
+		</init-param>
+	</filter>
+	<!--
+	<filter>
+		<filter-name>log4jServletFilter</filter-name>
+		<filter-class>org.apache.logging.log4j.core.web.Log4jServletFilter</filter-class>
+	</filter>
+ 	-->
+	<!-- -->
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>PostFilter</filter-name>
+		<url-pattern>*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>ControlFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+	<!-- -->
+	<servlet>
+		<servlet-name>default</servlet-name>
+		<servlet-class>org.c3s.web.servlets.FileServlet</servlet-class>
+		<init-param>
+			<param-name>directories</param-name>
+			<param-value>/tmp/upload;/vendors/kendoui;/vendors/dojo</param-value>
+		</init-param>
+	</servlet>
+	<servlet>
+		<servlet-name>jsp</servlet-name>
+		<servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
+		<init-param>
+			<param-name>xpoweredBy</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>httpMethods</param-name>
+			<param-value>GET,POST,HEAD</param-value>
+		</init-param>
+	</servlet>
+
+	<!-- -->
+	<servlet>
+		<servlet-name>ControlServlet</servlet-name>
+		<servlet-class>org.c3s.web.servlets.ControlServlet</servlet-class>
+	</servlet>
+	<!-- -->
+	<servlet>
+		<servlet-name>InitServlet</servlet-name>
+		<servlet-class>org.c3s.web.servlets.InitServlet</servlet-class>
+		<!-- Directory -->
+		<init-param>
+			<param-name>directory.templates</param-name>
+			<param-value>templates</param-value>
+		</init-param>
+		<init-param>
+			<param-name>directory.stylesheet</param-name>
+			<param-value>xslt</param-value>
+		</init-param>
+		<init-param>
+			<param-name>directory.include</param-name>
+			<param-value>include</param-value>
+		</init-param>
+		<!-- -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.css</url-pattern>
+		<url-pattern>*.png</url-pattern>
+		<url-pattern>*.jpg</url-pattern>
+		<url-pattern>*.ico</url-pattern>
+		<url-pattern>*.js</url-pattern>
+		<url-pattern>*.map</url-pattern>
+		<!--
+		<url-pattern>*.gif</url-pattern>
+		<url-pattern>*.html</url-pattern>
+		-->
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>jsp</servlet-name>
+		<url-pattern>*.jsp</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ControlServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<!-- <session-config> <session-timeout> 30 </session-timeout> </session-config> -->
+	<!-- <welcome-file-list> <welcome-file>index.jsp</welcome-file> </welcome-file-list> -->
+	<jsp-config>
+		<taglib>
+			<taglib-uri>http://c3s-project.org/c3s-taglib</taglib-uri>
+			<taglib-location>/WEB-INF/tlds/c3s-taglib.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+</web-app>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO" packages="org.c3s.web.debug.log4j2">
+	<Appenders>
+		<DebugAppender name="Debug">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] [%C:%M(%L)] %-5level - %msg%n" />
+		</DebugAppender>
+		<Console name="Console" target="SYSTEM_ERR">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%C:%M(%L)] %-5level - %msg%n" />
+		</Console>
+		<File name="File" fileName="/tmp/c3s.log">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%C:%M(%L)] %-5level - %msg%n" />
+		</File>
+	</Appenders>
+	<Loggers>
+		<Logger name="org.c3s.edgo" level="debug">
+			<AppenderRef ref="Debug" />
+		</Logger>
+		<Logger name="org.c3s.web.modules.lalala" level="debug">
+			<AppenderRef ref="Debug" />
+		</Logger>
+		<Root level="off">
+			<AppenderRef ref="Console" />
+		</Root>
+	</Loggers>
+</Configuration>

@@ -1,0 +1,11 @@
+RewriteEngine On
+#RewriteOptions MaxRedirects=5;
+RewriteBase /  
+
+RewriteRule ^(.+\.css)                  $1                      [L,NC]  
+RewriteRule ^(.+\.png)                  $1                      [L,NC]  
+RewriteRule ^(.+\.ico)                  $1                      [L,NC]  
+
+RewriteRule ^(.*) http://localhost:800/$1 		[P]
+#RewriteRule ^(.*)$ $1 [L]
+#JkMount /* ajp13
