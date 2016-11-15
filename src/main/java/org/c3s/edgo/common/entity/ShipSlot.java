@@ -24,12 +24,12 @@ public class ShipSlot implements Serializable {
 
 	//bi-directional many-to-one association to Ship
 	@ManyToOne
-	@JoinColumn(name="ship_id", insertable=false, updatable = false)
+	@JoinColumn(name="ship_id", insertable=false, updatable=false)
 	private Ship ship;
 
 	//bi-directional many-to-one association to Slot
 	@ManyToOne
-	@JoinColumn(name="slot_id", insertable=false, updatable = false)
+	@JoinColumn(name="slot_id", insertable=false, updatable=false)
 	private Slot slot;
 
 	public ShipSlot() {

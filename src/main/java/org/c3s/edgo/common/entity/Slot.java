@@ -11,12 +11,16 @@ import java.util.List;
  */
 @Entity
 @Table(name="slots")
-@NamedQuery(name="Slot.findAll", query="SELECT s FROM Slot s")
+@NamedQueries({
+	@NamedQuery(name="Slot.findAll", query="SELECT s FROM Slot s"),
+	@NamedQuery(name="Slot.findByUniq", query="SELECT s FROM Slot s WHERE LOWER(s.uniq) = LOWER(:uniq)"),
+})
+
 public class Slot implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="slot_id")
 	private int id;
 

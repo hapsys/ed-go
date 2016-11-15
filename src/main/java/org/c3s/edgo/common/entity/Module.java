@@ -11,30 +11,38 @@ import java.util.List;
  */
 @Entity
 @Table(name="modules")
-@NamedQuery(name="Module.findAll", query="SELECT m FROM Module m")
+@NamedQueries({
+	@NamedQuery(name="Module.findAll", query="SELECT m FROM Module m"),
+	@NamedQuery(name="Module.findByUniq", query="SELECT m FROM Module m WHERE LOWER(m.uniq) = LOWER(:uniq)"),
+})
 public class Module implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	//@GeneratedValue(strategy=GenerationType.TABLE)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="module_id")
 	private int id;
+
+	@Column(name="module_class")
+	private byte moduleClass;
 
 	@Column(name="module_name")
 	private String name;
 
+	@Column(name="module_rating")
+	private String moduleRating;
+
 	@Column(name="module_uniq")
 	private String uniq;
 
-	@Column(name="module_rating")
-	private String rating; 
-	
-	@Column(name="module_class")
-	private int clazz; 
 	//uni-directional many-to-one association to ModuleGroup
 	@ManyToOne
 	@JoinColumn(name="module_group_id")
 	private ModuleGroup moduleGroup;
+
+	//bi-directional many-to-one association to PilotModule
+	@OneToMany(mappedBy="module")
+	private List<PilotModule> pilotModules;
 
 	//bi-directional many-to-one association to ShipSlot
 	@OneToMany(mappedBy="module")
@@ -51,12 +59,28 @@ public class Module implements Serializable {
 		this.id = id;
 	}
 
+	public byte getModuleClass() {
+		return this.moduleClass;
+	}
+
+	public void setModuleClass(byte moduleClass) {
+		this.moduleClass = moduleClass;
+	}
+
 	public String getName() {
 		return this.name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getModuleRating() {
+		return this.moduleRating;
+	}
+
+	public void setModuleRating(String moduleRating) {
+		this.moduleRating = moduleRating;
 	}
 
 	public String getUniq() {
@@ -73,6 +97,28 @@ public class Module implements Serializable {
 
 	public void setModuleGroup(ModuleGroup moduleGroup) {
 		this.moduleGroup = moduleGroup;
+	}
+
+	public List<PilotModule> getPilotModules() {
+		return this.pilotModules;
+	}
+
+	public void setPilotModules(List<PilotModule> pilotModules) {
+		this.pilotModules = pilotModules;
+	}
+
+	public PilotModule addPilotModule(PilotModule pilotModule) {
+		getPilotModules().add(pilotModule);
+		pilotModule.setModule(this);
+
+		return pilotModule;
+	}
+
+	public PilotModule removePilotModule(PilotModule pilotModule) {
+		getPilotModules().remove(pilotModule);
+		pilotModule.setModule(null);
+
+		return pilotModule;
 	}
 
 	public List<ShipSlot> getShipSlots() {
@@ -97,20 +143,4 @@ public class Module implements Serializable {
 		return shipSlot;
 	}
 
-	public String getRating() {
-		return rating;
-	}
-
-	public void setRating(String rating) {
-		this.rating = rating;
-	}
-
-	public int getClazz() {
-		return clazz;
-	}
-
-	public void setClazz(int clazz) {
-		this.clazz = clazz;
-	}
-	
 }

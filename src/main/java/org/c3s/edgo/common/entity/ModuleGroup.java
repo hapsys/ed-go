@@ -10,15 +10,12 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="module_groups")
-@NamedQueries({
-	@NamedQuery(name="ModuleGroup.findAll", query="SELECT m FROM ModuleGroup m"),
-	@NamedQuery(name="ModuleGroup.findById", query="SELECT m FROM ModuleGroup m WHERE m.id=:id")
-})
+@NamedQuery(name="ModuleGroup.findAll", query="SELECT m FROM ModuleGroup m")
 public class ModuleGroup implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="module_group_id")
 	private int id;
 

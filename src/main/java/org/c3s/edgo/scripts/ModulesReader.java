@@ -66,8 +66,8 @@ public class ModulesReader {
 						md.setId(list.id);
 						md.setName(list.name);
 						md.setUniq(list.ed_symbol != null?list.ed_symbol:list.name);
-						md.setRating(list.rating);
-						md.setClazz(list._class);
+						md.setModuleRating(list.rating);
+						md.setModuleClass(list._class);
 						md.setModuleGroup(mg);
 						em.merge(md);
 					} else {

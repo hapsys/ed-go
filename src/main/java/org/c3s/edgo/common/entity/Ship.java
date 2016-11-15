@@ -11,12 +11,15 @@ import java.util.List;
  */
 @Entity
 @Table(name="ships")
-@NamedQuery(name="Ship.findAll", query="SELECT s FROM Ship s")
+@NamedQueries({
+	@NamedQuery(name="Ship.findAll", query="SELECT s FROM Ship s"),
+	@NamedQuery(name="Ship.findByUniq", query="SELECT s FROM Ship s WHERE LOWER(s.uniq) = LOWER(:uniq)"),
+})
 public class Ship implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ship_id", updatable=false)
 	private int id;
 
@@ -25,6 +28,10 @@ public class Ship implements Serializable {
 
 	@Column(name="ship_uniq", updatable=false)
 	private String uniq;
+
+	//bi-directional many-to-one association to ShipSlot
+	@OneToMany(mappedBy="ship")
+	private List<ShipSlot> shipSlots;
 
 	//uni-directional many-to-many association to Slot
 	@ManyToMany
@@ -39,9 +46,9 @@ public class Ship implements Serializable {
 		)
 	private List<Slot> slots;
 
-	//bi-directional many-to-one association to ShipSlot
+	//bi-directional many-to-one association to PilotShip
 	@OneToMany(mappedBy="ship")
-	private List<ShipSlot> shipSlots;
+	private List<PilotShip> pilotShips;
 
 	public Ship() {
 	}
@@ -70,14 +77,6 @@ public class Ship implements Serializable {
 		this.uniq = uniq;
 	}
 
-	public List<Slot> getSlots() {
-		return this.slots;
-	}
-
-	public void setSlots(List<Slot> slots) {
-		this.slots = slots;
-	}
-
 	public List<ShipSlot> getShipSlots() {
 		return this.shipSlots;
 	}
@@ -98,6 +97,41 @@ public class Ship implements Serializable {
 		shipSlot.setShip(null);
 
 		return shipSlot;
+	}
+
+	public List<Slot> getSlots() {
+		return this.slots;
+	}
+
+	public void setSlots(List<Slot> slots) {
+		this.slots = slots;
+	}
+
+	public Slot getSlot(String uniq) {
+		return slots.stream().filter(p -> p.getUniq().toLowerCase().equals(uniq.toLowerCase())).findFirst().orElse(null);
+	}
+	
+	
+	public List<PilotShip> getPilotShips() {
+		return this.pilotShips;
+	}
+
+	public void setPilotShips(List<PilotShip> pilotShips) {
+		this.pilotShips = pilotShips;
+	}
+
+	public PilotShip addPilotShip(PilotShip pilotShip) {
+		getPilotShips().add(pilotShip);
+		pilotShip.setShip(this);
+
+		return pilotShip;
+	}
+
+	public PilotShip removePilotShip(PilotShip pilotShip) {
+		getPilotShips().remove(pilotShip);
+		pilotShip.setShip(null);
+
+		return pilotShip;
 	}
 
 }

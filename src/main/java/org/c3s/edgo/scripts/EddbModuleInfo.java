@@ -7,7 +7,7 @@ public class EddbModuleInfo {
 	public int id;
 	public int group_id;
 	@SerializedName("class")
-	public int _class;
+	public byte _class;
 	public String rating;
 	public int ed_id;
 	public String name;

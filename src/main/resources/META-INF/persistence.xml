@@ -14,6 +14,15 @@
 		<class>org.c3s.edgo.common.entity.Role</class>
 		<class>org.c3s.edgo.common.entity.User</class>
 		<class>org.c3s.edgo.common.entity.UserKey</class>
+		<class>org.c3s.edgo.common.entity.Modifier</class>
+		<class>org.c3s.edgo.common.entity.ModuleRecipy</class>
+		<class>org.c3s.edgo.common.entity.PilotModule</class>
+		<class>org.c3s.edgo.common.entity.PilotShip</class>
+		<class>org.c3s.edgo.common.entity.PilotShipSlot</class>
+		<class>org.c3s.edgo.common.entity.PilotShipSlotPK</class>
+		<class>org.c3s.edgo.common.entity.Recipy</class>
+		<class>org.c3s.edgo.common.entity.ModuleModifier</class>
+		<class>org.c3s.edgo.common.entity.ModuleModifierPK</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ed-go" />
@@ -31,6 +40,11 @@
 	@NamedQuery(name="User.findAll", query="SELECT u FROM User u"),
 	@NamedQuery(name="User.findByUuid", query="SELECT u FROM User u where u.userUuid = :uuid"),
 	@NamedQuery(name="User.findByEmailAndPassword", query="SELECT u FROM User u where LOWER(u.email) = LOWER(:email) AND u.uid = :password")
+})
+@Table(name="slot_types")
+@NamedQueries({
+	@NamedQuery(name="SlotType.findAll", query="SELECT s FROM SlotType s"),
+	@NamedQuery(name="SlotType.findById", query="SELECT s FROM SlotType s WHERE s.id=:id")
 })
 -->	
 </persistence>

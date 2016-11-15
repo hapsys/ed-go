@@ -4,30 +4,27 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * The primary key class for the ship_slots database table.
+ * The primary key class for the pilot_ship_slots database table.
  * 
  */
 @Embeddable
-@IdClass(ShipSlot.class)
-public class ShipSlotPK implements Serializable {
+public class PilotShipSlotPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="ship_id", insertable=false, updatable=false)
-	@GeneratedValue
-	private int shipId;
+	@Column(name="pilot_ship_id", insertable=false, updatable=false)
+	private int pilotShipId;
 
 	@Column(name="slot_id", insertable=false, updatable=false)
-	@GeneratedValue
 	private int slotId;
 
-	public ShipSlotPK() {
+	public PilotShipSlotPK() {
 	}
-	public int getShipId() {
-		return this.shipId;
+	public int getPilotShipId() {
+		return this.pilotShipId;
 	}
-	public void setShipId(int shipId) {
-		this.shipId = shipId;
+	public void setPilotShipId(int pilotShipId) {
+		this.pilotShipId = pilotShipId;
 	}
 	public int getSlotId() {
 		return this.slotId;
@@ -40,19 +37,19 @@ public class ShipSlotPK implements Serializable {
 		if (this == other) {
 			return true;
 		}
-		if (!(other instanceof ShipSlotPK)) {
+		if (!(other instanceof PilotShipSlotPK)) {
 			return false;
 		}
-		ShipSlotPK castOther = (ShipSlotPK)other;
+		PilotShipSlotPK castOther = (PilotShipSlotPK)other;
 		return 
-			(this.shipId == castOther.shipId)
+			(this.pilotShipId == castOther.pilotShipId)
 			&& (this.slotId == castOther.slotId);
 	}
 
 	public int hashCode() {
 		final int prime = 31;
 		int hash = 17;
-		hash = hash * prime + this.shipId;
+		hash = hash * prime + this.pilotShipId;
 		hash = hash * prime + this.slotId;
 		
 		return hash;
