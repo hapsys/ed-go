@@ -29,20 +29,15 @@ public class Slot implements Serializable {
 	@Column(name="slot_uniq")
 	private String uniq;
 
-	//uni-directional many-to-many association to Ship
-	@ManyToMany
-	@JoinTable(
-		name="ship_slots"
-		, joinColumns={
-			@JoinColumn(name="slot_id")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="ship_id")
-			}
-		)
-	private List<Ship> ships;
+	//bi-directional many-to-one association to PilotModule
+	@OneToMany(mappedBy="slot")
+	private List<PilotModule> pilotModules;
 
-	//bi-directional many-to-one association to SlotType
+	//bi-directional many-to-one association to ShipSlot
+	@OneToMany(mappedBy="slot")
+	private List<ShipSlot> shipSlots;
+
+	//uni-directional many-to-one association to SlotType
 	@ManyToOne
 	@JoinColumn(name="slot_type_id")
 	private SlotType slotType;
@@ -74,12 +69,48 @@ public class Slot implements Serializable {
 		this.uniq = uniq;
 	}
 
-	public List<Ship> getShips() {
-		return this.ships;
+	public List<PilotModule> getPilotModules() {
+		return this.pilotModules;
 	}
 
-	public void setShips(List<Ship> ships) {
-		this.ships = ships;
+	public void setPilotModules(List<PilotModule> pilotModules) {
+		this.pilotModules = pilotModules;
+	}
+
+	public PilotModule addPilotModule(PilotModule pilotModule) {
+		getPilotModules().add(pilotModule);
+		pilotModule.setSlot(this);
+
+		return pilotModule;
+	}
+
+	public PilotModule removePilotModule(PilotModule pilotModule) {
+		getPilotModules().remove(pilotModule);
+		pilotModule.setSlot(null);
+
+		return pilotModule;
+	}
+
+	public List<ShipSlot> getShipSlots() {
+		return this.shipSlots;
+	}
+
+	public void setShipSlots(List<ShipSlot> shipSlots) {
+		this.shipSlots = shipSlots;
+	}
+
+	public ShipSlot addShipSlot(ShipSlot shipSlot) {
+		getShipSlots().add(shipSlot);
+		shipSlot.setSlot(this);
+
+		return shipSlot;
+	}
+
+	public ShipSlot removeShipSlot(ShipSlot shipSlot) {
+		getShipSlots().remove(shipSlot);
+		shipSlot.setSlot(null);
+
+		return shipSlot;
 	}
 
 	public SlotType getSlotType() {

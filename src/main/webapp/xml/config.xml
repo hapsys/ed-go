@@ -27,10 +27,20 @@
 			</module>
 			
 			<!-- модули пользователей находятся здесь -->
+			<module class="org.c3s.edgo.web.menu.CommanderMenu" action="getPilotList" instance="main_menu"/>
+			
 			<module pattern="account/">
 				<module pattern="profile/" class="org.c3s.edgo.web.auth.UserController" action="getProfile" is_last="true">
 					<param name="tag" value="view_ctx"/>
 					<param name="template" value="{directory.stylesheet}/account/user.xsl"/>
+				</module>
+			</module>
+				<module pattern="*/" class="org.c3s.edgo.web.controllers.Commander" action="checkCommander">
+				<param name="tag" value="view_ctx" inherit="true"/>
+				<param name="template" value="{directory.stylesheet}/commander/commander.xsl" inherit="true"/>
+				<module pattern="info/" class="org.c3s.edgo.web.controllers.Commander" action="getInformation" is_last="true"/>
+				<module pattern="ships/" class="org.c3s.edgo.web.controllers.Commander" action="getShips" is_last="true">
+					<module pattern="*/" class="org.c3s.edgo.web.controllers.Commander" action="getShip" is_last="true"/>
 				</module>
 			</module>
 			<!-- /модули пользователей находятся здесь -->
@@ -41,7 +51,7 @@
 				<param name="type" value="xslt"/>
 			</module>		
 			<module pattern="*" class="org.c3s.web.nodes.content.ContentModule" action="process"/>
-			<module pattern="*" class="org.c3s.web.nodes.menu.MenuModule" action="getMenu" instance="main_menu">
+			<module pattern="*" class="org.c3s.edgo.web.menu.CommanderMenu" action="getMenu" instance="main_menu">
 				<param name="tag" value="menu_main"/>
 				<param name="template" value="{directory.stylesheet}/menu.xsl"/>
 				<param name="type" value="xslt"/>

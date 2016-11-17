@@ -26,9 +26,9 @@ public class PilotShip implements Serializable {
 	@Column(name="link_ship_id")
 	private int linkShipId;
 
-	//bi-directional many-to-one association to PilotShipSlot
+	//bi-directional many-to-one association to PilotModule
 	@OneToMany(mappedBy="pilotShip")
-	private List<PilotShipSlot> pilotShipSlots;
+	private List<PilotModule> pilotModules;
 
 	//bi-directional many-to-one association to Pilot
 	@ManyToOne
@@ -67,26 +67,26 @@ public class PilotShip implements Serializable {
 		this.linkShipId = linkShipId;
 	}
 
-	public List<PilotShipSlot> getPilotShipSlots() {
-		return this.pilotShipSlots;
+	public List<PilotModule> getPilotModules() {
+		return this.pilotModules;
 	}
 
-	public void setPilotShipSlots(List<PilotShipSlot> pilotShipSlots) {
-		this.pilotShipSlots = pilotShipSlots;
+	public void setPilotModules(List<PilotModule> pilotModules) {
+		this.pilotModules = pilotModules;
 	}
 
-	public PilotShipSlot addPilotShipSlot(PilotShipSlot pilotShipSlot) {
-		getPilotShipSlots().add(pilotShipSlot);
-		pilotShipSlot.setPilotShip(this);
+	public PilotModule addPilotModule(PilotModule pilotModule) {
+		getPilotModules().add(pilotModule);
+		pilotModule.setPilotShip(this);
 
-		return pilotShipSlot;
+		return pilotModule;
 	}
 
-	public PilotShipSlot removePilotShipSlot(PilotShipSlot pilotShipSlot) {
-		getPilotShipSlots().remove(pilotShipSlot);
-		pilotShipSlot.setPilotShip(null);
+	public PilotModule removePilotModule(PilotModule pilotModule) {
+		getPilotModules().remove(pilotModule);
+		pilotModule.setPilotShip(null);
 
-		return pilotShipSlot;
+		return pilotModule;
 	}
 
 	public Pilot getPilot() {

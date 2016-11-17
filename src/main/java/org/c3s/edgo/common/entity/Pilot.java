@@ -23,6 +23,7 @@ import javax.persistence.Table;
 @NamedQueries({
 	@NamedQuery(name="Pilot.findAll", query="SELECT p FROM Pilot p"),
 	@NamedQuery(name="Pilot.findByName", query="SELECT p FROM Pilot p WHERE LOWER(p.pilotName) = LOWER(:name)"),
+	@NamedQuery(name="Pilot.findByUserId", query="SELECT p FROM Pilot p WHERE p.userId = :user_id"),
 })
 public class Pilot implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -35,14 +36,14 @@ public class Pilot implements Serializable {
 	@Column(name="pilot_name")
 	private String pilotName;
 
-	//bi-directional many-to-one association to PilotModule
-	@OneToMany(mappedBy="pilot")
-	private List<PilotModule> pilotModules;
-
 	//bi-directional many-to-one association to PilotShip
 	@OneToMany(mappedBy="pilot")
 	private List<PilotShip> pilotShips;
 
+	@Column(name="user_id")
+	private int userId;
+	
+	
 	public Pilot() {
 	}
 
@@ -60,28 +61,6 @@ public class Pilot implements Serializable {
 
 	public void setPilotName(String pilotName) {
 		this.pilotName = pilotName;
-	}
-
-	public List<PilotModule> getPilotModules() {
-		return this.pilotModules;
-	}
-
-	public void setPilotModules(List<PilotModule> pilotModules) {
-		this.pilotModules = pilotModules;
-	}
-
-	public PilotModule addPilotModule(PilotModule pilotModule) {
-		getPilotModules().add(pilotModule);
-		pilotModule.setPilot(this);
-
-		return pilotModule;
-	}
-
-	public PilotModule removePilotModule(PilotModule pilotModule) {
-		getPilotModules().remove(pilotModule);
-		pilotModule.setPilot(null);
-
-		return pilotModule;
 	}
 
 	public List<PilotShip> getPilotShips() {
@@ -117,4 +96,14 @@ public class Pilot implements Serializable {
 	public PilotShip getPilotShip(final int id) {
 		return pilotShips.stream().filter(p -> p.getLinkShipId() == id).findFirst().orElse(null);
 	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int user_id) {
+		this.userId = user_id;
+	}
+	
+	
 }

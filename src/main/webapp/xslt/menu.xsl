@@ -11,6 +11,7 @@
 	<xsl:param name="suffix"/>
 	<xsl:param name="tournaments"/>
 	<xsl:param name="roles"/>
+	<xsl:param name="pilot"/>
 	<xsl:param name="type"/>
 	<xsl:template match="/menu">
 		<xsl:choose>
@@ -43,6 +44,7 @@
 		<xsl:variable name="padding" select="$level * 20"/>
 		<dl>
 			<xsl:for-each select="$items">
+				<xsl:variable name="item" select="current()"/>
 				<xsl:variable name="class">
 					<xsl:choose>
 						<xsl:when test="string-length(@class) != 0"><xsl:value-of select="@class"/></xsl:when>
@@ -52,21 +54,49 @@
 					<xsl:variable name="role"><xsl:call-template name="checkRoles"/></xsl:variable>
 					<xsl:if test="count(role) = 0 or $role = 'true'">
 						<xsl:choose>
-							<xsl:when test="$level = 0">
-								<dt><h3><xsl:call-template name="getTitle"/></h3></dt>
-							</xsl:when>
-							<xsl:when test="@self = 1 and count(descendant::node[@self = 1]) = 0">
-								<dd><xsl:call-template name="getTitle"/></dd>
+							<xsl:when test="@pilot='true' and count(/menu/pilots) != 0">
+								<xsl:for-each select="/menu/pilots/pilot">
+										<xsl:choose>
+											<xsl:when test="$level = 0">
+												<dt><h3><xsl:call-template name="getTitle"><xsl:with-param name="item" select="$item"/></xsl:call-template>&#160;<xsl:value-of select="@name"/></h3></dt>
+											</xsl:when>
+											<!-- 
+											<xsl:when test="@self = 2 and count($item/descendant::node[@self = 1]) = 0">
+												<dd>111<xsl:call-template name="getTitle"><xsl:with-param name="item" select="$item"/></xsl:call-template>&#160;<xsl:value-of select="@name"/></dd>
+											</xsl:when>
+											 -->
+											<xsl:otherwise>
+												<dd><a href="{$pattern}/{@name}/"><xsl:if test="string-length($class)"><xsl:attribute name="class"><xsl:value-of select="$class"/></xsl:attribute></xsl:if><xsl:call-template name="getTitle"><xsl:with-param name="item" select="$item"/></xsl:call-template>&#160;<xsl:value-of select="@name"/></a></dd>
+											</xsl:otherwise>
+										</xsl:choose>
+										<xsl:call-template name="drawLevel">
+											<xsl:with-param name="level" select="$level + 1"/>
+											<xsl:with-param name="items" select="$item/node"/>
+											<xsl:with-param name="pattern" select="concat($pattern,'/', @name)"/>
+										</xsl:call-template>
+								</xsl:for-each>
 							</xsl:when>
 							<xsl:otherwise>
-								<dd><a href="{$pattern}/{@pattern}/"><xsl:if test="string-length($class)"><xsl:attribute name="class"><xsl:value-of select="$class"/></xsl:attribute></xsl:if><xsl:call-template name="getTitle"/></a></dd>
-							</xsl:otherwise>
+									<xsl:choose>
+										<xsl:when test="$level = 0">
+											<dt><h3><xsl:call-template name="getTitle"><xsl:with-param name="item" select="$item"/></xsl:call-template></h3></dt>
+										</xsl:when>
+										<xsl:when test="@self = 2 and count(descendant::node[@self = 1]) = 0">
+											<dd><xsl:call-template name="getTitle"><xsl:with-param name="item" select="$item"/></xsl:call-template></dd>
+										</xsl:when>
+										<!-- 
+										 -->
+										<xsl:otherwise>
+											<dd><a href="{$pattern}/{@pattern}/"><xsl:if test="string-length($class)"><xsl:attribute name="class"><xsl:value-of select="$class"/></xsl:attribute></xsl:if><xsl:call-template name="getTitle"><xsl:with-param name="item" select="$item"/></xsl:call-template></a></dd>
+										</xsl:otherwise>
+									</xsl:choose>
+									<xsl:call-template name="drawLevel">
+										<xsl:with-param name="level" select="$level + 1"/>
+										<xsl:with-param name="items" select="node"/>
+										<xsl:with-param name="pattern" select="concat($pattern,'/', @pattern)"/>
+									</xsl:call-template>
+								</xsl:otherwise>
 						</xsl:choose>
-						<xsl:call-template name="drawLevel">
-							<xsl:with-param name="level" select="$level + 1"/>
-							<xsl:with-param name="items" select="node"/>
-							<xsl:with-param name="pattern" select="concat($pattern,'/', @pattern)"/>
-						</xsl:call-template>
 					</xsl:if>
 				</xsl:if>
 			</xsl:for-each>
@@ -79,10 +109,11 @@
 //
 -->
 	<xsl:template name="getTitle">
+		<xsl:param name="item"/>
 		<xsl:choose>
-			<xsl:when test="string-length(title[@lang = $language_id]/text()) != 0"><xsl:value-of select="title[@lang = $language_id]/text()" disable-output-escaping="yes"/></xsl:when>
-			<xsl:when test="string-length(title[@lang = $language_id]/@value) != 0"><xsl:value-of select="title[@lang = $language_id]/@value" disable-output-escaping="yes"/></xsl:when>
-			<xsl:otherwise><xsl:value-of select="@title" disable-output-escaping="yes"/></xsl:otherwise>
+			<xsl:when test="string-length($item/title[@lang = $language_id]/text()) != 0"><xsl:value-of select="$item/title[@lang = $language_id]/text()" disable-output-escaping="yes"/></xsl:when>
+			<xsl:when test="string-length($item/title[@lang = $language_id]/@value) != 0"><xsl:value-of select="$item/title[@lang = $language_id]/@value" disable-output-escaping="yes"/></xsl:when>
+			<xsl:otherwise><xsl:value-of select="$item/@title" disable-output-escaping="yes"/></xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
 <!--

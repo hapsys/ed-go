@@ -17,6 +17,7 @@
 	String root = cms.getFixedParameter("root").toString();
 	
 	String langs = cms.getData("langs");
+	String path_ctx = cms.getData("path");
 
 	String[] params = {"type:main"};
 	String main_menu = cms.getData("menu_main", params);
@@ -83,16 +84,25 @@
 		</div>
 		<div class=row>
 			<div class="col-md-3">
+			</div>		
+			<div class="col-md-9">
+				<%=path_ctx%>
+			</div>
+		</div>
+		<div class=row>
+			<div class="col-md-3">
 		 		<%=main_menu%>
 			</div>		
-			<div class="col-md-7">
+			<div class="col-md-9">
 				<h2><%=title%></h2>
 		 		<%=content%>
 		 		<% if (includeFile != null) { %>
 		 		<jsp:include page="<%=includeFile%>"/>
 		 		<% } %>
-			</div>		
-			<div class="col-md-2">right</div>		
+			</div>
+			<!-- 		
+			<div class="col-md-2">right</div>
+			 -->		
 		</div>
 	</div>
 </body>

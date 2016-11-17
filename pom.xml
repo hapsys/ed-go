@@ -94,6 +94,14 @@
 		    <artifactId>reflections</artifactId>
 		    <version>0.9.10</version>
 		</dependency>		
+		<!-- SAXON XSLT -->
+		<!-- 
+		<dependency>
+		    <groupId>net.sf.saxon</groupId>
+		    <artifactId>Saxon-HE</artifactId>
+		    <version>9.7.0-11</version>
+		</dependency>
+		 -->		
 		<!-- c3s -->
 		<dependency>
 			<groupId>org.c3s</groupId>

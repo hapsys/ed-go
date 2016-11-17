@@ -18,8 +18,6 @@
 		<class>org.c3s.edgo.common.entity.ModuleRecipy</class>
 		<class>org.c3s.edgo.common.entity.PilotModule</class>
 		<class>org.c3s.edgo.common.entity.PilotShip</class>
-		<class>org.c3s.edgo.common.entity.PilotShipSlot</class>
-		<class>org.c3s.edgo.common.entity.PilotShipSlotPK</class>
 		<class>org.c3s.edgo.common.entity.Recipy</class>
 		<class>org.c3s.edgo.common.entity.ModuleModifier</class>
 		<class>org.c3s.edgo.common.entity.ModuleModifierPK</class>

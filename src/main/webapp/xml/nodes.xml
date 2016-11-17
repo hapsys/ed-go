@@ -33,6 +33,39 @@
 			<menu name="main_menu"/>
 		</node>
 	</node>
+	<node pattern="*" redirect="info/" pilot="true">
+		<role>ROLE_LOGGED</role>
+		<title lang="ru">КМДР</title>
+		<title lang="en">CMDR</title>
+		<menu name="main_menu"/>
+		<node pattern="info">
+			<title lang="ru">Информация</title>
+			<title lang="en">Information</title>
+			<menu name="main_menu"/>
+		</node>
+		<node pattern="ships">
+			<title lang="ru">Корабли</title>
+			<title lang="en">Ships</title>
+			<menu name="main_menu"/>
+		</node>
+		<node pattern="powers">
+			<title lang="ru">Силы</title>
+			<title lang="en">Powers</title>
+			<menu name="main_menu"/>
+		</node>
+	</node>
+	<!-- 
+	<node pattern="commander" redirect="info/">
+		<role>ROLE_LOGGED</role>
+		<title lang="ru">Статистика пилота</title>
+		<title lang="en">Commander</title>
+		<menu name="main_menu"/>
+		<node pattern="info">
+			<title lang="ru">Информация</title>
+			<title lang="en">Information</title>
+			<menu name="main_menu"/>
+		</node>
+	</node>
 	<node pattern="about" redirect="rules/">
 		<title lang="ru">О турнирах</title>
 		<title lang="en">About</title>
@@ -104,4 +137,5 @@
 	</node>
 	<node pattern="systems">
 	</node>
+	 -->
 </node>

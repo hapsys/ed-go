@@ -11,7 +11,10 @@ import java.util.List;
  */
 @Entity
 @Table(name="pilot_modules")
-@NamedQuery(name="PilotModule.findAll", query="SELECT p FROM PilotModule p")
+@NamedQueries({
+	@NamedQuery(name="PilotModule.findAll", query="SELECT p FROM PilotModule p"),
+	@NamedQuery(name="PilotModule.findByPilotShipAndSlot", query="SELECT p FROM PilotModule p WHERE p.pilotShip = :pilotShip and p.slot = :slot"),
+})
 public class PilotModule implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -29,14 +32,15 @@ public class PilotModule implements Serializable {
 	@JoinColumn(name="module_id")
 	private Module module;
 
-	//bi-directional many-to-one association to Pilot
+	//bi-directional many-to-one association to PilotShip
 	@ManyToOne
-	@JoinColumn(name="pilot_id")
-	private Pilot pilot;
+	@JoinColumn(name="pilot_ship_id")
+	private PilotShip pilotShip;
 
-	//bi-directional many-to-one association to PilotShipSlot
-	@OneToMany(mappedBy="pilotModule")
-	private List<PilotShipSlot> pilotShipSlots;
+	//bi-directional many-to-one association to Slot
+	@ManyToOne
+	@JoinColumn(name="slot_id")
+	private Slot slot;
 
 	public PilotModule() {
 	}
@@ -79,34 +83,20 @@ public class PilotModule implements Serializable {
 		this.module = module;
 	}
 
-	public Pilot getPilot() {
-		return this.pilot;
+	public PilotShip getPilotShip() {
+		return this.pilotShip;
 	}
 
-	public void setPilot(Pilot pilot) {
-		this.pilot = pilot;
+	public void setPilotShip(PilotShip pilotShip) {
+		this.pilotShip = pilotShip;
 	}
 
-	public List<PilotShipSlot> getPilotShipSlots() {
-		return this.pilotShipSlots;
+	public Slot getSlot() {
+		return this.slot;
 	}
 
-	public void setPilotShipSlots(List<PilotShipSlot> pilotShipSlots) {
-		this.pilotShipSlots = pilotShipSlots;
-	}
-
-	public PilotShipSlot addPilotShipSlot(PilotShipSlot pilotShipSlot) {
-		getPilotShipSlots().add(pilotShipSlot);
-		pilotShipSlot.setPilotModule(this);
-
-		return pilotShipSlot;
-	}
-
-	public PilotShipSlot removePilotShipSlot(PilotShipSlot pilotShipSlot) {
-		getPilotShipSlots().remove(pilotShipSlot);
-		pilotShipSlot.setPilotModule(null);
-
-		return pilotShipSlot;
+	public void setSlot(Slot slot) {
+		this.slot = slot;
 	}
 
 }

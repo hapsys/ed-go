@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.c3s.edgo.transaction.TransactionController;
 import org.c3s.xml.utils.XMLUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,13 +55,28 @@ public class DomSerializer {
 	 * @throws Exception 
 	 */
 	
+	private Map<Object, Object> useClass = null;
+
 	public Document __toXML(Element node) throws Exception {
+		return __toXML(node, null);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Document __toXML(Element node, Object useClasses) throws Exception {
+		
+		//this.useClass = );
+		if (useClasses != null && useClasses instanceof Map) {
+			this.useClass = (Map<Object, Object>)useClasses;
+		}
+		
+		//logger.debug("Deserialize class: {}", );
 		
 		Document xml = null;
 		
 		try {
 		
-			if (object == null || !object.getClass().getName().startsWith("org.c3s.edgo.")) {
+			if (object == null || useClass == null || useClass != null && !useClass.containsKey(object.getClass())  /*|| useClass == null && !object.getClass().getName().startsWith("org.c3s.edgo.")*/) {
+				//logger.debug("Current class {}", object.getClass());
 				return null;
 			}
 	
@@ -95,6 +109,21 @@ public class DomSerializer {
 	 * @return
 	 * @throws Exception 
 	 */
+	
+	
+	public Document toXML(Object useClasses) throws Exception {
+		if (useClasses == null) {
+			return toXML();
+		} else if (useClasses instanceof Map) {
+			Document doc = XMLUtils.createXML("data");
+			__toXML(doc.getDocumentElement(), useClasses);
+			return doc;
+		} else {
+			Document doc = XMLUtils.createXML("data");
+			__toXML(doc.getDocumentElement());
+			return doc;
+		}
+	}
 	
 	public Document toXML() throws Exception {
 		Document doc = XMLUtils.createXML("data");
@@ -151,8 +180,14 @@ public class DomSerializer {
 	}
 	
 	protected Element getField(Object obj, Element elm) throws Exception {
-		DomSerializer serializer = new DomSerializer(obj);
-		serializer.__toXML(elm);
+		if (obj != null) {
+			DomSerializer serializer = new DomSerializer(obj);
+			if (useClass != null) {
+				serializer.__toXML(elm, useClass.get(object.getClass()));
+			} else {
+				//serializer.__toXML(elm);
+			}
+		}
 		return elm;
 	}
 	protected Element getField(Field field, Element parent) throws Exception {
@@ -181,12 +216,15 @@ public class DomSerializer {
 		return elm;
 	}
 
+	@SuppressWarnings("unchecked")
 	protected Element getListField(List<Object> objects,  Element parent) throws Exception {
 		if (objects != null) {
 			for(Object obj: objects) {
-				Element value = parent.getOwnerDocument().createElement("item");
-				typeSeen(null, obj, value);
-				parent.appendChild(value);
+				if (!obj.getClass().getName().startsWith("org.c3s.edgo.") || ((Map<Class<?>, Boolean>)useClass.get(object.getClass())).containsKey(obj.getClass())) {
+					Element value = parent.getOwnerDocument().createElement("item");
+					typeSeen(null, obj, value);
+					parent.appendChild(value);
+				}
 			}
 		}
 		return parent;

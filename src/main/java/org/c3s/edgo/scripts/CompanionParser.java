@@ -1,6 +1,5 @@
 package org.c3s.edgo.scripts;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,6 +8,7 @@ import javax.persistence.EntityManager;
 import org.c3s.db.jpa.ManagerJPA;
 import org.c3s.edgo.common.entity.Module;
 import org.c3s.edgo.common.entity.Pilot;
+import org.c3s.edgo.common.entity.PilotModule;
 import org.c3s.edgo.common.entity.PilotShip;
 import org.c3s.edgo.common.entity.Ship;
 import org.c3s.edgo.common.entity.ShipSlot;
@@ -104,14 +104,48 @@ public class CompanionParser {
 			
 		}
 		
+		em.getTransaction().commit();
 		/*
 		 * Хреначим модули у пилота 
 		 */
+		em.getTransaction().begin();
 		
 		for (PilotShip pilotShip : pilot.getPilotShips()) {
-			 org.c3s.edgo.companion.Ship cship = companion.ships.get(pilotShip.getLinkShipId());
+			 org.c3s.edgo.companion.Ship cship = companion.ships.get(String.valueOf(pilotShip.getLinkShipId()));
 			 
-			 
+			 if (cship == null) {
+				 em.remove(pilotShip);
+				 System.out.println("1: WTF, why ship is null {" + pilotShip.getShip().getUniq() + "} ?");
+			 } else {
+				 System.out.println(pilotShip.getShip().getSlots().size());
+				 for (Slot slot: pilotShip.getShip().getSlots()) {
+					 PilotModule pilotModule = em.createNamedQuery("PilotModule.findByPilotShipAndSlot", PilotModule.class).setParameter("pilotShip", pilotShip).setParameter("slot", slot).getResultList().stream().findFirst().orElse(null);
+					 if (pilotModule != null && cship.modules.get(slot.getUniq()).module != null) {
+						 if (!pilotModule.getModule().getUniq().equals(cship.modules.get(slot.getUniq()).module.name)) {
+							 Module module = em.createNamedQuery("Module.findByUniq", Module.class).setParameter("uniq", cship.modules.get(slot.getUniq()).module.name).getResultList().stream().findFirst().orElse(null);
+							 if (module == null) {
+								 System.out.println("1: WTF, module {" + cship.modules.get(slot.getUniq()).module.name + "} not found!");
+							 } else {
+								 pilotModule.setModule(module);
+								 em.merge(pilotModule);
+							 }
+						 }
+					 } else if (cship.modules.get(slot.getUniq()).module == null && pilotModule != null) {
+						 em.remove(pilotModule);
+					 } else if (cship.modules.get(slot.getUniq()).module != null) {
+						 Module module = em.createNamedQuery("Module.findByUniq", Module.class).setParameter("uniq", cship.modules.get(slot.getUniq()).module.name).getResultList().stream().findFirst().orElse(null);
+						 if (module == null) {
+							 System.out.println("2: WTF, module {" + cship.modules.get(slot.getUniq()).module.name + "} not found!");
+						 } else {
+							 pilotModule = new PilotModule();
+							 pilotModule.setPilotShip(pilotShip);
+							 pilotModule.setSlot(slot);
+							 pilotModule.setModule(module);
+							 em.persist(pilotModule);
+						 }
+					 }
+				 }
+			 }
 		}
 		/*
 		 * Коммитим 

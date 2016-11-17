@@ -10,6 +10,7 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.sql.Timestamp;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -105,10 +106,18 @@ public class UserController extends GeneralController {
 	}
 	
 	
+	@SuppressWarnings("serial")
 	public void getProfile(@Parameter("tag") String tag, @Parameter("template") String template, RedirectControlerInterface redirect) throws Exception {
 		User user;
 		if ((user = GeneralController.getUser()) != null) {
-			Document xml = new DomSerializer(user).toXML();
+			Map<Object, Object> tree = new HashMap<Object, Object>() {{
+				put(User.class, new HashMap<Object, Object>() {{
+					put(UserKey.class, new HashMap<Object, Object>() {{
+					}});
+				}});
+			}};
+			
+			Document xml = new DomSerializer(user).toXML(tree);
 			logger.debug(XMLUtils.xml2out(xml));
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:view"});
 		} else {
