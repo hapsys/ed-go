@@ -1,6 +1,11 @@
 package org.c3s.edgo.event.impl.beans;
 
+import java.util.Date;
+
 public class InterdictionBean {
+
+	private Date timestamp;
+	private String event;
 	/**
 	 *  : true or false
 	 */
@@ -25,6 +30,31 @@ public class InterdictionBean {
 	 *  if npc working for power
 	 */
 	private String Power;
+	
+	/**
+	 * @return
+	 */
+	public Date getTimestamp() {
+		return timestamp;
+	}
+	/**
+	 * @param timestamp
+	 */
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+	/**
+	 * @return
+	 */
+	public String getEvent() {
+		return event;
+	}
+	/**
+	 * @param event
+	 */
+	public void setEvent(String event) {
+		this.event = event;
+	}
 	/**
 	 * @return
 	 */

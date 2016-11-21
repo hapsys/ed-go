@@ -22,6 +22,7 @@ import org.c3s.edgo.common.entity.PilotShip;
 import org.c3s.edgo.common.entity.Ship;
 import org.c3s.edgo.common.entity.Slot;
 import org.c3s.edgo.common.entity.SlotType;
+import org.c3s.edgo.common.entity.StarSystem;
 import org.c3s.edgo.common.entity.User;
 import org.c3s.edgo.utils.DomSerializer;
 import org.c3s.edgo.web.GeneralController;
@@ -96,6 +97,9 @@ public class Commander extends GeneralController {
 			Map<Object, Object> tree = new HashMap<Object, Object>() {{
 				put(Pilot.class, new HashMap<Object, Object>() {{
 					put(PilotShip.class, new HashMap<Object, Object>() {{
+						put(StarSystem.class, new HashMap<Object, Object>() {{
+							
+						}});
 						put(Ship.class, new HashMap<Object, Object>() {{
 							
 						}});

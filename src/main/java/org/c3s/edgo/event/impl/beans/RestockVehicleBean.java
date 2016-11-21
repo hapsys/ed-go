@@ -1,6 +1,11 @@
 package org.c3s.edgo.event.impl.beans;
 
+import java.util.Date;
+
 public class RestockVehicleBean {
+
+	private Date timestamp;
+	private String event;
 	/**
 	 *  type of vehicle being purchased (SRV or fighter model)
 	 */
@@ -17,6 +22,31 @@ public class RestockVehicleBean {
 	 *  number of vehicles purchased
 	 */
 	private String Count;
+	
+	/**
+	 * @return
+	 */
+	public Date getTimestamp() {
+		return timestamp;
+	}
+	/**
+	 * @param timestamp
+	 */
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+	/**
+	 * @return
+	 */
+	public String getEvent() {
+		return event;
+	}
+	/**
+	 * @param event
+	 */
+	public void setEvent(String event) {
+		this.event = event;
+	}
 	/**
 	 * @return
 	 */

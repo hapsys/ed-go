@@ -1,6 +1,11 @@
 package org.c3s.edgo.event.impl.beans;
 
+import java.util.Date;
+
 public class EjectCargoBean {
+
+	private Date timestamp;
+	private String event;
 	/**
 	 *  cargo type
 	 */
@@ -9,10 +14,31 @@ public class EjectCargoBean {
 	 *  number of units
 	 */
 	private String Count;
+	
 	/**
-	 *  whether ‘abandoned’
+	 * @return
 	 */
-	private String Abandoned;
+	public Date getTimestamp() {
+		return timestamp;
+	}
+	/**
+	 * @param timestamp
+	 */
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+	/**
+	 * @return
+	 */
+	public String getEvent() {
+		return event;
+	}
+	/**
+	 * @param event
+	 */
+	public void setEvent(String event) {
+		this.event = event;
+	}
 	/**
 	 * @return
 	 */
@@ -36,18 +62,6 @@ public class EjectCargoBean {
 	 */
 	public void setCount(String count) {
 		this.Count = count;
-	}
-	/**
-	 * @return
-	 */
-	public String getAbandoned() {
-		return Abandoned;
-	}
-	/**
-	 * @param abandoned
-	 */
-	public void setAbandoned(String abandoned) {
-		this.Abandoned = abandoned;
 	}
 	
 }	

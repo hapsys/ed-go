@@ -1,14 +1,19 @@
 package org.c3s.edgo.event.impl.beans;
 
+import java.util.Date;
+
 public class SellExplorationDataBean {
+
+	private Date timestamp;
+	private String event;
 	/**
 	 *  JSON array of system names
 	 */
-	private String Systems;
+	private String[] Systems;
 	/**
 	 *  JSON array of discovered bodies
 	 */
-	private String Discovered;
+	private String[] Discovered;
 	/**
 	 *  value of systems
 	 */
@@ -17,28 +22,53 @@ public class SellExplorationDataBean {
 	 *  bonus for first discoveries
 	 */
 	private String Bonus;
+	
 	/**
 	 * @return
 	 */
-	public String getSystems() {
+	public Date getTimestamp() {
+		return timestamp;
+	}
+	/**
+	 * @param timestamp
+	 */
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+	/**
+	 * @return
+	 */
+	public String getEvent() {
+		return event;
+	}
+	/**
+	 * @param event
+	 */
+	public void setEvent(String event) {
+		this.event = event;
+	}
+	/**
+	 * @return
+	 */
+	public String[] getSystems() {
 		return Systems;
 	}
 	/**
 	 * @param systems
 	 */
-	public void setSystems(String systems) {
+	public void setSystems(String[] systems) {
 		this.Systems = systems;
 	}
 	/**
 	 * @return
 	 */
-	public String getDiscovered() {
+	public String[] getDiscovered() {
 		return Discovered;
 	}
 	/**
 	 * @param discovered
 	 */
-	public void setDiscovered(String discovered) {
+	public void setDiscovered(String[] discovered) {
 		this.Discovered = discovered;
 	}
 	/**

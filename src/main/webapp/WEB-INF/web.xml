@@ -10,6 +10,11 @@
 	</context-param>
 
 	<context-param>
+		<param-name>storage.type.APPLICATION</param-name>
+		<param-value>org.c3s.storage.ApplicationStorage</param-value>
+	</context-param>
+	
+	<context-param>
 		<param-name>storage.type.REQUEST</param-name>
 		<param-value>org.c3s.web.storage.RequestStorage</param-value>
 	</context-param>

@@ -1,6 +1,11 @@
 package org.c3s.edgo.event.impl.beans;
 
+import java.util.Date;
+
 public class MissionCompletedBean {
+
+	private Date timestamp;
+	private String event;
 	/**
 	 *  mission type
 	 */
@@ -49,6 +54,35 @@ public class MissionCompletedBean {
 	 * [] (names of any permits awarded, as a JSON array)
 	 */
 	private String PermitsAwarded;
+	/**
+	 * [] (names and counts of any commodity rewards)
+	 */
+	private String CommodityReward;
+	
+	/**
+	 * @return
+	 */
+	public Date getTimestamp() {
+		return timestamp;
+	}
+	/**
+	 * @param timestamp
+	 */
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+	/**
+	 * @return
+	 */
+	public String getEvent() {
+		return event;
+	}
+	/**
+	 * @param event
+	 */
+	public void setEvent(String event) {
+		this.event = event;
+	}
 	/**
 	 * @return
 	 */
@@ -192,6 +226,18 @@ public class MissionCompletedBean {
 	 */
 	public void setPermitsAwarded(String permitsawarded) {
 		this.PermitsAwarded = permitsawarded;
+	}
+	/**
+	 * @return
+	 */
+	public String getCommodityReward() {
+		return CommodityReward;
+	}
+	/**
+	 * @param commodityreward
+	 */
+	public void setCommodityReward(String commodityreward) {
+		this.CommodityReward = commodityreward;
 	}
 	
 }	

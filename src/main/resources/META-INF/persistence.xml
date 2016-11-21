@@ -21,6 +21,15 @@
 		<class>org.c3s.edgo.common.entity.Recipy</class>
 		<class>org.c3s.edgo.common.entity.ModuleModifier</class>
 		<class>org.c3s.edgo.common.entity.ModuleModifierPK</class>
+		<class>org.c3s.edgo.common.entity.Faction</class>
+		<class>org.c3s.edgo.common.entity.Power</class>
+		<class>org.c3s.edgo.common.entity.Station</class>
+		<class>org.c3s.edgo.common.entity.SystemFaction</class>
+		<class>org.c3s.edgo.common.entity.StarSystem</class>
+		<class>org.c3s.edgo.common.entity.SystemsPopulated</class>
+		<class>org.c3s.edgo.common.entity.SystemFactionPK</class>
+		<class>org.c3s.edgo.common.entity.Event</class>
+		<class>org.c3s.edgo.common.entity.LocationHistory</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ed-go" />
@@ -30,6 +39,10 @@
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="true" />
+			<!-- 
+			<property name="hibernate.cache.use_second_level_cache" value="true"/>
+            <property name="hibernate.cache.use_query_cache" value="true"/>
+             -->			
 		</properties>
 	</persistence-unit>
 <!--

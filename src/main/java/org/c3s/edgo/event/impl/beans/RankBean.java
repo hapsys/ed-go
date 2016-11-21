@@ -1,6 +1,11 @@
 package org.c3s.edgo.event.impl.beans;
 
+import java.util.Date;
+
 public class RankBean {
+
+	private Date timestamp;
+	private String event;
 	/**
 	 *  rank on scale 0-8
 	 */
@@ -25,6 +30,31 @@ public class RankBean {
 	 *  rank on scale 0-8
 	 */
 	private String CQC;
+	
+	/**
+	 * @return
+	 */
+	public Date getTimestamp() {
+		return timestamp;
+	}
+	/**
+	 * @param timestamp
+	 */
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+	/**
+	 * @return
+	 */
+	public String getEvent() {
+		return event;
+	}
+	/**
+	 * @param event
+	 */
+	public void setEvent(String event) {
+		this.event = event;
+	}
 	/**
 	 * @return
 	 */

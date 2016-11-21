@@ -27,7 +27,7 @@ public class Journal {
 			@SuppressWarnings("unchecked")
 			Map<String, Object> json = (Map<String, Object>)JSONUtils.fromJSON(line, Map.class);
 			
-			dispatcher.dispatch(json);
+			//dispatcher.dispatch(json);
 			
 		}
 		

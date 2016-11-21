@@ -14,6 +14,7 @@ import org.c3s.edgo.common.entity.Ship;
 import org.c3s.edgo.common.entity.ShipSlot;
 import org.c3s.edgo.common.entity.ShipSlotPK;
 import org.c3s.edgo.common.entity.Slot;
+import org.c3s.edgo.common.entity.Station;
 import org.c3s.edgo.companion.CompanionBean;
 import org.c3s.exceptions.FileSystemException;
 import org.c3s.utils.FileSystem;
@@ -58,8 +59,27 @@ public class CompanionParser {
 				pilotShip.setLinkShipId(companion.ships.get(id).id);
 				pilotShip.setIsMain((companion.ships.get(id).id == currentShipId) ? (byte)1:0);
 				pilotShip.setPilot(pilot);
+				pilotShip.setStation(null);
+				pilotShip.setSystem(null);
+				if (companion.ships.get(id).starsystem != null) {
+					pilotShip.setSystem(em.createNamedQuery("StarSystem.findByUniq", org.c3s.edgo.common.entity.StarSystem.class).setParameter("uniq", companion.ships.get(id).starsystem.getName()).getResultList().stream().findFirst().orElse(null));
+				}
+				if (companion.ships.get(id).station != null) {
+					pilotShip.setStation(em.createNamedQuery("Station.findByUniq", Station.class).setParameter("uniq", companion.ships.get(id).station.getName()).getResultList().stream().findFirst().orElse(null));
+				}
 				em.persist(pilotShip);
 			} else {
+				pilotShip.setStation(null);
+				pilotShip.setSystem(null);
+				if (companion.ships.get(id).starsystem != null) {
+					System.out.println(companion.ships.get(id).starsystem.getName());
+					pilotShip.setSystem(em.createNamedQuery("StarSystem.findByUniq", org.c3s.edgo.common.entity.StarSystem.class).setParameter("uniq", companion.ships.get(id).starsystem.getName()).getResultList().stream().findFirst().orElse(null));
+				}
+				if (companion.ships.get(id).station != null) {
+					pilotShip.setStation(em.createNamedQuery("Station.findByUniq", Station.class).setParameter("uniq", companion.ships.get(id).station.getName()).getResultList().stream().findFirst().orElse(null));
+				}
+				em.merge(pilotShip);
+				System.out.println("Update ship " + id);
 				ship = pilotShip.getShip();
 			}
 				

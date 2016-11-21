@@ -1,6 +1,11 @@
 package org.c3s.edgo.event.impl.beans;
 
+import java.util.Date;
+
 public class NewCommanderBean {
+
+	private Date timestamp;
+	private String event;
 	/**
 	 *  (new) commander name
 	 */
@@ -9,6 +14,31 @@ public class NewCommanderBean {
 	 *  selected starter package
 	 */
 	private String Package;
+	
+	/**
+	 * @return
+	 */
+	public Date getTimestamp() {
+		return timestamp;
+	}
+	/**
+	 * @param timestamp
+	 */
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+	/**
+	 * @return
+	 */
+	public String getEvent() {
+		return event;
+	}
+	/**
+	 * @param event
+	 */
+	public void setEvent(String event) {
+		this.event = event;
+	}
 	/**
 	 * @return
 	 */
@@ -28,10 +58,10 @@ public class NewCommanderBean {
 		return Package;
 	}
 	/**
-	 * @param packageParam
+	 * @param package
 	 */
-	public void setPackage(String packageParam) {
-		this.Package = packageParam;
+	public void setPackage(String _package) {
+		this.Package = _package;
 	}
 	
 }	

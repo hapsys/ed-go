@@ -44,6 +44,9 @@ public class Pilot implements Serializable {
 	private int userId;
 	
 	
+	@Column(name="is_current")
+	private byte isCurrent;
+	
 	public Pilot() {
 	}
 
@@ -104,6 +107,13 @@ public class Pilot implements Serializable {
 	public void setUserId(int user_id) {
 		this.userId = user_id;
 	}
-	
+
+	public byte getIsCurrent() {
+		return isCurrent;
+	}
+
+	public void setIsCurrent(byte isCurrent) {
+		this.isCurrent = isCurrent;
+	}
 	
 }

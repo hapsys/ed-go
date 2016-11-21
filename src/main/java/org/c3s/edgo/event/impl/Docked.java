@@ -1,5 +1,7 @@
 package org.c3s.edgo.event.impl;
 	
+import org.c3s.edgo.common.dao.LocationDAO;
+import org.c3s.edgo.common.entity.Pilot;
 import org.c3s.edgo.event.AbstractJournalEvent;
 import org.c3s.edgo.event.impl.beans.DockedBean;
 import org.slf4j.Logger;
@@ -15,6 +17,12 @@ public class Docked extends AbstractJournalEvent<DockedBean> {
 	}
 	
 	protected void processBean(DockedBean bean) {
+		
+		Pilot pilot = getCurrent();
+		if (pilot != null) {
+			new LocationDAO(em).insertLocation(pilot.getPilotId(), bean.getTimestamp(), bean.getStarSystem(), null, bean.getStationName());
+		}
+		
 	}
 
 }

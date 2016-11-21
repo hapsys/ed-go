@@ -1,6 +1,11 @@
 package org.c3s.edgo.event.impl.beans;
 
+import java.util.Date;
+
 public class DockedBean {
+
+	private Date timestamp;
+	private String event;
 	/**
 	 *  name of station
 	 */
@@ -18,9 +23,9 @@ public class DockedBean {
 	 */
 	private String CockpitBreach;
 	/**
-	 *  station’s controlling faction
+	 *  stations controlling faction
 	 */
-	private String Faction;
+	private String StationFaction;
 	/**
 	 * 
 	 */
@@ -28,19 +33,40 @@ public class DockedBean {
 	/**
 	 * 
 	 */
-	private String Allegiance;
+	private String StationAllegiance;
 	/**
 	 * 
 	 */
-	private String Economy;
+	private String StationEconomy;
 	/**
 	 * 
 	 */
-	private String Government;
+	private String StationGovernment;
+	
 	/**
-	 * 
+	 * @return
 	 */
-	private String Security;
+	public Date getTimestamp() {
+		return timestamp;
+	}
+	/**
+	 * @param timestamp
+	 */
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+	/**
+	 * @return
+	 */
+	public String getEvent() {
+		return event;
+	}
+	/**
+	 * @param event
+	 */
+	public void setEvent(String event) {
+		this.event = event;
+	}
 	/**
 	 * @return
 	 */
@@ -92,14 +118,14 @@ public class DockedBean {
 	/**
 	 * @return
 	 */
-	public String getFaction() {
-		return Faction;
+	public String getStationFaction() {
+		return StationFaction;
 	}
 	/**
-	 * @param faction
+	 * @param stationfaction
 	 */
-	public void setFaction(String faction) {
-		this.Faction = faction;
+	public void setStationFaction(String stationfaction) {
+		this.StationFaction = stationfaction;
 	}
 	/**
 	 * @return
@@ -116,50 +142,38 @@ public class DockedBean {
 	/**
 	 * @return
 	 */
-	public String getAllegiance() {
-		return Allegiance;
+	public String getStationAllegiance() {
+		return StationAllegiance;
 	}
 	/**
-	 * @param allegiance
+	 * @param stationallegiance
 	 */
-	public void setAllegiance(String allegiance) {
-		this.Allegiance = allegiance;
-	}
-	/**
-	 * @return
-	 */
-	public String getEconomy() {
-		return Economy;
-	}
-	/**
-	 * @param economy
-	 */
-	public void setEconomy(String economy) {
-		this.Economy = economy;
+	public void setStationAllegiance(String stationallegiance) {
+		this.StationAllegiance = stationallegiance;
 	}
 	/**
 	 * @return
 	 */
-	public String getGovernment() {
-		return Government;
+	public String getStationEconomy() {
+		return StationEconomy;
 	}
 	/**
-	 * @param government
+	 * @param stationeconomy
 	 */
-	public void setGovernment(String government) {
-		this.Government = government;
+	public void setStationEconomy(String stationeconomy) {
+		this.StationEconomy = stationeconomy;
 	}
 	/**
 	 * @return
 	 */
-	public String getSecurity() {
-		return Security;
+	public String getStationGovernment() {
+		return StationGovernment;
 	}
 	/**
-	 * @param security
+	 * @param stationgovernment
 	 */
-	public void setSecurity(String security) {
-		this.Security = security;
+	public void setStationGovernment(String stationgovernment) {
+		this.StationGovernment = stationgovernment;
 	}
 	
 }	

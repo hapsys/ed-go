@@ -61,6 +61,7 @@
 								</a>
 							</td>
 							<td>
+								<xsl:value-of select="field[@name='system']/field[@name='name']/@value"/>
 							</td>
 						<xsl:if test="position() mod 2 = 0"><xsl:text disable-output-escaping="yes">&lt;/tr&gt;</xsl:text></xsl:if>
 					</xsl:for-each>

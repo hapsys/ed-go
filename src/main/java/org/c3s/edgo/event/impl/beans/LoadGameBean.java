@@ -1,17 +1,21 @@
 package org.c3s.edgo.event.impl.beans;
 
+import java.util.Date;
+
 public class LoadGameBean {
 
 	/**
 	 * 
 	 */
-	String Commander;
-	String Ship;
-	int ShipID;
-	String GameMode;
-	String Group;
-	int Credits;
-	int Loan;
+	private Date timestamp;
+	private String event;
+	private String Commander;
+	private String Ship;
+	private int ShipID;
+	private String GameMode;
+	private String Group;
+	private int Credits;
+	private int Loan;
 	
 	/**
 	 * @return
@@ -40,6 +44,7 @@ public class LoadGameBean {
 	public String getGameMode() {
 		return GameMode;
 	}
+	
 	public void setGameMode(String gameMode) {
 		GameMode = gameMode;
 	}
@@ -60,6 +65,31 @@ public class LoadGameBean {
 	}
 	public void setLoan(int loan) {
 		Loan = loan;
+	}
+
+	/**
+	 * @return
+	 */
+	public Date getTimestamp() {
+		return timestamp;
+	}
+	/**
+	 * @param timestamp
+	 */
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+	/**
+	 * @return
+	 */
+	public String getEvent() {
+		return event;
+	}
+	/**
+	 * @param event
+	 */
+	public void setEvent(String event) {
+		this.event = event;
 	}
 	
 }

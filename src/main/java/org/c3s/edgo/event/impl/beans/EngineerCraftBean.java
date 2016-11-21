@@ -1,6 +1,11 @@
 package org.c3s.edgo.event.impl.beans;
 
+import java.util.Date;
+
 public class EngineerCraftBean {
+
+	private Date timestamp;
+	private String event;
 	/**
 	 *  name of engineer
 	 */
@@ -17,6 +22,31 @@ public class EngineerCraftBean {
 	 *  JSON object with names and quantities of materials required
 	 */
 	private String Ingredients;
+	
+	/**
+	 * @return
+	 */
+	public Date getTimestamp() {
+		return timestamp;
+	}
+	/**
+	 * @param timestamp
+	 */
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+	/**
+	 * @return
+	 */
+	public String getEvent() {
+		return event;
+	}
+	/**
+	 * @param event
+	 */
+	public void setEvent(String event) {
+		this.event = event;
+	}
 	/**
 	 * @return
 	 */

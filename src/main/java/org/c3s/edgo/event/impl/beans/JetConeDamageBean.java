@@ -1,10 +1,40 @@
 package org.c3s.edgo.event.impl.beans;
 
+import java.util.Date;
+
 public class JetConeDamageBean {
+
+	private Date timestamp;
+	private String event;
 	/**
 	 *  the name of the module that has taken some damage
 	 */
 	private String Module;
+	
+	/**
+	 * @return
+	 */
+	public Date getTimestamp() {
+		return timestamp;
+	}
+	/**
+	 * @param timestamp
+	 */
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+	/**
+	 * @return
+	 */
+	public String getEvent() {
+		return event;
+	}
+	/**
+	 * @param event
+	 */
+	public void setEvent(String event) {
+		this.event = event;
+	}
 	/**
 	 * @return
 	 */

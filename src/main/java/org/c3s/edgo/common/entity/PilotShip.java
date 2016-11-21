@@ -40,6 +40,15 @@ public class PilotShip implements Serializable {
 	@JoinColumn(name="ship_id")
 	private Ship ship;
 
+	@OneToOne
+	@JoinColumn(name="system_id")
+	private StarSystem system;
+	
+	@OneToOne
+	@JoinColumn(name="station_id")
+	private Station station;
+	
+	
 	public PilotShip() {
 	}
 
@@ -105,4 +114,21 @@ public class PilotShip implements Serializable {
 		this.ship = ship;
 	}
 
+	public StarSystem getSystem() {
+		return system;
+	}
+
+	public void setSystem(StarSystem system) {
+		this.system = system;
+	}
+
+	public Station getStation() {
+		return station;
+	}
+
+	public void setStation(Station station) {
+		this.station = station;
+	}
+
+	
 }

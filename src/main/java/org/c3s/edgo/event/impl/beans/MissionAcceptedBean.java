@@ -1,6 +1,11 @@
 package org.c3s.edgo.event.impl.beans;
 
+import java.util.Date;
+
 public class MissionAcceptedBean {
+
+	private Date timestamp;
+	private String event;
 	/**
 	 *  name of mission
 	 */
@@ -34,7 +39,7 @@ public class MissionAcceptedBean {
 	 */
 	private String TargetType;
 	/**
-	 *  target’s faction
+	 *  targets faction
 	 */
 	private String TargetFaction;
 	/**
@@ -65,6 +70,31 @@ public class MissionAcceptedBean {
 	 *  eg Tourist, Soldier, Explorer,...
 	 */
 	private String PassengerType;
+	
+	/**
+	 * @return
+	 */
+	public Date getTimestamp() {
+		return timestamp;
+	}
+	/**
+	 * @param timestamp
+	 */
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+	/**
+	 * @return
+	 */
+	public String getEvent() {
+		return event;
+	}
+	/**
+	 * @param event
+	 */
+	public void setEvent(String event) {
+		this.event = event;
+	}
 	/**
 	 * @return
 	 */

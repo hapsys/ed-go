@@ -1,6 +1,11 @@
 package org.c3s.edgo.event.impl.beans;
 
+import java.util.Date;
+
 public class LocationBean {
+
+	private Date timestamp;
+	private String event;
 	/**
 	 *  name of destination starsystem
 	 */
@@ -8,13 +13,17 @@ public class LocationBean {
 	/**
 	 *  star position, as a Json array [x, y, z], in light years
 	 */
-	private String StarPos;
+	private Float[] StarPos;
 	/**
-	 *  star’s body name
+	 *  star or planets body name
 	 */
 	private String Body;
 	/**
-	 *  true (if docked)
+	 * 
+	 */
+	private String BodyType;
+	/**
+	 *  (bool)
 	 */
 	private String Docked;
 	/**
@@ -28,7 +37,7 @@ public class LocationBean {
 	/**
 	 *  star system controlling faction
 	 */
-	private String Faction;
+	private String SystemFaction;
 	/**
 	 * 
 	 */
@@ -36,19 +45,52 @@ public class LocationBean {
 	/**
 	 * 
 	 */
-	private String Allegiance;
+	private String SystemAllegiance;
 	/**
 	 * 
 	 */
-	private String Economy;
+	private String SystemEconomy;
 	/**
 	 * 
 	 */
-	private String Government;
+	private String SystemGovernment;
 	/**
 	 * 
 	 */
-	private String Security;
+	private String SystemSecurity;
+	/**
+	 *  player is pledged to a Power in Powerplay, and the star system is involved in powerplay,
+	 */
+	private String the;
+	/**
+	 *  a json array with the names of any powers contesting the system, or the name of the controlling power
+	 */
+	private String[] Powers;
+	
+	/**
+	 * @return
+	 */
+	public Date getTimestamp() {
+		return timestamp;
+	}
+	/**
+	 * @param timestamp
+	 */
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+	/**
+	 * @return
+	 */
+	public String getEvent() {
+		return event;
+	}
+	/**
+	 * @param event
+	 */
+	public void setEvent(String event) {
+		this.event = event;
+	}
 	/**
 	 * @return
 	 */
@@ -64,13 +106,13 @@ public class LocationBean {
 	/**
 	 * @return
 	 */
-	public String getStarPos() {
+	public Float[] getStarPos() {
 		return StarPos;
 	}
 	/**
 	 * @param starpos
 	 */
-	public void setStarPos(String starpos) {
+	public void setStarPos(Float[] starpos) {
 		this.StarPos = starpos;
 	}
 	/**
@@ -84,6 +126,18 @@ public class LocationBean {
 	 */
 	public void setBody(String body) {
 		this.Body = body;
+	}
+	/**
+	 * @return
+	 */
+	public String getBodyType() {
+		return BodyType;
+	}
+	/**
+	 * @param bodytype
+	 */
+	public void setBodyType(String bodytype) {
+		this.BodyType = bodytype;
 	}
 	/**
 	 * @return
@@ -124,14 +178,14 @@ public class LocationBean {
 	/**
 	 * @return
 	 */
-	public String getFaction() {
-		return Faction;
+	public String getSystemFaction() {
+		return SystemFaction;
 	}
 	/**
-	 * @param faction
+	 * @param systemfaction
 	 */
-	public void setFaction(String faction) {
-		this.Faction = faction;
+	public void setSystemFaction(String systemfaction) {
+		this.SystemFaction = systemfaction;
 	}
 	/**
 	 * @return
@@ -148,50 +202,74 @@ public class LocationBean {
 	/**
 	 * @return
 	 */
-	public String getAllegiance() {
-		return Allegiance;
+	public String getSystemAllegiance() {
+		return SystemAllegiance;
 	}
 	/**
-	 * @param allegiance
+	 * @param systemallegiance
 	 */
-	public void setAllegiance(String allegiance) {
-		this.Allegiance = allegiance;
-	}
-	/**
-	 * @return
-	 */
-	public String getEconomy() {
-		return Economy;
-	}
-	/**
-	 * @param economy
-	 */
-	public void setEconomy(String economy) {
-		this.Economy = economy;
+	public void setSystemAllegiance(String systemallegiance) {
+		this.SystemAllegiance = systemallegiance;
 	}
 	/**
 	 * @return
 	 */
-	public String getGovernment() {
-		return Government;
+	public String getSystemEconomy() {
+		return SystemEconomy;
 	}
 	/**
-	 * @param government
+	 * @param systemeconomy
 	 */
-	public void setGovernment(String government) {
-		this.Government = government;
+	public void setSystemEconomy(String systemeconomy) {
+		this.SystemEconomy = systemeconomy;
 	}
 	/**
 	 * @return
 	 */
-	public String getSecurity() {
-		return Security;
+	public String getSystemGovernment() {
+		return SystemGovernment;
 	}
 	/**
-	 * @param security
+	 * @param systemgovernment
 	 */
-	public void setSecurity(String security) {
-		this.Security = security;
+	public void setSystemGovernment(String systemgovernment) {
+		this.SystemGovernment = systemgovernment;
+	}
+	/**
+	 * @return
+	 */
+	public String getSystemSecurity() {
+		return SystemSecurity;
+	}
+	/**
+	 * @param systemsecurity
+	 */
+	public void setSystemSecurity(String systemsecurity) {
+		this.SystemSecurity = systemsecurity;
+	}
+	/**
+	 * @return
+	 */
+	public String getthe() {
+		return the;
+	}
+	/**
+	 * @param the
+	 */
+	public void setthe(String the) {
+		this.the = the;
+	}
+	/**
+	 * @return
+	 */
+	public String[] getPowers() {
+		return Powers;
+	}
+	/**
+	 * @param powers
+	 */
+	public void setPowers(String[] powers) {
+		this.Powers = powers;
 	}
 	
 }	

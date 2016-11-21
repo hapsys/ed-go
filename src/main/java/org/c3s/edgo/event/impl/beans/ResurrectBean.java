@@ -1,6 +1,11 @@
 package org.c3s.edgo.event.impl.beans;
 
+import java.util.Date;
+
 public class ResurrectBean {
+
+	private Date timestamp;
+	private String event;
 	/**
 	 *  the option selected on the insurance rebuy screen
 	 */
@@ -13,6 +18,31 @@ public class ResurrectBean {
 	 *  whether the commander declared bankruptcy
 	 */
 	private String Bankrupt;
+	
+	/**
+	 * @return
+	 */
+	public Date getTimestamp() {
+		return timestamp;
+	}
+	/**
+	 * @param timestamp
+	 */
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+	/**
+	 * @return
+	 */
+	public String getEvent() {
+		return event;
+	}
+	/**
+	 * @param event
+	 */
+	public void setEvent(String event) {
+		this.event = event;
+	}
 	/**
 	 * @return
 	 */
