@@ -96,11 +96,6 @@ public class DBUsersAccess extends Access {
 			
 		}
 		sql += injector.getLimitQuery();
-		System.out.println(getConnection());
-		System.out.println(sql);
-		System.out.println(paramEmail);
-		System.out.println(paramUid);
-		
 		List<Map<String, Object>> result = getConnection().fetchRows("getByEmailAndPassword", sql ,  paramEmail,  paramUid);
 		if (result != null) {
 			
