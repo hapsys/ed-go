@@ -8,9 +8,10 @@ import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Base64;
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -23,13 +24,14 @@ import org.c3s.annotations.ParameterRequest;
 import org.c3s.content.ContentObject;
 import org.c3s.db.jpa.ManagerJPA;
 import org.c3s.dispatcher.RedirectControlerInterface;
-import org.c3s.edgo.common.entity.User;
-import org.c3s.edgo.common.entity.UserKey;
-import org.c3s.edgo.utils.DomSerializer;
+import org.c3s.edgo.common.access.DbAccess;
+import org.c3s.edgo.common.beans.DBUserKeysBean;
+import org.c3s.edgo.common.beans.DBUsersBean;
 import org.c3s.edgo.web.GeneralController;
 import org.c3s.edgo.web.validator.Required;
 import org.c3s.edgo.web.validator.Result;
 import org.c3s.edgo.web.validator.ValueChecker;
+import org.c3s.reflection.XMLReflectionObj;
 import org.c3s.storage.StorageFactory;
 import org.c3s.storage.StorageInterface;
 import org.c3s.storage.StorageType;
@@ -51,15 +53,17 @@ public class UserController extends GeneralController {
 	//@SuppressWarnings("unused")
 	private static Logger logger = LoggerFactory.getLogger(UserController.class); 
 	
-	private EntityManager manager = ManagerJPA.get("edgo");
-	
 	/**
 	 * @param email
 	 * @param password
 	 * @param tag
 	 * @param redirect
+	 * @throws SQLException 
+	 * @throws InstantiationException 
+	 * @throws IllegalAccessException 
+	 * @throws IllegalArgumentException 
 	 */
-	public void login(@ParameterRequest("email") String email, @ParameterRequest("password") String password, @Parameter("tag") String tag, RedirectControlerInterface redirect) {
+	public void login(@ParameterRequest("email") String email, @ParameterRequest("password") String password, @Parameter("tag") String tag, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 
 		StorageInterface storage = StorageFactory.getStorage(StorageType.SESSION);
 		//User user = null;
@@ -80,13 +84,16 @@ public class UserController extends GeneralController {
 			
 			if (!chk.hasErrors()) {
 				try {
-					final User user = manager.createNamedQuery("User.findByEmailAndPassword", User.class).setParameter("email", email).setParameter("password", Utils.MD5(password)).getSingleResult();
+					logger.debug("User/password: {}/{}", email, password);
+					//final User user = manager.createNamedQuery("User.findByEmailAndPassword", User.class).setParameter("email", email).setParameter("password", Utils.MD5(password)).getSingleResult();
+					DBUsersBean user = DbAccess.usersAccess.getByEmailAndPassword(email, Utils.MD5(password)); 
 					(result = new Result()).get().put("user_id", user.getUserUuid());
 					//logger.debug("Users roles is: {}", user.getRoles());
 					storage.put(STORED_USER, user);
 					user.setPrevLoginTime(user.getLastLoginTime());
 					user.setLastLoginTime(new Timestamp(System.currentTimeMillis()));
-					manager.merge(user);
+					//manager.merge(user);
+					DbAccess.usersAccess.updateByPrimaryKey(user, user.getUserId());
 				} catch (NoResultException e) {
 					errors = ValueChecker.addError("__common", i10n("no login"), null);
 				}
@@ -106,18 +113,10 @@ public class UserController extends GeneralController {
 	}
 	
 	
-	@SuppressWarnings("serial")
 	public void getProfile(@Parameter("tag") String tag, @Parameter("template") String template, RedirectControlerInterface redirect) throws Exception {
-		User user;
-		if ((user = GeneralController.getUser()) != null) {
-			Map<Object, Object> tree = new HashMap<Object, Object>() {{
-				put(User.class, new HashMap<Object, Object>() {{
-					put(UserKey.class, new HashMap<Object, Object>() {{
-					}});
-				}});
-			}};
-			
-			Document xml = new DomSerializer(user).toXML(tree);
+		DBUsersBean user;
+		if ((user = getUser()) != null) {
+			Document xml = new XMLReflectionObj(user, true).toXML();
 			logger.debug(XMLUtils.xml2out(xml));
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:view"});
 		} else {
@@ -125,8 +124,8 @@ public class UserController extends GeneralController {
 		}
 	}
 	
-	public void generateNewKeys(@Parameter("tag") String tag, RedirectControlerInterface redirect) {
-		User user = getUser();
+	public void generateNewKeys(@Parameter("tag") String tag, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, SQLException {
+		DBUsersBean user = getUser();
 		if (user != null) {
 			String privateK = null;
 			try {
@@ -138,19 +137,24 @@ public class UserController extends GeneralController {
 		        String publicK = Base64.getEncoder().encodeToString(publicKey.getEncoded());
 		        privateK = Base64.getEncoder().encodeToString(privateKey.getEncoded());
 		        
-		        UserKey key = user.getUserKey();
+		        DBUserKeysBean key = user.getUserKey();
 		        if (key == null || key.getUserKeyId() == 0) {
-		        	key = new UserKey();
+		        	key = new DBUserKeysBean();
 			        //manager.persist(key);
 			        //manager.getTransaction().commit();
 			        //manager.getTransaction().begin();
-		        	user.setUserKey(key);
+		        	//user.setUserKey(key);
+		        	DbAccess.userKeysAccess.insert(key);
+		        } else {
+		        	key.setUpdateTime(new Timestamp(new Date().getTime()));
 		        }
 		        key.setPublicKey(publicK);
 		        key.setPrivateKey(privateK);
-		        //manager.merge(key);
+		        DbAccess.userKeysAccess.updateByPrimaryKey(key, key.getUserKeyId());
 		        
-		        manager.merge(user);
+		        user.setUserKey(key);
+		        user.setUserKeyId(key.getUserKeyId());
+		        DbAccess.usersAccess.updateByPrimaryKey(user, user.getUserId());
 		        
 			} catch (NoSuchAlgorithmException e) {
 				logger.error("{}", e.getMessage(), e);

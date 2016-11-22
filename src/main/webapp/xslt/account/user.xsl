@@ -38,7 +38,7 @@
 				<label for="accessKey" class="col-md-4 control-label">Remote Access Key</label>
 				<div class="col-md-8">
 					<textarea rows="5" readonly="readonly" id="accessKey" class="form-control">
-						<xsl:value-of select="field[@name='userKey']/field[@name='privateKey']/@value"/>
+						<xsl:value-of select="item[@name='userKey']/field[@name='privateKey']/@value"/>
 					</textarea>
 					<div><a href="#" class="key-generate">Generate New Key</a></div>
 				</div>

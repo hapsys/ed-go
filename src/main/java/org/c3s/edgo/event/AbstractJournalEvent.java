@@ -3,15 +3,14 @@
  */
 package org.c3s.edgo.event;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
-
-import org.c3s.db.jpa.ManagerJPA;
-import org.c3s.edgo.common.entity.Event;
-import org.c3s.edgo.common.entity.Pilot;
-import org.c3s.edgo.common.entity.User;
+import org.c3s.edgo.common.access.DbAccess;
+import org.c3s.edgo.common.beans.DBEventsBean;
+import org.c3s.edgo.common.beans.DBPilotsBean;
+import org.c3s.edgo.common.beans.DBUsersBean;
 import org.c3s.utils.JSONUtils;
 
 /**
@@ -20,8 +19,7 @@ import org.c3s.utils.JSONUtils;
  */
 public abstract class AbstractJournalEvent<T> implements JournalEvent {
 
-	protected EntityManager em; // = ManagerJPA.get("edgo");
-	protected User user;
+	protected DBUsersBean user;
 	protected Class<T> beanClass = null;
 	
 	public AbstractJournalEvent() {
@@ -32,10 +30,13 @@ public abstract class AbstractJournalEvent<T> implements JournalEvent {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void process(Event event) {
-		em = ManagerJPA.get("edgo", "User+++"+event.getUserId());
-		beginTrtansaction();
-		user = em.find(User.class, event.getUserId()); 
+	public void process(DBEventsBean event) {
+		//user = em.find(User.class, event.getUserId());
+		try {
+			user = DbAccess.usersAccess.getByPrimaryKey(event.getUserId());
+		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e1) {
+			new RuntimeException(e1);
+		} 
 		//System.out.println(beanClass);
 		if (this.beanClass != null) {
 			try {
@@ -50,8 +51,12 @@ public abstract class AbstractJournalEvent<T> implements JournalEvent {
 		} else {
 			processMap(JSONUtils.fromJSON(event.getEventJson(), HashMap.class));
 		}
-		em.remove(em.contains(event)?event:em.merge(event));
-		commitTransaction();
+		//em.remove(em.contains(event)?event:em.merge(event));
+		try {
+			DbAccess.eventsAccess.deleteByPrimaryKey(event.getEventId());
+		} catch (SQLException e) {
+			new RuntimeException(e);
+		}
 	}
 
 	protected void processBean(T bean) {
@@ -64,19 +69,14 @@ public abstract class AbstractJournalEvent<T> implements JournalEvent {
 		throw new RuntimeException();
 	}
 	
-	protected Pilot getCurrent() {
-		Pilot result = em.createNamedQuery("Pilot.findByUserId", Pilot.class).setParameter("user_id", user.getUserId()).getResultList().stream().filter(p->p.getIsCurrent() != 0).findFirst().orElse(null);
+	protected DBPilotsBean getCurrent() {
+		DBPilotsBean result = null;
+		try {
+			result = DbAccess.pilotsAccess.getCurrentByUserId(user.getUserId());
+		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
+			new RuntimeException(e);
+		}
 		return result;
 	}
 	
-	protected void beginTrtansaction() {
-		if (!em.getTransaction().isActive()) {
-			em.getTransaction().begin();
-		};
-	}
-	protected void commitTransaction() {
-		if (em.getTransaction().isActive()) {
-			em.getTransaction().commit();
-		};
-	}
 }

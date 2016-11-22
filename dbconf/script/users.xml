@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<include>
+	<table name="users">
+	    <column name="user_key" type="DBUserKeysBean">
+	    	<annotation>@XMLReflectionField</annotation>
+	    </column>
+	    <column name="user_roles" type="List&lt;DBRolesBean&gt;">
+	    	<annotation>@XMLFieldList</annotation>
+	    </column>
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="user_id"/>
+		</select>
+		<select name="ByUuid" single_object="true">
+			<column name="user_uuid"/>
+		</select>
+		<select name="ByEmailAndPassword" single_object="true">
+			<column name="email"/>
+			<column name="uid"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="user_id"/>
+		</update>
+		<method name="onLoad" type="void">
+	    	<body>
+   		if (userKeyId != null &amp;&amp; userKeyId &gt; 0) {
+			try {
+				userKey = org.c3s.edgo.common.access.DbAccess.userKeysAccess.getByPrimaryKey(userKeyId);
+			} catch (Exception e) {
+				new RuntimeException(e);
+			}
+		}
+		
+		try {
+			userRoles = org.c3s.edgo.common.access.DbAccess.rolesAccess.getRolesForUser(userId);
+		} catch (Exception e) {
+			new RuntimeException(e);
+		}
+			</body>
+		</method>
+	</table>
+	<table name="user_keys">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="user_key_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="user_key_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="user_key_id"/>
+		</delete>
+	</table>
+	<table name="roles">
+		<query name="RolesForUser" use="Roles">
+			<column name="userId" type="long"/>
+			<sql>
+				SELECT r.*
+				FROM roles r, user_roles ur
+				WHERE ur.user_id = ?
+				AND ur.role_id = r.role_id
+			</sql>
+		</query>
+	</table>
+</include>

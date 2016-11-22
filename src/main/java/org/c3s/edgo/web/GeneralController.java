@@ -7,10 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
-
-import org.c3s.db.jpa.ManagerJPA;
-import org.c3s.edgo.common.entity.User;
+import org.c3s.edgo.common.beans.DBUsersBean;
 import org.c3s.edgo.web.auth.AuthRoles;
 import org.c3s.edgo.web.language.I10nHolder;
 import org.c3s.edgo.web.validator.Result;
@@ -66,14 +63,11 @@ public class GeneralController {
 		return result.get();
 	}
 	
-	public static synchronized User getUser() {
+	public static synchronized DBUsersBean getUser() {
 		synchronized (GeneralController.class) {
 			StorageInterface storage = StorageFactory.getStorage(StorageType.SESSION);
-			return (User)storage.get(STORED_USER); 
+			return (DBUsersBean)storage.get(STORED_USER); 
 		}
 	}
 	
-	public static EntityManager getEntityManager() {
-		return ManagerJPA.get("edgo");
-	}
 }

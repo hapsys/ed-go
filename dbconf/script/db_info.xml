@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<db_info>
+	<source name="edgo" package="org.c3s.edgo.common" dsn="jdbc:mysql://localhost:3306/ed-go" driver="com.mysql.jdbc.Driver" user="root" password="root">
+		<include href="users.xml"/>
+		<include href="pilots.xml"/>
+		<include href="events.xml"/>
+		<include href="systems.xml"/>
+	</source>
+
+</db_info>

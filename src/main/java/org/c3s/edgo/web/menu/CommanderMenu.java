@@ -1,15 +1,14 @@
 package org.c3s.edgo.web.menu;
 
+import java.sql.SQLException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.c3s.annotations.Controller;
-import org.c3s.edgo.common.entity.Pilot;
-import org.c3s.edgo.common.entity.User;
+import org.c3s.edgo.common.access.DbAccess;
+import org.c3s.edgo.common.beans.DBPilotsBean;
+import org.c3s.edgo.common.beans.DBUsersBean;
 import org.c3s.edgo.web.GeneralController;
-import org.c3s.exceptions.XMLException;
 import org.c3s.web.nodes.menu.MenuModule;
-import org.c3s.xml.utils.XMLUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -21,12 +20,13 @@ public class CommanderMenu extends MenuModule {
 	@SuppressWarnings("unused")
 	private static Logger logger = LoggerFactory.getLogger(CommanderMenu.class); 
 	
-	private List<Pilot> pilots = null;
+	private List<DBPilotsBean> pilots = null;
 	
-	public void getPilotList() {
-		User user = GeneralController.getUser();
+	public void getPilotList() throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		DBUsersBean user = GeneralController.getUser();
 		if (user != null) {
-			pilots = GeneralController.getEntityManager().createNamedQuery("Pilot.findByUserId", Pilot.class).setParameter("user_id", user.getUserId()).getResultList().stream().collect(Collectors.toList());
+			//pilots = GeneralController.getEntityManager().createNamedQuery("Pilot.findByUserId", Pilot.class).setParameter("user_id", user.getUserId()).getResultList().stream().collect(Collectors.toList());
+			pilots = DbAccess.pilotsAccess.getByUserId(user.getUserId());
 		}
 	}
 	
@@ -34,7 +34,7 @@ public class CommanderMenu extends MenuModule {
 		if (pilots != null && pilots.size() > 0) {
 			Element elm = doc.createElement("pilots");
 			doc.getDocumentElement().appendChild(elm);
-			for (Pilot pilot: pilots) {
+			for (DBPilotsBean pilot: pilots) {
 				Element pelm = doc.createElement("pilot");
 				pelm.setAttribute("name", pilot.getPilotName());
 				elm.appendChild(pelm);

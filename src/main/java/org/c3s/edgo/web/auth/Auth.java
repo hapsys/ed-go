@@ -7,8 +7,8 @@ import org.c3s.annotations.Parameter;
 import org.c3s.content.ContentObject;
 import org.c3s.dispatcher.exceptions.SkipSubLevelsExeption;
 import org.c3s.dispatcher.exceptions.StopDispatchException;
-import org.c3s.edgo.common.entity.Role;
-import org.c3s.edgo.common.entity.User;
+import org.c3s.edgo.common.beans.DBRolesBean;
+import org.c3s.edgo.common.beans.DBUsersBean;
 import org.c3s.edgo.web.GeneralController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,14 +21,14 @@ public class Auth extends GeneralController {
 	
 	public void getRoles() {
 		
-		User user = GeneralController.getUser();
+		DBUsersBean user = GeneralController.getUser();
 		 
 		if (user != null) {
 			roles.add(AuthRoles.ROLE_LOGGED);
-			List<Role> userRoles = user.getRoles();
+			List<DBRolesBean> userRoles = user.getUserRoles();
 			if (userRoles != null) {
 			AuthRoles role = null;
-				for (Role userRole : userRoles) {
+				for (DBRolesBean userRole : userRoles) {
 					try {
 						if ((role = AuthRoles.valueOf(userRole.getRole())) != null) {
 							roles.add(role);

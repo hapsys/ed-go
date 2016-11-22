@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.c3s.edgo.common.entity.Event;
+import org.c3s.edgo.common.beans.DBEventsBean;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,7 +54,7 @@ public class EventDispatcher {
 	 * @param eventName
 	 * @param parameters
 	 */
-	public void dispatch(Event evt) {
+	public void dispatch(DBEventsBean evt) {
 		Class<? extends JournalEvent> eventClass = events.get(evt.getEventName().toLowerCase());
 		if (eventClass != null) {
 			

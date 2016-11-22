@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<include>
+	<table name="systems">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="system_id"/>
+		</select>
+		<select name="ByUniq" single_object="true">
+			<column name="name_uniq"/>
+		</select>
+	</table>
+	<table name="stations">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="station_id"/>
+		</select>
+		<select name="ByUniq" single_object="true">
+			<column name="name_uniq"/>
+		</select>
+	</table>
+</include>

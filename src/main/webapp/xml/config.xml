@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
 	<modules>
-		<module pattern="/" class="org.c3s.edgo.transaction.TransactionController" action="start"/>
-	
 		<module pattern="/" class="org.c3s.web.modules.lang.LanguageModule" action="processSuffix"/>
 		<module class="org.c3s.edgo.web.auth.Auth" action="getRoles"/>
 		<module pattern="/" class="org.c3s.edgo.web.AjaxCheker" action="isNotAjax">
@@ -83,7 +81,6 @@
 			<!-- - AJAX MODULES  -->
 		</module>
 		<module pattern="*" class="org.c3s.web.modules.template.TemplateModule" action="showTemplate" is_last="true"/>
-		<module pattern="*" class="org.c3s.edgo.transaction.TransactionController" action="commit" is_last="true"/>
 		<!--
 		-->
 	</modules>

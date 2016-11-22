@@ -1,5 +1,6 @@
 package org.c3s.edgo.web.controllers;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,18 +15,12 @@ import org.c3s.dispatcher.RedirectControlerInterface;
 import org.c3s.dispatcher.UrlPart;
 import org.c3s.dispatcher.exceptions.SkipSubLevelsExeption;
 import org.c3s.dispatcher.exceptions.StopDispatchException;
-import org.c3s.edgo.common.entity.Module;
-import org.c3s.edgo.common.entity.ModuleGroup;
-import org.c3s.edgo.common.entity.Pilot;
-import org.c3s.edgo.common.entity.PilotModule;
-import org.c3s.edgo.common.entity.PilotShip;
-import org.c3s.edgo.common.entity.Ship;
-import org.c3s.edgo.common.entity.Slot;
-import org.c3s.edgo.common.entity.SlotType;
-import org.c3s.edgo.common.entity.StarSystem;
-import org.c3s.edgo.common.entity.User;
+import org.c3s.edgo.common.access.DbAccess;
+import org.c3s.edgo.common.beans.DBPilotsBean;
+import org.c3s.edgo.common.beans.DBUsersBean;
 import org.c3s.edgo.utils.DomSerializer;
 import org.c3s.edgo.web.GeneralController;
+import org.c3s.reflection.XMLReflectionObj;
 import org.c3s.web.redirect.DirectRedirect;
 import org.c3s.web.redirect.DropRedirect;
 import org.c3s.web.redirect.RelativeRedirect;
@@ -41,43 +36,15 @@ public class Commander extends GeneralController {
 	@SuppressWarnings("unused")
 	private static Logger logger = LoggerFactory.getLogger(Commander.class);
 	
-	private Pilot current = null;
+	private DBPilotsBean current = null;
 	
-	@SuppressWarnings("serial")
 	public void getInformation(@Parameter("tag") String tag, @Parameter("template") String template, RedirectControlerInterface redirect) throws Exception {
 	
 		if (current != null) {
-			Map<Object, Object> tree = new HashMap<Object, Object>() {{
-				put(Pilot.class, new HashMap<Object, Object>() {{
-					put(PilotShip.class, new HashMap<Object, Object>() {{
-						put(Ship.class, new HashMap<Object, Object>() {{
-							
-						}});
-						/*
-						put(PilotModule.class, new HashMap<Object, Object>() {{
-							put(Slot.class, new HashMap<Object, Object>() {{
-								put(SlotType.class, new HashMap<Object, Object>() {{
-								}});
-							}});
-							put(Module.class, new HashMap<Object, Object>() {{
-								put(ModuleGroup.class, new HashMap<Object, Object>() {{
-								}});
-							}});
-						}});
-						*/
-					}});
-				}});
-			}};
 			
-			Document xml = XMLUtils.createXML("data");
-			new DomSerializer(current).__toXML(xml.getDocumentElement(), tree);
-			/*
-			for (Pilot p: pilots) {
-				Element elm;
-				xml.getDocumentElement().appendChild(elm = xml.createElement("commander"));
-			}
-			*/
-			//logger.debug(XMLUtils.xml2out(xml));
+			Document xml = new XMLReflectionObj(current, true).toXML();	
+			
+			logger.debug(XMLUtils.xml2out(xml));
 			//XMLUtils.save(xml, "/out.xml");
 			logger.debug("template {}", template);
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:info"});
@@ -90,10 +57,10 @@ public class Commander extends GeneralController {
 		
 	}
 	
-	@SuppressWarnings("serial")
 	public void getShips(@Parameter("tag") String tag, @Parameter("template") String template, RedirectControlerInterface redirect) throws Exception {
 	
 		if (current != null) {
+			/**
 			Map<Object, Object> tree = new HashMap<Object, Object>() {{
 				put(Pilot.class, new HashMap<Object, Object>() {{
 					put(PilotShip.class, new HashMap<Object, Object>() {{
@@ -103,18 +70,6 @@ public class Commander extends GeneralController {
 						put(Ship.class, new HashMap<Object, Object>() {{
 							
 						}});
-						/*
-						put(PilotModule.class, new HashMap<Object, Object>() {{
-							put(Slot.class, new HashMap<Object, Object>() {{
-								put(SlotType.class, new HashMap<Object, Object>() {{
-								}});
-							}});
-							put(Module.class, new HashMap<Object, Object>() {{
-								put(ModuleGroup.class, new HashMap<Object, Object>() {{
-								}});
-							}});
-						}});
-						*/
 					}});
 				}});
 			}};
@@ -125,6 +80,7 @@ public class Commander extends GeneralController {
 			//XMLUtils.save(xml, "/out.xml");
 			logger.debug("template {}", template);
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:ships"});
+			*/
 		}
 	
 		if (current == null) {
@@ -135,44 +91,18 @@ public class Commander extends GeneralController {
 	}
 
 	
-	@SuppressWarnings("serial")
 	public void getShip(@Parameter("tag") String tag, @Parameter("template") String template, UrlPart url, RedirectControlerInterface redirect, PatternerInterface patterner) throws Exception {
 	
 		if (current != null) {
-			
+			/*
 			PilotShip ship = current.getPilotShip(Integer.valueOf(url.getPattern().substring(0, url.getPattern().length() - 1)));  
 			
 			if (ship != null) {
-				Map<Object, Object> tree = new HashMap<Object, Object>() {{
-					put(PilotShip.class, new HashMap<Object, Object>() {{
-						/*
-						put(Ship.class, new HashMap<Object, Object>() {{
-							
-						}});
-						*/
-						put(PilotModule.class, new HashMap<Object, Object>() {{
-							put(Slot.class, new HashMap<Object, Object>() {{
-								put(SlotType.class, new HashMap<Object, Object>() {{
-								}});
-							}});
-							put(Module.class, new HashMap<Object, Object>() {{
-								put(ModuleGroup.class, new HashMap<Object, Object>() {{
-								}});
-							}});
-						}});
-						/*
-						*/
-					}});
-				}};
-				
 				Document xml = XMLUtils.createXML("data");
 				new DomSerializer(ship).__toXML(xml.getDocumentElement(), tree);
 				//logger.debug(XMLUtils.xml2out(xml));
 				//XMLUtils.save(xml, "/out1.xml");
 				//logger.debug("template {}", template);
-				/*
-				 * Path
-				 */
 				ContentObject.getInstance().addPath("/", ship.getShip().getName());
 				
 				ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:view_ship"});
@@ -181,7 +111,7 @@ public class Commander extends GeneralController {
 				redirect.setRedirect(new RelativeRedirect("../", patterner));
 				throw new StopDispatchException();
 			}
-			
+			*/
 		}
 	
 		if (current == null) {
@@ -192,16 +122,18 @@ public class Commander extends GeneralController {
 	}
 	
 	//@SuppressWarnings("serial")
-	public void checkCommander(UrlPart url, RedirectControlerInterface redirect) {
+	public void checkCommander(UrlPart url, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		
 		String actionUrl = url.getPattern().substring(0, url.getPattern().length() - 1).toLowerCase();
-		User user = getUser();
-		Pilot pilot = null;
+		DBUsersBean user = getUser();
+		DBPilotsBean pilot = null;
 
 		if (user != null) {
-			//logger.debug("Current {}", actionUrl);
-			pilot = getEntityManager().createNamedQuery("Pilot.findByName", Pilot.class).setParameter("name", actionUrl).getResultList().stream().findFirst().orElse(null);
-			if (pilot != null && pilot.getUserId() == user.getUserId()) {
+			pilot = DbAccess.pilotsAccess.getByName(actionUrl);
+			//logger.debug("user {}", user.getUserId());
+			//logger.debug("pilot user {}", pilot.getUserId());
+			if (pilot != null && (long)pilot.getUserId() == (long)user.getUserId()) {
+				//logger.debug("Current {}", actionUrl);
 				current = pilot;
 				ContentObject.getInstance().setFixedParameters("pilot", pilot.getPilotName());
 			}

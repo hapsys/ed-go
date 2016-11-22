@@ -1,9 +1,9 @@
 package org.c3s.edgo.event;
 
-import org.c3s.edgo.common.entity.Event;
+import org.c3s.edgo.common.beans.DBEventsBean;
 
 public interface JournalEvent {
 
-	public void process(Event event);
+	public void process(DBEventsBean event);
 	
 }

@@ -3,33 +3,6 @@
 	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="edgo">
-		<class>org.c3s.edgo.common.entity.Pilot</class>
-		<class>org.c3s.edgo.common.entity.Ship</class>
-		<class>org.c3s.edgo.common.entity.ShipSlot</class>
-		<class>org.c3s.edgo.common.entity.SlotType</class>
-		<class>org.c3s.edgo.common.entity.Slot</class>
-		<class>org.c3s.edgo.common.entity.ShipSlotPK</class>
-		<class>org.c3s.edgo.common.entity.Module</class>
-		<class>org.c3s.edgo.common.entity.ModuleGroup</class>
-		<class>org.c3s.edgo.common.entity.Role</class>
-		<class>org.c3s.edgo.common.entity.User</class>
-		<class>org.c3s.edgo.common.entity.UserKey</class>
-		<class>org.c3s.edgo.common.entity.Modifier</class>
-		<class>org.c3s.edgo.common.entity.ModuleRecipy</class>
-		<class>org.c3s.edgo.common.entity.PilotModule</class>
-		<class>org.c3s.edgo.common.entity.PilotShip</class>
-		<class>org.c3s.edgo.common.entity.Recipy</class>
-		<class>org.c3s.edgo.common.entity.ModuleModifier</class>
-		<class>org.c3s.edgo.common.entity.ModuleModifierPK</class>
-		<class>org.c3s.edgo.common.entity.Faction</class>
-		<class>org.c3s.edgo.common.entity.Power</class>
-		<class>org.c3s.edgo.common.entity.Station</class>
-		<class>org.c3s.edgo.common.entity.SystemFaction</class>
-		<class>org.c3s.edgo.common.entity.StarSystem</class>
-		<class>org.c3s.edgo.common.entity.SystemsPopulated</class>
-		<class>org.c3s.edgo.common.entity.SystemFactionPK</class>
-		<class>org.c3s.edgo.common.entity.Event</class>
-		<class>org.c3s.edgo.common.entity.LocationHistory</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ed-go" />

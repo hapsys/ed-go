@@ -1,29 +1,12 @@
 package org.c3s.edgo.scripts;
 
-import java.util.Arrays;
-import java.util.List;
-
-import javax.persistence.EntityManager;
-
-import org.c3s.db.jpa.ManagerJPA;
-import org.c3s.edgo.common.entity.Module;
-import org.c3s.edgo.common.entity.Pilot;
-import org.c3s.edgo.common.entity.PilotModule;
-import org.c3s.edgo.common.entity.PilotShip;
-import org.c3s.edgo.common.entity.Ship;
-import org.c3s.edgo.common.entity.ShipSlot;
-import org.c3s.edgo.common.entity.ShipSlotPK;
-import org.c3s.edgo.common.entity.Slot;
-import org.c3s.edgo.common.entity.Station;
-import org.c3s.edgo.companion.CompanionBean;
 import org.c3s.exceptions.FileSystemException;
-import org.c3s.utils.FileSystem;
-import org.c3s.utils.JSONUtils;
 
 public class CompanionParser {
 
 	public static void main(String[] args) throws FileSystemException {
 		
+		/*
 		
 		List<String> skip =  Arrays.asList(new String[] {"PaintJob", "Decal", "PlanetaryApproachSuite", "Bobble", "WeaponColour", "EngineColour", "ShipKit"});
 		
@@ -125,9 +108,9 @@ public class CompanionParser {
 		}
 		
 		em.getTransaction().commit();
-		/*
-		 * Хреначим модули у пилота 
-		 */
+		//
+		// Хреначим модули у пилота 
+		//
 		em.getTransaction().begin();
 		
 		for (PilotShip pilotShip : pilot.getPilotShips()) {
@@ -167,10 +150,12 @@ public class CompanionParser {
 				 }
 			 }
 		}
-		/*
-		 * Коммитим 
-		 */
+		//
+		// Коммитим 
+		//
 		em.getTransaction().commit();
+		
+		*/
 	}
 
 }

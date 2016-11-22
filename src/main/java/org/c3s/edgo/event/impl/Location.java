@@ -1,7 +1,5 @@
 package org.c3s.edgo.event.impl;
 	
-import org.c3s.edgo.common.dao.LocationDAO;
-import org.c3s.edgo.common.entity.Pilot;
 import org.c3s.edgo.event.AbstractJournalEvent;
 import org.c3s.edgo.event.impl.beans.LocationBean;
 import org.slf4j.Logger;
@@ -18,10 +16,12 @@ public class Location extends AbstractJournalEvent<LocationBean> {
 	
 	protected void processBean(LocationBean bean) {
 		
+		/*
 		Pilot pilot = getCurrent();
 		if (pilot != null) {
 			new LocationDAO(em).insertLocation(pilot.getPilotId(), bean.getTimestamp(), bean.getStarSystem(), bean.getStarPos(), bean.getStationName());
 		}
+		*/
 	}
 
 }

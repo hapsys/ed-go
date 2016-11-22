@@ -4,23 +4,30 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigInteger;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Properties;
 
-import javax.persistence.EntityManager;
-
-import org.c3s.db.jpa.ManagerJPA;
-import org.c3s.edgo.common.entity.Event;
+import org.c3s.db.DBManager;
+import org.c3s.edgo.common.access.DbAccess;
+import org.c3s.edgo.common.beans.DBEventsBean;
 import org.c3s.utils.RegexpUtils;
 
 public class EventFilesReader {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, SQLException {
+		
+		Properties props = new Properties();
+		props.put("user", "root");
+		props.put("password", "root");
+		DBManager.getConnection("edgo", "com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ed-go", props);
+		
 		String savedgames = System.getenv("USERPROFILE") + "\\Saved Games\\Frontier Developments\\Elite Dangerous\\";;
 		
 		System.out.println(savedgames);
@@ -62,11 +69,7 @@ public class EventFilesReader {
 	
 	public static void processFile(File file) throws IOException {
 		
-		int userId = 1;
-		
-		EntityManager em = ManagerJPA.get("edgo");
-		
-		em.getTransaction().begin();
+		long userId = 1L;
 		
 		System.out.println(file.getName());
 		
@@ -75,25 +78,28 @@ public class EventFilesReader {
 	
 		String line = null;
 		
-		while((line = reader.readLine()) != null) {
-			if (line.trim().length() > 0) {
-				
-				String name = RegexpUtils.preg_replace("~^.+\"event\"\\s*:\\s*\"([^\"]+)\".*$~isu", line, "$1");
-				//System.out.println(name);
-				//System.exit(0);
-				Event evt = new Event();
-				evt.setEventId(System.nanoTime());
-				evt.setUserId(userId);
-				evt.setEventName(name);
-				evt.setEventJson(line);
-				evt.setIsLocked((byte)0);
-				em.persist(evt);
+		try {
+			while((line = reader.readLine()) != null) {
+				if (line.trim().length() > 0) {
+					
+					String name = RegexpUtils.preg_replace("~^.+\"event\"\\s*:\\s*\"([^\"]+)\".*$~isu", line, "$1");
+					//System.out.println(name);
+					//System.exit(0);
+					DBEventsBean evt = new DBEventsBean();
+					evt.setEventId(BigInteger.valueOf(System.nanoTime()));
+					evt.setUserId(userId);
+					evt.setEventName(name);
+					evt.setEventJson(line);
+					evt.setIsLocked(0);
+					DbAccess.eventsAccess.insert(evt);
+				}
 			}
+		} catch (IllegalArgumentException | IllegalAccessException | SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			reader.close();
 		}
 		
-		reader.close();
-		
-		em.getTransaction().commit();
 	}
 	
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<include>
+	<table name="events">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="event_id"/>
+		</select>
+		<select name="UnlockEvent" single_object="true">
+			<column name="is_locked" condition="=" value="0"/>
+			<sort>event_id ASC</sort>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="event_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="event_id"/>
+		</delete>
+	</table>
+	<table name="location_history">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="location_id"/>
+		</select>
+		<select name="LastLocation" single_object="true">
+			<column name="pilot_id"/>
+			<sort>location_time</sort>
+		</select>
+	</table>
+</include>

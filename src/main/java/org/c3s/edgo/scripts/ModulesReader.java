@@ -1,19 +1,12 @@
 package org.c3s.edgo.scripts;
 
-import javax.persistence.EntityManager;
-
-import org.c3s.db.jpa.ManagerJPA;
-import org.c3s.edgo.common.entity.Module;
-import org.c3s.edgo.common.entity.ModuleGroup;
-import org.c3s.edgo.common.entity.SlotType;
 import org.c3s.exceptions.FileSystemException;
-import org.c3s.utils.FileSystem;
-import org.c3s.utils.JSONUtils;
 
 public class ModulesReader {
 
 	public static void main(String[] args) throws FileSystemException {
 
+		/**
 		String source = FileSystem.fileGetContents("F:/Distributive/Elite/API/modules.json"); 
 
 		EddbModuleInfo[] json = JSONUtils.fromJSON(source, EddbModuleInfo[].class);
@@ -26,7 +19,7 @@ public class ModulesReader {
 		SlotType st = null;
 		ModuleGroup mg = null;
 		Module md = null;
-		
+		*/
 		
 		/**
 		for (EddbModuleInfo list: json) {
@@ -54,6 +47,7 @@ public class ModulesReader {
 		}
 		
 		*/
+		/**
 		for (EddbModuleInfo list: json) {
 			
 			try {
@@ -80,11 +74,12 @@ public class ModulesReader {
 				
 			}
 		}
+		*/
 		/**
 		*/
 		
-		em.getTransaction().commit();
-		em.close();
+		//em.getTransaction().commit();
+		//em.close();
 	}
 
 

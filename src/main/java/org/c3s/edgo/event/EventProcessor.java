@@ -1,10 +1,9 @@
 package org.c3s.edgo.event;
 
-import javax.persistence.EntityManager;
+import java.sql.SQLException;
 
-import org.c3s.db.jpa.ManagerJPA;
-import org.c3s.edgo.common.dao.EventDAO;
-import org.c3s.edgo.common.entity.Event;
+import org.c3s.edgo.common.access.DbAccess;
+import org.c3s.edgo.common.beans.DBEventsBean;
 import org.c3s.storage.StorageFactory;
 import org.c3s.storage.StorageInterface;
 import org.c3s.storage.StorageType;
@@ -14,11 +13,10 @@ public class EventProcessor implements Runnable {
 	private long timeout = 600000L;
 
 	StorageInterface storage = StorageFactory.getStorage(StorageType.APPLICATION);
-	EntityManager em = ManagerJPA.get("edgo", EventProcessor.class);
 
-	protected boolean processNextEvent() {
+	protected boolean processNextEvent() throws IllegalArgumentException, IllegalAccessException, SQLException, InstantiationException {
 		//Event evt = em.createNamedQuery("Event.findUnlocked", Event.class).setMaxResults(1).getResultList().stream().findFirst().orElse(null);
-		Event evt = new EventDAO(em).getUnlockEvent();
+		DBEventsBean evt = DbAccess.eventsAccess.getUnlockEvent(); 
 		
 		if (evt != null) {
 			EventDispatcher dispatcher = (EventDispatcher) storage.get(evt.getUserId());
@@ -28,10 +26,8 @@ public class EventProcessor implements Runnable {
 			} else {
 				storage.updateExpire(new Long(evt.getUserId()), timeout);
 			}
-			em.getTransaction().begin();
-			evt.setIsLocked((byte)1);
-			em.merge(evt);
-			em.getTransaction().commit();
+			evt.setIsLocked(1);
+			DbAccess.eventsAccess.updateByPrimaryKey(evt, evt.getEventId());
 			
 			dispatcher.dispatch(evt);
 		}
@@ -44,7 +40,14 @@ public class EventProcessor implements Runnable {
 		
 		while(!stop) {
 			
-			boolean next = processNextEvent();
+			boolean next = false;
+			
+			try {
+				next = processNextEvent();
+			} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e1) {
+				e1.printStackTrace();
+				stop = true;
+			}
 			
 			try {
 				if (next) {
