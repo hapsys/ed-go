@@ -94,15 +94,12 @@
 		 		<%=main_menu%>
 			</div>		
 			<div class="col-md-9">
-				<h2><%=title%></h2>
+				<h1><%=title%></h1>
 		 		<%=content%>
 		 		<% if (includeFile != null) { %>
 		 		<jsp:include page="<%=includeFile%>"/>
 		 		<% } %>
 			</div>
-			<!-- 		
-			<div class="col-md-2">right</div>
-			 -->		
 		</div>
 	</div>
 </body>

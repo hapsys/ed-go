@@ -130,7 +130,7 @@ public class <xsl:value-of select="$class_name"/> extends Access {
 			</xsl:if>
 		}
 		sql += injector.getLimitQuery();
-		List&lt;Map&lt;String, Object&gt;&gt; result = getConnection().fetchRows("get<xsl:value-of select="@name"/>", sql <xsl:call-template name="get_fetch_params"/>);
+		List&lt;Map&lt;String, Object&gt;&gt; result = getConnection().fetchRows(tablename + ".get<xsl:value-of select="@name"/>", sql <xsl:call-template name="get_fetch_params"/>);
 		if (result != null) {
 			<xsl:choose>
 				<xsl:when test="@is_single = 'true'">
@@ -283,7 +283,7 @@ public class <xsl:value-of select="$class_name"/> extends Access {
 						<xsl:otherwise>DB<xsl:value-of select="@name"/>Bean</xsl:otherwise>
 					</xsl:choose>
 				</xsl:variable>
-		List&lt;Map&lt;String, Object&gt;&gt; result = getConnection().fetchRows("get<xsl:value-of select="@name"/>", query <xsl:call-template name="get_query_internal_params"/>);
+		List&lt;Map&lt;String, Object&gt;&gt; result = getConnection().fetchRows(tablename + ".get<xsl:value-of select="@name"/>", query <xsl:call-template name="get_query_internal_params"/>);
 		<xsl:value-of select="$ret_type"/> ret = new <xsl:value-of select="$new_type"/>();
 		if (result != null) {
 				<xsl:choose>

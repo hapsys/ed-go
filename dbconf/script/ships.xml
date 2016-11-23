@@ -1,3 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <include>
+	<table name="ships">
+		<column name="slots" type="DBSlotsBean">
+	    	<annotation>@XMLReflectionField</annotation>
+		</column>
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="ship_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="ship_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="ship_id"/>
+		</delete>
+	</table>
+	<table name="slots">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="slot_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="slot_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="slot_id"/>
+		</delete>
+	</table>
 </include>

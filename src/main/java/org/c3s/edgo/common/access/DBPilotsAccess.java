@@ -75,7 +75,7 @@ public class DBPilotsAccess extends Access {
 			
 		}
 		sql += injector.getLimitQuery();
-		List<Map<String, Object>> result = getConnection().fetchRows("getByUserId", sql ,  paramUserId);
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByUserId", sql ,  paramUserId);
 		if (result != null) {
 			
 			ret = new ArrayList<DBPilotsBean>();
@@ -101,7 +101,7 @@ public class DBPilotsAccess extends Access {
 			
 		}
 		sql += injector.getLimitQuery();
-		List<Map<String, Object>> result = getConnection().fetchRows("getByPrimaryKey", sql ,  paramPilotId);
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPrimaryKey", sql ,  paramPilotId);
 		if (result != null) {
 			
 			ret = dataMapper.mapFromRow(result.get(0), DBPilotsBean.class);
@@ -122,7 +122,7 @@ public class DBPilotsAccess extends Access {
 			
 		}
 		sql += injector.getLimitQuery();
-		List<Map<String, Object>> result = getConnection().fetchRows("getByName", sql ,  paramPilotName);
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByName", sql ,  paramPilotName);
 		if (result != null) {
 			
 			ret = dataMapper.mapFromRow(result.get(0), DBPilotsBean.class);
@@ -143,7 +143,7 @@ public class DBPilotsAccess extends Access {
 			
 		}
 		sql += injector.getLimitQuery();
-		List<Map<String, Object>> result = getConnection().fetchRows("getCurrentByUserId", sql ,  paramUserId);
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getCurrentByUserId", sql ,  paramUserId);
 		if (result != null) {
 			
 			ret = dataMapper.mapFromRow(result.get(0), DBPilotsBean.class);

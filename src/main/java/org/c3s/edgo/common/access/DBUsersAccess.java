@@ -75,7 +75,7 @@ public class DBUsersAccess extends Access {
 			
 		}
 		sql += injector.getLimitQuery();
-		List<Map<String, Object>> result = getConnection().fetchRows("getByUuid", sql ,  paramUserUuid);
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByUuid", sql ,  paramUserUuid);
 		if (result != null) {
 			
 			ret = dataMapper.mapFromRow(result.get(0), DBUsersBean.class);
@@ -96,7 +96,7 @@ public class DBUsersAccess extends Access {
 			
 		}
 		sql += injector.getLimitQuery();
-		List<Map<String, Object>> result = getConnection().fetchRows("getByEmailAndPassword", sql ,  paramEmail,  paramUid);
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByEmailAndPassword", sql ,  paramEmail,  paramUid);
 		if (result != null) {
 			
 			ret = dataMapper.mapFromRow(result.get(0), DBUsersBean.class);
@@ -117,7 +117,7 @@ public class DBUsersAccess extends Access {
 			
 		}
 		sql += injector.getLimitQuery();
-		List<Map<String, Object>> result = getConnection().fetchRows("getByPrimaryKey", sql ,  paramUserId);
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPrimaryKey", sql ,  paramUserId);
 		if (result != null) {
 			
 			ret = dataMapper.mapFromRow(result.get(0), DBUsersBean.class);

@@ -76,6 +76,102 @@ public class DBPilotsBean implements DbBean, Serializable {
 		return this;
 	}
 	
+	
+	@DataSource({"ships", "ships"})
+	@DataTarget("ships")
+	@XMLFieldList
+
+	private List<DBPilotShipsBean> ships;
+	
+	public List<DBPilotShipsBean> getShips() {
+		return ships;
+	}
+	
+	public DBPilotsBean setShips(List<DBPilotShipsBean> value) {
+		ships = value;
+		return this;
+	}
+	
+	
+	@DataSource({"current_ship", "currentShip"})
+	@DataTarget("current_ship")
+	@XMLReflectionField
+
+	private DBPilotShipsBean currentShip;
+	
+	public DBPilotShipsBean getCurrentShip() {
+		return currentShip;
+	}
+	
+	public DBPilotsBean setCurrentShip(DBPilotShipsBean value) {
+		currentShip = value;
+		return this;
+	}
+	
+	
+	@DataSource({"childs", "childs"})
+	@DataTarget("childs")
+	@XMLFieldList
+
+	private List<? extends Object> childs;
+	
+	public List<? extends Object> getChilds() {
+		return childs;
+	}
+	
+	public DBPilotsBean setChilds(List<? extends Object> value) {
+		childs = value;
+		return this;
+	}
+	
+	
+	@DataSource({"Location", "location"})
+	@DataTarget("Location")
+	@XMLReflectionField
+
+	private DBLocationHistoryBean location;
+	
+	public DBLocationHistoryBean getLocation() {
+		return location;
+	}
+	
+	public DBPilotsBean setLocation(DBLocationHistoryBean value) {
+		location = value;
+		return this;
+	}
+	
+	
+	@DataSource({"Rank", "rank"})
+	@DataTarget("Rank")
+	@XMLReflectionField
+
+	private DBRanksBean rank;
+	
+	public DBRanksBean getRank() {
+		return rank;
+	}
+	
+	public DBPilotsBean setRank(DBRanksBean value) {
+		rank = value;
+		return this;
+	}
+	
+	
+	@DataSource({"Progress", "progress"})
+	@DataTarget("Progress")
+	@XMLReflectionField
+
+	private DBProgressBean progress;
+	
+	public DBProgressBean getProgress() {
+		return progress;
+	}
+	
+	public DBPilotsBean setProgress(DBProgressBean value) {
+		progress = value;
+		return this;
+	}
+	
 	@Override
 	public void setAutoincrementField(Object value) {
 		

@@ -14,17 +14,20 @@
 	<xsl:param name="type"/>
 	<xsl:template match="/data">
 		<xsl:variable name="lang"><xsl:value-of select="$root"/><xsl:if test="$politic = 'suffix' and $default != 'true'">/<xsl:value-of select="$suffix"/></xsl:if></xsl:variable>
-		<xsl:if test="count(item) &gt; 0">
-			<div class="nav">
-				<a href="{$lang}">/</a>
+		<xsl:if test="count(item) &gt; 1">
+			<ol class="breadcrumb">
 				<xsl:for-each select="item"><xsl:choose>
-						<xsl:when test="position() != last() and position() != 1"><xsl:text disable-output-escaping="yes">  &amp;raquo; </xsl:text><a href="{$lang}{@href}">
-							<xsl:value-of select="@title"/><xsl:if test="position() = 2 and string-length($pilot) != 0 and contains(@href, concat($pilot,'/'))">&#160;<xsl:value-of select="$pilot"/></xsl:if>
-						</a></xsl:when>
-						<xsl:otherwise><!-- xsl:value-of select="field[@name='title']/@value"/ --></xsl:otherwise>
+						<xsl:when test="position() != last()">
+							<li>
+							<a href="{$lang}{@href}">
+								<xsl:value-of select="@title"/><xsl:if test="position() = 2 and string-length($pilot) != 0 and contains(@href, concat($pilot,'/'))">&#160;<xsl:value-of select="$pilot"/></xsl:if>
+							</a>
+							</li>
+						</xsl:when>
+						<xsl:otherwise></xsl:otherwise>
 					</xsl:choose>
 				</xsl:for-each>
-			</div>
+			</ol>
 		</xsl:if>
 	</xsl:template>
 <!--

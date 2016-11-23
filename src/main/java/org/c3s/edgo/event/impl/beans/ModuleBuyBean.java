@@ -2,24 +2,26 @@ package org.c3s.edgo.event.impl.beans;
 
 import java.util.Date;
 
-public class ModuleBuyBean {
+import org.c3s.edgo.event.AbstractEventBean;
+
+public class ModuleBuyBean extends AbstractEventBean {
 
 	private Date timestamp;
 	private String event;
 	/**
-	 *  the outfitting slot
+	 * the outfitting slot
 	 */
 	private String Slot;
 	/**
-	 *  the module being purchased
+	 * the module being purchased
 	 */
 	private String BuyItem;
 	/**
-	 *  price paid
+	 * price paid
 	 */
 	private String BuyPrice;
 	/**
-	 *  the players ship
+	 * the players ship
 	 */
 	private String Ship;
 	/**
@@ -27,138 +29,156 @@ public class ModuleBuyBean {
 	 */
 	private String ShipID;
 	/**
-	 *  an existing module:
+	 * an existing module:
 	 */
 	private String replacing;
 	/**
-	 *  item being sold
+	 * item being sold
 	 */
 	private String SellItem;
 	/**
-	 *  sale price
+	 * sale price
 	 */
 	private String SellPrice;
-	
+
 	/**
 	 * @return
 	 */
 	public Date getTimestamp() {
 		return timestamp;
 	}
+
 	/**
 	 * @param timestamp
 	 */
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
+
 	/**
 	 * @return
 	 */
 	public String getEvent() {
 		return event;
 	}
+
 	/**
 	 * @param event
 	 */
 	public void setEvent(String event) {
 		this.event = event;
 	}
+
 	/**
 	 * @return
 	 */
 	public String getSlot() {
 		return Slot;
 	}
+
 	/**
 	 * @param slot
 	 */
 	public void setSlot(String slot) {
 		this.Slot = slot;
 	}
+
 	/**
 	 * @return
 	 */
 	public String getBuyItem() {
 		return BuyItem;
 	}
+
 	/**
 	 * @param buyitem
 	 */
 	public void setBuyItem(String buyitem) {
 		this.BuyItem = buyitem;
 	}
+
 	/**
 	 * @return
 	 */
 	public String getBuyPrice() {
 		return BuyPrice;
 	}
+
 	/**
 	 * @param buyprice
 	 */
 	public void setBuyPrice(String buyprice) {
 		this.BuyPrice = buyprice;
 	}
+
 	/**
 	 * @return
 	 */
 	public String getShip() {
 		return Ship;
 	}
+
 	/**
 	 * @param ship
 	 */
 	public void setShip(String ship) {
 		this.Ship = ship;
 	}
+
 	/**
 	 * @return
 	 */
 	public String getShipID() {
 		return ShipID;
 	}
+
 	/**
 	 * @param shipid
 	 */
 	public void setShipID(String shipid) {
 		this.ShipID = shipid;
 	}
+
 	/**
 	 * @return
 	 */
 	public String getreplacing() {
 		return replacing;
 	}
+
 	/**
 	 * @param replacing
 	 */
 	public void setreplacing(String replacing) {
 		this.replacing = replacing;
 	}
+
 	/**
 	 * @return
 	 */
 	public String getSellItem() {
 		return SellItem;
 	}
+
 	/**
 	 * @param sellitem
 	 */
 	public void setSellItem(String sellitem) {
 		this.SellItem = sellitem;
 	}
+
 	/**
 	 * @return
 	 */
 	public String getSellPrice() {
 		return SellPrice;
 	}
+
 	/**
 	 * @param sellprice
 	 */
 	public void setSellPrice(String sellprice) {
 		this.SellPrice = sellprice;
 	}
-	
-}	
-	
+
+}

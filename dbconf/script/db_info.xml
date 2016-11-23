@@ -4,6 +4,7 @@
 		<include href="users.xml"/>
 		<include href="pilots.xml"/>
 		<include href="events.xml"/>
+		<include href="ships.xml"/>
 		<include href="systems.xml"/>
 	</source>
 

@@ -16,12 +16,46 @@
 		</delete>
 	</table>
 	<table name="location_history">
+		<column name="system_name" type="String">
+	    	<annotation>@XMLSimple("systemName")</annotation>
+		</column>
+		<column name="station_name" type="String">
+	    	<annotation>@XMLSimple("stationName")</annotation>
+		</column>
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="location_id"/>
 		</select>
 		<select name="LastLocation" single_object="true">
 			<column name="pilot_id"/>
-			<sort>location_time</sort>
+			<sort>location_time DESC</sort>
 		</select>
+		<query name="LastLocationForPilot" use="LocationHistory" single_object="true">
+			<column name="PilotId" type="long"/>
+			<sql>
+				SELECT l.*, sy.name as system_name, st.name as station_name
+				FROM location_history l
+				LEFT JOIN systems sy ON l.system_id = sy.system_id
+				LEFT JOIN stations st ON l.station_id = st.station_id
+				WHERE l.pilot_id = ?
+				ORDER BY location_time DESC
+				LIMIT 1 
+			</sql>
+		</query>
+	</table>
+	<table name="ranks">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="pilot_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="pilot_id"/>
+		</update>
+	</table>
+	<table name="progress">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="pilot_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="pilot_id"/>
+		</update>
 	</table>
 </include>

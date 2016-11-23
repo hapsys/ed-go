@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output encoding="utf-8" indent="yes" method="html"/>
+	<xsl:include href="../ranks.xsl"/>
 	<xsl:param name="root"/>
 	<xsl:param name="politic"/>
 	<xsl:param name="language_id"/>
@@ -22,9 +23,93 @@
 //
 -->
 	<xsl:template name="view_info">
-	
-			<div><h5><xsl:value-of select="field[@name='pilotName']/@value"/></h5></div>
-		
+		<div><h2>CMDR <xsl:value-of select="field[@name='pilotName']/@value"/></h2></div>
+		<p>
+			<h3>Last location:</h3>
+			<table class="table ">
+				<tr>
+					<td class="col-md-1">System:</td>
+					<td><xsl:value-of select="item[@name='location']/field[@name='systemName']/@value" disable-output-escaping="yes"/></td>
+				</tr>
+				<tr>
+					<td class="col-md-1">Station:</td>
+					<td><xsl:value-of select="item[@name='location']/field[@name='stationName']/@value" disable-output-escaping="yes"/></td>
+				</tr>
+			</table>
+		</p>
+		<h3>Ranks</h3>
+		<p>
+			<h3>Combat: <xsl:call-template name="combat">
+				<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='combat']/@value)"/>
+				<xsl:with-param name="lang" select="$language_id"/> 
+			</xsl:call-template></h3>
+			<xsl:variable name="percent" select="item[@name='progress']/field[@name='combat']/@value"/>
+			<div class="progress">
+  				<div class="progress-bar" role="progressbar" aria-valuenow="{$percent}" aria-valuemin="0" aria-valuemax="100" style="width: {$percent}%;">
+    				<xsl:value-of select="$percent"/>%
+  				</div>
+			</div>
+		</p>
+		<p>
+			<h3>Trade: <xsl:call-template name="trade">
+				<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='trade']/@value)"/>
+				<xsl:with-param name="lang" select="$language_id"/> 
+			</xsl:call-template></h3>
+			<xsl:variable name="percent" select="item[@name='progress']/field[@name='trade']/@value"/>
+			<div class="progress">
+  				<div class="progress-bar" role="progressbar" aria-valuenow="{$percent}" aria-valuemin="0" aria-valuemax="100" style="width: {$percent}%;">
+    				<xsl:value-of select="$percent"/>%
+  				</div>
+			</div>
+		</p>
+		<p>
+			<h3>Explore: <xsl:call-template name="explore">
+				<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='explore']/@value)"/>
+				<xsl:with-param name="lang" select="$language_id"/> 
+			</xsl:call-template></h3>
+			<xsl:variable name="percent" select="item[@name='progress']/field[@name='explore']/@value"/>
+			<div class="progress">
+  				<div class="progress-bar" role="progressbar" aria-valuenow="{$percent}" aria-valuemin="0" aria-valuemax="100" style="width: {$percent}%;">
+    				<xsl:value-of select="$percent"/>%
+  				</div>
+			</div>
+		</p>
+		<p>
+			<h3>CQC: <xsl:call-template name="cqc">
+				<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='cqc']/@value)"/>
+				<xsl:with-param name="lang" select="$language_id"/> 
+			</xsl:call-template></h3>
+			<xsl:variable name="percent" select="item[@name='progress']/field[@name='cqc']/@value"/>
+			<div class="progress">
+  				<div class="progress-bar" role="progressbar" aria-valuenow="{$percent}" aria-valuemin="0" aria-valuemax="100" style="width: {$percent}%;">
+    				<xsl:value-of select="$percent"/>%
+  				</div>
+			</div>
+		</p>
+		<p>
+			<h3>Empire: <xsl:call-template name="empire">
+				<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='empire']/@value)"/>
+				<xsl:with-param name="lang" select="$language_id"/> 
+			</xsl:call-template></h3>
+			<xsl:variable name="percent" select="item[@name='progress']/field[@name='empire']/@value"/>
+			<div class="progress">
+  				<div class="progress-bar" role="progressbar" aria-valuenow="{$percent}" aria-valuemin="0" aria-valuemax="100" style="width: {$percent}%;">
+    				<xsl:value-of select="$percent"/>%
+  				</div>
+			</div>
+		</p>
+		<p>
+			<h3>Federation: <xsl:call-template name="federation">
+				<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='federation']/@value)"/>
+				<xsl:with-param name="lang" select="$language_id"/> 
+			</xsl:call-template></h3>
+			<xsl:variable name="percent" select="item[@name='progress']/field[@name='federation']/@value"/>
+			<div class="progress">
+  				<div class="progress-bar" role="progressbar" aria-valuenow="{$percent}" aria-valuemin="0" aria-valuemax="100" style="width: {$percent}%;">
+    				<xsl:value-of select="$percent"/>%
+  				</div>
+			</div>
+		</p>
 	</xsl:template>
 <!--
 //
@@ -34,7 +119,7 @@
 	<xsl:template name="view_ships">
 	
 		<xsl:variable name="lang"><xsl:value-of select="$root"/><xsl:if test="$politic = 'suffix' and $default != 'true'">/<xsl:value-of select="$suffix"/></xsl:if></xsl:variable>
-		<div><h5><xsl:value-of select="field[@name='pilotName']/@value"/></h5></div>
+		<div><h3><xsl:value-of select="field[@name='pilotName']/@value"/></h3></div>
 
 		<div>
 			<table class="table">
@@ -42,30 +127,47 @@
 					<tr>
 						<th>#</th>
 						<th>Ship</th>
-						<th>System</th>
+						<th>System/Station</th>
 						<th>#</th>
 						<th>Ship</th>
-						<th>System</th>
+						<th>System/Station</th>
 					</tr>
 				</thead>
 				<tbody>
-					<xsl:for-each select="itemlist[@name='pilotShips']/item">
+					<xsl:for-each select="childs/item">
+						<!--
 						<xsl:sort case-order="upper-first" data-type="text" order="ascending" select="field[@name='ship']/field[@name='name']/@value"/>
+						-->
+						<xsl:variable name="class">
+							<xsl:if test="field[@name='isMain']/@value = 1">1</xsl:if>
+						</xsl:variable>
 						<xsl:if test="position() mod 2 = 1"><xsl:text disable-output-escaping="yes">&lt;tr&gt;</xsl:text></xsl:if>
 							<td>
+								<xsl:if test="$class = 1"><xsl:attribute name="class">success</xsl:attribute></xsl:if>
 								<xsl:value-of select="field[@name='linkShipId']/@value"/>
 							</td>
 							<td>
+								<xsl:if test="$class = 1"><xsl:attribute name="class">success</xsl:attribute></xsl:if>
 								<a href="{$lang}/{../../field[@name='pilotName']/@value}/ships/{field[@name='linkShipId']/@value}/">
-									<xsl:value-of select="field[@name='ship']/field[@name='name']/@value"/>
+									<xsl:value-of select="field[@name='shipName']/@value"/>
 								</a>
 							</td>
 							<td>
-								<xsl:value-of select="field[@name='system']/field[@name='name']/@value"/>
+								<xsl:if test="$class = 1"><xsl:attribute name="class">success</xsl:attribute></xsl:if>
+								<xsl:choose>
+									<xsl:when test="string-length(field[@name='systemName']/@value) != 0">
+										<xsl:value-of select="field[@name='systemName']/@value"/><br/>
+										<xsl:value-of select="field[@name='stationName']/@value"/>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:value-of select="/item/item[@name='location']/field[@name='systemName']/@value"/><br/>
+										<xsl:value-of select="/item/item[@name='location']/field[@name='stationName']/@value"/>
+									</xsl:otherwise>
+								</xsl:choose>
 							</td>
 						<xsl:if test="position() mod 2 = 0"><xsl:text disable-output-escaping="yes">&lt;/tr&gt;</xsl:text></xsl:if>
 					</xsl:for-each>
-					<xsl:if test="count(itemlist[@name='pilotShips']/item) mod 2 = 1"><td colspan="3"></td><xsl:text disable-output-escaping="yes">&lt;/tr&gt;</xsl:text></xsl:if>
+					<xsl:if test="count(childs/item) mod 2 = 1"><td colspan="3"></td><xsl:text disable-output-escaping="yes">&lt;/tr&gt;</xsl:text></xsl:if>
 				</tbody>
 				
 			</table>
@@ -93,26 +195,26 @@
 			<tbody>
 				<tr>
 					<td>
-						<xsl:for-each select="itemlist/item[field[@name='slot']/field[@name='slotType']/field[@name='id']/@value='50']">
-							<xsl:sort case-order="upper-first" data-type="text" order="ascending" select="field[@name='slot']/field[@name='uniq']/@value"/>
+						<xsl:for-each select="item[@name='currentShip']/modules/item[field[@name='slotTypeId']/@value='50']">
+							<xsl:sort case-order="upper-first" data-type="text" order="ascending" select="field[@name='slotUniq']/@value"/>
 							<div><xsl:call-template name="module_name"/></div>
 						</xsl:for-each>
 					</td>
 					<td>
-						<xsl:for-each select="itemlist/item[field[@name='slot']/field[@name='slotType']/field[@name='id']/@value='10']">
-							<xsl:sort case-order="upper-first" data-type="text" order="ascending" select="field[@name='slot']/field[@name='uniq']/@value"/>
+						<xsl:for-each select="item[@name='currentShip']/modules/item[field[@name='slotTypeId']/@value='10']">
+							<xsl:sort case-order="upper-first" data-type="text" order="ascending" select="field[@name='slotUniq']/@value"/>
 							<div><xsl:call-template name="module_name"/></div>
 						</xsl:for-each>
 					</td>
 					<td>
-						<xsl:for-each select="itemlist/item[field[@name='slot']/field[@name='slotType']/field[@name='id' and (@value='30' or @value='40')]]">
-							<xsl:sort case-order="upper-first" data-type="text" order="ascending" select="field[@name='slot']/field[@name='uniq']/@value"/>
+						<xsl:for-each select="item[@name='currentShip']/modules/item[field[@name='slotTypeId' and (@value='30' or @value='40')]]">
+							<xsl:sort case-order="upper-first" data-type="text" order="ascending" select="field[@name='slotUniq']/@value"/>
 							<div><xsl:call-template name="module_name"/></div>
 						</xsl:for-each>
 					</td>
 					<td>
-						<xsl:for-each select="itemlist/item[field[@name='slot']/field[@name='slotType']/field[@name='id']/@value='20']">
-							<xsl:sort case-order="upper-first" data-type="text" order="ascending" select="field[@name='slot']/field[@name='uniq']/@value"/>
+						<xsl:for-each select="item[@name='currentShip']/modules/item[field[@name='slotTypeId']/@value='20']">
+							<xsl:sort case-order="upper-first" data-type="text" order="ascending" select="field[@name='slotUniq']/@value"/>
 							<div><xsl:call-template name="module_name"/></div>
 						</xsl:for-each>
 					</td>
@@ -127,14 +229,14 @@
 -->
 	<xsl:template name="module_name">
 		<xsl:choose>
-			<xsl:when test="string-length(field[@name='module']/field[@name='name']/@value) = 0">
-				<xsl:value-of select="field[@name='module']/field[@name='moduleGroup']/field[@name='name']/@value"/>
+			<xsl:when test="string-length(field[@name='moduleName']/@value) = 0">
+				<xsl:value-of select="field[@name='moduleGroupName']/@value"/>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:value-of select="field[@name='module']/field[@name='name']/@value"/>
+				<xsl:value-of select="field[@name='moduleName']/@value"/>
 			</xsl:otherwise>
 		</xsl:choose>		
-		<xsl:text> - </xsl:text><xsl:value-of select="field[@name='module']/field[@name='moduleRating']/@value"/><xsl:value-of select="field[@name='module']/field[@name='moduleClass']/@value"/>
+		<xsl:text> - </xsl:text><xsl:value-of select="field[@name='moduleRating']/@value"/><xsl:value-of select="field[@name='moduleClass']/@value"/>
 	</xsl:template>
 <!--
 //

@@ -1,5 +1,7 @@
 package org.c3s.edgo.event.impl;
 	
+import org.c3s.edgo.common.beans.DBPilotsBean;
+import org.c3s.edgo.common.dao.LocationDAO;
 import org.c3s.edgo.event.AbstractJournalEvent;
 import org.c3s.edgo.event.impl.beans.FSDJumpBean;
 import org.slf4j.Logger;
@@ -16,12 +18,10 @@ public class FSDJump extends AbstractJournalEvent<FSDJumpBean> {
 	
 	protected void processBean(FSDJumpBean bean) {
 		
-		/*
-		Pilot pilot = getCurrent();
+		DBPilotsBean pilot = getCurrent();
 		if (pilot != null) {
-			new LocationDAO(em).insertLocation(pilot.getPilotId(), bean.getTimestamp(), bean.getStarSystem(), bean.getStarPos(), null);
+			new LocationDAO().insertLocation(pilot.getPilotId(), bean.getTimestamp(), bean.getStarSystem(), bean.getStarPos(), null);
 		}
-		*/
 		
 	}
 

@@ -34,7 +34,7 @@ public class <xsl:value-of select="$class_name"/> implements DbBean, Serializabl
 	<xsl:for-each select="bean/column/metadata">
 	<xsl:variable name="varname"><xsl:call-template name="to_lower_case"><xsl:with-param name="str" select="substring(@name, 1, 1)"/></xsl:call-template><xsl:value-of select="substring(@name, 2)"></xsl:value-of> </xsl:variable>
 	
-	@DataSource({"<xsl:value-of select="@base_name"/>", "<xsl:value-of select="$varname"/>"})
+	@DataSource({"<xsl:value-of select="@label"/>", "<xsl:value-of select="$varname"/>"})
 	@DataTarget("<xsl:value-of select="@base_name"/>")
 	<xsl:choose>
 		<xsl:when test="../annotation">

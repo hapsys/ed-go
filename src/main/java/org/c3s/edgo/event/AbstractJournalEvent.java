@@ -17,7 +17,7 @@ import org.c3s.utils.JSONUtils;
  * @author admin
  *
  */
-public abstract class AbstractJournalEvent<T> implements JournalEvent {
+public abstract class AbstractJournalEvent<T extends AbstractEventBean> implements JournalEvent {
 
 	protected DBUsersBean user;
 	protected Class<T> beanClass = null;

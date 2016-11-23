@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <include>
+	<!--  -->
 	<table name="pilots">
+		<column name="ships" type="List&lt;DBPilotShipsBean&gt;">
+	    	<annotation>@XMLFieldList</annotation>
+		</column>
+		<column name="current_ship" type="DBPilotShipsBean">
+	    	<annotation>@XMLReflectionField</annotation>
+		</column>
+		<column name="childs" type="List&lt;? extends Object&gt;">
+	    	<annotation>@XMLFieldList</annotation>
+		</column>
+		<column name="Location" type="DBLocationHistoryBean">
+	    	<annotation>@XMLReflectionField</annotation>
+		</column>
+		<column name="Rank" type="DBRanksBean">
+	    	<annotation>@XMLReflectionField</annotation>
+		</column>
+		<column name="Progress" type="DBProgressBean">
+	    	<annotation>@XMLReflectionField</annotation>
+		</column>
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="pilot_id"/>
 		</select>
@@ -17,5 +36,74 @@
 		<update name="ByPrimaryKey">
 			<column name="pilot_id"/>
 		</update>
+	</table>
+	<!--  -->
+	<table name="pilot_ships">
+		<column name="ship" type="DBShipsBean">
+	    	<annotation>@XMLReflectionField</annotation>
+		</column>
+		<column name="modules" type="List&lt;? extends Object&gt;">
+	    	<annotation>@XMLFieldList</annotation>
+		</column>
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="pilot_ship_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="pilot_ship_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="pilot_ship_id"/>
+		</delete>
+		<select name="ByPilotId">
+			<column name="pilot_id"/>
+		</select>
+		<select name="CurrentByPilotId" single_object="true">
+			<column name="pilot_id"/>
+			<column name="is_main" condition="=" value="1"/>
+		</select>
+		<select name="ByPilotIdAndLinkShipId" single_object="true">
+			<column name="pilot_id"/>
+			<column name="link_ship_id"/>
+		</select>
+		<query name="PilotShipsList">
+			<column name="PilotId" type="long"/>
+			<sql>
+				SELECT ps.*, sh.*, s.name as system_name, st.name as station_name
+				FROM ships sh, pilot_ships ps
+				LEFT JOIN systems s ON ps.system_id = s.system_id
+				LEFT JOIN stations st ON ps.station_id = st.station_id
+				WHERE ps.pilot_id = ?
+				AND ps.ship_id = sh.ship_id
+				ORDER BY sh.ship_name
+			</sql>
+		</query>
+	</table>
+	<!--  -->
+	<table name="pilot_modules">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="pilot_module_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="pilot_module_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="pilot_module_id"/>
+		</delete>
+		<query name="PilotShipModulesList">
+			<column name="PilotShipId" type="long"/>
+			<sql>
+				SELECT ps.pilot_ship_id, sh.ship_name, sl.slot_uniq, st.slot_type_name, st.slot_type_id, m.*, mg.*
+				FROM (pilot_ships ps, ships sh, ship_slots ss, slots sl, slot_types st)
+				LEFT JOIN  pilot_modules pm ON pm.pilot_ship_id = ps.pilot_ship_id AND pm.slot_id = sl.slot_id
+				LEFT JOIN modules m ON m.module_id = pm.module_id
+				LEFT JOIN module_groups mg ON mg.module_group_id = m.module_group_id
+				WHERE ps.pilot_ship_id = ?
+				AND ps.ship_id = sh.ship_id 
+				AND ss.ship_id = sh.ship_id
+				AND sl.slot_id = ss.slot_id
+				AND st.slot_type_id = sl.slot_type_id
+				ORDER BY st.slot_type_name, m.module_class DESC, m.module_rating
+			</sql>
+		</query>
 	</table>
 </include>

@@ -60,9 +60,11 @@ public class EventFilesReader {
 			//System.out.println(f.getName() + ": " + f.lastModified());
 			processFile(f);
 			count++;
+			/*
 			if (count > 3) {
 				break;
 			}
+			*/
 		}
 	}
 

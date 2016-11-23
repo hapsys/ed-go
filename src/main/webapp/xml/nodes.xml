@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <node pattern="" title="Главная страница">
+	<title lang="ru">ed-go.ru</title>
+	<title lang="en">Dashboard</title>
 	<!--
 	test
 	-->

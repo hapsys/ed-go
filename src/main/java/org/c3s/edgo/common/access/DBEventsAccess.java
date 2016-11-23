@@ -76,7 +76,7 @@ public class DBEventsAccess extends Access {
 			
 		}
 		sql += injector.getLimitQuery();
-		List<Map<String, Object>> result = getConnection().fetchRows("getUnlockEvent", sql );
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getUnlockEvent", sql );
 		if (result != null) {
 			
 			ret = dataMapper.mapFromRow(result.get(0), DBEventsBean.class);
@@ -97,7 +97,7 @@ public class DBEventsAccess extends Access {
 			
 		}
 		sql += injector.getLimitQuery();
-		List<Map<String, Object>> result = getConnection().fetchRows("getByPrimaryKey", sql ,  paramEventId);
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPrimaryKey", sql ,  paramEventId);
 		if (result != null) {
 			
 			ret = dataMapper.mapFromRow(result.get(0), DBEventsBean.class);

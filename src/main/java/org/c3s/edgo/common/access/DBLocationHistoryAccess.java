@@ -72,11 +72,11 @@ public class DBLocationHistoryAccess extends Access {
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
-			sql += "ORDER BY location_time";
+			sql += "ORDER BY location_time DESC";
 			
 		}
 		sql += injector.getLimitQuery();
-		List<Map<String, Object>> result = getConnection().fetchRows("getLastLocation", sql ,  paramPilotId);
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getLastLocation", sql ,  paramPilotId);
 		if (result != null) {
 			
 			ret = dataMapper.mapFromRow(result.get(0), DBLocationHistoryBean.class);
@@ -97,12 +97,40 @@ public class DBLocationHistoryAccess extends Access {
 			
 		}
 		sql += injector.getLimitQuery();
-		List<Map<String, Object>> result = getConnection().fetchRows("getByPrimaryKey", sql ,  paramLocationId);
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPrimaryKey", sql ,  paramLocationId);
 		if (result != null) {
 			
 			ret = dataMapper.mapFromRow(result.get(0), DBLocationHistoryBean.class);
 			
 		}
+		return ret;
+	}
+	
+	public DBLocationHistoryBean getLastLocationForPilot(long paramPilotId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getRecordQuery();
+			String join = injector.getRecordQuery();
+			String where = injector.getRecordQuery();
+			String order = injector.getRecordQuery();
+			String limit = injector.getRecordQuery();
+			query = " 				SELECT l.*, sy.name as system_name, st.name as station_name 				FROM location_history l 				LEFT JOIN systems sy ON l.system_id = sy.system_id 				LEFT JOIN stations st ON l.station_id = st.station_id 				WHERE l.pilot_id = ? 				ORDER BY location_time DESC 				LIMIT 1  			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getLastLocationForPilot", query ,  paramPilotId);
+		DBLocationHistoryBean ret = new DBLocationHistoryBean();
+		if (result != null) {
+				
+					ret = dataMapper.mapFromRow(result.get(0), DBLocationHistoryBean.class);
+					
+		}
+			
 		return ret;
 	}
 	

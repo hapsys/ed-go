@@ -80,7 +80,7 @@ public class DBRolesAccess extends Access {
 		}
 
 		
-		List<Map<String, Object>> result = getConnection().fetchRows("getRolesForUser", query ,  paramuserId);
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getRolesForUser", query ,  paramuserId);
 		List<DBRolesBean> ret = new ArrayList<DBRolesBean>();
 		if (result != null) {
 				

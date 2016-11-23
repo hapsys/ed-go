@@ -75,7 +75,7 @@ public class DBUserKeysAccess extends Access {
 			
 		}
 		sql += injector.getLimitQuery();
-		List<Map<String, Object>> result = getConnection().fetchRows("getByPrimaryKey", sql ,  paramUserKeyId);
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPrimaryKey", sql ,  paramUserKeyId);
 		if (result != null) {
 			
 			ret = dataMapper.mapFromRow(result.get(0), DBUserKeysBean.class);

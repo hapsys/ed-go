@@ -75,7 +75,7 @@ public class DBSystemsAccess extends Access {
 			
 		}
 		sql += injector.getLimitQuery();
-		List<Map<String, Object>> result = getConnection().fetchRows("getByUniq", sql ,  paramNameUniq);
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByUniq", sql ,  paramNameUniq);
 		if (result != null) {
 			
 			ret = dataMapper.mapFromRow(result.get(0), DBSystemsBean.class);
@@ -96,7 +96,7 @@ public class DBSystemsAccess extends Access {
 			
 		}
 		sql += injector.getLimitQuery();
-		List<Map<String, Object>> result = getConnection().fetchRows("getByPrimaryKey", sql ,  paramSystemId);
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPrimaryKey", sql ,  paramSystemId);
 		if (result != null) {
 			
 			ret = dataMapper.mapFromRow(result.get(0), DBSystemsBean.class);

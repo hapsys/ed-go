@@ -2,51 +2,57 @@ package org.c3s.edgo.event.impl.beans;
 
 import java.util.Date;
 
-public class ContinuedBean {
+import org.c3s.edgo.event.AbstractEventBean;
+
+public class ContinuedBean extends AbstractEventBean {
 
 	private Date timestamp;
 	private String event;
 	/**
-	 *  next part number
+	 * next part number
 	 */
 	private String Part;
-	
+
 	/**
 	 * @return
 	 */
 	public Date getTimestamp() {
 		return timestamp;
 	}
+
 	/**
 	 * @param timestamp
 	 */
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
+
 	/**
 	 * @return
 	 */
 	public String getEvent() {
 		return event;
 	}
+
 	/**
 	 * @param event
 	 */
 	public void setEvent(String event) {
 		this.event = event;
 	}
+
 	/**
 	 * @return
 	 */
 	public String getPart() {
 		return Part;
 	}
+
 	/**
 	 * @param part
 	 */
 	public void setPart(String part) {
 		this.Part = part;
 	}
-	
-}	
-	
+
+}
