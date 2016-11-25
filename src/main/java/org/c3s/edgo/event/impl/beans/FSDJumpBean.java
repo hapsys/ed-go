@@ -62,6 +62,34 @@ public class FSDJumpBean extends AbstractEventBean {
 	private String SystemSecurity;
 
 	/**
+	 * player is pledged to a Power in Powerplay, and the star system is
+	 * involved in powerplay,
+	 */
+	private String PowerplayState;
+	/**
+	 * a json array with the names of any powers contesting the system, or the
+	 * name of the controlling power
+	 */
+	private String[] Powers;
+
+	
+	public String getPowerplayState() {
+		return PowerplayState;
+	}
+
+	public void setPowerplayState(String powerplayState) {
+		PowerplayState = powerplayState;
+	}
+
+	public String[] getPowers() {
+		return Powers;
+	}
+
+	public void setPowers(String[] powers) {
+		Powers = powers;
+	}
+
+	/**
 	 * @return
 	 */
 	public Date getTimestamp() {

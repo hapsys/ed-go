@@ -15,7 +15,7 @@ public class PowerplayFastTrackBean extends AbstractEventBean {
 	/**
 	 * 
 	 */
-	private String Cost;
+	private int Cost;
 
 	/**
 	 * @return
@@ -62,14 +62,14 @@ public class PowerplayFastTrackBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getCost() {
+	public int getCost() {
 		return Cost;
 	}
 
 	/**
 	 * @param cost
 	 */
-	public void setCost(String cost) {
+	public void setCost(int cost) {
 		this.Cost = cost;
 	}
 

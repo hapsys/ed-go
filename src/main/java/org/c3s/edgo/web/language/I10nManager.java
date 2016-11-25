@@ -6,13 +6,24 @@ import org.c3s.xml.XMLManager;
 
 public class I10nManager {
 	
-	private static I10nHolder holder = null;
+	private static I10nHolder holder = I10nHolder.getInstance();
 	
-	public void init(@Parameter("content") String filename) throws XMLException {
+	public void init(@Parameter("content") String[] filename) throws XMLException {
 		synchronized (this.getClass()) {
-			if (filename != null && holder == null) {
-				holder = I10nHolder.getInstance();
-				holder.load(XMLManager.getDocument(filename));
+			if (filename != null) {
+				boolean reload = false;
+				for (String fn: filename) {
+					if (!XMLManager.isDocumentLoaded(fn)) {
+						reload = true;
+						break;
+					}
+				}
+				if (reload) {
+					holder.clear();
+					for (String fn: filename) {
+						holder.load(XMLManager.getDocument(fn));
+					}
+				}
 			}
 		}
 	}

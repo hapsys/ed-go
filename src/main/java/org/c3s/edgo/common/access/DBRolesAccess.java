@@ -81,8 +81,9 @@ public class DBRolesAccess extends Access {
 
 		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getRolesForUser", query ,  paramuserId);
-		List<DBRolesBean> ret = new ArrayList<DBRolesBean>();
+		List<DBRolesBean> ret = null;
 		if (result != null) {
+					ret = new ArrayList<DBRolesBean>();
 				
 			for (Map<String, Object> res : result) {
 				DBRolesBean bean = dataMapper.mapFromRow(res, DBRolesBean.class);

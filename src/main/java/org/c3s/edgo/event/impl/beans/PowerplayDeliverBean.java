@@ -19,7 +19,7 @@ public class PowerplayDeliverBean extends AbstractEventBean {
 	/**
 	 * 
 	 */
-	private String Count;
+	private int Count;
 
 	/**
 	 * @return
@@ -80,14 +80,14 @@ public class PowerplayDeliverBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getCount() {
+	public int getCount() {
 		return Count;
 	}
 
 	/**
 	 * @param count
 	 */
-	public void setCount(String count) {
+	public void setCount(int count) {
 		this.Count = count;
 	}
 

@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -21,12 +22,19 @@ import org.c3s.utils.RegexpUtils;
 
 public class EventFilesReader {
 
-	public static void main(String[] args) throws IOException, SQLException {
+	private static String[] using = new String[]{"PowerplayVoucher", "Bounty", "FSDJump", "Location", "Docked", "LoadGame", "Location", "MaterialCollected", "MaterialDiscarded", "MaterialDiscovered", "MissionAbandoned", "MissionAccepted", "MissionCompleted", "MissionFailed", "PowerplayCollect", "PowerplayDefect", "PowerplayDeliver", "PowerplayFastTrack", "PowerplayJoin", "PowerplayLeave", "PowerplaySalary", "PowerplayVote", "Progress", "Rank"};
+
+	public static void main(String[] args) throws IOException, SQLException, ParseException {
 		
 		Properties props = new Properties();
+		/*
 		props.put("user", "root");
 		props.put("password", "root");
 		DBManager.getConnection("edgo", "com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ed-go", props);
+		*/
+		props.put("user", "hapsys");
+		props.put("password", "123467890");
+		DBManager.getConnection("edgo", "com.mysql.jdbc.Driver", "jdbc:mysql://192.168.0.10:3306/ed-go", props);
 		
 		String savedgames = System.getenv("USERPROFILE") + "\\Saved Games\\Frontier Developments\\Elite Dangerous\\";;
 		
@@ -85,15 +93,17 @@ public class EventFilesReader {
 				if (line.trim().length() > 0) {
 					
 					String name = RegexpUtils.preg_replace("~^.+\"event\"\\s*:\\s*\"([^\"]+)\".*$~isu", line, "$1");
-					//System.out.println(name);
-					//System.exit(0);
-					DBEventsBean evt = new DBEventsBean();
-					evt.setEventId(BigInteger.valueOf(System.nanoTime()));
-					evt.setUserId(userId);
-					evt.setEventName(name);
-					evt.setEventJson(line);
-					evt.setIsLocked(0);
-					DbAccess.eventsAccess.insert(evt);
+					if (Arrays.asList(using).stream().filter(x->x.equals(name)).findFirst().orElse(null) != null) {
+						//System.out.println(name);
+						//System.exit(0);
+						DBEventsBean evt = new DBEventsBean();
+						evt.setEventId(BigInteger.valueOf(System.nanoTime()));
+						evt.setUserId(userId);
+						evt.setEventName(name);
+						evt.setEventJson(line);
+						evt.setIsLocked(0);
+						DbAccess.eventsAccess.insert(evt);
+					}
 				}
 			}
 		} catch (IllegalArgumentException | IllegalAccessException | SQLException e) {

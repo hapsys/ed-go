@@ -19,11 +19,7 @@ public class MissionCompletedBean extends AbstractEventBean {
 	/**
 	 * 
 	 */
-	private String MissionID;
-	/**
-	 * (depending on mission type)
-	 */
-	private String parameters;
+	private int MissionID;
 	/**
 	 * 
 	 */
@@ -31,7 +27,7 @@ public class MissionCompletedBean extends AbstractEventBean {
 	/**
 	 * 
 	 */
-	private String Count;
+	private int Count;
 	/**
 	 * 
 	 */
@@ -47,19 +43,19 @@ public class MissionCompletedBean extends AbstractEventBean {
 	/**
 	 * value of reward
 	 */
-	private String Reward;
+	private int Reward;
 	/**
 	 * donation offered (for altruism missions)
 	 */
-	private String Donation;
+	private int Donation;
 	/**
 	 * [] (names of any permits awarded, as a JSON array)
 	 */
-	private String PermitsAwarded;
+	private String[] PermitsAwarded;
 	/**
 	 * [] (names and counts of any commodity rewards)
 	 */
-	private String CommodityReward;
+	private Commodity[] CommodityReward;
 
 	/**
 	 * @return
@@ -120,29 +116,15 @@ public class MissionCompletedBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getMissionID() {
+	public int getMissionID() {
 		return MissionID;
 	}
 
 	/**
 	 * @param missionid
 	 */
-	public void setMissionID(String missionid) {
+	public void setMissionID(int missionid) {
 		this.MissionID = missionid;
-	}
-
-	/**
-	 * @return
-	 */
-	public String getparameters() {
-		return parameters;
-	}
-
-	/**
-	 * @param parameters
-	 */
-	public void setparameters(String parameters) {
-		this.parameters = parameters;
 	}
 
 	/**
@@ -162,14 +144,14 @@ public class MissionCompletedBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getCount() {
+	public int getCount() {
 		return Count;
 	}
 
 	/**
 	 * @param count
 	 */
-	public void setCount(String count) {
+	public void setCount(int count) {
 		this.Count = count;
 	}
 
@@ -218,57 +200,76 @@ public class MissionCompletedBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getReward() {
+	public int getReward() {
 		return Reward;
 	}
 
 	/**
 	 * @param reward
 	 */
-	public void setReward(String reward) {
+	public void setReward(int reward) {
 		this.Reward = reward;
 	}
 
 	/**
 	 * @return
 	 */
-	public String getDonation() {
+	public int getDonation() {
 		return Donation;
 	}
 
 	/**
 	 * @param donation
 	 */
-	public void setDonation(String donation) {
+	public void setDonation(int donation) {
 		this.Donation = donation;
 	}
 
 	/**
 	 * @return
 	 */
-	public String getPermitsAwarded() {
+	public String[] getPermitsAwarded() {
 		return PermitsAwarded;
 	}
 
 	/**
 	 * @param permitsawarded
 	 */
-	public void setPermitsAwarded(String permitsawarded) {
+	public void setPermitsAwarded(String[] permitsawarded) {
 		this.PermitsAwarded = permitsawarded;
 	}
 
 	/**
 	 * @return
 	 */
-	public String getCommodityReward() {
+	public Commodity[] getCommodityReward() {
 		return CommodityReward;
 	}
 
 	/**
 	 * @param commodityreward
 	 */
-	public void setCommodityReward(String commodityreward) {
+	public void setCommodityReward(Commodity[] commodityreward) {
 		this.CommodityReward = commodityreward;
 	}
 
+	public static class Commodity {
+		
+		private String Name;
+		private int Count;
+		
+		public String getName() {
+			return Name;
+		}
+		public void setName(String name) {
+			Name = name;
+		}
+		public int getCount() {
+			return Count;
+		}
+		public void setCount(int count) {
+			Count = count;
+		}
+	}
+	
 }

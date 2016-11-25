@@ -22,6 +22,12 @@ public class I10nHolder {
 	}
 	
 	private Map<String, Map<String, String>> holder = new HashMap<>();
+	private Map<String, Map<String, String>> holder_nc = new HashMap<>();
+	
+	public void clear() {
+		holder.clear();
+		holder_nc.clear();
+	}
 	
 	public void load(Document xml) {
 		
@@ -44,8 +50,10 @@ public class I10nHolder {
 					if (!lang.isEmpty()) {
 						if (!holder.containsKey(name)) {
 							holder.put(name, new HashMap<String, String>());
+							holder_nc.put(name.toLowerCase(), new HashMap<String, String>());
 						}
 						holder.get(name).put(lang, select.getTextContent());
+						holder_nc.get(name.toLowerCase()).put(lang, select.getTextContent());
 						//logger.debug("Append translate [{},{}]={}", name, lang, select.getTextContent());
 					}
 				}
@@ -54,9 +62,15 @@ public class I10nHolder {
 	}
 	
 	public String get(String name, String lang) {
+		return this.get(name, lang, true);
+	}
+	
+	public String get(String name, String lang, boolean caseSensitive) {
 		String result = name;
-		if (holder.get(name) != null && holder.get(name).get(lang) != null) {
-			result = holder.get(name).get(lang);
+		Map<String, Map<String, String>> hld = caseSensitive?holder:holder_nc;
+		String key = caseSensitive?name:name.toLowerCase();
+		if (hld.get(key) != null && hld.get(key).get(lang) != null) {
+			result = hld.get(name).get(lang);
 		}
 		return result;
 	}

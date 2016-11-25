@@ -62,21 +62,6 @@ public class DBPilotShipsListBean implements DbBean, Serializable {
 	}
 	
 	
-	@DataSource({"ship_uniq", "shipUniq"})
-	@DataTarget("ship_uniq")
-	@XMLSimple("shipUniq")
-	private java.lang.String shipUniq;
-	
-	public java.lang.String getShipUniq() {
-		return shipUniq;
-	}
-	
-	public DBPilotShipsListBean setShipUniq(java.lang.String value) {
-		shipUniq = value;
-		return this;
-	}
-	
-	
 	@DataSource({"system_id", "systemId"})
 	@DataTarget("system_id")
 	@XMLSimple("systemId")
@@ -88,21 +73,6 @@ public class DBPilotShipsListBean implements DbBean, Serializable {
 	
 	public DBPilotShipsListBean setSystemId(java.lang.Long value) {
 		systemId = value;
-		return this;
-	}
-	
-	
-	@DataSource({"is_main", "isMain"})
-	@DataTarget("is_main")
-	@XMLSimple("isMain")
-	private java.lang.Integer isMain;
-	
-	public java.lang.Integer getIsMain() {
-		return isMain;
-	}
-	
-	public DBPilotShipsListBean setIsMain(java.lang.Integer value) {
-		isMain = value;
 		return this;
 	}
 	
@@ -152,6 +122,36 @@ public class DBPilotShipsListBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"ship_uniq", "shipUniq"})
+	@DataTarget("ship_uniq")
+	@XMLSimple("shipUniq")
+	private java.lang.String shipUniq;
+	
+	public java.lang.String getShipUniq() {
+		return shipUniq;
+	}
+	
+	public DBPilotShipsListBean setShipUniq(java.lang.String value) {
+		shipUniq = value;
+		return this;
+	}
+	
+	
+	@DataSource({"is_main", "isMain"})
+	@DataTarget("is_main")
+	@XMLSimple("isMain")
+	private java.lang.Integer isMain;
+	
+	public java.lang.Integer getIsMain() {
+		return isMain;
+	}
+	
+	public DBPilotShipsListBean setIsMain(java.lang.Integer value) {
+		isMain = value;
+		return this;
+	}
+	
+	
 	@DataSource({"ship_name", "shipName"})
 	@DataTarget("ship_name")
 	@XMLSimple("shipName")
@@ -178,6 +178,21 @@ public class DBPilotShipsListBean implements DbBean, Serializable {
 	
 	public DBPilotShipsListBean setShipId(java.lang.Long value) {
 		shipId = value;
+		return this;
+	}
+	
+	
+	@DataSource({"pilot_ship_name", "pilotShipName"})
+	@DataTarget("pilot_ship_name")
+	@XMLSimple("pilotShipName")
+	private java.lang.String pilotShipName;
+	
+	public java.lang.String getPilotShipName() {
+		return pilotShipName;
+	}
+	
+	public DBPilotShipsListBean setPilotShipName(java.lang.String value) {
+		pilotShipName = value;
 		return this;
 	}
 	

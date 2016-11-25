@@ -106,4 +106,20 @@
 			</sql>
 		</query>
 	</table>
+	<!--  -->
+	<table name="pilot_materials">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="pilot_id"/>
+			<column name="material_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="pilot_id"/>
+			<column name="material_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="pilot_id"/>
+			<column name="material_id"/>
+		</delete>
+	</table>
+	<!--  -->
 </include>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<include>
+	<!--  -->
+	<table name="missions">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="mission_id"/>
+		</select>
+		<select name="ByPilotIdAndLinkId" single_object="true">
+			<column name="pilot_id"/>
+			<column name="mission_link_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="mission_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="mission_id"/>
+		</delete>
+		<query name="getLastComplitedByPilotId" use="Missions" single_object="true">
+			<column name="pilot_id" type="long"/>
+			<sql>
+				SELECT m.* 
+				FROM missions m 
+				WHERE m.pilot_id = ?
+				AND NOT ISNULL(m.complete_date)
+				ORDER BY m.complete_date DESC
+				LIMIT 1 
+			</sql>
+		</query>
+	</table>
+	<!--  -->
+	<table name="mission_types">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="mission_type_id"/>
+		</select>
+		<select name="ByUniq" single_object="true">
+			<column name="mission_type_uniq"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="mission_type_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="mission_type_id"/>
+		</delete>
+	</table>
+	<!--  -->
+	<table name="reward_commodities">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="mission_id"/>
+			<column name="commodity_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="mission_id"/>
+			<column name="commodity_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="mission_id"/>
+			<column name="commodity_id"/>
+		</delete>
+	</table>
+	<!--  -->
+	<table name="reward_materials">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="mission_id"/>
+			<column name="material_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="mission_id"/>
+			<column name="material_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="mission_id"/>
+			<column name="material_id"/>
+		</delete>
+	</table>
+	<!--  -->
+</include>

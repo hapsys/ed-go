@@ -181,6 +181,11 @@
 		<!-- -->
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	<servlet>
+		<servlet-name>EventServlet</servlet-name>
+		<servlet-class>org.c3s.edgo.web.servlets.EventServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.css</url-pattern>

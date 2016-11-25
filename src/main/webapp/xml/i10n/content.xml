@@ -8,7 +8,7 @@
 		<select lang="ru">войти</select>
 		<select lang="en">log in</select>
 	</match>
-	<match name="Field must have value">
-		<select lang="ru">Поле не может быть пустым</select>
-	</match>
+	<match name="Field must have value"><select lang="ru">Поле не может быть пустым</select></match>
+	<match name="CMDR"><select lang="ru">КМДР</select></match>
+	<match name="Last location"><select lang="ru">Последнее местонахождение</select></match>
 </i10n>

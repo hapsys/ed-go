@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <include>
+	<!--  -->
 	<table name="events">
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="event_id"/>
@@ -15,6 +16,7 @@
 			<column name="event_id"/>
 		</delete>
 	</table>
+	<!--  -->
 	<table name="location_history">
 		<column name="system_name" type="String">
 	    	<annotation>@XMLSimple("systemName")</annotation>
@@ -42,6 +44,7 @@
 			</sql>
 		</query>
 	</table>
+	<!--  -->
 	<table name="ranks">
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="pilot_id"/>
@@ -50,6 +53,7 @@
 			<column name="pilot_id"/>
 		</update>
 	</table>
+	<!--  -->
 	<table name="progress">
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="pilot_id"/>
@@ -58,4 +62,17 @@
 			<column name="pilot_id"/>
 		</update>
 	</table>
+	<!--  -->
+	<table name="events_history">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="events_history_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="events_history_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="events_history_id"/>
+		</delete>
+	</table>
+	<!--  -->
 </include>

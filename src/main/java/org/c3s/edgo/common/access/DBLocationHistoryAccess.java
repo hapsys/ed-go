@@ -124,8 +124,9 @@ public class DBLocationHistoryAccess extends Access {
 
 		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getLastLocationForPilot", query ,  paramPilotId);
-		DBLocationHistoryBean ret = new DBLocationHistoryBean();
+		DBLocationHistoryBean ret = null;
 		if (result != null) {
+					ret = new DBLocationHistoryBean();
 				
 					ret = dataMapper.mapFromRow(result.get(0), DBLocationHistoryBean.class);
 					

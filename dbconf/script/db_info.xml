@@ -6,6 +6,9 @@
 		<include href="events.xml"/>
 		<include href="ships.xml"/>
 		<include href="systems.xml"/>
+		<include href="missions.xml"/>
+		<include href="comodities.xml"/>
+		<include href="powers.xml"/>
 	</source>
 
 </db_info>

@@ -1,0 +1,13 @@
+TRUNCATE `events`;
+TRUNCATE `events_history`;
+TRUNCATE `location_history`;
+TRUNCATE `missions`;
+TRUNCATE `reward_materials`;
+TRUNCATE `reward_commodities`;
+TRUNCATE `pilot_materials`;
+TRUNCATE `power_state`;
+TRUNCATE `pilot_power`;
+TRUNCATE `pilot_power_spend`;
+TRUNCATE `pilot_war_merits`;
+TRUNCATE `pilot_kill_merits`;
+TRUNCATE `pilot_deliver`;

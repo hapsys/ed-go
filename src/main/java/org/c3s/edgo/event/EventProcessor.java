@@ -4,11 +4,16 @@ import java.sql.SQLException;
 
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBEventsBean;
+import org.c3s.edgo.event.impl.PowerplayDeliver;
 import org.c3s.storage.StorageFactory;
 import org.c3s.storage.StorageInterface;
 import org.c3s.storage.StorageType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EventProcessor implements Runnable {
+	
+	private static Logger logger = LoggerFactory.getLogger(EventProcessor.class);
 	
 	private long timeout = 600000L;
 
@@ -38,6 +43,7 @@ public class EventProcessor implements Runnable {
 	@Override
 	public void run() {
 		
+		boolean say = false;
 		while(!stop) {
 			
 			boolean next = false;
@@ -48,11 +54,18 @@ public class EventProcessor implements Runnable {
 				e1.printStackTrace();
 				stop = true;
 			}
-			
 			try {
 				if (next) {
-						Thread.sleep(1);
+					if (!say) {
+						logger.info("Read EVENT from DB");
+						say = true;
+					}
+					Thread.sleep(1);
 				} else {
+					if (say) {
+						logger.info("No EVENTs in DB");
+						say = false;
+					}
 					Thread.sleep(1000);
 					storage.clearExpired();
 				}

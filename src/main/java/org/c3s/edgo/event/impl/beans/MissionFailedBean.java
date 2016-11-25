@@ -15,7 +15,7 @@ public class MissionFailedBean extends AbstractEventBean {
 	/**
 	 * 
 	 */
-	private String MissionID;
+	private int MissionID;
 
 	/**
 	 * @return
@@ -62,14 +62,14 @@ public class MissionFailedBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getMissionID() {
+	public int getMissionID() {
 		return MissionID;
 	}
 
 	/**
 	 * @param missionid
 	 */
-	public void setMissionID(String missionid) {
+	public void setMissionID(int missionid) {
 		this.MissionID = missionid;
 	}
 

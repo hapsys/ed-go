@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:i10n="org.c3s.edgo.utils.I10N">
 	<xsl:output encoding="utf-8" indent="yes" method="html"/>
 	<xsl:include href="../ranks.xsl"/>
 	<xsl:param name="root"/>
@@ -23,9 +23,10 @@
 //
 -->
 	<xsl:template name="view_info">
-		<div><h2>CMDR <xsl:value-of select="field[@name='pilotName']/@value"/></h2></div>
+		
+		<div><h2><xsl:value-of select="i10n:tr('CMDR')"/>&#160;<xsl:value-of select="field[@name='pilotName']/@value"/></h2></div>
 		<p>
-			<h3>Last location:</h3>
+			<h3><xsl:value-of select="i10n:tr('Last location')"/>:</h3>
 			<table class="table ">
 				<tr>
 					<td class="col-md-1">System:</td>

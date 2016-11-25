@@ -20,7 +20,7 @@ public class BountyBean extends AbstractEventBean {
 	/**
 	 * 
 	 */
-	private String TotalReward;
+	private int TotalReward;
 	/**
 	 * if credit for the kill is shared with other players, this has the number
 	 * of other players involved
@@ -86,14 +86,14 @@ public class BountyBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getTotalReward() {
+	public int getTotalReward() {
 		return TotalReward;
 	}
 
 	/**
 	 * @param totalreward
 	 */
-	public void setTotalReward(String totalreward) {
+	public void setTotalReward(int totalreward) {
 		this.TotalReward = totalreward;
 	}
 

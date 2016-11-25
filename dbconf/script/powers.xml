@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<include>
+	<!--  -->
+	<table name="powers">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="power_id"/>
+		</select>
+		<select name="ByUniq" single_object="true">
+			<column name="power_uniq"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="power_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="power_id"/>
+		</delete>
+		<query name="ByUniqOrAlias" single_object="true" use="Powers">
+			<column name="Uniq" type="String"/>
+			<column name="Alias" type="String"/>
+			<sql>
+				SELECT p.*
+				FROM powers p
+				WHERE p.power_uniq = ?
+				OR p.power_aliases LIKE CONCAT('%', ?, '%')
+				LIMIT 1
+			</sql>
+		</query>
+	</table>
+	<!--  -->
+	<table name="power_state">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="power_state_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="power_state_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="power_state_id"/>
+		</delete>
+		<query name="PrevWeekSystemStateCount" single_object="true">
+			<column name="SystemId" type="java.math.BigInteger"/>
+			<column name="WeekStart" type="java.sql.Timestamp"/>
+			<column name="WeekStartAdd" type="java.sql.Timestamp"/>
+			<sql>
+				SELECT count(ps.power_state_id) as count
+				FROM power_state ps, power_state_type pt
+				WHERE ps.system_id = ?
+				AND ps.power_state_type_id = pt.power_state_type_id
+				AND (pt.is_permanent = 0 AND ps.start_week = ?
+				OR pt.is_weekly = 0 AND ps.start_week &lt;= ?
+				OR pt.is_permanent = 1)
+				LIMIT 1
+			</sql>
+		</query>
+		<query name="PrevWeekSystemStateSingle" single_object="true">
+			<column name="SystemId" type="java.math.BigInteger"/>
+			<column name="WeekStart" type="java.sql.Timestamp"/>
+			<column name="WeekStartAdd" type="java.sql.Timestamp"/>
+			<sql>
+				SELECT p.*, ps.*, pt.*
+				FROM powers p, power_state ps, power_state_type pt
+				WHERE ps.system_id = ?
+				AND ps.power_state_type_id = pt.power_state_type_id
+				AND (pt.is_permanent = 0 AND ps.start_week = ?
+				OR pt.is_weekly = 0 AND ps.start_week &lt;= ?
+				OR pt.is_permanent = 1)
+				AND p.power_id = ps.power_id
+				LIMIT 1
+			</sql>
+		</query>
+	</table>
+	<!--  -->
+	<table name="power_state_type">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="power_state_type_id"/>
+		</select>
+		<select name="ByUniq" single_object="true">
+			<column name="power_state_type_uniq"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="power_state_type_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="power_state_type_id"/>
+		</delete>
+	</table>
+	<!--  -->
+	<table name="pilot_power">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="pilot_power_id"/>
+		</select>
+		<select name="LastByPilotId" single_object="true">
+			<column name="pilot_id"/>
+			<sort>pilot_power_time ASC</sort>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="pilot_power_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="pilot_power_id"/>
+		</delete>
+	</table>
+	<!--  -->
+	<table name="pilot_power_spend">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="pilot_power_spend_id"/>
+		</select>
+		<select name="ByPilotIdAndWeek" single_object="true">
+			<column name="pilot_id"/>
+			<column name="start_week"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="pilot_power_spend_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="pilot_power_spend_id"/>
+		</delete>
+	</table>
+	<!--  -->
+	<table name="pilot_deliver">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="pilot_deliver_id"/>
+		</select>
+		<select name="ByPilotIdAndSystemIdAndWeek" single_object="true">
+			<column name="pilot_id"/>
+			<column name="system_id"/>
+			<column name="start_week"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="pilot_deliver_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="pilot_deliver_id"/>
+		</delete>
+	</table>
+	<!--  -->
+	<table name="pilot_war_merits">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="pilot_war_merits_id"/>
+		</select>
+		<select name="ConfirmedByPilotIdAndSystemIdAndWeek" single_object="true">
+			<column name="pilot_id"/>
+			<column name="system_id"/>
+			<column name="start_week"/>
+			<column name="is_confirmed" condition="=" value="1"/>
+		</select>
+		<select name="NotConfirmedByPilotIdAndSystemIdAndWeek" single_object="true">
+			<column name="pilot_id"/>
+			<column name="system_id"/>
+			<column name="start_week"/>
+			<column name="is_confirmed" condition="=" value="0"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="pilot_war_merits_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="pilot_war_merits_id"/>
+		</delete>
+	</table>
+	<!--  -->
+	<table name="pilot_kill_merits">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="pilot_kill_merits_id"/>
+		</select>
+		<select name="ConfirmedByPilotIdAndSystemIdAndWeek" single_object="true">
+			<column name="pilot_id"/>
+			<column name="system_id"/>
+			<column name="start_week"/>
+			<column name="is_confirmed" condition="=" value="1"/>
+		</select>
+		<select name="NotConfirmedByPilotIdAndSystemIdAndWeek" single_object="true">
+			<column name="pilot_id"/>
+			<column name="system_id"/>
+			<column name="start_week"/>
+			<column name="is_confirmed" condition="=" value="0"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="pilot_kill_merits_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="pilot_kill_merits_id"/>
+		</delete>
+	</table>
+	<!--  -->
+</include>

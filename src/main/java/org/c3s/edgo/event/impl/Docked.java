@@ -20,7 +20,7 @@ public class Docked extends AbstractJournalEvent<DockedBean> {
 		
 		DBPilotsBean pilot = getCurrent();
 		if (pilot != null) {
-			new LocationDAO().insertLocation(pilot.getPilotId(), bean.getTimestamp(), bean.getStarSystem(), null, bean.getStationName());
+			LocationDAO.insertLocation(pilot.getPilotId(), bean.getTimestamp(), bean.getStarSystem(), null, bean.getStationName());
 		}
 		
 	}

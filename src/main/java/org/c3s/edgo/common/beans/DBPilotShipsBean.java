@@ -122,6 +122,21 @@ public class DBPilotShipsBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"pilot_ship_name", "pilotShipName"})
+	@DataTarget("pilot_ship_name")
+	@XMLSimple("pilotShipName")
+	private java.lang.String pilotShipName;
+	
+	public java.lang.String getPilotShipName() {
+		return pilotShipName;
+	}
+	
+	public DBPilotShipsBean setPilotShipName(java.lang.String value) {
+		pilotShipName = value;
+		return this;
+	}
+	
+	
 	@DataSource({"ship", "ship"})
 	@DataTarget("ship")
 	@XMLReflectionField

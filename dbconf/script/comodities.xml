@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<include>
+	<!--  -->
+	<table name="commodities">
+		<select name="ByUniq" single_object="true">
+			<column name="commodity_uniq"/>
+		</select>
+	</table>
+	<!--  -->
+	<table name="comodity_categories">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="comodity_category_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="comodity_category_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="comodity_category_id"/>
+		</delete>
+	</table>
+	<!--  -->
+	<table name="materials">
+		<select name="ByUniq" single_object="true">
+			<column name="material_uniq"/>
+		</select>
+	</table>
+	<!--  -->
+	<table name="material_category">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="material_category_id"/>
+		</select>
+		<select name="ByUniq" single_object="true">
+			<column name="material_category_name"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="material_category_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="material_category_id"/>
+		</delete>
+	</table>
+	<!--  -->
+</include>

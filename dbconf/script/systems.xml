@@ -16,4 +16,12 @@
 			<column name="name_uniq"/>
 		</select>
 	</table>
+	<table name="factions">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="faction_id"/>
+		</select>
+		<select name="ByUniq" single_object="true">
+			<column name="uniq"/>
+		</select>
+	</table>
 </include>

@@ -64,7 +64,7 @@ public class LocationBean extends AbstractEventBean {
 	 * player is pledged to a Power in Powerplay, and the star system is
 	 * involved in powerplay,
 	 */
-	private String the;
+	private String PowerplayState;
 	/**
 	 * a json array with the names of any powers contesting the system, or the
 	 * name of the controlling power
@@ -284,15 +284,15 @@ public class LocationBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getthe() {
-		return the;
+	public String getPowerplayState() {
+		return PowerplayState;
 	}
 
 	/**
 	 * @param the
 	 */
-	public void setthe(String the) {
-		this.the = the;
+	public void setPowerplayState(String the) {
+		this.PowerplayState = the;
 	}
 
 	/**

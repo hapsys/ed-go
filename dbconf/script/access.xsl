@@ -284,8 +284,9 @@ public class <xsl:value-of select="$class_name"/> extends Access {
 					</xsl:choose>
 				</xsl:variable>
 		List&lt;Map&lt;String, Object&gt;&gt; result = getConnection().fetchRows(tablename + ".get<xsl:value-of select="@name"/>", query <xsl:call-template name="get_query_internal_params"/>);
-		<xsl:value-of select="$ret_type"/> ret = new <xsl:value-of select="$new_type"/>();
+		<xsl:value-of select="$ret_type"/> ret = null;
 		if (result != null) {
+					ret = new <xsl:value-of select="$new_type"/>();
 				<xsl:choose>
 					<xsl:when test="@is_single = 'true'">
 					ret = dataMapper.mapFromRow(result.get(0), <xsl:value-of select="$ret_type"/>.class);

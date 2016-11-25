@@ -118,8 +118,9 @@ public class DBPilotModulesAccess extends Access {
 
 		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getPilotShipModulesList", query ,  paramPilotShipId);
-		List<DBPilotShipModulesListBean> ret = new ArrayList<DBPilotShipModulesListBean>();
+		List<DBPilotShipModulesListBean> ret = null;
 		if (result != null) {
+					ret = new ArrayList<DBPilotShipModulesListBean>();
 				
 			for (Map<String, Object> res : result) {
 				DBPilotShipModulesListBean bean = dataMapper.mapFromRow(res, DBPilotShipModulesListBean.class);

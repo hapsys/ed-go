@@ -12,6 +12,11 @@ public abstract class AbstractEventBean {
 	/**
 	 * @return
 	 */
+	public abstract void setTimestamp(Date timestamp);
+	
+	/**
+	 * @return
+	 */
 	public abstract String getEvent();
 	
 }

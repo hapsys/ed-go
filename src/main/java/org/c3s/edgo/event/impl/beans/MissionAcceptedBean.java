@@ -19,11 +19,7 @@ public class MissionAcceptedBean extends AbstractEventBean {
 	/**
 	 * 
 	 */
-	private String MissionID;
-	/**
-	 * (depending on mission type)
-	 */
-	private String Parameters;
+	private int MissionID;
 	/**
 	 * commodity type
 	 */
@@ -31,7 +27,7 @@ public class MissionAcceptedBean extends AbstractEventBean {
 	/**
 	 * number required / to deliver
 	 */
-	private String Count;
+	private int Count;
 	/**
 	 * name of target
 	 */
@@ -47,7 +43,7 @@ public class MissionAcceptedBean extends AbstractEventBean {
 	/**
 	 * mission expiry time, in ISO 8601
 	 */
-	private String Expiry;
+	private Date Expiry;
 	/**
 	 * 
 	 */
@@ -59,15 +55,15 @@ public class MissionAcceptedBean extends AbstractEventBean {
 	/**
 	 * 
 	 */
-	private String PassengerCount;
+	private int PassengerCount;
 	/**
 	 * bool
 	 */
-	private String PassengerVIPs;
+	private boolean PassengerVIPs;
 	/**
 	 * bool
 	 */
-	private String PassengerWanted;
+	private boolean PassengerWanted;
 	/**
 	 * eg Tourist, Soldier, Explorer,...
 	 */
@@ -132,29 +128,15 @@ public class MissionAcceptedBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getMissionID() {
+	public int getMissionID() {
 		return MissionID;
 	}
 
 	/**
 	 * @param missionid
 	 */
-	public void setMissionID(String missionid) {
+	public void setMissionID(int missionid) {
 		this.MissionID = missionid;
-	}
-
-	/**
-	 * @return
-	 */
-	public String getParameters() {
-		return Parameters;
-	}
-
-	/**
-	 * @param parameters
-	 */
-	public void setParameters(String parameters) {
-		this.Parameters = parameters;
 	}
 
 	/**
@@ -174,14 +156,14 @@ public class MissionAcceptedBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getCount() {
+	public int getCount() {
 		return Count;
 	}
 
 	/**
 	 * @param count
 	 */
-	public void setCount(String count) {
+	public void setCount(int count) {
 		this.Count = count;
 	}
 
@@ -230,14 +212,14 @@ public class MissionAcceptedBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getExpiry() {
+	public Date getExpiry() {
 		return Expiry;
 	}
 
 	/**
 	 * @param expiry
 	 */
-	public void setExpiry(String expiry) {
+	public void setExpiry(Date expiry) {
 		this.Expiry = expiry;
 	}
 
@@ -272,42 +254,42 @@ public class MissionAcceptedBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getPassengerCount() {
+	public int getPassengerCount() {
 		return PassengerCount;
 	}
 
 	/**
 	 * @param passengercount
 	 */
-	public void setPassengerCount(String passengercount) {
+	public void setPassengerCount(int passengercount) {
 		this.PassengerCount = passengercount;
 	}
 
 	/**
 	 * @return
 	 */
-	public String getPassengerVIPs() {
+	public boolean getPassengerVIPs() {
 		return PassengerVIPs;
 	}
 
 	/**
 	 * @param passengervips
 	 */
-	public void setPassengerVIPs(String passengervips) {
+	public void setPassengerVIPs(boolean passengervips) {
 		this.PassengerVIPs = passengervips;
 	}
 
 	/**
 	 * @return
 	 */
-	public String getPassengerWanted() {
+	public boolean getPassengerWanted() {
 		return PassengerWanted;
 	}
 
 	/**
 	 * @param passengerwanted
 	 */
-	public void setPassengerWanted(String passengerwanted) {
+	public void setPassengerWanted(boolean passengerwanted) {
 		this.PassengerWanted = passengerwanted;
 	}
 
