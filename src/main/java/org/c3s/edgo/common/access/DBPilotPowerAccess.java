@@ -85,6 +85,33 @@ public class DBPilotPowerAccess extends Access {
 		return ret;
 	}
 	
+	public List<DBPilotPowerBean> getHistoryByPilotId(java.lang.Long paramPilotId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		List<DBPilotPowerBean> ret = null;
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_id= ?  "+injector.getWhereQuery()+" ";
+		if (injector.getOrderQuery().length() != 0) {
+			sql += injector.getOrderQuery();
+		} else { 
+			sql += "ORDER BY pilot_power_time ASC";
+			
+		}
+		sql += injector.getLimitQuery();
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getHistoryByPilotId", sql ,  paramPilotId);
+		if (result != null) {
+			
+			ret = new ArrayList<DBPilotPowerBean>();
+			for (Map<String, Object> res : result) {
+				DBPilotPowerBean bean = dataMapper.mapFromRow(res, DBPilotPowerBean.class);
+				 
+				ret.add(bean);
+			}
+				
+		}
+		return ret;
+	}
+	
 	public DBPilotPowerBean getByPrimaryKey(java.lang.Long paramPilotPowerId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		DBPilotPowerBean ret = null;
@@ -120,6 +147,43 @@ public class DBPilotPowerAccess extends Access {
 		setNames();
 		String sql = "DELETE FROM " + tablename + " WHERE  1=1 AND  pilot_power_id= ?  ";
 		return getConnection().query(sql, paramPilotPowerId);
+	}
+	
+	public List<DBPilotsPowerWeeksBean> getPilotsPowerWeeks(org.c3s.edgo.common.intruders.InInjector paramIntruder) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		if (paramIntruder != null) {
+			injector = paramIntruder;
+		}
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getRecordQuery();
+			String join = injector.getRecordQuery();
+			String where = injector.getRecordQuery();
+			String order = injector.getRecordQuery();
+			String limit = injector.getRecordQuery();
+			query = " 				SELECT a.start_week FROM ( 				(SELECT DISTINCT start_week FROM pilot_war_merits WHERE 1 = 1 " + where + ") 				UNION DISTINCT 				(SELECT DISTINCT start_week FROM pilot_war_merits WHERE 1 = 1 " + where + ") 				UNION DISTINCT 				(SELECT DISTINCT start_week FROM pilot_power_spend WHERE 1 = 1 " + where + ") 				UNION DISTINCT 				(SELECT DISTINCT start_week FROM pilot_deliver WHERE 1 = 1 " + where + ") 				ORDER BY start_week DESC) as a 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getPilotsPowerWeeks", query );
+		List<DBPilotsPowerWeeksBean> ret = null;
+		if (result != null) {
+					ret = new ArrayList<DBPilotsPowerWeeksBean>();
+				
+			for (Map<String, Object> res : result) {
+				DBPilotsPowerWeeksBean bean = dataMapper.mapFromRow(res, DBPilotsPowerWeeksBean.class);
+														
+				ret.add(bean);
+			}
+					
+		}
+			
+		return ret;
 	}
 	
 }

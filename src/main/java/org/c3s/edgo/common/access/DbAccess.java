@@ -30,6 +30,7 @@ public class DbAccess {
 	public static final DBPowersAccess powersAccess = new DBPowersAccess();
 	public static final DBPowerStateAccess powerStateAccess = new DBPowerStateAccess();
 	public static final DBPowerStateTypeAccess powerStateTypeAccess = new DBPowerStateTypeAccess();
+	public static final DBPowerCortageAccess powerCortageAccess = new DBPowerCortageAccess();
 	public static final DBPilotPowerAccess pilotPowerAccess = new DBPilotPowerAccess();
 	public static final DBPilotPowerSpendAccess pilotPowerSpendAccess = new DBPilotPowerSpendAccess();
 	public static final DBPilotDeliverAccess pilotDeliverAccess = new DBPilotDeliverAccess();

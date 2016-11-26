@@ -149,6 +149,7 @@
 			<param-name>connection.edgo.driver</param-name>
 			<param-value>com.mysql.jdbc.Driver</param-value>
 		</init-param>
+		<!-- 
 		<init-param>
 			<param-name>connection.edgo.dsn</param-name>
 			<param-value>jdbc:mysql://localhost:3306/ed-go</param-value>
@@ -160,6 +161,19 @@
 		<init-param>
 			<param-name>connection.edgo.password</param-name>
 			<param-value>root</param-value>
+		</init-param>
+		 -->
+		<init-param>
+			<param-name>connection.edgo.dsn</param-name>
+			<param-value>jdbc:mysql://192.168.0.10:3306/ed-go</param-value>
+		</init-param>
+		<init-param>
+			<param-name>connection.edgo.user</param-name>
+			<param-value>hapsys</param-value>
+		</init-param>
+		<init-param>
+			<param-name>connection.edgo.password</param-name>
+			<param-value>123467890</param-value>
 		</init-param>
 		<init-param>
 			<param-name>connection.edgo.codepage</param-name>
@@ -181,11 +195,13 @@
 		<!-- -->
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	<!-- 
 	<servlet>
 		<servlet-name>EventServlet</servlet-name>
 		<servlet-class>org.c3s.edgo.web.servlets.EventServlet</servlet-class>
 		<load-on-startup>2</load-on-startup>
 	</servlet>
+	 -->
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.css</url-pattern>

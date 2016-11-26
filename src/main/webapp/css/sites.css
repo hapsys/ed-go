@@ -10,3 +10,9 @@ body {
     font-size: 12px;
 	margin-bottom:5px;
 }
+
+
+.table > thead > tr > th {
+    vertical-align: middle;
+    padding-left: 20px;
+}

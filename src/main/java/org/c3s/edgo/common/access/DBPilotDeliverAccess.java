@@ -63,6 +63,33 @@ public class DBPilotDeliverAccess extends Access {
 	}
 	
 	
+	public List<DBPilotDeliverBean> getHistoryByPilotId(java.lang.Long paramPilotId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		List<DBPilotDeliverBean> ret = null;
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_id= ?  "+injector.getWhereQuery()+" ";
+		if (injector.getOrderQuery().length() != 0) {
+			sql += injector.getOrderQuery();
+		} else { 
+			sql += "ORDER BY start_week DESC";
+			
+		}
+		sql += injector.getLimitQuery();
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getHistoryByPilotId", sql ,  paramPilotId);
+		if (result != null) {
+			
+			ret = new ArrayList<DBPilotDeliverBean>();
+			for (Map<String, Object> res : result) {
+				DBPilotDeliverBean bean = dataMapper.mapFromRow(res, DBPilotDeliverBean.class);
+				 
+				ret.add(bean);
+			}
+				
+		}
+		return ret;
+	}
+	
 	public DBPilotDeliverBean getByPrimaryKey(java.lang.Long paramPilotDeliverId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		DBPilotDeliverBean ret = null;
@@ -119,6 +146,43 @@ public class DBPilotDeliverAccess extends Access {
 		setNames();
 		String sql = "DELETE FROM " + tablename + " WHERE  1=1 AND  pilot_deliver_id= ?  ";
 		return getConnection().query(sql, paramPilotDeliverId);
+	}
+	
+	public List<DBPilotDeliverBean> getListForPilots(org.c3s.edgo.common.intruders.InInjector paramIntruder) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		if (paramIntruder != null) {
+			injector = paramIntruder;
+		}
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getRecordQuery();
+			String join = injector.getRecordQuery();
+			String where = injector.getRecordQuery();
+			String order = injector.getRecordQuery();
+			String limit = injector.getRecordQuery();
+			query = " 				SELECT t.*, s.name as system_name 				FROM pilot_deliver t, systems s 				WHERE 1=1 				" + where + " 				AND t.system_id = s.system_id 				ORDER BY start_week DESC 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getListForPilots", query );
+		List<DBPilotDeliverBean> ret = null;
+		if (result != null) {
+					ret = new ArrayList<DBPilotDeliverBean>();
+				
+			for (Map<String, Object> res : result) {
+				DBPilotDeliverBean bean = dataMapper.mapFromRow(res, DBPilotDeliverBean.class);
+														
+				ret.add(bean);
+			}
+					
+		}
+			
+		return ret;
 	}
 	
 }

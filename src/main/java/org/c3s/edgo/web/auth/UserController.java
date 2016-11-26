@@ -28,6 +28,7 @@ import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBUserKeysBean;
 import org.c3s.edgo.common.beans.DBUsersBean;
 import org.c3s.edgo.web.GeneralController;
+import org.c3s.edgo.web.validator.MinLength;
 import org.c3s.edgo.web.validator.Required;
 import org.c3s.edgo.web.validator.Result;
 import org.c3s.edgo.web.validator.ValueChecker;
@@ -53,6 +54,52 @@ public class UserController extends GeneralController {
 	//@SuppressWarnings("unused")
 	private static Logger logger = LoggerFactory.getLogger(UserController.class); 
 	
+	
+	
+	@SuppressWarnings("unchecked")
+	public void registration(@ParameterRequest("email") String email, @ParameterRequest("password") String password, @ParameterRequest("password") String confirm, 
+			@Parameter("tag") String tag, @Parameter("from") String from, @Parameter("subject") String subject, @Parameter("body") String body, RedirectControlerInterface redirect) {
+		
+		StorageInterface storage = StorageFactory.getStorage(StorageType.SESSION);
+		Result result = null;
+		Map<?,?> errors = null;
+		
+		if (storage.containsKey(STORED_USER)) {
+			errors = ValueChecker.addError("__common", i10n("already logged"), null);
+		} else {
+		
+			ValueChecker chk = new ValueChecker();
+			
+			chk.validate("email", email, new Required(i10n("Field must have value")));
+			chk.validate("password", password, new Required(i10n("Field must have value")), new MinLength(8, i10n("Password must be minimum 8 chars length")));
+			chk.validate("confirm", confirm, new Required(i10n("Field must have value")));
+			errors = chk.getErrors();
+			if (!password.equals(confirm)) {
+				errors = ValueChecker.addError("password", i10n("Field must have value"), (Map<String, List<String>>) errors);
+			}
+			
+			if (errors == null) {
+				DBUsersBean user = new DBUsersBean();
+				try {
+					user.setNetwork("email");
+					user.setEmail(email);
+					user.setUid(Utils.MD5(password));
+					user.setTimeZone(0);
+					user.setIsVerify(0);
+					DbAccess.usersAccess.insert(user);
+					(result = new Result()).get().put("user_id", user.getUserUuid());
+				} catch (IllegalArgumentException | IllegalAccessException | SQLException e) {
+					errors = ValueChecker.addError("__common", i10n(e.getMessage()), null);
+				}
+			}
+		}
+		
+		Map<?, ?> data = (errors != null)?wrapError(errors):result.get();
+		ContentObject.getInstance().setData(tag, data);
+		redirect.setRedirect(new DropRedirect());
+		
+	}
+	
 	/**
 	 * @param email
 	 * @param password
@@ -66,7 +113,6 @@ public class UserController extends GeneralController {
 	public void login(@ParameterRequest("email") String email, @ParameterRequest("password") String password, @Parameter("tag") String tag, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 
 		StorageInterface storage = StorageFactory.getStorage(StorageType.SESSION);
-		//User user = null;
 		Result result = null;
 		Map<?,?> errors = null;
 		
@@ -77,24 +123,19 @@ public class UserController extends GeneralController {
 			ValueChecker chk = new ValueChecker();
 			
 			chk.validate("email", email, new Required(i10n("Field must have value")));
-	
 			chk.validate("password", password, new Required(i10n("Field must have value")));
 			
 			errors = chk.getErrors();
 			
 			if (!chk.hasErrors()) {
-				try {
-					logger.debug("User/password: {}/{}", email, password);
-					//final User user = manager.createNamedQuery("User.findByEmailAndPassword", User.class).setParameter("email", email).setParameter("password", Utils.MD5(password)).getSingleResult();
-					DBUsersBean user = DbAccess.usersAccess.getByEmailAndPassword(email, Utils.MD5(password)); 
+				DBUsersBean user = DbAccess.usersAccess.getByEmailAndPassword(email, Utils.MD5(password));
+				if (user != null) {
 					(result = new Result()).get().put("user_id", user.getUserUuid());
-					//logger.debug("Users roles is: {}", user.getRoles());
 					storage.put(STORED_USER, user);
 					user.setPrevLoginTime(user.getLastLoginTime());
 					user.setLastLoginTime(new Timestamp(System.currentTimeMillis()));
-					//manager.merge(user);
 					DbAccess.usersAccess.updateByPrimaryKey(user, user.getUserId());
-				} catch (NoResultException e) {
+				} else {
 					errors = ValueChecker.addError("__common", i10n("no login"), null);
 				}
 			}
@@ -103,7 +144,6 @@ public class UserController extends GeneralController {
 		Map<?, ?> data = (errors != null)?wrapError(errors):result.get();
 		ContentObject.getInstance().setData(tag, data);
 		redirect.setRedirect(new DropRedirect());
-		
 	}
 	
 	public void logout(@Parameter("tag") String tag, RedirectControlerInterface redirect) {

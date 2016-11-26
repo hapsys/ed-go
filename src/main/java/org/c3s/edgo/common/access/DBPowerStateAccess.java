@@ -113,7 +113,7 @@ public class DBPowerStateAccess extends Access {
 			String where = injector.getRecordQuery();
 			String order = injector.getRecordQuery();
 			String limit = injector.getRecordQuery();
-			query = " 				SELECT p.*, ps.*, pt.* 				FROM powers p, power_state ps, power_state_type pt 				WHERE ps.system_id = ? 				AND ps.power_state_type_id = pt.power_state_type_id 				AND (is_permanent = 0 AND ps.start_week = ? 				OR is_weekly = 0 AND ps.start_week <= ? 				OR is_permanent = 1) 				AND p.power_id = ps.power_id 				LIMIT 1 			";
+			query = " 				SELECT p.*, ps.*, pt.* 				FROM powers p, power_state ps, power_state_type pt 				WHERE ps.system_id = ? 				AND ps.power_state_type_id = pt.power_state_type_id 				AND (pt.is_permanent = 0 AND ps.start_week = ? 				OR pt.is_weekly = 0 AND ps.start_week <= ? 				OR pt.is_permanent = 1) 				AND p.power_id = ps.power_id 				LIMIT 1 			";
 		}
 
 		
@@ -142,7 +142,7 @@ public class DBPowerStateAccess extends Access {
 			String where = injector.getRecordQuery();
 			String order = injector.getRecordQuery();
 			String limit = injector.getRecordQuery();
-			query = " 				SELECT count(ps.power_state_id) as count 				FROM power_state ps, power_state_type pt 				WHERE ps.system_id = ? 				AND ps.power_state_type_id = pt.power_state_type_id 				AND (is_permanent = 0 AND ps.start_week = ? 				OR is_weekly = 0 AND ps.start_week <= ? 				OR is_permanent = 1) 				LIMIT 1 			";
+			query = " 				SELECT count(ps.power_state_id) as count 				FROM power_state ps, power_state_type pt 				WHERE ps.system_id = ? 				AND ps.power_state_type_id = pt.power_state_type_id 				AND (pt.is_permanent = 0 AND ps.start_week = ? 				OR pt.is_weekly = 0 AND ps.start_week <= ? 				OR pt.is_permanent = 1) 				LIMIT 1 			";
 		}
 
 		

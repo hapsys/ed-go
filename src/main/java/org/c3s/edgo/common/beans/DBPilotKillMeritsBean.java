@@ -106,6 +106,22 @@ public class DBPilotKillMeritsBean implements DbBean, Serializable {
 		return this;
 	}
 	
+	
+	@DataSource({"system_name", "systemName"})
+	@DataTarget("system_name")
+	@XMLSimple("systemName")
+
+	private String systemName;
+	
+	public String getSystemName() {
+		return systemName;
+	}
+	
+	public DBPilotKillMeritsBean setSystemName(String value) {
+		systemName = value;
+		return this;
+	}
+	
 	@Override
 	public void setAutoincrementField(Object value) {
 		

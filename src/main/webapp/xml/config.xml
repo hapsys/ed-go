@@ -40,6 +40,7 @@
 				<module pattern="ships/" class="org.c3s.edgo.web.controllers.Commander" action="getShips" is_last="true">
 					<module pattern="*/" class="org.c3s.edgo.web.controllers.Commander" action="getShip" is_last="true"/>
 				</module>
+				<module pattern="powers/" class="org.c3s.edgo.web.controllers.Commander" action="getPowers" is_last="true"/>
 			</module>
 			<!-- /модули пользователей находятся здесь -->
 			

@@ -85,11 +85,33 @@
 		</delete>
 	</table>
 	<!--  -->
+	<table name="power_cortage">
+		<column name="weeks" type="List&lt;? extends Object&gt;">
+	    	<annotation>@XMLFieldList</annotation>
+		</column>
+		<column name="merits_war" type="List&lt;? extends Object&gt;">
+	    	<annotation>@XMLFieldList</annotation>
+		</column>
+		<column name="merits_kill" type="List&lt;? extends Object&gt;">
+	    	<annotation>@XMLFieldList</annotation>
+		</column>
+		<column name="merits_deliver" type="List&lt;? extends Object&gt;">
+	    	<annotation>@XMLFieldList</annotation>
+		</column>
+		<column name="credits_spend" type="List&lt;? extends Object&gt;">
+	    	<annotation>@XMLFieldList</annotation>
+		</column>
+	</table>
+	<!--  -->
 	<table name="pilot_power">
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="pilot_power_id"/>
 		</select>
 		<select name="LastByPilotId" single_object="true">
+			<column name="pilot_id"/>
+			<sort>pilot_power_time ASC</sort>
+		</select>
+		<select name="HistoryByPilotId">
 			<column name="pilot_id"/>
 			<sort>pilot_power_time ASC</sort>
 		</select>
@@ -99,9 +121,25 @@
 		<delete name="ByPrimaryKey">
 			<column name="pilot_power_id"/>
 		</delete>
+		<query name="PilotsPowerWeeks" intruder="org.c3s.edgo.common.intruders.InInjector">
+			<sql>
+				SELECT a.start_week FROM (
+				(SELECT DISTINCT start_week FROM pilot_war_merits WHERE 1 = 1 <where/>)
+				UNION DISTINCT
+				(SELECT DISTINCT start_week FROM pilot_war_merits WHERE 1 = 1 <where/>)
+				UNION DISTINCT
+				(SELECT DISTINCT start_week FROM pilot_power_spend WHERE 1 = 1 <where/>)
+				UNION DISTINCT
+				(SELECT DISTINCT start_week FROM pilot_deliver WHERE 1 = 1 <where/>)
+				ORDER BY start_week DESC) as a
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 	<table name="pilot_power_spend">
+		<column name="system_name" type="String">
+	    	<annotation>@XMLSimple("systemName")</annotation>
+		</column>
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="pilot_power_spend_id"/>
 		</select>
@@ -109,15 +147,31 @@
 			<column name="pilot_id"/>
 			<column name="start_week"/>
 		</select>
+		<select name="HistoryByPilotId">
+			<column name="pilot_id"/>
+			<sort>start_week DESC</sort>
+		</select>
 		<update name="ByPrimaryKey">
 			<column name="pilot_power_spend_id"/>
 		</update>
 		<delete name="ByPrimaryKey">
 			<column name="pilot_power_spend_id"/>
 		</delete>
+		<query name="ListForPilots" use="PilotPowerSpend" intruder="org.c3s.edgo.common.intruders.InInjector">
+			<sql>
+				SELECT t.*
+				FROM pilot_power_spend t
+				WHERE 1=1
+				<where/>
+				ORDER BY start_week DESC
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 	<table name="pilot_deliver">
+		<column name="system_name" type="String">
+	    	<annotation>@XMLSimple("systemName")</annotation>
+		</column>
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="pilot_deliver_id"/>
 		</select>
@@ -126,15 +180,32 @@
 			<column name="system_id"/>
 			<column name="start_week"/>
 		</select>
+		<select name="HistoryByPilotId">
+			<column name="pilot_id"/>
+			<sort>start_week DESC</sort>
+		</select>
 		<update name="ByPrimaryKey">
 			<column name="pilot_deliver_id"/>
 		</update>
 		<delete name="ByPrimaryKey">
 			<column name="pilot_deliver_id"/>
 		</delete>
+		<query name="ListForPilots" use="PilotDeliver" intruder="org.c3s.edgo.common.intruders.InInjector">
+			<sql>
+				SELECT t.*, s.name as system_name
+				FROM pilot_deliver t, systems s
+				WHERE 1=1
+				<where/>
+				AND t.system_id = s.system_id
+				ORDER BY start_week DESC
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 	<table name="pilot_war_merits">
+		<column name="system_name" type="String">
+	    	<annotation>@XMLSimple("systemName")</annotation>
+		</column>
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="pilot_war_merits_id"/>
 		</select>
@@ -150,15 +221,34 @@
 			<column name="start_week"/>
 			<column name="is_confirmed" condition="=" value="0"/>
 		</select>
+		<select name="HistoryByPilotId">
+			<column name="pilot_id"/>
+			<column name="is_confirmed" condition="=" value="1"/>
+			<sort>start_week DESC</sort>
+		</select>
 		<update name="ByPrimaryKey">
 			<column name="pilot_war_merits_id"/>
 		</update>
 		<delete name="ByPrimaryKey">
 			<column name="pilot_war_merits_id"/>
 		</delete>
+		<query name="ListForPilots" use="PilotWarMerits" intruder="org.c3s.edgo.common.intruders.InInjector">
+			<sql>
+				SELECT t.*, s.name as system_name
+				FROM pilot_war_merits t, systems s
+				WHERE 1=1
+				<where/>
+				AND t.is_confirmed = 1
+				AND t.system_id = s.system_id
+				ORDER BY start_week DESC
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 	<table name="pilot_kill_merits">
+		<column name="system_name" type="String">
+	    	<annotation>@XMLSimple("systemName")</annotation>
+		</column>
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="pilot_kill_merits_id"/>
 		</select>
@@ -174,12 +264,28 @@
 			<column name="start_week"/>
 			<column name="is_confirmed" condition="=" value="0"/>
 		</select>
+		<select name="HistoryByPilotId">
+			<column name="pilot_id"/>
+			<column name="is_confirmed" condition="=" value="1"/>
+			<sort>start_week DESC</sort>
+		</select>
 		<update name="ByPrimaryKey">
 			<column name="pilot_kill_merits_id"/>
 		</update>
 		<delete name="ByPrimaryKey">
 			<column name="pilot_kill_merits_id"/>
 		</delete>
+		<query name="ListForPilots" use="PilotKillMerits" intruder="org.c3s.edgo.common.intruders.InInjector">
+			<sql>
+				SELECT t.*, s.name as system_name
+				FROM pilot_kill_merits t, systems s
+				WHERE 1=1
+				<where/>
+				AND t.is_confirmed = 1
+				AND t.system_id = s.system_id
+				ORDER BY start_week DESC
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 </include>

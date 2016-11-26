@@ -15,6 +15,7 @@
 			<xsl:when test="$mode = 'info'"><xsl:call-template name="view_info"/></xsl:when>
 			<xsl:when test="$mode = 'ships'"><xsl:call-template name="view_ships"/></xsl:when>
 			<xsl:when test="$mode = 'view_ship'"><xsl:call-template name="view_ship"/></xsl:when>
+			<xsl:when test="$mode = 'view_power'"><xsl:call-template name="view_power"/></xsl:when>
 		</xsl:choose>
 	</xsl:template>
 <!--
@@ -238,6 +239,63 @@
 			</xsl:otherwise>
 		</xsl:choose>		
 		<xsl:text> - </xsl:text><xsl:value-of select="field[@name='moduleRating']/@value"/><xsl:value-of select="field[@name='moduleClass']/@value"/>
+	</xsl:template>
+<!--
+//
+//
+//
+-->
+	<xsl:template name="view_power">
+		<xsl:variable name="lang"><xsl:value-of select="$root"/><xsl:if test="$politic = 'suffix' and $default != 'true'">/<xsl:value-of select="$suffix"/></xsl:if></xsl:variable>
+		<div><h3><xsl:value-of select="field[@name='pilotName']/@value"/></h3></div>
+
+		<div>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th rowspan="2">Week Start Time</th>
+						<th colspan="3">Merits</th>
+						<th rowspan="2">Credits Spend</th>
+					</tr>
+					<tr>
+						<th>Delivery</th>
+						<th>Killing</th>
+						<th>Expansion</th>
+					</tr>
+				</thead>
+				<tbody>
+					<xsl:for-each select="item[@name='powers']/weeks/item">
+						<xsl:variable name="week"><xsl:value-of select="field[@name='startWeek']/@value"/></xsl:variable>
+						<tr>
+							<td><xsl:value-of select="$week"/></td>	
+							<td>
+								<xsl:for-each select="/*/item[@name='powers']/meritsDeliver/item[field[@name='startWeek']/@value = $week]">
+									<xsl:value-of select="field[@name='quantity']/@value"/> / <xsl:value-of select="field[@name='systemName']/@value"/><br/>
+								</xsl:for-each>
+							</td>	
+							<td>
+								<xsl:for-each select="/*/item[@name='powers']/meritsKill/item[field[@name='startWeek']/@value = $week]">
+									<xsl:value-of select="number(field[@name='quantity']/@value) * 30"/> / <xsl:value-of select="field[@name='systemName']/@value"/><br/>
+								</xsl:for-each>
+							</td>	
+							<td>
+								<xsl:for-each select="/*/item[@name='powers']/meritsWar/item[field[@name='startWeek']/@value = $week]">
+									<xsl:value-of select="number(field[@name='quantity']/@value) * 10"/> / <xsl:value-of select="field[@name='systemName']/@value"/><br/>
+								</xsl:for-each>
+							</td>	
+							<td>
+								<xsl:for-each select="/*/item[@name='powers']/creditsSpend/item[field[@name='startWeek']/@value = $week]">
+									<xsl:value-of select="field[@name='quantity']/@value"/> Cr.<br/>
+								</xsl:for-each>
+							</td>	
+						</tr>
+					</xsl:for-each>
+				</tbody>
+				
+			</table>
+
+		
+		</div>
 	</xsl:template>
 <!--
 //

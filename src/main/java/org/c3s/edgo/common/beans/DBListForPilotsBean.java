@@ -11,7 +11,7 @@ import org.c3s.data.annotations.DataTarget;
 import org.c3s.reflection.annotation.*;
 
 
-public class DBPilotPowerSpendBean implements DbBean, Serializable {
+public class DBListForPilotsBean implements DbBean, Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,7 +26,7 @@ public class DBPilotPowerSpendBean implements DbBean, Serializable {
 		return pilotPowerSpendId;
 	}
 	
-	public DBPilotPowerSpendBean setPilotPowerSpendId(java.lang.Long value) {
+	public DBListForPilotsBean setPilotPowerSpendId(java.lang.Long value) {
 		pilotPowerSpendId = value;
 		return this;
 	}
@@ -41,7 +41,7 @@ public class DBPilotPowerSpendBean implements DbBean, Serializable {
 		return quantity;
 	}
 	
-	public DBPilotPowerSpendBean setQuantity(java.lang.Long value) {
+	public DBListForPilotsBean setQuantity(java.lang.Long value) {
 		quantity = value;
 		return this;
 	}
@@ -56,7 +56,7 @@ public class DBPilotPowerSpendBean implements DbBean, Serializable {
 		return startWeek;
 	}
 	
-	public DBPilotPowerSpendBean setStartWeek(java.sql.Timestamp value) {
+	public DBListForPilotsBean setStartWeek(java.sql.Timestamp value) {
 		startWeek = value;
 		return this;
 	}
@@ -71,24 +71,8 @@ public class DBPilotPowerSpendBean implements DbBean, Serializable {
 		return pilotId;
 	}
 	
-	public DBPilotPowerSpendBean setPilotId(java.lang.Long value) {
+	public DBListForPilotsBean setPilotId(java.lang.Long value) {
 		pilotId = value;
-		return this;
-	}
-	
-	
-	@DataSource({"system_name", "systemName"})
-	@DataTarget("system_name")
-	@XMLSimple("systemName")
-
-	private String systemName;
-	
-	public String getSystemName() {
-		return systemName;
-	}
-	
-	public DBPilotPowerSpendBean setSystemName(String value) {
-		systemName = value;
 		return this;
 	}
 	

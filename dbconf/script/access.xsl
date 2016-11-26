@@ -108,16 +108,16 @@ public class <xsl:value-of select="$class_name"/> extends Access {
 		</xsl:choose>
 	</xsl:variable>
 	<xsl:variable name="int_type">DB<xsl:value-of select="../bean[1]/@name"/>Bean</xsl:variable>
-	<xsl:if test="string-length(@injector) != 0">
+	<xsl:if test="string-length(@intruder) != 0">
 	public <xsl:value-of select="$ret_type"/> get<xsl:value-of select="@name"/>(<xsl:call-template name="get_params"/>) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		return get<xsl:value-of select="@name"/>(<xsl:call-template name="get_params_without_type"/><xsl:if test="count(column) != 0">, </xsl:if>null);
 	}
 	</xsl:if>
-	public <xsl:value-of select="$ret_type"/> get<xsl:value-of select="@name"/>(<xsl:call-template name="get_params"/><xsl:if test="string-length(@injector) != 0"><xsl:if test="count(column) != 0">, </xsl:if><xsl:value-of select="@injector"/> paramIntruder</xsl:if>)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+	public <xsl:value-of select="$ret_type"/> get<xsl:value-of select="@name"/>(<xsl:call-template name="get_params"/><xsl:if test="string-length(@intruder) != 0"><xsl:if test="count(column) != 0">, </xsl:if><xsl:value-of select="@intruder"/> paramIntruder</xsl:if>)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		<xsl:value-of select="$ret_type"/> ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
-		<xsl:if test="string-length(@injector) != 0">
+		<xsl:if test="string-length(@intruder) != 0">
 		if (paramIntruder != null) {
 			injector = paramIntruder;
 		}
@@ -252,10 +252,10 @@ public class <xsl:value-of select="$class_name"/> extends Access {
 			<xsl:when test="string-length(@use) = 0"><xsl:value-of select="@name"/></xsl:when>
 		</xsl:choose>
 	</xsl:variable>
-	public <xsl:value-of select="$ret_type"/><xsl:text> </xsl:text><xsl:value-of select="@prefix"/><xsl:value-of select="@name"/>(<xsl:call-template name="get_query_params"/><xsl:if test="string-length(@injector) != 0"><xsl:if test="count(parameter) != 0">, </xsl:if><xsl:value-of select="@injector"/> paramIntruder</xsl:if>) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+	public <xsl:value-of select="$ret_type"/><xsl:text> </xsl:text><xsl:value-of select="@prefix"/><xsl:value-of select="@name"/>(<xsl:call-template name="get_query_params"/><xsl:if test="string-length(@intruder) != 0"><xsl:if test="count(parameter) != 0">, </xsl:if><xsl:value-of select="@intruder"/> paramIntruder</xsl:if>) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();
-		<xsl:if test="string-length(@injector) != 0">
+		<xsl:if test="string-length(@intruder) != 0">
 		if (paramIntruder != null) {
 			injector = paramIntruder;
 		}
@@ -315,8 +315,8 @@ public class <xsl:value-of select="$class_name"/> extends Access {
 		<xsl:for-each select="*|text()">
 			<xsl:choose>
 				<xsl:when test="name()='record'">" + record + "</xsl:when>
-				<xsl:when test="name()='join'"> + join + "</xsl:when>
-				<xsl:when test="name()='where'"> + where + "</xsl:when>
+				<xsl:when test="name()='join'">" + join + "</xsl:when>
+				<xsl:when test="name()='where'">" + where + "</xsl:when>
 				<xsl:when test="name()='limit'">" + limit + "</xsl:when>
 				<xsl:when test="name()='order'">" + order + "</xsl:when>
 				<xsl:when test="name()='from'">" + from + "</xsl:when>

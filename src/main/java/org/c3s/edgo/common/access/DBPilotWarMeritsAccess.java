@@ -105,6 +105,33 @@ public class DBPilotWarMeritsAccess extends Access {
 		return ret;
 	}
 	
+	public List<DBPilotWarMeritsBean> getHistoryByPilotId(java.lang.Long paramPilotId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		List<DBPilotWarMeritsBean> ret = null;
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_id= ? AND  is_confirmed=1 "+injector.getWhereQuery()+" ";
+		if (injector.getOrderQuery().length() != 0) {
+			sql += injector.getOrderQuery();
+		} else { 
+			sql += "ORDER BY start_week DESC";
+			
+		}
+		sql += injector.getLimitQuery();
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getHistoryByPilotId", sql ,  paramPilotId);
+		if (result != null) {
+			
+			ret = new ArrayList<DBPilotWarMeritsBean>();
+			for (Map<String, Object> res : result) {
+				DBPilotWarMeritsBean bean = dataMapper.mapFromRow(res, DBPilotWarMeritsBean.class);
+				 
+				ret.add(bean);
+			}
+				
+		}
+		return ret;
+	}
+	
 	public DBPilotWarMeritsBean getByPrimaryKey(java.lang.Long paramPilotWarMeritsId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		DBPilotWarMeritsBean ret = null;
@@ -140,6 +167,43 @@ public class DBPilotWarMeritsAccess extends Access {
 		setNames();
 		String sql = "DELETE FROM " + tablename + " WHERE  1=1 AND  pilot_war_merits_id= ?  ";
 		return getConnection().query(sql, paramPilotWarMeritsId);
+	}
+	
+	public List<DBPilotWarMeritsBean> getListForPilots(org.c3s.edgo.common.intruders.InInjector paramIntruder) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		if (paramIntruder != null) {
+			injector = paramIntruder;
+		}
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getRecordQuery();
+			String join = injector.getRecordQuery();
+			String where = injector.getRecordQuery();
+			String order = injector.getRecordQuery();
+			String limit = injector.getRecordQuery();
+			query = " 				SELECT t.*, s.name as system_name 				FROM pilot_war_merits t, systems s 				WHERE 1=1 				" + where + " 				AND t.is_confirmed = 1 				AND t.system_id = s.system_id 				ORDER BY start_week DESC 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getListForPilots", query );
+		List<DBPilotWarMeritsBean> ret = null;
+		if (result != null) {
+					ret = new ArrayList<DBPilotWarMeritsBean>();
+				
+			for (Map<String, Object> res : result) {
+				DBPilotWarMeritsBean bean = dataMapper.mapFromRow(res, DBPilotWarMeritsBean.class);
+														
+				ret.add(bean);
+			}
+					
+		}
+			
+		return ret;
 	}
 	
 }

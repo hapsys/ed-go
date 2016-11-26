@@ -172,6 +172,22 @@ public class DBPilotsBean implements DbBean, Serializable {
 		return this;
 	}
 	
+	
+	@DataSource({"powers", "powers"})
+	@DataTarget("powers")
+	@XMLReflectionField
+
+	private DBPowerCortageBean powers;
+	
+	public DBPowerCortageBean getPowers() {
+		return powers;
+	}
+	
+	public DBPilotsBean setPowers(DBPowerCortageBean value) {
+		powers = value;
+		return this;
+	}
+	
 	@Override
 	public void setAutoincrementField(Object value) {
 		

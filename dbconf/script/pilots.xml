@@ -20,6 +20,9 @@
 		<column name="Progress" type="DBProgressBean">
 	    	<annotation>@XMLReflectionField</annotation>
 		</column>
+		<column name="powers" type="DBPowerCortageBean">
+	    	<annotation>@XMLReflectionField</annotation>
+		</column>
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="pilot_id"/>
 		</select>

@@ -21,6 +21,7 @@
 			<title lang="ru">Регистрация</title>
 			<title lang="en">Registration</title>
 			<menu name="main_menu"/>
+			<include value="include/registration.jsp" tag="content_include"/>
 		</node>
 		<node pattern="profile">
 			<role>ROLE_LOGGED</role>

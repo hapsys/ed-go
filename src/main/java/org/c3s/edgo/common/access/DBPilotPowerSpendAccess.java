@@ -84,6 +84,33 @@ public class DBPilotPowerSpendAccess extends Access {
 		return ret;
 	}
 	
+	public List<DBPilotPowerSpendBean> getHistoryByPilotId(java.lang.Long paramPilotId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		List<DBPilotPowerSpendBean> ret = null;
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_id= ?  "+injector.getWhereQuery()+" ";
+		if (injector.getOrderQuery().length() != 0) {
+			sql += injector.getOrderQuery();
+		} else { 
+			sql += "ORDER BY start_week DESC";
+			
+		}
+		sql += injector.getLimitQuery();
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getHistoryByPilotId", sql ,  paramPilotId);
+		if (result != null) {
+			
+			ret = new ArrayList<DBPilotPowerSpendBean>();
+			for (Map<String, Object> res : result) {
+				DBPilotPowerSpendBean bean = dataMapper.mapFromRow(res, DBPilotPowerSpendBean.class);
+				 
+				ret.add(bean);
+			}
+				
+		}
+		return ret;
+	}
+	
 	public DBPilotPowerSpendBean getByPrimaryKey(java.lang.Long paramPilotPowerSpendId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		DBPilotPowerSpendBean ret = null;
@@ -119,6 +146,43 @@ public class DBPilotPowerSpendAccess extends Access {
 		setNames();
 		String sql = "DELETE FROM " + tablename + " WHERE  1=1 AND  pilot_power_spend_id= ?  ";
 		return getConnection().query(sql, paramPilotPowerSpendId);
+	}
+	
+	public List<DBPilotPowerSpendBean> getListForPilots(org.c3s.edgo.common.intruders.InInjector paramIntruder) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		if (paramIntruder != null) {
+			injector = paramIntruder;
+		}
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getRecordQuery();
+			String join = injector.getRecordQuery();
+			String where = injector.getRecordQuery();
+			String order = injector.getRecordQuery();
+			String limit = injector.getRecordQuery();
+			query = " 				SELECT t.* 				FROM pilot_power_spend t 				WHERE 1=1 				" + where + " 				ORDER BY start_week DESC 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getListForPilots", query );
+		List<DBPilotPowerSpendBean> ret = null;
+		if (result != null) {
+					ret = new ArrayList<DBPilotPowerSpendBean>();
+				
+			for (Map<String, Object> res : result) {
+				DBPilotPowerSpendBean bean = dataMapper.mapFromRow(res, DBPilotPowerSpendBean.class);
+														
+				ret.add(bean);
+			}
+					
+		}
+			
+		return ret;
 	}
 	
 }
