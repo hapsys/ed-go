@@ -83,6 +83,7 @@
 	</dependencies>
 	<build>
 		<finalName>${project.artifactId}</finalName>
+		<directory>${project.basedir}/target_scripts</directory>
 		<pluginManagement>
 			<plugins>
 			</plugins>

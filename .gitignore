@@ -1,4 +1,6 @@
 /target/
+/target_scripts/
+/scripts/
 /.settings/
 /.classpath
 /.project
