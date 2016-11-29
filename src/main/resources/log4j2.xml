@@ -29,7 +29,7 @@
 		<Logger name="org.c3s.edgo" level="debug">
 			<AppenderRef ref="Debug" />
 		</Logger>
-		<Logger name="org.c3s.edgo.scripts.events" level="debug">
+		<Logger name="org.c3s.edgo" level="info">
 			<AppenderRef ref="RollingFile" />
 		</Logger>
 		<Logger name="org.c3s.web" level="off">
