@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="INFO" packages="org.c3s.web.debug.log4j2">
+	<Properties>
+		<Property name="baseDir">/var/logs/edgo-scrips</Property>
+	</Properties>
 	<Appenders>
 		<DebugAppender name="Debug">
 			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] [%C:%M(%L)] %-5level - %msg%n" />
@@ -10,10 +13,24 @@
 		<File name="File" fileName="/tmp/c3s.log">
 			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%C:%M(%L)] %-5level - %msg%n" />
 		</File>
+		<RollingFile name="RollingFile" fileName="${baseDir}/events.log"
+			filePattern="${baseDir}/events-%d{yyyy-MM-dd}.log.gz">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%C:%M(%L)] %-5level - %msg%n" />
+			<CronTriggeringPolicy schedule="0 0 0 * * ?" />
+			<DefaultRolloverStrategy>
+				<Delete basePath="${baseDir}" maxDepth="2">
+					<IfFileName glob="*/events-*.log.gz" />
+					<IfLastModified age="60d" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>		
 	</Appenders>
 	<Loggers>
 		<Logger name="org.c3s.edgo" level="debug">
 			<AppenderRef ref="Debug" />
+		</Logger>
+		<Logger name="org.c3s.edgo.scripts.events" level="debug">
+			<AppenderRef ref="RollingFile" />
 		</Logger>
 		<Logger name="org.c3s.web" level="off">
 			<AppenderRef ref="Debug" />
