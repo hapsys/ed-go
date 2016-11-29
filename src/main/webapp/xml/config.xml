@@ -27,13 +27,35 @@
 			<!-- модули пользователей находятся здесь -->
 			<module class="org.c3s.edgo.web.menu.CommanderMenu" action="getPilotList" instance="main_menu"/>
 			
+			
+			<!-- +Accounting  -->
 			<module pattern="account/">
-				<module pattern="profile/" class="org.c3s.edgo.web.auth.UserController" action="getProfile" is_last="true">
-					<param name="tag" value="view_ctx"/>
-					<param name="template" value="{directory.stylesheet}/account/user.xsl"/>
+				<param name="order" value="deny,allow" inherit="true"/>
+				<param name="tag" value="view_ctx" inherit="true"/>
+				<param name="template" value="{directory.stylesheet}/account/user.xsl" inherit="true"/>
+				<module pattern="profile/" class="org.c3s.edgo.web.auth.Auth" action="checkRoles">
+					<param name="allow" value="ROLE_REGISTERED"/>
+					<module class="org.c3s.edgo.web.auth.UserController" action="getProfile" is_last="true"/>
+				</module>
+				<module pattern="confirmation/" class="org.c3s.edgo.web.auth.Auth" action="checkRoles" is_last="true">
+					<param name="allow" value="ROLE_REGISTERED"/>
+					<module class="org.c3s.edgo.web.auth.UserController" action="confirmation" is_last="true"/>
+					<module pattern="*/" class="org.c3s.edgo.web.auth.UserController" action="confirmEmail" is_last="true"/>
+				</module>
+				<module pattern="resend-email/" class="org.c3s.edgo.web.auth.Auth" action="checkRoles">
+					<param name="allow" value="ROLE_REGISTERED"/>
+					<module class="org.c3s.edgo.web.auth.UserController" action="resendemail" is_last="true"/>
+				</module>
+				<module pattern="login/" class="org.c3s.edgo.web.auth.Auth" action="checkRoles" is_last="true">
+					<param name="allow" value="ROLE_NOT_LOGGED"/>
+				</module>
+				<module pattern="registration/" class="org.c3s.edgo.web.auth.Auth" action="checkRoles" is_last="true">
+					<param name="allow" value="ROLE_NOT_LOGGED"/>
 				</module>
 			</module>
-				<module pattern="*/" class="org.c3s.edgo.web.controllers.Commander" action="checkCommander">
+			<!-- -Accounting  -->
+			<!-- +Commander  -->
+			<module pattern="*/" class="org.c3s.edgo.web.controllers.Commander" action="checkCommander">
 				<param name="tag" value="view_ctx" inherit="true"/>
 				<param name="template" value="{directory.stylesheet}/commander/commander.xsl" inherit="true"/>
 				<module pattern="info/" class="org.c3s.edgo.web.controllers.Commander" action="getInformation" is_last="true"/>
@@ -41,7 +63,9 @@
 					<module pattern="*/" class="org.c3s.edgo.web.controllers.Commander" action="getShip" is_last="true"/>
 				</module>
 				<module pattern="powers/" class="org.c3s.edgo.web.controllers.Commander" action="getPowers" is_last="true"/>
+				<module pattern="missions/" class="org.c3s.edgo.web.controllers.Commander" action="getMissions" is_last="true"/>
 			</module>
+			<!-- -Commander  -->
 			<!-- /модули пользователей находятся здесь -->
 			
 			<module pattern="*" class="org.c3s.web.nodes.path.PathController" action="getPath" is_last="true">
@@ -65,10 +89,19 @@
 				<param name="template" value="{directory.templates}/json.jsp"/>
 				<module pattern="ajax/">
 					<module pattern="profile/">
+						<param name="template" value="{directory.stylesheet}/mail.xsl" inherit="true"/>
+						<param name="from" value="abuse@atoin.com" inherit="true"/>
+						<param name="subject" value="Register to site" inherit="true"/>
 						<module class="org.c3s.edgo.web.auth.Auth" action="checkRoles">
 							<param name="order" value="deny,allow"/>
 							<param name="allow" value="ROLE_NOT_LOGGED"/>
 							<module pattern="login/" class="org.c3s.edgo.web.auth.UserController" action="login" is_last="true"/>
+							<module pattern="registration/" class="org.c3s.edgo.web.auth.UserController" action="registration" is_last="true"/>
+						</module>
+						<module class="org.c3s.edgo.web.auth.Auth" action="checkRoles">
+							<param name="order" value="deny,allow"/>
+							<param name="allow" value="ROLE_REGISTERED"/>
+							<module pattern="resend-email/" class="org.c3s.edgo.web.auth.UserController" action="resendemailCommit" is_last="true"/>
 						</module>
 						<module pattern="logout/" class="org.c3s.edgo.web.auth.UserController" action="logout" is_last="true"/>
 						<module class="org.c3s.edgo.web.auth.Auth" action="checkRoles">

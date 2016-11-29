@@ -108,11 +108,11 @@ public class DBPowerStateAccess extends Access {
 		String query = injector.getFullQuery();
 		if (query == null) {
 			String record = injector.getRecordQuery();
-			String from = injector.getRecordQuery();
-			String join = injector.getRecordQuery();
-			String where = injector.getRecordQuery();
-			String order = injector.getRecordQuery();
-			String limit = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
 			query = " 				SELECT p.*, ps.*, pt.* 				FROM powers p, power_state ps, power_state_type pt 				WHERE ps.system_id = ? 				AND ps.power_state_type_id = pt.power_state_type_id 				AND (pt.is_permanent = 0 AND ps.start_week = ? 				OR pt.is_weekly = 0 AND ps.start_week <= ? 				OR pt.is_permanent = 1) 				AND p.power_id = ps.power_id 				LIMIT 1 			";
 		}
 
@@ -137,11 +137,11 @@ public class DBPowerStateAccess extends Access {
 		String query = injector.getFullQuery();
 		if (query == null) {
 			String record = injector.getRecordQuery();
-			String from = injector.getRecordQuery();
-			String join = injector.getRecordQuery();
-			String where = injector.getRecordQuery();
-			String order = injector.getRecordQuery();
-			String limit = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
 			query = " 				SELECT count(ps.power_state_id) as count 				FROM power_state ps, power_state_type pt 				WHERE ps.system_id = ? 				AND ps.power_state_type_id = pt.power_state_type_id 				AND (pt.is_permanent = 0 AND ps.start_week = ? 				OR pt.is_weekly = 0 AND ps.start_week <= ? 				OR pt.is_permanent = 1) 				LIMIT 1 			";
 		}
 

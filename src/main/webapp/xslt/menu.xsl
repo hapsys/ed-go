@@ -54,7 +54,7 @@
 					<xsl:variable name="role"><xsl:call-template name="checkRoles"/></xsl:variable>
 					<xsl:if test="count(role) = 0 or $role = 'true'">
 						<xsl:choose>
-							<xsl:when test="@pilot='true' and count(/menu/pilots) != 0">
+							<xsl:when test="@pilot='true'">
 								<xsl:for-each select="/menu/pilots/pilot">
 										<xsl:choose>
 											<xsl:when test="$level = 0">
@@ -92,7 +92,7 @@
 									</xsl:choose>
 									<xsl:call-template name="drawLevel">
 										<xsl:with-param name="level" select="$level + 1"/>
-										<xsl:with-param name="items" select="node"/>
+										<xsl:with-param name="items" select="node[count(menu[@name='main_menu']) != 0]"/>
 										<xsl:with-param name="pattern" select="concat($pattern,'/', @pattern)"/>
 									</xsl:call-template>
 								</xsl:otherwise>

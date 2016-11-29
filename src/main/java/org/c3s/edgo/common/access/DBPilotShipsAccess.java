@@ -176,11 +176,11 @@ public class DBPilotShipsAccess extends Access {
 		String query = injector.getFullQuery();
 		if (query == null) {
 			String record = injector.getRecordQuery();
-			String from = injector.getRecordQuery();
-			String join = injector.getRecordQuery();
-			String where = injector.getRecordQuery();
-			String order = injector.getRecordQuery();
-			String limit = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
 			query = " 				SELECT ps.*, sh.*, s.name as system_name, st.name as station_name 				FROM ships sh, pilot_ships ps 				LEFT JOIN systems s ON ps.system_id = s.system_id 				LEFT JOIN stations st ON ps.station_id = st.station_id 				WHERE ps.pilot_id = ? 				AND ps.ship_id = sh.ship_id 				ORDER BY sh.ship_name 			";
 		}
 

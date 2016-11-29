@@ -114,11 +114,11 @@ public class DBLocationHistoryAccess extends Access {
 		String query = injector.getFullQuery();
 		if (query == null) {
 			String record = injector.getRecordQuery();
-			String from = injector.getRecordQuery();
-			String join = injector.getRecordQuery();
-			String where = injector.getRecordQuery();
-			String order = injector.getRecordQuery();
-			String limit = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
 			query = " 				SELECT l.*, sy.name as system_name, st.name as station_name 				FROM location_history l 				LEFT JOIN systems sy ON l.system_id = sy.system_id 				LEFT JOIN stations st ON l.station_id = st.station_id 				WHERE l.pilot_id = ? 				ORDER BY location_time DESC 				LIMIT 1  			";
 		}
 

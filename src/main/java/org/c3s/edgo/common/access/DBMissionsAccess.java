@@ -121,6 +121,43 @@ public class DBMissionsAccess extends Access {
 		return getConnection().query(sql, paramMissionId);
 	}
 	
+	public List<DBMissionsComplitedListByPilotsBean> getMissionsComplitedListByPilots(org.c3s.edgo.common.intruders.InInjector paramIntruder) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		if (paramIntruder != null) {
+			injector = paramIntruder;
+		}
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT m.*, t.*, f.faction_id, f.name as faction_name, s.name as system_name, st.name as station_name, 					GROUP_CONCAT(DISTINCT rc.commodity_id SEPARATOR ',') as commodity_idx, GROUP_CONCAT(DISTINCT rm.material_id SEPARATOR ',') as material_idx 				FROM mission_types t, factions f, (missions m, location_history l) 				LEFT JOIN reward_commodities rc ON rc.mission_id = m.mission_id  				LEFT JOIN reward_materials rm ON rm.mission_id = m.mission_id 				LEFT JOIN systems s ON s.system_id = l.system_id 				LEFT JOIN stations st ON st.station_id = l.station_id 				WHERE 1=1  				" + where + " 				AND NOT ISNULL(m.complete_date) 				AND t.mission_type_id = m.mission_type_id 				AND f.faction_id = m.faction_id 				AND l.location_id = m.source_location_id 				GROUP BY m.mission_id  				ORDER BY m.complete_date DESC 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getMissionsComplitedListByPilots", query );
+		List<DBMissionsComplitedListByPilotsBean> ret = null;
+		if (result != null) {
+					ret = new ArrayList<DBMissionsComplitedListByPilotsBean>();
+				
+			for (Map<String, Object> res : result) {
+				DBMissionsComplitedListByPilotsBean bean = dataMapper.mapFromRow(res, DBMissionsComplitedListByPilotsBean.class);
+														
+				ret.add(bean);
+			}
+					
+		}
+			
+		return ret;
+	}
+	
 	public DBMissionsBean getgetLastComplitedByPilotId(long parampilot_id) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();
@@ -129,11 +166,11 @@ public class DBMissionsAccess extends Access {
 		String query = injector.getFullQuery();
 		if (query == null) {
 			String record = injector.getRecordQuery();
-			String from = injector.getRecordQuery();
-			String join = injector.getRecordQuery();
-			String where = injector.getRecordQuery();
-			String order = injector.getRecordQuery();
-			String limit = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
 			query = " 				SELECT m.*  				FROM missions m  				WHERE m.pilot_id = ? 				AND NOT ISNULL(m.complete_date) 				ORDER BY m.complete_date DESC 				LIMIT 1  			";
 		}
 

@@ -7,13 +7,13 @@ import java.util.List;
 import org.c3s.annotations.Controller;
 import org.c3s.annotations.Parameter;
 import org.c3s.content.ContentObject;
-import org.c3s.db.injectors.SqlInjectorInterface;
 import org.c3s.dispatcher.PatternerInterface;
 import org.c3s.dispatcher.RedirectControlerInterface;
 import org.c3s.dispatcher.UrlPart;
 import org.c3s.dispatcher.exceptions.SkipSubLevelsExeption;
 import org.c3s.dispatcher.exceptions.StopDispatchException;
 import org.c3s.edgo.common.access.DbAccess;
+import org.c3s.edgo.common.beans.DBMissionsComplitedListByPilotsBean;
 import org.c3s.edgo.common.beans.DBPilotShipsBean;
 import org.c3s.edgo.common.beans.DBPilotShipsListBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
@@ -52,9 +52,7 @@ public class Commander extends GeneralController {
 			//logger.debug(XMLUtils.xml2out(xml));
 			//logger.debug("template {}", template);
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:info"});
-		}
-	
-		if (current == null) {
+		} else {
 			redirect.setRedirect(new DirectRedirect("/"));
 			throw new SkipSubLevelsExeption();
 		}
@@ -72,9 +70,7 @@ public class Commander extends GeneralController {
 			Document xml = new XMLReflectionObj(current).toXML();
 			//logger.debug(XMLUtils.xml2out(xml));
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:ships"});
-		}
-	
-		if (current == null) {
+		} else {
 			redirect.setRedirect(new DirectRedirect("/"));
 			throw new SkipSubLevelsExeption();
 		}
@@ -100,16 +96,14 @@ public class Commander extends GeneralController {
 				redirect.setRedirect(new RelativeRedirect("../", patterner));
 				throw new StopDispatchException();
 			}
-		}
-	
-		if (current == null) {
+		} else {
 			redirect.setRedirect(new DirectRedirect("/"));
 			throw new SkipSubLevelsExeption();
 		}
 		
 	}
 
-	public void getPowers(@Parameter("tag") String tag, @Parameter("template") String template, UrlPart url, RedirectControlerInterface redirect, PatternerInterface patterner) throws Exception {
+	public void getPowers(@Parameter("tag") String tag, @Parameter("template") String template, UrlPart url, RedirectControlerInterface redirect) throws Exception {
 		
 		if (current != null) {
 			
@@ -132,17 +126,66 @@ public class Commander extends GeneralController {
 			logger.debug(XMLUtils.xml2out(xml));
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:view_power"});
 			redirect.setRedirect(new DropRedirect());
-		}
-	
-		if (current == null) {
+		} else {
 			redirect.setRedirect(new DirectRedirect("/"));
 			throw new SkipSubLevelsExeption();
 		}
 		
 	}
 	
+	public void getMissions(@Parameter("tag") String tag, @Parameter("template") String template, UrlPart url, RedirectControlerInterface redirect, PatternerInterface patterner) throws Exception {
+		
+		if (current != null) {
+
+			List<Object> in = new ArrayList<>();
+			in.add(current.getPilotId());
+			InInjector injector = new InInjector("m.pilot_id", in);
+			
+			List<Object> mat_in = new ArrayList<>();
+			List<Object> com_in = new ArrayList<>();
+			List<DBMissionsComplitedListByPilotsBean> missions = DbAccess.missionsAccess.getMissionsComplitedListByPilots(injector);
+			for (DBMissionsComplitedListByPilotsBean mission: missions) {
+				if (mission.getCommodityIdx() != null) {
+					String[] cidxs = mission.getCommodityIdx().split(",");
+					mission.setCommodityId(new Integer[cidxs.length]);
+					int i = 0;
+					for (String cid: cidxs) {
+						Integer val = new Integer(cid);
+						mission.getCommodityId()[i] = val;
+						com_in.add(val);
+						i++;
+					}
+				}
+				if (mission.getMaterialIdx() != null) {
+					String[] cidxs = mission.getMaterialIdx().split(",");
+					mission.setMaterialId(new Integer[cidxs.length]);
+					int i = 0;
+					for (String cid: cidxs) {
+						Integer val = new Integer(cid);
+						mission.getMaterialId()[i] = val;
+						mat_in.add(val);
+						i++;
+					}
+				}
+			}
+			current.setChilds(missions);
+			if (com_in.size() > 0) {
+				InInjector injectorCom = new InInjector("commodity_id", com_in);
+				current.setAdditionOne(DbAccess.commoditiesAccess.getCommoditiesList(injectorCom));
+			}
+			if (mat_in.size() > 0) {
+				InInjector injectorCom = new InInjector("material_id", mat_in);
+				current.setAdditionTwo(DbAccess.materialsAccess.getMaterialsList(injectorCom));
+			}
+			Document xml = new XMLReflectionObj(current).toXML();
+			logger.debug(XMLUtils.xml2out(xml));
+			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:view_missions"});
+		} else {
+			redirect.setRedirect(new DirectRedirect("/"));
+			throw new SkipSubLevelsExeption();
+		}
+	}
 	
-	//@SuppressWarnings("serial")
 	public void checkCommander(UrlPart url, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		
 		String actionUrl = url.getPattern().substring(0, url.getPattern().length() - 1).toLowerCase();
@@ -151,17 +194,11 @@ public class Commander extends GeneralController {
 
 		if (user != null) {
 			pilot = DbAccess.pilotsAccess.getByName(actionUrl);
-			//logger.debug("user {}", user.getUserId());
-			//logger.debug("pilot user {}", pilot.getUserId());
 			if (pilot != null && (long)pilot.getUserId() == (long)user.getUserId()) {
-				//logger.debug("Current {}", actionUrl);
 				current = pilot;
 				ContentObject.getInstance().setFixedParameters("pilot", pilot.getPilotName());
 			}
 		}
-		//logger.debug("Current {}", url.getClass().getName());
-		//logger.debug("Current {}", actionUrl);
-		//redirect.setRedirect(new DropRedirect());
 	}
 	
 }

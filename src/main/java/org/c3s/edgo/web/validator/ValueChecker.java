@@ -17,7 +17,7 @@ public class ValueChecker {
 		return errors;
 	}
 
-	public void validate(String name, String value, Validator... validators) {
+	public void validate(String name, Object value, Validator... validators) {
 		if (validators != null) {
 			for (Validator validator: validators) {
 				String text = validator.validate(value);

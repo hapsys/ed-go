@@ -63,6 +63,27 @@ public class DBUsersAccess extends Access {
 	}
 	
 	
+	public DBUsersBean getByEmail(java.lang.String paramEmail)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		DBUsersBean ret = null;
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  email= ?  "+injector.getWhereQuery()+" ";
+		if (injector.getOrderQuery().length() != 0) {
+			sql += injector.getOrderQuery();
+		} else { 
+			
+		}
+		sql += injector.getLimitQuery();
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByEmail", sql ,  paramEmail);
+		if (result != null) {
+			
+			ret = dataMapper.mapFromRow(result.get(0), DBUsersBean.class);
+			ret.onLoad();
+		}
+		return ret;
+	}
+	
 	public DBUsersBean getByUuid(java.lang.String paramUserUuid)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		DBUsersBean ret = null;
@@ -76,6 +97,27 @@ public class DBUsersAccess extends Access {
 		}
 		sql += injector.getLimitQuery();
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByUuid", sql ,  paramUserUuid);
+		if (result != null) {
+			
+			ret = dataMapper.mapFromRow(result.get(0), DBUsersBean.class);
+			ret.onLoad();
+		}
+		return ret;
+	}
+	
+	public DBUsersBean getByCheckHash(java.lang.String paramCheckHash)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		DBUsersBean ret = null;
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  check_hash= ?  "+injector.getWhereQuery()+" ";
+		if (injector.getOrderQuery().length() != 0) {
+			sql += injector.getOrderQuery();
+		} else { 
+			
+		}
+		sql += injector.getLimitQuery();
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByCheckHash", sql ,  paramCheckHash);
 		if (result != null) {
 			
 			ret = dataMapper.mapFromRow(result.get(0), DBUsersBean.class);

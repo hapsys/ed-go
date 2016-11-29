@@ -16,6 +16,7 @@
 			<xsl:when test="$mode = 'ships'"><xsl:call-template name="view_ships"/></xsl:when>
 			<xsl:when test="$mode = 'view_ship'"><xsl:call-template name="view_ship"/></xsl:when>
 			<xsl:when test="$mode = 'view_power'"><xsl:call-template name="view_power"/></xsl:when>
+			<xsl:when test="$mode = 'view_missions'"><xsl:call-template name="view_missions"/></xsl:when>
 		</xsl:choose>
 	</xsl:template>
 <!--
@@ -254,6 +255,7 @@
 				<thead>
 					<tr>
 						<th rowspan="2">Week Start Time</th>
+						<th rowspan="2">Power</th>
 						<th colspan="3">Merits</th>
 						<th rowspan="2">Credits Spend</th>
 					</tr>
@@ -295,6 +297,59 @@
 			</table>
 
 		
+		</div>
+	</xsl:template>
+<!--
+//
+//
+//
+-->
+	<xsl:template name="view_missions">
+		<xsl:variable name="lang"><xsl:value-of select="$root"/><xsl:if test="$politic = 'suffix' and $default != 'true'">/<xsl:value-of select="$suffix"/></xsl:if></xsl:variable>
+		<div><h3><xsl:value-of select="field[@name='pilotName']/@value"/></h3></div>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th rowspan="2">Complete Time</th>
+						<th rowspan="2">Mission type</th>
+						<th colspan="2">Location</th>
+						<th colspan="3">Reward</th>
+					</tr>
+					<tr>
+						<th colspan="2">Fraction</th>
+						<th>Credits</th>
+						<th>Commodities</th>
+						<th>Materials</th>
+					</tr>
+				</thead>
+				<tbody>
+					<xsl:for-each select="childs/item">
+						<tr>
+							<td rowspan="2"><xsl:value-of select="field[@name='completeDate']/@value"/></td>
+							<td rowspan="2"><xsl:value-of select="field[@name='missionTypeName']/@value"/></td>
+							<td><xsl:value-of select="field[@name='systemName']/@value"/></td>
+							<td><xsl:value-of select="field[@name='stationName']/@value"/></td>
+							<td rowspan="2"><xsl:value-of select="field[@name='reward']/@value"/></td>
+							<td rowspan="2">
+								<xsl:for-each select="field[@name='commodityId']/value">
+									<xsl:variable name="id" select="@value"/>
+									<xsl:value-of select="/item/additionOne/item[field[@name='commodityId']/@value = $id]/field[@name='commodityName']/@value"></xsl:value-of>
+								</xsl:for-each>
+							</td>
+							<td rowspan="2">
+								<xsl:for-each select="field[@name='materialId']/value">
+									<xsl:variable name="id" select="@value"/>
+									<xsl:value-of select="/item/additionTwo/item[field[@name='materialId']/@value = $id]/field[@name='materialUniq']/@value"></xsl:value-of>
+								</xsl:for-each>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2"><xsl:value-of select="field[@name='factionName']/@value"/></td>
+						</tr>
+					</xsl:for-each>
+				</tbody>
+			</table>			
+		<div>
 		</div>
 	</xsl:template>
 <!--

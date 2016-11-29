@@ -70,4 +70,10 @@ public class GeneralController {
 		}
 	}
 	
+	public static synchronized void setUser(DBUsersBean user) {
+		synchronized (GeneralController.class) {
+			StorageInterface storage = StorageFactory.getStorage(StorageType.SESSION);
+			storage.put(STORED_USER, user); 
+		}
+	}
 }

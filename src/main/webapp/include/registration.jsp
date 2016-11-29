@@ -16,18 +16,21 @@
 		<div class="panel-body">
 			<div class="panel-body-form">
 				<form action="" class="register-form">
+				    <div class="form-group">
+				    	<input type="hidden" id="__common"/> 
+				    </div>
 					<div class="form-group">
-						<input type="email" placeholder="Email" class="form-control" name="email"/>
+						<input type="text" placeholder="Email" class="form-control" name="email" id="email"/>
 					</div>
 					<div class="row">
 						<div class="col-xs-6">
 							<div class="form-group">
-								<input type="password" placeholder="<%=I10N.tr("Password", l) %>" class="form-control" name="password"/>
+								<input type="password" placeholder="<%=I10N.tr("Password", l) %>" class="form-control" name="password" id="password"/>
 							</div>
 						</div>
 						<div class="col-xs-6">
 							<div class="form-group">
-								<input type="password" placeholder="<%=I10N.tr("Repeat Password", l) %>" class="form-control" name="confirm"/>
+								<input type="password" placeholder="<%=I10N.tr("Repeat Password", l) %>" class="form-control" name="confirm" id="confirm"/>
 							</div>
 						</div>
 					</div>

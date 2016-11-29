@@ -84,4 +84,41 @@ public class DBMaterialsAccess extends Access {
 		return ret;
 	}
 	
+	public List<DBMaterialsBean> getMaterialsList(org.c3s.edgo.common.intruders.InInjector paramIntruder) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		if (paramIntruder != null) {
+			injector = paramIntruder;
+		}
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT * 				FROM materials 				WHERE 1 = 1 				" + where + " 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getMaterialsList", query );
+		List<DBMaterialsBean> ret = null;
+		if (result != null) {
+					ret = new ArrayList<DBMaterialsBean>();
+				
+			for (Map<String, Object> res : result) {
+				DBMaterialsBean bean = dataMapper.mapFromRow(res, DBMaterialsBean.class);
+														
+				ret.add(bean);
+			}
+					
+		}
+			
+		return ret;
+	}
+	
 }

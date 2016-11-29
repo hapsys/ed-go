@@ -3,9 +3,11 @@
 	<title lang="ru">ed-go.ru</title>
 	<title lang="en">Dashboard</title>
 	<!--
-	test
-	-->
-	<node pattern="account">
+	//
+	// Account
+	// 
+	 -->
+	<node pattern="account" redirect="..">
 		<title lang="ru">Аккаунт</title>
 		<title lang="en">Account</title>
 		<menu name="main_menu"/>
@@ -29,13 +31,30 @@
 			<title lang="en">Profile</title>
 			<menu name="main_menu"/>
 		</node>
+		<node pattern="confirmation">
+			<role>ROLE_REGISTERED</role>
+			<title lang="ru">Подтвердить email</title>
+			<title lang="en">Email comfirmation</title>
+		</node>
+		<node pattern="resend-email">
+			<role>ROLE_REGISTERED</role>
+			<title lang="ru">Послать повторно email</title>
+			<title lang="en">Resend email</title>
+			<menu name="main_menu"/>
+		</node>
 		<node pattern="logout" class="logout">
 			<role>ROLE_LOGGED</role>
+			<role>ROLE_REGISTERED</role>
 			<title lang="ru">Выйти</title>
 			<title lang="en">Sign out</title>
 			<menu name="main_menu"/>
 		</node>
 	</node>
+	<!--
+	//
+	// Commander
+	// 
+	 -->
 	<node pattern="*" redirect="info/" pilot="true">
 		<role>ROLE_LOGGED</role>
 		<title lang="ru">КМДР</title>
@@ -51,94 +70,15 @@
 			<title lang="en">Ships</title>
 			<menu name="main_menu"/>
 		</node>
+		<node pattern="missions">
+			<title lang="ru">Миссии</title>
+			<title lang="en">Missions</title>
+			<menu name="main_menu"/>
+		</node>
 		<node pattern="powers">
 			<title lang="ru">Силы</title>
 			<title lang="en">Powers</title>
 			<menu name="main_menu"/>
 		</node>
 	</node>
-	<!-- 
-	<node pattern="commander" redirect="info/">
-		<role>ROLE_LOGGED</role>
-		<title lang="ru">Статистика пилота</title>
-		<title lang="en">Commander</title>
-		<menu name="main_menu"/>
-		<node pattern="info">
-			<title lang="ru">Информация</title>
-			<title lang="en">Information</title>
-			<menu name="main_menu"/>
-		</node>
-	</node>
-	<node pattern="about" redirect="rules/">
-		<title lang="ru">О турнирах</title>
-		<title lang="en">About</title>
-		<menu name="main_menu"/>
-		<node pattern="rules">
-			<title lang="ru">Общие правила</title>
-			<title lang="en">Common rules</title>
-			<menu name="main_menu"/>
-		</node>
-		<node pattern="classes">
-			<title lang="ru">Классы кораблей</title>
-			<title lang="en">Ship classes</title>
-			<menu name="main_menu"/>
-		</node>
-	</node>
-	<node pattern="systems" redirect="settlements">
-		<title lang="ru">Системы</title>
-		<title lang="en">Systems</title>
-		<menu name="main_menu"/>
-		<node pattern="settlements">
-			<title lang="ru">Поселения</title>
-			<title lang="en">Settlements</title>
-			<menu name="main_menu"/>
-		</node>
-	</node>
-	<node pattern="tournaments">
-		<title lang="ru">Туриниры</title>
-		<title lang="en">Tounaments</title>
-		<menu name="main_menu"/>
-		<node pattern="coming">
-			<title lang="ru">Предстоящие</title>
-			<title lang="en">Coming</title>
-			<menu name="main_menu"/>
-			<condition>COMING</condition>
-		</node>
-		<node pattern="current">
-			<title lang="ru">Текущие</title>
-			<title lang="en">Current</title>
-			<menu name="main_menu"/>
-			<condition>CURRENT</condition>
-		</node>
-		<node pattern="past">
-			<title lang="ru">Прошедшие</title>
-			<title lang="en">Past</title>
-			<menu name="main_menu"/>
-			<condition>PAST</condition>
-		</node>
-	</node>
-	<node pattern="administration" redirect="ships/">
-		<role>ROLE_ADMINISTRATOR</role>
-		<title lang="ru">Администрирование</title>
-		<title lang="en">Admin</title>
-		<menu name="main_menu"/>
-		<node pattern="ships">
-			<title lang="ru">Корабли</title>
-			<title lang="en">Ships</title>
-			<menu name="main_menu"/>
-		</node>
-		<node pattern="classes">
-			<title lang="ru">Классы кораблей</title>
-			<title lang="en">Ship classes</title>
-			<menu name="main_menu"/>
-		</node>
-		<node pattern="places">
-			<title lang="ru">Места боев</title>
-			<title lang="en">Battle places</title>
-			<menu name="main_menu"/>
-		</node>
-	</node>
-	<node pattern="systems">
-	</node>
-	 -->
 </node>

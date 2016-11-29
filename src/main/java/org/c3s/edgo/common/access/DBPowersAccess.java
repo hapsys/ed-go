@@ -129,11 +129,11 @@ public class DBPowersAccess extends Access {
 		String query = injector.getFullQuery();
 		if (query == null) {
 			String record = injector.getRecordQuery();
-			String from = injector.getRecordQuery();
-			String join = injector.getRecordQuery();
-			String where = injector.getRecordQuery();
-			String order = injector.getRecordQuery();
-			String limit = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
 			query = " 				SELECT p.* 				FROM powers p 				WHERE p.power_uniq = ? 				OR p.power_aliases LIKE CONCAT('%', ?, '%') 				LIMIT 1 			";
 		}
 

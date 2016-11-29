@@ -23,6 +23,15 @@
 		<column name="powers" type="DBPowerCortageBean">
 	    	<annotation>@XMLReflectionField</annotation>
 		</column>
+		<column name="addition_one" type="List&lt;? extends Object&gt;">
+	    	<annotation>@XMLFieldList</annotation>
+		</column>
+		<column name="addition_two" type="List&lt;? extends Object&gt;">
+	    	<annotation>@XMLFieldList</annotation>
+		</column>
+		<column name="addition_three" type="List&lt;? extends Object&gt;">
+	    	<annotation>@XMLFieldList</annotation>
+		</column>
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="pilot_id"/>
 		</select>

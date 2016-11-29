@@ -15,8 +15,8 @@ public class MinLength implements Validator {
 	}
 
 	@Override
-	public String validate(String value) {
-		return (value == null || value.length() < length)?text:null;
+	public String validate(Object value) {
+		return (value == null || value.toString().length() < length)?text:null;
 	}
 
 }

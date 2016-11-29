@@ -17,6 +17,12 @@
 			<column name="email"/>
 			<column name="uid"/>
 		</select>
+		<select name="ByEmail" single_object="true">
+			<column name="email"/>
+		</select>
+		<select name="ByCheckHash" single_object="true">
+			<column name="check_hash"/>
+		</select>
 		<update name="ByPrimaryKey">
 			<column name="user_id"/>
 		</update>

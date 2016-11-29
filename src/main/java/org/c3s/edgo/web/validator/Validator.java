@@ -8,5 +8,5 @@ package org.c3s.edgo.web.validator;
  *
  */
 public interface Validator {
-	public String validate(String value);
+	public String validate(Object value);
 }

@@ -5,6 +5,14 @@
 		<select name="ByUniq" single_object="true">
 			<column name="commodity_uniq"/>
 		</select>
+		<query name="CommoditiesList" use="Commodities" intruder="org.c3s.edgo.common.intruders.InInjector">
+			<sql>
+				SELECT *
+				FROM commodities
+				WHERE 1 = 1
+				<where/>
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 	<table name="comodity_categories">
@@ -23,6 +31,14 @@
 		<select name="ByUniq" single_object="true">
 			<column name="material_uniq"/>
 		</select>
+		<query name="MaterialsList" use="Materials" intruder="org.c3s.edgo.common.intruders.InInjector">
+			<sql>
+				SELECT *
+				FROM materials
+				WHERE 1 = 1
+				<where/>
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 	<table name="material_category">
