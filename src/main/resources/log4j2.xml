@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="INFO" packages="org.c3s.web.debug.log4j2">
 	<Properties>
-		<Property name="baseDir">/var/logs/edgo-scrips</Property>
+		<Property name="baseDir">/var/log/edgo-scrips</Property>
 	</Properties>
 	<Appenders>
 		<DebugAppender name="Debug">
