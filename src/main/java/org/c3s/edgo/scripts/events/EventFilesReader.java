@@ -42,7 +42,6 @@ public class EventFilesReader {
 		
 		String savedgames = System.getenv("USERPROFILE") + "\\Saved Games\\Frontier Developments\\Elite Dangerous\\";;
 		long userId = 1L;
-		
 		//String savedgames = "F:\\freelance\\elite-dangerous\\journals\\oleg\\";
 		//long userId = 2L;
 		//String savedgames = "F:\\freelance\\elite-dangerous\\journals\\flack\\";
