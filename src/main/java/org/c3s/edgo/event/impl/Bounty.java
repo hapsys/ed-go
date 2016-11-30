@@ -1,7 +1,10 @@
 package org.c3s.edgo.event.impl;
 	
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
+import org.c3s.edgo.common.access.DbAccess;
+import org.c3s.edgo.common.beans.DBPilotPowerBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.dao.PowersDAO;
 import org.c3s.edgo.common.dao.SystemsDAO;
@@ -26,7 +29,12 @@ public class Bounty extends AbstractJournalEvent<BountyBean> {
 				if (bean.getTotalReward() == 0) {
 					// may be power
 					if (SystemsDAO.getFaction(bean.getVictimFaction()) == null) {
-						PowersDAO.updateCombatMerits(pilot, bean.getTimestamp());
+						Long pilotPowerId = null;
+						DBPilotPowerBean pilotPower = DbAccess.pilotPowerAccess.getLastByPilotIdTime(pilot.getPilotId(), new Timestamp(bean.getTimestamp().getTime()));
+						if (pilotPower != null) { 
+							pilotPowerId = pilotPower.getPowerId();
+						}
+						PowersDAO.updateCombatMerits(pilot, bean.getTimestamp(), pilotPowerId);
 					}
 				}
 			}

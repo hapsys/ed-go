@@ -65,13 +65,13 @@ public class DBPilotShipsListBean implements DbBean, Serializable {
 	@DataSource({"system_id", "systemId"})
 	@DataTarget("system_id")
 	@XMLSimple("systemId")
-	private java.lang.Long systemId;
+	private java.math.BigInteger systemId;
 	
-	public java.lang.Long getSystemId() {
+	public java.math.BigInteger getSystemId() {
 		return systemId;
 	}
 	
-	public DBPilotShipsListBean setSystemId(java.lang.Long value) {
+	public DBPilotShipsListBean setSystemId(java.math.BigInteger value) {
 		systemId = value;
 		return this;
 	}
@@ -80,13 +80,13 @@ public class DBPilotShipsListBean implements DbBean, Serializable {
 	@DataSource({"station_id", "stationId"})
 	@DataTarget("station_id")
 	@XMLSimple("stationId")
-	private java.lang.Integer stationId;
+	private java.lang.Long stationId;
 	
-	public java.lang.Integer getStationId() {
+	public java.lang.Long getStationId() {
 		return stationId;
 	}
 	
-	public DBPilotShipsListBean setStationId(java.lang.Integer value) {
+	public DBPilotShipsListBean setStationId(java.lang.Long value) {
 		stationId = value;
 		return this;
 	}
@@ -133,6 +133,21 @@ public class DBPilotShipsListBean implements DbBean, Serializable {
 	
 	public DBPilotShipsListBean setShipUniq(java.lang.String value) {
 		shipUniq = value;
+		return this;
+	}
+	
+	
+	@DataSource({"is_special", "isSpecial"})
+	@DataTarget("is_special")
+	@XMLSimple("isSpecial")
+	private java.lang.Integer isSpecial;
+	
+	public java.lang.Integer getIsSpecial() {
+		return isSpecial;
+	}
+	
+	public DBPilotShipsListBean setIsSpecial(java.lang.Integer value) {
+		isSpecial = value;
 		return this;
 	}
 	

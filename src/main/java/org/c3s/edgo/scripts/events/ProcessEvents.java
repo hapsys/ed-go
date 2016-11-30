@@ -25,6 +25,7 @@ public class ProcessEvents {
 		StorageFactory.register(StorageType.APPLICATION, new ApplicationStorage());
 		
 		new Thread(new EventProcessor()).start();
+		/**
 		while(true) {
 			try {
 				Thread.sleep(60000);
@@ -32,6 +33,7 @@ public class ProcessEvents {
 				System.exit(-1);
 			}
 		}
+		*/
 	}
 
 }

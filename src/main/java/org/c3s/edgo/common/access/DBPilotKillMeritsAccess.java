@@ -74,7 +74,16 @@ public class DBPilotKillMeritsAccess extends Access {
 		} else { 
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getNotConfirmedByPilotIdAndSystemIdAndWeek", sql ,  paramPilotId,  paramSystemId,  paramStartWeek);
 		if (result != null) {
 			
@@ -95,7 +104,16 @@ public class DBPilotKillMeritsAccess extends Access {
 		} else { 
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getConfirmedByPilotIdAndSystemIdAndWeek", sql ,  paramPilotId,  paramSystemId,  paramStartWeek);
 		if (result != null) {
 			
@@ -117,7 +135,16 @@ public class DBPilotKillMeritsAccess extends Access {
 			sql += "ORDER BY start_week DESC";
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getHistoryByPilotId", sql ,  paramPilotId);
 		if (result != null) {
 			
@@ -143,7 +170,16 @@ public class DBPilotKillMeritsAccess extends Access {
 		} else { 
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPrimaryKey", sql ,  paramPilotKillMeritsId);
 		if (result != null) {
 			
@@ -202,6 +238,28 @@ public class DBPilotKillMeritsAccess extends Access {
 			}
 					
 		}
+			
+		return ret;
+	}
+	
+	public int updateNulledByPilotIdAndTime(Long paramPilotPowerId, long paramPilotId, java.sql.Timestamp paramTimestamp) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				UPDATE pilot_kill_merits p  				SET p.pilot_power_id = ?  				WHERE p.pilot_id = ? 				AND p.start_week = ? 				LIMIT 2  			";
+		}
+
+		
+		int ret = getConnection().query(query,  paramPilotPowerId,  paramPilotId,  paramTimestamp);
 			
 		return ret;
 	}

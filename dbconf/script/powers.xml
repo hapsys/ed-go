@@ -111,6 +111,11 @@
 			<column name="pilot_id"/>
 			<sort>pilot_power_time ASC</sort>
 		</select>
+		<select name="LastByPilotIdTime" single_object="true">
+			<column name="pilot_id"/>
+			<column name="pilot_power_time" condition="&lt;="/>
+			<sort>pilot_power_time DESC</sort>
+		</select>
 		<select name="HistoryByPilotId">
 			<column name="pilot_id"/>
 			<sort>pilot_power_time ASC</sort>
@@ -243,6 +248,18 @@
 				ORDER BY start_week DESC
 			</sql>
 		</query>
+		<query name="NulledByPilotIdAndTime">
+			<column name="PilotPowerId" type="Long"/>
+			<column name="PilotId" type="long"/>
+			<column name="Timestamp" type="java.sql.Timestamp"/>
+			<sql>
+				UPDATE pilot_war_merits p 
+				SET p.pilot_power_id = ? 
+				WHERE p.pilot_id = ?
+				AND p.start_week = ?
+				LIMIT 2 
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 	<table name="pilot_kill_merits">
@@ -284,6 +301,18 @@
 				AND t.is_confirmed = 1
 				AND t.system_id = s.system_id
 				ORDER BY start_week DESC
+			</sql>
+		</query>
+		<query name="NulledByPilotIdAndTime">
+			<column name="PilotPowerId" type="Long"/>
+			<column name="PilotId" type="long"/>
+			<column name="Timestamp" type="java.sql.Timestamp"/>
+			<sql>
+				UPDATE pilot_kill_merits p 
+				SET p.pilot_power_id = ? 
+				WHERE p.pilot_id = ?
+				AND p.start_week = ?
+				LIMIT 2 
 			</sql>
 		</query>
 	</table>

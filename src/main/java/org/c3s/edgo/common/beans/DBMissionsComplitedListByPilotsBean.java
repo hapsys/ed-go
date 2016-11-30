@@ -366,10 +366,6 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	@Override
 	public void setAutoincrementField(Object value) {
 		
-		setMissionId(new java.math.BigInteger(value.toString()));
-		
-		setMissionTypeId(new java.lang.Long(value.toString()));
-		
 	}	
 	
 }

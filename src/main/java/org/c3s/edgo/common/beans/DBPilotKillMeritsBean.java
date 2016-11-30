@@ -62,6 +62,21 @@ public class DBPilotKillMeritsBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"pilot_power_id", "pilotPowerId"})
+	@DataTarget("pilot_power_id")
+	@XMLSimple("pilotPowerId")
+	private java.lang.Long pilotPowerId;
+	
+	public java.lang.Long getPilotPowerId() {
+		return pilotPowerId;
+	}
+	
+	public DBPilotKillMeritsBean setPilotPowerId(java.lang.Long value) {
+		pilotPowerId = value;
+		return this;
+	}
+	
+	
 	@DataSource({"start_week", "startWeek"})
 	@DataTarget("start_week")
 	@XMLSimple("startWeek")

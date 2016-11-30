@@ -1,3 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <include>
+	<!--  -->
+	<table name="modules">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="module_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="module_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="module_id"/>
+		</delete>
+		<query name="ByUniq" use="Modules" single_object="true">
+			<column name="Uniq" type="String"/>
+			<sql>
+				SELECT m.*
+				FROM modules m
+				WHERE LOWER(m.module_uniq) = ?
+				LIMIT 1
+			</sql>
+		</query>
+		<query name="ByModuleInfoByUniq" single_object="true">
+			<column name="Uniq" type="String"/>
+			<sql>
+				SELECT m.*, g.*, t.*
+				FROM modules m, module_groups g, slot_types t
+				WHERE LOWER(m.module_uniq) = ?
+				AND g.module_group_id = m.module_group_id
+				AND t.slot_type_id = g.slot_type_id
+				LIMIT 1
+			</sql>
+		</query>
+	</table>
+	
 </include>

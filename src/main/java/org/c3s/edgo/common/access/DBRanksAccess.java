@@ -74,7 +74,16 @@ public class DBRanksAccess extends Access {
 		} else { 
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPrimaryKey", sql ,  paramPilotId);
 		if (result != null) {
 			

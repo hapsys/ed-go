@@ -74,7 +74,16 @@ public class DBUsersAccess extends Access {
 		} else { 
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByEmail", sql ,  paramEmail);
 		if (result != null) {
 			
@@ -95,7 +104,16 @@ public class DBUsersAccess extends Access {
 		} else { 
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByUuid", sql ,  paramUserUuid);
 		if (result != null) {
 			
@@ -116,7 +134,16 @@ public class DBUsersAccess extends Access {
 		} else { 
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByCheckHash", sql ,  paramCheckHash);
 		if (result != null) {
 			
@@ -137,7 +164,16 @@ public class DBUsersAccess extends Access {
 		} else { 
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByEmailAndPassword", sql ,  paramEmail,  paramUid);
 		if (result != null) {
 			
@@ -158,7 +194,16 @@ public class DBUsersAccess extends Access {
 		} else { 
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPrimaryKey", sql ,  paramUserId);
 		if (result != null) {
 			

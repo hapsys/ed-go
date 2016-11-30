@@ -39,7 +39,7 @@ public abstract class AbstractJournalEvent<T extends AbstractEventBean> implemen
 	@SuppressWarnings("unchecked")
 	@Override
 	public void process(DBEventsBean event) {
-		//user = em.find(User.class, event.getUserId());
+		
 		try {
 			user = DbAccess.usersAccess.getByPrimaryKey(event.getUserId());
 		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e1) {
@@ -49,29 +49,19 @@ public abstract class AbstractJournalEvent<T extends AbstractEventBean> implemen
 		if (this.beanClass != null) {
 			try {
 				T bean = JSONUtils.fromJSON(event.getEventJson(), this.beanClass);
-				/*
-				 * TODO remove it!
-				 */
-				//bean.setTimestamp(new Date(bean.getTimestamp().getTime() + 10 * 3600));
-				/*
-				 * 
-				 */
-				this.processBean(bean);
-				addEventHistory(bean.getEvent(), bean.getTimestamp());
-			} catch (RuntimeException e) {
+				if (DbAccess.eventsHistoryAccess.getByUserIdTimestampAndHash(event.getUserId(), new Timestamp(bean.getTimestamp().getTime()), event.getJsonMd5()) == null) {
+					this.processBean(bean);
+					addEventHistory(event, bean.getTimestamp());
+				}
+				DbAccess.eventsAccess.deleteByPrimaryKey(event.getEventId());
+			} catch (RuntimeException | IllegalAccessException | InstantiationException | SQLException e) {
 				logger.error("Error at event: {}", event.getEventName());
 				logger.error("Error json: {}", event.getEventJson());
-				logger.error("See json pls. \n{}", (Object[])e.getStackTrace());
-				//e.printStackTrace();
+				//logger.error("See json pls. \n{}", (Object[])e.getStackTrace());
+				logger.error("{}", e.getMessage(), e);
 			}
 		} else {
 			processMap(JSONUtils.fromJSON(event.getEventJson(), HashMap.class));
-		}
-		//em.remove(em.contains(event)?event:em.merge(event));
-		try {
-			DbAccess.eventsAccess.deleteByPrimaryKey(event.getEventId());
-		} catch (SQLException e) {
-			new RuntimeException(e);
 		}
 	}
 
@@ -102,15 +92,17 @@ public abstract class AbstractJournalEvent<T extends AbstractEventBean> implemen
 		return currentPilot;
 	}
 	
-	private void addEventHistory(String event, Date timestamp) {
+	private void addEventHistory(DBEventsBean event, Date timestamp) {
 		try {
 			
 			DBPilotsBean pilot = getCurrent();
 			if (pilot != null) {
 				DBEventsHistoryBean bean = new DBEventsHistoryBean();
 				bean.setPilotId(pilot.getPilotId());
-				bean.setEventName(event);
+				bean.setUserId(event.getUserId());
+				bean.setEventName(event.getEventName());
 				bean.setEventTimestamp(new Timestamp(timestamp.getTime()));
+				bean.setEventHash(event.getJsonMd5());
 				DbAccess.eventsHistoryAccess.insert(bean);
 			}
 			

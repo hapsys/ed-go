@@ -74,7 +74,16 @@ public class DBMissionsAccess extends Access {
 		} else { 
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPrimaryKey", sql ,  paramMissionId);
 		if (result != null) {
 			
@@ -95,7 +104,16 @@ public class DBMissionsAccess extends Access {
 		} else { 
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPilotIdAndLinkId", sql ,  paramPilotId,  paramMissionLinkId);
 		if (result != null) {
 			

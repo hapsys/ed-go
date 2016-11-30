@@ -22,7 +22,11 @@ import org.c3s.utils.RegexpUtils;
 
 public class EventFilesReader {
 
-	private static String[] using = new String[]{"PowerplayVoucher", "Bounty", "FSDJump", "Location", "Docked", "LoadGame", "Location", "MaterialCollected", "MaterialDiscarded", "MaterialDiscovered", "MissionAbandoned", "MissionAccepted", "MissionCompleted", "MissionFailed", "PowerplayCollect", "PowerplayDefect", "PowerplayDeliver", "PowerplayFastTrack", "PowerplayJoin", "PowerplayLeave", "PowerplaySalary", "PowerplayVote", "Progress", "Rank"};
+	private static String[] using = new String[]{"Bounty", "Docked", "FSDJump", "FetchRemoteModule", "LoadGame", "Location", 
+			"MaterialCollected", "MaterialDiscarded", "MaterialDiscovered", "MissionAbandoned", "MissionAccepted", "MissionCompleted", 
+			"MissionFailed", "ModuleBuy", "ModuleRetrieve", "ModuleSell", "ModuleStore", "ModuleSwap", "PowerplayCollect", 
+			"PowerplayDefect", "PowerplayDeliver", "PowerplayFastTrack", "PowerplayJoin", "PowerplayLeave", "PowerplaySalary", "PowerplayVote", "PowerplayVoucher", 
+			"Progress", "Rank", "ShipyardBuy", "ShipyardNew", "ShipyardSell", "ShipyardSwap"};
 
 	public static void main(String[] args) throws IOException, SQLException, ParseException {
 		
@@ -37,6 +41,15 @@ public class EventFilesReader {
 		DBManager.getConnection("edgo", "com.mysql.jdbc.Driver", "jdbc:mysql://192.168.0.10:3306/ed-go", props);
 		
 		String savedgames = System.getenv("USERPROFILE") + "\\Saved Games\\Frontier Developments\\Elite Dangerous\\";;
+		long userId = 1L;
+		
+		//String savedgames = "F:\\freelance\\elite-dangerous\\journals\\oleg\\";
+		//long userId = 2L;
+		//String savedgames = "F:\\freelance\\elite-dangerous\\journals\\flack\\";
+		//long userId = 3L;
+		//String savedgames = "F:\\freelance\\elite-dangerous\\journals\\victor\\";
+		//long userId = 4L;
+		
 		
 		System.out.println(savedgames);
 		
@@ -66,20 +79,16 @@ public class EventFilesReader {
 		int count = 0;
 		for(File f: filelist) {
 			//System.out.println(f.getName() + ": " + f.lastModified());
-			processFile(f);
+			processFile(f, userId);
 			count++;
-			/*
-			if (count > 3) {
-				break;
+			if (count < 3) {
+				//break;
 			}
-			*/
 		}
 	}
 
 	
-	public static void processFile(File file) throws IOException {
-		
-		long userId = 1L;
+	public static void processFile(File file, long userId) throws IOException {
 		
 		System.out.println(file.getName());
 		

@@ -74,7 +74,16 @@ public class DBPowersAccess extends Access {
 		} else { 
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByUniq", sql ,  paramPowerUniq);
 		if (result != null) {
 			
@@ -95,7 +104,16 @@ public class DBPowersAccess extends Access {
 		} else { 
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPrimaryKey", sql ,  paramPowerId);
 		if (result != null) {
 			

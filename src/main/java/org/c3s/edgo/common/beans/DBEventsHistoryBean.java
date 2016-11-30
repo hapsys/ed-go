@@ -17,6 +17,36 @@ public class DBEventsHistoryBean implements DbBean, Serializable {
 
 
 	
+	@DataSource({"user_id", "userId"})
+	@DataTarget("user_id")
+	@XMLSimple("userId")
+	private java.lang.Long userId;
+	
+	public java.lang.Long getUserId() {
+		return userId;
+	}
+	
+	public DBEventsHistoryBean setUserId(java.lang.Long value) {
+		userId = value;
+		return this;
+	}
+	
+	
+	@DataSource({"event_hash", "eventHash"})
+	@DataTarget("event_hash")
+	@XMLSimple("eventHash")
+	private java.lang.String eventHash;
+	
+	public java.lang.String getEventHash() {
+		return eventHash;
+	}
+	
+	public DBEventsHistoryBean setEventHash(java.lang.String value) {
+		eventHash = value;
+		return this;
+	}
+	
+	
 	@DataSource({"event_name", "eventName"})
 	@DataTarget("event_name")
 	@XMLSimple("eventName")

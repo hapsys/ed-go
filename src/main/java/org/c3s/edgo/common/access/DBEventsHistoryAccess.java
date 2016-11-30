@@ -63,6 +63,36 @@ public class DBEventsHistoryAccess extends Access {
 	}
 	
 	
+	public DBEventsHistoryBean getByUserIdTimestampAndHash(java.lang.Long paramUserId, java.sql.Timestamp paramEventTimestamp, java.lang.String paramEventHash)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		DBEventsHistoryBean ret = null;
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  user_id= ? AND  event_timestamp= ? AND  event_hash= ?  "+injector.getWhereQuery()+" ";
+		if (injector.getOrderQuery().length() != 0) {
+			sql += injector.getOrderQuery();
+		} else { 
+			
+		}
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByUserIdTimestampAndHash", sql ,  paramUserId,  paramEventTimestamp,  paramEventHash);
+		if (result != null) {
+			
+			ret = dataMapper.mapFromRow(result.get(0), DBEventsHistoryBean.class);
+			
+		}
+		return ret;
+	}
+	
 	public DBEventsHistoryBean getByPrimaryKey(java.math.BigInteger paramEventsHistoryId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		DBEventsHistoryBean ret = null;
@@ -74,7 +104,16 @@ public class DBEventsHistoryAccess extends Access {
 		} else { 
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPrimaryKey", sql ,  paramEventsHistoryId);
 		if (result != null) {
 			

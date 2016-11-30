@@ -27,7 +27,7 @@ public class ModuleBuyBean extends AbstractEventBean {
 	/**
 	 * 
 	 */
-	private String ShipID;
+	private int ShipID;
 	/**
 	 * an existing module:
 	 */
@@ -128,14 +128,14 @@ public class ModuleBuyBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getShipID() {
+	public int getShipID() {
 		return ShipID;
 	}
 
 	/**
 	 * @param shipid
 	 */
-	public void setShipID(String shipid) {
+	public void setShipID(int shipid) {
 		this.ShipID = shipid;
 	}
 

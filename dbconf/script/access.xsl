@@ -129,7 +129,16 @@ public class <xsl:value-of select="$class_name"/> extends Access {
 			<xsl:if test="string-length(sort) != 0">sql += "ORDER BY <xsl:value-of select="sort"/>";
 			</xsl:if>
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			<xsl:if test="@is_single = 'true'">sql += " LIMIT 1";</xsl:if>
+		}
+		
+		
+		
+		
 		List&lt;Map&lt;String, Object&gt;&gt; result = getConnection().fetchRows(tablename + ".get<xsl:value-of select="@name"/>", sql <xsl:call-template name="get_fetch_params"/>);
 		if (result != null) {
 			<xsl:choose>

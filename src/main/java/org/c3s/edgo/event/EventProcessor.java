@@ -4,7 +4,6 @@ import java.sql.SQLException;
 
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBEventsBean;
-import org.c3s.edgo.event.impl.PowerplayDeliver;
 import org.c3s.storage.StorageFactory;
 import org.c3s.storage.StorageInterface;
 import org.c3s.storage.StorageType;
@@ -20,9 +19,8 @@ public class EventProcessor implements Runnable {
 	StorageInterface storage = StorageFactory.getStorage(StorageType.APPLICATION);
 
 	protected boolean processNextEvent() throws IllegalArgumentException, IllegalAccessException, SQLException, InstantiationException {
-		//Event evt = em.createNamedQuery("Event.findUnlocked", Event.class).setMaxResults(1).getResultList().stream().findFirst().orElse(null);
-		DBEventsBean evt = DbAccess.eventsAccess.getUnlockEvent(); 
 		
+		DBEventsBean evt = DbAccess.eventsAccess.getUnlockEvent();
 		if (evt != null) {
 			EventDispatcher dispatcher = (EventDispatcher) storage.get(evt.getUserId());
 			if (dispatcher == null) {

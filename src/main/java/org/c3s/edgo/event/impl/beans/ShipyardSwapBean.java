@@ -15,7 +15,7 @@ public class ShipyardSwapBean extends AbstractEventBean {
 	/**
 	 * 
 	 */
-	private String ShipID;
+	private int ShipID;
 	/**
 	 * (if storing old ship) type of ship being stored
 	 */
@@ -23,7 +23,7 @@ public class ShipyardSwapBean extends AbstractEventBean {
 	/**
 	 * 
 	 */
-	private String StoreShipID;
+	private int StoreShipID;
 	/**
 	 * (if selling old ship) type of ship being sold
 	 */
@@ -31,7 +31,7 @@ public class ShipyardSwapBean extends AbstractEventBean {
 	/**
 	 * 
 	 */
-	private String SellShipID;
+	private int SellShipID;
 
 	/**
 	 * @return
@@ -78,14 +78,14 @@ public class ShipyardSwapBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getShipID() {
+	public int getShipID() {
 		return ShipID;
 	}
 
 	/**
 	 * @param shipid
 	 */
-	public void setShipID(String shipid) {
+	public void setShipID(int shipid) {
 		this.ShipID = shipid;
 	}
 
@@ -106,14 +106,14 @@ public class ShipyardSwapBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getStoreShipID() {
+	public int getStoreShipID() {
 		return StoreShipID;
 	}
 
 	/**
 	 * @param storeshipid
 	 */
-	public void setStoreShipID(String storeshipid) {
+	public void setStoreShipID(int storeshipid) {
 		this.StoreShipID = storeshipid;
 	}
 
@@ -134,14 +134,14 @@ public class ShipyardSwapBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getSellShipID() {
+	public int getSellShipID() {
 		return SellShipID;
 	}
 
 	/**
 	 * @param sellshipid
 	 */
-	public void setSellShipID(String sellshipid) {
+	public void setSellShipID(int sellshipid) {
 		this.SellShipID = sellshipid;
 	}
 

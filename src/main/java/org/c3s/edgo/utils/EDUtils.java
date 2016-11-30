@@ -29,4 +29,12 @@ public class EDUtils {
 		return RegexpUtils.preg_replace("~[\\s]~isu", power.toLowerCase(), "");
 	}
 	
+	public static String getModuleUniq(String module) {
+		String result = module.toLowerCase();
+		result = RegexpUtils.preg_replace("~^[^a-z]*([a-z].+[a-z0-9])[^a-z]*$~isu", result, "$1");
+		if (result.endsWith("_name")) {
+			result = result.substring(0, result.length() - 5);
+		}
+		return result;
+	}
 }

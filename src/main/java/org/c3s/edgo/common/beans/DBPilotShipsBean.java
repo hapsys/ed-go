@@ -50,13 +50,13 @@ public class DBPilotShipsBean implements DbBean, Serializable {
 	@DataSource({"system_id", "systemId"})
 	@DataTarget("system_id")
 	@XMLSimple("systemId")
-	private java.lang.Long systemId;
+	private java.math.BigInteger systemId;
 	
-	public java.lang.Long getSystemId() {
+	public java.math.BigInteger getSystemId() {
 		return systemId;
 	}
 	
-	public DBPilotShipsBean setSystemId(java.lang.Long value) {
+	public DBPilotShipsBean setSystemId(java.math.BigInteger value) {
 		systemId = value;
 		return this;
 	}
@@ -80,13 +80,13 @@ public class DBPilotShipsBean implements DbBean, Serializable {
 	@DataSource({"station_id", "stationId"})
 	@DataTarget("station_id")
 	@XMLSimple("stationId")
-	private java.lang.Integer stationId;
+	private java.lang.Long stationId;
 	
-	public java.lang.Integer getStationId() {
+	public java.lang.Long getStationId() {
 		return stationId;
 	}
 	
-	public DBPilotShipsBean setStationId(java.lang.Integer value) {
+	public DBPilotShipsBean setStationId(java.lang.Long value) {
 		stationId = value;
 		return this;
 	}

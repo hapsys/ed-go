@@ -63,6 +63,36 @@ public class DBSlotsAccess extends Access {
 	}
 	
 	
+	public DBSlotsBean getByUniq(java.lang.String paramSlotUniq)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		DBSlotsBean ret = null;
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  slot_uniq= ?  "+injector.getWhereQuery()+" ";
+		if (injector.getOrderQuery().length() != 0) {
+			sql += injector.getOrderQuery();
+		} else { 
+			
+		}
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByUniq", sql ,  paramSlotUniq);
+		if (result != null) {
+			
+			ret = dataMapper.mapFromRow(result.get(0), DBSlotsBean.class);
+			
+		}
+		return ret;
+	}
+	
 	public DBSlotsBean getByPrimaryKey(java.lang.Long paramSlotId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		DBSlotsBean ret = null;
@@ -74,7 +104,16 @@ public class DBSlotsAccess extends Access {
 		} else { 
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPrimaryKey", sql ,  paramSlotId);
 		if (result != null) {
 			

@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <include>
+	<!--  -->
 	<table name="ships">
 		<column name="slots" type="DBSlotsBean">
 	    	<annotation>@XMLReflectionField</annotation>
 		</column>
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="ship_id"/>
+		</select>
+		<select name="ByUniq" single_object="true">
+			<column name="ship_uniq"/>
 		</select>
 		<update name="ByPrimaryKey">
 			<column name="ship_id"/>
@@ -14,14 +18,43 @@
 			<column name="ship_id"/>
 		</delete>
 	</table>
+	<!--  -->
 	<table name="slots">
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="slot_id"/>
+		</select>
+		<select name="ByUniq" single_object="true">
+			<column name="slot_uniq"/>
 		</select>
 		<update name="ByPrimaryKey">
 			<column name="slot_id"/>
 		</update>
 		<delete name="ByPrimaryKey">
+			<column name="slot_id"/>
+		</delete>
+		<!-- 
+		<query name="ByUniq" use="Slots" single_object="true">
+			<column name="Uniq" type="String"/>
+			<sql>
+				SELECT s.*
+				FROM slots s
+				WHERE LOWER(s.slot_uniq) = ?
+				LIMIT 1
+			</sql>
+		</query>
+		 -->
+	</table>
+	<table name="ship_slots">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="ship_id"/>
+			<column name="slot_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="ship_id"/>
+			<column name="slot_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="ship_id"/>
 			<column name="slot_id"/>
 		</delete>
 	</table>

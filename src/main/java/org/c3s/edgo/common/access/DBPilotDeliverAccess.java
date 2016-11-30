@@ -75,7 +75,16 @@ public class DBPilotDeliverAccess extends Access {
 			sql += "ORDER BY start_week DESC";
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getHistoryByPilotId", sql ,  paramPilotId);
 		if (result != null) {
 			
@@ -101,7 +110,16 @@ public class DBPilotDeliverAccess extends Access {
 		} else { 
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPrimaryKey", sql ,  paramPilotDeliverId);
 		if (result != null) {
 			
@@ -122,7 +140,16 @@ public class DBPilotDeliverAccess extends Access {
 		} else { 
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPilotIdAndSystemIdAndWeek", sql ,  paramPilotId,  paramSystemId,  paramStartWeek);
 		if (result != null) {
 			

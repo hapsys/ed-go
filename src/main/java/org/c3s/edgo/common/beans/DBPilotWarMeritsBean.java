@@ -62,6 +62,21 @@ public class DBPilotWarMeritsBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"pilot_power_id", "pilotPowerId"})
+	@DataTarget("pilot_power_id")
+	@XMLSimple("pilotPowerId")
+	private java.lang.Long pilotPowerId;
+	
+	public java.lang.Long getPilotPowerId() {
+		return pilotPowerId;
+	}
+	
+	public DBPilotWarMeritsBean setPilotPowerId(java.lang.Long value) {
+		pilotPowerId = value;
+		return this;
+	}
+	
+	
 	@DataSource({"pilot_war_merits_id", "pilotWarMeritsId"})
 	@DataTarget("pilot_war_merits_id")
 	@XMLSimple("pilotWarMeritsId")

@@ -63,6 +63,36 @@ public class DBPilotModulesAccess extends Access {
 	}
 	
 	
+	public DBPilotModulesBean getByPilotShipIdSlotId(java.lang.Long paramPilotShipId, java.lang.Long paramSlotId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		DBPilotModulesBean ret = null;
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_ship_id= ? AND  slot_id= ?  "+injector.getWhereQuery()+" ";
+		if (injector.getOrderQuery().length() != 0) {
+			sql += injector.getOrderQuery();
+		} else { 
+			
+		}
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPilotShipIdSlotId", sql ,  paramPilotShipId,  paramSlotId);
+		if (result != null) {
+			
+			ret = dataMapper.mapFromRow(result.get(0), DBPilotModulesBean.class);
+			
+		}
+		return ret;
+	}
+	
 	public DBPilotModulesBean getByPrimaryKey(java.lang.Long paramPilotModuleId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		DBPilotModulesBean ret = null;
@@ -74,7 +104,16 @@ public class DBPilotModulesAccess extends Access {
 		} else { 
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPrimaryKey", sql ,  paramPilotModuleId);
 		if (result != null) {
 			
@@ -98,6 +137,12 @@ public class DBPilotModulesAccess extends Access {
 		setNames();
 		String sql = "DELETE FROM " + tablename + " WHERE  1=1 AND  pilot_module_id= ?  ";
 		return getConnection().query(sql, paramPilotModuleId);
+	}
+	
+	public int deleteByPilotShipId(java.lang.Long paramPilotShipId) throws SQLException {
+		setNames();
+		String sql = "DELETE FROM " + tablename + " WHERE  1=1 AND  pilot_ship_id= ?  ";
+		return getConnection().query(sql, paramPilotShipId);
 	}
 	
 	public List<DBPilotShipModulesListBean> getPilotShipModulesList(long paramPilotShipId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {

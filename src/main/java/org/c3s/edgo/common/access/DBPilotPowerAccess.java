@@ -75,7 +75,16 @@ public class DBPilotPowerAccess extends Access {
 			sql += "ORDER BY pilot_power_time ASC";
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getLastByPilotId", sql ,  paramPilotId);
 		if (result != null) {
 			
@@ -97,7 +106,16 @@ public class DBPilotPowerAccess extends Access {
 			sql += "ORDER BY pilot_power_time ASC";
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getHistoryByPilotId", sql ,  paramPilotId);
 		if (result != null) {
 			
@@ -108,6 +126,37 @@ public class DBPilotPowerAccess extends Access {
 				ret.add(bean);
 			}
 				
+		}
+		return ret;
+	}
+	
+	public DBPilotPowerBean getLastByPilotIdTime(java.lang.Long paramPilotId, java.sql.Timestamp paramPilotPowerTime)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		DBPilotPowerBean ret = null;
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_id= ? AND  pilot_power_time<= ?  "+injector.getWhereQuery()+" ";
+		if (injector.getOrderQuery().length() != 0) {
+			sql += injector.getOrderQuery();
+		} else { 
+			sql += "ORDER BY pilot_power_time DESC";
+			
+		}
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getLastByPilotIdTime", sql ,  paramPilotId,  paramPilotPowerTime);
+		if (result != null) {
+			
+			ret = dataMapper.mapFromRow(result.get(0), DBPilotPowerBean.class);
+			
 		}
 		return ret;
 	}
@@ -123,7 +172,16 @@ public class DBPilotPowerAccess extends Access {
 		} else { 
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPrimaryKey", sql ,  paramPilotPowerId);
 		if (result != null) {
 			

@@ -93,7 +93,11 @@ public class PowersDAO {
 	}
 	
 	public static DBPilotPowerBean getOrInsertPilotPower(DBPilotsBean pilot, String powerStr, Date timestamp) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		
+		Timestamp ts = new Timestamp(getStartWeek(timestamp).getTime());
+		
 		DBPilotPowerBean bean = null;
+		
 		
 		DBPowersBean power = null;
 		if (powerStr != null) {
@@ -112,6 +116,8 @@ public class PowersDAO {
 				bean.setPowerId(power.getPowerId());
 				bean.setPilotPowerTime(new Timestamp(timestamp.getTime()));
 				DbAccess.pilotPowerAccess.insert(bean);
+				DbAccess.pilotKillMeritsAccess.updateNulledByPilotIdAndTime(bean.getPilotPowerId(), pilot.getPilotId(), ts);
+				DbAccess.pilotWarMeritsAccess.updateNulledByPilotIdAndTime(bean.getPilotPowerId(), pilot.getPilotId(), ts);
 			}
 		} else if (prevPower == null && power != null) {
 			bean = new DBPilotPowerBean();
@@ -119,17 +125,21 @@ public class PowersDAO {
 			bean.setPowerId(power.getPowerId());
 			bean.setPilotPowerTime(new Timestamp(timestamp.getTime()));
 			DbAccess.pilotPowerAccess.insert(bean);
+			DbAccess.pilotKillMeritsAccess.updateNulledByPilotIdAndTime(bean.getPilotPowerId(), pilot.getPilotId(), ts);
+			DbAccess.pilotWarMeritsAccess.updateNulledByPilotIdAndTime(bean.getPilotPowerId(), pilot.getPilotId(), ts);
 		} else if (prevPower != null && power == null) {
 			bean = new DBPilotPowerBean();
 			bean.setPilotId(pilot.getPilotId());
 			bean.setPowerId(null);
 			bean.setPilotPowerTime(new Timestamp(timestamp.getTime()));
 			DbAccess.pilotPowerAccess.insert(bean);
+			DbAccess.pilotKillMeritsAccess.updateNulledByPilotIdAndTime(bean.getPilotPowerId(), pilot.getPilotId(), ts);
+			DbAccess.pilotWarMeritsAccess.updateNulledByPilotIdAndTime(bean.getPilotPowerId(), pilot.getPilotId(), ts);
 		}
 		return bean;
 	}
 	
-	public static void updateFastTrack(DBPilotsBean pilot, Date timestamp, int count) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+	public static void updateFastTrack(DBPilotsBean pilot, Date timestamp, int count, Long pilotPowerId) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		Timestamp startWeek = new Timestamp(getStartWeek(timestamp).getTime());
 		DBPilotPowerSpendBean bean = DbAccess.pilotPowerSpendAccess.getByPilotIdAndWeek(pilot.getPilotId(), startWeek);
 		if (bean == null) {
@@ -144,7 +154,7 @@ public class PowersDAO {
 		}
 	}
 	
-	public static void updateDeliver(DBPilotsBean pilot, Date timestamp, int count) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+	public static void updateDeliver(DBPilotsBean pilot, Date timestamp, int count, Long pilotPowerId) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		Timestamp startWeek = new Timestamp(getStartWeek(timestamp).getTime());
 		DBLocationHistoryBean location = DbAccess.locationHistoryAccess.getLastLocation(pilot.getPilotId());
 		DBPilotDeliverBean bean = DbAccess.pilotDeliverAccess.getByPilotIdAndSystemIdAndWeek(pilot.getPilotId(), location.getSystemId(), startWeek);
@@ -161,7 +171,7 @@ public class PowersDAO {
 		}
 	}
 	
-	public static void updateCombatMerits(DBPilotsBean pilot, Date timestamp) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+	public static void updateCombatMerits(DBPilotsBean pilot, Date timestamp, Long pilotPowerId) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		Timestamp startWeek = new Timestamp(getStartWeek(timestamp).getTime());
 		DBLocationHistoryBean location = DbAccess.locationHistoryAccess.getLastLocation(pilot.getPilotId());
 		DBPrevWeekSystemStateSingleBean state = DbAccess.powerStateAccess.getPrevWeekSystemStateSingle(location.getSystemId(), startWeek, startWeek);
@@ -177,6 +187,7 @@ public class PowersDAO {
 					bean.setStartWeek(startWeek);
 					bean.setQuantity(1L);
 					bean.setIsConfirmed(0);
+					bean.setPilotPowerId(pilotPowerId);
 					DbAccess.pilotWarMeritsAccess.insert(bean);
 				} else {
 					bean.setQuantity(bean.getQuantity() + 1L);
@@ -191,6 +202,7 @@ public class PowersDAO {
 					bean.setStartWeek(startWeek);
 					bean.setQuantity(1L);
 					bean.setIsConfirmed(0);
+					bean.setPilotPowerId(pilotPowerId);
 					DbAccess.pilotKillMeritsAccess.insert(bean);
 				} else {
 					bean.setQuantity(bean.getQuantity() + 1L);
@@ -220,6 +232,7 @@ public class PowersDAO {
 							bean.setSystemId(system.getSystemId());
 							bean.setStartWeek(startWeek);
 							bean.setQuantity(warBean.getQuantity());
+							bean.setPilotPowerId(warBean.getPilotPowerId());
 							bean.setIsConfirmed(1);
 							DbAccess.pilotWarMeritsAccess.insert(bean);
 						} else {
@@ -238,6 +251,7 @@ public class PowersDAO {
 							bean.setSystemId(system.getSystemId());
 							bean.setStartWeek(startWeek);
 							bean.setQuantity(killBean.getQuantity());
+							bean.setPilotPowerId(killBean.getPilotPowerId());
 							bean.setIsConfirmed(1);
 							DbAccess.pilotKillMeritsAccess.insert(bean);
 						} else {

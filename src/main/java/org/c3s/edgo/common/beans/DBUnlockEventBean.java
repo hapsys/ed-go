@@ -11,7 +11,7 @@ import org.c3s.data.annotations.DataTarget;
 import org.c3s.reflection.annotation.*;
 
 
-public class DBEventsBean implements DbBean, Serializable {
+public class DBUnlockEventBean implements DbBean, Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,7 +26,7 @@ public class DBEventsBean implements DbBean, Serializable {
 		return isLocked;
 	}
 	
-	public DBEventsBean setIsLocked(java.lang.Integer value) {
+	public DBUnlockEventBean setIsLocked(java.lang.Integer value) {
 		isLocked = value;
 		return this;
 	}
@@ -41,7 +41,7 @@ public class DBEventsBean implements DbBean, Serializable {
 		return eventId;
 	}
 	
-	public DBEventsBean setEventId(java.math.BigInteger value) {
+	public DBUnlockEventBean setEventId(java.math.BigInteger value) {
 		eventId = value;
 		return this;
 	}
@@ -56,7 +56,7 @@ public class DBEventsBean implements DbBean, Serializable {
 		return userId;
 	}
 	
-	public DBEventsBean setUserId(java.lang.Long value) {
+	public DBUnlockEventBean setUserId(java.lang.Long value) {
 		userId = value;
 		return this;
 	}
@@ -71,8 +71,23 @@ public class DBEventsBean implements DbBean, Serializable {
 		return eventName;
 	}
 	
-	public DBEventsBean setEventName(java.lang.String value) {
+	public DBUnlockEventBean setEventName(java.lang.String value) {
 		eventName = value;
+		return this;
+	}
+	
+	
+	@DataSource({"json_md5", "jsonMd5"})
+	@DataTarget("json_md5")
+	@XMLSimple("jsonMd5")
+	private java.lang.String jsonMd5;
+	
+	public java.lang.String getJsonMd5() {
+		return jsonMd5;
+	}
+	
+	public DBUnlockEventBean setJsonMd5(java.lang.String value) {
+		jsonMd5 = value;
 		return this;
 	}
 	
@@ -86,23 +101,8 @@ public class DBEventsBean implements DbBean, Serializable {
 		return eventJson;
 	}
 	
-	public DBEventsBean setEventJson(java.lang.String value) {
+	public DBUnlockEventBean setEventJson(java.lang.String value) {
 		eventJson = value;
-		return this;
-	}
-	
-	
-	@DataSource({"json_md5", "jsonMd5"})
-	@DataTarget("json_md5")
-	@XMLSimple("jsonMd5")
-	private String jsonMd5;
-	
-	public String getJsonMd5() {
-		return jsonMd5;
-	}
-	
-	public DBEventsBean setJsonMd5(String value) {
-		jsonMd5 = value;
 		return this;
 	}
 	

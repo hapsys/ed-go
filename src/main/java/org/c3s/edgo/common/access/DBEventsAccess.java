@@ -63,28 +63,6 @@ public class DBEventsAccess extends Access {
 	}
 	
 	
-	public DBEventsBean getUnlockEvent()  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
-		setNames();
-		DBEventsBean ret = null;
-		SqlInjectorInterface injector = new EmptySqlInjector();
-		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  is_locked=0 "+injector.getWhereQuery()+" ";
-		if (injector.getOrderQuery().length() != 0) {
-			sql += injector.getOrderQuery();
-		} else { 
-			sql += "ORDER BY event_id ASC";
-			
-		}
-		sql += injector.getLimitQuery();
-		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getUnlockEvent", sql );
-		if (result != null) {
-			
-			ret = dataMapper.mapFromRow(result.get(0), DBEventsBean.class);
-			
-		}
-		return ret;
-	}
-	
 	public DBEventsBean getByPrimaryKey(java.math.BigInteger paramEventId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		DBEventsBean ret = null;
@@ -96,7 +74,16 @@ public class DBEventsAccess extends Access {
 		} else { 
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPrimaryKey", sql ,  paramEventId);
 		if (result != null) {
 			
@@ -120,6 +107,35 @@ public class DBEventsAccess extends Access {
 		setNames();
 		String sql = "DELETE FROM " + tablename + " WHERE  1=1 AND  event_id= ?  ";
 		return getConnection().query(sql, paramEventId);
+	}
+	
+	public DBEventsBean getUnlockEvent() throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT e.*, MD5(e.event_json) as json_md5 				FROM events e 				WHERE e.is_locked = 0 				ORDER BY event_id ASC 				LIMIT 1 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getUnlockEvent", query );
+		DBEventsBean ret = null;
+		if (result != null) {
+					ret = new DBEventsBean();
+				
+					ret = dataMapper.mapFromRow(result.get(0), DBEventsBean.class);
+					
+		}
+			
+		return ret;
 	}
 	
 }

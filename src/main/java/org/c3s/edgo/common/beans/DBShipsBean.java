@@ -32,6 +32,21 @@ public class DBShipsBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"is_special", "isSpecial"})
+	@DataTarget("is_special")
+	@XMLSimple("isSpecial")
+	private java.lang.Integer isSpecial;
+	
+	public java.lang.Integer getIsSpecial() {
+		return isSpecial;
+	}
+	
+	public DBShipsBean setIsSpecial(java.lang.Integer value) {
+		isSpecial = value;
+		return this;
+	}
+	
+	
 	@DataSource({"ship_name", "shipName"})
 	@DataTarget("ship_name")
 	@XMLSimple("shipName")

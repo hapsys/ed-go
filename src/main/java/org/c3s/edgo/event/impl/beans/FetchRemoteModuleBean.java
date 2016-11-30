@@ -31,7 +31,7 @@ public class FetchRemoteModuleBean extends AbstractEventBean {
 	/**
 	 * 
 	 */
-	private String ShipId;
+	private int ShipId;
 
 	/**
 	 * @return
@@ -134,14 +134,14 @@ public class FetchRemoteModuleBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getShipId() {
+	public int getShipId() {
 		return ShipId;
 	}
 
 	/**
 	 * @param shipid
 	 */
-	public void setShipId(String shipid) {
+	public void setShipId(int shipid) {
 		this.ShipId = shipid;
 	}
 

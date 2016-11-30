@@ -75,7 +75,16 @@ public class DBLocationHistoryAccess extends Access {
 			sql += "ORDER BY location_time DESC";
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getLastLocation", sql ,  paramPilotId);
 		if (result != null) {
 			
@@ -96,7 +105,16 @@ public class DBLocationHistoryAccess extends Access {
 		} else { 
 			
 		}
-		sql += injector.getLimitQuery();
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPrimaryKey", sql ,  paramLocationId);
 		if (result != null) {
 			

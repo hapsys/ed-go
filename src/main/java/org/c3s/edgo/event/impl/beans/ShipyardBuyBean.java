@@ -23,7 +23,7 @@ public class ShipyardBuyBean extends AbstractEventBean {
 	/**
 	 * 
 	 */
-	private String StoreShipID;
+	private int StoreShipID;
 	/**
 	 * (if selling current ship) ship type being sold
 	 */
@@ -31,7 +31,7 @@ public class ShipyardBuyBean extends AbstractEventBean {
 	/**
 	 * 
 	 */
-	private String SellShipID;
+	private int SellShipID;
 	/**
 	 * (if selling current ship) ship sale price
 	 */
@@ -110,14 +110,14 @@ public class ShipyardBuyBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getStoreShipID() {
+	public int getStoreShipID() {
 		return StoreShipID;
 	}
 
 	/**
 	 * @param storeshipid
 	 */
-	public void setStoreShipID(String storeshipid) {
+	public void setStoreShipID(int storeshipid) {
 		this.StoreShipID = storeshipid;
 	}
 
@@ -138,14 +138,14 @@ public class ShipyardBuyBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getSellShipID() {
+	public int getSellShipID() {
 		return SellShipID;
 	}
 
 	/**
 	 * @param sellshipid
 	 */
-	public void setSellShipID(String sellshipid) {
+	public void setSellShipID(int sellshipid) {
 		this.SellShipID = sellshipid;
 	}
 

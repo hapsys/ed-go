@@ -19,7 +19,7 @@ public class ModuleRetrieveBean extends AbstractEventBean {
 	/**
 	 * 
 	 */
-	private String ShipID;
+	private int ShipID;
 	/**
 	 * 
 	 */
@@ -96,14 +96,14 @@ public class ModuleRetrieveBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getShipID() {
+	public int getShipID() {
 		return ShipID;
 	}
 
 	/**
 	 * @param shipid
 	 */
-	public void setShipID(String shipid) {
+	public void setShipID(int shipid) {
 		this.ShipID = shipid;
 	}
 
