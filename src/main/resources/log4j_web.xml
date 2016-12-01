@@ -10,9 +10,6 @@
 		<Console name="Console" target="SYSTEM_ERR">
 			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%C:%M(%L)] %-5level - %msg%n" />
 		</Console>
-		<File name="File" fileName="/tmp/c3s.log">
-			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%C:%M(%L)] %-5level - %msg%n" />
-		</File>
 	</Appenders>
 	<Loggers>
 		<Logger name="org.c3s.edgo" level="debug">
