@@ -12,13 +12,13 @@
 		</Console>
 	</Appenders>
 	<Loggers>
-		<Logger name="org.c3s.edgo" level="debug">
-			<AppenderRef ref="Debug" />
-		</Logger>
-		<Logger name="org.c3s" level="off">
+		<Logger name="org.c3s.edgo" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-		<Root level="off">
+		<Logger name="org.c3s" level="Off" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		<Root level="off" additivity="false">
 			<AppenderRef ref="Console" />
 		</Root>
 	</Loggers>
