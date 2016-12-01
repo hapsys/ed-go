@@ -192,14 +192,14 @@ public class Commander extends GeneralController {
 	
 	public void checkCommander(UrlPart url, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException, UnsupportedEncodingException {
 		
-		//String actionUrl = url.getPattern().substring(0, url.getPattern().length() - 1).toLowerCase();
-		String actionUrl = URLDecoder.decode(url.getPattern().substring(0, url.getPattern().length() - 1), "utf-8");
+		String actionUrl = url.getPattern().substring(0, url.getPattern().length() - 1).toLowerCase();
+		//String actionUrl = URLDecoder.decode(url.getPattern().substring(0, url.getPattern().length() - 1), "utf-8");
 		DBUsersBean user = getUser();
 		DBPilotsBean pilot = null;
 
 		if (user != null) {
 			pilot = DbAccess.pilotsAccess.getByName(actionUrl);
-			if (pilot != null && (long)pilot.getUserId() == (long)user.getUserId()) {
+			if (pilot != null && pilot.getUserId().equals(user.getUserId())) {
 				current = pilot;
 				ContentObject.getInstance().setFixedParameters("pilot", pilot.getPilotName());
 			}

@@ -5,6 +5,11 @@
 
 	<!-- /* * Context Parameters */ -->
 	<context-param>
+		<param-name>encoding.input</param-name>
+		<param-value>cp1251</param-value>
+	</context-param>
+	
+	<context-param>
 		<param-name>class.dispatcher</param-name>
 		<param-value>org.c3s.dispatcher.InjectiveDispatcher</param-value>
 	</context-param>
