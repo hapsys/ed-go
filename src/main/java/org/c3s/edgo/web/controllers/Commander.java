@@ -1,5 +1,7 @@
 package org.c3s.edgo.web.controllers;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -188,9 +190,10 @@ public class Commander extends GeneralController {
 		}
 	}
 	
-	public void checkCommander(UrlPart url, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+	public void checkCommander(UrlPart url, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException, UnsupportedEncodingException {
 		
-		String actionUrl = url.getPattern().substring(0, url.getPattern().length() - 1).toLowerCase();
+		//String actionUrl = url.getPattern().substring(0, url.getPattern().length() - 1).toLowerCase();
+		String actionUrl = URLDecoder.decode(url.getPattern().substring(0, url.getPattern().length() - 1), "utf-8");
 		DBUsersBean user = getUser();
 		DBPilotsBean pilot = null;
 
