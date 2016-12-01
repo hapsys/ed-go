@@ -27,7 +27,13 @@
 	</Appenders>
 	<Loggers>
 		<Logger name="org.c3s.edgo" level="debug">
-			<AppenderRef ref="RollingFile" />
+			<AppenderRef ref="Debug" />
+		</Logger>
+		<Logger name="org.c3s" level="off">
+			<AppenderRef ref="Console" />
+		</Logger>
+		<Logger name="org.c3s.web.modules.nodes.path" level="off">
+			<AppenderRef ref="Debug" />
 		</Logger>
 		<Root level="off">
 			<AppenderRef ref="Console" />

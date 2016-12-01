@@ -144,31 +144,33 @@ public class Commander extends GeneralController {
 			List<Object> mat_in = new ArrayList<>();
 			List<Object> com_in = new ArrayList<>();
 			List<DBMissionsComplitedListByPilotsBean> missions = DbAccess.missionsAccess.getMissionsComplitedListByPilots(injector);
-			for (DBMissionsComplitedListByPilotsBean mission: missions) {
-				if (mission.getCommodityIdx() != null) {
-					String[] cidxs = mission.getCommodityIdx().split(",");
-					mission.setCommodityId(new Integer[cidxs.length]);
-					int i = 0;
-					for (String cid: cidxs) {
-						Integer val = new Integer(cid);
-						mission.getCommodityId()[i] = val;
-						com_in.add(val);
-						i++;
+			if (missions != null) {
+				for (DBMissionsComplitedListByPilotsBean mission: missions) {
+					if (mission.getCommodityIdx() != null) {
+						String[] cidxs = mission.getCommodityIdx().split(",");
+						mission.setCommodityId(new Integer[cidxs.length]);
+						int i = 0;
+						for (String cid: cidxs) {
+							Integer val = new Integer(cid);
+							mission.getCommodityId()[i] = val;
+							com_in.add(val);
+							i++;
+						}
+					}
+					if (mission.getMaterialIdx() != null) {
+						String[] cidxs = mission.getMaterialIdx().split(",");
+						mission.setMaterialId(new Integer[cidxs.length]);
+						int i = 0;
+						for (String cid: cidxs) {
+							Integer val = new Integer(cid);
+							mission.getMaterialId()[i] = val;
+							mat_in.add(val);
+							i++;
+						}
 					}
 				}
-				if (mission.getMaterialIdx() != null) {
-					String[] cidxs = mission.getMaterialIdx().split(",");
-					mission.setMaterialId(new Integer[cidxs.length]);
-					int i = 0;
-					for (String cid: cidxs) {
-						Integer val = new Integer(cid);
-						mission.getMaterialId()[i] = val;
-						mat_in.add(val);
-						i++;
-					}
-				}
+				current.setChilds(missions);
 			}
-			current.setChilds(missions);
 			if (com_in.size() > 0) {
 				InInjector injectorCom = new InInjector("commodity_id", com_in);
 				current.setAdditionOne(DbAccess.commoditiesAccess.getCommoditiesList(injectorCom));
