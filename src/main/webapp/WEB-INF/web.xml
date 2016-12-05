@@ -115,6 +115,10 @@
 			<param-name>directories</param-name>
 			<param-value>/var/lib/www;/tmp/upload;</param-value>
 		</init-param>
+		<init-param>
+			<param-name>separator</param-name>
+			<param-value>;</param-value>
+		</init-param>
 	</servlet>
 	<servlet>
 		<servlet-name>jsp</servlet-name>
