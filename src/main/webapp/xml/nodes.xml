@@ -7,7 +7,7 @@
 	// Account
 	// 
 	 -->
-	<node pattern="account" redirect="..">
+	<node pattern="account" redirect=".." class="fa-home">
 		<title lang="ru">Аккаунт</title>
 		<title lang="en">Account</title>
 		<menu name="main_menu"/>
@@ -16,14 +16,14 @@
 			<title lang="ru">Войти</title>
 			<title lang="en">Sign in</title>
 			<menu name="main_menu"/>
-			<include value="include/login.jsp" tag="content_include"/>
+			<include value="include/sign_en.jsp" tag="content_include"/>
 		</node>
 		<node pattern="registration">
 			<role>ROLE_NOT_LOGGED</role>
 			<title lang="ru">Регистрация</title>
 			<title lang="en">Registration</title>
 			<menu name="main_menu"/>
-			<include value="include/registration.jsp" tag="content_include"/>
+			<include value="include/sign_en.jsp" tag="content_include"/>
 		</node>
 		<node pattern="profile">
 			<role>ROLE_LOGGED</role>
@@ -55,7 +55,7 @@
 	// Commander
 	// 
 	 -->
-	<node pattern="*" redirect="info/" pilot="true">
+	<node pattern="*" redirect="info/" pilot="true" class="fa-user">
 		<role>ROLE_LOGGED</role>
 		<title lang="ru">КМДР</title>
 		<title lang="en">CMDR</title>

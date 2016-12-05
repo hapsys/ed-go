@@ -333,13 +333,13 @@
 							<td rowspan="2">
 								<xsl:for-each select="field[@name='commodityId']/value">
 									<xsl:variable name="id" select="@value"/>
-									<xsl:value-of select="/item/additionOne/item[field[@name='commodityId']/@value = $id]/field[@name='commodityName']/@value"></xsl:value-of>
+									<xsl:value-of select="/item/additionOne/item[field[@name='commodityId']/@value = $id]/field[@name='commodityName']/@value"></xsl:value-of><br/>
 								</xsl:for-each>
 							</td>
 							<td rowspan="2">
 								<xsl:for-each select="field[@name='materialId']/value">
 									<xsl:variable name="id" select="@value"/>
-									<xsl:value-of select="/item/additionTwo/item[field[@name='materialId']/@value = $id]/field[@name='materialUniq']/@value"></xsl:value-of>
+									<xsl:value-of select="i10n:tr(/item/additionTwo/item[field[@name='materialId']/@value = $id]/field[@name='materialUniq']/@value)"></xsl:value-of><br/>
 								</xsl:for-each>
 							</td>
 						</tr>

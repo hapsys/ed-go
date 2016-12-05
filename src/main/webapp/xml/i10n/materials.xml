@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<i10n>
+	<match name="articulationmotors">
+		<select lang="en">Articulation Motors</select>
+		<select lang="ru">Шарнирные моторы</select>
+	</match>
+	<match name="bromellite">
+		<select lang="en">Bromellite</select>
+		<select lang="ru">Бромеллит</select>
+	</match>
+	<match name="cmmcomposite">
+		<select lang="en">CMM Composite</select>
+		<select lang="ru">CMM-композит</select>
+	</match>
+	<match name="emergencypowercells">
+		<select lang="en">Emergency Power Cells</select>
+		<select lang="ru">Аварийные энергоячейки</select>
+	</match>
+	<match name="energygridassembly">
+		<select lang="en">Energy Grid Assembly</select>
+		<select lang="ru">Электросеть в сборе</select>
+	</match>
+	<match name="exhaustmanifold">
+		<select lang="en">Exhaust Manifold</select>
+		<select lang="ru">Выпускной коллектор</select>
+	</match>
+	<match name="hardwarediagnosticsensor">
+		<select lang="en">Hardware Diagnostic Sensor</select>
+		<select lang="ru">Сенсор диагностики оборудования</select>
+	</match>
+	<match name="heatsinkinterlink">
+		<select lang="en">Heatsink Interlink</select>
+		<select lang="ru">Радиаторный соединитель</select>
+	</match>
+	<match name="hnshockmount">
+		<select lang="en">HN Shock Mount</select>
+		<select lang="ru">Разрядная установка HN</select>
+	</match>
+	<match name="insulatingmembrane">
+		<select lang="en">Insulating Membrane</select>
+		<select lang="ru">Изолирующая мембрана</select>
+	</match>
+	<match name="iondistributor">
+		<select lang="en">Ion Distributor</select>
+		<select lang="ru">Ионный распределитель</select>
+	</match>
+	<match name="magneticemittercoil">
+		<select lang="en">Magnetic Emitter Coil</select>
+		<select lang="ru">Спираль магнитного излучателя</select>
+	</match>
+	<match name="microcontrollers">
+		<select lang="en">Micro Controllers</select>
+		<select lang="ru">Микроконтроллеры</select>
+	</match>
+	<match name="microweavecoolinghoses">
+		<select lang="en">Micro-Weave Cooling Hoses</select>
+		<select lang="ru">Шланги системы охлаждения малых диаметров</select>
+	</match>
+	<match name="modularterminals">
+		<select lang="en">Modular Terminals</select>
+		<select lang="ru">Модульные терминалы</select>
+	</match>
+	<match name="nanobreakers">
+		<select lang="en">Nanobreakers</select>
+		<select lang="ru">Нанопрерыватели</select>
+	</match>
+	<match name="neofabricinsulation">
+		<select lang="en">Neofabric Insulation</select>
+		<select lang="ru">Высокотехнологичная изоляция</select>
+	</match>
+	<match name="osmium">
+		<select lang="en">Osmium</select>
+		<select lang="ru">Осмий</select>
+	</match>
+	<match name="platinum">
+		<select lang="en">Platinum</select>
+		<select lang="ru">Платина</select>
+	</match>
+	<match name="powerconverter">
+		<select lang="en">Power Converter</select>
+		<select lang="ru">Преобразователь энергии</select>
+	</match>
+	<match name="powertransferbus">
+		<select lang="en">Power Transfer Bus</select>
+		<select lang="ru">Энергообменная шина</select>
+	</match>
+	<match name="praseodymium">
+		<select lang="en">Praseodymium</select>
+		<select lang="ru">Празеодим</select>
+	</match>
+	<match name="radiationbaffle">
+		<select lang="en">Radiation Baffle</select>
+		<select lang="ru">Отражатель излучения</select>
+	</match>
+	<match name="reinforcedmountingplate">
+		<select lang="en">Reinforced Mounting Plate</select>
+		<select lang="ru">Усиленная монтажная плита</select>
+	</match>
+	<match name="samarium">
+		<select lang="en">Samarium</select>
+		<select lang="ru">Самарий</select>
+	</match>
+	<match name="telemetrysuite">
+		<select lang="en">Telemetry Suite</select>
+		<select lang="ru">Телеметрический комплект</select>
+	</match>
+	<match name="aberrantshieldpatternanalysis">
+		<select lang="en">Aberrant Shield Pattern Analysis</select>
+		<select lang="ru">Анализ аномального поведения щита</select>
+	</match>
+	<match name="abnormalcompactemissiondata">
+		<select lang="en">Abnormal Compact Emission Data</select>
+		<select lang="ru">Аномальные компактные данные об излучении</select>
+	</match>
+	<match name="adaptiveencryptorscapture">
+		<select lang="en">Adaptive Encryptors Capture</select>
+		<select lang="ru">Захват адаптивного шифровальщика</select>
+	</match>
+	<match name="bulkscandata">
+		<select lang="en">Anomalous Bulk Scan Data</select>
+		<select lang="ru">Аномальный массив данных сканирования</select>
+	</match>
+	<match name="anomalousfsdtelemetry">
+		<select lang="en">Anomalous FSD Telemetry</select>
+		<select lang="ru">Аномальная телеметрия FSD</select>
+	</match>
+	<match name="disruptedwakeechoes">
+		<select lang="en">Atypical Disrupted Wake Echoes</select>
+		<select lang="ru">Атипичное эхо поврежденного следа</select>
+	</match>
+	<match name="atypicalencryptionarchives">
+		<select lang="en">Atypical Encryption Archives</select>
+		<select lang="ru">Нетипичные архивы шифрования</select>
+	</match>
+	<match name="classifiedscandatabanks">
+		<select lang="en">Classified Scan Databanks</select>
+		<select lang="ru">Засекреченные базы данных сканирования</select>
+	</match>
+	<match name="classifiedscanfragment">
+		<select lang="en">Classified Scan Fragment</select>
+		<select lang="ru">Засекреченные фрагменты данных сканирования
+		</select>
+	</match>
+	<match name="industrialfirmware">
+		<select lang="en">Cracked Industrial Firmware</select>
+		<select lang="ru">Взломанные промышленные микропрограммы</select>
+	</match>
+	<match name="dataminedwakeexceptions">
+		<select lang="en">Datamined Wake Exceptions</select>
+		<select lang="ru">Искл. из глубинного анализа данных следа</select>
+	</match>
+	<match name="decodedemissiondata">
+		<select lang="en">Decoded Emission Data</select>
+		<select lang="ru">Расшифрованные данные об излучении</select>
+	</match>
+	<match name="distortedshieldcyclerecordings">
+		<select lang="en">Distorted Shield Cycle Recordings</select>
+		<select lang="ru">Поврежденные цикличные записи щита</select>
+	</match>
+	<match name="divergentscandata">
+		<select lang="en">Divergent Scan Data</select>
+		<select lang="ru">Неформатные данные сканирования</select>
+	</match>
+	<match name="eccentrichyperspacetrajectories">
+		<select lang="en">Eccentric Hyperspace Trajectories</select>
+		<select lang="ru">Аномальные траектории в гиперпространстве</select>
+	</match>
+	<match name="scrambledemissiondata">
+		<select lang="en">Exceptional Scrambled Emission Data</select>
+		<select lang="ru">Исключительные зашифрованные данные об изл.
+		</select>
+	</match>
+	<match name="inconsistentshieldsoakanalysis">
+		<select lang="en">Inconsistent Shield Soak Analysis</select>
+		<select lang="ru">Неполный анализ поглощения щита</select>
+	</match>
+	<match name="irregularemissiondata">
+		<select lang="en">Irregular Emission Data</select>
+		<select lang="ru">Нестандартные данные об излучении</select>
+	</match>
+	<match name="consumerfirmware">
+		<select lang="en">Modified Consumer Firmware</select>
+		<select lang="ru">Измененные пользовательские микропрограммы
+		</select>
+	</match>
+	<match name="modifiedembeddedfirmware">
+		<select lang="en">Modified Embedded Firmware</select>
+		<select lang="ru">Измененные встроенные микропрограммы</select>
+	</match>
+	<match name="opensymmetrickeys">
+		<select lang="en">Open Symmetric Keys</select>
+		<select lang="ru">Открытые симметричные ключи</select>
+	</match>
+	<match name="peculiarshieldfrequencydata">
+		<select lang="en">Peculiar Shield Frequency Data</select>
+		<select lang="ru">Специфические данные о частоте щитов</select>
+	</match>
+	<match name="securityfirmware">
+		<select lang="en">Security Firmware Patch</select>
+		<select lang="ru">Обновление для защитной микропрограммы</select>
+	</match>
+	<match name="legacyfirmware">
+		<select lang="en">Specialised Legacy Firmware</select>
+		<select lang="ru">Спец. микропрограммы предыдущего поколения
+		</select>
+	</match>
+	<match name="strangewakesolutions">
+		<select lang="en">Strange Wake Solutions</select>
+		<select lang="ru">Странные расчеты следа</select>
+	</match>
+	<match name="taggedencryptioncodes">
+		<select lang="en">Tagged Encryption Codes</select>
+		<select lang="ru">Меченые шифровальные коды</select>
+	</match>
+	<match name="unexpectedemissiondata">
+		<select lang="en">Unexpected Emission Data</select>
+		<select lang="ru">Неожиданные данные об излучении</select>
+	</match>
+	<match name="scanarchives">
+		<select lang="en">Unidentified Scan Archives</select>
+		<select lang="ru">Неопознанные архивы сканирования</select>
+	</match>
+	<match name="untypicalshieldscans">
+		<select lang="en">Untypical Shield Scans</select>
+		<select lang="ru">Нетипичные данные сканирования щитов</select>
+	</match>
+	<match name="unusualencryptedfiles">
+		<select lang="en">Unusual Encrypted Files</select>
+		<select lang="ru">Особые зашифрованные файлы</select>
+	</match>
+	<match name="basicconductors">
+		<select lang="en">Basic Conductors</select>
+		<select lang="ru">Простые проводники</select>
+	</match>
+	<match name="biotechconductors">
+		<select lang="en">Biotech Conductors</select>
+		<select lang="ru">Биотехнические проводники</select>
+	</match>
+	<match name="chemicaldistillery">
+		<select lang="en">Chemical Distillery</select>
+		<select lang="ru">Оборудование для перегонки химикатов</select>
+	</match>
+	<match name="chemicalmanipulators">
+		<select lang="en">Chemical Manipulators</select>
+		<select lang="ru">Манипуляторы для работы с химикатами</select>
+	</match>
+	<match name="chemicalprocessors">
+		<select lang="en">Chemical Processors</select>
+		<select lang="ru">Оборудование для химобработки</select>
+	</match>
+	<match name="chemicalstorageunits">
+		<select lang="en">Chemical Storage Units</select>
+		<select lang="ru">Контейнеры для химикатов</select>
+	</match>
+	<match name="compactcomposites">
+		<select lang="en">Compact Composites</select>
+		<select lang="ru">Спрессованные композиты</select>
+	</match>
+	<match name="compoundshielding">
+		<select lang="en">Compound Shielding</select>
+		<select lang="ru">Многоступенчатая защита</select>
+	</match>
+	<match name="conductiveceramics">
+		<select lang="en">Conductive Ceramics</select>
+		<select lang="ru">Проводящая керамика</select>
+	</match>
+	<match name="conductivecomponents">
+		<select lang="en">Conductive Components</select>
+		<select lang="ru">Проводящие компоненты</select>
+	</match>
+	<match name="conductivepolymers">
+		<select lang="en">Conductive Polymers</select>
+		<select lang="ru">Проводящие полимеры</select>
+	</match>
+	<match name="configurablecomponents">
+		<select lang="en">Configurable Components</select>
+		<select lang="ru">Настраиваемые компоненты</select>
+	</match>
+	<match name="coredynamicscomposites">
+		<select lang="en">Core Dynamics Composites</select>
+		<select lang="ru">Композиты Core Dynamics</select>
+	</match>
+	<match name="crystalshards">
+		<select lang="en">Crystal Shards</select>
+		<select lang="ru">Осколки кристаллов</select>
+	</match>
+	<match name="electrochemicalarrays">
+		<select lang="en">Electrochemical Arrays</select>
+		<select lang="ru">Электрохимические массивы</select>
+	</match>
+	<match name="exquisitefocuscrystals">
+		<select lang="en">Exquisite Focus Crystals</select>
+		<select lang="ru">Отборные фокусировочные кристаллы</select>
+	</match>
+	<match name="filamentcomposites">
+		<select lang="en">Filament Composites</select>
+		<select lang="ru">Волокнистые композиты</select>
+	</match>
+	<match name="flawedfocuscrystals">
+		<select lang="en">Flawed Focus Crystals</select>
+		<select lang="ru">Поврежденные фокусировочные кристаллы</select>
+	</match>
+	<match name="focuscrystals">
+		<select lang="en">Focus Crystals</select>
+		<select lang="ru">Фокусировочные кристаллы</select>
+	</match>
+	<match name="galvanisingalloys">
+		<select lang="en">Galvanising Alloys</select>
+		<select lang="ru">Сплавы для гальванизации</select>
+	</match>
+	<match name="gridresistors">
+		<select lang="en">Grid Resistors</select>
+		<select lang="ru">Наборные резисторы</select>
+	</match>
+	<match name="heatconductionwiring">
+		<select lang="en">Heat Conduction Wiring</select>
+		<select lang="ru">Теплопроводящие провода</select>
+	</match>
+	<match name="heatdispersionplate">
+		<select lang="en">Heat Dispersion Plate</select>
+		<select lang="ru">Теплорассеивающая пластина</select>
+	</match>
+	<match name="heatexchangers">
+		<select lang="en">Heat Exchangers</select>
+		<select lang="ru">Теплообменные агрегаты</select>
+	</match>
+	<match name="heatresistantceramics">
+		<select lang="en">Heat Resistant Ceramics</select>
+		<select lang="ru">Жаропрочная керамика</select>
+	</match>
+	<match name="heatvanes">
+		<select lang="en">Heat Vanes</select>
+		<select lang="ru">Тепловые заслонки</select>
+	</match>
+	<match name="highdensitycomposites">
+		<select lang="en">High Density Composites</select>
+		<select lang="ru">Высокоплотностные композиты</select>
+	</match>
+	<match name="hybridcapacitors">
+		<select lang="en">Hybrid Capacitors</select>
+		<select lang="ru">Гибридные конденсаторы</select>
+	</match>
+	<match name="imperialshielding">
+		<select lang="en">Imperial Shielding</select>
+		<select lang="ru">Имперская защита</select>
+	</match>
+	<match name="improvisedcomponents">
+		<select lang="en">Improvised Components</select>
+		<select lang="ru">Кустарные компоненты</select>
+	</match>
+	<match name="mechanicalcomponents">
+		<select lang="en">Mechanical Components</select>
+		<select lang="ru">Механические компоненты</select>
+	</match>
+	<match name="mechanicalequipment">
+		<select lang="en">Mechanical Equipment</select>
+		<select lang="ru">Механическое оборудование</select>
+	</match>
+	<match name="mechanicalscrap">
+		<select lang="en">Mechanical Scrap</select>
+		<select lang="ru">Механические отходы</select>
+	</match>
+	<match name="militarygradealloys">
+		<select lang="en">Military Grade Alloys</select>
+		<select lang="ru">Сплавы военного назначения</select>
+	</match>
+	<match name="militarysupercapacitors">
+		<select lang="en">Military Supercapacitors</select>
+		<select lang="ru">Военные суперконденсаторы</select>
+	</match>
+	<match name="pharmaceuticalisolators">
+		<select lang="en">Pharmaceutical Isolators</select>
+		<select lang="ru">Фармацевтические изоляционные материалы</select>
+	</match>
+	<match name="phasealloys">
+		<select lang="en">Phase Alloys</select>
+		<select lang="ru">Фазовые сплавы</select>
+	</match>
+	<match name="polymercapacitors">
+		<select lang="en">Polymer Capacitors</select>
+		<select lang="ru">Полимерные конденсаторы</select>
+	</match>
+	<match name="precipitatedalloys">
+		<select lang="en">Precipitated Alloys</select>
+		<select lang="ru">Осажденные сплавы</select>
+	</match>
+	<match name="proprietarycomposites">
+		<select lang="en">Proprietary Composites</select>
+		<select lang="ru">Патентованные композиты</select>
+	</match>
+	<match name="protoheatradiators">
+		<select lang="en">Proto Heat Radiators</select>
+		<select lang="ru">Прототипы теплоизлучателей</select>
+	</match>
+	<match name="protolightalloys">
+		<select lang="en">Proto Light Alloys</select>
+		<select lang="ru">Опытные легкие сплавы</select>
+	</match>
+	<match name="protoradiolicalloys">
+		<select lang="en">Proto Radiolic Alloys</select>
+		<select lang="ru">Сплавы для изготовления зондов</select>
+	</match>
+	<match name="refinedfocuscrystals">
+		<select lang="en">Refined Focus Crystals</select>
+		<select lang="ru">Обработанные фокусировочные кристаллы</select>
+	</match>
+	<match name="salvagedalloys">
+		<select lang="en">Salvaged Alloys</select>
+		<select lang="ru">Захваченные сплавы</select>
+	</match>
+	<match name="shieldemitters">
+		<select lang="en">Shield Emitters</select>
+		<select lang="ru">Щитоизлучатели</select>
+	</match>
+	<match name="shieldingsensors">
+		<select lang="en">Shielding Sensors</select>
+		<select lang="ru">Сенсоры системы экранирования</select>
+	</match>
+	<match name="temperedalloys">
+		<select lang="en">Tempered Alloys</select>
+		<select lang="ru">Закаленные сплавы</select>
+	</match>
+	<match name="thermicalloys">
+		<select lang="en">Thermic Alloys</select>
+		<select lang="ru">Термические сплавы</select>
+	</match>
+	<match name="unknownfragment">
+		<select lang="en">Unknown Fragment</select>
+		<select lang="ru">Неизвестный фрагмент</select>
+	</match>
+	<match name="wornshieldemitters">
+		<select lang="en">Worn Shield Emitters</select>
+		<select lang="ru">Изношенные щитоизлучатели</select>
+	</match>
+	<match name="antimony">
+		<select lang="en">Antimony</select>
+		<select lang="ru">Сурьма</select>
+	</match>
+	<match name="arsenic">
+		<select lang="en">Arsenic</select>
+		<select lang="ru">Мышьяк</select>
+	</match>
+	<match name="cadmium">
+		<select lang="en">Cadmium</select>
+		<select lang="ru">Кадмий</select>
+	</match>
+	<match name="carbon">
+		<select lang="en">Carbon</select>
+		<select lang="ru">Углерод</select>
+	</match>
+	<match name="chromium">
+		<select lang="en">Chromium</select>
+		<select lang="ru">Хром</select>
+	</match>
+	<match name="germanium">
+		<select lang="en">Germanium</select>
+		<select lang="ru">Германий</select>
+	</match>
+	<match name="iron">
+		<select lang="en">Iron</select>
+		<select lang="ru">Железо</select>
+	</match>
+	<match name="manganese">
+		<select lang="en">Manganese</select>
+		<select lang="ru">Марганец</select>
+	</match>
+	<match name="mercury">
+		<select lang="en">Mercury</select>
+		<select lang="ru">Ртуть</select>
+	</match>
+	<match name="molybdenum">
+		<select lang="en">Molybdenum</select>
+		<select lang="ru">Молибден</select>
+	</match>
+	<match name="nickel">
+		<select lang="en">Nickel</select>
+		<select lang="ru">Никель</select>
+	</match>
+	<match name="niobium">
+		<select lang="en">Niobium</select>
+		<select lang="ru">Ниобий</select>
+	</match>
+	<match name="phosphorus">
+		<select lang="en">Phosphorus</select>
+		<select lang="ru">Фосфор</select>
+	</match>
+	<match name="polonium">
+		<select lang="en">Polonium</select>
+		<select lang="ru">Полоний</select>
+	</match>
+	<match name="ruthenium">
+		<select lang="en">Ruthenium</select>
+		<select lang="ru">Рутений</select>
+	</match>
+	<match name="selenium">
+		<select lang="en">Selenium</select>
+		<select lang="ru">Селен</select>
+	</match>
+	<match name="sulphur">
+		<select lang="en">Sulphur</select>
+		<select lang="ru">Сера</select>
+	</match>
+	<match name="technetium">
+		<select lang="en">Technetium</select>
+		<select lang="ru">Технеций</select>
+	</match>
+	<match name="tellurium">
+		<select lang="en">Tellurium</select>
+		<select lang="ru">Теллур</select>
+	</match>
+	<match name="tin">
+		<select lang="en">Tin</select>
+		<select lang="ru">Олово</select>
+	</match>
+	<match name="tungsten">
+		<select lang="en">Tungsten</select>
+		<select lang="ru">Вольфрам</select>
+	</match>
+	<match name="vanadium">
+		<select lang="en">Vanadium</select>
+		<select lang="ru">Ванадий</select>
+	</match>
+	<match name="yttrium">
+		<select lang="en">Yttrium</select>
+		<select lang="ru">Иттрий</select>
+	</match>
+	<match name="zinc">
+		<select lang="en">Zinc</select>
+		<select lang="ru">Цинк</select>
+	</match>
+	<match name="zirconium">
+		<select lang="en">Zirconium</select>
+		<select lang="ru">Цирконий</select>
+	</match>
+</i10n>

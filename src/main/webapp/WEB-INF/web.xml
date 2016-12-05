@@ -113,7 +113,7 @@
 		<servlet-class>org.c3s.web.servlets.FileServlet</servlet-class>
 		<init-param>
 			<param-name>directories</param-name>
-			<param-value>/tmp/upload;/vendors/kendoui;/vendors/dojo</param-value>
+			<param-value>/var/lib/www;/tmp/upload;</param-value>
 		</init-param>
 	</servlet>
 	<servlet>
@@ -207,9 +207,12 @@
 		<url-pattern>*.css</url-pattern>
 		<url-pattern>*.png</url-pattern>
 		<url-pattern>*.jpg</url-pattern>
+		<url-pattern>*.gif</url-pattern>
 		<url-pattern>*.ico</url-pattern>
 		<url-pattern>*.js</url-pattern>
 		<url-pattern>*.map</url-pattern>
+		<url-pattern>*.woff2</url-pattern>
+		<url-pattern>*.ttf</url-pattern>
 		<!--
 		<url-pattern>*.gif</url-pattern>
 		<url-pattern>*.html</url-pattern>
