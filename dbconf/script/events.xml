@@ -90,6 +90,16 @@
 		<delete name="ByPrimaryKey">
 			<column name="events_history_id"/>
 		</delete>
+		<query name="LastEventForUser" single_object="true">
+			<column name="UserId" type="long"/>
+			<sql>
+				SELECT h.event_name as `event`, h.event_hash  as `hash`, DATE_FORMAT(h.event_timestamp, '%Y-%c-%dT%TZ') as `timestamp`
+				FROM events_history h
+				WHERE h.user_id = ?
+				ORDER BY h.event_timestamp DESC
+				LIMIT 1
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 </include>

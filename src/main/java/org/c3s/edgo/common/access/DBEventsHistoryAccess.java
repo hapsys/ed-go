@@ -139,4 +139,33 @@ public class DBEventsHistoryAccess extends Access {
 		return getConnection().query(sql, paramEventsHistoryId);
 	}
 	
+	public DBLastEventForUserBean getLastEventForUser(long paramUserId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT h.event_name as `event`, h.event_hash  as `hash`, DATE_FORMAT(h.event_timestamp, '%Y-%c-%dT%TZ') as `timestamp` 				FROM events_history h 				WHERE h.user_id = ? 				ORDER BY h.event_timestamp DESC 				LIMIT 1 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getLastEventForUser", query ,  paramUserId);
+		DBLastEventForUserBean ret = null;
+		if (result != null) {
+					ret = new DBLastEventForUserBean();
+				
+					ret = dataMapper.mapFromRow(result.get(0), DBLastEventForUserBean.class);
+					
+		}
+			
+		return ret;
+	}
+	
 }

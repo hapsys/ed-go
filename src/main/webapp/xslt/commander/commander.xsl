@@ -26,7 +26,7 @@
 -->
 	<xsl:template name="view_info">
 		
-		<div><h2><xsl:value-of select="i10n:tr('CMDR')"/>&#160;<xsl:value-of select="field[@name='pilotName']/@value"/></h2></div>
+		<!-- div><h2><xsl:value-of select="i10n:tr('CMDR')"/>&#160;<xsl:value-of select="field[@name='pilotName']/@value"/></h2></div -->
 		<p>
 			<h3><xsl:value-of select="i10n:tr('Last location')"/>:</h3>
 			<table class="table ">
@@ -40,79 +40,183 @@
 				</tr>
 			</table>
 		</p>
-		<h3>Ranks</h3>
+		<div class="clearfix"></div>
 		<p>
-			<h3>Combat: <xsl:call-template name="combat">
-				<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='combat']/@value)"/>
-				<xsl:with-param name="lang" select="$language_id"/> 
-			</xsl:call-template></h3>
+			<h3>Ranks:</h3>
+		<!-- Combat -->		
+		<div class="col-md-3 col-xs-12 widget widget_tally_box">
 			<xsl:variable name="percent" select="item[@name='progress']/field[@name='combat']/@value"/>
-			<div class="progress">
-  				<div class="progress-bar" role="progressbar" aria-valuenow="{$percent}" aria-valuemin="0" aria-valuemax="100" style="width: {$percent}%;">
-    				<xsl:value-of select="$percent"/>%
-  				</div>
+			<div class="x_panel ui-ribbon-container fixed_height_250">
+				<div class="x_title">
+					<h2>Combat</h2>
+					<div class="clearfix"></div>
+				</div>
+				<div class="x_content">
+				
+					<div style="text-align: center; margin-bottom: 17px">
+						<span class="chart" data-percent="{$percent}">
+							<span class="percent"></span>
+						</span>
+					</div>
+					
+					<h3 class="name_title">
+						<xsl:call-template name="combat">
+							<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='combat']/@value)"/>
+							<xsl:with-param name="lang" select="$language_id"/> 
+						</xsl:call-template>					
+					</h3>
+				</div>
 			</div>
-		</p>
-		<p>
-			<h3>Trade: <xsl:call-template name="trade">
-				<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='trade']/@value)"/>
-				<xsl:with-param name="lang" select="$language_id"/> 
-			</xsl:call-template></h3>
+		</div>
+		<!-- Trade -->		
+		<div class="col-md-3 col-xs-12 widget widget_tally_box">
 			<xsl:variable name="percent" select="item[@name='progress']/field[@name='trade']/@value"/>
-			<div class="progress">
-  				<div class="progress-bar" role="progressbar" aria-valuenow="{$percent}" aria-valuemin="0" aria-valuemax="100" style="width: {$percent}%;">
-    				<xsl:value-of select="$percent"/>%
-  				</div>
+			<div class="x_panel ui-ribbon-container fixed_height_250">
+				<div class="x_title">
+					<h2>Trade</h2>
+					<div class="clearfix"></div>
+				</div>
+				<div class="x_content">
+				
+					<div style="text-align: center; margin-bottom: 17px">
+						<span class="chart" data-percent="{$percent}">
+							<span class="percent"></span>
+						</span>
+					</div>
+					
+					<h3 class="name_title">
+						<xsl:call-template name="trade">
+							<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='trade']/@value)"/>
+							<xsl:with-param name="lang" select="$language_id"/> 
+						</xsl:call-template>					
+					</h3>
+				</div>
 			</div>
-		</p>
-		<p>
-			<h3>Explore: <xsl:call-template name="explore">
-				<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='explore']/@value)"/>
-				<xsl:with-param name="lang" select="$language_id"/> 
-			</xsl:call-template></h3>
+		</div>
+		<!-- Explore -->		
+		<div class="col-md-3 col-xs-12 widget widget_tally_box">
 			<xsl:variable name="percent" select="item[@name='progress']/field[@name='explore']/@value"/>
-			<div class="progress">
-  				<div class="progress-bar" role="progressbar" aria-valuenow="{$percent}" aria-valuemin="0" aria-valuemax="100" style="width: {$percent}%;">
-    				<xsl:value-of select="$percent"/>%
-  				</div>
+			<div class="x_panel ui-ribbon-container fixed_height_250">
+				<div class="x_title">
+					<h2>Explore</h2>
+					<div class="clearfix"></div>
+				</div>
+				<div class="x_content">
+				
+					<div style="text-align: center; margin-bottom: 17px">
+						<span class="chart" data-percent="{$percent}">
+							<span class="percent"></span>
+						</span>
+					</div>
+					
+					<h3 class="name_title">
+						<xsl:call-template name="explore">
+							<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='explore']/@value)"/>
+							<xsl:with-param name="lang" select="$language_id"/> 
+						</xsl:call-template>					
+					</h3>
+				</div>
 			</div>
-		</p>
-		<p>
-			<h3>CQC: <xsl:call-template name="cqc">
-				<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='cqc']/@value)"/>
-				<xsl:with-param name="lang" select="$language_id"/> 
-			</xsl:call-template></h3>
+		</div>
+		<!-- CQC -->		
+		<div class="col-md-3 col-xs-12 widget widget_tally_box">
 			<xsl:variable name="percent" select="item[@name='progress']/field[@name='cqc']/@value"/>
-			<div class="progress">
-  				<div class="progress-bar" role="progressbar" aria-valuenow="{$percent}" aria-valuemin="0" aria-valuemax="100" style="width: {$percent}%;">
-    				<xsl:value-of select="$percent"/>%
-  				</div>
+			<div class="x_panel ui-ribbon-container fixed_height_250">
+				<div class="x_title">
+					<h2>CQC</h2>
+					<div class="clearfix"></div>
+				</div>
+				<div class="x_content">
+				
+					<div style="text-align: center; margin-bottom: 17px">
+						<span class="chart" data-percent="{$percent}">
+							<span class="percent"></span>
+						</span>
+					</div>
+					
+					<h3 class="name_title">
+						<xsl:call-template name="cqc">
+							<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='cqc']/@value)"/>
+							<xsl:with-param name="lang" select="$language_id"/> 
+						</xsl:call-template>					
+					</h3>
+				</div>
 			</div>
-		</p>
-		<p>
-			<h3>Empire: <xsl:call-template name="empire">
-				<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='empire']/@value)"/>
-				<xsl:with-param name="lang" select="$language_id"/> 
-			</xsl:call-template></h3>
+		</div>
+		<!-- empire -->		
+		<div class="col-md-3 col-xs-12 widget widget_tally_box">
 			<xsl:variable name="percent" select="item[@name='progress']/field[@name='empire']/@value"/>
-			<div class="progress">
-  				<div class="progress-bar" role="progressbar" aria-valuenow="{$percent}" aria-valuemin="0" aria-valuemax="100" style="width: {$percent}%;">
-    				<xsl:value-of select="$percent"/>%
-  				</div>
+			<div class="x_panel ui-ribbon-container fixed_height_250">
+				<div class="x_title">
+					<h2>Empire</h2>
+					<div class="clearfix"></div>
+				</div>
+				<div class="x_content">
+				
+					<div style="text-align: center; margin-bottom: 17px">
+						<span class="chart" data-percent="{$percent}">
+							<span class="percent"></span>
+						</span>
+					</div>
+					
+					<h3 class="name_title">
+						<xsl:call-template name="empire">
+							<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='empire']/@value)"/>
+							<xsl:with-param name="lang" select="$language_id"/> 
+						</xsl:call-template>					
+					</h3>
+				</div>
 			</div>
-		</p>
-		<p>
-			<h3>Federation: <xsl:call-template name="federation">
-				<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='federation']/@value)"/>
-				<xsl:with-param name="lang" select="$language_id"/> 
-			</xsl:call-template></h3>
+		</div>
+		<!-- federation -->		
+		<div class="col-md-3 col-xs-12 widget widget_tally_box">
 			<xsl:variable name="percent" select="item[@name='progress']/field[@name='federation']/@value"/>
-			<div class="progress">
-  				<div class="progress-bar" role="progressbar" aria-valuenow="{$percent}" aria-valuemin="0" aria-valuemax="100" style="width: {$percent}%;">
-    				<xsl:value-of select="$percent"/>%
-  				</div>
+			<div class="x_panel ui-ribbon-container fixed_height_250">
+				<div class="x_title">
+					<h2>Federation</h2>
+					<div class="clearfix"></div>
+				</div>
+				<div class="x_content">
+				
+					<div style="text-align: center; margin-bottom: 17px">
+						<span class="chart" data-percent="{$percent}">
+							<span class="percent"></span>
+						</span>
+					</div>
+					
+					<h3 class="name_title">
+						<xsl:call-template name="federation">
+							<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='federation']/@value)"/>
+							<xsl:with-param name="lang" select="$language_id"/> 
+						</xsl:call-template>					
+					</h3>
+				</div>
 			</div>
+		</div>
 		</p>
+		<!-- Activity -->
+		<div class="clearfix"></div>
+		<p>
+			<h3>Activity:</h3>
+			aalalala
+		</p>
+    <script>
+      $(function() {
+        $('.chart').easyPieChart({
+          easing: 'easeOutElastic',
+          delay: 3000,
+          barColor: '#26B99A',
+          trackColor: '#fff',
+          scaleColor: false,
+          lineWidth: 20,
+          trackWidth: 16,
+          lineCap: 'butt',
+          onStep: function(from, to, percent) {
+            $(this.el).find('.percent').text(Math.round(percent));
+          }
+        });
+      });
+    </script>
 	</xsl:template>
 <!--
 //

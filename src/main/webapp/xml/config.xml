@@ -37,7 +37,7 @@
 				<param name="tag" value="view_ctx" inherit="true"/>
 				<param name="template" value="{directory.stylesheet}/account/user.xsl" inherit="true"/>
 				<module pattern="profile/" class="org.c3s.edgo.web.auth.Auth" action="checkRoles">
-					<param name="allow" value="ROLE_REGISTERED"/>
+					<param name="allow" value="ROLE_LOGGED"/>
 					<module class="org.c3s.edgo.web.auth.UserController" action="getProfile" is_last="true"/>
 				</module>
 				<module pattern="confirmation/" class="org.c3s.edgo.web.auth.Auth" action="checkRoles" is_last="true">
@@ -91,6 +91,7 @@
 			<module class="org.c3s.web.modules.template.TemplateModule" action="setTemplate">
 				<param name="template" value="{directory.templates}/json.jsp"/>
 				<module pattern="ajax/">
+					<module pattern="client/" class="org.c3s.edgo.web.client.RemoteClient" action="getRequest" is_last="true"/>
 					<module pattern="profile/">
 						<param name="template" value="{directory.stylesheet}/mail.xsl" inherit="true"/>
 						<param name="from" value="abuse@atoin.com" inherit="true"/>
