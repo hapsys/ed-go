@@ -54,7 +54,7 @@ public class LoadGame extends AbstractJournalEvent<LoadGameBean> {
 				} else {
 					current = DbAccess.pilotsAccess.getCurrentByUserId(user.getUserId());
 					current.setPilotName(bean.getCommander());
-					DbAccess.pilotsAccess.updateByPrimaryKey(current.getPilotId(), current);
+					DbAccess.pilotsAccess.updateByPrimaryKey(current, current.getPilotId());
 				}
 			}
 			
