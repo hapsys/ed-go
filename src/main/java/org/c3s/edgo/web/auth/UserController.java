@@ -210,13 +210,14 @@ public class UserController extends GeneralController {
 		DBUsersBean user = getUser();
 		if (user != null) {
 			String privateK = null;
+			String publicK = null;
 			try {
 				KeyPairGenerator keyGen = KeyPairGenerator.getInstance( "RSA" );
 		        keyGen.initialize(2048);
 		        KeyPair kp = keyGen.genKeyPair();
 		        PublicKey publicKey = kp.getPublic();
 		        PrivateKey privateKey = kp.getPrivate();
-		        String publicK = Base64.getEncoder().encodeToString(publicKey.getEncoded());
+		        publicK = Base64.getEncoder().encodeToString(publicKey.getEncoded());
 		        privateK = Base64.getEncoder().encodeToString(privateKey.getEncoded());
 		        
 		        DBUserKeysBean key = user.getUserKey();
@@ -238,11 +239,11 @@ public class UserController extends GeneralController {
 				logger.error("{}", e.getMessage(), e);
 			}
 			
-			if (privateK == null) {
+			if (publicK == null) {
 				Map<String, List<String>> errors = ValueChecker.addError("accessKey", i10n("Generate key error"), null);
 				ContentObject.getInstance().setData(tag, wrapError(errors));
 			} else {
-				ContentObject.getInstance().setData(tag, new Result().put("accessKey", privateK).get());
+				ContentObject.getInstance().setData(tag, new Result().put("accessKey", publicK).get());
 			}
 			
 			redirect.setRedirect(new DropRedirect());
