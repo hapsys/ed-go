@@ -44,12 +44,18 @@ public class LoadGame extends AbstractJournalEvent<LoadGameBean> {
 			}
 			
 			if (current == null) {
-				current = new DBPilotsBean();
-				current.setUserId(user.getUserId());
-				current.setPilotName(bean.getCommander());
-				current.setIsCurrent(1);
-				//em.persist(current);
-				DbAccess.pilotsAccess.insert(current);
+				if (bean.getIsNew() || pilots == null) {
+					current = new DBPilotsBean();
+					current.setUserId(user.getUserId());
+					current.setPilotName(bean.getCommander());
+					current.setIsCurrent(1);
+					//em.persist(current);
+					DbAccess.pilotsAccess.insert(current);
+				} else {
+					current = DbAccess.pilotsAccess.getCurrentByUserId(user.getUserId());
+					current.setPilotName(bean.getCommander());
+					DbAccess.pilotsAccess.updateByPrimaryKey(current.getPilotId(), current);
+				}
 			}
 			
 			/**
