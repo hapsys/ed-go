@@ -75,13 +75,13 @@
 					<form action="" class="register-form">
 						<h1>Create Account</h1>
 						<div>
-							<input type="email" class="form-control" placeholder="Email" name="email" id="email"/>
+							<input type="email" class="form-control" placeholder="Email" name="regemail" id="regemail"/>
 						</div>
 						<div>
-							<input type="password" class="form-control" placeholder="Password"  name="password" id="password"/>
+							<input type="password" class="form-control" placeholder="Password"  name="regpassword" id="regpassword"/>
 						</div>
 						<div>
-							<input type="password" class="form-control" placeholder="Confirm Password" name="confirm" id="confirm"/>
+							<input type="password" class="form-control" placeholder="Confirm Password" name="regconfirm" id="regconfirm"/>
 						</div>
 						<div>
  							<button type="submit" class="btn btn-default submit">Submit</button>

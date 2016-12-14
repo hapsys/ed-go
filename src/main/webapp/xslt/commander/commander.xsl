@@ -359,7 +359,6 @@
 				<thead>
 					<tr>
 						<th rowspan="2">Week Start Time</th>
-						<th rowspan="2">Power</th>
 						<th colspan="3">Merits</th>
 						<th rowspan="2">Credits Spend</th>
 					</tr>

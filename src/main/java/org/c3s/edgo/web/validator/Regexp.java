@@ -18,7 +18,7 @@ public class Regexp implements Validator {
 
 	@Override
 	public String validate(Object value) {
-		return !RegexpUtils.preg_match(regexp, value.toString(), null)?text:null;
+		return value != null && !RegexpUtils.preg_match(regexp, value.toString(), null)?text:null;
 	}
 
 }

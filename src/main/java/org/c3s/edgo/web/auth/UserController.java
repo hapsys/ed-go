@@ -66,7 +66,7 @@ public class UserController extends GeneralController {
 	
 	
 	@SuppressWarnings("unchecked")
-	public void registration(@ParameterRequest("email") String email, @ParameterRequest("password") String password, @ParameterRequest("confirm") String confirm, 
+	public void registration(@ParameterRequest("regemail") String email, @ParameterRequest("regpassword") String password, @ParameterRequest("regconfirm") String confirm, 
 			@Parameter("tag") String tag, @Parameter("from") String from, @Parameter("subject") String subject, 
 			@Parameter("template") String template, RedirectControlerInterface redirect, ServletRequest request)  {
 		
@@ -82,14 +82,14 @@ public class UserController extends GeneralController {
 			try {
 				ValueChecker chk = new ValueChecker();
 				
-				chk.validate("email", email, new Required(i10n("Field must have value")));
-				chk.validate("email", email, new Regexp("~^[\\.A-z0-9_\\-\\+]+[@][A-z0-9_\\-]+([.][A-z0-9_\\-]+)+[A-z]{1,4}$~isu",i10n("Email is not valid")));
-				chk.validate("email", DbAccess.usersAccess.getByEmail(email.toLowerCase()), new Nulled(i10n("Email already using by another user")));
-				chk.validate("password", password, new Required(i10n("Field must have value")), new MinLength(8, i10n("Password must be minimum 8 chars length")));
-				chk.validate("confirm", confirm, new Required(i10n("Field must have value")));
+				chk.validate("regemail", email, new Required(i10n("Field must have value")));
+				chk.validate("regemail", email, new Regexp("~^[\\.A-z0-9_\\-\\+]+[@][A-z0-9_\\-]+([.][A-z0-9_\\-]+)+[A-z]{1,4}$~isu",i10n("Email is not valid")));
+				chk.validate("regemail", DbAccess.usersAccess.getByEmail(email.toLowerCase()), new Nulled(i10n("Email already using by another user")));
+				chk.validate("regpassword", password, new Required(i10n("Field must have value")), new MinLength(8, i10n("Password must be minimum 8 chars length")));
+				chk.validate("regconfirm", confirm, new Required(i10n("Field must have value")));
 				errors = chk.getErrors();
 				if (!password.equals(confirm)) {
-					errors = ValueChecker.addError("password", i10n("Passwords must be equals"), (Map<String, List<String>>) errors);
+					errors = ValueChecker.addError("regpassword", i10n("Passwords must be equals"), (Map<String, List<String>>) errors);
 				}
 				
 				if (errors == null) {

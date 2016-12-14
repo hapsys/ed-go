@@ -17,6 +17,21 @@ public class DBLastEventForUserBean implements DbBean, Serializable {
 
 
 	
+	@DataSource({"used_names", "usedNames"})
+	@DataTarget("used_names")
+	@XMLSimple("usedNames")
+	private java.lang.String usedNames;
+	
+	public java.lang.String getUsedNames() {
+		return usedNames;
+	}
+	
+	public DBLastEventForUserBean setUsedNames(java.lang.String value) {
+		usedNames = value;
+		return this;
+	}
+	
+	
 	@DataSource({"event", "event"})
 	@DataTarget("event_name")
 	@XMLSimple("event")

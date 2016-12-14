@@ -152,7 +152,7 @@ public class DBEventsHistoryAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT h.event_name as `event`, h.event_hash  as `hash`, DATE_FORMAT(h.event_timestamp, '%Y-%c-%dT%TZ') as `timestamp` 				FROM events_history h 				WHERE h.user_id = ? 				ORDER BY h.event_timestamp DESC 				LIMIT 1 			";
+			query = " 				SELECT h.event_name as `event`, h.event_hash  as `hash`, DATE_FORMAT(h.event_timestamp, '%Y-%c-%dT%TZ') as `timestamp`, GROUP_CONCAT(p.pilot_name SEPARATOR '|||||') as `used_names` 				FROM events_history h  				LEFT JOIN pilots p ON p.user_id = h.user_id 				WHERE h.user_id = ? 				GROUP BY h.events_history_id 				ORDER BY h.event_timestamp DESC 				LIMIT 1 			";
 		}
 
 		

@@ -33,9 +33,9 @@ $(function() {
 		
 		$(form).submit(function() {
 			var data = {
-					email: $('#email').val(),
-					password: $('#password').val(),
-					confirm: $('#confirm').val(),
+					regemail: $('#regemail').val(),
+					regpassword: $('#regpassword').val(),
+					regconfirm: $('#regconfirm').val(),
 			};
 			//console.log(data);
 			$(form).find('input,button,select').prop('disabled', true);
