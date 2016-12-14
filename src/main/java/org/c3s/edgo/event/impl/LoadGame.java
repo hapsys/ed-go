@@ -44,7 +44,7 @@ public class LoadGame extends AbstractJournalEvent<LoadGameBean> {
 			}
 			
 			if (current == null) {
-				if (bean.getIsNew() || pilots == null) {
+				if (bean.getIsNew().equals("true") || pilots == null) {
 					current = new DBPilotsBean();
 					current.setUserId(user.getUserId());
 					current.setPilotName(bean.getCommander());
