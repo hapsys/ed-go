@@ -15,7 +15,7 @@ public class ShipyardNewBean extends AbstractEventBean {
 	/**
 	 * 
 	 */
-	private int ShipID;
+	private int NewShipID;
 
 	/**
 	 * @return
@@ -62,15 +62,15 @@ public class ShipyardNewBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public int getShipID() {
-		return ShipID;
+	public int getNewShipID() {
+		return NewShipID;
 	}
 
 	/**
 	 * @param shipid
 	 */
-	public void setShipID(int shipid) {
-		this.ShipID = shipid;
+	public void setNewShipID(int shipid) {
+		this.NewShipID = shipid;
 	}
 
 }

@@ -15,10 +15,14 @@ public class ProcessEvents {
 	public static void main(String[] args) throws SQLException {
 		
 		Properties props = new Properties();
-		props.put("user", "root");
-		props.put("password", "root");
-		props.put("retainStatementAfterResultSetClose", true);
-		DBManager.getConnection("edgo", "com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ed-go", props);
+		//props.put("user", "root");
+		//props.put("password", "root");
+		//props.put("retainStatementAfterResultSetClose", true);
+		//DBManager.getConnection("edgo", "com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ed-go", props);
+		props.put("user", "hapsys");
+		props.put("password", "123467890");
+		DBManager.getConnection("edgo", "com.mysql.jdbc.Driver", "jdbc:mysql://192.168.0.10:3306/ed-go", props);
+		
 		
 		
 		EventDispatcher.registerEventPackage("org.c3s.edgo.event.impl");

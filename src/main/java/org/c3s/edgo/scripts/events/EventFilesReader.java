@@ -40,14 +40,16 @@ public class EventFilesReader {
 		props.put("password", "123467890");
 		DBManager.getConnection("edgo", "com.mysql.jdbc.Driver", "jdbc:mysql://192.168.0.10:3306/ed-go", props);
 		
-		String savedgames = System.getenv("USERPROFILE") + "\\Saved Games\\Frontier Developments\\Elite Dangerous\\";;
-		long userId = 1L;
+		//String savedgames = System.getenv("USERPROFILE") + "\\Saved Games\\Frontier Developments\\Elite Dangerous\\";;
+		//long userId = 1L;
 		//String savedgames = "F:\\freelance\\elite-dangerous\\journals\\oleg\\";
 		//long userId = 2L;
 		//String savedgames = "F:\\freelance\\elite-dangerous\\journals\\flack\\";
 		//long userId = 3L;
 		//String savedgames = "F:\\freelance\\elite-dangerous\\journals\\victor\\";
 		//long userId = 4L;
+		String savedgames = "F:\\freelance\\elite-dangerous\\journals\\say\\";
+		long userId = 13L;
 		
 		
 		System.out.println(savedgames);
