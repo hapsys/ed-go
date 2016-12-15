@@ -28,6 +28,8 @@ public class LoadGame extends AbstractJournalEvent<LoadGameBean> {
 			 * Set current pilot for user
 			 */
 			DBPilotsBean current = null;
+			DBPilotsBean lastCurrent = DbAccess.pilotsAccess.getCurrentByUserId(user.getUserId());
+			
 			List<DBPilotsBean> pilots = DbAccess.pilotsAccess.getByUserId(user.getUserId());
 					//em.createNamedQuery("Pilot.findByUserId", Pilot.class).setParameter("user_id", user.getUserId()).getResultList();
 			if (pilots != null && pilots.size() > 0) {
@@ -38,7 +40,6 @@ public class LoadGame extends AbstractJournalEvent<LoadGameBean> {
 					} else {
 						pilot.setIsCurrent(0);
 					}
-					//em.merge(pilot);
 					DbAccess.pilotsAccess.updateByPrimaryKey(pilot, pilot.getPilotId());
 				}
 			}
@@ -49,12 +50,16 @@ public class LoadGame extends AbstractJournalEvent<LoadGameBean> {
 					current.setUserId(user.getUserId());
 					current.setPilotName(bean.getCommander());
 					current.setIsCurrent(1);
-					//em.persist(current);
 					DbAccess.pilotsAccess.insert(current);
 				} else {
+					/*
 					current = DbAccess.pilotsAccess.getCurrentByUserId(user.getUserId());
 					current.setPilotName(bean.getCommander());
 					DbAccess.pilotsAccess.updateByPrimaryKey(current, current.getPilotId());
+					*/
+					lastCurrent.setPilotName(bean.getCommander());
+					DbAccess.pilotsAccess.updateByPrimaryKey(lastCurrent, lastCurrent.getPilotId());
+					
 				}
 			}
 			
