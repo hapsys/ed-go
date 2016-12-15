@@ -92,7 +92,7 @@ public class RemoteClient extends GeneralController {
 					ret.put("data", new GeneralDataMapper().mapToRow(event));
 				} else {
 					//System.out.println("|" + resultStr + "|");
-					logger.debug(resultStr);
+					//logger.debug(resultStr);
 					parser.setUserId(user.getUserId());
 					parser.process(resultStr);
 				}
