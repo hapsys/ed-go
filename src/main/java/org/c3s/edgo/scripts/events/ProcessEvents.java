@@ -17,6 +17,7 @@ public class ProcessEvents {
 		Properties props = new Properties();
 		props.put("user", "root");
 		props.put("password", "root");
+		props.put("retainStatementAfterResultSetClose", true);
 		DBManager.getConnection("edgo", "com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ed-go", props);
 		
 		
