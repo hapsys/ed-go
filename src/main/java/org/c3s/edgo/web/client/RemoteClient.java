@@ -26,13 +26,18 @@ import org.c3s.dispatcher.RedirectControlerInterface;
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBLastEventForUserBean;
 import org.c3s.edgo.common.beans.DBUsersBean;
+import org.c3s.edgo.event.impl.ShipyardNew;
 import org.c3s.edgo.utils.SimpleJsonParser;
 import org.c3s.edgo.web.GeneralController;
 import org.c3s.edgo.web.validator.Result;
 import org.c3s.web.redirect.DropRedirect;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
 public class RemoteClient extends GeneralController {
+	
+	private static Logger logger = LoggerFactory.getLogger(RemoteClient.class);
 	
 	private SimpleJsonParser parser = new SimpleJsonParser();
 	
@@ -87,6 +92,7 @@ public class RemoteClient extends GeneralController {
 					ret.put("data", new GeneralDataMapper().mapToRow(event));
 				} else {
 					//System.out.println("|" + resultStr + "|");
+					logger.debug(resultStr);
 					parser.setUserId(user.getUserId());
 					parser.process(resultStr);
 				}
