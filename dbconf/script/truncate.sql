@@ -11,3 +11,7 @@ TRUNCATE `pilot_power_spend`;
 TRUNCATE `pilot_war_merits`;
 TRUNCATE `pilot_kill_merits`;
 TRUNCATE `pilot_deliver`;
+TRUNCATE `ranks`;
+TRUNCATE `progress`;
+DELETE FROM pilot_modules;
+DELETE FROM pilot_ships;
