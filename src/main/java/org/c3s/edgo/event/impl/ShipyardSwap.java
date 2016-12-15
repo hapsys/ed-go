@@ -26,7 +26,8 @@ public class ShipyardSwap extends AbstractJournalEvent<ShipyardSwapBean> {
 			DBPilotsBean current = getCurrent();
 			if (current != null) {
 				if (bean.getSellOldShip() != null) {
-					ShipsDAO.removePilotShip(ShipsDAO.updateOrInsertCurrentPilotShip(current, bean.getSellOldShip().toLowerCase(), bean.getSellShipID()));
+					//ShipsDAO.removePilotShip(ShipsDAO.updateOrInsertCurrentPilotShip(current, bean.getSellOldShip().toLowerCase(), bean.getSellShipID()));
+					ShipsDAO.removePilotShip(ShipsDAO.getOrInsertPilotShip(current, bean.getSellOldShip().toLowerCase(), bean.getSellShipID(), null));
 				}
 				ShipsDAO.updateOrInsertCurrentPilotShip(current, bean.getShipType().toLowerCase(), bean.getShipID());
 			}
