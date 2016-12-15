@@ -182,4 +182,15 @@ public class ShipsDAO {
 		}
 	}
 	
+	public static void updateCurrentShipPosition(DBPilotsBean pilot) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		DBPilotShipsBean pilotShip = DbAccess.pilotShipsAccess.getCurrentByPilotId(pilot.getPilotId());
+		if (pilotShip != null) {
+			DBLocationHistoryBean location = DbAccess.locationHistoryAccess.getLastLocation(pilot.getPilotId());
+			if (location != null) {
+				pilotShip.setSystemId(location.getSystemId());
+				pilotShip.setStationId(location.getStationId());
+				DbAccess.pilotShipsAccess.updateByPrimaryKey(pilotShip, pilotShip.getPilotShipId());
+			}
+		}
+	}
 }
