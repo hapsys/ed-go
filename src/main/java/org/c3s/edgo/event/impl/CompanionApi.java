@@ -61,22 +61,20 @@ public class CompanionApi extends AbstractJournalEvent<CompanionApiBean> {
 				pilotShip.setCanDeleted(0);
 				if (currentShipId == id) {
 					pilotShip.setIsMain(1);
-					/*
 					DBSystemsBean system = SystemsDAO.getOrInsertSystem(companion.lastSystem.name, null);
 					DBStationsBean station =  SystemsDAO.getStation(companion.lastSystem.name, system.getSystemId());
 					pilotShip.setSystemId(system.getSystemId());
 					if (station != null) {
 						pilotShip.setStationId(station.getStationId());
 					}
-					*/
 				} else {
 					pilotShip.setIsMain(0);
-				}
-				DBSystemsBean system = SystemsDAO.getOrInsertSystem(companion.ships.get(strId).starsystem.name, null);
-				DBStationsBean station =  SystemsDAO.getStation(companion.ships.get(strId).station.name, system.getSystemId());
-				pilotShip.setSystemId(system.getSystemId());
-				if (station != null) {
-					pilotShip.setStationId(station.getStationId());
+					DBSystemsBean system = SystemsDAO.getOrInsertSystem(companion.ships.get(strId).starsystem.name, null);
+					DBStationsBean station =  SystemsDAO.getStation(companion.ships.get(strId).station.name, system.getSystemId());
+					pilotShip.setSystemId(system.getSystemId());
+					if (station != null) {
+						pilotShip.setStationId(station.getStationId());
+					}
 				}
 				
 				DbAccess.pilotShipsAccess.updateByPrimaryKey(pilotShip, pilotShip.getPilotShipId());

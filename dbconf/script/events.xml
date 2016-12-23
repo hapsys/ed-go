@@ -97,6 +97,7 @@
 				FROM events_history h 
 				LEFT JOIN pilots p ON p.user_id = h.user_id
 				WHERE h.user_id = ?
+				AND h.event_name != 'CompanionApi'
 				GROUP BY h.events_history_id
 				ORDER BY h.event_timestamp DESC
 				LIMIT 1
