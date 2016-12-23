@@ -8,7 +8,6 @@ import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBByModuleInfoByUniqBean;
 import org.c3s.edgo.common.beans.DBPilotShipsBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
-import org.c3s.edgo.common.beans.DBShipSlotsBean;
 import org.c3s.edgo.common.beans.DBSlotsBean;
 import org.c3s.edgo.common.beans.DBStationsBean;
 import org.c3s.edgo.common.beans.DBSystemsBean;
@@ -48,6 +47,8 @@ public class CompanionApi extends AbstractJournalEvent<CompanionApiBean> {
 			CompanionBean companion = companionApiBean.getCompanionData();
 			
 			DbAccess.pilotShipsAccess.updateSetDeletedByPilotId(pilot.getPilotId());
+			
+			
 			
 			long currentShipId = companion.ship.id;
 

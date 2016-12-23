@@ -250,7 +250,7 @@ public class DBPilotShipsAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				DELETE mr, pm, ps 				FROM module_recipies mr, pilot_modules pm, pilot_ships ps 				WHERE ps.pilot_id = ? 				AND ps.can_deleted = 1 				AND pm.pilot_ship_id = ps.pilot_ship_id 				AND mr.pilot_module_id = pm.pilot_module_id 			";
+			query = " 				DELETE ps 				FROM pilot_ships ps 				WHERE ps.pilot_id = ? 				AND ps.can_deleted = 1 			";
 		}
 
 		
