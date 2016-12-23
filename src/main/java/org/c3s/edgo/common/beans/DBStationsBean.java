@@ -260,13 +260,13 @@ public class DBStationsBean implements DbBean, Serializable {
 	@DataSource({"system_id", "systemId"})
 	@DataTarget("system_id")
 	@XMLSimple("systemId")
-	private java.lang.Long systemId;
+	private java.math.BigInteger systemId;
 	
-	public java.lang.Long getSystemId() {
+	public java.math.BigInteger getSystemId() {
 		return systemId;
 	}
 	
-	public DBStationsBean setSystemId(java.lang.Long value) {
+	public DBStationsBean setSystemId(java.math.BigInteger value) {
 		systemId = value;
 		return this;
 	}

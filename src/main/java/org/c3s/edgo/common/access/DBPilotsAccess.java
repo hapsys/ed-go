@@ -98,6 +98,36 @@ public class DBPilotsAccess extends Access {
 		return ret;
 	}
 	
+	public DBPilotsBean getByUserIdAndName(java.lang.Long paramUserId, java.lang.String paramPilotName)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		DBPilotsBean ret = null;
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  user_id= ? AND  pilot_name= ?  "+injector.getWhereQuery()+" ";
+		if (injector.getOrderQuery().length() != 0) {
+			sql += injector.getOrderQuery();
+		} else { 
+			
+		}
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByUserIdAndName", sql ,  paramUserId,  paramPilotName);
+		if (result != null) {
+			
+			ret = dataMapper.mapFromRow(result.get(0), DBPilotsBean.class);
+			
+		}
+		return ret;
+	}
+	
 	public DBPilotsBean getByPrimaryKey(java.lang.Long paramPilotId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		DBPilotsBean ret = null;

@@ -15,6 +15,10 @@
 		<select name="ByUniq" single_object="true">
 			<column name="name_uniq"/>
 		</select>
+		<select name="ByUniqAndSystemId" single_object="true">
+			<column name="name_uniq"/>
+			<column name="system_id"/>
+		</select>
 	</table>
 	<table name="factions">
 		<select name="ByPrimaryKey" single_object="true">

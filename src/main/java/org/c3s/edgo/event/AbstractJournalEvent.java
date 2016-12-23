@@ -48,7 +48,11 @@ public abstract class AbstractJournalEvent<T extends AbstractEventBean> implemen
 		//System.out.println(beanClass);
 		if (this.beanClass != null) {
 			try {
-				T bean = JSONUtils.fromJSON(event.getEventJson(), this.beanClass);
+				String json = event.getEventJson();
+				if ("CompanionApi".equals(event.getEventName())) {
+					json = json.replaceAll("\\[\\]", "{}");
+				}
+				T bean = JSONUtils.fromJSON(json, this.beanClass);
 				if (DbAccess.eventsHistoryAccess.getByUserIdTimestampAndHash(event.getUserId(), new Timestamp(bean.getTimestamp().getTime()), event.getJsonMd5()) == null) {
 					this.processBean(bean);
 					addEventHistory(event, bean.getTimestamp());

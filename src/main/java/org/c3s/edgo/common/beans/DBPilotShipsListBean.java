@@ -107,6 +107,21 @@ public class DBPilotShipsListBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"can_deleted", "canDeleted"})
+	@DataTarget("can_deleted")
+	@XMLSimple("canDeleted")
+	private java.lang.Integer canDeleted;
+	
+	public java.lang.Integer getCanDeleted() {
+		return canDeleted;
+	}
+	
+	public DBPilotShipsListBean setCanDeleted(java.lang.Integer value) {
+		canDeleted = value;
+		return this;
+	}
+	
+	
 	@DataSource({"pilot_id", "pilotId"})
 	@DataTarget("pilot_id")
 	@XMLSimple("pilotId")

@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBFactionsBean;
+import org.c3s.edgo.common.beans.DBStationsBean;
 import org.c3s.edgo.common.beans.DBSystemsBean;
 import org.c3s.edgo.utils.EDUtils;
 
@@ -33,6 +34,17 @@ public class SystemsDAO {
 		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	public static DBStationsBean getStation(String station, BigInteger systemId) {
+		DBStationsBean result = null;
+		try {
+			String stauniq = EDUtils.getStationUniq(station);
+			result = DbAccess.stationsAccess.getByUniqAndSystemId(stauniq, systemId);
+		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return result;
 	}
 	
 	public static DBFactionsBean getOrInsertFaction(String faction) {

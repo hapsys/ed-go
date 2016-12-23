@@ -45,6 +45,10 @@
 			<column name="user_id"/>
 			<column name="is_current" condition="=" value="1"/>
 		</select>
+		<select name="ByUserIdAndName" single_object="true">
+			<column name="user_id"/>
+			<column name="pilot_name"/>
+		</select>
 		<update name="ByPrimaryKey">
 			<column name="pilot_id"/>
 		</update>
@@ -89,6 +93,23 @@
 				ORDER BY sh.ship_name
 			</sql>
 		</query>
+		<query name="SetDeletedByPilotId">
+			<column name="PilotId" type="long"/>
+			<sql>
+				UPDATE pilot_ships SET can_deleted = 1 WHERE pilot_id = ? 
+			</sql>
+		</query>
+		<query name="DeletedByPilotId">
+			<column name="PilotId" type="long"/>
+			<sql>
+				DELETE mr, pm, ps
+				FROM module_recipies mr, pilot_modules pm, pilot_ships ps
+				WHERE ps.pilot_id = ?
+				AND ps.can_deleted = 1
+				AND pm.pilot_ship_id = ps.pilot_ship_id
+				AND mr.pilot_module_id = pm.pilot_module_id
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 	<table name="pilot_modules">
@@ -107,6 +128,10 @@
 		</delete>
 		<delete name="ByPilotShipId">
 			<column name="pilot_ship_id"/>
+		</delete>
+		<delete name="ByPilotShipIdAndSlotId">
+			<column name="pilot_ship_id"/>
+			<column name="slot_id"/>
 		</delete>
 		<query name="PilotShipModulesList">
 			<column name="PilotShipId" type="long"/>

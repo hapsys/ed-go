@@ -237,4 +237,48 @@ public class DBPilotShipsAccess extends Access {
 		return ret;
 	}
 	
+	public int deleteDeletedByPilotId(long paramPilotId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				DELETE mr, pm, ps 				FROM module_recipies mr, pilot_modules pm, pilot_ships ps 				WHERE ps.pilot_id = ? 				AND ps.can_deleted = 1 				AND pm.pilot_ship_id = ps.pilot_ship_id 				AND mr.pilot_module_id = pm.pilot_module_id 			";
+		}
+
+		
+		int ret = getConnection().query(query,  paramPilotId);
+			
+		return ret;
+	}
+	
+	public int updateSetDeletedByPilotId(long paramPilotId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				UPDATE pilot_ships SET can_deleted = 1 WHERE pilot_id = ?  			";
+		}
+
+		
+		int ret = getConnection().query(query,  paramPilotId);
+			
+		return ret;
+	}
+	
 }

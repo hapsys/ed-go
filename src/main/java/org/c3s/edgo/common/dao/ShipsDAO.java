@@ -85,7 +85,7 @@ public class ShipsDAO {
 		}
 	}
 	
-	public static DBSlotsBean getOrInsertSlot(String slotUniq, long slotTypeId) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+	public static DBSlotsBean getOrInsertSlot(String slotUniq, Long slotTypeId) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		DBSlotsBean bean = DbAccess.slotsAccess.getByUniq(slotUniq);
 		if (bean == null) {
 			bean = new DBSlotsBean();
@@ -93,6 +93,9 @@ public class ShipsDAO {
 			bean.setSize(0);
 			bean.setSlotTypeId(slotTypeId);
 			DbAccess.slotsAccess.insert(bean);
+		} else if (slotTypeId != null && (bean.getSlotTypeId() == null || !bean.getSlotTypeId().equals(slotTypeId))) {
+			bean.setSlotTypeId(slotTypeId);
+			DbAccess.slotsAccess.updateByPrimaryKey(bean, bean.getSlotId());
 		}
 		return bean;
 	}

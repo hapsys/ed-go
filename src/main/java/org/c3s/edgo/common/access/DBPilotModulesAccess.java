@@ -133,6 +133,12 @@ public class DBPilotModulesAccess extends Access {
 		return getConnection().updateRow("pilot_modules", map, keys);
 	}
 	
+	public int deleteByPilotShipIdAndSlotId(java.lang.Long paramPilotShipId, java.lang.Long paramSlotId) throws SQLException {
+		setNames();
+		String sql = "DELETE FROM " + tablename + " WHERE  1=1 AND  pilot_ship_id= ? AND  slot_id= ?  ";
+		return getConnection().query(sql, paramPilotShipId, paramSlotId);
+	}
+	
 	public int deleteByPrimaryKey(java.lang.Long paramPilotModuleId) throws SQLException {
 		setNames();
 		String sql = "DELETE FROM " + tablename + " WHERE  1=1 AND  pilot_module_id= ?  ";
