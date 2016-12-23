@@ -77,6 +77,21 @@ public class DBPilotsBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"is_ignored", "isIgnored"})
+	@DataTarget("is_ignored")
+	@XMLSimple("isIgnored")
+	private java.lang.Integer isIgnored;
+	
+	public java.lang.Integer getIsIgnored() {
+		return isIgnored;
+	}
+	
+	public DBPilotsBean setIsIgnored(java.lang.Integer value) {
+		isIgnored = value;
+		return this;
+	}
+	
+	
 	@DataSource({"ships", "ships"})
 	@DataTarget("ships")
 	@XMLFieldList
