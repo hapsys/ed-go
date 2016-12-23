@@ -38,6 +38,7 @@ public class CompanionApi extends AbstractJournalEvent<CompanionApiBean> {
 				pilot = new DBPilotsBean();
 				pilot.setUserId(user.getUserId());
 				pilot.setPilotName(pilot_name);
+				pilot.setIsCurrent(1);
 				DbAccess.pilotsAccess.insert(pilot);
 			}
 			
