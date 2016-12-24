@@ -52,6 +52,12 @@
 		<update name="ByPrimaryKey">
 			<column name="pilot_id"/>
 		</update>
+		<query name="NoCurrent">
+			<column name="UserId" type="long"/>
+			<sql>
+				UPDATE pilots SET is_current = 0 WHERE user_id = ?
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 	<table name="pilot_ships">

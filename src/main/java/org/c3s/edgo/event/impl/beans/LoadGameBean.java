@@ -18,7 +18,6 @@ public class LoadGameBean extends AbstractEventBean {
 	private String Group;
 	private int Credits;
 	private int Loan;
-	private String IsNew;
 	
 
 	/**
@@ -109,14 +108,6 @@ public class LoadGameBean extends AbstractEventBean {
 	 */
 	public void setEvent(String event) {
 		this.event = event;
-	}
-
-	public String getIsNew() {
-		return IsNew;
-	}
-
-	public void setIsNew(String isNew) {
-		IsNew = isNew;
 	}
 
 }

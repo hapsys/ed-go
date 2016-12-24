@@ -228,4 +228,26 @@ public class DBPilotsAccess extends Access {
 		return getConnection().updateRow("pilots", map, keys);
 	}
 	
+	public int updateNoCurrent(long paramUserId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				UPDATE pilots SET is_current = 0 WHERE user_id = ? 			";
+		}
+
+		
+		int ret = getConnection().query(query,  paramUserId);
+			
+		return ret;
+	}
+	
 }

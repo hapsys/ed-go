@@ -34,6 +34,7 @@ public class CompanionApi extends AbstractJournalEvent<CompanionApiBean> {
 			String pilot_name = companionApiBean.getCompanionData().commander.name;
 			DBPilotsBean pilot = DbAccess.pilotsAccess.getByUserIdAndName(user.getUserId(), pilot_name);
 			if (pilot == null) {
+				DbAccess.pilotsAccess.updateNoCurrent(user.getUserId());
 				pilot = new DBPilotsBean();
 				pilot.setUserId(user.getUserId());
 				pilot.setPilotName(pilot_name);
