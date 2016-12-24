@@ -57,6 +57,31 @@
 		</query>
 	</table>
 	<!--  -->
+	<table name="location_system_history">
+		<column name="system_name" type="String">
+	    	<annotation>@XMLSimple("systemName")</annotation>
+		</column>
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="location_system_id"/>
+		</select>
+		<select name="LastSystemLocation" single_object="true">
+			<column name="pilot_id"/>
+			<sort>location_time DESC</sort>
+		</select>
+		<query name="LastLocationForPilot" use="LocationSystemHistory" single_object="true">
+			<column name="PilotId" type="long"/>
+			<sql>
+				SELECT l.*, sy.name as system_name, st.name as station_name
+				FROM location_system_history l
+				LEFT JOIN systems sy ON l.system_id = sy.system_id
+				LEFT JOIN stations st ON l.station_id = st.station_id
+				WHERE l.pilot_id = ?
+				ORDER BY location_time DESC
+				LIMIT 1 
+			</sql>
+		</query>
+	</table>
+	<!--  -->
 	<table name="ranks">
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="pilot_id"/>

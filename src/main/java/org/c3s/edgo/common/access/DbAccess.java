@@ -11,6 +11,7 @@ public class DbAccess {
 	public static final DBPilotMaterialsAccess pilotMaterialsAccess = new DBPilotMaterialsAccess();
 	public static final DBEventsAccess eventsAccess = new DBEventsAccess();
 	public static final DBLocationHistoryAccess locationHistoryAccess = new DBLocationHistoryAccess();
+	public static final DBLocationSystemHistoryAccess locationSystemHistoryAccess = new DBLocationSystemHistoryAccess();
 	public static final DBRanksAccess ranksAccess = new DBRanksAccess();
 	public static final DBProgressAccess progressAccess = new DBProgressAccess();
 	public static final DBEventsHistoryAccess eventsHistoryAccess = new DBEventsHistoryAccess();

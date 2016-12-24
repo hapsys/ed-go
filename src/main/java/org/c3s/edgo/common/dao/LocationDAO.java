@@ -6,6 +6,7 @@ import java.util.Date;
 
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBLocationHistoryBean;
+import org.c3s.edgo.common.beans.DBLocationSystemHistoryBean;
 import org.c3s.edgo.common.beans.DBStationsBean;
 import org.c3s.edgo.common.beans.DBSystemsBean;
 import org.c3s.edgo.utils.EDUtils;
@@ -45,6 +46,18 @@ public class LocationDAO {
 				}
 				history.setSystemId(starSystem.getSystemId());
 				DbAccess.locationHistoryAccess.insert(history);
+				
+				/**
+				 * insert system history location 
+				 */
+				DBLocationSystemHistoryBean prevSys = DbAccess.locationSystemHistoryAccess.getLastSystemLocation(pilot_id);
+				if (prevSys == null || !prevSys.getSystemId().equals(starSystem.getSystemId())) {
+					DBLocationSystemHistoryBean hisLoc = new DBLocationSystemHistoryBean();
+					hisLoc.setPilotId(pilot_id);
+					hisLoc.setLocationTime(new Timestamp(timestamp.getTime()));
+					hisLoc.setSystemId(starSystem.getSystemId());
+					DbAccess.locationSystemHistoryAccess.insert(hisLoc);
+				}
 			}
 		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
 			throw new RuntimeException(e);
