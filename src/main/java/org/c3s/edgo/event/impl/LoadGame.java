@@ -28,7 +28,7 @@ public class LoadGame extends AbstractJournalEvent<LoadGameBean> {
 			 * Set current pilot for user
 			 */
 			DBPilotsBean current = null;
-			DBPilotsBean lastCurrent = DbAccess.pilotsAccess.getCurrentByUserId(user.getUserId());
+			//DBPilotsBean lastCurrent = DbAccess.pilotsAccess.getCurrentByUserId(user.getUserId());
 			
 			List<DBPilotsBean> pilots = DbAccess.pilotsAccess.getByUserId(user.getUserId());
 					//em.createNamedQuery("Pilot.findByUserId", Pilot.class).setParameter("user_id", user.getUserId()).getResultList();
@@ -45,24 +45,23 @@ public class LoadGame extends AbstractJournalEvent<LoadGameBean> {
 			}
 			
 			if (current == null) {
+				current = new DBPilotsBean();
+				current.setUserId(user.getUserId());
+				current.setPilotName(bean.getCommander());
+				current.setIsCurrent(1);
+				current.setIsIgnored(0);
+				DbAccess.pilotsAccess.insert(current);
+				/*
 				if (pilots == null) {
-					current = new DBPilotsBean();
-					current.setUserId(user.getUserId());
-					current.setPilotName(bean.getCommander());
-					current.setIsCurrent(1);
-					current.setIsIgnored(0);
-					DbAccess.pilotsAccess.insert(current);
 				} else {
-					/*
 					current = DbAccess.pilotsAccess.getCurrentByUserId(user.getUserId());
 					current.setPilotName(bean.getCommander());
 					DbAccess.pilotsAccess.updateByPrimaryKey(current, current.getPilotId());
-					*/
 					lastCurrent.setPilotName(bean.getCommander());
 					DbAccess.pilotsAccess.updateByPrimaryKey(lastCurrent, lastCurrent.getPilotId());
 					current = lastCurrent; 
-					
 				}
+				*/
 			}
 			
 			/**
