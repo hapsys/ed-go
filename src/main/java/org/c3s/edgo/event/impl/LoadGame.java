@@ -45,11 +45,12 @@ public class LoadGame extends AbstractJournalEvent<LoadGameBean> {
 			}
 			
 			if (current == null) {
-				if (bean.getIsNew().equals("true") || pilots == null) {
+				if (pilots == null) {
 					current = new DBPilotsBean();
 					current.setUserId(user.getUserId());
 					current.setPilotName(bean.getCommander());
 					current.setIsCurrent(1);
+					current.setIsIgnored(0);
 					DbAccess.pilotsAccess.insert(current);
 				} else {
 					/*
