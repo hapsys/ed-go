@@ -3,11 +3,17 @@ package org.c3s.edgo.web.controllers;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.c3s.annotations.Controller;
 import org.c3s.annotations.Parameter;
+import org.c3s.annotations.ParameterRequest;
 import org.c3s.content.ContentObject;
 import org.c3s.dispatcher.PatternerInterface;
 import org.c3s.dispatcher.RedirectControlerInterface;
@@ -15,6 +21,8 @@ import org.c3s.dispatcher.UrlPart;
 import org.c3s.dispatcher.exceptions.SkipSubLevelsExeption;
 import org.c3s.dispatcher.exceptions.StopDispatchException;
 import org.c3s.edgo.common.access.DbAccess;
+import org.c3s.edgo.common.beans.DBActivityBean;
+import org.c3s.edgo.common.beans.DBEventMaxMinDateForPilotBean;
 import org.c3s.edgo.common.beans.DBMissionsComplitedListByPilotsBean;
 import org.c3s.edgo.common.beans.DBPilotShipsBean;
 import org.c3s.edgo.common.beans.DBPilotShipsListBean;
@@ -22,8 +30,11 @@ import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.beans.DBPilotsPowerWeeksBean;
 import org.c3s.edgo.common.beans.DBPowerCortageBean;
 import org.c3s.edgo.common.beans.DBUsersBean;
+import org.c3s.edgo.common.intruders.EventHistoryInjector;
 import org.c3s.edgo.common.intruders.InInjector;
 import org.c3s.edgo.web.GeneralController;
+import org.c3s.edgo.web.auth.AuthRoles;
+import org.c3s.edgo.web.validator.Result;
 import org.c3s.reflection.XMLReflectionObj;
 import org.c3s.web.redirect.DirectRedirect;
 import org.c3s.web.redirect.DropRedirect;
@@ -41,6 +52,8 @@ public class Commander extends GeneralController {
 	
 	private DBPilotsBean current = null;
 	
+	// ============================================================== +INFORMATION ==============================================================================
+	
 	public void getInformation(@Parameter("tag") String tag, @Parameter("template") String template, RedirectControlerInterface redirect) throws Exception {
 	
 		if (current != null) {
@@ -51,6 +64,17 @@ public class Commander extends GeneralController {
 			
 			Document xml = new XMLReflectionObj(current, true).toXML();	
 			
+			DBEventMaxMinDateForPilotBean minmax = DbAccess.eventsHistoryAccess.getEventMaxMinDateForPilot(current.getPilotId());
+			
+			if (minmax.getMinDate().length() > 0) {
+				xml.getDocumentElement().setAttribute("mindate", minmax.getMinDate());
+				xml.getDocumentElement().setAttribute("maxdate", minmax.getMaxDate());
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				SimpleDateFormat monthFormat = new SimpleDateFormat("LLLL yyyy", Locale.US);
+				String monthYear = monthFormat.format(dateFormat.parse(minmax.getMaxDate()));
+				xml.getDocumentElement().setAttribute("currentdate", monthYear);
+			}
+			
 			//logger.debug(XMLUtils.xml2out(xml));
 			//logger.debug("template {}", template);
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:info"});
@@ -60,6 +84,37 @@ public class Commander extends GeneralController {
 		}
 		
 	}
+	
+	public void getActivity(@ParameterRequest("showdate") String showdate, @Parameter("tag") String tag, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		if (current != null) {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
+			Date date;
+			try {
+				date = dateFormat.parse(showdate);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				date = new Date();
+				//e.printStackTrace();
+			}
+			String dateStr = dateFormat.format(date);
+			String from = dateStr + "-01 00:00:00";
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(date);
+			calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+			String to = dateStr + "-" + calendar.getActualMaximum(Calendar.DAY_OF_MONTH) + " 23:59:59";
+			//System.out.println(from);
+			//System.out.println(to);
+			
+			List<DBActivityBean> activity = DbAccess.eventsHistoryAccess.getActivity(current.getPilotId(), new EventHistoryInjector(from, to));
+			//System.out.println(activity.size());
+			ContentObject.getInstance().setData(tag, new Result().put("days", activity).get());
+			redirect.setRedirect(new DropRedirect());
+		}
+	}
+	
+	// ============================================================== -INFORMATION ==============================================================================
+	
+	// ============================================================== +SHIPS AND MODULES ==============================================================================
 	
 	public void getShips(@Parameter("tag") String tag, @Parameter("template") String template, RedirectControlerInterface redirect) throws Exception {
 	
@@ -198,12 +253,14 @@ public class Commander extends GeneralController {
 		//String actionUrl = URLDecoder.decode(url.getPattern().substring(0, url.getPattern().length() - 1), "utf-8");
 		//logger.debug("1 dencoding: {}", url.getPattern().substring(0, url.getPattern().length() - 1).toLowerCase());
 		//logger.debug("2 dencoding: {}", URLDecoder.decode(url.getPattern().substring(0, url.getPattern().length() - 1), "utf-8"));
+		//SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		//System.out.println(dateFormat.format(new Date()));
 		DBUsersBean user = getUser();
 		DBPilotsBean pilot = null;
 
 		if (user != null) {
 			pilot = DbAccess.pilotsAccess.getByName(actionUrl);
-			if (pilot != null && pilot.getUserId().equals(user.getUserId())) {
+			if (pilot != null && (pilot.getUserId().equals(user.getUserId()) || hasRole(AuthRoles.ROLE_ADMINISTRATOR))) {
 				current = pilot;
 				ContentObject.getInstance().setFixedParameters("pilot", pilot.getPilotName());
 			}

@@ -49,6 +49,7 @@ public class Auth extends GeneralController {
 		} else {
 			roles.add(AuthRoles.ROLE_NOT_LOGGED);
 		}
+		setUserRoles(roles);
 		
 		StringBuffer sb = new StringBuffer();
 		for (AuthRoles role : roles) {

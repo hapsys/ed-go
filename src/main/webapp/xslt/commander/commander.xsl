@@ -25,198 +25,356 @@
 //
 -->
 	<xsl:template name="view_info">
-		
-		<!-- div><h2><xsl:value-of select="i10n:tr('CMDR')"/>&#160;<xsl:value-of select="field[@name='pilotName']/@value"/></h2></div -->
-		<p>
-			<h3><xsl:value-of select="i10n:tr('Last location')"/>:</h3>
-			<table class="table ">
-				<tr>
-					<td class="col-md-1">System:</td>
-					<td><xsl:value-of select="item[@name='location']/field[@name='systemName']/@value" disable-output-escaping="yes"/></td>
-				</tr>
-				<tr>
-					<td class="col-md-1">Station:</td>
-					<td><xsl:value-of select="item[@name='location']/field[@name='stationName']/@value" disable-output-escaping="yes"/></td>
-				</tr>
-			</table>
-		</p>
+
 		<div class="clearfix"></div>
-		<p>
-			<h3>Ranks:</h3>
-		<!-- Combat -->		
-		<div class="col-md-3 col-xs-12 widget widget_tally_box">
-			<xsl:variable name="percent" select="item[@name='progress']/field[@name='combat']/@value"/>
-			<div class="x_panel ui-ribbon-container fixed_height_250">
-				<div class="x_title">
-					<h2>Combat</h2>
-					<div class="clearfix"></div>
-				</div>
-				<div class="x_content">
-				
-					<div style="text-align: center; margin-bottom: 17px">
-						<span class="chart" data-percent="{$percent}">
-							<span class="percent"></span>
-						</span>
+		<!-- Location -->
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>
+					<xsl:value-of select="i10n:tr('Last location')"/>
+					<small></small>
+				</h2>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<table class="table ">
+					<tr>
+						<td class="col-md-1">System:</td>
+						<td>
+							<xsl:value-of
+								select="item[@name='location']/field[@name='systemName']/@value"
+								disable-output-escaping="yes" />
+						</td>
+					</tr>
+					<tr>
+						<td class="col-md-1">Station:</td>
+						<td>
+							<xsl:value-of
+								select="item[@name='location']/field[@name='stationName']/@value"
+								disable-output-escaping="yes" />
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<!-- Ranks -->
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>
+					Ranks
+					<small></small>
+				</h2>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<!-- Combat -->
+				<div class="col-md-3 col-xs-12 widget widget_tally_box">
+					<xsl:variable name="percent"
+						select="item[@name='progress']/field[@name='combat']/@value" />
+					<div class="x_panel ui-ribbon-container fixed_height_250">
+						<div class="x_title">
+							<h2>Combat</h2>
+							<div class="clearfix"></div>
+						</div>
+						<div class="x_content">
+
+							<div style="text-align: center; margin-bottom: 17px">
+								<span class="chart" data-percent="{$percent}">
+									<span class="percent"></span>
+								</span>
+							</div>
+
+							<h3 class="name_title">
+								<xsl:call-template name="combat">
+									<xsl:with-param name="rank"
+										select="number(item[@name='rank']/field[@name='combat']/@value)" />
+									<xsl:with-param name="lang" select="$language_id" />
+								</xsl:call-template>
+							</h3>
+						</div>
 					</div>
-					
-					<h3 class="name_title">
-						<xsl:call-template name="combat">
-							<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='combat']/@value)"/>
-							<xsl:with-param name="lang" select="$language_id"/> 
-						</xsl:call-template>					
-					</h3>
+				</div>
+				<!-- Trade -->
+				<div class="col-md-3 col-xs-12 widget widget_tally_box">
+					<xsl:variable name="percent"
+						select="item[@name='progress']/field[@name='trade']/@value" />
+					<div class="x_panel ui-ribbon-container fixed_height_250">
+						<div class="x_title">
+							<h2>Trade</h2>
+							<div class="clearfix"></div>
+						</div>
+						<div class="x_content">
+
+							<div style="text-align: center; margin-bottom: 17px">
+								<span class="chart" data-percent="{$percent}">
+									<span class="percent"></span>
+								</span>
+							</div>
+
+							<h3 class="name_title">
+								<xsl:call-template name="trade">
+									<xsl:with-param name="rank"
+										select="number(item[@name='rank']/field[@name='trade']/@value)" />
+									<xsl:with-param name="lang" select="$language_id" />
+								</xsl:call-template>
+							</h3>
+						</div>
+					</div>
+				</div>
+				<!-- Explore -->
+				<div class="col-md-3 col-xs-12 widget widget_tally_box">
+					<xsl:variable name="percent"
+						select="item[@name='progress']/field[@name='explore']/@value" />
+					<div class="x_panel ui-ribbon-container fixed_height_250">
+						<div class="x_title">
+							<h2>Explore</h2>
+							<div class="clearfix"></div>
+						</div>
+						<div class="x_content">
+
+							<div style="text-align: center; margin-bottom: 17px">
+								<span class="chart" data-percent="{$percent}">
+									<span class="percent"></span>
+								</span>
+							</div>
+
+							<h3 class="name_title">
+								<xsl:call-template name="explore">
+									<xsl:with-param name="rank"
+										select="number(item[@name='rank']/field[@name='explore']/@value)" />
+									<xsl:with-param name="lang" select="$language_id" />
+								</xsl:call-template>
+							</h3>
+						</div>
+					</div>
+				</div>
+				<!-- CQC -->
+				<div class="col-md-3 col-xs-12 widget widget_tally_box">
+					<xsl:variable name="percent"
+						select="item[@name='progress']/field[@name='cqc']/@value" />
+					<div class="x_panel ui-ribbon-container fixed_height_250">
+						<div class="x_title">
+							<h2>CQC</h2>
+							<div class="clearfix"></div>
+						</div>
+						<div class="x_content">
+
+							<div style="text-align: center; margin-bottom: 17px">
+								<span class="chart" data-percent="{$percent}">
+									<span class="percent"></span>
+								</span>
+							</div>
+
+							<h3 class="name_title">
+								<xsl:call-template name="cqc">
+									<xsl:with-param name="rank"
+										select="number(item[@name='rank']/field[@name='cqc']/@value)" />
+									<xsl:with-param name="lang" select="$language_id" />
+								</xsl:call-template>
+							</h3>
+						</div>
+					</div>
+				</div>
+				<!-- empire -->
+				<div class="col-md-3 col-xs-12 widget widget_tally_box">
+					<xsl:variable name="percent"
+						select="item[@name='progress']/field[@name='empire']/@value" />
+					<div class="x_panel ui-ribbon-container fixed_height_250">
+						<div class="x_title">
+							<h2>Empire</h2>
+							<div class="clearfix"></div>
+						</div>
+						<div class="x_content">
+
+							<div style="text-align: center; margin-bottom: 17px">
+								<span class="chart" data-percent="{$percent}">
+									<span class="percent"></span>
+								</span>
+							</div>
+
+							<h3 class="name_title">
+								<xsl:call-template name="empire">
+									<xsl:with-param name="rank"
+										select="number(item[@name='rank']/field[@name='empire']/@value)" />
+									<xsl:with-param name="lang" select="$language_id" />
+								</xsl:call-template>
+							</h3>
+						</div>
+					</div>
+				</div>
+				<!-- federation -->
+				<div class="col-md-3 col-xs-12 widget widget_tally_box">
+					<xsl:variable name="percent"
+						select="item[@name='progress']/field[@name='federation']/@value" />
+					<div class="x_panel ui-ribbon-container fixed_height_250">
+						<div class="x_title">
+							<h2>Federation</h2>
+							<div class="clearfix"></div>
+						</div>
+						<div class="x_content">
+
+							<div style="text-align: center; margin-bottom: 17px">
+								<span class="chart" data-percent="{$percent}">
+									<span class="percent"></span>
+								</span>
+							</div>
+
+							<h3 class="name_title">
+								<xsl:call-template name="federation">
+									<xsl:with-param name="rank"
+										select="number(item[@name='rank']/field[@name='federation']/@value)" />
+									<xsl:with-param name="lang" select="$language_id" />
+								</xsl:call-template>
+							</h3>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Trade -->		
-		<div class="col-md-3 col-xs-12 widget widget_tally_box">
-			<xsl:variable name="percent" select="item[@name='progress']/field[@name='trade']/@value"/>
-			<div class="x_panel ui-ribbon-container fixed_height_250">
-				<div class="x_title">
-					<h2>Trade</h2>
-					<div class="clearfix"></div>
-				</div>
-				<div class="x_content">
-				
-					<div style="text-align: center; margin-bottom: 17px">
-						<span class="chart" data-percent="{$percent}">
-							<span class="percent"></span>
-						</span>
-					</div>
-					
-					<h3 class="name_title">
-						<xsl:call-template name="trade">
-							<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='trade']/@value)"/>
-							<xsl:with-param name="lang" select="$language_id"/> 
-						</xsl:call-template>					
-					</h3>
-				</div>
-			</div>
-		</div>
-		<!-- Explore -->		
-		<div class="col-md-3 col-xs-12 widget widget_tally_box">
-			<xsl:variable name="percent" select="item[@name='progress']/field[@name='explore']/@value"/>
-			<div class="x_panel ui-ribbon-container fixed_height_250">
-				<div class="x_title">
-					<h2>Explore</h2>
-					<div class="clearfix"></div>
-				</div>
-				<div class="x_content">
-				
-					<div style="text-align: center; margin-bottom: 17px">
-						<span class="chart" data-percent="{$percent}">
-							<span class="percent"></span>
-						</span>
-					</div>
-					
-					<h3 class="name_title">
-						<xsl:call-template name="explore">
-							<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='explore']/@value)"/>
-							<xsl:with-param name="lang" select="$language_id"/> 
-						</xsl:call-template>					
-					</h3>
-				</div>
-			</div>
-		</div>
-		<!-- CQC -->		
-		<div class="col-md-3 col-xs-12 widget widget_tally_box">
-			<xsl:variable name="percent" select="item[@name='progress']/field[@name='cqc']/@value"/>
-			<div class="x_panel ui-ribbon-container fixed_height_250">
-				<div class="x_title">
-					<h2>CQC</h2>
-					<div class="clearfix"></div>
-				</div>
-				<div class="x_content">
-				
-					<div style="text-align: center; margin-bottom: 17px">
-						<span class="chart" data-percent="{$percent}">
-							<span class="percent"></span>
-						</span>
-					</div>
-					
-					<h3 class="name_title">
-						<xsl:call-template name="cqc">
-							<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='cqc']/@value)"/>
-							<xsl:with-param name="lang" select="$language_id"/> 
-						</xsl:call-template>					
-					</h3>
-				</div>
-			</div>
-		</div>
-		<!-- empire -->		
-		<div class="col-md-3 col-xs-12 widget widget_tally_box">
-			<xsl:variable name="percent" select="item[@name='progress']/field[@name='empire']/@value"/>
-			<div class="x_panel ui-ribbon-container fixed_height_250">
-				<div class="x_title">
-					<h2>Empire</h2>
-					<div class="clearfix"></div>
-				</div>
-				<div class="x_content">
-				
-					<div style="text-align: center; margin-bottom: 17px">
-						<span class="chart" data-percent="{$percent}">
-							<span class="percent"></span>
-						</span>
-					</div>
-					
-					<h3 class="name_title">
-						<xsl:call-template name="empire">
-							<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='empire']/@value)"/>
-							<xsl:with-param name="lang" select="$language_id"/> 
-						</xsl:call-template>					
-					</h3>
-				</div>
-			</div>
-		</div>
-		<!-- federation -->		
-		<div class="col-md-3 col-xs-12 widget widget_tally_box">
-			<xsl:variable name="percent" select="item[@name='progress']/field[@name='federation']/@value"/>
-			<div class="x_panel ui-ribbon-container fixed_height_250">
-				<div class="x_title">
-					<h2>Federation</h2>
-					<div class="clearfix"></div>
-				</div>
-				<div class="x_content">
-				
-					<div style="text-align: center; margin-bottom: 17px">
-						<span class="chart" data-percent="{$percent}">
-							<span class="percent"></span>
-						</span>
-					</div>
-					
-					<h3 class="name_title">
-						<xsl:call-template name="federation">
-							<xsl:with-param name="rank" select="number(item[@name='rank']/field[@name='federation']/@value)"/>
-							<xsl:with-param name="lang" select="$language_id"/> 
-						</xsl:call-template>					
-					</h3>
-				</div>
-			</div>
-		</div>
-		</p>
+		<div class="clearfix"></div>
 		<!-- Activity -->
-		<div class="clearfix"></div>
-		<p>
-			<h3>Activity:</h3>
-			aalalala
-		</p>
-    <script>
-      $(function() {
-        $('.chart').easyPieChart({
-          easing: 'easeOutElastic',
-          delay: 3000,
-          barColor: '#26B99A',
-          trackColor: '#fff',
-          scaleColor: false,
-          lineWidth: 20,
-          trackWidth: 16,
-          lineCap: 'butt',
-          onStep: function(from, to, percent) {
-            $(this.el).find('.percent').text(Math.round(percent));
-          }
-        });
-      });
-    </script>
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>
+					Activity
+					<small>monthly</small>
+				</h2>
+				<div class="filter">
+					<div id="reportrange" class="pull-right " style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+						<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+						<span style="padding-left: 5px; padding-right: 5px;"><xsl:value-of select="/*/@currentdate"/></span>
+						<input id="date-selected" class="hidden" type="text" style="border:none;" value="{/*/@maxdate}"/>
+						<b class="caret"></b>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<canvas id="mybarChart" height="25"></canvas>
+			</div>
+		</div>
+		<script>
+			$(function() {
+				$('.chart').easyPieChart({
+					easing: 'easeOutElastic',
+					delay: 3000,
+					barColor: '#26B99A',
+					trackColor: '#fff',
+					scaleColor: false,
+					lineWidth: 20,
+					trackWidth: 16,
+					lineCap: 'butt',
+					onStep: function(from, to, percent) {
+						$(this.el).find('.percent').text(Math.round(percent));
+					}
+				});
+				
+				var lastdate = Date.parse("<xsl:value-of select="/*/@maxdate"/>");
+				var pilot = '<xsl:value-of select="field[@name='pilotName']/@value"/>';
+				
+				var mybarChart = null;
+				//console.log(pilot);
+				
+				var setDateLabel = function(date) {
+					var month = $.fn.datepicker.dates['<xsl:value-of select="$language_id"/>'].months[date.getMonth()];
+					var year = ' ' + date.getFullYear();
+					$("#reportrange").find("span").html(month + year);
+				} 
+				setDateLabel(lastdate);
+				//console.log(lastdate.getMonth());
+				var drawChart = function(date, callback) {
+					var month = '' + (date.getMonth() + 1);
+					var year = '' + date.getFullYear();
+					var checkDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+					//console.log(checkDate.getDate());
+					var data = {
+						showdate: year + '-' + (month.length > 1?'':'0') + month,
+					};
+					//console.log(data);
+					proxy.makeCall('post', '/ajax/pilots/'+ pilot + '/activity/', null, null, data, function(result) {
+						if (result.error || result.status == 403) {
+						} else {
+							var _labes = [];
+							var _data = [];
+							for(i=1; i &lt;= checkDate.getDate(); i++) {
+								_labes.push(i);
+								_data.push(0);
+							}
+							for(i=0; i &lt; result.days.length; i++) {
+								var current = result.days[i];
+								_data[current.eventDate] = current.times;
+							}
+							if (mybarChart != null) {
+								mybarChart.destroy();
+							}
+						    var ctx = document.getElementById("mybarChart");
+						    mybarChart = new Chart(ctx, {
+						      type: 'bar',
+						      data: {
+						        labels: _labes,
+						        datasets: [{
+						          label: '# hours in game',
+						          backgroundColor: "#03586A",
+						          data: _data
+						        }]
+						      },
+						
+						      options: {
+						        scales: {
+						          yAxes: [{
+						            ticks: {
+						              beginAtZero: true
+						            }
+						          }]
+						        }
+						      }
+						   });
+						   if (callback) {
+						   	callback();
+						   }
+						}
+					});
+					return false;
+				}
+				
+				drawChart(lastdate);
+				
+				// Datepicker
+				var datep = false;
+				
+				var options = {
+					format: "yyyy-mm-dd",
+					language: "<xsl:value-of select="$language_id"/>",
+					endDate: "<xsl:value-of select="/*/@maxdate"/>",
+					startDate: "<xsl:value-of select="/*/@mindate"/>",
+					minViewMode: 1, 
+					maxViewMode: 2,
+					defaultViewDate: 'year',
+					//zIndexOffset: 9999,
+					//container: $(".filter")
+				};
+				$("#reportrange").on('click', function() {
+					var div = this;
+					if (!datep) {
+						datep = true;
+						$(div).datepicker(options).on("changeDate", function(e) {
+							//console.log($(div).datepicker('getUTCDate'));
+							lastdate = $("#reportrange").datepicker('getUTCDate');
+							setDateLabel(lastdate);
+							drawChart(lastdate, function() {
+								$(div).datepicker("destroy");
+							});
+							return false;
+						});
+						//$(div).datepicker("setUTCDate", lastdate);
+						console.log($.fn.datepicker.dates['<xsl:value-of select="$language_id"/>']);
+					} else {
+						$(div).datepicker(options);					
+					}
+				});
+			});
+		</script>
 	</xsl:template>
 <!--
 //

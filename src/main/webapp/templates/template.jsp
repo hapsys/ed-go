@@ -68,10 +68,12 @@
 <link href="<%=root%>/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
 <!-- bootstrap-daterangepicker -->
 <link href="<%=root%>/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-<!-- Custom Theme Style -->
-<link href="<%=root%>/css/custom/custom.css" rel="stylesheet">
 <!-- Animate.css -->
 <link href="<%=root%>/vendors/animate.css/animate.min.css" rel="stylesheet">
+<!-- Datepicker.css -->
+<link href="<%=root%>/vendors/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+<!-- Custom Theme Style -->
+<link href="<%=root%>/css/custom/custom.css" rel="stylesheet">
 
 <!-- link rel="stylesheet" href="<%=root%>/css/sites.css" type="text/css"/ -->
 <script type="text/javascript">
@@ -279,6 +281,12 @@
     <script src="<%=root%>/vendors/gauge.js/dist/gauge.min.js"></script>
     <!-- bootstrap-progressbar -->
     <script src="<%=root%>/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- bootstrap-datepicker -->
+    <script src="<%=root%>/vendors/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+	<% if (!lang_id.equals("en")) { %>
+		<script src="<%=root%>/vendors/bootstrap-datepicker/locales/bootstrap-datepicker.<%=lang_id%>.min.js"></script>
+	<% } %>
+    
     <!-- iCheck -->
     <script src="<%=root%>/vendors/iCheck/icheck.min.js"></script>
     <!-- Skycons -->

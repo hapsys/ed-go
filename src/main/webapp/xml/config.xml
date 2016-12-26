@@ -114,6 +114,12 @@
 							<module pattern="key-update/" class="org.c3s.edgo.web.auth.UserController" action="generateNewKeys" is_last="true"/>
 						</module>
 					</module>
+					<!-- PIlots info -->
+					<module pattern="pilots/">
+						<module pattern="*/" class="org.c3s.edgo.web.controllers.Commander" action="checkCommander">
+							<module pattern="activity/" class="org.c3s.edgo.web.controllers.Commander" action="getActivity" is_last="true"/>
+						</module>
+					</module>
 				</module>
 			</module>
 			<!-- - AJAX MODULES  -->

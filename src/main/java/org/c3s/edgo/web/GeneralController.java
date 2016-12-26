@@ -3,9 +3,9 @@
  */
 package org.c3s.edgo.web;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.c3s.edgo.common.beans.DBUsersBean;
 import org.c3s.edgo.web.auth.AuthRoles;
@@ -28,12 +28,13 @@ public class GeneralController {
 	private static Logger logger = LoggerFactory.getLogger(GeneralController.class);
 	
 	public static final String STORED_USER = "____user";
+	public static final String STORED_ROLES = "____roles";
 	
 	private String language_id = "";
 
 	
 	//protected User user = null; 
-	protected List<AuthRoles> roles = new ArrayList<AuthRoles>();
+	protected Set<AuthRoles> roles = new TreeSet<AuthRoles>();
 	
 	
 	/**
@@ -75,5 +76,24 @@ public class GeneralController {
 			StorageInterface storage = StorageFactory.getStorage(StorageType.SESSION);
 			storage.put(STORED_USER, user); 
 		}
+	}
+	
+	public static synchronized void setUserRoles(Set<AuthRoles> roles) {
+		synchronized (GeneralController.class) {
+			StorageInterface storage = StorageFactory.getStorage(StorageType.SESSION);
+			storage.put(STORED_ROLES, roles); 
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static synchronized Set<AuthRoles> getUserRoles() {
+		synchronized (GeneralController.class) {
+			StorageInterface storage = StorageFactory.getStorage(StorageType.SESSION);
+			return (Set<AuthRoles>)storage.get(STORED_ROLES); 
+		}
+	}
+	
+	public static synchronized boolean hasRole(AuthRoles role) {
+		return getUserRoles().contains(role);
 	}
 }

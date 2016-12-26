@@ -128,6 +128,28 @@
 				LIMIT 1
 			</sql>
 		</query>
+		<query name="Activity" intruder="org.c3s.db.injectors.EmptySqlInjector">
+			<column name="PilotId" type="long"/>
+			<sql>
+				SELECT DAY(e.event_timestamp) as event_date, COUNT(DISTINCT HOUR(e.event_timestamp)) as times
+				FROM events_history e
+				WHERE e.pilot_id = ?
+				<where/>
+				GROUP BY DAY(e.event_timestamp)
+				ORDER BY event_date ASC
+			</sql>
+		</query>
+		<query name="EventMaxMinDateForPilot" single_object="true">
+			<column name="PilotId" type="long"/>
+			<sql>
+				SELECT p.pilot_id, MAX(DATE(e.event_timestamp)) as max_date, MIN(DATE(e.event_timestamp)) as min_date
+				FROM pilots p
+				LEFT JOIN events_history e ON e.pilot_id = p.pilot_id 
+				WHERE p.pilot_id = ?
+				GROUP BY p.pilot_id
+				LIMIT 1 
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 </include>

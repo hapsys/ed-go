@@ -230,7 +230,6 @@
 		<servlet-name>ControlServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	<!-- <session-config> <session-timeout> 30 </session-timeout> </session-config> -->
 	<!-- <welcome-file-list> <welcome-file>index.jsp</welcome-file> </welcome-file-list> -->
 	<jsp-config>
 		<taglib>
@@ -238,4 +237,7 @@
 			<taglib-location>/WEB-INF/tlds/c3s-taglib.tld</taglib-location>
 		</taglib>
 	</jsp-config>
+	<session-config>
+		<session-timeout>300</session-timeout> 
+	</session-config>
 </web-app>
