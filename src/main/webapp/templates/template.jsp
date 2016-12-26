@@ -66,12 +66,10 @@
 <link href="<%=root%>/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
 <!-- JQVMap -->
 <link href="<%=root%>/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
-<!-- bootstrap-daterangepicker -->
-<link href="<%=root%>/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 <!-- Animate.css -->
 <link href="<%=root%>/vendors/animate.css/animate.min.css" rel="stylesheet">
 <!-- Datepicker.css -->
-<link href="<%=root%>/vendors/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+<link href="<%=root%>/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <!-- Custom Theme Style -->
 <link href="<%=root%>/css/custom/custom.css" rel="stylesheet">
 
@@ -83,7 +81,15 @@
 <!-- jQuery -->
 <script src="<%=root%>/vendors/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->
+<script src="<%=root%>/vendors/moment/min/moment-with-locales.min.js"></script>
+
+<script src="<%=root%>/vendors/bootstrap/js/transition.js"></script>
+<script src="<%=root%>/vendors/bootstrap/js/collapse.js"></script>
 <script src="<%=root%>/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+moment.locale('<%=lang_id%>');
+</script>
 
 </head>
 <body>
@@ -281,12 +287,8 @@
     <script src="<%=root%>/vendors/gauge.js/dist/gauge.min.js"></script>
     <!-- bootstrap-progressbar -->
     <script src="<%=root%>/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-    <!-- bootstrap-datepicker -->
-    <script src="<%=root%>/vendors/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-	<% if (!lang_id.equals("en")) { %>
-		<script src="<%=root%>/vendors/bootstrap-datepicker/locales/bootstrap-datepicker.<%=lang_id%>.min.js"></script>
-	<% } %>
-    
+    <!-- bootstrap-datetimepicker -->
+    <script src="<%=root%>/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
     <!-- iCheck -->
     <script src="<%=root%>/vendors/iCheck/icheck.min.js"></script>
     <!-- Skycons -->
@@ -307,9 +309,6 @@
     <script src="<%=root%>/vendors/jqvmap/dist/jquery.vmap.js"></script>
     <script src="<%=root%>/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
     <script src="<%=root%>/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="<%=root%>/vendors/moment/min/moment.min.js"></script>
-    <script src="<%=root%>/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
     <!-- jQuery Sparklines -->
     <script src="<%=root%>/vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
     <!-- easy-pie-chart -->

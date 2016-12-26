@@ -241,10 +241,10 @@
 					<small>monthly</small>
 				</h2>
 				<div class="filter">
-					<div id="reportrange" class="pull-right " style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+					<div id="select-month" class="pull-right data" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+						<input id="date-selected" class="form-control hidden" type="text" style="border:none;" value="{/*/@maxdate}"/>
 						<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
 						<span style="padding-left: 5px; padding-right: 5px;"><xsl:value-of select="/*/@currentdate"/></span>
-						<input id="date-selected" class="hidden" type="text" style="border:none;" value="{/*/@maxdate}"/>
 						<b class="caret"></b>
 					</div>
 				</div>
@@ -270,26 +270,27 @@
 					}
 				});
 				
-				var lastdate = Date.parse("<xsl:value-of select="/*/@maxdate"/>");
+				var lastdate = moment(Date.parse("<xsl:value-of select="/*/@maxdate"/>").getTime());
 				var pilot = '<xsl:value-of select="field[@name='pilotName']/@value"/>';
 				
 				var mybarChart = null;
-				//console.log(pilot);
 				
 				var setDateLabel = function(date) {
-					var month = $.fn.datepicker.dates['<xsl:value-of select="$language_id"/>'].months[date.getMonth()];
-					var year = ' ' + date.getFullYear();
-					$("#reportrange").find("span").html(month + year);
+					//var m = moment(date.getTime());
+					//console.log(m.locale());
+					var month = date.format('MMMM');
+					var year = ' ' + date.year();
+					$("#select-month").find("span").html(month + year);
 				} 
+				
 				setDateLabel(lastdate);
+				
 				//console.log(lastdate.getMonth());
 				var drawChart = function(date, callback) {
-					var month = '' + (date.getMonth() + 1);
-					var year = '' + date.getFullYear();
-					var checkDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-					//console.log(checkDate.getDate());
+					var month_year = '' + date.format('YYYY-MM');
+					var checkDate = new Date(date.year(), date.month() + 1, 0);
 					var data = {
-						showdate: year + '-' + (month.length > 1?'':'0') + month,
+						showdate: month_year,
 					};
 					//console.log(data);
 					proxy.makeCall('post', '/ajax/pilots/'+ pilot + '/activity/', null, null, data, function(result) {
@@ -340,39 +341,22 @@
 				
 				drawChart(lastdate);
 				
-				// Datepicker
-				var datep = false;
+				$("#select-month").datetimepicker({
+					format: "YYYY-MM",
+                	viewMode: 'months',
+					maxDate: "<xsl:value-of select="/*/@maxdate"/>".replace(/\-\d+$/, ''),
+					minDate: "<xsl:value-of select="/*/@mindate"/>".replace(/\-\d+$/, ''),
+            	}).on('dp.change', function(e) {
+            		//console.log(e.date);
+            		setDateLabel(e.date);
+            		drawChart(e.date);
+            	});
+            	
+            	$("#select-month").on('click', function() {
+            		$("#select-month").data("DateTimePicker").viewMode('months');
+            		$("#select-month").data("DateTimePicker").toggle();
+            	});
 				
-				var options = {
-					format: "yyyy-mm-dd",
-					language: "<xsl:value-of select="$language_id"/>",
-					endDate: "<xsl:value-of select="/*/@maxdate"/>",
-					startDate: "<xsl:value-of select="/*/@mindate"/>",
-					minViewMode: 1, 
-					maxViewMode: 2,
-					defaultViewDate: 'year',
-					//zIndexOffset: 9999,
-					//container: $(".filter")
-				};
-				$("#reportrange").on('click', function() {
-					var div = this;
-					if (!datep) {
-						datep = true;
-						$(div).datepicker(options).on("changeDate", function(e) {
-							//console.log($(div).datepicker('getUTCDate'));
-							lastdate = $("#reportrange").datepicker('getUTCDate');
-							setDateLabel(lastdate);
-							drawChart(lastdate, function() {
-								$(div).datepicker("destroy");
-							});
-							return false;
-						});
-						//$(div).datepicker("setUTCDate", lastdate);
-						console.log($.fn.datepicker.dates['<xsl:value-of select="$language_id"/>']);
-					} else {
-						$(div).datepicker(options);					
-					}
-				});
 			});
 		</script>
 	</xsl:template>

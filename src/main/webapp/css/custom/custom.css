@@ -72,11 +72,7 @@
   border-radius: 0; }
 .daterangepicker.picker_4 .calendar-table td.active {
   background: #34495E; }
-
-.datepicker {
-	z-index: 1151 !important;
-}
-
+  
 .calendar-exibit .show-calendar {
   float: none;
   display: block;
