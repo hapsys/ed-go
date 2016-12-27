@@ -17,6 +17,7 @@
 			<xsl:when test="$mode = 'view_ship'"><xsl:call-template name="view_ship"/></xsl:when>
 			<xsl:when test="$mode = 'view_power'"><xsl:call-template name="view_power"/></xsl:when>
 			<xsl:when test="$mode = 'view_missions'"><xsl:call-template name="view_missions"/></xsl:when>
+			<xsl:when test="$mode = 'locations'"><xsl:call-template name="view_locations"/></xsl:when>
 		</xsl:choose>
 	</xsl:template>
 <!--
@@ -597,6 +598,62 @@
 		<div>
 		</div>
 	</xsl:template>
+<!--
+//
+//
+//
+-->
+	<xsl:template name="view_locations">
+
+		<div class="clearfix"></div>
+		<!-- Location -->
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>
+					<xsl:value-of select="i10n:tr('Systems Path')"/>
+					<small></small>
+				</h2>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<table id="table-system-path" class="table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Time</th>
+                          <th>Name</th>
+                          <th>Position</th>
+                          <th>Distance</th>
+                        </tr>
+                      </thead>
+				</table>
+			</div>
+		</div>
+		<script>
+			$(function() {
+			
+				var pilot = '<xsl:value-of select="field[@name='pilotName']/@value"/>';
+			
+				$('#table-system-path').DataTable({
+					ajax: {
+						url: site_root + '/ajax/pilots/'+ pilot + '/systems/',
+						"dataSrc": "systems",
+					},
+					"columns": [
+						{ "data": "locationTime" },
+						{ "data": "systemName" },
+						{ "data": "position" },
+						{ "data": "distance" },
+					],
+					/* 
+					deferRender: true,
+					scrollY: 380,
+					scrollCollapse: true,
+					scroller: true
+					*/
+				});				
+			});
+		</script>
+	</xsl:template>	
 <!--
 //
 //

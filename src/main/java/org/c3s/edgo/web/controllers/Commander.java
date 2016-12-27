@@ -15,6 +15,7 @@ import org.c3s.annotations.Controller;
 import org.c3s.annotations.Parameter;
 import org.c3s.annotations.ParameterRequest;
 import org.c3s.content.ContentObject;
+import org.c3s.db.injectors.EmptySqlInjector;
 import org.c3s.dispatcher.PatternerInterface;
 import org.c3s.dispatcher.RedirectControlerInterface;
 import org.c3s.dispatcher.UrlPart;
@@ -23,15 +24,18 @@ import org.c3s.dispatcher.exceptions.StopDispatchException;
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBActivityBean;
 import org.c3s.edgo.common.beans.DBEventMaxMinDateForPilotBean;
+import org.c3s.edgo.common.beans.DBMaxMinDateSystemHistoryForPilotBean;
 import org.c3s.edgo.common.beans.DBMissionsComplitedListByPilotsBean;
 import org.c3s.edgo.common.beans.DBPilotShipsBean;
 import org.c3s.edgo.common.beans.DBPilotShipsListBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.beans.DBPilotsPowerWeeksBean;
 import org.c3s.edgo.common.beans.DBPowerCortageBean;
+import org.c3s.edgo.common.beans.DBSystemPathBean;
 import org.c3s.edgo.common.beans.DBUsersBean;
 import org.c3s.edgo.common.intruders.EventHistoryInjector;
 import org.c3s.edgo.common.intruders.InInjector;
+import org.c3s.edgo.common.intruders.SystemPathInjector;
 import org.c3s.edgo.web.GeneralController;
 import org.c3s.edgo.web.auth.AuthRoles;
 import org.c3s.edgo.web.validator.Result;
@@ -159,7 +163,11 @@ public class Commander extends GeneralController {
 		}
 		
 	}
+	// ============================================================== -SHIPS AND MODULES ==============================================================================
+	
 
+	// ============================================================== +POWERS ==============================================================================
+	
 	public void getPowers(@Parameter("tag") String tag, @Parameter("template") String template, UrlPart url, RedirectControlerInterface redirect) throws Exception {
 		
 		if (current != null) {
@@ -189,7 +197,9 @@ public class Commander extends GeneralController {
 		}
 		
 	}
+	// ============================================================== -POWERS ==============================================================================
 	
+	// ============================================================== +MISSIONS ==============================================================================
 	public void getMissions(@Parameter("tag") String tag, @Parameter("template") String template, UrlPart url, RedirectControlerInterface redirect, PatternerInterface patterner) throws Exception {
 		
 		if (current != null) {
@@ -244,7 +254,83 @@ public class Commander extends GeneralController {
 			throw new SkipSubLevelsExeption();
 		}
 	}
+	// ============================================================== -MISSIONS ==============================================================================
 	
+	// ============================================================== +SYSTEMS PATH ==============================================================================
+	
+	public void getSystemsPath(@Parameter("tag") String tag, @Parameter("template") String template, UrlPart url, RedirectControlerInterface redirect, PatternerInterface patterner) throws Exception {
+		
+		if (current != null) {
+			Document xml = new XMLReflectionObj(current, true).toXML();
+			
+			DBMaxMinDateSystemHistoryForPilotBean minmax = DbAccess.locationSystemHistoryAccess.getMaxMinDateSystemHistoryForPilot(current.getPilotId());
+			
+			if (minmax.getMinDate().length() > 0) {
+				xml.getDocumentElement().setAttribute("mindate", minmax.getMinDate());
+				xml.getDocumentElement().setAttribute("maxdate", minmax.getMaxDate());
+			}
+			
+			//logger.debug(XMLUtils.xml2out(xml));
+			//logger.debug("template {}", template);
+			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:locations"});
+			
+		} else {
+			redirect.setRedirect(new DirectRedirect("/"));
+			throw new SkipSubLevelsExeption();
+		}
+	}
+	
+	public void getSystems(@ParameterRequest("startdate") String startdate, @ParameterRequest("enddate") String enddate, @ParameterRequest("page") Integer page, @ParameterRequest("per_page") Integer per_page, 
+		@Parameter("tag") String tag, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		if (current != null) {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			Date sdate, edate;
+			try {
+				sdate = dateFormat.parse(startdate);
+			} catch (Exception e) {
+				sdate = null;
+			}
+			try {
+				edate = dateFormat.parse(enddate);
+			} catch (Exception e) {
+				edate = null;
+			}
+			String from = sdate == null? null: dateFormat.format(sdate) + " 00:00:00";
+			String to = edate == null? null: dateFormat.format(edate) + " 23:59:59";
+			
+			/*
+			*/
+			//System.out.println(activity.size());
+			if (page == null || page < 1) {
+				page = 1;
+			}
+			if (per_page == null || per_page < 50) {
+				per_page = 50;
+			}
+			
+			SystemPathInjector injector = new SystemPathInjector(page - 1, per_page, from, to);
+			List<DBSystemPathBean> systems = DbAccess.locationSystemHistoryAccess.getSystemPath(current.getPilotId(), injector); 
+			System.out.println(systems.size());
+				
+			DBMaxMinDateSystemHistoryForPilotBean minmax = DbAccess.locationSystemHistoryAccess.getMaxMinDateSystemHistoryForPilot(current.getPilotId());
+			
+			Result result = new Result().put("systems", systems).put("total", DbAccess.locationSystemHistoryAccess.getSystemPathCount(current.getPilotId(), injector));
+			if (minmax.getMinDate().length() > 0) {
+				result.put("mindate", minmax.getMinDate());
+				result.put("maxdate", minmax.getMaxDate());
+			}
+			
+			ContentObject.getInstance().setData(tag, result.get());
+			redirect.setRedirect(new DropRedirect());
+		}
+	}
+	
+	public void getSystemsTest(@ParameterRequest("startdate") String startdate, @ParameterRequest("enddate") String enddate, @ParameterRequest("page") Integer page, @ParameterRequest("per_page") Integer per_page, 
+		@Parameter("tag") String tag, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		current = DbAccess.pilotsAccess.getByPrimaryKey(1L);
+		getSystems(startdate, enddate, page, per_page, tag, redirect);
+	}
+	// ============================================================== -SYSTEMS PATH ==============================================================================
 	public void checkCommander(UrlPart url, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException, UnsupportedEncodingException {
 		
 		//String actionUrl = url.getPattern().substring(0, url.getPattern().length() - 1).toLowerCase();

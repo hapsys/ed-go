@@ -62,6 +62,7 @@
 				<param name="tag" value="view_ctx" inherit="true"/>
 				<param name="template" value="{directory.stylesheet}/commander/commander.xsl" inherit="true"/>
 				<module pattern="info/" class="org.c3s.edgo.web.controllers.Commander" action="getInformation" is_last="true"/>
+				<module pattern="systems/" class="org.c3s.edgo.web.controllers.Commander" action="getSystemsPath" is_last="true"/>
 				<module pattern="ships/" class="org.c3s.edgo.web.controllers.Commander" action="getShips" is_last="true">
 					<module pattern="*/" class="org.c3s.edgo.web.controllers.Commander" action="getShip" is_last="true"/>
 				</module>
@@ -69,6 +70,14 @@
 				<module pattern="missions/" class="org.c3s.edgo.web.controllers.Commander" action="getMissions" is_last="true"/>
 			</module>
 			<!-- -Commander  -->
+			<!-- +Test  -->
+			<module pattern="ajax-test/" class="org.c3s.web.modules.template.TemplateModule" action="setTemplate">
+				<param name="template" value="{directory.templates}/json.jsp"/>
+				<param name="tag" value="json" inherit="true"/>
+				<param name="ajax_tag" value="json" inherit="true"/>
+				<module pattern="systems/" class="org.c3s.edgo.web.controllers.Commander" action="getSystemsTest" is_last="true"/>
+			</module>
+			<!-- -Test  -->
 			<!-- /модули пользователей находятся здесь -->
 			
 			<module pattern="*" class="org.c3s.web.nodes.path.PathController" action="getPath" is_last="true">
@@ -118,6 +127,7 @@
 					<module pattern="pilots/">
 						<module pattern="*/" class="org.c3s.edgo.web.controllers.Commander" action="checkCommander">
 							<module pattern="activity/" class="org.c3s.edgo.web.controllers.Commander" action="getActivity" is_last="true"/>
+							<module pattern="systems/" class="org.c3s.edgo.web.controllers.Commander" action="getSystems" is_last="true"/>
 						</module>
 					</module>
 				</module>

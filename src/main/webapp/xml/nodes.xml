@@ -65,6 +65,11 @@
 			<title lang="en">Information</title>
 			<menu name="main_menu"/>
 		</node>
+		<node pattern="systems">
+			<title lang="ru">Системы</title>
+			<title lang="en">Systtems</title>
+			<menu name="main_menu"/>
+		</node>
 		<node pattern="ships">
 			<title lang="ru">Корабли</title>
 			<title lang="en">Ships</title>
