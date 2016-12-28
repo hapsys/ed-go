@@ -21,12 +21,12 @@ public class SystemPathInjector extends EmptySqlInjector {
 		StringBuffer sb = new StringBuffer();
 		if (from != null && to != null) {
 			if (from != null) {
-				sb.append("AND e.event_timestamp >= '");
+				sb.append("AND l.location_time >= '");
 				sb.append(from);
 				sb.append("'");
 			}
 			if (to != null) {
-				sb.append("AND e.event_timestamp <= '");
+				sb.append("AND l.location_time <= '");
 				sb.append(to);
 				sb.append("'");
 			}
