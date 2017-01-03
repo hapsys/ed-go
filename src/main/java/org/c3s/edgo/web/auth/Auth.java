@@ -30,6 +30,7 @@ public class Auth extends GeneralController {
 		DBUsersBean user = GeneralController.getUser();
 		 
 		if (user != null) {
+			System.out.println(user.getIsVerify());
 			if (user.getIsVerify() == 0) {
 				roles.add(AuthRoles.ROLE_REGISTERED);
 			} else {

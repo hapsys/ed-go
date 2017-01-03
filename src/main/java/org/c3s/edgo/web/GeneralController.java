@@ -67,6 +67,7 @@ public class GeneralController {
 	public static synchronized DBUsersBean getUser() {
 		synchronized (GeneralController.class) {
 			StorageInterface storage = StorageFactory.getStorage(StorageType.SESSION);
+			//storage.remove(STORED_USER);
 			return (DBUsersBean)storage.get(STORED_USER); 
 		}
 	}
