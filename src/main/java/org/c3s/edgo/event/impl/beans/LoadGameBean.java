@@ -16,7 +16,7 @@ public class LoadGameBean extends AbstractEventBean {
 	private int ShipID;
 	private String GameMode;
 	private String Group;
-	private int Credits;
+	private long Credits;
 	private int Loan;
 	
 
@@ -66,11 +66,11 @@ public class LoadGameBean extends AbstractEventBean {
 		Group = group;
 	}
 
-	public int getCredits() {
+	public long getCredits() {
 		return Credits;
 	}
 
-	public void setCredits(int credits) {
+	public void setCredits(long credits) {
 		Credits = credits;
 	}
 
