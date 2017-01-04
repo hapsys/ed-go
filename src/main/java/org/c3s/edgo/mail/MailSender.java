@@ -26,6 +26,8 @@ public class MailSender {
 				}
 			}
 		}
+		//props.put("java.security.debug", "all");
+		//props.put("javax.net.ssl.debug", "all");
 		//props.put("mail.debug",true);
 		
 		Session session = Session.getInstance(props, new Authenticator() {

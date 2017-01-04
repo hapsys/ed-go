@@ -103,7 +103,7 @@
 					<module pattern="client/" class="org.c3s.edgo.web.client.RemoteClient" action="getRequest" is_last="true"/>
 					<module pattern="profile/">
 						<param name="template" value="{directory.stylesheet}/mail.xsl" inherit="true"/>
-						<param name="from" value="abuse@atoin.com" inherit="true"/>
+						<param name="from" value="ed-go.ru &lt;noreply@ed-go.ru&gt;" inherit="true"/>
 						<param name="subject" value="Register to site" inherit="true"/>
 						<module class="org.c3s.edgo.web.auth.Auth" action="checkRoles">
 							<param name="order" value="deny,allow"/>
