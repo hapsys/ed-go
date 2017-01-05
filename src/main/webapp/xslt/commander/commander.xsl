@@ -10,6 +10,7 @@
 	<xsl:param name="tournaments"/>
 	<xsl:param name="roles"/>
 	<xsl:param name="mode"/>
+	<xsl:param name="pilot"/>
 	<xsl:template match="/*">
 		<xsl:choose>
 			<xsl:when test="$mode = 'info'"><xsl:call-template name="view_info"/></xsl:when>
@@ -272,7 +273,7 @@
 				});
 				
 				var lastdate = moment(Date.parse("<xsl:value-of select="/*/@maxdate"/>").getTime());
-				var pilot = '<xsl:value-of select="field[@name='pilotName']/@value"/>';
+				var pilot = '<xsl:value-of select="$pilot"/>';
 				
 				var mybarChart = null;
 				
@@ -650,7 +651,7 @@
 		<script>
 			$(function() {
 			
-				var pilot = '<xsl:value-of select="field[@name='pilotName']/@value"/>';
+				var pilot = '<xsl:value-of select="$pilot"/>';
 			
 				$('#table-system-path').DataTable({
 					ajax: {

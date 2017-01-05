@@ -81,6 +81,7 @@ public class Commander extends GeneralController {
 			
 			//logger.debug(XMLUtils.xml2out(xml));
 			//logger.debug("template {}", template);
+			logger.debug(XMLUtils.saveXML(xml));
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:info"});
 		} else {
 			redirect.setRedirect(new DirectRedirect("/"));
@@ -348,7 +349,7 @@ public class Commander extends GeneralController {
 			pilot = DbAccess.pilotsAccess.getByName(actionUrl);
 			if (pilot != null && (pilot.getUserId().equals(user.getUserId()) || hasRole(AuthRoles.ROLE_ADMINISTRATOR))) {
 				current = pilot;
-				ContentObject.getInstance().setFixedParameters("pilot", pilot.getPilotName());
+				ContentObject.getInstance().setFixedParameters("pilot", pilot.getPilotName().replace("'", "\\'"));
 			}
 		}
 	}

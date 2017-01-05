@@ -199,7 +199,7 @@ public class UserController extends GeneralController {
 		DBUsersBean user;
 		if ((user = getUser()) != null) {
 			Document xml = new XMLReflectionObj(user, true).toXML();
-			logger.debug(XMLUtils.xml2out(xml));
+			//logger.debug(XMLUtils.xml2out(xml));
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:view"});
 		} else {
 			redirect.setRedirect(new DirectRedirect("/"));
@@ -257,7 +257,7 @@ public class UserController extends GeneralController {
 		DBUsersBean user = getUser();
 		if (user != null) {
 			Document xml = new XMLReflectionObj(user, true).toXML();
-			logger.debug(XMLUtils.xml2out(xml));
+			//logger.debug(XMLUtils.xml2out(xml));
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:email"});
 		} else {
 			redirect.setRedirect(new DirectRedirect("/"));
