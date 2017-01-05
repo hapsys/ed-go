@@ -47,6 +47,21 @@ public class DBShipSlotsBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"can_deleted", "canDeleted"})
+	@DataTarget("can_deleted")
+	@XMLSimple("canDeleted")
+	private java.lang.Integer canDeleted;
+	
+	public java.lang.Integer getCanDeleted() {
+		return canDeleted;
+	}
+	
+	public DBShipSlotsBean setCanDeleted(java.lang.Integer value) {
+		canDeleted = value;
+		return this;
+	}
+	
+	
 	@DataSource({"ship_id", "shipId"})
 	@DataTarget("ship_id")
 	@XMLSimple("shipId")

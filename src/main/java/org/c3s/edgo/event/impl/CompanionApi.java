@@ -86,6 +86,7 @@ public class CompanionApi extends AbstractJournalEvent<CompanionApiBean> {
 				/**
 				 * Update modules
 				 */
+				DbAccess.shipSlotsAccess.updateSetDeletedByShipId(pilotShip.getShipId());
 				for (final String cslot : companion.ships.get(strId).modules.keySet()) {
 					if (skip.stream().filter(s -> cslot.toLowerCase().startsWith(s.toLowerCase())).map(s->true).findFirst().orElse(false)) {
 						continue;
@@ -104,7 +105,7 @@ public class CompanionApi extends AbstractJournalEvent<CompanionApiBean> {
 						}
 					}
 				}
-				
+				DbAccess.shipSlotsAccess.deleteFailSlotsByShipId(pilotShip.getShipId());
 			}
 			DbAccess.pilotShipsAccess.deleteDeletedByPilotId(pilot.getPilotId());
 			//throw new SQLException();

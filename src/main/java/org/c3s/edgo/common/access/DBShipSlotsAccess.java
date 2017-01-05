@@ -111,4 +111,48 @@ public class DBShipSlotsAccess extends Access {
 		return getConnection().query(sql, paramShipId, paramSlotId);
 	}
 	
+	public int updateSetDeletedByShipId(long paramShipId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				UPDATE ship_slots SET can_deleted = 1 WHERE ship_id = ?  			";
+		}
+
+		
+		int ret = getConnection().query(query,  paramShipId);
+			
+		return ret;
+	}
+	
+	public int deleteFailSlotsByShipId(long paramShipId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				DELETE FROM ship_slots WHERE ship_id = ? AND can_deleted = 1  			";
+		}
+
+		
+		int ret = getConnection().query(query,  paramShipId);
+			
+		return ret;
+	}
+	
 }

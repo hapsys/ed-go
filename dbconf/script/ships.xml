@@ -57,5 +57,17 @@
 			<column name="ship_id"/>
 			<column name="slot_id"/>
 		</delete>
+		<query name="SetDeletedByShipId">
+			<column name="ShipId" type="long"/>
+			<sql>
+				UPDATE ship_slots SET can_deleted = 1 WHERE ship_id = ? 
+			</sql>
+		</query>
+		<query name="FailSlotsByShipId">
+			<column name="ShipId" type="long"/>
+			<sql>
+				DELETE FROM ship_slots WHERE ship_id = ? AND can_deleted = 1 
+			</sql>
+		</query>
 	</table>
 </include>

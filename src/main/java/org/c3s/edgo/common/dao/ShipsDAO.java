@@ -108,8 +108,15 @@ public class ShipsDAO {
 			shipSlot.setShipId(shipId);
 			shipSlot.setSlotId(slotId);
 			shipSlot.setModuleId(moduleId);
+			shipSlot.setCanDeleted(0);
 			DbAccess.shipSlotsAccess.insert(shipSlot);
-		} else if (shipSlot.getModuleId() == null && moduleId != null) {
+		
+		} else {
+			shipSlot.setCanDeleted(0);
+			DbAccess.shipSlotsAccess.updateByPrimaryKey(shipSlot, shipId, slotId);
+		}
+		
+		if (shipSlot.getModuleId() == null && moduleId != null) {
 			shipSlot.setModuleId(moduleId);
 			DbAccess.shipSlotsAccess.updateByPrimaryKey(shipSlot, shipId, slotId);
 		}
