@@ -188,7 +188,7 @@ public class Commander extends GeneralController {
 			cortage.setCreditsSpend(DbAccess.pilotPowerSpendAccess.getListForPilots(injector));
 			
 			Document xml = new XMLReflectionObj(current).toXML();
-			logger.debug(XMLUtils.xml2out(xml));
+			//logger.debug(XMLUtils.saveXML(xml));
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:view_power"});
 			redirect.setRedirect(new DropRedirect());
 		} else {

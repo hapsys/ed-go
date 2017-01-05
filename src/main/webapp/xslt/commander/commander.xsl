@@ -305,7 +305,7 @@
 							}
 							for(i=0; i &lt; result.days.length; i++) {
 								var current = result.days[i];
-								_data[current.eventDate] = current.times;
+								_data[current.eventDate - 1] = current.times;
 							}
 							if (mybarChart != null) {
 								mybarChart.destroy();
@@ -514,6 +514,7 @@
 				<tbody>
 					<xsl:for-each select="item[@name='powers']/weeks/item">
 						<xsl:variable name="week"><xsl:value-of select="field[@name='startWeek']/@value"/></xsl:variable>
+						<xsl:variable name="week_pos" select="position()"/>
 						<tr>
 							<td><xsl:value-of select="$week"/></td>	
 							<td>
@@ -528,7 +529,25 @@
 							</td>	
 							<td>
 								<xsl:for-each select="/*/item[@name='powers']/meritsWar/item[field[@name='startWeek']/@value = $week]">
-									<xsl:value-of select="number(field[@name='quantity']/@value) * 10"/> / <xsl:value-of select="field[@name='systemName']/@value"/><br/>
+									<xsl:choose>
+										<xsl:when test="$week_pos = 1">
+											<xsl:choose>
+												<xsl:when test="field[@name='isConfirmed']/@value = 1">
+													<xsl:value-of select="number(field[@name='quantity']/@value) * 10"/> / <xsl:value-of select="field[@name='systemName']/@value"/><br/>
+												</xsl:when>
+												<xsl:otherwise>
+													<strike><xsl:value-of select="number(field[@name='quantity']/@value) * 10"/></strike> / <xsl:value-of select="field[@name='systemName']/@value"/><br/>
+												</xsl:otherwise>
+											</xsl:choose>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:choose>
+												<xsl:when test="field[@name='isConfirmed']/@value = 1">
+													<xsl:value-of select="number(field[@name='quantity']/@value) * 10"/> / <xsl:value-of select="field[@name='systemName']/@value"/><br/>
+												</xsl:when>
+											</xsl:choose>
+										</xsl:otherwise>
+									</xsl:choose>
 								</xsl:for-each>
 							</td>	
 							<td>

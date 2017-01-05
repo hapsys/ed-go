@@ -221,6 +221,7 @@ public class PowersDAO {
 				String uniq = EDUtils.getSystemUniq(sys);
 				DBSystemsBean system =  DbAccess.systemsAccess.getByUniq(uniq);
 				if (system !=  null) {
+					//System.out.println(">>>>" + system.getSystemId());
 					//System.out.println(">>>>" + system.getName());
 					//
 					DBPilotWarMeritsBean warBean = DbAccess.pilotWarMeritsAccess.getNotConfirmedByPilotIdAndSystemIdAndWeek(pilot.getPilotId(), system.getSystemId(), startWeek);
