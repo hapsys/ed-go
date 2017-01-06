@@ -40,6 +40,10 @@
 					<param name="allow" value="ROLE_LOGGED"/>
 					<module class="org.c3s.edgo.web.auth.UserController" action="getProfile" is_last="true"/>
 				</module>
+				<module pattern="client-key/" class="org.c3s.edgo.web.auth.Auth" action="checkRoles">
+					<param name="allow" value="ROLE_LOGGED"/>
+					<module class="org.c3s.edgo.web.auth.UserController" action="getClientKey" is_last="true"/>
+				</module>
 				<module pattern="confirmation/" class="org.c3s.edgo.web.auth.Auth" action="checkRoles" is_last="true">
 					<param name="allow" value="ROLE_REGISTERED"/>
 					<module class="org.c3s.edgo.web.auth.UserController" action="confirmation" is_last="true"/>

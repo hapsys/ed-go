@@ -1,18 +1,44 @@
-body {
-	padding: 10px;
-}
-
-.alert-error {
-    background-color: #f26b46;
+.form-error {
+    background-color: none;
     display: block;
     padding: 2px 11px;
-    color: #fff;
+    color: #f26b46;
     font-size: 12px;
 	margin-bottom:5px;
+	text-align: left;
 }
 
+.login-form .form-error {
+	margin-top: -20px;
+	margin-bottom:15px;
+    padding: 0px 11px;
+}
+
+.register-form .form-error {
+	margin-top: -20px;
+	margin-bottom:15px;
+    padding: 0px 11px;
+}
+
+.center_wrapper {
+  right: 0px;
+  margin: 0px auto;
+  margin-top: 5%;
+  max-width: 650px;
+  position: relative; }
+  
+  
+.center_form {
+  position: absolute;
+  top: 0px;
+  width: 100%; 
+}
+
+.width-650 {
+  max-width: 650px;
+}
 
 .table > thead > tr > th {
-    vertical-align: middle;
+    vertical-align: top;
     padding-left: 20px;
 }

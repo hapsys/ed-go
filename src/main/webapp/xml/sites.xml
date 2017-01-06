@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sites-info>
-	<site name="Common public site" language="suffix">
+	<site name="Russian default site" language="suffix">
 		<config>xml/config.xml</config>
 		<alias>192.168.0.10/c3s-edgo</alias>
 		<alias>localhost/c3s-edgo</alias>
 		<alias>edgo.loc</alias>
-		<alias>ed-go.ru</alias>
 		<alias>ed-go.xyz</alias>
 		<alias>edgo.ddns.net</alias>
 		<language ref="ru" default="true"/>
 		<language ref="en"/>
+		<!-- 
+		<language ref="gr"/>
+		 -->
+	</site>
+	<site name="English default site" language="suffix">
+		<alias>ed-go.xyz</alias>
+		<language ref="ru"/>
+		<language ref="en" default="true"/>
 		<!-- 
 		<language ref="gr"/>
 		 -->

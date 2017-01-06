@@ -10,7 +10,8 @@
 	<xsl:param name="default"/>
 	<xsl:param name="suffix"/>
 	<xsl:param name="roles"/>
-	<xsl:param name="pilot"/>
+	<xsl:param name="pilotEncoded"/>
+	<xsl:param name="pilotReal"/>
 	<xsl:param name="type"/>
 	<xsl:template match="/data">
 		<xsl:variable name="lang"><xsl:value-of select="$root"/><xsl:if test="$politic = 'suffix' and $default != 'true'">/<xsl:value-of select="$suffix"/></xsl:if></xsl:variable>
@@ -20,7 +21,7 @@
 						<xsl:when test="position() != last()">
 							<li>
 							<a href="{$lang}{@href}">
-								<xsl:value-of select="@title"/><xsl:if test="position() = 2 and string-length($pilot) != 0 and contains(@href, concat($pilot,'/'))">&#160;<xsl:value-of select="$pilot"/></xsl:if>
+								<xsl:value-of select="@title"/><xsl:if test="position() = 2 and string-length($pilotReal) != 0 and contains(@href, concat($pilotEncoded,'/'))">&#160;<xsl:value-of select="$pilotReal"/></xsl:if>
 							</a>
 							</li>
 						</xsl:when>

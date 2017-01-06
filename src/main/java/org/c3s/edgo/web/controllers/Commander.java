@@ -2,6 +2,7 @@ package org.c3s.edgo.web.controllers;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.c3s.annotations.Controller;
+import org.c3s.annotations.CurrentUrl;
 import org.c3s.annotations.Parameter;
 import org.c3s.annotations.ParameterRequest;
 import org.c3s.content.ContentObject;
@@ -332,7 +334,7 @@ public class Commander extends GeneralController {
 		getSystems(startdate, enddate, page, per_page, tag, redirect);
 	}
 	// ============================================================== -SYSTEMS PATH ==============================================================================
-	public void checkCommander(UrlPart url, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException, UnsupportedEncodingException {
+	public void checkCommander(UrlPart url, RedirectControlerInterface redirect, @CurrentUrl String currentUrl) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException, UnsupportedEncodingException {
 		
 		//String actionUrl = url.getPattern().substring(0, url.getPattern().length() - 1).toLowerCase();
 		String actionUrl = URLDecoder.decode(url.getPattern().substring(0, url.getPattern().length() - 1), "utf-8");
@@ -341,7 +343,7 @@ public class Commander extends GeneralController {
 		//logger.debug("1 dencoding: {}", url.getPattern().substring(0, url.getPattern().length() - 1).toLowerCase());
 		//logger.debug("2 dencoding: {}", URLDecoder.decode(url.getPattern().substring(0, url.getPattern().length() - 1), "utf-8"));
 		//SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		//System.out.println(dateFormat.format(new Date()));
+		//System.out.println(currentUrl);
 		DBUsersBean user = getUser();
 		DBPilotsBean pilot = null;
 
@@ -350,6 +352,8 @@ public class Commander extends GeneralController {
 			if (pilot != null && (pilot.getUserId().equals(user.getUserId()) || hasRole(AuthRoles.ROLE_ADMINISTRATOR))) {
 				current = pilot;
 				ContentObject.getInstance().setFixedParameters("pilot", pilot.getPilotName().replace("'", "\\'"));
+				ContentObject.getInstance().setFixedParameters("pilotEncoded", pilot.getPilotName().replace(" ", "%20"));
+				ContentObject.getInstance().setFixedParameters("pilotReal", pilot.getPilotName());
 			}
 		}
 	}

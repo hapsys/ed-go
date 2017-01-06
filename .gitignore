@@ -1,6 +1,7 @@
 /target/
 /target_scripts/
 /scripts/
+/temp/
 /.settings/
 /.classpath
 /.project

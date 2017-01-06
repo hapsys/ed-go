@@ -38,7 +38,7 @@
 			<div class="animate form login_form">
 				<section class="login_content">
 					<form action="" class="login-form">
-						<h1>Login To Site</h1>
+						<h1>Вход на сайт</h1>
 						<div>
 							<input type="hidden"id="__common"/>
 						</div>
@@ -46,19 +46,18 @@
 							<input type="text" class="form-control" placeholder="Email" id="email" name="email"/>
 						</div>
 						<div>
-							<input type="password" class="form-control" placeholder="Password" id="password" name="password"/>
+							<input type="password" class="form-control" placeholder="Пароль" id="password" name="password"/>
 						</div>
 						<div>
-							<button type="submit" class="btn btn-default submit">Log in</button> <a
-								class="reset_pass" href="<%=root%>/account/restore/">Lost your password?</a>
+							<button type="submit" class="btn btn-default submit">Войти</button> <a
+								class="reset_pass" href="<%=root%>/account/restore/">Забыли пароль?</a>
 						</div>
 
 						<div class="clearfix"></div>
 
 						<div class="separator">
 							<p class="change_link">
-								New to site? <a href="#signup" class="to_register clear-errors"> Create
-									Account </a>
+								Новичок на сайте? <a href="#signup" class="to_register clear-errors"> Создать аккаунт </a>
 							</p>
 
 							<div class="clearfix"></div>
@@ -77,7 +76,7 @@
 			<div id="register" class="animate form registration_form">
 				<section class="login_content">
 					<form action="" class="register-form">
-						<h1>Create Account</h1>
+						<h1>Новый аккаунт</h1>
 						<div>
 							<input type="hidden"id="__common"/>
 						</div>
@@ -85,19 +84,19 @@
 							<input type="email" class="form-control" placeholder="Email" name="regemail" id="regemail"/>
 						</div>
 						<div>
-							<input type="password" class="form-control" placeholder="Password"  name="regpassword" id="regpassword"/>
+							<input type="password" class="form-control" placeholder="Пароль"  name="regpassword" id="regpassword"/>
 						</div>
 						<div>
-							<input type="password" class="form-control" placeholder="Confirm Password" name="regconfirm" id="regconfirm"/>
+							<input type="password" class="form-control" placeholder="Подтвердите пароль" name="regconfirm" id="regconfirm"/>
 						</div>
 						<div>
- 							<button type="submit" class="btn btn-default submit">Submit</button>
+ 							<button type="submit" class="btn btn-default submit">Отправить</button>
 						</div>
 						<div class="clearfix"></div>
 						<div class="separator">
 							<p class="change_link">
-								Already a member ? <a href="#signin" class="to_register clear-errors">
-									Log in </a>
+								Уже зарегистрированы? <a href="#signin" class="to_register clear-errors">
+									Войти на сайт </a>
 							</p>
 							<div class="clearfix"></div>
 							<br />

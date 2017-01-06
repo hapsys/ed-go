@@ -89,7 +89,7 @@ var validateForm = function(form) {
 var clearErrors = function(form) {
 	$(form).find('.has-error').removeClass('has-error');
 	//$(form).find('.control-label').remove();
-	$(form).find('.alert-error').remove();
+	$(form).find('.form-error').remove();
 };
 
 var elementError = function(element, text) {
@@ -103,7 +103,7 @@ var elementError = function(element, text) {
 	$(element).after('<label class="control-label show-error" for="inputError">' + text + '</label>');
 	$(element).after('<span class="alert-error">' + text + '</span>');
 	*/
-	$('<span class="alert-error">' + text + '</span>').insertAfter(element);
+	$('<span class="form-error">' + text + '</span>').insertAfter(element);
 };
 
 var showErrors = function(form, errors) {

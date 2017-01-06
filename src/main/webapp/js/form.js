@@ -4,6 +4,13 @@ $(function() {
 	
 	console.log('Load Forms');
 	
+	$(".login-form,.register-form").each(function() {
+		var form = this;
+		$(form).find('.clear-errors').on('click', function() {
+			Validator.clearErrors(form);
+		});
+	});
+	
 	$(".login-form").submit(function() {
 		var form = this;
 		var data = {
@@ -82,9 +89,18 @@ $(function() {
 		return false;
 	});
 	
-	$(".account-form").each(function() {
+	$(".logout-login").on('click', function() {
+		proxy.makeCall('post', '/ajax/profile/logout/', null, null, null, function(result) {
+			window.location.href = site_root + '/account/login/';
+		});
+		return false;
+	});
+	
+	$(".client-program-form").each(function() {
 		var form = this;
 
+		var clipboardId = new Clipboard('.clipboard-copy');
+		
 		$(form).find(".key-generate").on("click", function() {
 			Validator.clearErrors(form);
 			$(form).find('input,button,select').prop('disabled', true);

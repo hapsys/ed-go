@@ -9,7 +9,6 @@
 	<xsl:param name="language_id"/>
 	<xsl:param name="default"/>
 	<xsl:param name="suffix"/>
-	<xsl:param name="tournaments"/>
 	<xsl:param name="roles"/>
 	<xsl:param name="type"/>
 	<xsl:template match="/data">

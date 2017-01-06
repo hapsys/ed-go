@@ -16,6 +16,9 @@
 
 	String root = cms.getFixedParameter("root").toString();
 	String lang_id = cms.getFixedParameter("language_id").toString();
+	String isDefault = cms.getFixedParameter("default").toString();
+	
+	String rootLang = root + ("true".equals(isDefault)?"":"/" + lang_id);
 	
 	String langs = cms.getData("langs");
 	String path_ctx = cms.getData("path");
@@ -80,9 +83,9 @@
 <!-- Custom Theme Style -->
 <link href="<%=root%>/css/custom/custom.css" rel="stylesheet">
 
-<!-- link rel="stylesheet" href="<%=root%>/css/sites.css" type="text/css"/ -->
+<link rel="stylesheet" href="<%=root%>/css/sites.css"  rel="stylesheet">
 <script type="text/javascript">
-	site_root = "<%=root%>/<%=lang_id%>";
+	site_root = "<%=rootLang%>";
 </script>
 
 <!-- jQuery -->
@@ -335,6 +338,8 @@ moment.locale('<%=lang_id%>');
     <script src="<%=root%>/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
     <script src="<%=root%>/vendors/datatables.net-scroller/js/datatables.scroller.min.js"></script>
 
+    <!-- Clipboard -->
+    <script src="<%=root%>/vendors/clipboard.js/clipboard.min.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="<%=root%>/js/custom/custom.min.js"></script>
 

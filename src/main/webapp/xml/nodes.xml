@@ -16,19 +16,27 @@
 			<title lang="ru">Войти</title>
 			<title lang="en">Sign in</title>
 			<menu name="main_menu"/>
-			<include value="include/sign_en.jsp" tag="content_include"/>
+			<include lang="en" value="include/sign_en.jsp" tag="content_include"/>
+			<include lang="ru" value="include/sign_ru.jsp" tag="content_include"/>
 		</node>
 		<node pattern="registration">
 			<role>ROLE_NOT_LOGGED</role>
 			<title lang="ru">Регистрация</title>
 			<title lang="en">Registration</title>
 			<menu name="main_menu"/>
-			<include value="include/sign_en.jsp" tag="content_include"/>
+			<include lang="en" value="include/sign_en.jsp" tag="content_include"/>
+			<include lang="ru" value="include/sign_ru.jsp" tag="content_include"/>
 		</node>
 		<node pattern="profile">
 			<role>ROLE_LOGGED</role>
 			<title lang="ru">Профиль</title>
 			<title lang="en">Profile</title>
+			<menu name="main_menu"/>
+		</node>
+		<node pattern="client-key">
+			<role>ROLE_LOGGED</role>
+			<title lang="ru">Доступ клиента</title>
+			<title lang="en">Client access</title>
 			<menu name="main_menu"/>
 		</node>
 		<node pattern="confirmation">
@@ -48,6 +56,11 @@
 			<title lang="ru">Выйти</title>
 			<title lang="en">Sign out</title>
 			<menu name="main_menu"/>
+		</node>
+		<node pattern="restore">
+			<role>ROLE_NOT_LOGGED</role>
+			<title lang="ru">Восстановить пароль</title>
+			<title lang="en">Restore password</title>
 		</node>
 	</node>
 	<!--

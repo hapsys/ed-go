@@ -206,6 +206,18 @@ public class UserController extends GeneralController {
 		}
 	}
 	
+	public void getClientKey(@Parameter("tag") String tag, @Parameter("template") String template, RedirectControlerInterface redirect) throws Exception {
+		
+		DBUsersBean user;
+		if ((user = getUser()) != null) {
+			Document xml = new XMLReflectionObj(user, true).toXML();
+			//logger.debug(XMLUtils.xml2out(xml));
+			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:client"});
+		} else {
+			redirect.setRedirect(new DirectRedirect("/"));
+		}
+	}
+	
 	public void generateNewKeys(@Parameter("tag") String tag, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, SQLException {
 		DBUsersBean user = getUser();
 		if (user != null) {

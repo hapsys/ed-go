@@ -11,4 +11,22 @@
 	<match name="Field must have value"><select lang="ru">Поле не может быть пустым</select></match>
 	<match name="CMDR"><select lang="ru">КМДР</select></match>
 	<match name="Last location"><select lang="ru">Последнее местонахождение</select></match>
+	<!-- USER FORMS -->
+	<match name="client-title">
+		<select lang="ru">Данные программы клиента</select>
+		<select lang="en">Client program data</select>
+	</match>
+	<match name="client-description">
+		<select lang="ru">копируются в настройки программы</select>
+		<select lang="en">copy to program settings</select>
+	</match>
+	<match name="client-id">
+		<select lang="ru">ИД пользователя</select>
+		<select lang="en">User ID</select>
+	</match>
+	<match name="client-key">
+		<select lang="ru">Ключ пользователя</select>
+		<select lang="en">User Key</select>
+	</match>
+	<!-- /USER FORMS -->
 </i10n>
