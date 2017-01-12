@@ -340,7 +340,7 @@ moment.locale('<%=lang_id%>');
     <script src="<%=root%>/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
     <script src="<%=root%>/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="<%=root%>/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    <script src="<%=root%>/vendors/datatables.net-scroller/js/datatables.scroller.min.js"></script>
+    <script src="<%=root%>/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
 
     <!-- Clipboard -->
     <script src="<%=root%>/vendors/clipboard.js/clipboard.min.js"></script>
