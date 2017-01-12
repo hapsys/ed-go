@@ -166,6 +166,21 @@ public class DBSystemPathBean implements DbBean, Serializable {
 		return this;
 	}
 	
+	
+	@DataSource({"timestamp", "timestamp"})
+	@DataTarget("timestamp")
+	@XMLSimple("timestamp")
+	private java.lang.String timestamp;
+	
+	public java.lang.String getTimestamp() {
+		return timestamp;
+	}
+	
+	public DBSystemPathBean setTimestamp(java.lang.String value) {
+		timestamp = value;
+		return this;
+	}
+	
 	@Override
 	public void setAutoincrementField(Object value) {
 		

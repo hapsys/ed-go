@@ -49,7 +49,7 @@ public class LoadGame extends AbstractJournalEvent<LoadGameBean> {
 				current.setUserId(user.getUserId());
 				current.setPilotName(bean.getCommander());
 				current.setIsCurrent(1);
-				current.setIsIgnored(0);
+				current.setIsIgnored(DbAccess.pilotsAccess.getCheckPilotName(bean.getCommander()).getNameOther() == 0L?0:1);
 				DbAccess.pilotsAccess.insert(current);
 				/*
 				if (pilots == null) {

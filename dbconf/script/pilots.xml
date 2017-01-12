@@ -41,6 +41,10 @@
 		<select name="ByUserId">
 			<column name="user_id"/>
 		</select>
+		<select name="ByUserIdNoIgnored">
+			<column name="user_id"/>
+			<column name="is_ignored" condition="&lt;&gt;" value="1"/>
+		</select>
 		<select name="CurrentByUserId" single_object="true">
 			<column name="user_id"/>
 			<column name="is_current" condition="=" value="1"/>
@@ -49,6 +53,9 @@
 			<column name="user_id"/>
 			<column name="pilot_name"/>
 		</select>
+		<select name="LinkedPilots">
+			<column name="parent_pilot_id"/>
+		</select>
 		<update name="ByPrimaryKey">
 			<column name="pilot_id"/>
 		</update>
@@ -56,6 +63,36 @@
 			<column name="UserId" type="long"/>
 			<sql>
 				UPDATE pilots SET is_current = 0 WHERE user_id = ?
+			</sql>
+		</query>
+		<query name="MenuPilotsByUserId" use="Pilots">
+			<column name="UserId" type="long"/>
+			<sql>
+				SELECT p.*
+				FROM pilots p
+				WHERE p.user_id = ?
+				AND p.is_ignored != 1
+				AND ISNULL(p.parent_pilot_id)
+				ORDER BY p.pilot_name
+			</sql>
+		</query>		
+		<query name="PilotsLinkedInfo">
+			<column name="UserId" type="long"/>
+			<sql>
+				SELECT p.*, COUNT(pl.pilot_id) as name_other
+				FROM pilots p
+				LEFT JOIN pilots pl ON LOWER(p.pilot_name) = LOWER(pl.pilot_name) AND p.pilot_id != pl.pilot_id AND (pl.is_ignored = 0 OR ISNULL(pl.parent_pilot_id))
+				WHERE p.user_id = ?
+				GROUP BY p.pilot_id
+				ORDER BY p.is_ignored, p.pilot_name
+			</sql>
+		</query>
+		<query name="CheckPilotName" single_object="true">
+			<column name="PilotName" type="String"/>
+			<sql>
+				SELECT COUNT(p.pilot_id) as name_other
+				FROM pilots p
+				WHERE LOWER(p.pilot_name) = LOWER(?)
 			</sql>
 		</query>
 	</table>

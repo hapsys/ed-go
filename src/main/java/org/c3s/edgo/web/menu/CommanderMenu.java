@@ -25,8 +25,7 @@ public class CommanderMenu extends MenuModule {
 	public void getPilotList() throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		DBUsersBean user = GeneralController.getUser();
 		if (user != null) {
-			//pilots = GeneralController.getEntityManager().createNamedQuery("Pilot.findByUserId", Pilot.class).setParameter("user_id", user.getUserId()).getResultList().stream().collect(Collectors.toList());
-			pilots = DbAccess.pilotsAccess.getByUserId(user.getUserId());
+			pilots = DbAccess.pilotsAccess.getMenuPilotsByUserId(user.getUserId());
 		}
 	}
 	

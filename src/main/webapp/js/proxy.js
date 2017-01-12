@@ -46,7 +46,7 @@ ProxyApi = function(schema, host, root) {
 
 		var options = {
 			method: method,
-			dataType: 'json',
+			//dataType: 'json',
 			url : uri + url + queryString,
 			success: function(result) {
 				callback(result);
@@ -103,6 +103,8 @@ ProxyApi = function(schema, host, root) {
 				queryString = '?' + queryString;
 			}
 		}
+		
+		url = uri + url + queryString;
 		
 		$(element).load(url, function(responseText, textStatus, XMLHttpRequest) {
 			callback(responseText, textStatus, XMLHttpRequest);

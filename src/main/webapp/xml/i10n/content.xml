@@ -28,5 +28,41 @@
 		<select lang="ru">Ключ пользователя</select>
 		<select lang="en">User Key</select>
 	</match>
+	<match name="pilots-link-title">
+		<select lang="ru">Связывание данных пилотов</select>
+		<select lang="en"></select>
+	</match>
+	<match name="pilots-link-description">
+		<select lang="ru">используется при переименовании, смене аккаунта</select>
+		<select lang="en"></select>
+	</match>
+	<match name="pilots-link-link">
+		<select lang="ru">Связать</select>
+		<select lang="en">Link</select>
+	</match>
+	<match name="pilots-link-name">
+		<select lang="ru">Пилот</select>
+		<select lang="en">Pilot</select>
+	</match>
+	<match name="pilots-link-linked">
+		<select lang="ru">Связанные пилоты</select>
+		<select lang="en">Linked pilots</select>
+	</match>
+	<match name="pilots-link-unlink">
+		<select lang="ru">Отсоединить пилота</select>
+		<select lang="en">Unlink pilot</select>
+	</match>
+	<match name="pilots-link-ignored">
+		<select lang="ru">Скрыть пилота</select>
+		<select lang="en">Hide pilot</select>
+	</match>
+	<match name="pilots-link-hidden">
+		<select lang="ru">скрытый</select>
+		<select lang="en">hidden</select>
+	</match>
+	<match name="pilots-link-update">
+		<select lang="ru">Обновить состояние</select>
+		<select lang="en">Update state</select>
+	</match>
 	<!-- /USER FORMS -->
 </i10n>

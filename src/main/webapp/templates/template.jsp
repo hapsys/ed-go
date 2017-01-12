@@ -55,7 +55,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>E:D - <%=title%></title>
+<title>ED - <%=title%></title>
 
 <!-- Bootstrap -->
 <link href="<%=root%>/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -73,6 +73,8 @@
 <link href="<%=root%>/vendors/animate.css/animate.min.css" rel="stylesheet">
 <!-- Datepicker.css -->
 <link href="<%=root%>/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<!-- Switchery -->
+<link href="<%=root%>/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
 <!-- Datatables -->
 <link href="<%=root%>/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
 <link href="<%=root%>/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
@@ -323,6 +325,8 @@ moment.locale('<%=lang_id%>');
     <script src="<%=root%>/vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
     <!-- easy-pie-chart -->
     <script src="<%=root%>/vendors/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+    <!-- Switchery -->
+    <script src="<%=root%>/vendors/switchery/dist/switchery.min.js"></script>
 
     <!-- Datatables -->
     <script src="<%=root%>/vendors/datatables.net/js/jquery.dataTables.min.js"></script>

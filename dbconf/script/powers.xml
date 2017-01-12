@@ -145,6 +145,9 @@
 		<column name="system_name" type="String">
 	    	<annotation>@XMLSimple("systemName")</annotation>
 		</column>
+		<column name="quantity_summ" type="java.math.BigDecimal">
+	    	<annotation>@XMLSimple("quantitySumm")</annotation>
+		</column>
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="pilot_power_spend_id"/>
 		</select>
@@ -164,10 +167,11 @@
 		</delete>
 		<query name="ListForPilots" use="PilotPowerSpend" intruder="org.c3s.edgo.common.intruders.InInjector">
 			<sql>
-				SELECT t.*
+				SELECT t.*, SUM(t.quantity) as quantity_summ
 				FROM pilot_power_spend t
 				WHERE 1=1
 				<where/>
+				GROUP BY t.start_week 
 				ORDER BY start_week DESC
 			</sql>
 		</query>
@@ -176,6 +180,9 @@
 	<table name="pilot_deliver">
 		<column name="system_name" type="String">
 	    	<annotation>@XMLSimple("systemName")</annotation>
+		</column>
+		<column name="quantity_summ" type="java.math.BigDecimal">
+	    	<annotation>@XMLSimple("quantitySumm")</annotation>
 		</column>
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="pilot_deliver_id"/>
@@ -197,11 +204,12 @@
 		</delete>
 		<query name="ListForPilots" use="PilotDeliver" intruder="org.c3s.edgo.common.intruders.InInjector">
 			<sql>
-				SELECT t.*, s.name as system_name
+				SELECT t.*, s.name as system_name, SUM(t.quantity) as quantity_summ 
 				FROM pilot_deliver t, systems s
 				WHERE 1=1
 				<where/>
 				AND t.system_id = s.system_id
+				GROUP BY t.start_week, t.system_id  
 				ORDER BY start_week DESC
 			</sql>
 		</query>
@@ -210,6 +218,9 @@
 	<table name="pilot_war_merits">
 		<column name="system_name" type="String">
 	    	<annotation>@XMLSimple("systemName")</annotation>
+		</column>
+		<column name="quantity_summ" type="java.math.BigDecimal">
+	    	<annotation>@XMLSimple("quantitySumm")</annotation>
 		</column>
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="pilot_war_merits_id"/>
@@ -239,12 +250,13 @@
 		</delete>
 		<query name="ListForPilots" use="PilotWarMerits" intruder="org.c3s.edgo.common.intruders.InInjector">
 			<sql>
-				SELECT t.*, s.name as system_name
+				SELECT t.*, s.name as system_name, SUM(t.quantity) as quantity_summ
 				FROM pilot_war_merits t, systems s
 				WHERE 1=1
 				<where/>
 				AND (t.is_confirmed = 1 OR t.is_confirmed = 0)
 				AND t.system_id = s.system_id
+				GROUP BY t.start_week, t.system_id, t.is_confirmed 
 				ORDER BY start_week DESC
 			</sql>
 		</query>
@@ -265,6 +277,9 @@
 	<table name="pilot_kill_merits">
 		<column name="system_name" type="String">
 	    	<annotation>@XMLSimple("systemName")</annotation>
+		</column>
+		<column name="quantity_summ" type="java.math.BigDecimal">
+	    	<annotation>@XMLSimple("quantitySumm")</annotation>
 		</column>
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="pilot_kill_merits_id"/>
@@ -294,12 +309,13 @@
 		</delete>
 		<query name="ListForPilots" use="PilotKillMerits" intruder="org.c3s.edgo.common.intruders.InInjector">
 			<sql>
-				SELECT t.*, s.name as system_name
+				SELECT t.*, s.name as system_name, SUM(t.quantity) as quantity_summ
 				FROM pilot_kill_merits t, systems s
 				WHERE 1=1
 				<where/>
 				AND t.is_confirmed = 1
 				AND t.system_id = s.system_id
+				GROUP BY t.start_week, t.system_id, t.is_confirmed 
 				ORDER BY start_week DESC
 			</sql>
 		</query>

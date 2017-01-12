@@ -192,7 +192,7 @@ public class DBPilotPowerSpendAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT t.* 				FROM pilot_power_spend t 				WHERE 1=1 				" + where + " 				ORDER BY start_week DESC 			";
+			query = " 				SELECT t.*, SUM(t.quantity) as quantity_summ 				FROM pilot_power_spend t 				WHERE 1=1 				" + where + " 				GROUP BY t.start_week  				ORDER BY start_week DESC 			";
 		}
 
 		

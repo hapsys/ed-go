@@ -2,7 +2,6 @@ package org.c3s.edgo.web.controllers;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,13 +10,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 import org.c3s.annotations.Controller;
 import org.c3s.annotations.CurrentUrl;
 import org.c3s.annotations.Parameter;
 import org.c3s.annotations.ParameterRequest;
 import org.c3s.content.ContentObject;
-import org.c3s.db.injectors.EmptySqlInjector;
 import org.c3s.dispatcher.PatternerInterface;
 import org.c3s.dispatcher.RedirectControlerInterface;
 import org.c3s.dispatcher.UrlPart;
@@ -57,6 +56,7 @@ public class Commander extends GeneralController {
 	private static Logger logger = LoggerFactory.getLogger(Commander.class);
 	
 	private DBPilotsBean current = null;
+	private List<Long> linkedPilots = null;
 	
 	// ============================================================== +INFORMATION ==============================================================================
 	
@@ -70,7 +70,7 @@ public class Commander extends GeneralController {
 			
 			Document xml = new XMLReflectionObj(current, true).toXML();	
 			
-			DBEventMaxMinDateForPilotBean minmax = DbAccess.eventsHistoryAccess.getEventMaxMinDateForPilot(current.getPilotId());
+			DBEventMaxMinDateForPilotBean minmax = DbAccess.eventsHistoryAccess.getEventMaxMinDateForPilot(new InInjector("p.pilot_id", linkedPilots));
 			
 			if (minmax.getMinDate().length() > 0) {
 				xml.getDocumentElement().setAttribute("mindate", minmax.getMinDate());
@@ -83,7 +83,7 @@ public class Commander extends GeneralController {
 			
 			//logger.debug(XMLUtils.xml2out(xml));
 			//logger.debug("template {}", template);
-			logger.debug(XMLUtils.saveXML(xml));
+			//logger.debug(XMLUtils.saveXML(xml));
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:info"});
 		} else {
 			redirect.setRedirect(new DirectRedirect("/"));
@@ -112,7 +112,7 @@ public class Commander extends GeneralController {
 			//System.out.println(from);
 			//System.out.println(to);
 			
-			List<DBActivityBean> activity = DbAccess.eventsHistoryAccess.getActivity(current.getPilotId(), new EventHistoryInjector(from, to));
+			List<DBActivityBean> activity = DbAccess.eventsHistoryAccess.getActivity(new EventHistoryInjector(from, to, linkedPilots));
 			//System.out.println(activity.size());
 			ContentObject.getInstance().setData(tag, new Result().put("days", activity).get());
 			redirect.setRedirect(new DropRedirect());
@@ -179,9 +179,10 @@ public class Commander extends GeneralController {
 			current.setPowers(cortage);
 			
 			
-			List<Object> in = new ArrayList<>();
-			in.add(current.getPilotId());
-			InInjector injector = new InInjector("pilot_id", in);
+			//List<Object> in = new ArrayList<>();
+			//in.add(current.getPilotId());
+			InInjector injector = new InInjector("pilot_id", linkedPilots);
+			System.out.println(injector.getWhereQuery());
 			List<DBPilotsPowerWeeksBean> weeks = DbAccess.pilotPowerAccess.getPilotsPowerWeeks(injector);
 			cortage.setWeeks(weeks);
 			
@@ -207,9 +208,9 @@ public class Commander extends GeneralController {
 		
 		if (current != null) {
 
-			List<Object> in = new ArrayList<>();
-			in.add(current.getPilotId());
-			InInjector injector = new InInjector("m.pilot_id", in);
+			//List<Object> in = new ArrayList<>();
+			//in.add(current.getPilotId());
+			InInjector injector = new InInjector("m.pilot_id", linkedPilots);
 			
 			List<Object> mat_in = new ArrayList<>();
 			List<Object> com_in = new ArrayList<>();
@@ -266,7 +267,7 @@ public class Commander extends GeneralController {
 		if (current != null) {
 			Document xml = new XMLReflectionObj(current, true).toXML();
 			
-			DBMaxMinDateSystemHistoryForPilotBean minmax = DbAccess.locationSystemHistoryAccess.getMaxMinDateSystemHistoryForPilot(current.getPilotId());
+			DBMaxMinDateSystemHistoryForPilotBean minmax = DbAccess.locationSystemHistoryAccess.getMaxMinDateSystemHistoryForPilot(new InInjector("l.pilot_id", linkedPilots));
 			
 			if (minmax.getMinDate().length() > 0) {
 				xml.getDocumentElement().setAttribute("mindate", minmax.getMinDate());
@@ -311,11 +312,11 @@ public class Commander extends GeneralController {
 				per_page = 50;
 			}
 			
-			SystemPathInjector injector = new SystemPathInjector(page - 1, per_page, from, to);
+			SystemPathInjector injector = new SystemPathInjector(page - 1, per_page, from, to, linkedPilots);
 			List<DBSystemPathBean> systems = DbAccess.locationSystemHistoryAccess.getSystemPath(current.getPilotId(), injector); 
 			System.out.println(systems.size());
 				
-			DBMaxMinDateSystemHistoryForPilotBean minmax = DbAccess.locationSystemHistoryAccess.getMaxMinDateSystemHistoryForPilot(current.getPilotId());
+			DBMaxMinDateSystemHistoryForPilotBean minmax = DbAccess.locationSystemHistoryAccess.getMaxMinDateSystemHistoryForPilot(new InInjector("l.pilot_id", linkedPilots));
 			
 			Result result = new Result().put("systems", systems).put("total", DbAccess.locationSystemHistoryAccess.getSystemPathCount(current.getPilotId(), injector));
 			if (minmax.getMinDate().length() > 0) {
@@ -349,8 +350,20 @@ public class Commander extends GeneralController {
 
 		if (user != null) {
 			pilot = DbAccess.pilotsAccess.getByName(actionUrl);
-			if (pilot != null && (pilot.getUserId().equals(user.getUserId()) || hasRole(AuthRoles.ROLE_ADMINISTRATOR))) {
+			if (pilot != null && (long)pilot.getIsIgnored() == 0 && pilot.getParentPilotId() == null && (pilot.getUserId().equals(user.getUserId()) || hasRole(AuthRoles.ROLE_ADMINISTRATOR))) {
 				current = pilot;
+				
+				List<DBPilotsBean> linked = DbAccess.pilotsAccess.getLinkedPilots(pilot.getPilotId());
+				if (linked != null) {
+					linkedPilots = linked.stream().map(x -> x.getPilotId()).collect(Collectors.toList());
+				}
+				
+				if (linkedPilots == null) {
+					linkedPilots = new ArrayList<>();
+				}
+				
+				linkedPilots.add(current.getPilotId());
+				
 				ContentObject.getInstance().setFixedParameters("pilot", pilot.getPilotName().replace("'", "\\'"));
 				ContentObject.getInstance().setFixedParameters("pilotEncoded", pilot.getPilotName().replace(" ", "%20"));
 				ContentObject.getInstance().setFixedParameters("pilotReal", pilot.getPilotName());

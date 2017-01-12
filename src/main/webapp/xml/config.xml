@@ -44,6 +44,12 @@
 					<param name="allow" value="ROLE_LOGGED"/>
 					<module class="org.c3s.edgo.web.auth.UserController" action="getClientKey" is_last="true"/>
 				</module>
+				<module pattern="pilots-control/" class="org.c3s.edgo.web.auth.Auth" action="checkRoles">
+					<param name="allow" value="ROLE_LOGGED"/>
+					<module class="org.c3s.edgo.web.controllers.Settings" action="pilotLinkSettings" is_last="true">
+						<param name="template" value="{directory.stylesheet}/settings/settings.xsl"/>
+					</module>
+				</module>
 				<module pattern="confirmation/" class="org.c3s.edgo.web.auth.Auth" action="checkRoles" is_last="true">
 					<param name="allow" value="ROLE_REGISTERED"/>
 					<module class="org.c3s.edgo.web.auth.UserController" action="confirmation" is_last="true"/>
@@ -135,6 +141,19 @@
 						</module>
 					</module>
 				</module>
+				<module pattern="raw/" class="org.c3s.web.modules.template.TemplateModule" action="setTemplate">
+					<param name="template" value="{directory.templates}/raw.jsp"/>
+					<module pattern="profile/">
+						<module class="org.c3s.edgo.web.auth.Auth" action="checkRoles">
+							<param name="order" value="deny,allow"/>
+							<param name="allow" value="ROLE_LOGGED"/>
+							<module pattern="pilot-contol-update/" class="org.c3s.edgo.web.controllers.Settings" action="pilotLinkSettingsUpdate" is_last="true">
+								<param name="template" value="{directory.stylesheet}/settings/settings.xsl"/>
+							</module>
+						</module>
+					</module>
+				</module>
+				
 			</module>
 			<!-- - AJAX MODULES  -->
 		</module>

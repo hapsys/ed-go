@@ -153,9 +153,13 @@ public class DBLocationSystemHistoryAccess extends Access {
 		return ret;
 	}
 	
-	public DBMaxMinDateSystemHistoryForPilotBean getMaxMinDateSystemHistoryForPilot(long paramPilotId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+	public DBMaxMinDateSystemHistoryForPilotBean getMaxMinDateSystemHistoryForPilot(org.c3s.db.injectors.EmptySqlInjector paramIntruder) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		if (paramIntruder != null) {
+			injector = paramIntruder;
+		}
 		
 		
 		String query = injector.getFullQuery();
@@ -166,11 +170,11 @@ public class DBLocationSystemHistoryAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT p.pilot_id, MAX(DATE(l.location_time)) as max_date, MIN(DATE(l.location_time)) as min_date 				FROM pilots p 				LEFT JOIN location_system_history l ON l.pilot_id = p.pilot_id  				WHERE p.pilot_id = ? 				GROUP BY p.pilot_id 				LIMIT 1  			";
+			query = " 				SELECT p.pilot_id, MAX(DATE(l.location_time)) as max_date, MIN(DATE(l.location_time)) as min_date 				FROM pilots p 				LEFT JOIN location_system_history l ON l.pilot_id = p.pilot_id  				WHERE 1 = 1 				" + where + " 				GROUP BY p.pilot_id 				LIMIT 1  			";
 		}
 
 		
-		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getMaxMinDateSystemHistoryForPilot", query ,  paramPilotId);
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getMaxMinDateSystemHistoryForPilot", query );
 		DBMaxMinDateSystemHistoryForPilotBean ret = null;
 		if (result != null) {
 					ret = new DBMaxMinDateSystemHistoryForPilotBean();
@@ -199,7 +203,7 @@ public class DBLocationSystemHistoryAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT l.*, sy.name as system_name, sy.x, sy.y, sy.z,  					CONCAT('[', FORMAT(sy.x, 2), ',', FORMAT(sy.y, 2), ',', FORMAT(sy.z, 2), ']') as position, FORMAT(SQRT(sy.x * sy.x + sy.y * sy.y + sy.z * sy.z), 2) as distance 				FROM location_system_history l 				LEFT JOIN systems sy ON l.system_id = sy.system_id 				WHERE l.pilot_id = ? 				" + where + " 				ORDER BY l.location_time DESC 				" + limit + " 			";
+			query = " 				SELECT l.*, sy.name as system_name, sy.x, sy.y, sy.z, DATE_FORMAT(l.location_time, '%Y-%m-%d %T') as `timestamp`, 					CONCAT('[', FORMAT(sy.x, 2), ',', FORMAT(sy.y, 2), ',', FORMAT(sy.z, 2), ']') as position, FORMAT(SQRT(sy.x * sy.x + sy.y * sy.y + sy.z * sy.z), 2) as distance 				FROM location_system_history l 				LEFT JOIN systems sy ON l.system_id = sy.system_id 				WHERE 1 = 1 				" + where + " 				ORDER BY l.location_time DESC 				" + limit + " 			";
 		}
 
 		
@@ -236,7 +240,7 @@ public class DBLocationSystemHistoryAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT count(l.location_system_id) as count  				FROM location_system_history l 				WHERE l.pilot_id = ? 				" + where + " 				ORDER BY l.location_time DESC 				LIMIT 1 			";
+			query = " 				SELECT count(l.location_system_id) as count  				FROM location_system_history l 				WHERE l.pilot_id = ? 				" + where + " 				LIMIT 1 			";
 		}
 
 		

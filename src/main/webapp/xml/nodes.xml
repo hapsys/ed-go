@@ -39,6 +39,12 @@
 			<title lang="en">Client access</title>
 			<menu name="main_menu"/>
 		</node>
+		<node pattern="pilots-control">
+			<role>ROLE_LOGGED</role>
+			<title lang="ru">Управление пилотами</title>
+			<title lang="en">Pilots control</title>
+			<menu name="main_menu"/>
+		</node>
 		<node pattern="confirmation">
 			<role>ROLE_REGISTERED</role>
 			<title lang="ru">Подтвердить email</title>
@@ -97,6 +103,22 @@
 			<title lang="ru">Силы</title>
 			<title lang="en">Powers</title>
 			<menu name="main_menu"/>
+		</node>
+	</node>
+	<!--
+	//
+	// Client
+	// 
+	 -->
+	<node pattern="client" redirect="download/" class="fa-cloud-download">
+		<title lang="ru">Программа клиента</title>
+		<title lang="en">Client program</title>
+		<menu name="main_menu"/>
+		<node pattern="download">
+			<title lang="ru">Скачать</title>
+			<title lang="en">Download</title>
+			<menu name="main_menu"/>
+			<include value="include/download.jsp" tag="content_include"/>
 		</node>
 	</node>
 </node>

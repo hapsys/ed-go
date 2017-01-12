@@ -122,6 +122,22 @@ public class DBPilotDeliverBean implements DbBean, Serializable {
 		return this;
 	}
 	
+	
+	@DataSource({"quantity_summ", "quantitySumm"})
+	@DataTarget("quantity_summ")
+	@XMLSimple("quantitySumm")
+
+	private java.math.BigDecimal quantitySumm;
+	
+	public java.math.BigDecimal getQuantitySumm() {
+		return quantitySumm;
+	}
+	
+	public DBPilotDeliverBean setQuantitySumm(java.math.BigDecimal value) {
+		quantitySumm = value;
+		return this;
+	}
+	
 	@Override
 	public void setAutoincrementField(Object value) {
 		

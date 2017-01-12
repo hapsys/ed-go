@@ -7,9 +7,9 @@ import org.c3s.db.injectors.EmptySqlInjector;
 public class InInjector extends EmptySqlInjector {
 
 	private String field;
-	private List<Object> values;
+	private List<? extends Object> values;
 	
-	public InInjector(String field, List<Object> values) {
+	public InInjector(String field, List<? extends Object> values) {
 		this.field = field;
 		this.values = values;
 	}

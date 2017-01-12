@@ -117,4 +117,49 @@ $(function() {
 		
 		return false;
 	});
+	
+	$(".pilots-link-form").each(function() {
+		var form = this;
+		var data = {
+			//link: '',
+			//unlink: '',
+			//hide: '',
+		}
+		$(".pilots-link-form").find(".update").on("click", function() {
+			
+			//console.log('click');
+			
+			$(form).find('.lnk-link').each(function() {
+				if ($(this).prop('checked')) {
+					data['link[' + $(this).val() + ']'] = 1;
+				}
+			});
+			$(form).find('.lnk-unlink').each(function() {
+				if (!$(this).prop('checked')) {
+					data['unlink[' + $(this).val() + ']'] = 1;
+				}
+			});
+			$(form).find('.lnk-hide').each(function() {
+				data['hide[' + $(this).val() + ']'] = $(this).prop('checked')?1:0;
+			});
+			
+			$(form).find('input,button,select').prop('disabled', true);
+			//console.log(data);
+			
+			proxy.makeCall('post', '/raw/profile/pilot-contol-update/', null, null, data, function(result) {
+				$(form).find('input,button,select').prop('disabled', false);
+				if (!$.isPlainObject(result)) {
+					$('#loaded-table').html(result);
+					$(form).find('input.flat').iCheck({
+						checkboxClass: 'icheckbox_flat-green',
+					});
+					$(form).find(".js-switch").each(function() {
+						new Switchery(this);
+					});
+				}
+				data = {};
+				//console.log(result);
+			});
+		});
+	});
 });

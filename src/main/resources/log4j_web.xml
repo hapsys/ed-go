@@ -15,6 +15,14 @@
 		<Logger name="org.c3s.edgo" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
+		<!-- 
+		<Logger name="org.c3s.dispatcher" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		<Logger name="org.c3s.web.nodes" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		 -->
 		<Logger name="org.c3s.web.servlets" level="off" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>

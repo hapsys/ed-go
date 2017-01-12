@@ -192,7 +192,7 @@ public class DBPilotDeliverAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT t.*, s.name as system_name 				FROM pilot_deliver t, systems s 				WHERE 1=1 				" + where + " 				AND t.system_id = s.system_id 				ORDER BY start_week DESC 			";
+			query = " 				SELECT t.*, s.name as system_name, SUM(t.quantity) as quantity_summ  				FROM pilot_deliver t, systems s 				WHERE 1=1 				" + where + " 				AND t.system_id = s.system_id 				GROUP BY t.start_week, t.system_id   				ORDER BY start_week DESC 			";
 		}
 
 		

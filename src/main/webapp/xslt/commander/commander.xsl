@@ -520,12 +520,12 @@
 							<td><xsl:value-of select="$week"/></td>	
 							<td>
 								<xsl:for-each select="/*/item[@name='powers']/meritsDeliver/item[field[@name='startWeek']/@value = $week]">
-									<xsl:value-of select="field[@name='quantity']/@value"/> / <xsl:value-of select="field[@name='systemName']/@value"/><br/>
+									<xsl:value-of select="field[@name='quantitySumm']/@value"/> / <xsl:value-of select="field[@name='systemName']/@value"/><br/>
 								</xsl:for-each>
 							</td>	
 							<td>
 								<xsl:for-each select="/*/item[@name='powers']/meritsKill/item[field[@name='startWeek']/@value = $week]">
-									<xsl:value-of select="number(field[@name='quantity']/@value) * 30"/> / <xsl:value-of select="field[@name='systemName']/@value"/><br/>
+									<xsl:value-of select="number(field[@name='quantitySumm']/@value) * 30"/> / <xsl:value-of select="field[@name='systemName']/@value"/><br/>
 								</xsl:for-each>
 							</td>	
 							<td>
@@ -534,17 +534,17 @@
 										<xsl:when test="$week_pos = 1">
 											<xsl:choose>
 												<xsl:when test="field[@name='isConfirmed']/@value = 1">
-													<xsl:value-of select="number(field[@name='quantity']/@value) * 10"/> / <xsl:value-of select="field[@name='systemName']/@value"/><br/>
+													<xsl:value-of select="number(field[@name='quantitySumm']/@value) * 10"/> / <xsl:value-of select="field[@name='systemName']/@value"/><br/>
 												</xsl:when>
 												<xsl:otherwise>
-													<strike><xsl:value-of select="number(field[@name='quantity']/@value) * 10"/></strike> / <xsl:value-of select="field[@name='systemName']/@value"/><br/>
+													<strike><xsl:value-of select="number(field[@name='quantitySumm']/@value) * 10"/></strike> / <xsl:value-of select="field[@name='systemName']/@value"/><br/>
 												</xsl:otherwise>
 											</xsl:choose>
 										</xsl:when>
 										<xsl:otherwise>
 											<xsl:choose>
 												<xsl:when test="field[@name='isConfirmed']/@value = 1">
-													<xsl:value-of select="number(field[@name='quantity']/@value) * 10"/> / <xsl:value-of select="field[@name='systemName']/@value"/><br/>
+													<xsl:value-of select="number(field[@name='quantitySumm']/@value) * 10"/> / <xsl:value-of select="field[@name='systemName']/@value"/><br/>
 												</xsl:when>
 											</xsl:choose>
 										</xsl:otherwise>
@@ -553,7 +553,7 @@
 							</td>	
 							<td>
 								<xsl:for-each select="/*/item[@name='powers']/creditsSpend/item[field[@name='startWeek']/@value = $week]">
-									<xsl:value-of select="field[@name='quantity']/@value"/> Cr.<br/>
+									<xsl:value-of select="field[@name='quantitySumm']/@value"/> Cr.<br/>
 								</xsl:for-each>
 							</td>	
 						</tr>
@@ -659,7 +659,7 @@
 						"dataSrc": "systems",
 					},
 					"columns": [
-						{ "data": "locationTime" },
+						{ "data": "timestamp" },
 						{ "data": "systemName" },
 						{ "data": "position" },
 						{ "data": "distance" },

@@ -17,6 +17,21 @@ public class DBPilotsBean implements DbBean, Serializable {
 
 
 	
+	@DataSource({"parent_pilot_id", "parentPilotId"})
+	@DataTarget("parent_pilot_id")
+	@XMLSimple("parentPilotId")
+	private java.lang.Long parentPilotId;
+	
+	public java.lang.Long getParentPilotId() {
+		return parentPilotId;
+	}
+	
+	public DBPilotsBean setParentPilotId(java.lang.Long value) {
+		parentPilotId = value;
+		return this;
+	}
+	
+	
 	@DataSource({"user_id", "userId"})
 	@DataTarget("user_id")
 	@XMLSimple("userId")
