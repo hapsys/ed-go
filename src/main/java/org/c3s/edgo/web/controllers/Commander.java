@@ -270,11 +270,34 @@ public class Commander extends GeneralController {
 			DBMaxMinDateSystemHistoryForPilotBean minmax = DbAccess.locationSystemHistoryAccess.getMaxMinDateSystemHistoryForPilot(new InInjector("l.pilot_id", linkedPilots));
 			
 			if (minmax.getMinDate().length() > 0) {
+				
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				
+				Date sdate, edate;
+				try {
+					sdate = dateFormat.parse(minmax.getMinDate());
+				} catch (Exception e) {
+					sdate = null;
+				}
+				try {
+					edate = dateFormat.parse(minmax.getMaxDate());
+				} catch (Exception e) {
+					edate = null;
+				}
+				if (sdate != null) {
+					Date findate = new Date(edate.getTime() - 30L * 24L * 3600L * 1000L);
+					if (findate.compareTo(sdate) < 0) {
+						findate = sdate;
+					}
+					xml.getDocumentElement().setAttribute("start_date", dateFormat.format(findate));
+					xml.getDocumentElement().setAttribute("end_date", dateFormat.format(edate));
+				}
+				
 				xml.getDocumentElement().setAttribute("mindate", minmax.getMinDate());
 				xml.getDocumentElement().setAttribute("maxdate", minmax.getMaxDate());
 			}
 			
-			//logger.debug(XMLUtils.xml2out(xml));
+			//logger.debug(XMLUtils.saveXML(xml));
 			//logger.debug("template {}", template);
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:locations"});
 			
@@ -314,7 +337,7 @@ public class Commander extends GeneralController {
 			
 			SystemPathInjector injector = new SystemPathInjector(page - 1, per_page, from, to, linkedPilots);
 			List<DBSystemPathBean> systems = DbAccess.locationSystemHistoryAccess.getSystemPath(current.getPilotId(), injector); 
-			System.out.println(systems.size());
+			//System.out.println(systems.size());
 				
 			DBMaxMinDateSystemHistoryForPilotBean minmax = DbAccess.locationSystemHistoryAccess.getMaxMinDateSystemHistoryForPilot(new InInjector("l.pilot_id", linkedPilots));
 			

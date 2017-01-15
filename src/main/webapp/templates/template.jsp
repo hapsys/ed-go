@@ -108,7 +108,7 @@ moment.locale('<%=lang_id%>');
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
-        <div class="col-md-3 left_col">
+        <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
               <a href="<%=root%>/" class="site_title"><i class="fa fa-eye"></i><span style="font-size: 18px;"> ED Global Observer</span></a>
@@ -327,20 +327,6 @@ moment.locale('<%=lang_id%>');
     <script src="<%=root%>/vendors/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
     <!-- Switchery -->
     <script src="<%=root%>/vendors/switchery/dist/switchery.min.js"></script>
-
-    <!-- Datatables -->
-    <script src="<%=root%>/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="<%=root%>/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="<%=root%>/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="<%=root%>/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-    <script src="<%=root%>/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-    <script src="<%=root%>/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="<%=root%>/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="<%=root%>/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-    <script src="<%=root%>/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script src="<%=root%>/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="<%=root%>/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    <script src="<%=root%>/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
 
     <!-- Clipboard -->
     <script src="<%=root%>/vendors/clipboard.js/clipboard.min.js"></script>

@@ -623,7 +623,7 @@
 //
 //
 -->
-	<xsl:template name="view_locations">
+	<xsl:template name="view_locations1">
 
 		<div class="clearfix"></div>
 		<!-- Location -->
@@ -674,6 +674,131 @@
 			});
 		</script>
 	</xsl:template>	
+<!--
+//
+//
+//
+-->
+	<xsl:template name="view_locations">
+
+		<div class="locations sceleton hidden">
+			<div class="star-name"></div>
+			<div class="star-coord"></div>
+			<div class="star-time"></div>
+			<div class="star-distance"></div>
+		</div>
+		<div class="clearfix"></div>
+		<!-- Location -->
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>
+					<xsl:value-of select="i10n:tr('Systems Path')"/>
+					<small></small>
+				</h2>
+				<div class="filter">
+					<div id="select-date-end" class="pull-right data" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+						<input id="end-date-selected" class="form-control hidden" type="text" style="border:none;" value="{/*/@end_date}"/>
+						<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+						<span style="padding-left: 5px; padding-right: 5px;"></span>
+						<b class="caret"></b>
+					</div>
+					<div class="pull-right data" style="background: #fff; cursor: pointer; padding: 5px 10px;">
+						-
+					</div>
+					<div id="select-date-start" class="pull-right data" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+						<input id="start-date-selected" class="form-control hidden" type="text" style="border:none;" value="{/*/@start_date}"/>
+						<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+						<span style="padding-left: 5px; padding-right: 5px;"></span>
+						<b class="caret"></b>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content locations-content">
+			</div>
+		</div>
+		<script>
+			$(function() {
+			
+				var pilot = '<xsl:value-of select="$pilot"/>';
+				var updateLocations = function() {
+					var data = {
+						startdate: start_date.format('YYYY-MM-DD'),
+						enddate: end_date.format('YYYY-MM-DD'),
+					};
+					proxy.makeCall('post', '/ajax/pilots/'+ pilot + '/systems/', null, null, data, function(result) {
+						if (result.systems) {
+							$('.locations-content').find('.locations').remove();
+							result.systems.forEach(function(system) {
+								var elem = $('.sceleton').clone();
+								elem.removeClass('sceleton');
+								elem.removeClass('hidden');
+								$('.star-name', elem).html(system.systemName);
+								$('.star-coord', elem).html(system.position);
+								$('.star-time', elem).html(system.timestamp);
+								$('.star-distance', elem).html(system.distance);
+								$(elem).appendTo('.locations-content');
+							});
+						}
+						
+					});
+				}
+				
+				//
+				var start_date = moment(Date.parse("<xsl:value-of select="/*/@start_date"/>").getTime());
+				var end_date = moment(Date.parse("<xsl:value-of select="/*/@end_date"/>").getTime());
+				
+				var setStartDateLabel = function() {
+					$("#select-date-start").find("span").html(start_date.format('DD MMMM YYYY'));
+				}
+				 
+				var setEndDateLabel = function() {
+					$("#select-date-end").find("span").html(end_date.format('DD MMMM YYYY'));
+				} 
+				
+				setStartDateLabel();
+				setEndDateLabel();
+				
+				$("#select-date-start").datetimepicker({
+					format: "YYYY-MM-DD",
+                	viewMode: 'days',
+                	
+                	viewDate: start_date,
+					maxDate: end_date,
+					minDate: "<xsl:value-of select="/*/@mindate"/>",
+            	}).on('dp.change', function(e) {
+            		start_date = moment(e.date);
+					setStartDateLabel();
+					updateLocations();
+            	});
+				
+            	$("#select-date-start").on('click', function() {
+            		$("#select-date-start").data("DateTimePicker").viewDate(start_date);
+            		//$("#select-date-start").data("DateTimePicker").viewMode('days');
+            		$("#select-date-start").data("DateTimePicker").toggle();
+            	});
+				
+				$("#select-date-end").datetimepicker({
+					format: "YYYY-MM-DD",
+                	viewMode: 'days',
+                	viewDate: end_date,
+					maxDate: "<xsl:value-of select="/*/@maxdate"/>",
+					minDate: start_date,
+            	}).on('dp.change', function(e) {
+            		end_date = moment(e.date);
+					setEndDateLabel();
+					updateLocations();
+            	});
+				
+            	$("#select-date-end").on('click', function() {
+            		//$("#select-date-end").data("DateTimePicker").viewMode('days');
+            		$("#select-date-end").data("DateTimePicker").toggle();
+            	});
+				
+				updateLocations();
+			});
+		</script>
+	</xsl:template>
 <!--
 //
 //

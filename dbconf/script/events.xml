@@ -100,7 +100,7 @@
 				WHERE 1 = 1
 				<where/>
 				ORDER BY l.location_time DESC
-				<limit/>
+				<limit_none/>
 			</sql>
 		</query>
 		<query name="SystemPathCount" intruder="org.c3s.db.injectors.EmptySqlInjector"  single_object="true">
