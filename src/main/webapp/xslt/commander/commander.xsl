@@ -681,12 +681,6 @@
 -->
 	<xsl:template name="view_locations">
 
-		<div class="locations sceleton hidden">
-			<div class="star-name"></div>
-			<div class="star-coord"></div>
-			<div class="star-time"></div>
-			<div class="star-distance"></div>
-		</div>
 		<div class="clearfix"></div>
 		<!-- Location -->
 		<div class="x_panel">
@@ -714,7 +708,25 @@
 				</div>
 				<div class="clearfix"></div>
 			</div>
-			<div class="x_content locations-content">
+			<div class="x_content ">
+				<table class="table table-striped table-bordered">
+	                <thead>
+	                  <tr>
+	                    <th>Time</th>
+	                    <th>Name</th>
+	                    <th>Position</th>
+	                    <th>Distance</th>
+	                  </tr>
+	                </thead>
+	                <tbody id="locations-content">
+						<tr class="sceleton hidden">
+							<td class="star-time"></td>
+							<td class="star-name"></td>
+							<td class="star-coord"></td>
+							<td class="star-distance"></td>
+						</tr>
+	                </tbody>
+				</table>
 			</div>
 		</div>
 		<script>
@@ -728,16 +740,17 @@
 					};
 					proxy.makeCall('post', '/ajax/pilots/'+ pilot + '/systems/', null, null, data, function(result) {
 						if (result.systems) {
-							$('.locations-content').find('.locations').remove();
+							$('#locations-content').find('.locations').remove();
 							result.systems.forEach(function(system) {
 								var elem = $('.sceleton').clone();
+								elem.addClass('locations');
 								elem.removeClass('sceleton');
 								elem.removeClass('hidden');
 								$('.star-name', elem).html(system.systemName);
 								$('.star-coord', elem).html(system.position);
 								$('.star-time', elem).html(system.timestamp);
 								$('.star-distance', elem).html(system.distance);
-								$(elem).appendTo('.locations-content');
+								$(elem).appendTo('#locations-content');
 							});
 						}
 						
