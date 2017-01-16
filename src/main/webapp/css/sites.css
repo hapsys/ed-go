@@ -43,3 +43,9 @@
     padding-left: 20px;
 }
 
+.bg-new-system {
+	background-color: #eee;	
+	/* opacity: 0.6; Полупрозрачный фон */
+    /* filter: alpha(Opacity=60); Прозрачность в IE */	
+}
+
