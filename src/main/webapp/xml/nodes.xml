@@ -86,7 +86,7 @@
 		</node>
 		<node pattern="systems">
 			<title lang="ru">Системы</title>
-			<title lang="en">Systtems</title>
+			<title lang="en">Systems</title>
 			<menu name="main_menu"/>
 		</node>
 		<node pattern="ships">

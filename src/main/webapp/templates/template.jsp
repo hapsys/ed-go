@@ -337,6 +337,7 @@ moment.locale('<%=lang_id%>');
 	<script type="text/javascript" src="<%=root%>/js/store.js"></script>
 	<script type="text/javascript" src="<%=root%>/js/validate.js"></script>
 	<script type="text/javascript" src="<%=root%>/js/form.js"></script>
+	<script type="text/javascript" src="<%=root%>/js/auto-update.js"></script>
 </html>
 <c3s:debug level="E_ALL"/>
 <%-- 

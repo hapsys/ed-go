@@ -46,7 +46,7 @@ public class SystemPathInjector extends EmptySqlInjector {
 		}
 		sb.append(") ");
 		
-		if (from != null && to != null) {
+		if (from != null || to != null) {
 			if (from != null) {
 				sb.append("AND l.location_time >= '");
 				sb.append(from);

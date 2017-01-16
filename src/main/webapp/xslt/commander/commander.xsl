@@ -718,7 +718,7 @@
 	                    <th>Distance</th>
 	                  </tr>
 	                </thead>
-	                <tbody id="locations-content">
+	                <tbody id="locations-content" class="updated-by-time" data-update-function="updateSystems" data-update-interval="5000">
 						<tr class="sceleton hidden">
 							<td class="star-time"></td>
 							<td class="star-name"></td>
@@ -733,6 +733,44 @@
 			$(function() {
 			
 				var pilot = '<xsl:value-of select="$pilot"/>';
+				
+				var start_date = moment(Date.parse("<xsl:value-of select="/*/@start_date"/>").getTime());
+				var end_date = moment(Date.parse("<xsl:value-of select="/*/@end_date"/>").getTime());
+				var update_date = end_date; 
+					
+				updateSystems = function() {
+					//console.log("Try to Update");
+					if ("<xsl:value-of select="/*/@end_date"/>" == end_date.format('YYYY-MM-DD')) {
+						//console.log("Update");
+						var data = {
+							startdate: update_date.format('YYYY-MM-DD HH:mm:ss'),
+						};
+						proxy.makeCall('post', '/ajax/pilots/'+ pilot + '/systems/', null, null, data, function(result) {
+							if (result.systems &amp;&amp; result.systems.length &gt; 0) {
+								update_date = moment(Date.parse(result.systems[0].timestamp).getTime());
+								var prev_element = $('.sceleton');
+								result.systems.forEach(function(system) {
+									if ($('#' + system.locationSystemId).length > 0) {
+										return false;
+									}
+									var elem = $('.sceleton').clone();
+									elem.addClass('locations');
+									elem.removeClass('sceleton');
+									elem.removeClass('hidden');
+									elem.attr('id', system.locationSystemId);
+									$('.star-name', elem).html(system.systemName);
+									$('.star-coord', elem).html(system.position);
+									$('.star-time', elem).html(system.timestamp);
+									$('.star-distance', elem).html(system.distance);
+									$(elem).insertAfter(prev_element);
+									prev_element = elem;
+								});
+							}
+							
+						});
+					}
+				}
+			
 				var updateLocations = function() {
 					var data = {
 						startdate: start_date.format('YYYY-MM-DD'),
@@ -740,12 +778,16 @@
 					};
 					proxy.makeCall('post', '/ajax/pilots/'+ pilot + '/systems/', null, null, data, function(result) {
 						if (result.systems) {
+							if (result.systems.length &gt; 0) {
+								update_date = moment(Date.parse(result.systems[0].timestamp).getTime());
+							}
 							$('#locations-content').find('.locations').remove();
 							result.systems.forEach(function(system) {
 								var elem = $('.sceleton').clone();
 								elem.addClass('locations');
 								elem.removeClass('sceleton');
 								elem.removeClass('hidden');
+								elem.attr('id', system.locationSystemId);
 								$('.star-name', elem).html(system.systemName);
 								$('.star-coord', elem).html(system.position);
 								$('.star-time', elem).html(system.timestamp);
@@ -758,9 +800,6 @@
 				}
 				
 				//
-				var start_date = moment(Date.parse("<xsl:value-of select="/*/@start_date"/>").getTime());
-				var end_date = moment(Date.parse("<xsl:value-of select="/*/@end_date"/>").getTime());
-				
 				var setStartDateLabel = function() {
 					$("#select-date-start").find("span").html(start_date.format('DD MMMM YYYY'));
 				}

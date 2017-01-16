@@ -311,9 +311,16 @@ public class Commander extends GeneralController {
 		@Parameter("tag") String tag, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		if (current != null) {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			Date sdate, edate;
+			SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			boolean longFormat = false;
+			Date sdate = null, edate = null;
 			try {
-				sdate = dateFormat.parse(startdate);
+				if (startdate != null && startdate.length() > 12) {
+					longFormat =  true;
+					sdate = new Date(dateTimeFormat.parse(startdate).getTime() + 1000L);
+				} else {
+					sdate = dateFormat.parse(startdate);
+				}
 			} catch (Exception e) {
 				sdate = null;
 			}
@@ -322,7 +329,8 @@ public class Commander extends GeneralController {
 			} catch (Exception e) {
 				edate = null;
 			}
-			String from = sdate == null? null: dateFormat.format(sdate) + " 00:00:00";
+			
+			String from = sdate == null? null: (longFormat? dateTimeFormat.format(sdate) : dateFormat.format(sdate) + " 00:00:00");
 			String to = edate == null? null: dateFormat.format(edate) + " 23:59:59";
 			
 			/*
