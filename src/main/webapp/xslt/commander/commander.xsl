@@ -33,30 +33,84 @@
 		<div class="x_panel">
 			<div class="x_title">
 				<h2>
-					<xsl:value-of select="i10n:tr('Last location')"/>
+					<xsl:value-of select="i10n:tr('Last Info')"/>
 					<small></small>
 				</h2>
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
-				<table class="table ">
-					<tr>
-						<td class="col-md-1">System:</td>
-						<td>
-							<xsl:value-of
-								select="item[@name='location']/field[@name='systemName']/@value"
-								disable-output-escaping="yes" />
-						</td>
-					</tr>
-					<tr>
-						<td class="col-md-1">Station:</td>
-						<td>
-							<xsl:value-of
-								select="item[@name='location']/field[@name='stationName']/@value"
-								disable-output-escaping="yes" />
-						</td>
-					</tr>
-				</table>
+				<div class="col-md-4 col-xs-12 widget widget_tally_box">
+					<div class="x_panel">
+						<div class="x_title">
+							<h2>Last seen</h2>
+							<div class="clearfix"></div>
+						</div>
+						<div class="x_content">
+							<table class="table">
+								<tr>
+									<td colspan="2">
+										<xsl:variable name="y" select="item[@name='lastActivityTime']/field[@name='year']/@value"/>
+										<xsl:variable name="j" select="item[@name='lastActivityTime']/field[@name='monthes']/@value"/>
+										<xsl:variable name="d" select="item[@name='lastActivityTime']/field[@name='days']/@value"/>
+										<xsl:variable name="h" select="item[@name='lastActivityTime']/field[@name='hours']/@value"/>
+										<xsl:variable name="m" select="item[@name='lastActivityTime']/field[@name='minutes']/@value"/>
+										<xsl:variable name="s" select="item[@name='lastActivityTime']/field[@name='seconds']/@value"/>
+										<xsl:value-of
+											select="item[@name='location']/field[@name='systemName']/@value"
+											disable-output-escaping="yes" />
+									</td>
+								</tr>
+								<tr>
+									<td class="col-md-1">Mode:</td>
+									<td>
+										<xsl:value-of
+											select="item[@name='lastInfo']/field[@name='gameMode']/@value"
+											disable-output-escaping="yes" />
+									</td>
+								</tr>
+								<tr>
+									<xsl:if test="string-length(item[@name='lastInfo']/field[@name='gameGroup']/@value) = 0">
+										<xsl:attribute name="class">hidden</xsl:attribute>
+									</xsl:if>
+									<td class="col-md-1">Group:</td>
+									<td>
+										<xsl:value-of
+											select="item[@name='lastInfo']/field[@name='gameGroup']/@value"
+											disable-output-escaping="yes" />
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-xs-12 widget widget_tally_box">
+					<div class="x_panel">
+						<div class="x_title">
+							<h2>Location</h2>
+							<div class="clearfix"></div>
+						</div>
+						<div class="x_content">
+							<table class="table">
+								<tr>
+									<td class="col-md-1">System:</td>
+									<td>
+										<xsl:value-of
+											select="item[@name='location']/field[@name='systemName']/@value"
+											disable-output-escaping="yes" />
+									</td>
+								</tr>
+								<tr>
+									<td class="col-md-1">Station:</td>
+									<td>
+										<xsl:value-of
+											select="item[@name='location']/field[@name='stationName']/@value"
+											disable-output-escaping="yes" />
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="clearfix"></div>
@@ -716,16 +770,18 @@
 	                    <th>Name</th>
 	                    <th>Position</th>
 	                    <th>Distance</th>
+	                    <th>Activity</th>
 	                  </tr>
 	                </thead>
 	                <tbody id="locations-content" class="updated-by-time" data-update-function="updateSystems" data-update-interval="5000">
 						<tr class="sceleton hidden">
-							<td class="star-time"></td>
-							<td class="star-name"></td>
-							<td class="star-coord"></td>
-							<td class="star-distance"></td>
+							<td><nobr class="star-time"></nobr></td>
+							<td><nobr class="star-name"></nobr></td>
+							<td><nobr class="star-coord"></nobr></td>
+							<td><nobr class="star-distance"></nobr></td>
+							<td class="star-activity"></td>
 						</tr>
-	                </tbody>
+	                </tbody>	
 				</table>
 			</div>
 		</div>
@@ -736,7 +792,9 @@
 				
 				var start_date = moment(Date.parse("<xsl:value-of select="/*/@start_date"/>").getTime());
 				var end_date = moment(Date.parse("<xsl:value-of select="/*/@end_date"/>").getTime());
-				var update_date = end_date; 
+				var update_date = end_date;
+				
+				var lastSystemId = 0; 
 					
 				updateSystems = function() {
 					//console.log("Try to Update");
@@ -749,25 +807,36 @@
 							if (result.systems &amp;&amp; result.systems.length &gt; 0) {
 								$('#locations-content').find('.bg-new-system').removeClass('bg-new-system');
 								update_date = moment(Date.parse(result.systems[0].timestamp).getTime());
-								var prev_element = $('.sceleton');
-								result.systems.forEach(function(system) {
-									/*
-									if ($('#' + system.locationSystemId).length &gt; 0) {
-										return false;
+								var prev_element = $('.sceleton').next();
+								var systems = result.systems.reverse();
+								systems.forEach(function(system) {
+									if (prev_element.attr('id') != '' + system.systemId) {
+										var elem = $('.sceleton').clone();
+										elem.addClass('locations');
+										elem.removeClass('sceleton');
+										elem.removeClass('hidden');
+										elem.addClass('bg-new-system');
+										elem.attr('id', system.systemId);
+										$('.star-name', elem).html(system.systemName);
+										$('.star-coord', elem).html(system.position);
+										$('.star-time', elem).html(system.timestamp);
+										$('.star-distance', elem).html(system.distance);
+										if (system.stationId) {
+											$('.star-activity', elem).html('<span class="fa fa-wheelchair" aria-hidden="true"> ' + system.stationName + '</span>');
+										} else {
+											$('.star-activity', elem).html('<span class="fa fa-rocket" aria-hidden="true"></span>');
+										}
+										$(elem).insertBefore(prev_element);
+										prev_element = elem;
+									} else {
+										var elem = prev_element;
+										elem.addClass('bg-new-system');
+										if (system.stationId) {
+											$('<span>' + system.stationName + '</span>').appendTo($('.star-activity', elem));
+										} else {
+											$('<span class="fa fa-rocket" aria-hidden="true"></span>').appendTo($('.star-activity', elem));
+										}
 									}
-									*/
-									var elem = $('.sceleton').clone();
-									elem.addClass('locations');
-									elem.removeClass('sceleton');
-									elem.removeClass('hidden');
-									elem.addClass('bg-new-system');
-									elem.attr('id', system.locationSystemId);
-									$('.star-name', elem).html(system.systemName);
-									$('.star-coord', elem).html(system.position);
-									$('.star-time', elem).html(system.timestamp);
-									$('.star-distance', elem).html(system.distance);
-									$(elem).insertAfter(prev_element);
-									prev_element = elem;
 								});
 							}
 							
@@ -786,17 +855,37 @@
 								update_date = moment(Date.parse(result.systems[0].timestamp).getTime());
 							}
 							$('#locations-content').find('.locations').remove();
-							result.systems.forEach(function(system) {
-								var elem = $('.sceleton').clone();
-								elem.addClass('locations');
-								elem.removeClass('sceleton');
-								elem.removeClass('hidden');
-								elem.attr('id', system.locationSystemId);
-								$('.star-name', elem).html(system.systemName);
-								$('.star-coord', elem).html(system.position);
-								$('.star-time', elem).html(system.timestamp);
-								$('.star-distance', elem).html(system.distance);
-								$(elem).appendTo('#locations-content');
+							var systems = result.systems.reverse();
+							systems.forEach(function(system) {
+								if (lastSystemId != system.systemId) {
+									lastSystemId = system.systemId;
+									var elem = $('.sceleton').clone();
+									elem.addClass('locations');
+									elem.removeClass('sceleton');
+									elem.removeClass('hidden');
+									elem.attr('id', system.systemId);
+									$('.star-name', elem).html(system.systemName);
+									$('.star-coord', elem).html(system.position);
+									$('.star-time', elem).html(system.timestamp);
+									$('.star-distance', elem).html(system.distance);
+									
+									if (system.stationId) {
+										$('.star-activity', elem).html('<span class="fa fa-wheelchair" aria-hidden="true"> ' + system.stationName + '</span>');
+									} else {
+										$('.star-activity', elem).html('<span class="fa fa-rocket" aria-hidden="true"></span>');
+									}
+									
+									$(elem).insertAfter('.sceleton');
+								} else {
+									//elem = $('#' + 'system_' + system.systemId);
+									var elems = $('#locations-content').find('.locations');
+									var elem = elems[0];
+									if (system.stationId) {
+										$('<span>' + system.stationName + '</span>').appendTo($('.star-activity', elem));
+									} else {
+										$('<span class="fa fa-rocket" aria-hidden="true"></span>').appendTo($('.star-activity', elem));
+									}
+								}
 							});
 						}
 						

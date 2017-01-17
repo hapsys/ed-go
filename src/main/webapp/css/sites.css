@@ -49,3 +49,7 @@
     /* filter: alpha(Opacity=60); Прозрачность в IE */	
 }
 
+.star-activity span {
+	margin-right: 10px;
+}
+

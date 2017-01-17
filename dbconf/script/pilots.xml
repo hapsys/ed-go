@@ -26,6 +26,9 @@
 		<column name="last_info" type="DBPilotLastInfoBean">
 	    	<annotation>@XMLReflectionField</annotation>
 		</column>
+		<column name="last_activity_time" type="DBLastActivityTimeBean">
+	    	<annotation>@XMLReflectionField</annotation>
+		</column>
 		<column name="addition_one" type="List&lt;? extends Object&gt;">
 	    	<annotation>@XMLFieldList</annotation>
 		</column>

@@ -153,4 +153,74 @@ public class DBLocationHistoryAccess extends Access {
 		return ret;
 	}
 	
+	public List<DBLocationsPathBean> getLocationsPath(long paramPilotId, org.c3s.db.injectors.EmptySqlInjector paramIntruder) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		if (paramIntruder != null) {
+			injector = paramIntruder;
+		}
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT l.*, sy.name as system_name, st.name as station_name, sy.x, sy.y, sy.z, DATE_FORMAT(l.location_time, '%Y-%m-%d %T') as `timestamp`, 					CONCAT('[', FORMAT(sy.x, 2), ',', FORMAT(sy.y, 2), ',', FORMAT(sy.z, 2), ']') as position, FORMAT(SQRT(sy.x * sy.x + sy.y * sy.y + sy.z * sy.z), 2) as distance 				FROM location_history l 				LEFT JOIN systems sy ON l.system_id = sy.system_id 				LEFT JOIN stations st ON l.station_id = st.station_id 				WHERE 1 = 1 				" + where + " 				ORDER BY l.location_time DESC 				 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getLocationsPath", query ,  paramPilotId);
+		List<DBLocationsPathBean> ret = null;
+		if (result != null) {
+					ret = new ArrayList<DBLocationsPathBean>();
+				
+			for (Map<String, Object> res : result) {
+				DBLocationsPathBean bean = dataMapper.mapFromRow(res, DBLocationsPathBean.class);
+														
+				ret.add(bean);
+			}
+					
+		}
+			
+		return ret;
+	}
+	
+	public DBMaxMinDateLocationistoryForPilotBean getMaxMinDateLocationistoryForPilot(org.c3s.db.injectors.EmptySqlInjector paramIntruder) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		if (paramIntruder != null) {
+			injector = paramIntruder;
+		}
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT p.pilot_id, MAX(DATE(l.location_time)) as max_date, MIN(DATE(l.location_time)) as min_date 				FROM pilots p 				LEFT JOIN location_history l ON l.pilot_id = p.pilot_id  				WHERE 1 = 1 				" + where + " 				GROUP BY p.pilot_id 				LIMIT 1  			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getMaxMinDateLocationistoryForPilot", query );
+		DBMaxMinDateLocationistoryForPilotBean ret = null;
+		if (result != null) {
+					ret = new DBMaxMinDateLocationistoryForPilotBean();
+				
+					ret = dataMapper.mapFromRow(result.get(0), DBMaxMinDateLocationistoryForPilotBean.class);
+					
+		}
+			
+		return ret;
+	}
+	
 }

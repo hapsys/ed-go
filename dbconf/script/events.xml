@@ -55,6 +55,31 @@
 				LIMIT 1 
 			</sql>
 		</query>
+		<query name="MaxMinDateLocationistoryForPilot" single_object="true" intruder="org.c3s.db.injectors.EmptySqlInjector">
+			<sql>
+				SELECT p.pilot_id, MAX(DATE(l.location_time)) as max_date, MIN(DATE(l.location_time)) as min_date
+				FROM pilots p
+				LEFT JOIN location_history l ON l.pilot_id = p.pilot_id 
+				WHERE 1 = 1
+				<where/>
+				GROUP BY p.pilot_id
+				LIMIT 1 
+			</sql>
+		</query>
+		<query name="LocationsPath" intruder="org.c3s.db.injectors.EmptySqlInjector">
+			<column name="PilotId" type="long"/>
+			<sql>
+				SELECT l.*, sy.name as system_name, st.name as station_name, sy.x, sy.y, sy.z, DATE_FORMAT(l.location_time, '%Y-%m-%d %T') as `timestamp`,
+					CONCAT('[', FORMAT(sy.x, 2), ',', FORMAT(sy.y, 2), ',', FORMAT(sy.z, 2), ']') as position, FORMAT(SQRT(sy.x * sy.x + sy.y * sy.y + sy.z * sy.z), 2) as distance
+				FROM location_history l
+				LEFT JOIN systems sy ON l.system_id = sy.system_id
+				LEFT JOIN stations st ON l.station_id = st.station_id
+				WHERE 1 = 1
+				<where/>
+				ORDER BY l.location_time DESC
+				<limit_none/>
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 	<table name="location_system_history">
@@ -161,6 +186,22 @@
 				LIMIT 1
 			</sql>
 		</query>
+		<query name="LastActivityTime" single_object="true">
+			<column name="PilotId" type="long"/>
+			<sql>
+				SELECT e.event_timestamp, DATE_FORMAT(diffDate, '%Y %m %d') as `event_date`, DATE_FORMAT(diffTime, '%H %i %S') as `event_time`
+				, HOUR(difftime) as hours, MINUTE(difftime) as minutes, SECOND(difftime) as seconds
+				, YEAR(diffDate) as year, MONTH(diffDate) as monthes, DAY(diffDate) as days 
+				FROM
+					(SELECT e1.event_timestamp, TIMEDIFF(NOW(), e1.event_timestamp) AS diffTime, DATEDIFF(NOW(), e1.event_timestamp) AS diffDate
+					FROM events_history e1 
+					WHERE e1.pilot_id = ?
+					ORDER BY e1.event_timestamp DESC
+					LIMIT 1 
+				) AS e
+				LIMIT 1
+			</sql> 		
+		</query>		
 		<query name="Activity" intruder="org.c3s.db.injectors.EmptySqlInjector">
 			<sql>
 				SELECT DAY(e.event_timestamp) as event_date, COUNT(DISTINCT HOUR(e.event_timestamp)) as times

@@ -235,6 +235,22 @@ public class DBPilotsBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"last_activity_time", "lastActivityTime"})
+	@DataTarget("last_activity_time")
+	@XMLReflectionField
+
+	private DBLastActivityTimeBean lastActivityTime;
+	
+	public DBLastActivityTimeBean getLastActivityTime() {
+		return lastActivityTime;
+	}
+	
+	public DBPilotsBean setLastActivityTime(DBLastActivityTimeBean value) {
+		lastActivityTime = value;
+		return this;
+	}
+	
+	
 	@DataSource({"addition_one", "additionOne"})
 	@DataTarget("addition_one")
 	@XMLFieldList

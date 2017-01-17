@@ -139,6 +139,35 @@ public class DBEventsHistoryAccess extends Access {
 		return getConnection().query(sql, paramEventsHistoryId);
 	}
 	
+	public DBLastActivityTimeBean getLastActivityTime(long paramPilotId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT e.event_timestamp, DATE_FORMAT(diffDate, '%Y %m %d') as `event_date`, DATE_FORMAT(diffTime, '%H %i %S') as `event_time` 				, HOUR(difftime) as hours, MINUTE(difftime) as minutes, SECOND(difftime) as seconds 				, YEAR(diffDate) as year, MONTH(diffDate) as monthes, DAY(diffDate) as days  				FROM 					(SELECT e1.event_timestamp, TIMEDIFF(NOW(), e1.event_timestamp) AS diffTime, DATEDIFF(NOW(), e1.event_timestamp) AS diffDate 					FROM events_history e1  					WHERE e1.pilot_id = ? 					ORDER BY e1.event_timestamp DESC 					LIMIT 1  				) AS e 				LIMIT 1 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getLastActivityTime", query ,  paramPilotId);
+		DBLastActivityTimeBean ret = null;
+		if (result != null) {
+					ret = new DBLastActivityTimeBean();
+				
+					ret = dataMapper.mapFromRow(result.get(0), DBLastActivityTimeBean.class);
+					
+		}
+			
+		return ret;
+	}
+	
 	public DBLastEventForUserBean getLastEventForUser(long paramUserId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();
