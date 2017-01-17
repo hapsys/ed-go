@@ -1,9 +1,11 @@
 package org.c3s.edgo.event.impl;
 	
+import java.math.BigInteger;
 import java.sql.SQLException;
 import java.util.List;
 
 import org.c3s.edgo.common.access.DbAccess;
+import org.c3s.edgo.common.beans.DBPilotLastInfoBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.dao.ShipsDAO;
 import org.c3s.edgo.event.AbstractJournalEvent;
@@ -62,6 +64,25 @@ public class LoadGame extends AbstractJournalEvent<LoadGameBean> {
 					current = lastCurrent; 
 				}
 				*/
+			}
+			
+			/**
+			 * Set current pilot info
+			 */
+			if (current != null) {
+				DBPilotLastInfoBean info = DbAccess.pilotLastInfoAccess.getByPrimaryKey(current.getPilotId());
+				boolean isInsert = info == null;
+				if (isInsert) {
+					info = new DBPilotLastInfoBean(); 
+				}
+				info.setPilotId(current.getPilotId()).setCredits(BigInteger.valueOf(bean.getCredits()))
+					.setLoan(BigInteger.valueOf(bean.getLoan())).setGameMode(bean.getGameMode().toLowerCase()).setGameGroup(bean.getGroup());
+				
+				if (isInsert) {
+					DbAccess.pilotLastInfoAccess.insert(info);
+				} else {
+					DbAccess.pilotLastInfoAccess.updateByPrimaryKey(info, current.getPilotId());
+				}
 			}
 			
 			/**

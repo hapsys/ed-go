@@ -23,6 +23,9 @@
 		<column name="powers" type="DBPowerCortageBean">
 	    	<annotation>@XMLReflectionField</annotation>
 		</column>
+		<column name="last_info" type="DBPilotLastInfoBean">
+	    	<annotation>@XMLReflectionField</annotation>
+		</column>
 		<column name="addition_one" type="List&lt;? extends Object&gt;">
 	    	<annotation>@XMLFieldList</annotation>
 		</column>

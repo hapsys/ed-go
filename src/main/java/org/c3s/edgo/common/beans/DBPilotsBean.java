@@ -219,6 +219,22 @@ public class DBPilotsBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"last_info", "lastInfo"})
+	@DataTarget("last_info")
+	@XMLReflectionField
+
+	private DBPilotLastInfoBean lastInfo;
+	
+	public DBPilotLastInfoBean getLastInfo() {
+		return lastInfo;
+	}
+	
+	public DBPilotsBean setLastInfo(DBPilotLastInfoBean value) {
+		lastInfo = value;
+		return this;
+	}
+	
+	
 	@DataSource({"addition_one", "additionOne"})
 	@DataTarget("addition_one")
 	@XMLFieldList

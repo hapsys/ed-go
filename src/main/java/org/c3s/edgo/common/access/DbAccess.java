@@ -15,6 +15,7 @@ public class DbAccess {
 	public static final DBRanksAccess ranksAccess = new DBRanksAccess();
 	public static final DBProgressAccess progressAccess = new DBProgressAccess();
 	public static final DBEventsHistoryAccess eventsHistoryAccess = new DBEventsHistoryAccess();
+	public static final DBPilotLastInfoAccess pilotLastInfoAccess = new DBPilotLastInfoAccess();
 	public static final DBShipsAccess shipsAccess = new DBShipsAccess();
 	public static final DBSlotsAccess slotsAccess = new DBSlotsAccess();
 	public static final DBShipSlotsAccess shipSlotsAccess = new DBShipSlotsAccess();

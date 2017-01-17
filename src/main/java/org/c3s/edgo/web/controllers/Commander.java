@@ -67,6 +67,7 @@ public class Commander extends GeneralController {
 			current.setRank(DbAccess.ranksAccess.getByPrimaryKey(current.getPilotId()));
 			current.setProgress(DbAccess.progressAccess.getByPrimaryKey(current.getPilotId()));
 			current.setLocation(DbAccess.locationHistoryAccess.getLastLocationForPilot(current.getPilotId()));
+			current.setLastInfo(DbAccess.pilotLastInfoAccess.getByPrimaryKey(current.getPilotId()));
 			
 			Document xml = new XMLReflectionObj(current, true).toXML();	
 			
