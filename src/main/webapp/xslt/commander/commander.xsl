@@ -307,7 +307,7 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
-				<canvas id="mybarChart" height="25"></canvas>
+				<canvas id="mybarChart"></canvas>
 			</div>
 		</div>
 		<script>
@@ -352,10 +352,14 @@
 					proxy.makeCall('post', '/ajax/pilots/'+ pilot + '/activity/', null, null, data, function(result) {
 						if (result.error || result.status == 403) {
 						} else {
+						
+							var mom = moment(date);
+							var monthLabel = mom.format('MMM'); 
+							
 							var _labes = [];
 							var _data = [];
 							for(i=1; i &lt;= checkDate.getDate(); i++) {
-								_labes.push(i);
+								_labes.push(i + ' ' + monthLabel);
 								_data.push(0);
 							}
 							for(i=0; i &lt; result.days.length; i++) {
@@ -367,11 +371,11 @@
 							}
 						    var ctx = document.getElementById("mybarChart");
 						    mybarChart = new Chart(ctx, {
-						      type: 'bar',
+						      type: 'horizontalBar',
 						      data: {
 						        labels: _labes,
 						        datasets: [{
-						          label: '# hours in game',
+						          label: '# hours in game in ' + mom.format('MMMM'),
 						          backgroundColor: "#03586A",
 						          data: _data
 						        }]

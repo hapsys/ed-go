@@ -17,6 +17,21 @@ public class DBUsersBean implements DbBean, Serializable {
 
 
 	
+	@DataSource({"user_cookie", "userCookie"})
+	@DataTarget("user_cookie")
+	@XMLSimple("userCookie")
+	private java.lang.String userCookie;
+	
+	public java.lang.String getUserCookie() {
+		return userCookie;
+	}
+	
+	public DBUsersBean setUserCookie(java.lang.String value) {
+		userCookie = value;
+		return this;
+	}
+	
+	
 	@DataSource({"create_time", "createTime"})
 	@DataTarget("create_time")
 	@XMLSimple("createTime")

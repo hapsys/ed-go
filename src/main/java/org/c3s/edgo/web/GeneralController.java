@@ -36,7 +36,8 @@ public class GeneralController {
 	//protected User user = null; 
 	protected Set<AuthRoles> roles = new TreeSet<AuthRoles>();
 	
-	
+	protected String cookieName = "xyu-ni3da-dzigurda";
+	protected int cookieAge = 30*24*3600;
 	/**
 	 * 
 	 */
@@ -67,8 +68,12 @@ public class GeneralController {
 	public static synchronized DBUsersBean getUser() {
 		synchronized (GeneralController.class) {
 			StorageInterface storage = StorageFactory.getStorage(StorageType.SESSION);
-			//storage.remove(STORED_USER);
-			return (DBUsersBean)storage.get(STORED_USER); 
+			DBUsersBean user = (DBUsersBean)storage.get(STORED_USER);
+			if (user != null && user.getUserId() == null) {
+				user = null;
+				storage.remove(STORED_USER);
+			}
+			return user; 
 		}
 	}
 	

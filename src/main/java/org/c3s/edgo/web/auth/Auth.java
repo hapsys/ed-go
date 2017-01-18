@@ -1,8 +1,12 @@
 package org.c3s.edgo.web.auth;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.c3s.annotations.Controller;
 import org.c3s.annotations.Parameter;
@@ -11,6 +15,7 @@ import org.c3s.dispatcher.PatternerInterface;
 import org.c3s.dispatcher.RedirectControlerInterface;
 import org.c3s.dispatcher.exceptions.SkipSubLevelsExeption;
 import org.c3s.dispatcher.exceptions.StopDispatchException;
+import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBRolesBean;
 import org.c3s.edgo.common.beans.DBUsersBean;
 import org.c3s.edgo.web.GeneralController;
@@ -25,9 +30,36 @@ public class Auth extends GeneralController {
 	@SuppressWarnings("unused")
 	private static Logger logger = LoggerFactory.getLogger(Auth.class);
 	
-	public void getRoles() {
+	public void getRoles(HttpServletRequest request, HttpServletResponse responce) {
 		
 		DBUsersBean user = GeneralController.getUser();
+		
+		if (user == null) {
+			// try cookie
+			Cookie[] cookies = request.getCookies();
+				if (cookies != null) {
+				Cookie cookie = null; 
+				for (Cookie c: cookies) {
+					if (cookieName.equals(c.getName())) {
+						cookie = c;
+						break;
+					}
+				}
+				if (cookie != null) {
+					try {
+						user = DbAccess.usersAccess.getByCookie(cookie.getValue());
+						if (user != null) {
+							cookie.setMaxAge(cookieAge);
+							cookie.setPath("/");
+							responce.addCookie(cookie);
+							setUser(user);
+						}
+					} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
+						// Shit
+					}
+				}
+			}
+		}
 		 
 		if (user != null) {
 			//System.out.println(user);

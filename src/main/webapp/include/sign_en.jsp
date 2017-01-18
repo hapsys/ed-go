@@ -48,6 +48,10 @@
 						<div>
 							<input type="password" class="form-control" placeholder="Password" id="password" name="password"/>
 						</div>
+						<div style="margin-bottom: 20px; text-align: left;">
+							<input type="checkbox" class="form-control flat" id="store" name="store" checked="checked"/>
+							stay logged
+						</div>
 						<div>
 							<button type="submit" class="btn btn-default submit">Log in</button> <a
 								class="reset_pass" href="<%=root%>/account/restore/">Lost your password?</a>

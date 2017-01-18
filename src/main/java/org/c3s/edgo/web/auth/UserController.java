@@ -19,6 +19,9 @@ import java.util.UUID;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import javax.servlet.ServletRequest;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.c3s.annotations.Controller;
 import org.c3s.annotations.Parameter;
@@ -151,7 +154,8 @@ public class UserController extends GeneralController {
 	 * @throws IllegalAccessException 
 	 * @throws IllegalArgumentException 
 	 */
-	public void login(@ParameterRequest("email") String email, @ParameterRequest("password") String password, @Parameter("tag") String tag, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+	public void login(@ParameterRequest("email") String email, @ParameterRequest("password") String password, @ParameterRequest("store") String store, 
+			@Parameter("tag") String tag, RedirectControlerInterface redirect, HttpServletResponse responce) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 
 		StorageInterface storage = StorageFactory.getStorage(StorageType.SESSION);
 		Result result = null;
@@ -175,6 +179,15 @@ public class UserController extends GeneralController {
 					storage.put(STORED_USER, user);
 					user.setPrevLoginTime(user.getLastLoginTime());
 					user.setLastLoginTime(new Timestamp(System.currentTimeMillis()));
+					user.setUserCookie(null);
+					if (store != null) {
+						String cookieValue = Utils.generateString(255, "QWERTYUIOPASDFGHJKLZXCVBNM1234567890_-+=!@#$%^&*()");
+						Cookie cookie = new Cookie(cookieName, cookieValue);
+						cookie.setPath("/");
+						cookie.setMaxAge(cookieAge);
+						responce.addCookie(cookie);
+						user.setUserCookie(cookieValue);
+					}
 					DbAccess.usersAccess.updateByPrimaryKey(user, user.getUserId());
 				} else {
 					errors = ValueChecker.addError("__common", i10n("no login"), null);
@@ -187,7 +200,21 @@ public class UserController extends GeneralController {
 		redirect.setRedirect(new DropRedirect());
 	}
 	
-	public void logout(@Parameter("tag") String tag, RedirectControlerInterface redirect) {
+	public void logout(@Parameter("tag") String tag, RedirectControlerInterface redirect, HttpServletRequest request, HttpServletResponse responce) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		
+		for(Cookie cookie: request.getCookies()) {
+			if (cookieName.equals(cookie.getName())) {
+				cookie.setMaxAge(0);
+				cookie.setPath("/");
+				responce.addCookie(cookie);
+			}
+		}
+		
+		DBUsersBean user = getUser();
+		if (user != null) {
+			DbAccess.usersAccess.updateNullCookieByUserId(user.getUserId());
+		}
+		
 		StorageFactory.getStorage(StorageType.SESSION).remove(STORED_USER);
 		ContentObject.getInstance().setData(tag, new Result().get());
 		redirect.setRedirect(new DropRedirect());

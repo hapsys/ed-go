@@ -17,6 +17,9 @@ $(function() {
 			email: $('#email').val(),
 			password: $('#password').val(),
 		};
+		if ($('#store').prop('checked')) {
+			data.store = 'on';
+		}
 		//console.log(data);
 		$(form).find('input,button,select').prop('disabled', true);
 		Validator.clearErrors(form);

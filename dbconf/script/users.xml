@@ -23,6 +23,9 @@
 		<select name="ByCheckHash" single_object="true">
 			<column name="check_hash"/>
 		</select>
+		<select name="ByCookie" single_object="true">
+			<column name="user_cookie"/>
+		</select>
 		<update name="ByPrimaryKey">
 			<column name="user_id"/>
 		</update>
@@ -43,6 +46,12 @@
 		}
 			</body>
 		</method>
+		<query name="NullCookieByUserId">
+			<column name="UserId" type="long"/>
+			<sql>
+				UPDATE users SET user_cookie = NULL WHERE user_id = ? LIMIT 1 
+			</sql>
+		</query>
 	</table>
 	<table name="user_keys">
 		<select name="ByPrimaryKey" single_object="true">

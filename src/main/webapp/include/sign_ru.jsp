@@ -48,6 +48,10 @@
 						<div>
 							<input type="password" class="form-control" placeholder="Пароль" id="password" name="password"/>
 						</div>
+						<div style="margin-bottom: 20px; text-align: left;">
+							<input type="checkbox" class="form-control flat" id="store" name="store" checked="checked"/>
+							не выходить из системы
+						</div>
 						<div>
 							<button type="submit" class="btn btn-default submit">Войти</button> <a
 								class="reset_pass" href="<%=root%>/account/restore/">Забыли пароль?</a>
