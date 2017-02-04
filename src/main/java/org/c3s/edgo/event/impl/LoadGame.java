@@ -22,7 +22,7 @@ public class LoadGame extends AbstractJournalEvent<LoadGameBean> {
 	@SuppressWarnings("serial")
 	private static Map<String, Long> gameModes = new HashMap<String, Long>() {{
 		put("open", 1L);
-		put("private", 2L);
+		put("group", 2L);
 		put("solo", 3L);
 	}};
 	
