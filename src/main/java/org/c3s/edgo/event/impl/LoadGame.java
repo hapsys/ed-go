@@ -100,6 +100,7 @@ public class LoadGame extends AbstractJournalEvent<LoadGameBean> {
 				
 				DBPilotGameModesBean mode = new DBPilotGameModesBean();
 				mode.setGameGroup(bean.getGroup()).setGameModeId(gameModes.get(bean.getGameMode().toLowerCase())).setPilotId(current.getPilotId()).setModeStart(new Timestamp(bean.getTimestamp().getTime()));
+				DbAccess.pilotGameModesAccess.insert(mode);
 			}
 			
 			/**
