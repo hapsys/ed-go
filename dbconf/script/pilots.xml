@@ -130,7 +130,7 @@
 		</select>
 		<select name="LastByPilotId" single_object="true">
 			<column name="pilot_id"/>
-			<sort>BY mode_start DESC</sort>
+			<sort>mode_start DESC</sort>
 		</select>
 		<update name="ByPrimaryKey">
 			<column name="pilot_game_mode_id"/>

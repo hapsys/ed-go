@@ -72,7 +72,7 @@ public class DBPilotGameModesAccess extends Access {
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
-			sql += "ORDER BY BY mode_start DESC";
+			sql += "ORDER BY mode_start DESC";
 			
 		}
 		String limit = injector.getLimitQuery();
