@@ -29,12 +29,16 @@
 		</query>
 	</table>
 	<!--  -->
+	<!-- 
 	<table name="location_history">
 		<column name="system_name" type="String">
 	    	<annotation>@XMLSimple("systemName")</annotation>
 		</column>
 		<column name="station_name" type="String">
 	    	<annotation>@XMLSimple("stationName")</annotation>
+		</column>
+		<column name="body_name" type="String">
+	    	<annotation>@XMLSimple("bodyName")</annotation>
 		</column>
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="location_id"/>
@@ -81,34 +85,35 @@
 			</sql>
 		</query>
 	</table>
+	 -->
 	<!--  -->
-	<table name="location_system_history">
+	<table name="location_history">
 		<column name="system_name" type="String">
 	    	<annotation>@XMLSimple("systemName")</annotation>
 		</column>
 		<select name="ByPrimaryKey" single_object="true">
-			<column name="location_system_id"/>
+			<column name="location_id"/>
 		</select>
-		<select name="LastSystemLocation" single_object="true">
+		<select name="LastLocation" single_object="true">
 			<column name="pilot_id"/>
 			<sort>location_time DESC</sort>
 		</select>
-		<query name="LastLocationForPilot" use="LocationSystemHistory" single_object="true">
+		<query name="LastLocationForPilot" use="LocationHistory" single_object="true">
 			<column name="PilotId" type="long"/>
 			<sql>
 				SELECT l.*, sy.name as system_name
-				FROM location_system_history l
+				FROM location_history l
 				LEFT JOIN systems sy ON l.system_id = sy.system_id
 				WHERE l.pilot_id = ?
 				ORDER BY l.location_time DESC
 				LIMIT 1 
 			</sql>
 		</query>
-		<query name="MaxMinDateSystemHistoryForPilot" single_object="true" intruder="org.c3s.db.injectors.EmptySqlInjector">
+		<query name="MaxMinDateLocationHistoryForPilot" single_object="true" intruder="org.c3s.db.injectors.EmptySqlInjector">
 			<sql>
-				SELECT p.pilot_id, MAX(DATE(l.location_time)) as max_date, MIN(DATE(l.location_time)) as min_date
+				SELECT p.pilot_id, DATE_FORMAT(MAX(DATE(l.location_time)), '%Y-%m-%d') as max_date, DATE_FORMAT(MIN(DATE(l.location_time)), '%Y-%m-%d') as min_date
 				FROM pilots p
-				LEFT JOIN location_system_history l ON l.pilot_id = p.pilot_id 
+				LEFT JOIN location_history l ON l.pilot_id = p.pilot_id 
 				WHERE 1 = 1
 				<where/>
 				GROUP BY p.pilot_id
@@ -120,7 +125,7 @@
 			<sql>
 				SELECT l.*, sy.name as system_name, sy.x, sy.y, sy.z, DATE_FORMAT(l.location_time, '%Y-%m-%d %T') as `timestamp`,
 					CONCAT('[', FORMAT(sy.x, 2), ',', FORMAT(sy.y, 2), ',', FORMAT(sy.z, 2), ']') as position, FORMAT(SQRT(sy.x * sy.x + sy.y * sy.y + sy.z * sy.z), 2) as distance
-				FROM location_system_history l
+				FROM location_history l
 				LEFT JOIN systems sy ON l.system_id = sy.system_id
 				WHERE 1 = 1
 				<where/>
@@ -128,16 +133,45 @@
 				<limit_none/>
 			</sql>
 		</query>
-		<query name="SystemPathCount" intruder="org.c3s.db.injectors.EmptySqlInjector"  single_object="true">
+		<query name="LocationsPathCount" intruder="org.c3s.db.injectors.EmptySqlInjector"  single_object="true">
 			<column name="PilotId" type="long"/>
 			<sql>
-				SELECT count(l.location_system_id) as count 
-				FROM location_system_history l
+				SELECT count(l.location_id) as count 
+				FROM location_history l
 				WHERE l.pilot_id = ?
 				<where/>
 				LIMIT 1
 			</sql>
 		</query>
+		<query name="LocationsPath" intruder="org.c3s.db.injectors.EmptySqlInjector">
+			<column name="PilotId" type="long"/>
+			<sql>
+				SELECT l.*, sy.name as system_name, st.name as station_name, sy.x, sy.y, sy.z, DATE_FORMAT(l.location_time, '%Y-%m-%d %T') as `timestamp`,
+					CONCAT('[', FORMAT(sy.x, 2), ',', FORMAT(sy.y, 2), ',', FORMAT(sy.z, 2), ']') as position, FORMAT(SQRT(sy.x * sy.x + sy.y * sy.y + sy.z * sy.z), 2) as distance
+				FROM location_history l
+				LEFT JOIN systems sy ON l.system_id = sy.system_id
+				LEFT JOIN station_history sh ON sh.location_id = l.location_id
+				LEFT JOIN stations st ON sh.station_id = st.station_id
+				WHERE 1 = 1
+				<where/>
+				ORDER BY l.location_time DESC, sh.station_time DESC
+				<limit_none/>
+			</sql>
+		</query>
+		
+	</table>
+	<!--  -->
+	<table name="station_history">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="pilot_id"/>
+		</select>
+		<select name="LastStation" single_object="true">
+			<column name="pilot_id"/>
+			<sort>station_time DESC</sort>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="pilot_id"/>
+		</update>
 	</table>
 	<!--  -->
 	<table name="ranks">
@@ -231,15 +265,6 @@
 				<where/>
 			</sql>
 		</query>
-	</table>
-	<!--  -->
-	<table name="pilot_last_info">
-		<select name="ByPrimaryKey" single_object="true">
-			<column name="pilot_id"/>
-		</select>
-		<update name="ByPrimaryKey">
-			<column name="pilot_id"/>
-		</update>
 	</table>
 	<!--  -->
 </include>

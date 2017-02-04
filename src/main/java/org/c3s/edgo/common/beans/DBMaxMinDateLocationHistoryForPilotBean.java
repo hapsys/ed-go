@@ -11,7 +11,7 @@ import org.c3s.data.annotations.DataTarget;
 import org.c3s.reflection.annotation.*;
 
 
-public class DBMaxMinDateLocationistoryForPilotBean implements DbBean, Serializable {
+public class DBMaxMinDateLocationHistoryForPilotBean implements DbBean, Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,7 +26,7 @@ public class DBMaxMinDateLocationistoryForPilotBean implements DbBean, Serializa
 		return maxDate;
 	}
 	
-	public DBMaxMinDateLocationistoryForPilotBean setMaxDate(java.lang.String value) {
+	public DBMaxMinDateLocationHistoryForPilotBean setMaxDate(java.lang.String value) {
 		maxDate = value;
 		return this;
 	}
@@ -41,7 +41,7 @@ public class DBMaxMinDateLocationistoryForPilotBean implements DbBean, Serializa
 		return minDate;
 	}
 	
-	public DBMaxMinDateLocationistoryForPilotBean setMinDate(java.lang.String value) {
+	public DBMaxMinDateLocationHistoryForPilotBean setMinDate(java.lang.String value) {
 		minDate = value;
 		return this;
 	}
@@ -56,15 +56,13 @@ public class DBMaxMinDateLocationistoryForPilotBean implements DbBean, Serializa
 		return pilotId;
 	}
 	
-	public DBMaxMinDateLocationistoryForPilotBean setPilotId(java.lang.Long value) {
+	public DBMaxMinDateLocationHistoryForPilotBean setPilotId(java.lang.Long value) {
 		pilotId = value;
 		return this;
 	}
 	
 	@Override
 	public void setAutoincrementField(Object value) {
-		
-		setPilotId(new java.lang.Long(value.toString()));
 		
 	}	
 	

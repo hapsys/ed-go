@@ -32,21 +32,6 @@ public class DBLocationHistoryBean implements DbBean, Serializable {
 	}
 	
 	
-	@DataSource({"station_id", "stationId"})
-	@DataTarget("station_id")
-	@XMLSimple("stationId")
-	private java.lang.Long stationId;
-	
-	public java.lang.Long getStationId() {
-		return stationId;
-	}
-	
-	public DBLocationHistoryBean setStationId(java.lang.Long value) {
-		stationId = value;
-		return this;
-	}
-	
-	
 	@DataSource({"pilot_id", "pilotId"})
 	@DataTarget("pilot_id")
 	@XMLSimple("pilotId")
@@ -104,22 +89,6 @@ public class DBLocationHistoryBean implements DbBean, Serializable {
 	
 	public DBLocationHistoryBean setSystemName(String value) {
 		systemName = value;
-		return this;
-	}
-	
-	
-	@DataSource({"station_name", "stationName"})
-	@DataTarget("station_name")
-	@XMLSimple("stationName")
-
-	private String stationName;
-	
-	public String getStationName() {
-		return stationName;
-	}
-	
-	public DBLocationHistoryBean setStationName(String value) {
-		stationName = value;
 		return this;
 	}
 	

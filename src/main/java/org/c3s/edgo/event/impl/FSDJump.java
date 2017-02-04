@@ -25,7 +25,7 @@ public class FSDJump extends AbstractJournalEvent<FSDJumpBean> {
 		try {
 			DBPilotsBean pilot = getCurrent();
 			if (pilot != null) {
-				LocationDAO.insertLocation(pilot.getPilotId(), bean.getTimestamp(), bean.getStarSystem(), bean.getStarPos(), null);
+				LocationDAO.insertLocation(pilot.getPilotId(), bean.getTimestamp(), bean.getStarSystem(), bean.getStarPos(), null, null);
 				PowersDAO.updateOrInsertPowerState(bean.getStarSystem(), bean.getPowers(), bean.getPowerplayState(), bean.getTimestamp());
 				ShipsDAO.updateCurrentShipPosition(pilot);
 			}

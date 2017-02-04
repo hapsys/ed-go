@@ -62,6 +62,21 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	
+	@DataSource({"source_body_id", "sourceBodyId"})
+	@DataTarget("source_body_id")
+	@XMLSimple("sourceBodyId")
+	private java.math.BigInteger sourceBodyId;
+	
+	public java.math.BigInteger getSourceBodyId() {
+		return sourceBodyId;
+	}
+	
+	public DBMissionsComplitedListByPilotsBean setSourceBodyId(java.math.BigInteger value) {
+		sourceBodyId = value;
+		return this;
+	}
+	
+	
 	@DataSource({"commodity_idx", "commodityIdx"})
 	@DataTarget("commodity_idx")
 	@XMLSimple("commodityIdx")
@@ -238,6 +253,21 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	
 	public DBMissionsComplitedListByPilotsBean setMaterialIdx(java.lang.String value) {
 		materialIdx = value;
+		return this;
+	}
+	
+	
+	@DataSource({"source_station_id", "sourceStationId"})
+	@DataTarget("source_station_id")
+	@XMLSimple("sourceStationId")
+	private java.lang.Long sourceStationId;
+	
+	public java.lang.Long getSourceStationId() {
+		return sourceStationId;
+	}
+	
+	public DBMissionsComplitedListByPilotsBean setSourceStationId(java.lang.Long value) {
+		sourceStationId = value;
 		return this;
 	}
 	

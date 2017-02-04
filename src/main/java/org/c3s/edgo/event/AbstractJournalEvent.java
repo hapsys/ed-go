@@ -12,6 +12,7 @@ import java.util.Map;
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBEventsBean;
 import org.c3s.edgo.common.beans.DBEventsHistoryBean;
+import org.c3s.edgo.common.beans.DBPilotGameModesBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.beans.DBUsersBean;
 import org.c3s.utils.JSONUtils;
@@ -53,6 +54,21 @@ public abstract class AbstractJournalEvent<T extends AbstractEventBean> implemen
 					json = json.replaceAll("\\[\\]", "{}");
 				}
 				T bean = JSONUtils.fromJSON(json, this.beanClass);
+				
+				/**
+				 * + Update game mode 
+				 */
+				DBPilotsBean pilot = getCurrent();
+				if (pilot != null && !"LoadGame".equals(bean.getEvent())) {
+					DBPilotGameModesBean lastMode = DbAccess.pilotGameModesAccess.getLastByPilotId(pilot.getPilotId());
+					if (lastMode != null) {
+						lastMode.setModeEnd(new Timestamp(bean.getTimestamp().getTime()));
+						DbAccess.pilotGameModesAccess.updateByPrimaryKey(lastMode, lastMode.getPilotGameModeId());
+					}
+				}
+				/**
+				 * - Update game mode 
+				 */
 				if (DbAccess.eventsHistoryAccess.getByUserIdTimestampAndHash(event.getUserId(), new Timestamp(bean.getTimestamp().getTime()), event.getJsonMd5()) == null) {
 					this.processBean(bean);
 					if ("CompanionApi".equals(event.getEventName())) {

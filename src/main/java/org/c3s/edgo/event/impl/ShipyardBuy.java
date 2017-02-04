@@ -28,7 +28,7 @@ public class ShipyardBuy extends AbstractJournalEvent<ShipyardBuyBean> {
 			if (current != null) {
 				if (bean.getSellOldShip() != null) {
 					//ShipsDAO.updateOrInsertCurrentPilotShip(current, bean.getSellOldShip().toLowerCase(), bean.getSellShipID());
-					ShipsDAO.removePilotShip(ShipsDAO.getOrInsertPilotShip(current, bean.getSellOldShip().toLowerCase(), bean.getSellShipID(), null));
+					ShipsDAO.removePilotShip(ShipsDAO.getOrInsertPilotShip(current, bean.getSellOldShip().toLowerCase(), bean.getSellShipID(), null, null));
 				}
 			}
 		} catch (Exception e) {

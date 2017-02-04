@@ -47,6 +47,21 @@ public class DBMissionsBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"source_body_id", "sourceBodyId"})
+	@DataTarget("source_body_id")
+	@XMLSimple("sourceBodyId")
+	private java.math.BigInteger sourceBodyId;
+	
+	public java.math.BigInteger getSourceBodyId() {
+		return sourceBodyId;
+	}
+	
+	public DBMissionsBean setSourceBodyId(java.math.BigInteger value) {
+		sourceBodyId = value;
+		return this;
+	}
+	
+	
 	@DataSource({"mission_id", "missionId"})
 	@DataTarget("mission_id")
 	@XMLSimple("missionId")
@@ -133,6 +148,21 @@ public class DBMissionsBean implements DbBean, Serializable {
 	
 	public DBMissionsBean setPilotId(java.lang.Long value) {
 		pilotId = value;
+		return this;
+	}
+	
+	
+	@DataSource({"source_station_id", "sourceStationId"})
+	@DataTarget("source_station_id")
+	@XMLSimple("sourceStationId")
+	private java.lang.Long sourceStationId;
+	
+	public java.lang.Long getSourceStationId() {
+		return sourceStationId;
+	}
+	
+	public DBMissionsBean setSourceStationId(java.lang.Long value) {
+		sourceStationId = value;
 		return this;
 	}
 	

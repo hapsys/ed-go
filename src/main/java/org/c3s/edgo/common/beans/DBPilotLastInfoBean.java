@@ -47,21 +47,6 @@ public class DBPilotLastInfoBean implements DbBean, Serializable {
 	}
 	
 	
-	@DataSource({"game_mode", "gameMode"})
-	@DataTarget("game_mode")
-	@XMLSimple("gameMode")
-	private java.lang.String gameMode;
-	
-	public java.lang.String getGameMode() {
-		return gameMode;
-	}
-	
-	public DBPilotLastInfoBean setGameMode(java.lang.String value) {
-		gameMode = value;
-		return this;
-	}
-	
-	
 	@DataSource({"pilot_id", "pilotId"})
 	@DataTarget("pilot_id")
 	@XMLSimple("pilotId")
@@ -73,21 +58,6 @@ public class DBPilotLastInfoBean implements DbBean, Serializable {
 	
 	public DBPilotLastInfoBean setPilotId(java.lang.Long value) {
 		pilotId = value;
-		return this;
-	}
-	
-	
-	@DataSource({"game_group", "gameGroup"})
-	@DataTarget("game_group")
-	@XMLSimple("gameGroup")
-	private java.lang.String gameGroup;
-	
-	public java.lang.String getGameGroup() {
-		return gameGroup;
-	}
-	
-	public DBPilotLastInfoBean setGameGroup(java.lang.String value) {
-		gameGroup = value;
 		return this;
 	}
 	

@@ -17,21 +17,6 @@ public class DBSystemPathBean implements DbBean, Serializable {
 
 
 	
-	@DataSource({"location_system_id", "locationSystemId"})
-	@DataTarget("location_system_id")
-	@XMLSimple("locationSystemId")
-	private java.math.BigInteger locationSystemId;
-	
-	public java.math.BigInteger getLocationSystemId() {
-		return locationSystemId;
-	}
-	
-	public DBSystemPathBean setLocationSystemId(java.math.BigInteger value) {
-		locationSystemId = value;
-		return this;
-	}
-	
-	
 	@DataSource({"distance", "distance"})
 	@DataTarget("distance")
 	@XMLSimple("distance")
@@ -152,6 +137,21 @@ public class DBSystemPathBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"location_id", "locationId"})
+	@DataTarget("location_id")
+	@XMLSimple("locationId")
+	private java.math.BigInteger locationId;
+	
+	public java.math.BigInteger getLocationId() {
+		return locationId;
+	}
+	
+	public DBSystemPathBean setLocationId(java.math.BigInteger value) {
+		locationId = value;
+		return this;
+	}
+	
+	
 	@DataSource({"location_time", "locationTime"})
 	@DataTarget("location_time")
 	@XMLSimple("locationTime")
@@ -184,7 +184,7 @@ public class DBSystemPathBean implements DbBean, Serializable {
 	@Override
 	public void setAutoincrementField(Object value) {
 		
-		setLocationSystemId(new java.math.BigInteger(value.toString()));
+		setLocationId(new java.math.BigInteger(value.toString()));
 		
 	}	
 	

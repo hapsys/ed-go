@@ -60,7 +60,7 @@ public class CompanionApi extends AbstractJournalEvent<CompanionApiBean> {
 				/**
 				 * Update pilot ship
 				 */
-				DBPilotShipsBean pilotShip = ShipsDAO.getOrInsertPilotShip(pilot, companion.ships.get(strId).name, id, null);
+				DBPilotShipsBean pilotShip = ShipsDAO.getOrInsertPilotShip(pilot, companion.ships.get(strId).name, id, null, null);
 				
 				pilotShip.setCanDeleted(0);
 				if (currentShipId == id) {

@@ -103,6 +103,40 @@
 		</query>
 	</table>
 	<!--  -->
+	<table name="pilot_last_info">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="pilot_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="pilot_id"/>
+		</update>
+		<query name="LastInfo" single_object="true">
+			<column name="PilotId" type="long"/>
+			<sql>
+				SELECT li.*, m.*, gm.game_mode
+				FROM pilot_last_info li, pilot_game_modes m, game_modes gm
+				WHERE li.pilot_id = ?
+				AND m.pilot_id = li.pilot_id
+				AND m.game_mode_id = gm.game_mode_id
+				ORDER BY m.mode_start DESC
+				LIMIT 1 
+			</sql>
+		</query>
+	</table>
+	<!--  -->
+	<table name="pilot_game_modes">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="pilot_game_mode_id"/>
+		</select>
+		<select name="LastByPilotId" single_object="true">
+			<column name="pilot_id"/>
+			<sort>BY mode_start DESC</sort>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="pilot_game_mode_id"/>
+		</update>
+	</table>
+	<!--  -->
 	<table name="pilot_ships">
 		<column name="ship" type="DBShipsBean">
 	    	<annotation>@XMLReflectionField</annotation>

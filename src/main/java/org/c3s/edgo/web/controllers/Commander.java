@@ -26,15 +26,13 @@ import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBActivityBean;
 import org.c3s.edgo.common.beans.DBEventMaxMinDateForPilotBean;
 import org.c3s.edgo.common.beans.DBLocationsPathBean;
-import org.c3s.edgo.common.beans.DBMaxMinDateLocationistoryForPilotBean;
-import org.c3s.edgo.common.beans.DBMaxMinDateSystemHistoryForPilotBean;
+import org.c3s.edgo.common.beans.DBMaxMinDateLocationHistoryForPilotBean;
 import org.c3s.edgo.common.beans.DBMissionsComplitedListByPilotsBean;
 import org.c3s.edgo.common.beans.DBPilotShipsBean;
 import org.c3s.edgo.common.beans.DBPilotShipsListBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.beans.DBPilotsPowerWeeksBean;
 import org.c3s.edgo.common.beans.DBPowerCortageBean;
-import org.c3s.edgo.common.beans.DBSystemPathBean;
 import org.c3s.edgo.common.beans.DBUsersBean;
 import org.c3s.edgo.common.intruders.EventHistoryInjector;
 import org.c3s.edgo.common.intruders.InInjector;
@@ -271,7 +269,7 @@ public class Commander extends GeneralController {
 		if (current != null) {
 			Document xml = new XMLReflectionObj(current, true).toXML();
 			
-			DBMaxMinDateLocationistoryForPilotBean minmax = DbAccess.locationHistoryAccess.getMaxMinDateLocationistoryForPilot(new InInjector("l.pilot_id", linkedPilots));
+			DBMaxMinDateLocationHistoryForPilotBean minmax = DbAccess.locationHistoryAccess.getMaxMinDateLocationHistoryForPilot(new InInjector("l.pilot_id", linkedPilots));
 			
 			if (minmax.getMinDate().length() > 0) {
 				
@@ -351,9 +349,9 @@ public class Commander extends GeneralController {
 			List<DBLocationsPathBean> systems = DbAccess.locationHistoryAccess.getLocationsPath(current.getPilotId(), injector); 
 			//System.out.println(systems.size());
 				
-			DBMaxMinDateLocationistoryForPilotBean minmax = DbAccess.locationHistoryAccess.getMaxMinDateLocationistoryForPilot(new InInjector("l.pilot_id", linkedPilots));
+			DBMaxMinDateLocationHistoryForPilotBean minmax = DbAccess.locationHistoryAccess.getMaxMinDateLocationHistoryForPilot(new InInjector("l.pilot_id", linkedPilots));
 			
-			Result result = new Result().put("systems", systems).put("total", DbAccess.locationSystemHistoryAccess.getSystemPathCount(current.getPilotId(), injector));
+			Result result = new Result().put("systems", systems).put("total", DbAccess.locationHistoryAccess.getLocationsPathCount(current.getPilotId(), injector));
 			if (minmax.getMinDate().length() > 0) {
 				result.put("mindate", minmax.getMinDate());
 				result.put("maxdate", minmax.getMaxDate());

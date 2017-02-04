@@ -40,7 +40,7 @@
 				LEFT JOIN reward_commodities rc ON rc.mission_id = m.mission_id 
 				LEFT JOIN reward_materials rm ON rm.mission_id = m.mission_id
 				LEFT JOIN systems s ON s.system_id = l.system_id
-				LEFT JOIN stations st ON st.station_id = l.station_id
+				LEFT JOIN stations st ON st.station_id = m.source_station_id
 				WHERE 1=1 
 				<where/>
 				AND NOT ISNULL(m.complete_date)

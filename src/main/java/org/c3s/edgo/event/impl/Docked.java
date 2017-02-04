@@ -24,7 +24,7 @@ public class Docked extends AbstractJournalEvent<DockedBean> {
 		try {
 			DBPilotsBean pilot = getCurrent();
 			if (pilot != null) {
-				LocationDAO.insertLocation(pilot.getPilotId(), bean.getTimestamp(), bean.getStarSystem(), null, bean.getStationName());
+				LocationDAO.insertLocation(pilot.getPilotId(), bean.getTimestamp(), bean.getStarSystem(), null, bean.getStationName(), null);
 				ShipsDAO.updateCurrentShipPosition(pilot);
 			}
 		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {

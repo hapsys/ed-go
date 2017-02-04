@@ -103,4 +103,33 @@ public class DBPilotLastInfoAccess extends Access {
 		return getConnection().updateRow("pilot_last_info", map, keys);
 	}
 	
+	public DBLastInfoBean getLastInfo(long paramPilotId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT li.*, m.*, gm.game_mode 				FROM pilot_last_info li, pilot_game_modes m, game_modes gm 				WHERE li.pilot_id = ? 				AND m.pilot_id = li.pilot_id 				AND m.game_mode_id = gm.game_mode_id 				ORDER BY m.mode_start DESC 				LIMIT 1  			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getLastInfo", query ,  paramPilotId);
+		DBLastInfoBean ret = null;
+		if (result != null) {
+					ret = new DBLastInfoBean();
+				
+					ret = dataMapper.mapFromRow(result.get(0), DBLastInfoBean.class);
+					
+		}
+			
+		return ret;
+	}
+	
 }

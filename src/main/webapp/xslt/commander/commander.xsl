@@ -777,7 +777,7 @@
 	                    <th>Activity</th>
 	                  </tr>
 	                </thead>
-	                <tbody id="locations-content" class="updated-by-time" data-update-function="updateSystems" data-update-interval="5000">
+	                <tbody id="locations-content" class="updated-by-time" data-update-function="updateSystems" data-update-interval="30000">
 						<tr class="sceleton hidden">
 							<td><nobr class="star-time"></nobr></td>
 							<td><nobr class="star-name"></nobr></td>
@@ -874,7 +874,7 @@
 									$('.star-distance', elem).html(system.distance);
 									
 									if (system.stationId) {
-										$('.star-activity', elem).html('<span class="fa fa-wheelchair" aria-hidden="true"> ' + system.stationName + '</span>');
+										$('.star-activity', elem).html('&amp;#x1F480; ' + system.stationName);
 									} else {
 										$('.star-activity', elem).html('<span class="fa fa-rocket" aria-hidden="true"></span>');
 									}

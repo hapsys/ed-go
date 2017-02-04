@@ -122,6 +122,21 @@ public class DBSystemsBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"system_eddb_id", "systemEddbId"})
+	@DataTarget("system_eddb_id")
+	@XMLSimple("systemEddbId")
+	private java.math.BigInteger systemEddbId;
+	
+	public java.math.BigInteger getSystemEddbId() {
+		return systemEddbId;
+	}
+	
+	public DBSystemsBean setSystemEddbId(java.math.BigInteger value) {
+		systemEddbId = value;
+		return this;
+	}
+	
+	
 	@DataSource({"name_uniq", "nameUniq"})
 	@DataTarget("name_uniq")
 	@XMLSimple("nameUniq")

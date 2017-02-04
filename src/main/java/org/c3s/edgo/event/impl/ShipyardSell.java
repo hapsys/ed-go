@@ -26,7 +26,7 @@ public class ShipyardSell extends AbstractJournalEvent<ShipyardSellBean> {
 			DBPilotsBean current = getCurrent();
 			if (current != null) {
 				//ShipsDAO.removePilotShip(ShipsDAO.updateOrInsertCurrentPilotShip(current, bean.getShipType().toLowerCase(), bean.getSellShipID()));
-				ShipsDAO.removePilotShip(ShipsDAO.getOrInsertPilotShip(current, bean.getShipType().toLowerCase(), bean.getSellShipID(), null));
+				ShipsDAO.removePilotShip(ShipsDAO.getOrInsertPilotShip(current, bean.getShipType().toLowerCase(), bean.getSellShipID(), null, null));
 			}
 		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
 			throw new RuntimeException(e);

@@ -62,21 +62,6 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	}
 	
 	
-	@DataSource({"station_id", "stationId"})
-	@DataTarget("station_id")
-	@XMLSimple("stationId")
-	private java.lang.Long stationId;
-	
-	public java.lang.Long getStationId() {
-		return stationId;
-	}
-	
-	public DBLocationsPathBean setStationId(java.lang.Long value) {
-		stationId = value;
-		return this;
-	}
-	
-	
 	@DataSource({"system_name", "systemName"})
 	@DataTarget("name")
 	@XMLSimple("systemName")

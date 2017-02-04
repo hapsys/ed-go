@@ -11,7 +11,7 @@ import org.c3s.data.annotations.DataTarget;
 import org.c3s.reflection.annotation.*;
 
 
-public class DBSystemPathCountBean implements DbBean, Serializable {
+public class DBLocationsPathCountBean implements DbBean, Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,7 +26,7 @@ public class DBSystemPathCountBean implements DbBean, Serializable {
 		return count;
 	}
 	
-	public DBSystemPathCountBean setCount(java.lang.Long value) {
+	public DBLocationsPathCountBean setCount(java.lang.Long value) {
 		count = value;
 		return this;
 	}

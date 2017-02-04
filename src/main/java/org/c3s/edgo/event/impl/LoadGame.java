@@ -2,9 +2,13 @@ package org.c3s.edgo.event.impl;
 	
 import java.math.BigInteger;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.c3s.edgo.common.access.DbAccess;
+import org.c3s.edgo.common.beans.DBPilotGameModesBean;
 import org.c3s.edgo.common.beans.DBPilotLastInfoBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.dao.ShipsDAO;
@@ -15,6 +19,13 @@ import org.slf4j.LoggerFactory;
 
 public class LoadGame extends AbstractJournalEvent<LoadGameBean> {
 
+	@SuppressWarnings("serial")
+	private static Map<String, Long> gameModes = new HashMap<String, Long>() {{
+		put("open", 1L);
+		put("private", 2L);
+		put("solo", 3L);
+	}};
+	
 	@SuppressWarnings("unused")
 	private static Logger logger = LoggerFactory.getLogger(LoadGame.class);
 	
@@ -75,14 +86,20 @@ public class LoadGame extends AbstractJournalEvent<LoadGameBean> {
 				if (isInsert) {
 					info = new DBPilotLastInfoBean(); 
 				}
+				/*
 				info.setPilotId(current.getPilotId()).setCredits(BigInteger.valueOf(bean.getCredits()))
 					.setLoan(BigInteger.valueOf(bean.getLoan())).setGameMode(bean.getGameMode().toLowerCase()).setGameGroup(bean.getGroup());
-				
+				*/
+				info.setPilotId(current.getPilotId()).setCredits(BigInteger.valueOf(bean.getCredits()))
+				.setLoan(BigInteger.valueOf(bean.getLoan()));
 				if (isInsert) {
 					DbAccess.pilotLastInfoAccess.insert(info);
 				} else {
 					DbAccess.pilotLastInfoAccess.updateByPrimaryKey(info, current.getPilotId());
 				}
+				
+				DBPilotGameModesBean mode = new DBPilotGameModesBean();
+				mode.setGameGroup(bean.getGroup()).setGameModeId(gameModes.get(bean.getGameMode().toLowerCase())).setPilotId(current.getPilotId()).setModeStart(new Timestamp(bean.getTimestamp().getTime()));
 			}
 			
 			/**

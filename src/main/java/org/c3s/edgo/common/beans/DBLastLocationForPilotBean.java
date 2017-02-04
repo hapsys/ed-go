@@ -17,21 +17,6 @@ public class DBLastLocationForPilotBean implements DbBean, Serializable {
 
 
 	
-	@DataSource({"station_name", "stationName"})
-	@DataTarget("name")
-	@XMLSimple("stationName")
-	private java.lang.String stationName;
-	
-	public java.lang.String getStationName() {
-		return stationName;
-	}
-	
-	public DBLastLocationForPilotBean setStationName(java.lang.String value) {
-		stationName = value;
-		return this;
-	}
-	
-	
 	@DataSource({"system_id", "systemId"})
 	@DataTarget("system_id")
 	@XMLSimple("systemId")
@@ -43,21 +28,6 @@ public class DBLastLocationForPilotBean implements DbBean, Serializable {
 	
 	public DBLastLocationForPilotBean setSystemId(java.math.BigInteger value) {
 		systemId = value;
-		return this;
-	}
-	
-	
-	@DataSource({"station_id", "stationId"})
-	@DataTarget("station_id")
-	@XMLSimple("stationId")
-	private java.lang.Long stationId;
-	
-	public java.lang.Long getStationId() {
-		return stationId;
-	}
-	
-	public DBLastLocationForPilotBean setStationId(java.lang.Long value) {
-		stationId = value;
 		return this;
 	}
 	
