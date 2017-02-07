@@ -4,6 +4,8 @@ import java.math.BigInteger;
 import java.sql.SQLException;
 
 import org.c3s.edgo.common.access.DbAccess;
+import org.c3s.edgo.common.beans.DBBodiesBean;
+import org.c3s.edgo.common.beans.DBBodyTypesBean;
 import org.c3s.edgo.common.beans.DBFactionsBean;
 import org.c3s.edgo.common.beans.DBStationsBean;
 import org.c3s.edgo.common.beans.DBSystemsBean;
@@ -68,4 +70,43 @@ public class SystemsDAO {
 		DBFactionsBean bean = DbAccess.factionsAccess.getByUniq(uniq);
 		return bean;
 	}
+	
+	
+	public static DBBodiesBean getOrInsertBody(BigInteger systemId, String body, String bodyType) {
+		try {
+			String uniq = EDUtils.getBodyUniq(body);
+			DBBodiesBean bean = DbAccess.bodiesAccess.getByUniq(uniq);
+			if (bean == null) {
+				bean = new DBBodiesBean();
+				bean.setBodyName(body);
+				bean.setBodyUniq(uniq);
+				bean.setSystemId(systemId);
+				bean.setBodyId(BigInteger.valueOf(System.nanoTime()));
+				if (bodyType != null && !bodyType.toLowerCase().equals("null")) {
+					bean.setBodyTypeId(getOrInsertBodyType(bodyType).getBodyTypeId());
+				}
+				DbAccess.bodiesAccess.insert(bean);
+			}
+			return bean;
+		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public static DBBodyTypesBean getOrInsertBodyType(String name) {
+		try {
+			String uniq = EDUtils.cutSpaces(name);
+			DBBodyTypesBean bean = DbAccess.bodyTypesAccess.getByUniq(uniq);
+			if (bean == null) {
+				bean = new DBBodyTypesBean();
+				bean.setBodyTypeName(name);
+				bean.setBodyTypeUniq(uniq);
+				DbAccess.bodyTypesAccess.insert(bean);
+			}
+			return bean;
+		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 }

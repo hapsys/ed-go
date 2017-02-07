@@ -96,6 +96,11 @@
 		</select>
 		<select name="LastLocation" single_object="true">
 			<column name="pilot_id"/>
+			<column name="location_time" condition="&lt;="/>
+			<sort>location_time DESC</sort>
+		</select>
+		<select name="DirectLastLocation" single_object="true">
+			<column name="pilot_id"/>
 			<sort>location_time DESC</sort>
 		</select>
 		<query name="LastLocationForPilot" use="LocationHistory" single_object="true">
@@ -166,6 +171,11 @@
 			<column name="pilot_id"/>
 		</select>
 		<select name="LastStation" single_object="true">
+			<column name="pilot_id"/>
+			<column name="station_time" condition="&lt;="/>
+			<sort>station_time DESC</sort>
+		</select>
+		<select name="DirectLastStation" single_object="true">
 			<column name="pilot_id"/>
 			<sort>station_time DESC</sort>
 		</select>

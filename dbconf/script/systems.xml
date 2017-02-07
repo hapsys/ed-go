@@ -28,4 +28,50 @@
 			<column name="uniq"/>
 		</select>
 	</table>
+	
+	<table name="bodies">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="body_id"/>
+		</select>
+		<select name="ByUniq" single_object="true">
+			<column name="body_uniq"/>
+		</select>
+	</table>
+	
+	<table name="body_types">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="body_type_id"/>
+		</select>
+		<select name="ByUniq" single_object="true">
+			<column name="body_type_uniq"/>
+		</select>
+	</table>
+	
+	<table name="planet_classes">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="planet_class_id"/>
+		</select>
+		<select name="ByUniq" single_object="true">
+			<column name="planet_class_uniq"/>
+		</select>
+	</table>
+	
+	<table name="volc_classes">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="volc_class_id"/>
+		</select>
+		<select name="ByUniq" single_object="true">
+			<column name="volc_class_uniq"/>
+		</select>
+	</table>
+	
+	<table name="atm_classes">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="atm_class_id"/>
+		</select>
+		<select name="ByUniq" single_object="true">
+			<column name="atm_class_uniq"/>
+		</select>
+	</table>
+	
 </include>

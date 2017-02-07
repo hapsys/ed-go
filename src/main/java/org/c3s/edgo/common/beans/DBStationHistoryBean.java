@@ -91,6 +91,36 @@ public class DBStationHistoryBean implements DbBean, Serializable {
 		return this;
 	}
 	
+	
+	@DataSource({"is_scan", "isScan"})
+	@DataTarget("is_scan")
+	@XMLSimple("isScan")
+	private java.lang.Integer isScan;
+	
+	public java.lang.Integer getIsScan() {
+		return isScan;
+	}
+	
+	public DBStationHistoryBean setIsScan(java.lang.Integer value) {
+		isScan = value;
+		return this;
+	}
+	
+	
+	@DataSource({"body_id", "bodyId"})
+	@DataTarget("body_id")
+	@XMLSimple("bodyId")
+	private java.math.BigInteger bodyId;
+	
+	public java.math.BigInteger getBodyId() {
+		return bodyId;
+	}
+	
+	public DBStationHistoryBean setBodyId(java.math.BigInteger value) {
+		bodyId = value;
+		return this;
+	}
+	
 	@Override
 	public void setAutoincrementField(Object value) {
 		

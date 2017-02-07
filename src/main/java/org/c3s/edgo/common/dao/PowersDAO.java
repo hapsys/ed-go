@@ -156,7 +156,7 @@ public class PowersDAO {
 	
 	public static void updateDeliver(DBPilotsBean pilot, Date timestamp, int count, Long pilotPowerId) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		Timestamp startWeek = new Timestamp(getStartWeek(timestamp).getTime());
-		DBLocationHistoryBean location = DbAccess.locationHistoryAccess.getLastLocation(pilot.getPilotId());
+		DBLocationHistoryBean location = DbAccess.locationHistoryAccess.getLastLocation(pilot.getPilotId(), new Timestamp(timestamp.getTime()));
 		DBPilotDeliverBean bean = DbAccess.pilotDeliverAccess.getByPilotIdAndSystemIdAndWeek(pilot.getPilotId(), location.getSystemId(), startWeek);
 		if (bean == null) {
 			bean = new DBPilotDeliverBean();
@@ -173,7 +173,7 @@ public class PowersDAO {
 	
 	public static void updateCombatMerits(DBPilotsBean pilot, Date timestamp, Long pilotPowerId) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		Timestamp startWeek = new Timestamp(getStartWeek(timestamp).getTime());
-		DBLocationHistoryBean location = DbAccess.locationHistoryAccess.getLastLocation(pilot.getPilotId());
+		DBLocationHistoryBean location = DbAccess.locationHistoryAccess.getLastLocation(pilot.getPilotId(), new Timestamp(timestamp.getTime()));
 		DBPrevWeekSystemStateSingleBean state = DbAccess.powerStateAccess.getPrevWeekSystemStateSingle(location.getSystemId(), startWeek, startWeek);
 		//System.out.println("+++" + DbAccess.systemsAccess.getByPrimaryKey(location.getSystemId()).getName());
 		//System.out.println(startWeek.toString());

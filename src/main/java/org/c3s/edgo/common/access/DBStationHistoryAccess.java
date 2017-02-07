@@ -63,6 +63,37 @@ public class DBStationHistoryAccess extends Access {
 	}
 	
 	
+	public DBStationHistoryBean getDirectLastStation(java.lang.Long paramPilotId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		DBStationHistoryBean ret = null;
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_id= ?  "+injector.getWhereQuery()+" ";
+		if (injector.getOrderQuery().length() != 0) {
+			sql += injector.getOrderQuery();
+		} else { 
+			sql += "ORDER BY station_time DESC";
+			
+		}
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getDirectLastStation", sql ,  paramPilotId);
+		if (result != null) {
+			
+			ret = dataMapper.mapFromRow(result.get(0), DBStationHistoryBean.class);
+			
+		}
+		return ret;
+	}
+	
 	public DBStationHistoryBean getByPrimaryKey(java.lang.Long paramPilotId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		DBStationHistoryBean ret = null;
@@ -93,12 +124,12 @@ public class DBStationHistoryAccess extends Access {
 		return ret;
 	}
 	
-	public DBStationHistoryBean getLastStation(java.lang.Long paramPilotId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+	public DBStationHistoryBean getLastStation(java.lang.Long paramPilotId, java.sql.Timestamp paramStationTime)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		DBStationHistoryBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_id= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_id= ? AND  station_time<= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -115,7 +146,7 @@ public class DBStationHistoryAccess extends Access {
 		
 		
 		
-		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getLastStation", sql ,  paramPilotId);
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getLastStation", sql ,  paramPilotId,  paramStationTime);
 		if (result != null) {
 			
 			ret = dataMapper.mapFromRow(result.get(0), DBStationHistoryBean.class);

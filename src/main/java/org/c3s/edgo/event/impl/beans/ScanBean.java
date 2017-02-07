@@ -8,19 +8,8 @@ public class ScanBean extends AbstractEventBean {
 
 	private Date timestamp;
 	private String event;
-	/**
-	 * type of material (Raw/Encoded/Manufactured)
-	 */
-	private String Category;
-	/**
-	 * name of material
-	 */
-	private String Name;
-	/**
-	 * number of units collected
-	 */
-	private String Count;
 
+	
 	/**
 	 * @return
 	 */
@@ -47,48 +36,6 @@ public class ScanBean extends AbstractEventBean {
 	 */
 	public void setEvent(String event) {
 		this.event = event;
-	}
-
-	/**
-	 * @return
-	 */
-	public String getCategory() {
-		return Category;
-	}
-
-	/**
-	 * @param category
-	 */
-	public void setCategory(String category) {
-		this.Category = category;
-	}
-
-	/**
-	 * @return
-	 */
-	public String getName() {
-		return Name;
-	}
-
-	/**
-	 * @param name
-	 */
-	public void setName(String name) {
-		this.Name = name;
-	}
-
-	/**
-	 * @return
-	 */
-	public String getCount() {
-		return Count;
-	}
-
-	/**
-	 * @param count
-	 */
-	public void setCount(String count) {
-		this.Count = count;
 	}
 
 }

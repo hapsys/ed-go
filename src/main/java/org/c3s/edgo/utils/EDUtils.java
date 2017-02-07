@@ -21,6 +21,10 @@ public class EDUtils {
 		return RegexpUtils.preg_replace("~[\\s]~isu", station.toLowerCase(), "");
 	}
 	
+	public static String getBodyUniq(String station) {
+		return RegexpUtils.preg_replace("~[\\s]+~isu", station.toLowerCase(), "_");
+	}
+	
 	public static String getFactionUniq(String faction) {
 		return RegexpUtils.preg_replace("~[^a-z0-9\\!\\@\\#\\$\\%\\^\\&\\*\\(\\)_\\+\\=\\|\\/\\'\\\"`\\.\\,\\?-]~isu", faction.toLowerCase(), "");
 	}

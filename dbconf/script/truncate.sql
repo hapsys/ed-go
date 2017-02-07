@@ -1,5 +1,6 @@
 TRUNCATE `events`;
 TRUNCATE `events_history`;
+TRUNCATE `station_history`;
 TRUNCATE `location_history`;
 TRUNCATE `missions`;
 TRUNCATE `reward_materials`;
@@ -13,5 +14,8 @@ TRUNCATE `pilot_kill_merits`;
 TRUNCATE `pilot_deliver`;
 TRUNCATE `ranks`;
 TRUNCATE `progress`;
-DELETE FROM pilot_modules;
-DELETE FROM pilot_ships;
+TRUNCATE `pilot_last_info`;
+TRUNCATE `pilot_game_modes`;
+
+#DELETE FROM pilot_modules;
+#DELETE FROM pilot_ships;

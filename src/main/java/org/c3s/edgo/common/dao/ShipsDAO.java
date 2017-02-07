@@ -65,27 +65,33 @@ public class ShipsDAO {
 	public static DBPilotShipsBean updateOrInsertCurrentPilotShip(DBPilotsBean pilot, String shipUniq, long linkShipId) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		//DBShipsBean ship = getOrInsertShip(shipUniq);
 		Long stationId = null;
-		DBLocationHistoryBean location = DbAccess.locationHistoryAccess.getLastLocation(pilot.getPilotId());
-		DBStationHistoryBean station = DbAccess.stationHistoryAccess.getLastStation(pilot.getPilotId());
-		if (location.getLocationTime().getTime() <= station.getStationTime().getTime()) {
-			stationId = station.getStationId();
-		}
-		DBPilotShipsBean currentShip = DbAccess.pilotShipsAccess.getCurrentByPilotId(pilot.getPilotId());;
-		DBPilotShipsBean pilotShip = getOrInsertPilotShip(pilot, shipUniq, linkShipId, location.getSystemId(), stationId); 
-		if (pilotShip != null) {
-			if (currentShip == null || !currentShip.getLinkShipId().equals(linkShipId)) {
-				pilotShip.setIsMain(1);
-				if (location != null) {
-					pilotShip.setSystemId(location.getSystemId());
-					pilotShip.setStationId(stationId);
-				}
-				DbAccess.pilotShipsAccess.updateByPrimaryKey(pilotShip, pilotShip.getPilotShipId());
-				if (currentShip != null) {
-					currentShip.setIsMain(0);
-					DbAccess.pilotShipsAccess.updateByPrimaryKey(currentShip, currentShip.getPilotShipId());
-				}
+		DBLocationHistoryBean location = DbAccess.locationHistoryAccess.getDirectLastLocation(pilot.getPilotId());
+		DBStationHistoryBean station = DbAccess.stationHistoryAccess.getDirectLastStation(pilot.getPilotId());
+		
+		DBPilotShipsBean currentShip = DbAccess.pilotShipsAccess.getCurrentByPilotId(pilot.getPilotId());
+		
+		if (location != null && station != null) {
+			
+			if (location.getLocationTime().getTime() <= station.getStationTime().getTime()) {
+				stationId = station.getStationId();
 			}
-			currentShip = pilotShip;
+			
+			DBPilotShipsBean pilotShip = getOrInsertPilotShip(pilot, shipUniq, linkShipId, location.getSystemId(), stationId); 
+			if (pilotShip != null) {
+				if (currentShip == null || !currentShip.getLinkShipId().equals(linkShipId)) {
+					pilotShip.setIsMain(1);
+					if (location != null) {
+						pilotShip.setSystemId(location.getSystemId());
+						pilotShip.setStationId(stationId);
+					}
+					DbAccess.pilotShipsAccess.updateByPrimaryKey(pilotShip, pilotShip.getPilotShipId());
+					if (currentShip != null) {
+						currentShip.setIsMain(0);
+						DbAccess.pilotShipsAccess.updateByPrimaryKey(currentShip, currentShip.getPilotShipId());
+					}
+				}
+				currentShip = pilotShip;
+			}
 		}
 		return currentShip;
 	}
@@ -208,8 +214,8 @@ public class ShipsDAO {
 		DBPilotShipsBean pilotShip = DbAccess.pilotShipsAccess.getCurrentByPilotId(pilot.getPilotId());
 		if (pilotShip != null) {
 			Long stationId = null;
-			DBLocationHistoryBean location = DbAccess.locationHistoryAccess.getLastLocation(pilot.getPilotId());
-			DBStationHistoryBean station = DbAccess.stationHistoryAccess.getLastStation(pilot.getPilotId());
+			DBLocationHistoryBean location = DbAccess.locationHistoryAccess.getDirectLastLocation(pilot.getPilotId());
+			DBStationHistoryBean station = DbAccess.stationHistoryAccess.getDirectLastStation(pilot.getPilotId());
 			if (location.getLocationTime().getTime() <= station.getStationTime().getTime()) {
 				stationId = station.getStationId();
 			}

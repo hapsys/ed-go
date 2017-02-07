@@ -36,17 +36,19 @@
 			<sql>
 				SELECT m.*, t.*, f.faction_id, f.name as faction_name, s.name as system_name, st.name as station_name,
 					GROUP_CONCAT(DISTINCT rc.commodity_id SEPARATOR ',') as commodity_idx, GROUP_CONCAT(DISTINCT rm.material_id SEPARATOR ',') as material_idx
-				FROM mission_types t, factions f, (missions m, location_history l)
+				FROM mission_types t, factions f, (missions m, station_history h)
 				LEFT JOIN reward_commodities rc ON rc.mission_id = m.mission_id 
 				LEFT JOIN reward_materials rm ON rm.mission_id = m.mission_id
+				LEFT JOIN location_history l ON l.location_id = h.location_id 
 				LEFT JOIN systems s ON s.system_id = l.system_id
-				LEFT JOIN stations st ON st.station_id = m.source_station_id
+				LEFT JOIN stations st ON st.station_id = h.station_id
+				LEFT JOIN bodies b ON b.body_id = h.body_id
 				WHERE 1=1 
 				<where/>
 				AND NOT ISNULL(m.complete_date)
 				AND t.mission_type_id = m.mission_type_id
 				AND f.faction_id = m.faction_id
-				AND l.location_id = m.source_location_id
+				AND h.station_history_id = m.station_history_id
 				GROUP BY m.mission_id 
 				ORDER BY m.complete_date DESC
 			</sql>

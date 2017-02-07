@@ -47,17 +47,17 @@ public class DBMissionsBean implements DbBean, Serializable {
 	}
 	
 	
-	@DataSource({"source_body_id", "sourceBodyId"})
-	@DataTarget("source_body_id")
-	@XMLSimple("sourceBodyId")
-	private java.math.BigInteger sourceBodyId;
+	@DataSource({"station_history_id", "stationHistoryId"})
+	@DataTarget("station_history_id")
+	@XMLSimple("stationHistoryId")
+	private java.math.BigInteger stationHistoryId;
 	
-	public java.math.BigInteger getSourceBodyId() {
-		return sourceBodyId;
+	public java.math.BigInteger getStationHistoryId() {
+		return stationHistoryId;
 	}
 	
-	public DBMissionsBean setSourceBodyId(java.math.BigInteger value) {
-		sourceBodyId = value;
+	public DBMissionsBean setStationHistoryId(java.math.BigInteger value) {
+		stationHistoryId = value;
 		return this;
 	}
 	
@@ -152,21 +152,6 @@ public class DBMissionsBean implements DbBean, Serializable {
 	}
 	
 	
-	@DataSource({"source_station_id", "sourceStationId"})
-	@DataTarget("source_station_id")
-	@XMLSimple("sourceStationId")
-	private java.lang.Long sourceStationId;
-	
-	public java.lang.Long getSourceStationId() {
-		return sourceStationId;
-	}
-	
-	public DBMissionsBean setSourceStationId(java.lang.Long value) {
-		sourceStationId = value;
-		return this;
-	}
-	
-	
 	@DataSource({"expire_date", "expireDate"})
 	@DataTarget("expire_date")
 	@XMLSimple("expireDate")
@@ -238,21 +223,6 @@ public class DBMissionsBean implements DbBean, Serializable {
 	
 	public DBMissionsBean setTargetFactionId(java.lang.Long value) {
 		targetFactionId = value;
-		return this;
-	}
-	
-	
-	@DataSource({"source_location_id", "sourceLocationId"})
-	@DataTarget("source_location_id")
-	@XMLSimple("sourceLocationId")
-	private java.math.BigInteger sourceLocationId;
-	
-	public java.math.BigInteger getSourceLocationId() {
-		return sourceLocationId;
-	}
-	
-	public DBMissionsBean setSourceLocationId(java.math.BigInteger value) {
-		sourceLocationId = value;
 		return this;
 	}
 	

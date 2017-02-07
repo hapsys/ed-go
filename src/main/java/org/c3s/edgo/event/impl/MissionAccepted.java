@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 
 import org.c3s.edgo.common.access.DbAccess;
-import org.c3s.edgo.common.beans.DBLocationHistoryBean;
 import org.c3s.edgo.common.beans.DBMissionsBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.beans.DBStationHistoryBean;
@@ -34,19 +33,12 @@ public class MissionAccepted extends AbstractJournalEvent<MissionAcceptedBean> {
 			DBPilotsBean pilot = getCurrent();
 			
 			if (pilot != null) {
-				DBLocationHistoryBean location = DbAccess.locationHistoryAccess.getLastLocation(pilot.getPilotId());
-				DBStationHistoryBean prevStation = DbAccess.stationHistoryAccess.getLastStation(pilot.getPilotId());
-				if (location.getLocationTime().getTime() > prevStation.getStationTime().getTime()) {
-					prevStation = null;
-				}
+				DBStationHistoryBean prevStation = DbAccess.stationHistoryAccess.getLastStation(pilot.getPilotId(), new Timestamp(bean.getTimestamp().getTime()));
 
-				if (location != null) {
+				if (prevStation != null) {
 					DBMissionsBean mission = new DBMissionsBean();
 					mission.setPilotId(pilot.getPilotId());
-					mission.setSourceLocationId(location.getLocationId());
-					if (prevStation != null) {
-						mission.setSourceStationId(prevStation.getStationId());
-					}
+					mission.setStationHistoryId(prevStation.getStationHistoryId());
 					mission.setMissionLinkId(Long.valueOf(bean.getMissionID()));
 					mission.setAcceptDate(new Timestamp(bean.getTimestamp().getTime()));
 					mission.setMissionTypeId(MissionsDAO.getOrInsertMissionType(bean.getName()).getMissionTypeId());
