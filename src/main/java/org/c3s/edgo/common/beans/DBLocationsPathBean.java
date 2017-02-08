@@ -47,6 +47,21 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"body_name", "bodyName"})
+	@DataTarget("body_name")
+	@XMLSimple("bodyName")
+	private java.lang.String bodyName;
+	
+	public java.lang.String getBodyName() {
+		return bodyName;
+	}
+	
+	public DBLocationsPathBean setBodyName(java.lang.String value) {
+		bodyName = value;
+		return this;
+	}
+	
+	
 	@DataSource({"system_id", "systemId"})
 	@DataTarget("system_id")
 	@XMLSimple("systemId")
@@ -77,6 +92,21 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"station_id", "stationId"})
+	@DataTarget("station_id")
+	@XMLSimple("stationId")
+	private java.lang.Long stationId;
+	
+	public java.lang.Long getStationId() {
+		return stationId;
+	}
+	
+	public DBLocationsPathBean setStationId(java.lang.Long value) {
+		stationId = value;
+		return this;
+	}
+	
+	
 	@DataSource({"pilot_id", "pilotId"})
 	@DataTarget("pilot_id")
 	@XMLSimple("pilotId")
@@ -103,6 +133,21 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	
 	public DBLocationsPathBean setLocationId(java.math.BigInteger value) {
 		locationId = value;
+		return this;
+	}
+	
+	
+	@DataSource({"eddb_body_id", "eddbBodyId"})
+	@DataTarget("eddb_body_id")
+	@XMLSimple("eddbBodyId")
+	private java.math.BigInteger eddbBodyId;
+	
+	public java.math.BigInteger getEddbBodyId() {
+		return eddbBodyId;
+	}
+	
+	public DBLocationsPathBean setEddbBodyId(java.math.BigInteger value) {
+		eddbBodyId = value;
 		return this;
 	}
 	
@@ -178,6 +223,21 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	
 	public DBLocationsPathBean setLocationTime(java.sql.Timestamp value) {
 		locationTime = value;
+		return this;
+	}
+	
+	
+	@DataSource({"body_id", "bodyId"})
+	@DataTarget("body_id")
+	@XMLSimple("bodyId")
+	private java.math.BigInteger bodyId;
+	
+	public java.math.BigInteger getBodyId() {
+		return bodyId;
+	}
+	
+	public DBLocationsPathBean setBodyId(java.math.BigInteger value) {
+		bodyId = value;
 		return this;
 	}
 	

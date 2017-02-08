@@ -159,13 +159,13 @@ public class DBPilotsBean implements DbBean, Serializable {
 	@DataTarget("Location")
 	@XMLReflectionField
 
-	private DBLocationHistoryBean location;
+	private DBLastLocationForPilotBean location;
 	
-	public DBLocationHistoryBean getLocation() {
+	public DBLastLocationForPilotBean getLocation() {
 		return location;
 	}
 	
-	public DBPilotsBean setLocation(DBLocationHistoryBean value) {
+	public DBPilotsBean setLocation(DBLastLocationForPilotBean value) {
 		location = value;
 		return this;
 	}
@@ -223,13 +223,13 @@ public class DBPilotsBean implements DbBean, Serializable {
 	@DataTarget("last_info")
 	@XMLReflectionField
 
-	private DBPilotLastInfoBean lastInfo;
+	private DBLastPilotInfoBean lastInfo;
 	
-	public DBPilotLastInfoBean getLastInfo() {
+	public DBLastPilotInfoBean getLastInfo() {
 		return lastInfo;
 	}
 	
-	public DBPilotsBean setLastInfo(DBPilotLastInfoBean value) {
+	public DBPilotsBean setLastInfo(DBLastPilotInfoBean value) {
 		lastInfo = value;
 		return this;
 	}

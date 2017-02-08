@@ -20,14 +20,44 @@ public class DBActivityBean implements DbBean, Serializable {
 	@DataSource({"times", "times"})
 	@DataTarget("times")
 	@XMLSimple("times")
-	private java.lang.Long times;
+	private java.math.BigDecimal times;
 	
-	public java.lang.Long getTimes() {
+	public java.math.BigDecimal getTimes() {
 		return times;
 	}
 	
-	public DBActivityBean setTimes(java.lang.Long value) {
+	public DBActivityBean setTimes(java.math.BigDecimal value) {
 		times = value;
+		return this;
+	}
+	
+	
+	@DataSource({"times_group", "timesGroup"})
+	@DataTarget("times_group")
+	@XMLSimple("timesGroup")
+	private java.math.BigDecimal timesGroup;
+	
+	public java.math.BigDecimal getTimesGroup() {
+		return timesGroup;
+	}
+	
+	public DBActivityBean setTimesGroup(java.math.BigDecimal value) {
+		timesGroup = value;
+		return this;
+	}
+	
+	
+	@DataSource({"times_solo", "timesSolo"})
+	@DataTarget("times_solo")
+	@XMLSimple("timesSolo")
+	private java.math.BigDecimal timesSolo;
+	
+	public java.math.BigDecimal getTimesSolo() {
+		return timesSolo;
+	}
+	
+	public DBActivityBean setTimesSolo(java.math.BigDecimal value) {
+		timesSolo = value;
 		return this;
 	}
 	
@@ -35,14 +65,29 @@ public class DBActivityBean implements DbBean, Serializable {
 	@DataSource({"event_date", "eventDate"})
 	@DataTarget("event_date")
 	@XMLSimple("eventDate")
-	private java.lang.Long eventDate;
+	private java.lang.Integer eventDate;
 	
-	public java.lang.Long getEventDate() {
+	public java.lang.Integer getEventDate() {
 		return eventDate;
 	}
 	
-	public DBActivityBean setEventDate(java.lang.Long value) {
+	public DBActivityBean setEventDate(java.lang.Integer value) {
 		eventDate = value;
+		return this;
+	}
+	
+	
+	@DataSource({"times_open", "timesOpen"})
+	@DataTarget("times_open")
+	@XMLSimple("timesOpen")
+	private java.math.BigDecimal timesOpen;
+	
+	public java.math.BigDecimal getTimesOpen() {
+		return timesOpen;
+	}
+	
+	public DBActivityBean setTimesOpen(java.math.BigDecimal value) {
+		timesOpen = value;
 		return this;
 	}
 	

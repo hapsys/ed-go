@@ -11,7 +11,7 @@ import org.c3s.data.annotations.DataTarget;
 import org.c3s.reflection.annotation.*;
 
 
-public class DBLastInfoBean implements DbBean, Serializable {
+public class DBLastPilotInfoBean implements DbBean, Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,7 +26,7 @@ public class DBLastInfoBean implements DbBean, Serializable {
 		return loan;
 	}
 	
-	public DBLastInfoBean setLoan(java.math.BigInteger value) {
+	public DBLastPilotInfoBean setLoan(java.math.BigInteger value) {
 		loan = value;
 		return this;
 	}
@@ -41,7 +41,7 @@ public class DBLastInfoBean implements DbBean, Serializable {
 		return pilotGameModeId;
 	}
 	
-	public DBLastInfoBean setPilotGameModeId(java.math.BigInteger value) {
+	public DBLastPilotInfoBean setPilotGameModeId(java.math.BigInteger value) {
 		pilotGameModeId = value;
 		return this;
 	}
@@ -56,7 +56,7 @@ public class DBLastInfoBean implements DbBean, Serializable {
 		return credits;
 	}
 	
-	public DBLastInfoBean setCredits(java.math.BigInteger value) {
+	public DBLastPilotInfoBean setCredits(java.math.BigInteger value) {
 		credits = value;
 		return this;
 	}
@@ -71,7 +71,7 @@ public class DBLastInfoBean implements DbBean, Serializable {
 		return modeStart;
 	}
 	
-	public DBLastInfoBean setModeStart(java.sql.Timestamp value) {
+	public DBLastPilotInfoBean setModeStart(java.sql.Timestamp value) {
 		modeStart = value;
 		return this;
 	}
@@ -86,7 +86,7 @@ public class DBLastInfoBean implements DbBean, Serializable {
 		return gameMode;
 	}
 	
-	public DBLastInfoBean setGameMode(java.lang.String value) {
+	public DBLastPilotInfoBean setGameMode(java.lang.String value) {
 		gameMode = value;
 		return this;
 	}
@@ -101,7 +101,7 @@ public class DBLastInfoBean implements DbBean, Serializable {
 		return modeEnd;
 	}
 	
-	public DBLastInfoBean setModeEnd(java.sql.Timestamp value) {
+	public DBLastPilotInfoBean setModeEnd(java.sql.Timestamp value) {
 		modeEnd = value;
 		return this;
 	}
@@ -116,7 +116,7 @@ public class DBLastInfoBean implements DbBean, Serializable {
 		return pilotId;
 	}
 	
-	public DBLastInfoBean setPilotId(java.lang.Long value) {
+	public DBLastPilotInfoBean setPilotId(java.lang.Long value) {
 		pilotId = value;
 		return this;
 	}
@@ -131,7 +131,7 @@ public class DBLastInfoBean implements DbBean, Serializable {
 		return gameModeId;
 	}
 	
-	public DBLastInfoBean setGameModeId(java.lang.Long value) {
+	public DBLastPilotInfoBean setGameModeId(java.lang.Long value) {
 		gameModeId = value;
 		return this;
 	}
@@ -146,7 +146,7 @@ public class DBLastInfoBean implements DbBean, Serializable {
 		return gameGroup;
 	}
 	
-	public DBLastInfoBean setGameGroup(java.lang.String value) {
+	public DBLastPilotInfoBean setGameGroup(java.lang.String value) {
 		gameGroup = value;
 		return this;
 	}

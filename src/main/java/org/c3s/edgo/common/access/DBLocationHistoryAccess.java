@@ -155,7 +155,7 @@ public class DBLocationHistoryAccess extends Access {
 		return ret;
 	}
 	
-	public DBLocationHistoryBean getLastLocationForPilot(long paramPilotId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+	public DBLastLocationForPilotBean getLastLocationForPilot(long paramPilotId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
@@ -168,16 +168,16 @@ public class DBLocationHistoryAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT l.*, sy.name as system_name 				FROM location_history l 				LEFT JOIN systems sy ON l.system_id = sy.system_id 				WHERE l.pilot_id = ? 				ORDER BY l.location_time DESC 				LIMIT 1  			";
+			query = " 				SELECT l.*, DATE_FORMAT(l.location_time, '%Y-%m-%d %T') as `system_time`, sy.name as system_name, DATE_FORMAT(sh.station_time, '%Y-%m-%d %T') as `station_time`, st.name as station_name, b.body_name  				FROM location_history l 				LEFT JOIN systems sy ON l.system_id = sy.system_id 				LEFT JOIN station_history sh ON sh.location_id = l.location_id 				LEFT JOIN stations st ON sh.station_id = st.station_id 				LEFT JOIN bodies b ON sh.body_id = b.body_id 				WHERE l.pilot_id = ? 				ORDER BY l.location_time DESC, sh.station_time 				LIMIT 1  			";
 		}
 
 		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getLastLocationForPilot", query ,  paramPilotId);
-		DBLocationHistoryBean ret = null;
+		DBLastLocationForPilotBean ret = null;
 		if (result != null) {
-					ret = new DBLocationHistoryBean();
+					ret = new DBLastLocationForPilotBean();
 				
-					ret = dataMapper.mapFromRow(result.get(0), DBLocationHistoryBean.class);
+					ret = dataMapper.mapFromRow(result.get(0), DBLastLocationForPilotBean.class);
 					
 		}
 			
@@ -267,7 +267,7 @@ public class DBLocationHistoryAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT l.*, sy.name as system_name, st.name as station_name, sy.x, sy.y, sy.z, DATE_FORMAT(l.location_time, '%Y-%m-%d %T') as `timestamp`, 					CONCAT('[', FORMAT(sy.x, 2), ',', FORMAT(sy.y, 2), ',', FORMAT(sy.z, 2), ']') as position, FORMAT(SQRT(sy.x * sy.x + sy.y * sy.y + sy.z * sy.z), 2) as distance 				FROM location_history l 				LEFT JOIN systems sy ON l.system_id = sy.system_id 				LEFT JOIN station_history sh ON sh.location_id = l.location_id 				LEFT JOIN stations st ON sh.station_id = st.station_id 				WHERE 1 = 1 				" + where + " 				ORDER BY l.location_time DESC, sh.station_time DESC 				 			";
+			query = " 				SELECT l.*, sy.name as system_name, sy.x, sy.y, sy.z, DATE_FORMAT(l.location_time, '%Y-%m-%d %T') as `timestamp`, 					CONCAT('[', FORMAT(sy.x, 2), ',', FORMAT(sy.y, 2), ',', FORMAT(sy.z, 2), ']') as position, FORMAT(SQRT(sy.x * sy.x + sy.y * sy.y + sy.z * sy.z), 2) as distance 					, sh.station_id, st.name as station_name, sh.body_id, b.body_name, b.eddb_body_id   				FROM location_history l 				LEFT JOIN systems sy ON l.system_id = sy.system_id 				LEFT JOIN station_history sh ON sh.location_id = l.location_id 				LEFT JOIN stations st ON sh.station_id = st.station_id 				LEFT JOIN bodies b ON sh.body_id = b.body_id 				WHERE 1 = 1 				" + where + " 				ORDER BY l.location_time DESC, sh.station_time DESC 				 			";
 		}
 
 		

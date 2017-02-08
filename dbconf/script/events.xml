@@ -103,14 +103,17 @@
 			<column name="pilot_id"/>
 			<sort>location_time DESC</sort>
 		</select>
-		<query name="LastLocationForPilot" use="LocationHistory" single_object="true">
+		<query name="LastLocationForPilot" single_object="true">
 			<column name="PilotId" type="long"/>
 			<sql>
-				SELECT l.*, sy.name as system_name
+				SELECT l.*, DATE_FORMAT(l.location_time, '%Y-%m-%d %T') as `system_time`, sy.name as system_name, DATE_FORMAT(sh.station_time, '%Y-%m-%d %T') as `station_time`, st.name as station_name, b.body_name 
 				FROM location_history l
 				LEFT JOIN systems sy ON l.system_id = sy.system_id
+				LEFT JOIN station_history sh ON sh.location_id = l.location_id
+				LEFT JOIN stations st ON sh.station_id = st.station_id
+				LEFT JOIN bodies b ON sh.body_id = b.body_id
 				WHERE l.pilot_id = ?
-				ORDER BY l.location_time DESC
+				ORDER BY l.location_time DESC, sh.station_time
 				LIMIT 1 
 			</sql>
 		</query>
@@ -151,12 +154,14 @@
 		<query name="LocationsPath" intruder="org.c3s.db.injectors.EmptySqlInjector">
 			<column name="PilotId" type="long"/>
 			<sql>
-				SELECT l.*, sy.name as system_name, st.name as station_name, sy.x, sy.y, sy.z, DATE_FORMAT(l.location_time, '%Y-%m-%d %T') as `timestamp`,
+				SELECT l.*, sy.name as system_name, sy.x, sy.y, sy.z, DATE_FORMAT(l.location_time, '%Y-%m-%d %T') as `timestamp`,
 					CONCAT('[', FORMAT(sy.x, 2), ',', FORMAT(sy.y, 2), ',', FORMAT(sy.z, 2), ']') as position, FORMAT(SQRT(sy.x * sy.x + sy.y * sy.y + sy.z * sy.z), 2) as distance
+					, sh.station_id, st.name as station_name, sh.body_id, b.body_name, b.eddb_body_id  
 				FROM location_history l
 				LEFT JOIN systems sy ON l.system_id = sy.system_id
 				LEFT JOIN station_history sh ON sh.location_id = l.location_id
 				LEFT JOIN stations st ON sh.station_id = st.station_id
+				LEFT JOIN bodies b ON sh.body_id = b.body_id
 				WHERE 1 = 1
 				<where/>
 				ORDER BY l.location_time DESC, sh.station_time DESC
@@ -246,7 +251,7 @@
 				LIMIT 1
 			</sql> 		
 		</query>		
-		<query name="Activity" intruder="org.c3s.db.injectors.EmptySqlInjector">
+		<query name="HistoryActivity" intruder="org.c3s.db.injectors.EmptySqlInjector">
 			<sql>
 				SELECT DAY(e.event_timestamp) as event_date, COUNT(DISTINCT HOUR(e.event_timestamp)) as times
 				FROM events_history e

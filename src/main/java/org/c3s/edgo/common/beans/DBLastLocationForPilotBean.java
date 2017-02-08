@@ -17,6 +17,66 @@ public class DBLastLocationForPilotBean implements DbBean, Serializable {
 
 
 	
+	@DataSource({"station_name", "stationName"})
+	@DataTarget("name")
+	@XMLSimple("stationName")
+	private java.lang.String stationName;
+	
+	public java.lang.String getStationName() {
+		return stationName;
+	}
+	
+	public DBLastLocationForPilotBean setStationName(java.lang.String value) {
+		stationName = value;
+		return this;
+	}
+	
+	
+	@DataSource({"station_time", "stationTime"})
+	@DataTarget("station_time")
+	@XMLSimple("stationTime")
+	private java.lang.String stationTime;
+	
+	public java.lang.String getStationTime() {
+		return stationTime;
+	}
+	
+	public DBLastLocationForPilotBean setStationTime(java.lang.String value) {
+		stationTime = value;
+		return this;
+	}
+	
+	
+	@DataSource({"system_time", "systemTime"})
+	@DataTarget("system_time")
+	@XMLSimple("systemTime")
+	private java.lang.String systemTime;
+	
+	public java.lang.String getSystemTime() {
+		return systemTime;
+	}
+	
+	public DBLastLocationForPilotBean setSystemTime(java.lang.String value) {
+		systemTime = value;
+		return this;
+	}
+	
+	
+	@DataSource({"body_name", "bodyName"})
+	@DataTarget("body_name")
+	@XMLSimple("bodyName")
+	private java.lang.String bodyName;
+	
+	public java.lang.String getBodyName() {
+		return bodyName;
+	}
+	
+	public DBLastLocationForPilotBean setBodyName(java.lang.String value) {
+		bodyName = value;
+		return this;
+	}
+	
+	
 	@DataSource({"system_id", "systemId"})
 	@DataTarget("system_id")
 	@XMLSimple("systemId")

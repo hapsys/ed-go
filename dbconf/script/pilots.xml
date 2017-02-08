@@ -11,7 +11,7 @@
 		<column name="childs" type="List&lt;? extends Object&gt;">
 	    	<annotation>@XMLFieldList</annotation>
 		</column>
-		<column name="Location" type="DBLocationHistoryBean">
+		<column name="Location" type="DBLastLocationForPilotBean">
 	    	<annotation>@XMLReflectionField</annotation>
 		</column>
 		<column name="Rank" type="DBRanksBean">
@@ -23,7 +23,7 @@
 		<column name="powers" type="DBPowerCortageBean">
 	    	<annotation>@XMLReflectionField</annotation>
 		</column>
-		<column name="last_info" type="DBPilotLastInfoBean">
+		<column name="last_info" type="DBLastPilotInfoBean">
 	    	<annotation>@XMLReflectionField</annotation>
 		</column>
 		<column name="last_activity_time" type="DBLastActivityTimeBean">
@@ -110,7 +110,7 @@
 		<update name="ByPrimaryKey">
 			<column name="pilot_id"/>
 		</update>
-		<query name="LastInfo" single_object="true">
+		<query name="LastPilotInfo" single_object="true">
 			<column name="PilotId" type="long"/>
 			<sql>
 				SELECT li.*, m.*, gm.game_mode
@@ -135,6 +135,23 @@
 		<update name="ByPrimaryKey">
 			<column name="pilot_game_mode_id"/>
 		</update>
+		<query name="Activity" intruder="org.c3s.db.injectors.EmptySqlInjector">
+			<sql>
+				SELECT DAY(m.mode_start) as event_date , ROUND(SUM(TIMESTAMPDIFF(MINUTE, m.mode_start, m.mode_end)) / 60) as times
+				, ROUND(SUM(TIMESTAMPDIFF(MINUTE, mo.mode_start, mo.mode_end)) / 60) as times_open
+				, ROUND(SUM(TIMESTAMPDIFF(MINUTE, mg.mode_start, mg.mode_end)) / 60) as times_group
+				, ROUND(SUM(TIMESTAMPDIFF(MINUTE, ms.mode_start, ms.mode_end)) / 60) as times_solo
+				FROM pilot_game_modes m
+				LEFT JOIN pilot_game_modes mo ON mo.pilot_game_mode_id = m.pilot_game_mode_id AND mo.game_mode_id = 1
+				LEFT JOIN pilot_game_modes mg ON mg.pilot_game_mode_id = m.pilot_game_mode_id AND mg.game_mode_id = 2
+				LEFT JOIN pilot_game_modes ms ON ms.pilot_game_mode_id = m.pilot_game_mode_id AND ms.game_mode_id = 3
+				WHERE NOT ISNULL(m.mode_end) 
+				AND m.mode_start &lt; m.mode_end
+				<where/>
+				GROUP BY DAY(m.mode_start)
+				ORDER BY event_date ASC
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 	<table name="pilot_ships">

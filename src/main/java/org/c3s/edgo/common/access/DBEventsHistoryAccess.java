@@ -230,6 +230,43 @@ public class DBEventsHistoryAccess extends Access {
 		return ret;
 	}
 	
+	public List<DBHistoryActivityBean> getHistoryActivity(org.c3s.db.injectors.EmptySqlInjector paramIntruder) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		if (paramIntruder != null) {
+			injector = paramIntruder;
+		}
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT DAY(e.event_timestamp) as event_date, COUNT(DISTINCT HOUR(e.event_timestamp)) as times 				FROM events_history e 				WHERE 1=1 				" + where + " 				GROUP BY DAY(e.event_timestamp) 				ORDER BY event_date ASC 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getHistoryActivity", query );
+		List<DBHistoryActivityBean> ret = null;
+		if (result != null) {
+					ret = new ArrayList<DBHistoryActivityBean>();
+				
+			for (Map<String, Object> res : result) {
+				DBHistoryActivityBean bean = dataMapper.mapFromRow(res, DBHistoryActivityBean.class);
+														
+				ret.add(bean);
+			}
+					
+		}
+			
+		return ret;
+	}
+	
 	public List<DBEventsHistoryBean> getPilotsLastEvents(org.c3s.edgo.common.intruders.EventHistoryPilotsInjector paramIntruder) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();
@@ -258,43 +295,6 @@ public class DBEventsHistoryAccess extends Access {
 				
 			for (Map<String, Object> res : result) {
 				DBEventsHistoryBean bean = dataMapper.mapFromRow(res, DBEventsHistoryBean.class);
-														
-				ret.add(bean);
-			}
-					
-		}
-			
-		return ret;
-	}
-	
-	public List<DBActivityBean> getActivity(org.c3s.db.injectors.EmptySqlInjector paramIntruder) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
-		setNames();
-		SqlInjectorInterface injector = new EmptySqlInjector();
-		
-		if (paramIntruder != null) {
-			injector = paramIntruder;
-		}
-		
-		
-		String query = injector.getFullQuery();
-		if (query == null) {
-			String record = injector.getRecordQuery();
-			String from = injector.getFromQuery();
-			String join = injector.getJoinQuery();
-			String where = injector.getWhereQuery();
-			String order = injector.getOrderQuery();
-			String limit = injector.getLimitQuery();
-			query = " 				SELECT DAY(e.event_timestamp) as event_date, COUNT(DISTINCT HOUR(e.event_timestamp)) as times 				FROM events_history e 				WHERE 1=1 				" + where + " 				GROUP BY DAY(e.event_timestamp) 				ORDER BY event_date ASC 			";
-		}
-
-		
-		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getActivity", query );
-		List<DBActivityBean> ret = null;
-		if (result != null) {
-					ret = new ArrayList<DBActivityBean>();
-				
-			for (Map<String, Object> res : result) {
-				DBActivityBean bean = dataMapper.mapFromRow(res, DBActivityBean.class);
 														
 				ret.add(bean);
 			}

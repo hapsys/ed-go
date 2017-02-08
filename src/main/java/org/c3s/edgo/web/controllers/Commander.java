@@ -34,7 +34,7 @@ import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.beans.DBPilotsPowerWeeksBean;
 import org.c3s.edgo.common.beans.DBPowerCortageBean;
 import org.c3s.edgo.common.beans.DBUsersBean;
-import org.c3s.edgo.common.intruders.EventHistoryInjector;
+import org.c3s.edgo.common.intruders.ActivityInjector;
 import org.c3s.edgo.common.intruders.InInjector;
 import org.c3s.edgo.common.intruders.SystemPathInjector;
 import org.c3s.edgo.web.GeneralController;
@@ -67,14 +67,15 @@ public class Commander extends GeneralController {
 			current.setRank(DbAccess.ranksAccess.getByPrimaryKey(current.getPilotId()));
 			current.setProgress(DbAccess.progressAccess.getByPrimaryKey(current.getPilotId()));
 			current.setLocation(DbAccess.locationHistoryAccess.getLastLocationForPilot(current.getPilotId()));
-			current.setLastInfo(DbAccess.pilotLastInfoAccess.getByPrimaryKey(current.getPilotId()));
+			//current.setLastInfo(DbAccess.pilotLastInfoAccess.getByPrimaryKey(current.getPilotId()));
+			current.setLastInfo(DbAccess.pilotLastInfoAccess.getLastPilotInfo(current.getPilotId()));
 			current.setLastActivityTime(DbAccess.eventsHistoryAccess.getLastActivityTime(current.getPilotId()));
 			
 			Document xml = new XMLReflectionObj(current, true).toXML();	
 			
 			DBEventMaxMinDateForPilotBean minmax = DbAccess.eventsHistoryAccess.getEventMaxMinDateForPilot(new InInjector("p.pilot_id", linkedPilots));
 			
-			if (minmax.getMinDate().length() > 0) {
+			if (minmax != null && minmax.getMinDate() != null && minmax.getMinDate().length() > 0) {
 				xml.getDocumentElement().setAttribute("mindate", minmax.getMinDate());
 				xml.getDocumentElement().setAttribute("maxdate", minmax.getMaxDate());
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -85,7 +86,7 @@ public class Commander extends GeneralController {
 			
 			//logger.debug(XMLUtils.xml2out(xml));
 			//logger.debug("template {}", template);
-			//logger.debug(XMLUtils.saveXML(xml));
+			logger.debug(XMLUtils.saveXML(xml));
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:info"});
 		} else {
 			redirect.setRedirect(new DirectRedirect("/"));
@@ -114,7 +115,7 @@ public class Commander extends GeneralController {
 			//System.out.println(from);
 			//System.out.println(to);
 			
-			List<DBActivityBean> activity = DbAccess.eventsHistoryAccess.getActivity(new EventHistoryInjector(from, to, linkedPilots));
+			List<DBActivityBean> activity = DbAccess.pilotGameModesAccess.getActivity(new ActivityInjector(from, to, linkedPilots));
 			//System.out.println(activity.size());
 			ContentObject.getInstance().setData(tag, new Result().put("days", activity).get());
 			redirect.setRedirect(new DropRedirect());
@@ -271,7 +272,7 @@ public class Commander extends GeneralController {
 			
 			DBMaxMinDateLocationHistoryForPilotBean minmax = DbAccess.locationHistoryAccess.getMaxMinDateLocationHistoryForPilot(new InInjector("l.pilot_id", linkedPilots));
 			
-			if (minmax.getMinDate().length() > 0) {
+			if (minmax != null && minmax.getMinDate().length() > 0) {
 				
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				

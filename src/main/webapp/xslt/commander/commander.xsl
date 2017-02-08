@@ -345,6 +345,10 @@
 				var drawChart = function(date, callback) {
 					var month_year = '' + date.format('YYYY-MM');
 					var checkDate = new Date(date.year(), date.month() + 1, 0);
+					var daysCount = checkDate.getDate();
+					if (checkDate.getTime() > (new Date()).getTime()) {
+						daysCount = (new Date()).getDate();
+					}
 					var data = {
 						showdate: month_year,
 					};
@@ -358,13 +362,22 @@
 							
 							var _labes = [];
 							var _data = [];
-							for(i=1; i &lt;= checkDate.getDate(); i++) {
+							var _open = [];
+							var _group = [];
+							var _solo = [];
+							for(i=1; i &lt;= daysCount; i++) {
 								_labes.push(i + ' ' + monthLabel);
 								_data.push(0);
+								_open.push(0);
+								_group.push(0);
+								_solo.push(0);
 							}
 							for(i=0; i &lt; result.days.length; i++) {
 								var current = result.days[i];
 								_data[current.eventDate - 1] = current.times;
+								_open[current.eventDate - 1] = current.timesOpen?current.timesOpen:0;
+								_group[current.eventDate - 1] = current.timesGroup?current.timesGroup:0;
+								_solo[current.eventDate - 1] = current.timesSolo?current.timesSolo:0;
 							}
 							if (mybarChart != null) {
 								mybarChart.destroy();
@@ -374,11 +387,28 @@
 						      type: 'horizontalBar',
 						      data: {
 						        labels: _labes,
-						        datasets: [{
-						          label: '# hours in game in ' + mom.format('MMMM'),
-						          backgroundColor: "#03586A",
-						          data: _data
-						        }]
+						        datasets: [
+							        {
+							          label: 'Common # hours in game in ' + mom.format('MMMM'),
+							          backgroundColor: "#03586A",
+							          data: _data
+							        },
+							        {
+							          label: 'Open # hours in game in ' + mom.format('MMMM'),
+							          backgroundColor: "#FF0000",
+							          data: _open
+							        },
+							        {
+							          label: 'Group # hours in game in ' + mom.format('MMMM'),
+							          backgroundColor: "#00FF00",
+							          data: _group
+							        },
+							        {
+							          label: 'Solo # hours in game in ' + mom.format('MMMM'),
+							          backgroundColor: "#0000FF",
+							          data: _solo
+							        },
+						        ]
 						      },
 						
 						      options: {
@@ -814,8 +844,9 @@
 								var prev_element = $('.sceleton').next();
 								var systems = result.systems.reverse();
 								systems.forEach(function(system) {
+									var elem = null;
 									if (prev_element.attr('id') != '' + system.systemId) {
-										var elem = $('.sceleton').clone();
+										elem = $('.sceleton').clone();
 										elem.addClass('locations');
 										elem.removeClass('sceleton');
 										elem.removeClass('hidden');
@@ -825,21 +856,18 @@
 										$('.star-coord', elem).html(system.position);
 										$('.star-time', elem).html(system.timestamp);
 										$('.star-distance', elem).html(system.distance);
-										if (system.stationId) {
-											$('.star-activity', elem).html('<span class="fa fa-wheelchair" aria-hidden="true"> ' + system.stationName + '</span>');
-										} else {
-											$('.star-activity', elem).html('<span class="fa fa-rocket" aria-hidden="true"></span>');
-										}
 										$(elem).insertBefore(prev_element);
 										prev_element = elem;
 									} else {
-										var elem = prev_element;
+										elem = prev_element;
 										elem.addClass('bg-new-system');
-										if (system.stationId) {
-											$('<span>' + system.stationName + '</span>').appendTo($('.star-activity', elem));
-										} else {
-											$('<span class="fa fa-rocket" aria-hidden="true"></span>').appendTo($('.star-activity', elem));
-										}
+									}
+									if (system.stationId) {
+										$('<span class="fa fa-life-ring" aria-hidden="true"> ' + system.stationName + '</span>').appendTo($('.star-activity', elem));
+									} else if (system.bodyId) {
+										$('<span class="fa fa-circle" aria-hidden="true"> ' + system.bodyName + '</span>').appendTo($('.star-activity', elem));
+									} else {
+										$('<span class="fa fa-rocket" aria-hidden="true"></span>').appendTo($('.star-activity', elem));
 									}
 								});
 							}
@@ -861,9 +889,10 @@
 							$('#locations-content').find('.locations').remove();
 							var systems = result.systems.reverse();
 							systems.forEach(function(system) {
+								var elem = null; 
 								if (lastSystemId != system.systemId) {
 									lastSystemId = system.systemId;
-									var elem = $('.sceleton').clone();
+									elem = $('.sceleton').clone();
 									elem.addClass('locations');
 									elem.removeClass('sceleton');
 									elem.removeClass('hidden');
@@ -873,22 +902,19 @@
 									$('.star-time', elem).html(system.timestamp);
 									$('.star-distance', elem).html(system.distance);
 									
-									if (system.stationId) {
-										$('.star-activity', elem).html('&amp;#x1F480; ' + system.stationName);
-									} else {
-										$('.star-activity', elem).html('<span class="fa fa-rocket" aria-hidden="true"></span>');
-									}
-									
 									$(elem).insertAfter('.sceleton');
 								} else {
 									//elem = $('#' + 'system_' + system.systemId);
 									var elems = $('#locations-content').find('.locations');
-									var elem = elems[0];
-									if (system.stationId) {
-										$('<span>' + system.stationName + '</span>').appendTo($('.star-activity', elem));
-									} else {
-										$('<span class="fa fa-rocket" aria-hidden="true"></span>').appendTo($('.star-activity', elem));
-									}
+									elem = elems[0];
+								}
+								
+								if (system.stationId) {
+									$('<span class="fa fa-life-ring" aria-hidden="true"> ' + system.stationName + '</span>').appendTo($('.star-activity', elem));
+								} else if (system.bodyId) {
+									$('<span class="fa fa-circle" aria-hidden="true"> ' + system.bodyName + '</span>').appendTo($('.star-activity', elem));
+								} else {
+									$('<span class="fa fa-rocket" aria-hidden="true"></span>').appendTo($('.star-activity', elem));
 								}
 							});
 						}

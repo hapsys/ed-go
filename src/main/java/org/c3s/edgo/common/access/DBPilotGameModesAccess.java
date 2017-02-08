@@ -134,4 +134,41 @@ public class DBPilotGameModesAccess extends Access {
 		return getConnection().updateRow("pilot_game_modes", map, keys);
 	}
 	
+	public List<DBActivityBean> getActivity(org.c3s.db.injectors.EmptySqlInjector paramIntruder) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		if (paramIntruder != null) {
+			injector = paramIntruder;
+		}
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT DAY(m.mode_start) as event_date , ROUND(SUM(TIMESTAMPDIFF(MINUTE, m.mode_start, m.mode_end)) / 60) as times 				, ROUND(SUM(TIMESTAMPDIFF(MINUTE, mo.mode_start, mo.mode_end)) / 60) as times_open 				, ROUND(SUM(TIMESTAMPDIFF(MINUTE, mg.mode_start, mg.mode_end)) / 60) as times_group 				, ROUND(SUM(TIMESTAMPDIFF(MINUTE, ms.mode_start, ms.mode_end)) / 60) as times_solo 				FROM pilot_game_modes m 				LEFT JOIN pilot_game_modes mo ON mo.pilot_game_mode_id = m.pilot_game_mode_id AND mo.game_mode_id = 1 				LEFT JOIN pilot_game_modes mg ON mg.pilot_game_mode_id = m.pilot_game_mode_id AND mg.game_mode_id = 2 				LEFT JOIN pilot_game_modes ms ON ms.pilot_game_mode_id = m.pilot_game_mode_id AND ms.game_mode_id = 3 				WHERE NOT ISNULL(m.mode_end)  				AND m.mode_start < m.mode_end 				" + where + " 				GROUP BY DAY(m.mode_start) 				ORDER BY event_date ASC 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getActivity", query );
+		List<DBActivityBean> ret = null;
+		if (result != null) {
+					ret = new ArrayList<DBActivityBean>();
+				
+			for (Map<String, Object> res : result) {
+				DBActivityBean bean = dataMapper.mapFromRow(res, DBActivityBean.class);
+														
+				ret.add(bean);
+			}
+					
+		}
+			
+		return ret;
+	}
+	
 }

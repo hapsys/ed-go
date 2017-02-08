@@ -103,7 +103,7 @@ public class DBPilotLastInfoAccess extends Access {
 		return getConnection().updateRow("pilot_last_info", map, keys);
 	}
 	
-	public DBLastInfoBean getLastInfo(long paramPilotId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+	public DBLastPilotInfoBean getLastPilotInfo(long paramPilotId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
@@ -120,12 +120,12 @@ public class DBPilotLastInfoAccess extends Access {
 		}
 
 		
-		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getLastInfo", query ,  paramPilotId);
-		DBLastInfoBean ret = null;
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getLastPilotInfo", query ,  paramPilotId);
+		DBLastPilotInfoBean ret = null;
 		if (result != null) {
-					ret = new DBLastInfoBean();
+					ret = new DBLastPilotInfoBean();
 				
-					ret = dataMapper.mapFromRow(result.get(0), DBLastInfoBean.class);
+					ret = dataMapper.mapFromRow(result.get(0), DBLastPilotInfoBean.class);
 					
 		}
 			

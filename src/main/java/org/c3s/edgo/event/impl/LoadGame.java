@@ -35,86 +35,70 @@ public class LoadGame extends AbstractJournalEvent<LoadGameBean> {
 	
 	protected void processBean(LoadGameBean bean) {
 
-		try {
-			//beginTrtansaction();
-			/**
-			 * Set current pilot for user
-			 */
-			DBPilotsBean current = null;
-			//DBPilotsBean lastCurrent = DbAccess.pilotsAccess.getCurrentByUserId(user.getUserId());
-			
-			List<DBPilotsBean> pilots = DbAccess.pilotsAccess.getByUserId(user.getUserId());
-					//em.createNamedQuery("Pilot.findByUserId", Pilot.class).setParameter("user_id", user.getUserId()).getResultList();
-			if (pilots != null && pilots.size() > 0) {
-				for(DBPilotsBean pilot: pilots) {
-					if (pilot.getPilotName().toLowerCase().equals(bean.getCommander().toLowerCase())) {
-						pilot.setIsCurrent(1);
-						current = pilot;
-					} else {
-						pilot.setIsCurrent(0);
+		if (bean.getGameMode() != null) {
+			try {
+				/**
+				 * Set current pilot for user
+				 */
+				DBPilotsBean current = null;
+				
+				List<DBPilotsBean> pilots = DbAccess.pilotsAccess.getByUserId(user.getUserId());
+				if (pilots != null && pilots.size() > 0) {
+					for(DBPilotsBean pilot: pilots) {
+						if (pilot.getPilotName().toLowerCase().equals(bean.getCommander().toLowerCase())) {
+							pilot.setIsCurrent(1);
+							current = pilot;
+						} else {
+							pilot.setIsCurrent(0);
+						}
+						DbAccess.pilotsAccess.updateByPrimaryKey(pilot, pilot.getPilotId());
 					}
-					DbAccess.pilotsAccess.updateByPrimaryKey(pilot, pilot.getPilotId());
-				}
-			}
-			
-			if (current == null) {
-				current = new DBPilotsBean();
-				current.setUserId(user.getUserId());
-				current.setPilotName(bean.getCommander());
-				current.setIsCurrent(1);
-				current.setIsIgnored(DbAccess.pilotsAccess.getCheckPilotName(bean.getCommander()).getNameOther() == 0L?0:1);
-				DbAccess.pilotsAccess.insert(current);
-				/*
-				if (pilots == null) {
-				} else {
-					current = DbAccess.pilotsAccess.getCurrentByUserId(user.getUserId());
-					current.setPilotName(bean.getCommander());
-					DbAccess.pilotsAccess.updateByPrimaryKey(current, current.getPilotId());
-					lastCurrent.setPilotName(bean.getCommander());
-					DbAccess.pilotsAccess.updateByPrimaryKey(lastCurrent, lastCurrent.getPilotId());
-					current = lastCurrent; 
-				}
-				*/
-			}
-			
-			/**
-			 * Set current pilot info
-			 */
-			if (current != null) {
-				DBPilotLastInfoBean info = DbAccess.pilotLastInfoAccess.getByPrimaryKey(current.getPilotId());
-				boolean isInsert = info == null;
-				if (isInsert) {
-					info = new DBPilotLastInfoBean(); 
-				}
-				/*
-				info.setPilotId(current.getPilotId()).setCredits(BigInteger.valueOf(bean.getCredits()))
-					.setLoan(BigInteger.valueOf(bean.getLoan())).setGameMode(bean.getGameMode().toLowerCase()).setGameGroup(bean.getGroup());
-				*/
-				info.setPilotId(current.getPilotId()).setCredits(BigInteger.valueOf(bean.getCredits()))
-				.setLoan(BigInteger.valueOf(bean.getLoan()));
-				if (isInsert) {
-					DbAccess.pilotLastInfoAccess.insert(info);
-				} else {
-					DbAccess.pilotLastInfoAccess.updateByPrimaryKey(info, current.getPilotId());
 				}
 				
-				DBPilotGameModesBean mode = new DBPilotGameModesBean();
-				mode.setGameGroup(bean.getGroup()).setGameModeId(gameModes.get(bean.getGameMode().toLowerCase())).setPilotId(current.getPilotId()).setModeStart(new Timestamp(bean.getTimestamp().getTime()));
-				DbAccess.pilotGameModesAccess.insert(mode);
+				if (current == null) {
+					current = new DBPilotsBean();
+					current.setUserId(user.getUserId());
+					current.setPilotName(bean.getCommander());
+					current.setIsCurrent(1);
+					current.setIsIgnored(DbAccess.pilotsAccess.getCheckPilotName(bean.getCommander()).getNameOther() == 0L?0:1);
+					DbAccess.pilotsAccess.insert(current);
+				}
+				
+				/**
+				 * Set current pilot info
+				 */
+				if (current != null) {
+					DBPilotLastInfoBean info = DbAccess.pilotLastInfoAccess.getByPrimaryKey(current.getPilotId());
+					boolean isInsert = info == null;
+					if (isInsert) {
+						info = new DBPilotLastInfoBean(); 
+					}
+					info.setPilotId(current.getPilotId()).setCredits(BigInteger.valueOf(bean.getCredits()))
+					.setLoan(BigInteger.valueOf(bean.getLoan()));
+					if (isInsert) {
+						DbAccess.pilotLastInfoAccess.insert(info);
+					} else {
+						DbAccess.pilotLastInfoAccess.updateByPrimaryKey(info, current.getPilotId());
+					}
+					
+					DBPilotGameModesBean mode = new DBPilotGameModesBean();
+					mode.setGameGroup(bean.getGroup()).setGameModeId(gameModes.get(bean.getGameMode().toLowerCase())).setPilotId(current.getPilotId()).setModeStart(new Timestamp(bean.getTimestamp().getTime()));
+					DbAccess.pilotGameModesAccess.insert(mode);
+				}
+				
+				/**
+				 * Set current pilot ship
+				 */
+				if (bean.getShip() != null) {
+					ShipsDAO.updateOrInsertCurrentPilotShip(current, bean.getShip().toLowerCase(), bean.getShipID());
+				}
+				//
+				//System.out.println(bean.getTimestamp());
+				//commitTrtansaction();
+			} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
+				throw new RuntimeException(e);
 			}
-			
-			/**
-			 * Set current pilot ship
-			 */
-			if (bean.getShip() != null) {
-				ShipsDAO.updateOrInsertCurrentPilotShip(current, bean.getShip().toLowerCase(), bean.getShipID());
-			}
-			//
-			//System.out.println(bean.getTimestamp());
-			//commitTrtansaction();
-		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
-			throw new RuntimeException(e);
-		} 
+		}
 	}
 
 }
