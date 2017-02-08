@@ -59,11 +59,13 @@ public abstract class AbstractJournalEvent<T extends AbstractEventBean> implemen
 				 * + Update game mode 
 				 */
 				DBPilotsBean pilot = getCurrent();
-				if (pilot != null && !"LoadGame".equals(bean.getEvent())) {
+				if (pilot != null && !"LoadGame".equals(bean.getEvent()) && !"CompanionApi".equals(bean.getEvent())) {
 					DBPilotGameModesBean lastMode = DbAccess.pilotGameModesAccess.getLastByPilotId(pilot.getPilotId());
 					if (lastMode != null) {
-						lastMode.setModeEnd(new Timestamp(bean.getTimestamp().getTime()));
-						DbAccess.pilotGameModesAccess.updateByPrimaryKey(lastMode, lastMode.getPilotGameModeId());
+						if (lastMode.getModeEnd() == null || lastMode.getModeEnd().compareTo(bean.getTimestamp()) < 0) {
+							lastMode.setModeEnd(new Timestamp(bean.getTimestamp().getTime()));
+							DbAccess.pilotGameModesAccess.updateByPrimaryKey(lastMode, lastMode.getPilotGameModeId());
+						}
 					}
 				}
 				/**
