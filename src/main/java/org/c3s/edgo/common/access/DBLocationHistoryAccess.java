@@ -201,7 +201,7 @@ public class DBLocationHistoryAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT count(l.location_id) as count  				FROM location_history l 				WHERE l.pilot_id = ? 				" + where + " 				LIMIT 1 			";
+			query = " 				SELECT count(DISTINCT l.location_id) as count  				FROM location_history l 				LEFT JOIN station_history sh ON sh.location_id = l.location_id 				WHERE l.pilot_id = ? 				" + where + " 				LIMIT 1 			";
 		}
 
 		
@@ -267,7 +267,7 @@ public class DBLocationHistoryAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT l.*, sy.name as system_name, sy.x, sy.y, sy.z, DATE_FORMAT(l.location_time, '%Y-%m-%d %T') as `timestamp`, 					CONCAT('[', FORMAT(sy.x, 2), ',', FORMAT(sy.y, 2), ',', FORMAT(sy.z, 2), ']') as position, FORMAT(SQRT(sy.x * sy.x + sy.y * sy.y + sy.z * sy.z), 2) as distance 					, sh.station_id, st.name as station_name, sh.body_id, b.body_name, b.eddb_body_id   				FROM location_history l 				LEFT JOIN systems sy ON l.system_id = sy.system_id 				LEFT JOIN station_history sh ON sh.location_id = l.location_id 				LEFT JOIN stations st ON sh.station_id = st.station_id 				LEFT JOIN bodies b ON sh.body_id = b.body_id 				WHERE 1 = 1 				" + where + " 				ORDER BY l.location_time DESC, sh.station_time DESC 				 			";
+			query = " 				SELECT l.*, sy.name as system_name, sy.x, sy.y, sy.z, DATE_FORMAT(l.location_time, '%Y-%m-%d %T') as `timestamp`, 					CONCAT('[', FORMAT(sy.x, 2), ',', FORMAT(sy.y, 2), ',', FORMAT(sy.z, 2), ']') as position, FORMAT(SQRT(sy.x * sy.x + sy.y * sy.y + sy.z * sy.z), 2) as distance 					, DATE_FORMAT(sh.station_time, '%Y-%m-%d %T') as `station_timestamp`, sh.station_id, st.name as station_name, sh.body_id, b.body_name, b.eddb_body_id   				FROM location_history l 				LEFT JOIN systems sy ON l.system_id = sy.system_id 				LEFT JOIN station_history sh ON sh.location_id = l.location_id 				LEFT JOIN stations st ON sh.station_id = st.station_id 				LEFT JOIN bodies b ON sh.body_id = b.body_id 				WHERE 1 = 1 				" + where + " 				ORDER BY l.location_time DESC, sh.station_time DESC 				 			";
 		}
 
 		

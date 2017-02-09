@@ -47,16 +47,35 @@ public class SystemPathInjector extends EmptySqlInjector {
 		sb.append(") ");
 		
 		if (from != null || to != null) {
+			sb.append("AND (");
 			if (from != null) {
-				sb.append("AND l.location_time >= '");
+				sb.append(" l.location_time >= '");
 				sb.append(from);
 				sb.append("'");
 			}
+			if (from != null && to != null) {
+				sb.append(" AND ");
+			}
 			if (to != null) {
-				sb.append("AND l.location_time <= '");
+				sb.append("l.location_time <= '");
 				sb.append(to);
 				sb.append("'");
 			}
+			sb.append(" OR ");
+			if (from != null) {
+				sb.append("sh.station_time >= '");
+				sb.append(from);
+				sb.append("'");
+			}
+			if (from != null && to != null) {
+				sb.append(" AND ");
+			}
+			if (to != null) {
+				sb.append("sh.station_time <= '");
+				sb.append(to);
+				sb.append("'");
+			}
+			sb.append(")");
 		}
 		return sb.toString();
 	}

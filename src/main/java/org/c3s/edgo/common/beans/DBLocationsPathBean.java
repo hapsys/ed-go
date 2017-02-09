@@ -152,6 +152,21 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"station_timestamp", "stationTimestamp"})
+	@DataTarget("station_timestamp")
+	@XMLSimple("stationTimestamp")
+	private java.lang.String stationTimestamp;
+	
+	public java.lang.String getStationTimestamp() {
+		return stationTimestamp;
+	}
+	
+	public DBLocationsPathBean setStationTimestamp(java.lang.String value) {
+		stationTimestamp = value;
+		return this;
+	}
+	
+	
 	@DataSource({"x", "x"})
 	@DataTarget("x")
 	@XMLSimple("x")

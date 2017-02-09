@@ -144,8 +144,9 @@
 		<query name="LocationsPathCount" intruder="org.c3s.db.injectors.EmptySqlInjector"  single_object="true">
 			<column name="PilotId" type="long"/>
 			<sql>
-				SELECT count(l.location_id) as count 
+				SELECT count(DISTINCT l.location_id) as count 
 				FROM location_history l
+				LEFT JOIN station_history sh ON sh.location_id = l.location_id
 				WHERE l.pilot_id = ?
 				<where/>
 				LIMIT 1
@@ -156,7 +157,7 @@
 			<sql>
 				SELECT l.*, sy.name as system_name, sy.x, sy.y, sy.z, DATE_FORMAT(l.location_time, '%Y-%m-%d %T') as `timestamp`,
 					CONCAT('[', FORMAT(sy.x, 2), ',', FORMAT(sy.y, 2), ',', FORMAT(sy.z, 2), ']') as position, FORMAT(SQRT(sy.x * sy.x + sy.y * sy.y + sy.z * sy.z), 2) as distance
-					, sh.station_id, st.name as station_name, sh.body_id, b.body_name, b.eddb_body_id  
+					, DATE_FORMAT(sh.station_time, '%Y-%m-%d %T') as `station_timestamp`, sh.station_id, st.name as station_name, sh.body_id, b.body_name, b.eddb_body_id  
 				FROM location_history l
 				LEFT JOIN systems sy ON l.system_id = sy.system_id
 				LEFT JOIN station_history sh ON sh.location_id = l.location_id

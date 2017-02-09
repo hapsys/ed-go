@@ -840,7 +840,7 @@
 						proxy.makeCall('post', '/ajax/pilots/'+ pilot + '/systems/', null, null, data, function(result) {
 							if (result.systems &amp;&amp; result.systems.length &gt; 0) {
 								$('#locations-content').find('.bg-new-system').removeClass('bg-new-system');
-								update_date = moment(Date.parse(result.systems[0].timestamp).getTime());
+								update_date = moment(Date.parse(result.systems[0].stationTimestamp?result.systems[0].stationTimestamp:result.systems[0].timestamp).getTime());
 								var prev_element = $('.sceleton').next();
 								var systems = result.systems.reverse();
 								systems.forEach(function(system) {
@@ -884,7 +884,8 @@
 					proxy.makeCall('post', '/ajax/pilots/'+ pilot + '/systems/', null, null, data, function(result) {
 						if (result.systems) {
 							if (result.systems.length &gt; 0) {
-								update_date = moment(Date.parse(result.systems[0].timestamp).getTime());
+								//update_date = moment(Date.parse(result.systems[0].timestamp).getTime());
+								update_date = moment(Date.parse(result.systems[0].stationTimestamp?result.systems[0].stationTimestamp:result.systems[0].timestamp).getTime());
 							}
 							$('#locations-content').find('.locations').remove();
 							var systems = result.systems.reverse();
