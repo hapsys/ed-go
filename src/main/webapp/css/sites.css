@@ -150,3 +150,72 @@ SHIPS
 	background-size: auto 100%;
 }
 
+.ship-hauler {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/hauler.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-empire_trader {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/empire_trader.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-empire_courier {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/empire_courier.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-cutter {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/cutter.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-empire_eagle {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/empire_eagle.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-independant_trader {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/independant_trader.png) no-repeat center top;
+	background-size: auto 100%;
+}
+.ship-orca {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/orca.png) no-repeat center top;
+	background-size: auto 100%;
+}
+.ship-python {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/python.png) no-repeat center top;
+	background-size: auto 100%;
+}
+.ship-sidewinder {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/sidewinder.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-type6 {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/type6.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-type7 {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/type7.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-type9 {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/type9.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
