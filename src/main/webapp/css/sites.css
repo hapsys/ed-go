@@ -138,4 +138,15 @@ SHIPS
 			url(../images/ships/federation_dropship.png) no-repeat center top;
 	background-size: auto 100%;
 }
+.ship-federation_gunship {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/federation_gunship.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-ferdelance {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/ferdelance.png) no-repeat center top;
+	background-size: auto 100%;
+}
 

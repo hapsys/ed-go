@@ -467,7 +467,7 @@
 					</xsl:variable>
 					<div class="x_panel ship-{field[@name='shipUniq']/@value} {$class}">
 						<div class="x_title">
-							<h2><a href="{$lang}/{../../field[@name='pilotName']/@value}/ships/{field[@name='linkShipId']/@value}/">#<xsl:value-of select="field[@name='linkShipId']/@value"/>&#160;
+							<h2><a href="{$lang}/{../../field[@name='pilotName']/@value}/ships/{field[@name='linkShipId']/@value}/">
 									<xsl:value-of select="field[@name='shipName']/@value"/>
 								</a></h2>
 							<div class="clearfix"></div>
