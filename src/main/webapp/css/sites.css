@@ -53,3 +53,89 @@
 	margin-right: 10px;
 }
 
+.ship-active {
+	border-color: #7F7;
+}
+
+
+/*
+SHIPS
+*/
+.ship-adder {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/adder.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-anaconda {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/anaconda.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-asp {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/asp.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-asp_scout {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/asp_scout.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-belugaliner {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/belugaliner.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-cobramkiii {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/cobramkiii.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-cobramkiv {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/cobramkiv.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-diamondbackxl {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/diamondbackxl.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-diamondback {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/diamondback.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-eagle {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/eagle.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-federation_dropship_mkii {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/federation_dropship_mkii.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-federation_corvette {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/federation_corvette.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-federation_dropship {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/federation_dropship.png) no-repeat center top;
+	background-size: auto 100%;
+}
+

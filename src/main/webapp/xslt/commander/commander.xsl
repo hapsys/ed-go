@@ -459,6 +459,60 @@
 	
 		<xsl:variable name="lang"><xsl:value-of select="$root"/><xsl:if test="$politic = 'suffix' and $default != 'true'">/<xsl:value-of select="$suffix"/></xsl:if></xsl:variable>
 		<div><h3><xsl:value-of select="field[@name='pilotName']/@value"/></h3></div>
+		<div>
+			<xsl:for-each select="childs/item">
+				<div class="col-md-4 col-xs-12 widget widget_tally_box">
+					<xsl:variable name="class">
+						<xsl:if test="field[@name='isMain']/@value = 1">ship-active</xsl:if>
+					</xsl:variable>
+					<div class="x_panel ship-{field[@name='shipUniq']/@value} {$class}">
+						<div class="x_title">
+							<h2><a href="{$lang}/{../../field[@name='pilotName']/@value}/ships/{field[@name='linkShipId']/@value}/">#<xsl:value-of select="field[@name='linkShipId']/@value"/>&#160;
+									<xsl:value-of select="field[@name='shipName']/@value"/>
+								</a></h2>
+							<div class="clearfix"></div>
+						</div>
+						<div class="x_content">
+							<table style="font-weight: bold;">
+								<tr>
+									<td class="col-md-1">System:</td>
+									<td>
+										<xsl:choose>
+											<xsl:when test="string-length(field[@name='systemName']/@value) != 0">
+												<xsl:value-of select="field[@name='systemName']/@value"/><br/>
+											</xsl:when>
+											<xsl:otherwise>
+												<xsl:value-of select="/item/item[@name='location']/field[@name='systemName']/@value"/><br/>
+											</xsl:otherwise>
+										</xsl:choose>
+									</td>
+								</tr>
+								<tr>
+									<td class="col-md-1">Station:</td>
+									<td>
+										<xsl:choose>
+											<xsl:when test="string-length(field[@name='systemName']/@value) != 0">
+												<xsl:value-of select="field[@name='stationName']/@value"/>
+											</xsl:when>
+											<xsl:otherwise>
+												<xsl:value-of select="/item/item[@name='location']/field[@name='stationName']/@value"/>
+											</xsl:otherwise>
+										</xsl:choose>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</xsl:for-each>
+		</div>
+		<div class="clearfix"></div>
+
+	</xsl:template>
+	<xsl:template name="view_ships1">
+	
+		<xsl:variable name="lang"><xsl:value-of select="$root"/><xsl:if test="$politic = 'suffix' and $default != 'true'">/<xsl:value-of select="$suffix"/></xsl:if></xsl:variable>
+		<div><h3><xsl:value-of select="field[@name='pilotName']/@value"/></h3></div>
 
 		<div>
 			<table class="table">
