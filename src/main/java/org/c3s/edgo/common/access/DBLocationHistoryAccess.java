@@ -168,7 +168,7 @@ public class DBLocationHistoryAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT l.*, DATE_FORMAT(l.location_time, '%Y-%m-%d %T') as `system_time`, sy.name as system_name, DATE_FORMAT(sh.station_time, '%Y-%m-%d %T') as `station_time`, st.name as station_name, b.body_name  				FROM location_history l 				LEFT JOIN systems sy ON l.system_id = sy.system_id 				LEFT JOIN station_history sh ON sh.location_id = l.location_id 				LEFT JOIN stations st ON sh.station_id = st.station_id 				LEFT JOIN bodies b ON sh.body_id = b.body_id 				WHERE l.pilot_id = ? 				ORDER BY l.location_time DESC, sh.station_time 				LIMIT 1  			";
+			query = " 				SELECT l.*, DATE_FORMAT(l.location_time, '%Y-%m-%d %T') as `system_time`, sy.x, sy.y, sy.z, sy.name as system_name, DATE_FORMAT(sh.station_time, '%Y-%m-%d %T') as `station_time`, st.name as station_name, b.body_name  				FROM location_history l 				LEFT JOIN systems sy ON l.system_id = sy.system_id 				LEFT JOIN station_history sh ON sh.location_id = l.location_id 				LEFT JOIN stations st ON sh.station_id = st.station_id 				LEFT JOIN bodies b ON sh.body_id = b.body_id 				WHERE l.pilot_id = ? 				ORDER BY l.location_time DESC, sh.station_time 				LIMIT 1  			";
 		}
 
 		

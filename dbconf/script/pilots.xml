@@ -183,14 +183,17 @@
 		</select>
 		<query name="PilotShipsList">
 			<column name="PilotId" type="long"/>
+			<result_column name="distance" type="Double">
+	    		<annotation>@XMLSimple</annotation>
+			</result_column>
 			<sql>
-				SELECT ps.*, sh.*, s.name as system_name, st.name as station_name
+				SELECT ps.*, sh.*, s.name as system_name, st.name as station_name, s.x, s.y, s.z
 				FROM ships sh, pilot_ships ps
 				LEFT JOIN systems s ON ps.system_id = s.system_id
 				LEFT JOIN stations st ON ps.station_id = st.station_id
 				WHERE ps.pilot_id = ?
 				AND ps.ship_id = sh.ship_id
-				ORDER BY sh.ship_name
+				ORDER BY ps.is_main DESC, sh.ship_name
 			</sql>
 		</query>
 		<query name="SetDeletedByPilotId">

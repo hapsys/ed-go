@@ -132,6 +132,13 @@ public class Commander extends GeneralController {
 			current.setLocation(DbAccess.locationHistoryAccess.getLastLocationForPilot(current.getPilotId()));
 			List<DBPilotShipsListBean> pilotShips = DbAccess.pilotShipsAccess.getPilotShipsList(current.getPilotId());
 			if (pilotShips != null) {
+				Double x = current.getLocation().getX();
+				Double y = current.getLocation().getY();
+				Double z = current.getLocation().getZ();
+				for (DBPilotShipsListBean ship: pilotShips) {
+					Double distance = Math.sqrt(Math.pow(x - ship.getX(), 2) + Math.pow(y - ship.getY(), 2) + Math.pow(z - ship.getZ(), 2));
+					ship.setDistance(distance);
+				}
 				current.setChilds(pilotShips);
 			}
 			Document xml = new XMLReflectionObj(current).toXML();

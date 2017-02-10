@@ -137,6 +137,51 @@ public class DBLastLocationForPilotBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"x", "x"})
+	@DataTarget("x")
+	@XMLSimple("x")
+	private java.lang.Double x;
+	
+	public java.lang.Double getX() {
+		return x;
+	}
+	
+	public DBLastLocationForPilotBean setX(java.lang.Double value) {
+		x = value;
+		return this;
+	}
+	
+	
+	@DataSource({"y", "y"})
+	@DataTarget("y")
+	@XMLSimple("y")
+	private java.lang.Double y;
+	
+	public java.lang.Double getY() {
+		return y;
+	}
+	
+	public DBLastLocationForPilotBean setY(java.lang.Double value) {
+		y = value;
+		return this;
+	}
+	
+	
+	@DataSource({"z", "z"})
+	@DataTarget("z")
+	@XMLSimple("z")
+	private java.lang.Double z;
+	
+	public java.lang.Double getZ() {
+		return z;
+	}
+	
+	public DBLastLocationForPilotBean setZ(java.lang.Double value) {
+		z = value;
+		return this;
+	}
+	
+	
 	@DataSource({"location_time", "locationTime"})
 	@DataTarget("location_time")
 	@XMLSimple("locationTime")

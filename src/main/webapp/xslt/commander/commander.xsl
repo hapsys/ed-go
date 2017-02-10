@@ -500,6 +500,12 @@
 										</xsl:choose>
 									</td>
 								</tr>
+								<tr>
+									<td class="col-md-1">Distance:</td>
+									<td>
+										<xsl:value-of select="format-number(field[@name='distance']/@value, '### ### ### ###.00')"/> ly
+									</td>
+								</tr>
 							</table>
 						</div>
 					</div>

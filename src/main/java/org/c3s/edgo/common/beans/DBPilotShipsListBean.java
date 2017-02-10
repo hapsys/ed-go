@@ -182,6 +182,51 @@ public class DBPilotShipsListBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"x", "x"})
+	@DataTarget("x")
+	@XMLSimple("x")
+	private java.lang.Double x;
+	
+	public java.lang.Double getX() {
+		return x;
+	}
+	
+	public DBPilotShipsListBean setX(java.lang.Double value) {
+		x = value;
+		return this;
+	}
+	
+	
+	@DataSource({"y", "y"})
+	@DataTarget("y")
+	@XMLSimple("y")
+	private java.lang.Double y;
+	
+	public java.lang.Double getY() {
+		return y;
+	}
+	
+	public DBPilotShipsListBean setY(java.lang.Double value) {
+		y = value;
+		return this;
+	}
+	
+	
+	@DataSource({"z", "z"})
+	@DataTarget("z")
+	@XMLSimple("z")
+	private java.lang.Double z;
+	
+	public java.lang.Double getZ() {
+		return z;
+	}
+	
+	public DBPilotShipsListBean setZ(java.lang.Double value) {
+		z = value;
+		return this;
+	}
+	
+	
 	@DataSource({"ship_name", "shipName"})
 	@DataTarget("ship_name")
 	@XMLSimple("shipName")
@@ -223,6 +268,22 @@ public class DBPilotShipsListBean implements DbBean, Serializable {
 	
 	public DBPilotShipsListBean setPilotShipName(java.lang.String value) {
 		pilotShipName = value;
+		return this;
+	}
+	
+	
+	@DataSource({"distance", "distance"})
+	@DataTarget("distance")
+	@XMLSimple
+
+	private Double distance;
+	
+	public Double getDistance() {
+		return distance;
+	}
+	
+	public DBPilotShipsListBean setDistance(Double value) {
+		distance = value;
 		return this;
 	}
 	
