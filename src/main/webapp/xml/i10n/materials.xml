@@ -104,15 +104,15 @@
 		<select lang="en">Telemetry Suite</select>
 		<select lang="ru">Телеметрический комплект</select>
 	</match>
-	<match name="aberrantshieldpatternanalysis">
+	<match name="shieldpatternanalysis">
 		<select lang="en">Aberrant Shield Pattern Analysis</select>
 		<select lang="ru">Анализ аномального поведения щита</select>
 	</match>
-	<match name="abnormalcompactemissiondata">
+	<match name="compactemissionsdata">
 		<select lang="en">Abnormal Compact Emission Data</select>
 		<select lang="ru">Аномальные компактные данные об излучении</select>
 	</match>
-	<match name="adaptiveencryptorscapture">
+	<match name="adaptiveencryptors">
 		<select lang="en">Adaptive Encryptors Capture</select>
 		<select lang="ru">Захват адаптивного шифровальщика</select>
 	</match>

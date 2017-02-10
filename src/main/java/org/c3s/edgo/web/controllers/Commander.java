@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
+import javax.servlet.ServletRequest;
+
 import org.c3s.annotations.Controller;
 import org.c3s.annotations.CurrentUrl;
 import org.c3s.annotations.Parameter;
@@ -26,8 +28,11 @@ import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBActivityBean;
 import org.c3s.edgo.common.beans.DBEventMaxMinDateForPilotBean;
 import org.c3s.edgo.common.beans.DBLocationsPathBean;
+import org.c3s.edgo.common.beans.DBMaterialsBean;
 import org.c3s.edgo.common.beans.DBMaxMinDateLocationHistoryForPilotBean;
 import org.c3s.edgo.common.beans.DBMissionsComplitedListByPilotsBean;
+import org.c3s.edgo.common.beans.DBPilotMaterialsBean;
+import org.c3s.edgo.common.beans.DBPilotMaterialsListBean;
 import org.c3s.edgo.common.beans.DBPilotShipsBean;
 import org.c3s.edgo.common.beans.DBPilotShipsListBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
@@ -37,10 +42,17 @@ import org.c3s.edgo.common.beans.DBUsersBean;
 import org.c3s.edgo.common.intruders.ActivityInjector;
 import org.c3s.edgo.common.intruders.InInjector;
 import org.c3s.edgo.common.intruders.SystemPathInjector;
+import org.c3s.edgo.utils.I10N;
 import org.c3s.edgo.web.GeneralController;
 import org.c3s.edgo.web.auth.AuthRoles;
 import org.c3s.edgo.web.validator.Result;
+import org.c3s.query.ParametersHolder;
+import org.c3s.query.RequestType;
 import org.c3s.reflection.XMLReflectionObj;
+import org.c3s.storage.StorageFactory;
+import org.c3s.storage.StorageType;
+import org.c3s.utils.RegexpUtils;
+import org.c3s.web.context.PageRequestContext;
 import org.c3s.web.redirect.DirectRedirect;
 import org.c3s.web.redirect.DropRedirect;
 import org.c3s.web.redirect.RelativeRedirect;
@@ -376,6 +388,61 @@ public class Commander extends GeneralController {
 		getSystems(startdate, enddate, page, per_page, tag, redirect);
 	}
 	// ============================================================== -SYSTEMS PATH ==============================================================================
+
+	
+	// ============================================================== +MATERIALS ==============================================================================
+	public void getMaterials(@Parameter("tag") String tag, @Parameter("template") String template, RedirectControlerInterface redirect) throws Exception {
+		
+		if (current != null) {
+			List<DBPilotMaterialsListBean> pilotMaterials = DbAccess.pilotMaterialsAccess.getPilotMaterialsList(current.getPilotId());
+			if (pilotMaterials != null) {
+				for (DBPilotMaterialsListBean m: pilotMaterials) {
+					m.setLocalized(I10N.tr(m.getMaterialUniq()));
+				}
+				current.setChilds(pilotMaterials);
+			}
+			Document xml = new XMLReflectionObj(current).toXML();
+			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:materials"});
+			logger.debug(XMLUtils.saveXML(xml));
+		} else {
+			redirect.setRedirect(new DirectRedirect("/"));
+			throw new SkipSubLevelsExeption();
+		}
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void updateMaterials(ServletRequest request, @Parameter("tag") String tag, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		if (current != null) {
+			
+			ParametersHolder<String> post = (ParametersHolder<String>)StorageFactory.getStorage(StorageType.REQUEST).get(RequestType.REQUEST);
+			//System.out.println(post.size());
+			for (String key: post.getParameterMap().keySet()) {
+				int value = Integer.valueOf(post.getStringParameter(key));
+				DBMaterialsBean mat = DbAccess.materialsAccess.getByUniq(key);
+				if (mat != null) {
+					if (value == 0) {
+						DbAccess.pilotMaterialsAccess.deleteByPrimaryKey(current.getPilotId(), mat.getMaterialId());
+					} else {
+						DBPilotMaterialsBean pm = DbAccess.pilotMaterialsAccess.getByPrimaryKey(current.getPilotId(), mat.getMaterialId());
+						if (pm == null) {
+							pm = new DBPilotMaterialsBean();
+							pm.setPilotId(current.getPilotId()).setMaterialId(mat.getMaterialId()).setQuantity(value);
+							DbAccess.pilotMaterialsAccess.insert(pm);
+						} else {
+							pm.setQuantity(value);
+							DbAccess.pilotMaterialsAccess.updateByPrimaryKey(pm, current.getPilotId(), mat.getMaterialId());
+						}
+					}
+				}
+			}
+			ContentObject.getInstance().setData(tag, new Result().get());
+			redirect.setRedirect(new DropRedirect());
+		}
+	}
+	
+	// ============================================================== -MATERIALS ==============================================================================
+	
 	public void checkCommander(UrlPart url, RedirectControlerInterface redirect, @CurrentUrl String currentUrl) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException, UnsupportedEncodingException {
 		
 		//String actionUrl = url.getPattern().substring(0, url.getPattern().length() - 1).toLowerCase();

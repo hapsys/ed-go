@@ -275,6 +275,15 @@
 			<column name="pilot_id"/>
 			<column name="material_id"/>
 		</delete>
+		<query name="PilotMaterialsList">
+			<column name="PilotId" type="long"/>
+			<sql>
+				SELECT m.*, mc.*, IF(ISNULL(pm.quantity), 0, pm.quantity) as quantity, '' as localized  
+				FROM material_category mc, materials m
+				LEFT JOIN pilot_materials pm ON pm.pilot_id = ? AND pm.material_id = m.material_id
+				WHERE m.matherial_category_id = mc.material_category_id  
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 </include>

@@ -219,3 +219,21 @@ SHIPS
 	background-size: auto 100%;
 }
 
+.ship-viper {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/viper.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-viper_mkiv {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/viper_mkiv.png) no-repeat center top;
+	background-size: auto 100%;
+}
+
+.ship-vulture {
+	background: url(../images/ships/pix.png) repeat,
+			url(../images/ships/vulture.png) no-repeat center top;
+	background-size: auto 100%;
+}
+

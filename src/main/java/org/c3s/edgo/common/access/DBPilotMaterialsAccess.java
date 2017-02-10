@@ -111,4 +111,37 @@ public class DBPilotMaterialsAccess extends Access {
 		return getConnection().query(sql, paramPilotId, paramMaterialId);
 	}
 	
+	public List<DBPilotMaterialsListBean> getPilotMaterialsList(long paramPilotId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT m.*, mc.*, IF(ISNULL(pm.quantity), 0, pm.quantity) as quantity, '' as localized   				FROM material_category mc, materials m 				LEFT JOIN pilot_materials pm ON pm.pilot_id = ? AND pm.material_id = m.material_id 				WHERE m.matherial_category_id = mc.material_category_id   			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getPilotMaterialsList", query ,  paramPilotId);
+		List<DBPilotMaterialsListBean> ret = null;
+		if (result != null) {
+					ret = new ArrayList<DBPilotMaterialsListBean>();
+				
+			for (Map<String, Object> res : result) {
+				DBPilotMaterialsListBean bean = dataMapper.mapFromRow(res, DBPilotMaterialsListBean.class);
+														
+				ret.add(bean);
+			}
+					
+		}
+			
+		return ret;
+	}
+	
 }

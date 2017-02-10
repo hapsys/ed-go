@@ -104,6 +104,11 @@
 			<title lang="en">Powers</title>
 			<menu name="main_menu"/>
 		</node>
+		<node pattern="materials">
+			<title lang="ru">Материалы</title>
+			<title lang="en">Materials</title>
+			<menu name="main_menu"/>
+		</node>
 	</node>
 	<!--
 	//
