@@ -28,7 +28,11 @@ public class MissionCompleted extends AbstractJournalEvent<MissionCompletedBean>
 			if (pilot != null) {
 				DBMissionsBean mission = DbAccess.missionsAccess.getByPilotIdAndLinkId(pilot.getPilotId(), Long.valueOf(bean.getMissionID()));
 				if (mission != null) {
-					mission.setReward(bean.getReward());
+					if (bean.getDonation() > 0) {
+						mission.setReward(-bean.getDonation());
+					} else {
+						mission.setReward(bean.getReward());
+					}
 					mission.setCompleteDate(new Timestamp(bean.getTimestamp().getTime()));
 					DbAccess.missionsAccess.updateByPrimaryKey(mission, mission.getMissionId());
 					

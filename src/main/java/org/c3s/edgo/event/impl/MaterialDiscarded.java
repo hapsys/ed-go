@@ -25,7 +25,7 @@ public class MaterialDiscarded extends AbstractJournalEvent<MaterialDiscardedBea
 			DBMaterialsBean mat = MissionsDAO.getMaterial(bean.getName(), bean.getCategory());
 			DBPilotsBean pilot = getCurrent();
 			if (pilot != null) {
-				PilotDAO.insertUpdateMissionMaterial(pilot.getPilotId(), mat.getMaterialId(), -bean.getCount());
+				PilotDAO.insertUpdateMaterial(pilot.getPilotId(), mat.getMaterialId(), -bean.getCount());
 			}
 		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
 			throw new RuntimeException(e);

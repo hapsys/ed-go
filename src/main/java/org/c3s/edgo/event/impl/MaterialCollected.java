@@ -31,7 +31,7 @@ public class MaterialCollected extends AbstractJournalEvent<MaterialCollectedBea
 				if (mission != null && (bean.getTimestamp().getTime() - mission.getCompleteDate().getTime()) <= 2000) {
 					MissionsDAO.insertUpdateMissionMaterial(mission.getMissionId(), mat.getMaterialId(), bean.getCount());
 				}
-				PilotDAO.insertUpdateMissionMaterial(pilot.getPilotId(), mat.getMaterialId(), bean.getCount());
+				PilotDAO.insertUpdateMaterial(pilot.getPilotId(), mat.getMaterialId(), bean.getCount());
 			}
 		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
 			throw new RuntimeException(e);
