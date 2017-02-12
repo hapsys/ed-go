@@ -120,7 +120,7 @@
 		<select lang="en">Anomalous Bulk Scan Data</select>
 		<select lang="ru">Аномальный массив данных сканирования</select>
 	</match>
-	<match name="anomalousfsdtelemetry">
+	<match name="fsdtelemetry">
 		<select lang="en">Anomalous FSD Telemetry</select>
 		<select lang="ru">Аномальная телеметрия FSD</select>
 	</match>
@@ -153,7 +153,7 @@
 		<select lang="en">Decoded Emission Data</select>
 		<select lang="ru">Расшифрованные данные об излучении</select>
 	</match>
-	<match name="distortedshieldcyclerecordings">
+	<match name="shieldcyclerecordings">
 		<select lang="en">Distorted Shield Cycle Recordings</select>
 		<select lang="ru">Поврежденные цикличные записи щита</select>
 	</match>
@@ -174,7 +174,7 @@
 		<select lang="en">Inconsistent Shield Soak Analysis</select>
 		<select lang="ru">Неполный анализ поглощения щита</select>
 	</match>
-	<match name="irregularemissiondata">
+	<match name="archivedemissiondata">
 		<select lang="en">Irregular Emission Data</select>
 		<select lang="ru">Нестандартные данные об излучении</select>
 	</match>
@@ -212,7 +212,7 @@
 		<select lang="en">Tagged Encryption Codes</select>
 		<select lang="ru">Меченые шифровальные коды</select>
 	</match>
-	<match name="unexpectedemissiondata">
+	<match name="emissiondata">
 		<select lang="en">Unexpected Emission Data</select>
 		<select lang="ru">Неожиданные данные об излучении</select>
 	</match>
@@ -220,7 +220,7 @@
 		<select lang="en">Unidentified Scan Archives</select>
 		<select lang="ru">Неопознанные архивы сканирования</select>
 	</match>
-	<match name="untypicalshieldscans">
+	<match name="shielddensityreports">
 		<select lang="en">Untypical Shield Scans</select>
 		<select lang="ru">Нетипичные данные сканирования щитов</select>
 	</match>
