@@ -222,7 +222,7 @@ public class DBPilotKillMeritsAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT t.*, s.name as system_name, SUM(t.quantity) as quantity_summ 				FROM pilot_kill_merits t, systems s 				WHERE 1=1 				" + where + " 				AND t.is_confirmed = 1 				AND t.system_id = s.system_id 				GROUP BY t.start_week, t.system_id, t.is_confirmed  				ORDER BY start_week DESC 			";
+			query = " 				SELECT t.*, s.name as system_name, SUM(t.quantity) as quantity_summ 				FROM pilot_kill_merits t, systems s 				WHERE 1=1 				" + where + " 				AND (t.is_confirmed = 1 OR t.is_confirmed = 0) 				AND t.system_id = s.system_id 				GROUP BY t.start_week, t.system_id, t.is_confirmed  				ORDER BY start_week DESC 			";
 		}
 
 		
