@@ -145,7 +145,7 @@
 		<select lang="en">Cracked Industrial Firmware</select>
 		<select lang="ru">Взломанные промышленные микропрограммы</select>
 	</match>
-	<match name="dataminedwakeexceptions">
+	<match name="dataminedwake">
 		<select lang="en">Datamined Wake Exceptions</select>
 		<select lang="ru">Искл. из глубинного анализа данных следа</select>
 	</match>
