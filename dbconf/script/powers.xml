@@ -131,7 +131,7 @@
 				SELECT a.start_week FROM (
 				(SELECT DISTINCT start_week FROM pilot_war_merits WHERE 1 = 1 <where/>)
 				UNION DISTINCT
-				(SELECT DISTINCT start_week FROM pilot_war_merits WHERE 1 = 1 <where/>)
+				(SELECT DISTINCT start_week FROM pilot_kill_merits WHERE 1 = 1 <where/>)
 				UNION DISTINCT
 				(SELECT DISTINCT start_week FROM pilot_power_spend WHERE 1 = 1 <where/>)
 				UNION DISTINCT

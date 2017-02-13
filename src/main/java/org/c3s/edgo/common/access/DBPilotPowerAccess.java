@@ -224,7 +224,7 @@ public class DBPilotPowerAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT a.start_week FROM ( 				(SELECT DISTINCT start_week FROM pilot_war_merits WHERE 1 = 1 " + where + ") 				UNION DISTINCT 				(SELECT DISTINCT start_week FROM pilot_war_merits WHERE 1 = 1 " + where + ") 				UNION DISTINCT 				(SELECT DISTINCT start_week FROM pilot_power_spend WHERE 1 = 1 " + where + ") 				UNION DISTINCT 				(SELECT DISTINCT start_week FROM pilot_deliver WHERE 1 = 1 " + where + ") 				ORDER BY start_week DESC) as a 			";
+			query = " 				SELECT a.start_week FROM ( 				(SELECT DISTINCT start_week FROM pilot_war_merits WHERE 1 = 1 " + where + ") 				UNION DISTINCT 				(SELECT DISTINCT start_week FROM pilot_kill_merits WHERE 1 = 1 " + where + ") 				UNION DISTINCT 				(SELECT DISTINCT start_week FROM pilot_power_spend WHERE 1 = 1 " + where + ") 				UNION DISTINCT 				(SELECT DISTINCT start_week FROM pilot_deliver WHERE 1 = 1 " + where + ") 				ORDER BY start_week DESC) as a 			";
 		}
 
 		
