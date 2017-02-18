@@ -2,6 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:i10n="org.c3s.edgo.utils.I10N">
 	<xsl:output encoding="utf-8" indent="yes" method="html"/>
 	<xsl:include href="../ranks.xsl"/>
+	<xsl:include href="../dates.xsl"/>
 	<xsl:param name="root"/>
 	<xsl:param name="politic"/>
 	<xsl:param name="language_id"/>
@@ -43,7 +44,7 @@
 				<div class="col-md-4 col-xs-12 widget widget_tally_box">
 					<div class="x_panel">
 						<div class="x_title">
-							<h2>Last seen</h2>
+							<h2><xsl:value-of select="i10n:tr('last-seen')"/></h2>
 							<div class="clearfix"></div>
 						</div>
 						<div class="x_content">
@@ -56,9 +57,16 @@
 										<xsl:variable name="h" select="item[@name='lastActivityTime']/field[@name='hours']/@value"/>
 										<xsl:variable name="m" select="item[@name='lastActivityTime']/field[@name='minutes']/@value"/>
 										<xsl:variable name="s" select="item[@name='lastActivityTime']/field[@name='seconds']/@value"/>
-										<xsl:value-of
-											select="item[@name='location']/field[@name='systemName']/@value"
-											disable-output-escaping="yes" />
+										<xsl:call-template name="lastseen">
+											<xsl:with-param name="lang" select="$language_id"/>
+											<xsl:with-param name="sec" select="number($s)"/>
+											<xsl:with-param name="min" select="number($m)"/>
+											<xsl:with-param name="hou" select="number($h)"/>
+											<xsl:with-param name="day" select="number($d)"/>
+											<xsl:with-param name="mon" select="number($j)"/>
+											<xsl:with-param name="yea" select="number($y)"/>
+										</xsl:call-template> 
+										<xsl:value-of select="i10n:tr('ago')"/>
 									</td>
 								</tr>
 								<tr>
@@ -469,7 +477,7 @@
 					<div class="x_panel ship-{field[@name='shipUniq']/@value} {$class}">
 						<div class="x_title">
 							<h2><a href="{$lang}/{../../field[@name='pilotName']/@value}/ships/{field[@name='linkShipId']/@value}/">
-									<xsl:value-of select="field[@name='shipName']/@value"/>
+									<xsl:value-of select="field[@name='shipName']/@value"/>&#160;<i class="fa fa-share fa-fw" aria-hidden="true"></i>
 								</a></h2>
 							<div class="clearfix"></div>
 						</div>

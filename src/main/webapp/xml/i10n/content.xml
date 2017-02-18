@@ -65,4 +65,18 @@
 		<select lang="en">Update state</select>
 	</match>
 	<!-- /USER FORMS -->
+	<!-- COMMANDER -->
+	<match name="Last Info">
+		<select lang="ru">Последняя информация</select>
+		<select lang="en">Last Info</select>
+	</match>
+	<match name="last-seen">
+		<select lang="ru">Наблюдался</select>
+		<select lang="en">Last seen</select>
+	</match>
+	<match name="ago">
+		<select lang="ru">назад</select>
+		<select lang="en">ago</select>
+	</match>
+	<!-- /COMMANDER -->
 </i10n>

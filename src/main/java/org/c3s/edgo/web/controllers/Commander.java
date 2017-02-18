@@ -51,8 +51,6 @@ import org.c3s.query.RequestType;
 import org.c3s.reflection.XMLReflectionObj;
 import org.c3s.storage.StorageFactory;
 import org.c3s.storage.StorageType;
-import org.c3s.utils.RegexpUtils;
-import org.c3s.web.context.PageRequestContext;
 import org.c3s.web.redirect.DirectRedirect;
 import org.c3s.web.redirect.DropRedirect;
 import org.c3s.web.redirect.RelativeRedirect;
@@ -79,7 +77,6 @@ public class Commander extends GeneralController {
 			current.setRank(DbAccess.ranksAccess.getByPrimaryKey(current.getPilotId()));
 			current.setProgress(DbAccess.progressAccess.getByPrimaryKey(current.getPilotId()));
 			current.setLocation(DbAccess.locationHistoryAccess.getLastLocationForPilot(current.getPilotId()));
-			//current.setLastInfo(DbAccess.pilotLastInfoAccess.getByPrimaryKey(current.getPilotId()));
 			current.setLastInfo(DbAccess.pilotLastInfoAccess.getLastPilotInfo(current.getPilotId()));
 			current.setLastActivityTime(DbAccess.eventsHistoryAccess.getLastActivityTime(current.getPilotId()));
 			
