@@ -62,6 +62,8 @@ public class Auth extends GeneralController {
 		}
 		 
 		if (user != null) {
+			// Append user email
+			ContentObject.getInstance().setFixedParameters("user", user.getEmail());
 			//System.out.println(user);
 			//System.out.println(user.getIsVerify());
 			if (user.getIsVerify() == 0) {
@@ -82,6 +84,7 @@ public class Auth extends GeneralController {
 			}
 		} else {
 			roles.add(AuthRoles.ROLE_NOT_LOGGED);
+			ContentObject.getInstance().setFixedParameters("user", "");
 		}
 		setUserRoles(roles);
 		

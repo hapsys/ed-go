@@ -25,6 +25,7 @@
 
 	String[] params = {"type:main"};
 	String main_menu = cms.getData("menu_main", params);
+	String user_menu = cms.getData("menu_main", new String[]{"type:user"}, ContentObject.CONTENT_LAST, "_____user_menu");
 
 	String content = cms.getData("content");
 	content += cms.getData("view_ctx");
@@ -164,6 +165,8 @@ moment.locale('<%=lang_id%>');
                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
               </div>
               <ul class="nav navbar-nav navbar-right">
+              	<%=user_menu%>
+              	<!-- 
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     <img src="<%=root%>/images/img.jpg" alt="">hapsys@mmmm.nnn
@@ -181,7 +184,9 @@ moment.locale('<%=lang_id%>');
                     <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
+                -->
 
+				<!-- 
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
@@ -246,6 +251,7 @@ moment.locale('<%=lang_id%>');
                     </li>
                   </ul>
                 </li>
+                -->
               </ul>
             </nav>
           </div>

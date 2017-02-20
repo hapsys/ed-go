@@ -12,10 +12,12 @@
 	<xsl:param name="tournaments"/>
 	<xsl:param name="roles"/>
 	<xsl:param name="pilot"/>
+	<xsl:param name="user"/>
 	<xsl:param name="type"/>
 	<xsl:template match="/menu">
 		<xsl:choose>
 			<xsl:when test="$type = 'main'"><xsl:call-template name="main"/></xsl:when>
+			<xsl:when test="$type = 'user'"><xsl:call-template name="user"/></xsl:when>
 		</xsl:choose>
 	</xsl:template>
 <!--
@@ -155,4 +157,51 @@
 			</xsl:choose>
 		</xsl:if>
 	</xsl:template>
+<!--
+//
+//
+//
+-->
+	<xsl:template name="user">
+		<xsl:variable name="lang"><xsl:value-of select="$root"/><xsl:if test="$politic = 'suffix' and $default != 'true'">/<xsl:value-of select="$suffix"/></xsl:if></xsl:variable>
+		<xsl:choose>
+			<xsl:when test="string-length($user) = 0">
+				<xsl:for-each select="node/node/node[count(menu[@name='user_menu']) != 0]">
+					<xsl:variable name="role"><xsl:call-template name="checkRoles"/></xsl:variable>
+					<xsl:if test="count(role) = 0 or $role = 'true'">
+						<li class="">
+							<a class="ref-user-menu" href="{$lang}/{../@pattern}/{@pattern}"><i class="{@fa-class}" aria-hidden="true"></i>&#160;<xsl:call-template name="getTitle"><xsl:with-param name="item" select="."/></xsl:call-template></a>
+						</li>
+					</xsl:if>
+				</xsl:for-each>
+			</xsl:when>
+			<xsl:otherwise>
+				<li class="">
+					<a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+					<xsl:value-of select="$user"/>&#160;<span class="fa fa-angle-down"></span>
+					</a>
+					<ul class="dropdown-menu dropdown-usermenu pull-right">
+					<xsl:for-each select="node/node/node[count(menu[@name='user_menu']) != 0]">
+						<xsl:variable name="class">
+							<xsl:choose>
+								<xsl:when test="string-length(@class) != 0"><xsl:value-of select="@class"/></xsl:when>
+							</xsl:choose>
+						</xsl:variable>
+						<xsl:variable name="role"><xsl:call-template name="checkRoles"/></xsl:variable>
+						<xsl:if test="count(role) = 0 or $role = 'true'">
+							<li class="">
+								<a class="{$class}" href="{$lang}/{../@pattern}/{@pattern}"><xsl:if test="@fa-class != ''"><i class="{@fa-class}" aria-hidden="true"></i>&#160;</xsl:if><xsl:call-template name="getTitle"><xsl:with-param name="item" select="."/></xsl:call-template></a>
+							</li>
+						</xsl:if>
+					</xsl:for-each>
+					</ul>
+				</li>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+<!--
+//
+//
+//
+-->
 </xsl:stylesheet>

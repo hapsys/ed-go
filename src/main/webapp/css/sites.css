@@ -1,3 +1,14 @@
+/*
+MENU
+*/
+
+.ref-user-menu {
+	font-size: 15px;
+}
+
+/*
+FORMS
+*/
 .form-error {
     background-color: none;
     display: block;

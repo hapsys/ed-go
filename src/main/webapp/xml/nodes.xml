@@ -11,19 +11,21 @@
 		<title lang="ru">Аккаунт</title>
 		<title lang="en">Account</title>
 		<menu name="main_menu"/>
-		<node pattern="login">
+		<node pattern="login" fa-class="fa fa-user">
 			<role>ROLE_NOT_LOGGED</role>
 			<title lang="ru">Войти</title>
 			<title lang="en">Sign in</title>
 			<menu name="main_menu"/>
+			<menu name="user_menu"/>
 			<include lang="en" value="include/sign_en.jsp" tag="content_include"/>
 			<include lang="ru" value="include/sign_ru.jsp" tag="content_include"/>
 		</node>
-		<node pattern="registration">
+		<node pattern="registration" fa-class="fa fa-user-plus">
 			<role>ROLE_NOT_LOGGED</role>
 			<title lang="ru">Регистрация</title>
 			<title lang="en">Registration</title>
 			<menu name="main_menu"/>
+			<menu name="user_menu"/>
 			<include lang="en" value="include/sign_en.jsp" tag="content_include"/>
 			<include lang="ru" value="include/sign_ru.jsp" tag="content_include"/>
 		</node>
@@ -32,18 +34,21 @@
 			<title lang="ru">Профиль</title>
 			<title lang="en">Profile</title>
 			<menu name="main_menu"/>
+			<menu name="user_menu"/>
 		</node>
 		<node pattern="client-key">
 			<role>ROLE_LOGGED</role>
 			<title lang="ru">Доступ клиента</title>
 			<title lang="en">Client access</title>
 			<menu name="main_menu"/>
+			<menu name="user_menu"/>
 		</node>
 		<node pattern="pilots-control">
 			<role>ROLE_LOGGED</role>
 			<title lang="ru">Управление пилотами</title>
 			<title lang="en">Pilots control</title>
 			<menu name="main_menu"/>
+			<menu name="user_menu"/>
 		</node>
 		<node pattern="confirmation">
 			<role>ROLE_REGISTERED</role>
@@ -56,12 +61,13 @@
 			<title lang="en">Resend email</title>
 			<menu name="main_menu"/>
 		</node>
-		<node pattern="logout" class="logout">
+		<node pattern="logout" class="logout" fa-class="fa fa-sign-out pull-right">
 			<role>ROLE_LOGGED</role>
 			<role>ROLE_REGISTERED</role>
 			<title lang="ru">Выйти</title>
 			<title lang="en">Sign out</title>
 			<menu name="main_menu"/>
+			<menu name="user_menu"/>
 		</node>
 		<node pattern="restore">
 			<role>ROLE_NOT_LOGGED</role>
