@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <include>
+	<!--  -->
 	<table name="systems">
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="system_id"/>
@@ -7,7 +8,36 @@
 		<select name="ByUniq" single_object="true">
 			<column name="name_uniq"/>
 		</select>
+		<query name="SystemsInBox">
+			<column name="x1" type="float"/>
+			<column name="x2" type="float"/>
+			<column name="y1" type="float"/>
+			<column name="y2" type="float"/>
+			<column name="z1" type="float"/>
+			<column name="z2" type="float"/>
+			<sql>
+				SELECT s.*
+				FROM systems s
+				WHERE 1=1
+				AND s.x BETWEEN ? AND ?
+				AND s.y BETWEEN ? AND ?
+				AND s.z BETWEEN ? AND ?				
+			</sql>
+		</query>
+		
+		<query name="SystemsSearch">
+			<column name="search" type="String"/>
+			<sql>
+				SELECT s.system_id, IF(ISNULL(s.name_stations), s.name, s.name_stations) as name
+				FROM systems s
+				WHERE s.name LIKE ?
+				GROUP BY s.system_id
+				ORDER BY s.name
+				LIMIT 20
+			</sql>
+		</query>
 	</table>
+	<!--  -->
 	<table name="stations">
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="station_id"/>
@@ -20,6 +50,7 @@
 			<column name="system_id"/>
 		</select>
 	</table>
+	<!--  -->
 	<table name="factions">
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="faction_id"/>
@@ -29,6 +60,7 @@
 		</select>
 	</table>
 	
+	<!--  -->
 	<table name="bodies">
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="body_id"/>
@@ -38,6 +70,7 @@
 		</select>
 	</table>
 	
+	<!--  -->
 	<table name="body_types">
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="body_type_id"/>
@@ -47,6 +80,7 @@
 		</select>
 	</table>
 	
+	<!--  -->
 	<table name="planet_classes">
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="planet_class_id"/>
@@ -56,6 +90,7 @@
 		</select>
 	</table>
 	
+	<!--  -->
 	<table name="volc_classes">
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="volc_class_id"/>
@@ -65,6 +100,7 @@
 		</select>
 	</table>
 	
+	<!--  -->
 	<table name="atm_classes">
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="atm_class_id"/>
@@ -73,5 +109,61 @@
 			<column name="atm_class_uniq"/>
 		</select>
 	</table>
+	
+	<!--  -->
+    <table name="settlements">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="settlement_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="settlement_id"/>
+		</update>
+		
+		<query name="SettlementsSearch" intruder="org.c3s.db.injectors.EmptySqlInjector">
+			<result_column name="dest" type="Double">
+	    		<annotation>@XMLSimple("dest")</annotation>
+			</result_column>
+			<result_column name="sol_dest" type="Double">
+	    		<annotation>@XMLSimple("solDest")</annotation>
+			</result_column>
+			<sql>
+				SELECT t.title, st.*, s.name as system_name, s.x, s.y, s.z
+				FROM settlement_types t, settlements st, systems s
+				WHERE 1=1
+				<where/>
+				AND t.settlement_type_id = st.settlement_type_id
+				AND st.system_id = s.system_id     
+			</sql>
+		</query>
+		<query 	name="CountBySystemAndName" single_object="true">
+			<column name="system_id" type="java.math.BigInteger"/>
+			<column name="name" type="String"/>
+			<sql>
+				SELECT COUNT(st.settlement_id) AS count
+				FROM settlements st
+				WHERE st.system_id = ?
+				AND LOWER(st.name) = ?
+				LIMIT 1
+			</sql>
+		</query>
+				
+	</table>
+	
+    <table name="settlement_types">
+    	<column name="group" type="String"/>
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="settlement_type_id"/>
+		</select>
+		<select name="ByType" single_object="true">
+			<column name="type"/>
+		</select>
+		<select name="Sorted">
+			<sort>type</sort>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="settlement_type_id"/>
+		</update>
+	</table>
+	<!--  -->
 	
 </include>

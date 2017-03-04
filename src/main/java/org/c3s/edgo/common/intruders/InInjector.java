@@ -17,26 +17,28 @@ public class InInjector extends EmptySqlInjector {
 	
 	public String getWhereQuery() {
 		StringBuffer result = new StringBuffer();
-		result.append("AND ");
-		result.append(field);
-		result.append(" IN (");
-		boolean flag = false;
-		for(Object val: values) {
-			if (flag) {
-				result.append(", ");
+		if (values != null && values.size() > 0) {
+			result.append("AND ");
+			result.append(field);
+			result.append(" IN (");
+			boolean flag = false;
+			for(Object val: values) {
+				if (flag) {
+					result.append(", ");
+				}
+				
+				if (val instanceof String) {
+					result.append("\"");
+					result.append(val.toString());
+					result.append("\"");
+				} else {
+					result.append(val.toString());
+				}
+				
+				flag = true;
 			}
-			
-			if (val instanceof String) {
-				result.append("\"");
-				result.append(val.toString());
-				result.append("\"");
-			} else {
-				result.append(val.toString());
-			}
-			
-			flag = true;
+			result.append(") ");
 		}
-		result.append(") ");
 		return result.toString();
 	}
 }

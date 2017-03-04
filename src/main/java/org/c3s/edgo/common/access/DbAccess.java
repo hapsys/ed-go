@@ -29,6 +29,8 @@ public class DbAccess {
 	public static final DBPlanetClassesAccess planetClassesAccess = new DBPlanetClassesAccess();
 	public static final DBVolcClassesAccess volcClassesAccess = new DBVolcClassesAccess();
 	public static final DBAtmClassesAccess atmClassesAccess = new DBAtmClassesAccess();
+	public static final DBSettlementsAccess settlementsAccess = new DBSettlementsAccess();
+	public static final DBSettlementTypesAccess settlementTypesAccess = new DBSettlementTypesAccess();
 	public static final DBMissionsAccess missionsAccess = new DBMissionsAccess();
 	public static final DBMissionTypesAccess missionTypesAccess = new DBMissionTypesAccess();
 	public static final DBRewardCommoditiesAccess rewardCommoditiesAccess = new DBRewardCommoditiesAccess();

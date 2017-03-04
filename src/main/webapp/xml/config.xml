@@ -81,6 +81,14 @@
 				<module pattern="materials/" class="org.c3s.edgo.web.controllers.Commander" action="getMaterials" is_last="true"/>
 			</module>
 			<!-- -Commander  -->
+			<!-- +Utilites  -->
+			<module pattern="utility/">
+				<param name="tag" value="view_ctx" inherit="true"/>
+				<module pattern="settlements/" class="org.c3s.edgo.web.utilites.Settlerments" action="getCanvas" is_last="true">
+					<param name="template" value="{directory.stylesheet}/utilites/settlements.xsl"/>
+				</module>
+			</module>
+			<!-- -Utilites  -->
 			<!-- +Test  -->
 			<module pattern="ajax-test/" class="org.c3s.web.modules.template.TemplateModule" action="setTemplate">
 				<param name="template" value="{directory.templates}/json.jsp"/>
@@ -141,6 +149,11 @@
 							<module pattern="systems/" class="org.c3s.edgo.web.controllers.Commander" action="getSystems" is_last="true"/>
 							<module pattern="materials/" class="org.c3s.edgo.web.controllers.Commander" action="updateMaterials" is_last="true"/>
 						</module>
+					</module>
+					<!-- Settlerments -->
+					<module pattern="utility/">
+						<module pattern="system-search/" class="org.c3s.edgo.web.utilites.Systems" action="getSystemByPatiallyName" is_last="true"/>
+						<module pattern="settlements-search/" class="org.c3s.edgo.web.utilites.Settlerments" action="searchSettlements" is_last="true"/>
 					</module>
 				</module>
 				<module pattern="raw/" class="org.c3s.web.modules.template.TemplateModule" action="setTemplate">

@@ -409,7 +409,7 @@ public class Commander extends GeneralController {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void updateMaterials(ServletRequest request, @Parameter("tag") String tag, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+	public void updateMaterials(@Parameter("tag") String tag, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		if (current != null) {
 			
 			ParametersHolder<String> post = (ParametersHolder<String>)StorageFactory.getStorage(StorageType.REQUEST).get(RequestType.REQUEST);

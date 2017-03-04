@@ -83,6 +83,9 @@
 <link href="<%=root%>/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
 <link href="<%=root%>/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
+<!-- Choosen -->
+<link rel="stylesheet" href="<%=root%>/css/chosen.css" type="text/css"/>
+<link rel="stylesheet" href="<%=root%>/css/bootstrap-chosen.css" type="text/css"/>
 <!-- Custom Theme Style -->
 <link href="<%=root%>/css/custom/custom.css" rel="stylesheet">
 
@@ -338,6 +341,11 @@ moment.locale('<%=lang_id%>');
     <script src="<%=root%>/vendors/clipboard.js/clipboard.min.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="<%=root%>/js/custom/custom.min.js"></script>
+    <!-- Choosen -->
+	<script type="text/javascript" src="<%=root%>/js/chosen/chosen.jquery.min.js"></script>
+	<script type="text/javascript" src="<%=root%>/js/chosen/ajax-chosen.js"></script>
+    <!-- Json -->
+    <script src="<%=root%>/js/json/jquery.json.min.js"></script>
 
 	<script type="text/javascript" src="<%=root%>/js/proxy.js"></script>
 	<script type="text/javascript" src="<%=root%>/js/store.js"></script>

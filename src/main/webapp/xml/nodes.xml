@@ -118,6 +118,21 @@
 	</node>
 	<!--
 	//
+	// Utilites
+	// 
+	 -->
+	<node pattern="utility" redirect="settlements/" class="fa-cloud-download">
+		<title lang="ru">Утилиты</title>
+		<title lang="en">Utilites</title>
+		<menu name="main_menu"/>
+		<node pattern="settlements">
+			<title lang="ru">Поселения</title>
+			<title lang="en">Settlements</title>
+			<menu name="main_menu"/>
+		</node>
+	</node>
+	<!--
+	//
 	// Client
 	// 
 	 -->
