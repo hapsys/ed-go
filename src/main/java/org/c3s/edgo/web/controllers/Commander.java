@@ -433,7 +433,8 @@ public class Commander extends GeneralController {
 					}
 				}
 			}
-			ContentObject.getInstance().setData(tag, new Result().get());
+			List<DBPilotMaterialsListBean> pilotMaterials = DbAccess.pilotMaterialsAccess.getPilotMaterialsList(current.getPilotId());
+			ContentObject.getInstance().setData(tag, new Result().put("materials", pilotMaterials).get());
 			redirect.setRedirect(new DropRedirect());
 		}
 	}

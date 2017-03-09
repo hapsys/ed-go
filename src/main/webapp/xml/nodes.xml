@@ -121,7 +121,7 @@
 	// Utilites
 	// 
 	 -->
-	<node pattern="utility" redirect="settlements/" class="fa-cloud-download">
+	<node pattern="utility" redirect="settlements/" class="fa-sun-o">
 		<title lang="ru">Утилиты</title>
 		<title lang="en">Utilites</title>
 		<menu name="main_menu"/>

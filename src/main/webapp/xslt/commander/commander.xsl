@@ -1075,22 +1075,26 @@
 	<xsl:template name="view_materials">
 	
 		<xsl:variable name="lang"><xsl:value-of select="$root"/><xsl:if test="$politic = 'suffix' and $default != 'true'">/<xsl:value-of select="$suffix"/></xsl:if></xsl:variable>
-		<div class="form-materials">
+		<div class="form-materials updated-by-time" data-update-function="updateFromServer" data-update-interval="30000">
 			<div class="col-md-4 col-xs-12 widget widget_tally_box width-650 encoded" data-material="encoded">
 				<div class="x_panel">
 					<div class="x_title">
 						<h2><xsl:value-of select="i10n:tr('Encoded')"/></h2>
 						<i class="fa fa-refresh fa-spin fa-2x fa-fw hidden"></i>
+	                    <ul class="nav navbar-right panel_toolbox">
+	                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+	                    </ul>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
 						<table class="table">
 							<xsl:for-each select="childs/item[field[@name='materialCategoryId']/@value=1]">
 								<xsl:sort case-order="upper-first" data-type="text" lang="utf-8" order="ascending" select="field[@name='localized']/@value"/>
-								<tr>
-									<td class="col-md-12"><xsl:value-of select="field[@name='localized']/@value"/></td>
-									<td>
-										<input name="{field[@name='materialUniq']/@value}" type="number" min="0" max="1000" step="1" value="{field[@name='quantity']/@value}" style="width:50px;"/>
+								<tr id="{field[@name='materialUniq']/@value}">
+									<td><xsl:value-of select="field[@name='localized']/@value"/></td>
+									<td style="width:70px;">
+										<button class="btn btn-success button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></button>
+										<input class="hidden" name="{field[@name='materialUniq']/@value}" type="number" min="0" max="1000" step="1" value="{field[@name='quantity']/@value}"/>
 									</td>
 								</tr>
 							</xsl:for-each>
@@ -1103,16 +1107,20 @@
 					<div class="x_title">
 						<h2><xsl:value-of select="i10n:tr('Manufactured')"/></h2>
 						<i class="fa fa-refresh fa-spin fa-2x fa-fw hidden"></i>
+	                    <ul class="nav navbar-right panel_toolbox">
+	                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+	                    </ul>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
 						<table class="table">
 							<xsl:for-each select="childs/item[field[@name='materialCategoryId']/@value=2]">
 								<xsl:sort case-order="upper-first" data-type="text" lang="utf-8" order="ascending" select="field[@name='localized']/@value"/>
-								<tr>
-									<td class="col-md-12"><xsl:value-of select="field[@name='localized']/@value"/></td>
-									<td>
-										<input name="{field[@name='materialUniq']/@value}" type="number" min="0" max="1000" step="1" value="{field[@name='quantity']/@value}" style="width:50px;"/>
+								<tr id="{field[@name='materialUniq']/@value}">
+									<td><xsl:value-of select="field[@name='localized']/@value"/></td>
+									<td style="width:70px;">
+										<button class="btn btn-success button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></button>
+										<input class="hidden" name="{field[@name='materialUniq']/@value}" type="number" min="0" max="1000" step="1" value="{field[@name='quantity']/@value}"/>
 									</td>
 								</tr>
 							</xsl:for-each>
@@ -1125,16 +1133,20 @@
 					<div class="x_title">
 						<h2><xsl:value-of select="i10n:tr('Raw')"/></h2>
 						<i class="fa fa-refresh fa-spin fa-2x fa-fw hidden"></i>
+	                    <ul class="nav navbar-right panel_toolbox">
+	                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+	                    </ul>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
 						<table class="table">
 							<xsl:for-each select="childs/item[field[@name='materialCategoryId']/@value=3]">
 								<xsl:sort case-order="upper-first" data-type="text" lang="utf-8" order="ascending" select="field[@name='localized']/@value"/>
-								<tr>
-									<td class="col-md-12"><xsl:value-of select="field[@name='localized']/@value"/></td>
-									<td>
-										<input name="{field[@name='materialUniq']/@value}" type="number" min="0" max="1000" step="1" value="{field[@name='quantity']/@value}" style="width:50px;"/>
+								<tr id="{field[@name='materialUniq']/@value}">
+									<td><xsl:value-of select="field[@name='localized']/@value"/></td>
+									<td style="width:70px;">
+										<button class="btn btn-success button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></button>
+										<input class="hidden" name="{field[@name='materialUniq']/@value}" type="number" min="0" max="1000" step="1" value="{field[@name='quantity']/@value}"/>
 									</td>
 								</tr>
 							</xsl:for-each>
@@ -1152,6 +1164,11 @@
 				var counter = 0;
 				
 				var send_data = null; 
+				
+				$('.form-materials').find('.button-switch').on('click', function() {
+					$(this).parents('tr').find('.hidden').removeClass('hidden');
+					$(this).parents('tr').find('button').addClass('hidden');
+				});
 				
 				$('.form-materials').find('.widget_tally_box').each(function() {
 					var mtype = $(this).data('material');
@@ -1182,12 +1199,17 @@
 									data[k] = send_data[i][k]; 	
 								}
 							}
-							send_data = null;
 							counter = 0;
 							//console.log(data);
 							proxy.makeCall('post', '/ajax/pilots/'+ pilot + '/materials/', null, null, data, function(result) {
+								$('.form-materials').find('.button-switch.hidden').each(function() {
+									$(this).html($(this).parents('tr').find('input').val());
+									$(this).parents('tr').find('input').addClass('hidden');
+									$(this).removeClass('hidden btn-success').addClass('btn-danger');
+								});
 								$('.form-materials').find('.fa-spin').addClass('hidden');
 								setTimeout(timeUpdate, 1000);
+								send_data = null;
 							});
 						} else {
 							counter++;
@@ -1199,6 +1221,25 @@
 					}
 				}
 				timeUpdate();
+				
+				updateFromServer = function() {
+					if (!send_data) {
+						proxy.makeCall('post', '/ajax/pilots/'+ pilot + '/materials/', null, null, null, function(result) {
+							//console.log(result);
+							$('.form-materials').find('.button-switch').each(function() {
+								$(this).removeClass('btn-danger btn-info').addClass('btn-success');
+							});
+							if (result.materials) {
+								result.materials.forEach(function(m, i) {
+									if (m.quantity != $('#' + m.materialUniq).find('input').val()) {
+										$('#' + m.materialUniq).find('input').val(m.quantity);
+										$('#' + m.materialUniq).find('.button-switch').removeClass('btn-success').addClass('btn-info').val(m.quantity);
+									}
+								});
+							}
+						});
+					}
+				}
 			});
 		</script>
 

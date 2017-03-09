@@ -68,7 +68,15 @@ FORMS
 	border-color: #F77;
 }
 
+.form-materials input {
+	width:50px;
+	font-size: 18px;
+	margin-bottom: 2px;
+}
 
+.form-materials button {
+	margin: 0 0 0 0;
+}
 /*
 SHIPS
 */
