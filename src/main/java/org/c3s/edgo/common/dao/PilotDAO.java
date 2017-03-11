@@ -1,6 +1,8 @@
 package org.c3s.edgo.common.dao;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBPilotMaterialsBean;
@@ -14,9 +16,11 @@ public class PilotDAO {
 			bean.setPilotId(pilot_id);
 			bean.setMaterialId(material_id);
 			bean.setQuantity(count);
+			bean.setUpdateTime(new Timestamp(new Date().getTime()));
 			DbAccess.pilotMaterialsAccess.insert(bean);
 		} else {
 			bean.setQuantity(count + bean.getQuantity());
+			bean.setUpdateTime(new Timestamp(new Date().getTime()));
 			DbAccess.pilotMaterialsAccess.updateByPrimaryKey(bean, pilot_id, material_id);
 		}
 	}

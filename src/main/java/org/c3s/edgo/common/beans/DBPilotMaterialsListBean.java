@@ -17,6 +17,21 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 
 
 	
+	@DataSource({"update_time", "updateTime"})
+	@DataTarget("update_time")
+	@XMLSimple("updateTime")
+	private java.lang.Long updateTime;
+	
+	public java.lang.Long getUpdateTime() {
+		return updateTime;
+	}
+	
+	public DBPilotMaterialsListBean setUpdateTime(java.lang.Long value) {
+		updateTime = value;
+		return this;
+	}
+	
+	
 	@DataSource({"quantity", "quantity"})
 	@DataTarget("quantity")
 	@XMLSimple("quantity")

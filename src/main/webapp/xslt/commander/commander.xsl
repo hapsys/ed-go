@@ -1075,6 +1075,35 @@
 	<xsl:template name="view_materials">
 	
 		<xsl:variable name="lang"><xsl:value-of select="$root"/><xsl:if test="$politic = 'suffix' and $default != 'true'">/<xsl:value-of select="$suffix"/></xsl:if></xsl:variable>
+		<div>
+			<form class="form-inline">
+				<div class="form-group">
+					<label><xsl:value-of select="i10n:tr('sort_by')"/>:&#160;&#160;&#160;</label>
+					<div class="radio">
+						<label>
+							<input type="radio" class="flat" value="alphabetical" name="material_sorting">
+								<xsl:if test="/*/@sort = 'alphabetical'"><xsl:attribute name="checked">checked</xsl:attribute></xsl:if>
+							</input>&#160;<xsl:value-of select="i10n:tr('sort_by_alphabetial')"/>&#160;&#160;
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input type="radio" class="flat" value="updated" name="material_sorting">
+								<xsl:if test="/*/@sort = 'updated'"><xsl:attribute name="checked">checked</xsl:attribute></xsl:if>
+							</input>&#160;<xsl:value-of select="i10n:tr('sort_by_updated')"/>&#160;&#160;
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input type="radio" class="flat" value="quantity" name="material_sorting">
+								<xsl:if test="/*/@sort = 'quantity'"><xsl:attribute name="checked">checked</xsl:attribute></xsl:if> 
+							</input>&#160;<xsl:value-of select="i10n:tr('sort_by_quantity')"/>&#160;&#160;
+						</label>
+					</div>
+				</div>				
+			</form>
+		</div>
+		<div class="clearfix"></div>
 		<div class="form-materials updated-by-time" data-update-function="updateFromServer" data-update-interval="30000">
 			<div class="col-md-4 col-xs-12 widget widget_tally_box width-650 encoded" data-material="encoded">
 				<div class="x_panel">
@@ -1089,7 +1118,9 @@
 					<div class="x_content">
 						<table class="table">
 							<xsl:for-each select="childs/item[field[@name='materialCategoryId']/@value=1]">
+								<!-- 
 								<xsl:sort case-order="upper-first" data-type="text" lang="utf-8" order="ascending" select="field[@name='localized']/@value"/>
+								 -->
 								<tr id="{field[@name='materialUniq']/@value}">
 									<td><xsl:value-of select="field[@name='localized']/@value"/></td>
 									<td style="width:70px;">
@@ -1115,7 +1146,9 @@
 					<div class="x_content">
 						<table class="table">
 							<xsl:for-each select="childs/item[field[@name='materialCategoryId']/@value=2]">
+								<!-- 
 								<xsl:sort case-order="upper-first" data-type="text" lang="utf-8" order="ascending" select="field[@name='localized']/@value"/>
+								 -->
 								<tr id="{field[@name='materialUniq']/@value}">
 									<td><xsl:value-of select="field[@name='localized']/@value"/></td>
 									<td style="width:70px;">
@@ -1141,7 +1174,9 @@
 					<div class="x_content">
 						<table class="table">
 							<xsl:for-each select="childs/item[field[@name='materialCategoryId']/@value=3]">
+								<!-- 
 								<xsl:sort case-order="upper-first" data-type="text" lang="utf-8" order="ascending" select="field[@name='localized']/@value"/>
+								 -->
 								<tr id="{field[@name='materialUniq']/@value}">
 									<td><xsl:value-of select="field[@name='localized']/@value"/></td>
 									<td style="width:70px;">
@@ -1165,10 +1200,29 @@
 				
 				var send_data = null; 
 				
-				$('.form-materials').find('.button-switch').on('click', function() {
-					$(this).parents('tr').find('.hidden').removeClass('hidden');
-					$(this).parents('tr').find('button').addClass('hidden');
-				});
+				var focusLost = function(imput) {
+					if ($(imput).parents('tr').find('.button-switch').html() != $(imput).val()) {
+						$(imput).addClass('hidden');
+						$(imput).parents('tr').find('.button-switch').html($(imput).val()).removeClass('hidden btn-success btn-danger btn-info ').addClass('btn-default');
+					} else {
+						$(imput).addClass('hidden');
+						$(imput).parents('tr').find('.button-switch').removeClass('hidden');
+					}
+				}
+
+				var switchClick = function() {				
+					$('.form-materials').find('.button-switch').on('click', function() {
+						
+						$('.form-materials').find('.button-switch.hidden').each(function() {
+							focusLost($(this).parents('tr').find('input'));
+						});
+						
+						$(this).parents('tr').find('.hidden').removeClass('hidden');
+						$(this).parents('tr').find('button').addClass('hidden');
+					});
+				}
+				
+				switchClick();
 				
 				$('.form-materials').find('.widget_tally_box').each(function() {
 					var mtype = $(this).data('material');
@@ -1199,17 +1253,29 @@
 									data[k] = send_data[i][k]; 	
 								}
 							}
+							data['material_sorting'] = $("input[name=material_sorting]").val();
 							counter = 0;
-							//console.log(data);
+							/*
 							proxy.makeCall('post', '/ajax/pilots/'+ pilot + '/materials/', null, null, data, function(result) {
-								$('.form-materials').find('.button-switch.hidden').each(function() {
+								$('.form-materials').find('.button-switch.hidden, .button-switch.btn-default').each(function() {
 									$(this).html($(this).parents('tr').find('input').val());
 									$(this).parents('tr').find('input').addClass('hidden');
-									$(this).removeClass('hidden btn-success').addClass('btn-danger');
+									$(this).removeClass('hidden btn-success btn-default btn-info').addClass('btn-danger');
 								});
 								$('.form-materials').find('.fa-spin').addClass('hidden');
 								setTimeout(timeUpdate, 1000);
 								send_data = null;
+							});
+							*/
+							send_data = null;
+							updateFromServer(data, function(result) {
+								$('.form-materials').find('.button-switch.hidden, .button-switch.btn-default').each(function() {
+									$(this).html($(this).parents('tr').find('input').val());
+									$(this).parents('tr').find('input').addClass('hidden');
+									$(this).removeClass('hidden btn-success btn-default btn-info btn-primary').addClass('btn-danger');
+								});
+								$('.form-materials').find('.fa-spin').addClass('hidden');
+								setTimeout(timeUpdate, 1000);
 							});
 						} else {
 							counter++;
@@ -1222,24 +1288,68 @@
 				}
 				timeUpdate();
 				
-				updateFromServer = function() {
-					if (!send_data) {
-						proxy.makeCall('post', '/ajax/pilots/'+ pilot + '/materials/', null, null, null, function(result) {
+				var material_sorting = '<xsl:value-of select="/*/@sort"/>';
+				
+				var updating = false;
+				
+				updateFromServer = function(data, callback) {
+					if (!send_data &amp;&amp; !updating) {
+						updating = true;
+						if (!data) {
+							data = {};
+						}
+						data['material_sorting'] = material_sorting; 
+						proxy.makeCall('post', '/ajax/pilots/'+ pilot + '/materials/', null, null, data, function(result) {
 							//console.log(result);
 							$('.form-materials').find('.button-switch').each(function() {
 								$(this).removeClass('btn-danger btn-info').addClass('btn-success');
 							});
 							if (result.materials) {
+								var materials = {};
 								result.materials.forEach(function(m, i) {
 									if (m.quantity != $('#' + m.materialUniq).find('input').val()) {
 										$('#' + m.materialUniq).find('input').val(m.quantity);
-										$('#' + m.materialUniq).find('.button-switch').removeClass('btn-success').addClass('btn-info').val(m.quantity);
+										$('#' + m.materialUniq).find('.button-switch').removeClass('btn-success btn-info btn-primary btn-danger').addClass(m.updateTime &lt; 31?'btn-info':'btn-primary').html(m.quantity);
+									} else if (m.updateTime &lt; 61) {
+										$('#' + m.materialUniq).find('.button-switch').removeClass('btn-success btn-info btn-primary btn-danger').addClass(m.updateTime &lt; 31?'btn-info':'btn-primary').html(m.quantity);
 									}
+									if (!materials[m.materialCategoryName]) {
+										materials[m.materialCategoryName] = [];
+									}
+									//m['index'] = i;
+									materials[m.materialCategoryName].push(m); 
 								});
+								
+								console.log(materials);
+								for (key in materials) {
+									var mType = key.toLowerCase();
+									//var trs = $("div." + mType).find("tr");
+									materials[key].forEach(function(m, i) {
+										var tr = $("div." + mType).find('tr:eq(' + i + ')');
+										if (tr.attr('id') != m.materialUniq) {
+											var mov = $('#' + m.materialUniq);
+											mov.remove().insertBefore(tr);
+										}
+									});
+								}
 							}
+							switchClick();
+							if (callback) {
+								callback(result);
+							}
+							updating = false;
 						});
 					}
 				}
+				
+				$('input[name=material_sorting]').on('ifChecked', function(e) {
+				//$('input[name=material_sorting]').on('change', function(e) {
+					material_sorting = $(e.target).attr('value');
+					//$("input[name=material_sorting]").val($(e.target).attr('value'));
+					//console.log($("input[name=material_sorting]").val());
+					//console.log(material_sorting);
+					updateFromServer();
+				});
 			});
 		</script>
 

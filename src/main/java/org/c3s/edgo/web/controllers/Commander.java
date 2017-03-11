@@ -3,10 +3,12 @@ package org.c3s.edgo.web.controllers;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -270,7 +272,7 @@ public class Commander extends GeneralController {
 				current.setAdditionTwo(DbAccess.materialsAccess.getMaterialsList(injectorCom));
 			}
 			Document xml = new XMLReflectionObj(current).toXML();
-			logger.debug(XMLUtils.xml2out(xml));
+			//logger.debug(XMLUtils.xml2out(xml));
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:view_missions"});
 		} else {
 			redirect.setRedirect(new DirectRedirect("/"));
@@ -388,19 +390,48 @@ public class Commander extends GeneralController {
 
 	
 	// ============================================================== +MATERIALS ==============================================================================
+	private static String sortedParameterName = "__storedSortedParameter";
+	
 	public void getMaterials(@Parameter("tag") String tag, @Parameter("template") String template, RedirectControlerInterface redirect) throws Exception {
 		
 		if (current != null) {
+			
+			String __sort = (String)StorageFactory.getStorage(StorageType.SESSION).get(sortedParameterName);
+			if (__sort == null) {
+				__sort = "alphabetical";
+			}
+			final String sort = __sort;
+			
 			List<DBPilotMaterialsListBean> pilotMaterials = DbAccess.pilotMaterialsAccess.getPilotMaterialsList(current.getPilotId());
 			if (pilotMaterials != null) {
+				/*
 				for (DBPilotMaterialsListBean m: pilotMaterials) {
 					m.setLocalized(I10N.tr(m.getMaterialUniq()));
 				}
+				*/
+				pilotMaterials = pilotMaterials.stream().peek(m -> m.setLocalized(I10N.tr(m.getMaterialUniq()))).sorted(new Comparator<DBPilotMaterialsListBean>() {
+					@Override
+					public int compare(DBPilotMaterialsListBean o1, DBPilotMaterialsListBean o2) {
+						if ("updated".equals(sort)) {
+							if (o1.getUpdateTime().equals(o2.getUpdateTime())) {
+								return o1.getLocalized().compareToIgnoreCase(o2.getLocalized());
+							} else {
+								return o1.getUpdateTime() > o2.getUpdateTime() ? 1:-1;
+							}
+						} else if ("quantity".equals(sort)) {
+							return (int)(o2.getQuantity() - o1.getQuantity());
+						} else {
+							return o1.getLocalized().compareToIgnoreCase(o2.getLocalized());
+						}
+					}
+				}).collect(Collectors.toList());
+				
 				current.setChilds(pilotMaterials);
 			}
 			Document xml = new XMLReflectionObj(current).toXML();
+			xml.getDocumentElement().setAttribute("sort", sort);
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:materials"});
-			logger.debug(XMLUtils.saveXML(xml));
+			//logger.debug(XMLUtils.saveXML(xml));
 		} else {
 			redirect.setRedirect(new DirectRedirect("/"));
 			throw new SkipSubLevelsExeption();
@@ -412,28 +443,56 @@ public class Commander extends GeneralController {
 	public void updateMaterials(@Parameter("tag") String tag, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		if (current != null) {
 			
+			String __sort = "alphabetical";
+			
 			ParametersHolder<String> post = (ParametersHolder<String>)StorageFactory.getStorage(StorageType.REQUEST).get(RequestType.REQUEST);
 			//System.out.println(post.size());
 			for (String key: post.getParameterMap().keySet()) {
-				int value = Integer.valueOf(post.getStringParameter(key));
-				DBMaterialsBean mat = DbAccess.materialsAccess.getByUniq(key);
-				if (mat != null) {
-					if (value == 0) {
-						DbAccess.pilotMaterialsAccess.deleteByPrimaryKey(current.getPilotId(), mat.getMaterialId());
-					} else {
-						DBPilotMaterialsBean pm = DbAccess.pilotMaterialsAccess.getByPrimaryKey(current.getPilotId(), mat.getMaterialId());
-						if (pm == null) {
-							pm = new DBPilotMaterialsBean();
-							pm.setPilotId(current.getPilotId()).setMaterialId(mat.getMaterialId()).setQuantity(value);
-							DbAccess.pilotMaterialsAccess.insert(pm);
+				
+				if ("material_sorting".equals(key)) {
+					__sort = post.getStringParameter(key);
+				} else {
+					int value = Integer.valueOf(post.getStringParameter(key));
+					DBMaterialsBean mat = DbAccess.materialsAccess.getByUniq(key);
+					if (mat != null) {
+						if (value == 0) {
+							DbAccess.pilotMaterialsAccess.deleteByPrimaryKey(current.getPilotId(), mat.getMaterialId());
 						} else {
-							pm.setQuantity(value);
-							DbAccess.pilotMaterialsAccess.updateByPrimaryKey(pm, current.getPilotId(), mat.getMaterialId());
+							DBPilotMaterialsBean pm = DbAccess.pilotMaterialsAccess.getByPrimaryKey(current.getPilotId(), mat.getMaterialId());
+							if (pm == null) {
+								pm = new DBPilotMaterialsBean();
+								pm.setPilotId(current.getPilotId()).setMaterialId(mat.getMaterialId()).setQuantity(value).setUpdateTime(new Timestamp(new Date().getTime()));
+								DbAccess.pilotMaterialsAccess.insert(pm);
+							} else {
+								pm.setQuantity(value).setUpdateTime(new Timestamp(new Date().getTime()));
+								DbAccess.pilotMaterialsAccess.updateByPrimaryKey(pm, current.getPilotId(), mat.getMaterialId());
+							}
 						}
 					}
 				}
 			}
+			final String sort = __sort;
+			//System.out.println(sort);
+			StorageFactory.getStorage(StorageType.SESSION).put(sortedParameterName, sort);
 			List<DBPilotMaterialsListBean> pilotMaterials = DbAccess.pilotMaterialsAccess.getPilotMaterialsList(current.getPilotId());
+			pilotMaterials = pilotMaterials.stream().peek(m -> m.setLocalized(I10N.tr(m.getMaterialUniq()))).sorted(new Comparator<DBPilotMaterialsListBean>() {
+				@Override
+				public int compare(DBPilotMaterialsListBean o1, DBPilotMaterialsListBean o2) {
+					if ("updated".equals(sort)) {
+						if (o1.getUpdateTime().equals(o2.getUpdateTime())) {
+							return o1.getLocalized().compareToIgnoreCase(o2.getLocalized());
+						} else {
+							return o1.getUpdateTime() > o2.getUpdateTime() ? 1:-1;
+						}
+					} else if ("quantity".equals(sort)) {
+						return (int)(o2.getQuantity() - o1.getQuantity());
+					} else {
+						return o1.getLocalized().compareToIgnoreCase(o2.getLocalized());
+					}
+				}
+			}).collect(Collectors.toList());
+			
+			
 			ContentObject.getInstance().setData(tag, new Result().put("materials", pilotMaterials).get());
 			redirect.setRedirect(new DropRedirect());
 		}

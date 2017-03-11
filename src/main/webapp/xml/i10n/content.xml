@@ -78,5 +78,21 @@
 		<select lang="ru">назад</select>
 		<select lang="en">ago</select>
 	</match>
+	<match name="sort_by">
+		<select lang="ru">Сортировать</select>
+		<select lang="en">Sort</select>
+	</match>
+	<match name="sort_by_alphabetial">
+		<select lang="ru">по алфавиту</select>
+		<select lang="en">alphabetically</select>
+	</match>
+	<match name="sort_by_quantity">
+		<select lang="ru">по количеству</select>
+		<select lang="en">by number</select>
+	</match>
+	<match name="sort_by_updated">
+		<select lang="ru">по времени обновления</select>
+		<select lang="en">by update time</select>
+	</match>
 	<!-- /COMMANDER -->
 </i10n>
