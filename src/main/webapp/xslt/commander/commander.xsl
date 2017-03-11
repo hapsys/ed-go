@@ -1224,23 +1224,27 @@
 				
 				switchClick();
 				
-				$('.form-materials').find('.widget_tally_box').each(function() {
-					var mtype = $(this).data('material');
-					$(this).find('input[type=number]').on('keyup change', function() {
-						var val = $(this).val();
-						
-						if (val.length > 0) {
-							if (!send_data) {
-								send_data = {};
-							} 
-							if (!send_data[mtype]) {
-								send_data[mtype] = {};
-							}
-							send_data[mtype][$(this).attr('name')] = val;
-						}	
-						counter = 0; 
+				function updateInputEvents() {
+					$('.form-materials').find('.widget_tally_box').each(function() {
+						var mtype = $(this).data('material');
+						$(this).find('input[type=number]').on('keyup change', function() {
+							var val = $(this).val();
+							
+							if (val.length > 0) {
+								if (!send_data) {
+									send_data = {};
+								} 
+								if (!send_data[mtype]) {
+									send_data[mtype] = {};
+								}
+								send_data[mtype][$(this).attr('name')] = val;
+							}	
+							counter = 0; 
+						});
 					});
-				});
+				}
+
+				updateInputEvents();
 
 				var timeUpdate = function() {
 					if (send_data) {
@@ -1334,6 +1338,7 @@
 								}
 							}
 							switchClick();
+							updateInputEvents();
 							if (callback) {
 								callback(result);
 							}
