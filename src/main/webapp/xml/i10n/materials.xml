@@ -157,7 +157,7 @@
 		<select lang="en">Distorted Shield Cycle Recordings</select>
 		<select lang="ru">Поврежденные цикличные записи щита</select>
 	</match>
-	<match name="divergentscandata">
+	<match name="encodedscandata">
 		<select lang="en">Divergent Scan Data</select>
 		<select lang="ru">Неформатные данные сканирования</select>
 	</match>
@@ -170,7 +170,7 @@
 		<select lang="ru">Исключительные зашифрованные данные об изл.
 		</select>
 	</match>
-	<match name="inconsistentshieldsoakanalysis">
+	<match name="shieldsoakanalysis">
 		<select lang="en">Inconsistent Shield Soak Analysis</select>
 		<select lang="ru">Неполный анализ поглощения щита</select>
 	</match>
@@ -183,7 +183,7 @@
 		<select lang="ru">Измененные пользовательские микропрограммы
 		</select>
 	</match>
-	<match name="modifiedembeddedfirmware">
+	<match name="embeddedfirmware">
 		<select lang="en">Modified Embedded Firmware</select>
 		<select lang="ru">Измененные встроенные микропрограммы</select>
 	</match>
@@ -224,7 +224,7 @@
 		<select lang="en">Untypical Shield Scans</select>
 		<select lang="ru">Нетипичные данные сканирования щитов</select>
 	</match>
-	<match name="unusualencryptedfiles">
+	<match name="encryptedfiles">
 		<select lang="en">Unusual Encrypted Files</select>
 		<select lang="ru">Особые зашифрованные файлы</select>
 	</match>
