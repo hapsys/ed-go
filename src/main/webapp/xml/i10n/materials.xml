@@ -132,7 +132,7 @@
 		<select lang="en">Atypical Encryption Archives</select>
 		<select lang="ru">Нетипичные архивы шифрования</select>
 	</match>
-	<match name="classifiedscandatabanks">
+	<match name="scandatabanks">
 		<select lang="en">Classified Scan Databanks</select>
 		<select lang="ru">Засекреченные базы данных сканирования</select>
 	</match>
