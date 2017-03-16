@@ -191,7 +191,7 @@
 		<select lang="en">Open Symmetric Keys</select>
 		<select lang="ru">Открытые симметричные ключи</select>
 	</match>
-	<match name="peculiarshieldfrequencydata">
+	<match name="shieldfrequencydata">
 		<select lang="en">Peculiar Shield Frequency Data</select>
 		<select lang="ru">Специфические данные о частоте щитов</select>
 	</match>
