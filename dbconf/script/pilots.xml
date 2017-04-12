@@ -284,6 +284,18 @@
 				WHERE m.matherial_category_id = mc.material_category_id  
 			</sql>
 		</query>
+		<query name="MaterialsForDelete">
+			<column name="PilotId" type="long"/>
+			<sql>
+				UPDATE pilot_materials SET can_delete = 1 WHERE pilot_id = ?
+			</sql>
+		</query>
+		<query name="MaterialsCanDelete">
+			<column name="PilotId" type="long"/>
+			<sql>
+				DELETE FROM pilot_materials WHERE pilot_id = ? AND can_delete = 1
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 </include>

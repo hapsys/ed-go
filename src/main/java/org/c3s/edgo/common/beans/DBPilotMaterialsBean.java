@@ -47,6 +47,21 @@ public class DBPilotMaterialsBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"can_delete", "canDelete"})
+	@DataTarget("can_delete")
+	@XMLSimple("canDelete")
+	private java.lang.Integer canDelete;
+	
+	public java.lang.Integer getCanDelete() {
+		return canDelete;
+	}
+	
+	public DBPilotMaterialsBean setCanDelete(java.lang.Integer value) {
+		canDelete = value;
+		return this;
+	}
+	
+	
 	@DataSource({"material_id", "materialId"})
 	@DataTarget("material_id")
 	@XMLSimple("materialId")

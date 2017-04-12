@@ -148,7 +148,7 @@
 		</query>
 				
 	</table>
-	
+	<!--  -->
     <table name="settlement_types">
     	<column name="group" type="String"/>
 		<select name="ByPrimaryKey" single_object="true">
@@ -162,6 +162,48 @@
 		</select>
 		<update name="ByPrimaryKey">
 			<column name="settlement_type_id"/>
+		</update>
+	</table>
+	
+	<!--  -->
+	<table name="bgs_states">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="state_id"/>
+		</select>
+		<select name="ByUniq" single_object="true">
+			<column name="state_uniq"/>
+		</select>
+	</table>
+	
+	<!--  -->
+	<table name="system_factions_history">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="system_factions_history_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="system_factions_history_id"/>
+		</update>
+		<query name="LastSystemFactionState">
+			<column name="SystemId" type="java.math.BigInteger"/>
+			<sql>
+				SELECT fsh.*, f.uniq
+				FROM factions f, system_factions_history fsh
+				LEFT JOIN system_factions_history fl ON fl.faction_id = fsh.faction_id AND fl.system_id = fsh.system_id AND fl.create_date &lt; fsh.create_date
+				WHERE fsh.system_id = ?
+				AND ISNULL(fl.create_date)
+				AND f.faction_id = fsh.faction_id
+				ORDER BY fl.faction_id
+			</sql>
+		</query>
+	</table>
+	
+	<!--  -->
+	<table name="system_faction_control">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="system_faction_control_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="system_faction_control_id"/>
 		</update>
 	</table>
 	<!--  -->

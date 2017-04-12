@@ -3,6 +3,7 @@ package org.c3s.edgo.event.impl.beans;
 import java.util.Date;
 
 import org.c3s.edgo.event.AbstractEventBean;
+import org.c3s.edgo.event.impl.beans.intl.FactionBean;
 
 public class FSDJumpBean extends AbstractEventBean {
 
@@ -71,7 +72,10 @@ public class FSDJumpBean extends AbstractEventBean {
 	 * name of the controlling power
 	 */
 	private String[] Powers;
-
+	/**
+	 * 
+	 */
+	private FactionBean[] Factions;
 	
 	public String getPowerplayState() {
 		return PowerplayState;
@@ -297,6 +301,14 @@ public class FSDJumpBean extends AbstractEventBean {
 	 */
 	public void setSystemSecurity(String systemsecurity) {
 		this.SystemSecurity = systemsecurity;
+	}
+
+	public FactionBean[] getFactions() {
+		return Factions;
+	}
+
+	public void setFactions(FactionBean[] factions) {
+		Factions = factions;
 	}
 
 }

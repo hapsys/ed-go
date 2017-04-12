@@ -84,8 +84,9 @@ public class CompanionApi extends AbstractJournalEvent<CompanionApiBean> {
 				DbAccess.pilotShipsAccess.updateByPrimaryKey(pilotShip, pilotShip.getPilotShipId());
 				
 				/**
-				 * Update modules
+				 * Update modules (!!!! Cut from companian api) 
 				 */
+				/*
 				DbAccess.shipSlotsAccess.updateSetDeletedByShipId(pilotShip.getShipId());
 				for (final String cslot : companion.ships.get(strId).modules.keySet()) {
 					if (skip.stream().filter(s -> cslot.toLowerCase().startsWith(s.toLowerCase())).map(s->true).findFirst().orElse(false)) {
@@ -106,6 +107,7 @@ public class CompanionApi extends AbstractJournalEvent<CompanionApiBean> {
 					}
 				}
 				DbAccess.shipSlotsAccess.deleteFailSlotsByShipId(pilotShip.getShipId());
+				*/
 			}
 			DbAccess.pilotShipsAccess.deleteDeletedByPilotId(pilot.getPilotId());
 			//throw new SQLException();

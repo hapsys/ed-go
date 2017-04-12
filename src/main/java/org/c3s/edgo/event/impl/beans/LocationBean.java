@@ -3,6 +3,7 @@ package org.c3s.edgo.event.impl.beans;
 import java.util.Date;
 
 import org.c3s.edgo.event.AbstractEventBean;
+import org.c3s.edgo.event.impl.beans.intl.FactionBean;
 
 public class LocationBean extends AbstractEventBean {
 
@@ -70,7 +71,10 @@ public class LocationBean extends AbstractEventBean {
 	 * name of the controlling power
 	 */
 	private String[] Powers;
-
+	/**
+	 * 
+	 */
+	private FactionBean[] Factions;
 	/**
 	 * @return
 	 */
@@ -307,6 +311,14 @@ public class LocationBean extends AbstractEventBean {
 	 */
 	public void setPowers(String[] powers) {
 		this.Powers = powers;
+	}
+
+	public FactionBean[] getFactions() {
+		return Factions;
+	}
+
+	public void setFactions(FactionBean[] factions) {
+		Factions = factions;
 	}
 
 }
