@@ -199,6 +199,8 @@ public class DBFactionsBean implements DbBean, Serializable {
 	@Override
 	public void setAutoincrementField(Object value) {
 		
+		setFactionId(new java.lang.Long(value.toString()));
+		
 	}	
 	
 }

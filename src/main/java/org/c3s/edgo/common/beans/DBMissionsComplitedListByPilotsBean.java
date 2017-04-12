@@ -368,6 +368,8 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 		
 		setMissionId(new java.math.BigInteger(value.toString()));
 		
+		setFactionId(new java.lang.Long(value.toString()));
+		
 		setMissionTypeId(new java.lang.Long(value.toString()));
 		
 	}	
