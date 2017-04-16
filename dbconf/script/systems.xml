@@ -211,7 +211,7 @@
 		</select>
 		<select name="LastSystemControl" single_object="true">
 			<column name="system_id"/>
-			<sort>create_date DESC</sort>
+			<sort>create_time DESC</sort>
 		</select>
 		<update name="ByPrimaryKey">
 			<column name="system_faction_control_id"/>
@@ -225,7 +225,7 @@
 		</select>
 		<select name="LaststationControl" single_object="true">
 			<column name="station_id"/>
-			<sort>create_date DESC</sort>
+			<sort>create_time DESC</sort>
 		</select>
 		<update name="ByPrimaryKey">
 			<column name="station_faction_control_id"/>

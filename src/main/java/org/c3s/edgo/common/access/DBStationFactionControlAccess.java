@@ -72,7 +72,7 @@ public class DBStationFactionControlAccess extends Access {
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
-			sql += "ORDER BY create_date DESC";
+			sql += "ORDER BY create_time DESC";
 			
 		}
 		String limit = injector.getLimitQuery();
