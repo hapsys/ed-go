@@ -9,6 +9,7 @@ import org.c3s.edgo.common.dao.ShipsDAO;
 import org.c3s.edgo.common.dao.SystemsDAO;
 import org.c3s.edgo.event.AbstractJournalEvent;
 import org.c3s.edgo.event.impl.beans.LocationBean;
+import org.c3s.utils.RegexpUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,7 +33,15 @@ public class Location extends AbstractJournalEvent<LocationBean> {
 				if (bean.getFactions() != null) {
 					SystemsDAO.updateSystemFactionStates(bean.getTimestamp(), bean.getStarSystem(), bean.getStarPos(), bean.getFactions());
 				}
+				if (bean.getSystemFaction() != null) {
+					String gov = bean.getSystemGovernment();
+					if (gov != null && gov.startsWith("$government_")) {
+						gov = RegexpUtils.preg_replace("~^.*_(.+);?$~is", gov, "$1");
+					}
+					SystemsDAO.updateSystemFactionControl(bean.getTimestamp(), bean.getStarSystem(), bean.getStarPos(), bean.getSystemFaction(), gov, bean.getSystemAllegiance());
+				}
 			}
+			
 		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
 			throw new RuntimeException(e);
 		}
