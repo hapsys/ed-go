@@ -47,6 +47,21 @@ public class DBPilotShipsBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"pilot_ship_ident", "pilotShipIdent"})
+	@DataTarget("pilot_ship_ident")
+	@XMLSimple("pilotShipIdent")
+	private java.lang.String pilotShipIdent;
+	
+	public java.lang.String getPilotShipIdent() {
+		return pilotShipIdent;
+	}
+	
+	public DBPilotShipsBean setPilotShipIdent(java.lang.String value) {
+		pilotShipIdent = value;
+		return this;
+	}
+	
+	
 	@DataSource({"system_id", "systemId"})
 	@DataTarget("system_id")
 	@XMLSimple("systemId")

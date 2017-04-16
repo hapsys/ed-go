@@ -18,6 +18,8 @@ public class LoadGameBean extends AbstractEventBean {
 	private String Group;
 	private long Credits;
 	private int Loan;
+	private String ShipName;
+	private String ShipIdent;
 	
 
 	/**
@@ -108,6 +110,22 @@ public class LoadGameBean extends AbstractEventBean {
 	 */
 	public void setEvent(String event) {
 		this.event = event;
+	}
+
+	public String getShipName() {
+		return ShipName;
+	}
+
+	public void setShipName(String shipName) {
+		ShipName = shipName;
+	}
+
+	public String getShipIdent() {
+		return ShipIdent;
+	}
+
+	public void setShipIdent(String shipIdent) {
+		ShipIdent = shipIdent;
 	}
 
 }

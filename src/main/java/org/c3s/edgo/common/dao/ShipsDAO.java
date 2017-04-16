@@ -36,7 +36,7 @@ public class ShipsDAO {
 		return bean;
 	}
 	
-	public static DBPilotShipsBean getOrInsertPilotShip(DBPilotsBean pilot, String shipUniq, long linkShipId, BigInteger locationId, Long stationId) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+	public static DBPilotShipsBean getOrInsertPilotShip(DBPilotsBean pilot, String shipUniq, long linkShipId, BigInteger locationId, Long stationId, String shipName, String shipIdent) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		DBPilotShipsBean pilotShip = null;
 		DBShipsBean ship = getOrInsertShip(shipUniq);
 		if (ship.getIsSpecial() == null || ship.getIsSpecial() != 1) {
@@ -47,6 +47,8 @@ public class ShipsDAO {
 				pilotShip.setLinkShipId(linkShipId);
 				pilotShip.setShipId(ship.getShipId());
 				pilotShip.setIsMain(0);
+				pilotShip.setPilotShipName(shipName);
+				pilotShip.setPilotShipIdent(shipIdent);
 				/*
 				if (location != null) {
 					pilotShip.setSystemId(location.getSystemId());
@@ -57,12 +59,16 @@ public class ShipsDAO {
 				pilotShip.setStationId(stationId);
 				
 				DbAccess.pilotShipsAccess.insert(pilotShip);
+			} else if (shipName != null && shipIdent != null && (!shipName.equals(pilotShip.getPilotShipName()) || !shipIdent.equals(pilotShip.getPilotShipIdent()))) {
+				pilotShip.setSystemId(locationId);
+				pilotShip.setStationId(stationId);
+				DbAccess.pilotShipsAccess.updateByPrimaryKey(pilotShip, pilotShip.getPilotShipId());
 			}
 		}
 		return pilotShip;
 	}
 	
-	public static DBPilotShipsBean updateOrInsertCurrentPilotShip(DBPilotsBean pilot, String shipUniq, long linkShipId) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+	public static DBPilotShipsBean updateOrInsertCurrentPilotShip(DBPilotsBean pilot, String shipUniq, long linkShipId, String shipName, String shipIdent) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		//DBShipsBean ship = getOrInsertShip(shipUniq);
 		Long stationId = null;
 		DBLocationHistoryBean location = DbAccess.locationHistoryAccess.getDirectLastLocation(pilot.getPilotId());
@@ -76,7 +82,7 @@ public class ShipsDAO {
 				stationId = station.getStationId();
 			}
 			
-			DBPilotShipsBean pilotShip = getOrInsertPilotShip(pilot, shipUniq, linkShipId, location.getSystemId(), stationId); 
+			DBPilotShipsBean pilotShip = getOrInsertPilotShip(pilot, shipUniq, linkShipId, location.getSystemId(), stationId, shipName, shipIdent); 
 			if (pilotShip != null) {
 				if (currentShip == null || !currentShip.getLinkShipId().equals(linkShipId)) {
 					pilotShip.setIsMain(1);
@@ -186,7 +192,7 @@ public class ShipsDAO {
 	 * @throws IllegalArgumentException 
 	 */
 	public static void updatePilotShipModule(DBPilotsBean pilot, String ship, long linkShipId, String slot, String module) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
-		DBPilotShipsBean pilotShip = getOrInsertPilotShip(pilot, ship.toLowerCase(), linkShipId, null, null);
+		DBPilotShipsBean pilotShip = getOrInsertPilotShip(pilot, ship.toLowerCase(), linkShipId, null, null, null, null);
 		DBByModuleInfoByUniqBean moduleInfo = getModuleInfo(module);
 		if (moduleInfo != null) {
 			DBSlotsBean slotBean = getOrInsertSlot(slot, moduleInfo.getSlotTypeId());
@@ -201,7 +207,7 @@ public class ShipsDAO {
 	}
 	
 	public static void removePilotShipModule(DBPilotsBean pilot, String ship, long linkShipId, String slot, String module) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
-		DBPilotShipsBean pilotShip = getOrInsertPilotShip(pilot, ship.toLowerCase(), linkShipId, null, null);
+		DBPilotShipsBean pilotShip = getOrInsertPilotShip(pilot, ship.toLowerCase(), linkShipId, null, null, null, null);
 		DBByModuleInfoByUniqBean moduleInfo = getModuleInfo(module);
 		if (moduleInfo != null) {
 			DBSlotsBean slotBean = getOrInsertSlot(slot, moduleInfo.getSlotTypeId());

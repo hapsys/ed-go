@@ -27,7 +27,7 @@ public class ShipyardNew extends AbstractJournalEvent<ShipyardNewBean> {
 			if (current != null) {
 				//System.out.println(bean.getShipType());
 				//System.out.println(bean.getNewShipID());
-				ShipsDAO.updateOrInsertCurrentPilotShip(current, bean.getShipType().toLowerCase(), bean.getNewShipID());
+				ShipsDAO.updateOrInsertCurrentPilotShip(current, bean.getShipType().toLowerCase(), bean.getNewShipID(), null, null);
 			}
 		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
 			throw new RuntimeException(e);

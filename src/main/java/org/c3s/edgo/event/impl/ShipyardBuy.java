@@ -1,7 +1,5 @@
 package org.c3s.edgo.event.impl;
 	
-import java.sql.SQLException;
-
 import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.dao.ShipsDAO;
 import org.c3s.edgo.event.AbstractJournalEvent;
@@ -28,7 +26,7 @@ public class ShipyardBuy extends AbstractJournalEvent<ShipyardBuyBean> {
 			if (current != null) {
 				if (bean.getSellOldShip() != null) {
 					//ShipsDAO.updateOrInsertCurrentPilotShip(current, bean.getSellOldShip().toLowerCase(), bean.getSellShipID());
-					ShipsDAO.removePilotShip(ShipsDAO.getOrInsertPilotShip(current, bean.getSellOldShip().toLowerCase(), bean.getSellShipID(), null, null));
+					ShipsDAO.removePilotShip(ShipsDAO.getOrInsertPilotShip(current, bean.getSellOldShip().toLowerCase(), bean.getSellShipID(), null, null, null, null));
 				}
 			}
 		} catch (Exception e) {

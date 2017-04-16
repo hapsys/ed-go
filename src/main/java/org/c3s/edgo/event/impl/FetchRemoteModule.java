@@ -25,7 +25,7 @@ public class FetchRemoteModule extends AbstractJournalEvent<FetchRemoteModuleBea
 			 */
 			DBPilotsBean current = getCurrent();
 			if (current != null) {
-				ShipsDAO.updateOrInsertCurrentPilotShip(current, bean.getShip().toLowerCase(), bean.getShipID());
+				ShipsDAO.updateOrInsertCurrentPilotShip(current, bean.getShip().toLowerCase(), bean.getShipID(), null, null);
 			}
 		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
 			throw new RuntimeException(e);

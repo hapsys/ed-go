@@ -90,7 +90,7 @@ public class LoadGame extends AbstractJournalEvent<LoadGameBean> {
 				 * Set current pilot ship
 				 */
 				if (bean.getShip() != null) {
-					ShipsDAO.updateOrInsertCurrentPilotShip(current, bean.getShip().toLowerCase(), bean.getShipID());
+					ShipsDAO.updateOrInsertCurrentPilotShip(current, bean.getShip().toLowerCase(), bean.getShipID(), bean.getShipName(), bean.getShipIdent());
 				}
 				//
 				//System.out.println(bean.getTimestamp());
