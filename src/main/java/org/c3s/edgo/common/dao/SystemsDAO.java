@@ -214,7 +214,7 @@ public class SystemsDAO {
 		DBSystemsBean system = getOrInsertSystem(systemName, coord);
 		DBFactionsBean faction = getOrInsertFaction(factionName, government, allegiance);
 		DBSystemFactionControlBean control = DbAccess.systemFactionControlAccess.getLastSystemControl(system.getSystemId());
-		if (!control.getFactionId().equals(faction.getFactionId())) {
+		if (control == null || !control.getFactionId().equals(faction.getFactionId())) {
 			DBSystemFactionControlBean bean = new DBSystemFactionControlBean();
 			bean.setCreateTime(new Timestamp(timestamp.getTime())).setFactionId(faction.getFactionId()).setSystemId(system.getSystemId());
 			DbAccess.systemFactionControlAccess.insert(bean);
@@ -226,7 +226,7 @@ public class SystemsDAO {
 		DBStationsBean station = getOrInsertStation(system.getSystemId(), stationName, stationType, dist);
 		DBFactionsBean faction = getOrInsertFaction(factionName, government, allegiance);
 		DBStationFactionControlBean control = DbAccess.stationFactionControlAccess.getLaststationControl(station.getStationId());
-		if (!control.getFactionId().equals(faction.getFactionId())) {
+		if (control == null || !control.getFactionId().equals(faction.getFactionId())) {
 			DBStationFactionControlBean bean = new DBStationFactionControlBean();
 			bean.setCreateTime(new Timestamp(timestamp.getTime())).setFactionId(faction.getFactionId()).setStationId(station.getStationId());
 			DbAccess.stationFactionControlAccess.insert(bean);
