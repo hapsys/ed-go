@@ -44,6 +44,11 @@ public class DockedBean extends AbstractEventBean {
 	 * 
 	 */
 	private String StationGovernment;
+	
+	/**
+	 * 
+	 */
+	private Float DistFromStarLS;
 
 	/**
 	 * @return
@@ -199,4 +204,11 @@ public class DockedBean extends AbstractEventBean {
 		this.StationGovernment = stationgovernment;
 	}
 
+	public Float getDistFromStarLS() {
+		return DistFromStarLS;
+	}
+
+	public void setDistFromStarLS(Float distFromStarLS) {
+		DistFromStarLS = distFromStarLS;
+	}
 }

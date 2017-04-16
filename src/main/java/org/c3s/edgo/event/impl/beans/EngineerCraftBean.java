@@ -1,9 +1,9 @@
 package org.c3s.edgo.event.impl.beans;
 
 import java.util.Date;
-import java.util.HashMap;
 
 import org.c3s.edgo.event.AbstractEventBean;
+import org.c3s.edgo.event.impl.beans.intl.NameCount;
 
 public class EngineerCraftBean extends AbstractEventBean {
 
@@ -24,7 +24,7 @@ public class EngineerCraftBean extends AbstractEventBean {
 	/**
 	 * JSON object with names and quantities of materials required
 	 */
-	private HashMap<String, Integer> Ingredients;
+	private NameCount[] Ingredients;
 
 	/**
 	 * @return
@@ -96,18 +96,13 @@ public class EngineerCraftBean extends AbstractEventBean {
 		this.Level = level;
 	}
 
-	/**
-	 * @return
-	 */
-	public HashMap<String, Integer> getIngredients() {
+	public NameCount[] getIngredients() {
 		return Ingredients;
 	}
 
-	/**
-	 * @param ingredients
-	 */
-	public void setIngredients(HashMap<String, Integer> ingredients) {
-		this.Ingredients = ingredients;
+	public void setIngredients(NameCount[] ingredients) {
+		Ingredients = ingredients;
 	}
 
+	
 }

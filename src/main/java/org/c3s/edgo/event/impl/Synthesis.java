@@ -8,6 +8,7 @@ import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.dao.PilotDAO;
 import org.c3s.edgo.event.AbstractJournalEvent;
 import org.c3s.edgo.event.impl.beans.SynthesisBean;
+import org.c3s.edgo.event.impl.beans.intl.NameCount;
 import org.c3s.edgo.utils.EDUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,11 +27,13 @@ public class Synthesis extends AbstractJournalEvent<SynthesisBean> {
 			DBPilotsBean pilot = getCurrent();
 			if (pilot != null) {
 				
-				for(String name: bean.getMaterials().keySet()) {
-					String uniq = EDUtils.cutFull(name);
-					DBMaterialsBean mat = DbAccess.materialsAccess.getByUniq(uniq);
-					if (mat != null) {
-						PilotDAO.insertUpdateMaterial(pilot.getPilotId(), mat.getMaterialId(), -bean.getMaterials().get(name));
+				if (bean.getMaterials() != null) {
+					for(NameCount m: bean.getMaterials()) {
+						String uniq = EDUtils.cutFull(m.getName());
+						DBMaterialsBean mat = DbAccess.materialsAccess.getByUniq(uniq);
+						if (mat != null) {
+							PilotDAO.insertUpdateMaterial(pilot.getPilotId(), mat.getMaterialId(), -m.getCount());
+						}
 					}
 				}
 			}

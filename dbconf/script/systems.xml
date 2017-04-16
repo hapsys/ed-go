@@ -49,6 +49,13 @@
 			<column name="name_uniq"/>
 			<column name="system_id"/>
 		</select>
+		<query name="StationsMaxId" single_object="true">
+			<sql>
+				SELECT MAX(s.station_id) as max_station_id
+				FROM stations s
+				LIMIT 1
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 	<table name="factions">
@@ -202,8 +209,26 @@
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="system_faction_control_id"/>
 		</select>
+		<select name="LastSystemControl" single_object="true">
+			<column name="system_id"/>
+			<sort>create_date DESC</sort>
+		</select>
 		<update name="ByPrimaryKey">
 			<column name="system_faction_control_id"/>
+		</update>
+	</table>
+	
+	<!--  -->
+	<table name="station_faction_control">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="station_faction_control_id"/>
+		</select>
+		<select name="LaststationControl" single_object="true">
+			<column name="station_id"/>
+			<sort>create_date DESC</sort>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="station_faction_control_id"/>
 		</update>
 	</table>
 	<!--  -->

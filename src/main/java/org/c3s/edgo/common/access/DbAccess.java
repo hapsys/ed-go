@@ -34,6 +34,7 @@ public class DbAccess {
 	public static final DBBgsStatesAccess bgsStatesAccess = new DBBgsStatesAccess();
 	public static final DBSystemFactionsHistoryAccess systemFactionsHistoryAccess = new DBSystemFactionsHistoryAccess();
 	public static final DBSystemFactionControlAccess systemFactionControlAccess = new DBSystemFactionControlAccess();
+	public static final DBStationFactionControlAccess stationFactionControlAccess = new DBStationFactionControlAccess();
 	public static final DBMissionsAccess missionsAccess = new DBMissionsAccess();
 	public static final DBMissionTypesAccess missionTypesAccess = new DBMissionTypesAccess();
 	public static final DBRewardCommoditiesAccess rewardCommoditiesAccess = new DBRewardCommoditiesAccess();

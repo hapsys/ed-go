@@ -1,9 +1,9 @@
 package org.c3s.edgo.event.impl.beans;
 
 import java.util.Date;
-import java.util.HashMap;
 
 import org.c3s.edgo.event.AbstractEventBean;
+import org.c3s.edgo.event.impl.beans.intl.NameCount;
 
 public class SynthesisBean extends AbstractEventBean {
 
@@ -16,7 +16,8 @@ public class SynthesisBean extends AbstractEventBean {
 	/**
 	 * JSON object listing materials used and quantities
 	 */
-	private HashMap<String, Integer> Materials;
+	//private HashMap<String, Integer> Materials;
+	private NameCount[] Materials;	
 
 	/**
 	 * @return
@@ -60,18 +61,11 @@ public class SynthesisBean extends AbstractEventBean {
 		this.Name = name;
 	}
 
-	/**
-	 * @return
-	 */
-	public HashMap<String, Integer> getMaterials() {
+	public NameCount[] getMaterials() {
 		return Materials;
 	}
 
-	/**
-	 * @param materials
-	 */
-	public void setMaterials(HashMap<String, Integer> materials) {
-		this.Materials = materials;
+	public void setMaterials(NameCount[] materials) {
+		Materials = materials;
 	}
-
 }

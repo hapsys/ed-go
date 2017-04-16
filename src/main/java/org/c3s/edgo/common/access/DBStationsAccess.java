@@ -153,4 +153,33 @@ public class DBStationsAccess extends Access {
 		return ret;
 	}
 	
+	public DBStationsMaxIdBean getStationsMaxId() throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT MAX(s.station_id) as max_station_id 				FROM stations s 				LIMIT 1 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getStationsMaxId", query );
+		DBStationsMaxIdBean ret = null;
+		if (result != null) {
+					ret = new DBStationsMaxIdBean();
+				
+					ret = dataMapper.mapFromRow(result.get(0), DBStationsMaxIdBean.class);
+					
+		}
+			
+		return ret;
+	}
+	
 }

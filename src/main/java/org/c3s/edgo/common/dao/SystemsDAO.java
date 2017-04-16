@@ -16,7 +16,9 @@ import org.c3s.edgo.common.beans.DBBodiesBean;
 import org.c3s.edgo.common.beans.DBBodyTypesBean;
 import org.c3s.edgo.common.beans.DBFactionsBean;
 import org.c3s.edgo.common.beans.DBLastSystemFactionStateBean;
+import org.c3s.edgo.common.beans.DBStationFactionControlBean;
 import org.c3s.edgo.common.beans.DBStationsBean;
+import org.c3s.edgo.common.beans.DBSystemFactionControlBean;
 import org.c3s.edgo.common.beans.DBSystemFactionsHistoryBean;
 import org.c3s.edgo.common.beans.DBSystemsBean;
 import org.c3s.edgo.event.impl.beans.intl.FactionBean;
@@ -125,7 +127,24 @@ public class SystemsDAO {
 		}
 	}
 
-	
+
+	public static DBStationsBean getOrInsertStation(BigInteger systemId, String station, String stationType, Float dist) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		String uniq = EDUtils.getStationUniq(station);
+		DBStationsBean bean = getStation(station, systemId);
+		if (bean == null) {
+			bean = new DBStationsBean();
+			bean.setSystemId(systemId)
+				.setStationId(DbAccess.stationsAccess.getStationsMaxId().getMaxStationId() + 1)
+				.setName(station)
+				.setNameUniq(uniq)
+				.setType(stationType)
+				.setDistanceToStar(dist != null?dist.longValue():null)
+				.setUpdatedAt(new Date().getTime())
+				;
+			DbAccess.stationsAccess.insert(bean);
+		}
+		return bean;
+	}
 	/**
 	 * Faction states
 	 */
@@ -190,4 +209,28 @@ public class SystemsDAO {
 			}
 		}
 	}
+	
+	public static void updateSystemFactionControl(Date timestamp, String systemName, Float[] coord, String factionName, String government, String allegiance) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		DBSystemsBean system = getOrInsertSystem(systemName, coord);
+		DBFactionsBean faction = getOrInsertFaction(factionName, government, allegiance);
+		DBSystemFactionControlBean control = DbAccess.systemFactionControlAccess.getLastSystemControl(system.getSystemId());
+		if (!control.getFactionId().equals(faction.getFactionId())) {
+			DBSystemFactionControlBean bean = new DBSystemFactionControlBean();
+			bean.setCreateTime(new Timestamp(timestamp.getTime())).setFactionId(faction.getFactionId()).setSystemId(system.getSystemId());
+			DbAccess.systemFactionControlAccess.insert(bean);
+		}
+	}
+	
+	public static void updateStationFactionControl(Date timestamp, String systemName, String stationName, String stationType, Float dist, String factionName, String government, String allegiance) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		DBSystemsBean system = getOrInsertSystem(systemName, null);
+		DBStationsBean station = getOrInsertStation(system.getSystemId(), stationName, stationType, dist);
+		DBFactionsBean faction = getOrInsertFaction(factionName, government, allegiance);
+		DBStationFactionControlBean control = DbAccess.stationFactionControlAccess.getLaststationControl(station.getStationId());
+		if (!control.getFactionId().equals(faction.getFactionId())) {
+			DBStationFactionControlBean bean = new DBStationFactionControlBean();
+			bean.setCreateTime(new Timestamp(timestamp.getTime())).setFactionId(faction.getFactionId()).setStationId(station.getStationId());
+			DbAccess.stationFactionControlAccess.insert(bean);
+		}
+	}
+	
 }
