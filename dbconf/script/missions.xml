@@ -100,4 +100,31 @@
 		</delete>
 	</table>
 	<!--  -->
+	<table name="bounty_types">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="bounty_type_id"/>
+		</select>
+		<select name="ByUniq" single_object="true">
+			<column name="bounty_type_uniq"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="bounty_type_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="bounty_type_id"/>
+		</delete>
+	</table>
+	<!--  -->
+	<table name="bounty_faction">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="bounty_faction_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="bounty_faction_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="bounty_faction_id"/>
+		</delete>
+	</table>
+	<!--  -->
 </include>

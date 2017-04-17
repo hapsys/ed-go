@@ -2,12 +2,20 @@ package org.c3s.edgo.common.dao;
 
 import java.math.BigInteger;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.c3s.edgo.common.access.DbAccess;
+import org.c3s.edgo.common.beans.DBBountyFactionBean;
+import org.c3s.edgo.common.beans.DBBountyTypesBean;
 import org.c3s.edgo.common.beans.DBCommoditiesBean;
+import org.c3s.edgo.common.beans.DBFactionsBean;
 import org.c3s.edgo.common.beans.DBMaterialCategoryBean;
 import org.c3s.edgo.common.beans.DBMaterialsBean;
 import org.c3s.edgo.common.beans.DBMissionTypesBean;
+import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.beans.DBRewardCommoditiesBean;
 import org.c3s.edgo.common.beans.DBRewardMaterialsBean;
 import org.c3s.edgo.utils.EDUtils;
@@ -80,4 +88,41 @@ public class MissionsDAO {
 		}
 	}
 	
+	/**
+	 * 
+	 */
+	private static Map<String, DBBountyTypesBean> bountyTypes = new ConcurrentHashMap<>();
+	
+	public static DBBountyTypesBean getOrInsertBountyType(String bountyType) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		DBBountyTypesBean bean = null;
+		if (bountyType != null) {
+			String uniq = bountyType.toLowerCase();
+			if (!bountyTypes.containsKey(uniq)) {
+				bean = DbAccess.bountyTypesAccess.getByUniq(uniq);
+				if (bean == null) {
+					bean = new DBBountyTypesBean();
+					bean.setBountyType(bountyType);
+					bean.setBountyTypeUniq(uniq);
+					DbAccess.bountyTypesAccess.insert(bean);
+				}
+				bountyTypes.put(uniq, bean);
+			}
+			bean = bountyTypes.get(uniq);
+		}
+		return bean;
+	}
+	
+	public static void insertBounty(DBPilotsBean pilot, Date timestamp, String factionName, String bountyType, long amount, int brokerPerc) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		DBFactionsBean faction = SystemsDAO.getOrInsertFaction(factionName);
+		
+		DBBountyFactionBean bean = new DBBountyFactionBean();
+		bean.setCreateDate(new Timestamp(timestamp.getTime()))
+			.setBountyTypeId(getOrInsertBountyType(bountyType).getBountyTypeId())
+			.setFactionId(faction.getFactionId())
+			.setPilotId(pilot.getPilotId())
+			.setAmount(amount)
+			.setBrokerPercent(brokerPerc);
+		DbAccess.bountyFactionAccess.insert(bean);
+		
+	}
 }

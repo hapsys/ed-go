@@ -68,7 +68,14 @@ public class MissionAcceptedBean extends AbstractEventBean {
 	 * eg Tourist, Soldier, Explorer,...
 	 */
 	private String PassengerType;
-
+	/**
+	 * 
+	 */
+	private String Influence;
+	/**
+	 * 
+	 */
+	private String Reputation;
 	/**
 	 * @return
 	 */
@@ -305,6 +312,22 @@ public class MissionAcceptedBean extends AbstractEventBean {
 	 */
 	public void setPassengerType(String passengertype) {
 		this.PassengerType = passengertype;
+	}
+
+	public String getInfluence() {
+		return Influence;
+	}
+
+	public void setInfluence(String influence) {
+		Influence = influence;
+	}
+
+	public String getReputation() {
+		return Reputation;
+	}
+
+	public void setReputation(String reputation) {
+		Reputation = reputation;
 	}
 
 }

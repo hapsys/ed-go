@@ -77,6 +77,21 @@ public class DBMissionsBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"reputation", "reputation"})
+	@DataTarget("reputation")
+	@XMLSimple("reputation")
+	private java.lang.String reputation;
+	
+	public java.lang.String getReputation() {
+		return reputation;
+	}
+	
+	public DBMissionsBean setReputation(java.lang.String value) {
+		reputation = value;
+		return this;
+	}
+	
+	
 	@DataSource({"faction_id", "factionId"})
 	@DataTarget("faction_id")
 	@XMLSimple("factionId")
@@ -148,6 +163,21 @@ public class DBMissionsBean implements DbBean, Serializable {
 	
 	public DBMissionsBean setPilotId(java.lang.Long value) {
 		pilotId = value;
+		return this;
+	}
+	
+	
+	@DataSource({"influence", "influence"})
+	@DataTarget("influence")
+	@XMLSimple("influence")
+	private java.lang.String influence;
+	
+	public java.lang.String getInfluence() {
+		return influence;
+	}
+	
+	public DBMissionsBean setInfluence(java.lang.String value) {
+		influence = value;
 		return this;
 	}
 	

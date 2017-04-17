@@ -43,6 +43,8 @@ public class MissionAccepted extends AbstractJournalEvent<MissionAcceptedBean> {
 					mission.setAcceptDate(new Timestamp(bean.getTimestamp().getTime()));
 					mission.setMissionTypeId(MissionsDAO.getOrInsertMissionType(bean.getName()).getMissionTypeId());
 					mission.setIsFailed(0);
+					mission.setInfluence(bean.getInfluence());
+					mission.setReputation(bean.getReputation());
 					if (bean.getDestinationSystem() != null) {
 						DBSystemsBean system = DbAccess.systemsAccess.getByUniq(EDUtils.getSystemUniq(bean.getDestinationSystem()));
 						if (system != null) {

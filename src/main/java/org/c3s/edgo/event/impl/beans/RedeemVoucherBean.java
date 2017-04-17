@@ -3,6 +3,7 @@ package org.c3s.edgo.event.impl.beans;
 import java.util.Date;
 
 import org.c3s.edgo.event.AbstractEventBean;
+import org.c3s.edgo.event.impl.beans.intl.FactionAmount;
 
 public class RedeemVoucherBean extends AbstractEventBean {
 
@@ -15,12 +16,21 @@ public class RedeemVoucherBean extends AbstractEventBean {
 	/**
 	 * (Net amount received, after any broker fee)
 	 */
-	private String Amount;
+	private long Amount;
 	/**
 	 * (if redeemed through a broker)
 	 */
-	private String BrokerPercenentage;
-
+	private int BrokerPercenentage;
+	/**
+	 * 
+	 */
+	private String Faction;
+	
+	/**
+	 * 
+	 */
+	private FactionAmount[] Factions;
+	
 	/**
 	 * @return
 	 */
@@ -66,29 +76,45 @@ public class RedeemVoucherBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getAmount() {
+	public long getAmount() {
 		return Amount;
 	}
 
 	/**
 	 * @param amount
 	 */
-	public void setAmount(String amount) {
+	public void setAmount(long amount) {
 		this.Amount = amount;
 	}
 
 	/**
 	 * @return
 	 */
-	public String getBrokerPercenentage() {
+	public int getBrokerPercenentage() {
 		return BrokerPercenentage;
 	}
 
 	/**
 	 * @param brokerpercenentage
 	 */
-	public void setBrokerPercenentage(String brokerpercenentage) {
+	public void setBrokerPercenentage(int brokerpercenentage) {
 		this.BrokerPercenentage = brokerpercenentage;
 	}
 
+	public String getFaction() {
+		return Faction;
+	}
+
+	public void setFaction(String faction) {
+		Faction = faction;
+	}
+
+	public FactionAmount[] getFactions() {
+		return Factions;
+	}
+
+	public void setFactions(FactionAmount[] factions) {
+		Factions = factions;
+	}
+	
 }
