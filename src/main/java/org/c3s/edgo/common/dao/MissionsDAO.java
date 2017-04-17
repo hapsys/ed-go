@@ -18,6 +18,7 @@ import org.c3s.edgo.common.beans.DBMissionTypesBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.beans.DBRewardCommoditiesBean;
 import org.c3s.edgo.common.beans.DBRewardMaterialsBean;
+import org.c3s.edgo.common.beans.DBStationHistoryBean;
 import org.c3s.edgo.utils.EDUtils;
 
 public class MissionsDAO {
@@ -112,7 +113,7 @@ public class MissionsDAO {
 		return bean;
 	}
 	
-	public static void insertBounty(DBPilotsBean pilot, Date timestamp, String factionName, String bountyType, long amount, int brokerPerc) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+	public static void insertBounty(DBPilotsBean pilot, DBStationHistoryBean stationHistory, Date timestamp, String factionName, String bountyType, long amount, int brokerPerc) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		DBFactionsBean faction = SystemsDAO.getOrInsertFaction(factionName);
 		
 		DBBountyFactionBean bean = new DBBountyFactionBean();
@@ -120,6 +121,7 @@ public class MissionsDAO {
 			.setBountyTypeId(getOrInsertBountyType(bountyType).getBountyTypeId())
 			.setFactionId(faction.getFactionId())
 			.setPilotId(pilot.getPilotId())
+			.setStationHistoryId(stationHistory.getStationHistoryId())
 			.setAmount(amount)
 			.setBrokerPercent(brokerPerc);
 		DbAccess.bountyFactionAccess.insert(bean);

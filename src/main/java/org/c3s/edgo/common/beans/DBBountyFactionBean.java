@@ -47,6 +47,21 @@ public class DBBountyFactionBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"station_history_id", "stationHistoryId"})
+	@DataTarget("station_history_id")
+	@XMLSimple("stationHistoryId")
+	private java.math.BigInteger stationHistoryId;
+	
+	public java.math.BigInteger getStationHistoryId() {
+		return stationHistoryId;
+	}
+	
+	public DBBountyFactionBean setStationHistoryId(java.math.BigInteger value) {
+		stationHistoryId = value;
+		return this;
+	}
+	
+	
 	@DataSource({"broker_percent", "brokerPercent"})
 	@DataTarget("broker_percent")
 	@XMLSimple("brokerPercent")
