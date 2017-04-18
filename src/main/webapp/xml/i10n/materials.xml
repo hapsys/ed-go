@@ -136,7 +136,7 @@
 		<select lang="en">Classified Scan Databanks</select>
 		<select lang="ru">Засекреченные базы данных сканирования</select>
 	</match>
-	<match name="classifiedscanfragment">
+	<match name="classifiedscandata">
 		<select lang="en">Classified Scan Fragment</select>
 		<select lang="ru">Засекреченные фрагменты данных сканирования
 		</select>
@@ -276,7 +276,7 @@
 		<select lang="en">Configurable Components</select>
 		<select lang="ru">Настраиваемые компоненты</select>
 	</match>
-	<match name="coredynamicscomposites">
+	<match name="fedcorecomposites">
 		<select lang="en">Core Dynamics Composites</select>
 		<select lang="ru">Композиты Core Dynamics</select>
 	</match>
@@ -296,7 +296,7 @@
 		<select lang="en">Filament Composites</select>
 		<select lang="ru">Волокнистые композиты</select>
 	</match>
-	<match name="flawedfocuscrystals">
+	<match name="uncutfocuscrystals">
 		<select lang="en">Flawed Focus Crystals</select>
 		<select lang="ru">Поврежденные фокусировочные кристаллы</select>
 	</match>
@@ -384,7 +384,7 @@
 		<select lang="en">Precipitated Alloys</select>
 		<select lang="ru">Осажденные сплавы</select>
 	</match>
-	<match name="proprietarycomposites">
+	<match name="fedproprietarycomposites">
 		<select lang="en">Proprietary Composites</select>
 		<select lang="ru">Патентованные композиты</select>
 	</match>
@@ -424,7 +424,7 @@
 		<select lang="en">Thermic Alloys</select>
 		<select lang="ru">Термические сплавы</select>
 	</match>
-	<match name="unknownfragment">
+	<match name="unknownenergysource">
 		<select lang="en">Unknown Fragment</select>
 		<select lang="ru">Неизвестный фрагмент</select>
 	</match>
@@ -531,5 +531,26 @@
 	<match name="zirconium">
 		<select lang="en">Zirconium</select>
 		<select lang="ru">Цирконий</select>
+	</match>
+	<!--  -->
+	<match name="ancientbiologicaldata">
+		<select lang="en">Pattern Alpha Obelisk Data</select>
+		<select lang="ru">Данные с обелиска «Альфа»</select>
+	</match>
+	<match name="ancientculturaldata">
+		<select lang="en">Pattern Beta Obelisk Data</select>
+		<select lang="ru">Данные с обелиска «Бета»</select>
+	</match>
+	<match name="ancienthistoricaldata">
+		<select lang="en">Pattern Gamma Obelisk Data</select>
+		<select lang="ru">Данные с обелиска «Гамма»</select>
+	</match>
+	<match name="ancientlanguagedata">
+		<select lang="en">Pattern Delta Obelisk Data</select>
+		<select lang="ru">Данные с обелиска «Дельта»</select>
+	</match>
+	<match name="ancienttechnologicaldata">
+		<select lang="en">Pattern Epsilon Obelisk Data</select>
+		<select lang="ru">Данные с обелиска «Эпсилон»</select>
 	</match>
 </i10n>

@@ -26,7 +26,6 @@ import org.c3s.dispatcher.RedirectControlerInterface;
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBLastEventForUserBean;
 import org.c3s.edgo.common.beans.DBUsersBean;
-import org.c3s.edgo.event.impl.ShipyardNew;
 import org.c3s.edgo.utils.SimpleJsonParser;
 import org.c3s.edgo.web.GeneralController;
 import org.c3s.edgo.web.validator.Result;
