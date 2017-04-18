@@ -1118,14 +1118,13 @@
 					<div class="x_content">
 						<table class="table">
 							<xsl:for-each select="childs/item[field[@name='materialCategoryId']/@value=1]">
-								<!-- 
-								<xsl:sort case-order="upper-first" data-type="text" lang="utf-8" order="ascending" select="field[@name='localized']/@value"/>
-								 -->
 								<tr id="{field[@name='materialUniq']/@value}">
 									<td><xsl:value-of select="field[@name='localized']/@value"/></td>
 									<td style="width:70px;">
 										<button class="btn btn-success button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></button>
+										<!-- 
 										<input class="hidden" name="{field[@name='materialUniq']/@value}" type="number" min="0" max="1000" step="1" value="{field[@name='quantity']/@value}"/>
+										 -->
 									</td>
 								</tr>
 							</xsl:for-each>
@@ -1146,14 +1145,13 @@
 					<div class="x_content">
 						<table class="table">
 							<xsl:for-each select="childs/item[field[@name='materialCategoryId']/@value=2]">
-								<!-- 
-								<xsl:sort case-order="upper-first" data-type="text" lang="utf-8" order="ascending" select="field[@name='localized']/@value"/>
-								 -->
 								<tr id="{field[@name='materialUniq']/@value}">
 									<td><xsl:value-of select="field[@name='localized']/@value"/></td>
 									<td style="width:70px;">
 										<button class="btn btn-success button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></button>
+										<!-- 
 										<input class="hidden" name="{field[@name='materialUniq']/@value}" type="number" min="0" max="1000" step="1" value="{field[@name='quantity']/@value}"/>
+										 -->
 									</td>
 								</tr>
 							</xsl:for-each>
@@ -1174,14 +1172,13 @@
 					<div class="x_content">
 						<table class="table">
 							<xsl:for-each select="childs/item[field[@name='materialCategoryId']/@value=3]">
-								<!-- 
-								<xsl:sort case-order="upper-first" data-type="text" lang="utf-8" order="ascending" select="field[@name='localized']/@value"/>
-								 -->
 								<tr id="{field[@name='materialUniq']/@value}">
 									<td><xsl:value-of select="field[@name='localized']/@value"/></td>
 									<td style="width:70px;">
 										<button class="btn btn-success button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></button>
+										<!-- 
 										<input class="hidden" name="{field[@name='materialUniq']/@value}" type="number" min="0" max="1000" step="1" value="{field[@name='quantity']/@value}"/>
+										 -->
 									</td>
 								</tr>
 							</xsl:for-each>
@@ -1200,6 +1197,7 @@
 				
 				var send_data = null; 
 				
+				/*
 				var focusLost = function(imput) {
 					if ($(imput).parents('tr').find('.button-switch').html() != $(imput).val()) {
 						$(imput).addClass('hidden');
@@ -1259,18 +1257,6 @@
 							}
 							data['material_sorting'] = $("input[name=material_sorting]").val();
 							counter = 0;
-							/*
-							proxy.makeCall('post', '/ajax/pilots/'+ pilot + '/materials/', null, null, data, function(result) {
-								$('.form-materials').find('.button-switch.hidden, .button-switch.btn-default').each(function() {
-									$(this).html($(this).parents('tr').find('input').val());
-									$(this).parents('tr').find('input').addClass('hidden');
-									$(this).removeClass('hidden btn-success btn-default btn-info').addClass('btn-danger');
-								});
-								$('.form-materials').find('.fa-spin').addClass('hidden');
-								setTimeout(timeUpdate, 1000);
-								send_data = null;
-							});
-							*/
 							send_data = null;
 							updateFromServer(data, function(result) {
 								$('.form-materials').find('.button-switch.hidden, .button-switch.btn-default').each(function() {
@@ -1291,6 +1277,7 @@
 					}
 				}
 				timeUpdate();
+				*/
 				
 				var material_sorting = '<xsl:value-of select="/*/@sort"/>';
 				
@@ -1311,7 +1298,7 @@
 							if (result.materials) {
 								var materials = {};
 								result.materials.forEach(function(m, i) {
-									if (m.quantity != $('#' + m.materialUniq).find('input').val()) {
+									if (m.quantity != $('#' + m.materialUniq).find('.button-switch').html()) {
 										$('#' + m.materialUniq).find('input').val(m.quantity);
 										$('#' + m.materialUniq).find('.button-switch').removeClass('btn-success btn-info btn-primary btn-danger').addClass(m.updateTime &lt; 31?'btn-info':'btn-primary').html(m.quantity);
 									} else if (m.updateTime &lt; 61) {
@@ -1337,8 +1324,8 @@
 									});
 								}
 							}
-							switchClick();
-							updateInputEvents();
+							//switchClick();
+							//updateInputEvents();
 							if (callback) {
 								callback(result);
 							}
