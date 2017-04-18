@@ -67,15 +67,15 @@
 					<form class="client-program-form">
 						<p>
 							<label for="accountId"><xsl:value-of select="i10n:tr('client-id')"/></label>
-							<input type="email" readonly="readonly" class="form-control" id="accountId" value="{field[@name='userUuid']/@value}"/>
-							<div><span><a href="#" class="clipboard-copy" data-clipboard-target="#accountId">Copy to clipboard</a></span></div>
+							<input type="text" readonly="readonly" class="form-control" id="accountId" value="{field[@name='userUuid']/@value}"/>
+							<div><span><button class="btn clipboard-copy btn-sm" data-clipboard-target="#accountId">Copy to clipboard</button></span></div>
 						</p>
 						<p>
 							<label for="accessKey"><xsl:value-of select="i10n:tr('client-key')"/></label>
 							<textarea rows="5" readonly="readonly" id="accessKey" class="form-control">
 								<xsl:value-of select="item[@name='userKey']/field[@name='publicKey']/@value"/>
 							</textarea>
-							<div><span><a href="#" class="key-generate">Generate new key</a></span><span><a href="#" class="clipboard-copy" style="margin-left: 50px;" data-clipboard-target="#accessKey">Copy to clipboard</a></span></div>
+							<div><span><button class="btn btn-primary btn-sm key-generate">Generate new key</button></span><span><button class="btn btn-sm clipboard-copy" style="margin-left: 50px;" data-clipboard-target="#accessKey">Copy to clipboard</button></span></div>
 						</p>
 					</form>
 				</div>

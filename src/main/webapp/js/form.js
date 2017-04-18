@@ -102,7 +102,7 @@ $(function() {
 	$(".client-program-form").each(function() {
 		var form = this;
 
-		var clipboardId = new Clipboard('.clipboard-copy');
+		new Clipboard('.clipboard-copy');
 		
 		$(form).find(".key-generate").on("click", function() {
 			Validator.clearErrors(form);
