@@ -123,4 +123,37 @@ public class DBFactionsAccess extends Access {
 		return ret;
 	}
 	
+	public List<DBFactionsSearchBean> getFactionsSearch(String paramsearch) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT f.faction_id, f.name 				FROM factions f, system_faction_control fc 				WHERE f.faction_id=fc.faction_id  				AND f.name LIKE ? 				GROUP BY f.faction_id 				ORDER BY f.name 				LIMIT 20 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getFactionsSearch", query ,  paramsearch);
+		List<DBFactionsSearchBean> ret = null;
+		if (result != null) {
+					ret = new ArrayList<DBFactionsSearchBean>();
+				
+			for (Map<String, Object> res : result) {
+				DBFactionsSearchBean bean = dataMapper.mapFromRow(res, DBFactionsSearchBean.class);
+														
+				ret.add(bean);
+			}
+					
+		}
+			
+		return ret;
+	}
+	
 }

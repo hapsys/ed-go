@@ -130,6 +130,11 @@
 			<title lang="en">Settlements</title>
 			<menu name="main_menu"/>
 		</node>
+		<node pattern="faction-states">
+			<title lang="ru">Состояние фракции</title>
+			<title lang="en">Faction states</title>
+			<menu name="main_menu"/>
+		</node>
 	</node>
 	<!--
 	//

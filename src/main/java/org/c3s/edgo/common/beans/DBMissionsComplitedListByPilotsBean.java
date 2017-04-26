@@ -17,36 +17,6 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 
 
 	
-	@DataSource({"reward", "reward"})
-	@DataTarget("reward")
-	@XMLSimple("reward")
-	private java.lang.Integer reward;
-	
-	public java.lang.Integer getReward() {
-		return reward;
-	}
-	
-	public DBMissionsComplitedListByPilotsBean setReward(java.lang.Integer value) {
-		reward = value;
-		return this;
-	}
-	
-	
-	@DataSource({"station_name", "stationName"})
-	@DataTarget("name")
-	@XMLSimple("stationName")
-	private java.lang.String stationName;
-	
-	public java.lang.String getStationName() {
-		return stationName;
-	}
-	
-	public DBMissionsComplitedListByPilotsBean setStationName(java.lang.String value) {
-		stationName = value;
-		return this;
-	}
-	
-	
 	@DataSource({"target_system_id", "targetSystemId"})
 	@DataTarget("target_system_id")
 	@XMLSimple("targetSystemId")
@@ -73,51 +43,6 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	
 	public DBMissionsComplitedListByPilotsBean setCommodityIdx(java.lang.String value) {
 		commodityIdx = value;
-		return this;
-	}
-	
-	
-	@DataSource({"faction_name", "factionName"})
-	@DataTarget("name")
-	@XMLSimple("factionName")
-	private java.lang.String factionName;
-	
-	public java.lang.String getFactionName() {
-		return factionName;
-	}
-	
-	public DBMissionsComplitedListByPilotsBean setFactionName(java.lang.String value) {
-		factionName = value;
-		return this;
-	}
-	
-	
-	@DataSource({"station_history_id", "stationHistoryId"})
-	@DataTarget("station_history_id")
-	@XMLSimple("stationHistoryId")
-	private java.math.BigInteger stationHistoryId;
-	
-	public java.math.BigInteger getStationHistoryId() {
-		return stationHistoryId;
-	}
-	
-	public DBMissionsComplitedListByPilotsBean setStationHistoryId(java.math.BigInteger value) {
-		stationHistoryId = value;
-		return this;
-	}
-	
-	
-	@DataSource({"system_name", "systemName"})
-	@DataTarget("name")
-	@XMLSimple("systemName")
-	private java.lang.String systemName;
-	
-	public java.lang.String getSystemName() {
-		return systemName;
-	}
-	
-	public DBMissionsComplitedListByPilotsBean setSystemName(java.lang.String value) {
-		systemName = value;
 		return this;
 	}
 	
@@ -167,21 +92,6 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	
-	@DataSource({"mission_type_uniq", "missionTypeUniq"})
-	@DataTarget("mission_type_uniq")
-	@XMLSimple("missionTypeUniq")
-	private java.lang.String missionTypeUniq;
-	
-	public java.lang.String getMissionTypeUniq() {
-		return missionTypeUniq;
-	}
-	
-	public DBMissionsComplitedListByPilotsBean setMissionTypeUniq(java.lang.String value) {
-		missionTypeUniq = value;
-		return this;
-	}
-	
-	
 	@DataSource({"complete_date", "completeDate"})
 	@DataTarget("complete_date")
 	@XMLSimple("completeDate")
@@ -193,36 +103,6 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	
 	public DBMissionsComplitedListByPilotsBean setCompleteDate(java.sql.Timestamp value) {
 		completeDate = value;
-		return this;
-	}
-	
-	
-	@DataSource({"target_station_id", "targetStationId"})
-	@DataTarget("target_station_id")
-	@XMLSimple("targetStationId")
-	private java.lang.Long targetStationId;
-	
-	public java.lang.Long getTargetStationId() {
-		return targetStationId;
-	}
-	
-	public DBMissionsComplitedListByPilotsBean setTargetStationId(java.lang.Long value) {
-		targetStationId = value;
-		return this;
-	}
-	
-	
-	@DataSource({"mission_type_name", "missionTypeName"})
-	@DataTarget("mission_type_name")
-	@XMLSimple("missionTypeName")
-	private java.lang.String missionTypeName;
-	
-	public java.lang.String getMissionTypeName() {
-		return missionTypeName;
-	}
-	
-	public DBMissionsComplitedListByPilotsBean setMissionTypeName(java.lang.String value) {
-		missionTypeName = value;
 		return this;
 	}
 	
@@ -287,6 +167,156 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	
+	@DataSource({"mission_type_id", "missionTypeId"})
+	@DataTarget("mission_type_id")
+	@XMLSimple("missionTypeId")
+	private java.lang.Long missionTypeId;
+	
+	public java.lang.Long getMissionTypeId() {
+		return missionTypeId;
+	}
+	
+	public DBMissionsComplitedListByPilotsBean setMissionTypeId(java.lang.Long value) {
+		missionTypeId = value;
+		return this;
+	}
+	
+	
+	@DataSource({"target_faction_id", "targetFactionId"})
+	@DataTarget("target_faction_id")
+	@XMLSimple("targetFactionId")
+	private java.lang.Long targetFactionId;
+	
+	public java.lang.Long getTargetFactionId() {
+		return targetFactionId;
+	}
+	
+	public DBMissionsComplitedListByPilotsBean setTargetFactionId(java.lang.Long value) {
+		targetFactionId = value;
+		return this;
+	}
+	
+	
+	@DataSource({"reward", "reward"})
+	@DataTarget("reward")
+	@XMLSimple("reward")
+	private java.lang.Integer reward;
+	
+	public java.lang.Integer getReward() {
+		return reward;
+	}
+	
+	public DBMissionsComplitedListByPilotsBean setReward(java.lang.Integer value) {
+		reward = value;
+		return this;
+	}
+	
+	
+	@DataSource({"station_name", "stationName"})
+	@DataTarget("name")
+	@XMLSimple("stationName")
+	private java.lang.String stationName;
+	
+	public java.lang.String getStationName() {
+		return stationName;
+	}
+	
+	public DBMissionsComplitedListByPilotsBean setStationName(java.lang.String value) {
+		stationName = value;
+		return this;
+	}
+	
+	
+	@DataSource({"faction_name", "factionName"})
+	@DataTarget("name")
+	@XMLSimple("factionName")
+	private java.lang.String factionName;
+	
+	public java.lang.String getFactionName() {
+		return factionName;
+	}
+	
+	public DBMissionsComplitedListByPilotsBean setFactionName(java.lang.String value) {
+		factionName = value;
+		return this;
+	}
+	
+	
+	@DataSource({"station_history_id", "stationHistoryId"})
+	@DataTarget("station_history_id")
+	@XMLSimple("stationHistoryId")
+	private java.math.BigInteger stationHistoryId;
+	
+	public java.math.BigInteger getStationHistoryId() {
+		return stationHistoryId;
+	}
+	
+	public DBMissionsComplitedListByPilotsBean setStationHistoryId(java.math.BigInteger value) {
+		stationHistoryId = value;
+		return this;
+	}
+	
+	
+	@DataSource({"system_name", "systemName"})
+	@DataTarget("name")
+	@XMLSimple("systemName")
+	private java.lang.String systemName;
+	
+	public java.lang.String getSystemName() {
+		return systemName;
+	}
+	
+	public DBMissionsComplitedListByPilotsBean setSystemName(java.lang.String value) {
+		systemName = value;
+		return this;
+	}
+	
+	
+	@DataSource({"mission_type_uniq", "missionTypeUniq"})
+	@DataTarget("mission_type_uniq")
+	@XMLSimple("missionTypeUniq")
+	private java.lang.String missionTypeUniq;
+	
+	public java.lang.String getMissionTypeUniq() {
+		return missionTypeUniq;
+	}
+	
+	public DBMissionsComplitedListByPilotsBean setMissionTypeUniq(java.lang.String value) {
+		missionTypeUniq = value;
+		return this;
+	}
+	
+	
+	@DataSource({"target_station_id", "targetStationId"})
+	@DataTarget("target_station_id")
+	@XMLSimple("targetStationId")
+	private java.lang.Long targetStationId;
+	
+	public java.lang.Long getTargetStationId() {
+		return targetStationId;
+	}
+	
+	public DBMissionsComplitedListByPilotsBean setTargetStationId(java.lang.Long value) {
+		targetStationId = value;
+		return this;
+	}
+	
+	
+	@DataSource({"mission_type_name", "missionTypeName"})
+	@DataTarget("mission_type_name")
+	@XMLSimple("missionTypeName")
+	private java.lang.String missionTypeName;
+	
+	public java.lang.String getMissionTypeName() {
+		return missionTypeName;
+	}
+	
+	public DBMissionsComplitedListByPilotsBean setMissionTypeName(java.lang.String value) {
+		missionTypeName = value;
+		return this;
+	}
+	
+	
 	@DataSource({"expire_date", "expireDate"})
 	@DataTarget("expire_date")
 	@XMLSimple("expireDate")
@@ -332,32 +362,17 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	
-	@DataSource({"mission_type_id", "missionTypeId"})
-	@DataTarget("mission_type_id")
-	@XMLSimple("missionTypeId")
-	private java.lang.Long missionTypeId;
+	@DataSource({"mission_date", "missionDate"})
+	@DataTarget("mission_date")
+	@XMLSimple("missionDate")
+	private java.lang.String missionDate;
 	
-	public java.lang.Long getMissionTypeId() {
-		return missionTypeId;
+	public java.lang.String getMissionDate() {
+		return missionDate;
 	}
 	
-	public DBMissionsComplitedListByPilotsBean setMissionTypeId(java.lang.Long value) {
-		missionTypeId = value;
-		return this;
-	}
-	
-	
-	@DataSource({"target_faction_id", "targetFactionId"})
-	@DataTarget("target_faction_id")
-	@XMLSimple("targetFactionId")
-	private java.lang.Long targetFactionId;
-	
-	public java.lang.Long getTargetFactionId() {
-		return targetFactionId;
-	}
-	
-	public DBMissionsComplitedListByPilotsBean setTargetFactionId(java.lang.Long value) {
-		targetFactionId = value;
+	public DBMissionsComplitedListByPilotsBean setMissionDate(java.lang.String value) {
+		missionDate = value;
 		return this;
 	}
 	

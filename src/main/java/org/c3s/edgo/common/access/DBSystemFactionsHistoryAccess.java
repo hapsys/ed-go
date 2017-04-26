@@ -103,6 +103,39 @@ public class DBSystemFactionsHistoryAccess extends Access {
 		return getConnection().updateRow("system_factions_history", map, keys);
 	}
 	
+	public List<DBSystemFactionInfluenceBean> getSystemFactionInfluence(Long paramFactionId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT sf.*, s.name as system_name, f.name as faction_name, b.* 				FROM system_factions_history sf1 				LEFT JOIN system_factions_history sf ON sf.system_id = sf1.system_id 				LEFT JOIN bgs_states b ON sf.state_id = b.state_id 				LEFT JOIN systems s ON sf.system_id = s.system_id 				LEFT JOIN factions f ON sf.faction_id = f.faction_id 				WHERE sf1.faction_id = ? 				GROUP BY sf.system_id, f.name, sf.create_date			 				ORDER BY sf.system_id, f.name, sf.create_date			 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getSystemFactionInfluence", query ,  paramFactionId);
+		List<DBSystemFactionInfluenceBean> ret = null;
+		if (result != null) {
+					ret = new ArrayList<DBSystemFactionInfluenceBean>();
+				
+			for (Map<String, Object> res : result) {
+				DBSystemFactionInfluenceBean bean = dataMapper.mapFromRow(res, DBSystemFactionInfluenceBean.class);
+														
+				ret.add(bean);
+			}
+					
+		}
+			
+		return ret;
+	}
+	
 	public List<DBLastSystemFactionStateBean> getLastSystemFactionState(java.math.BigInteger paramSystemId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();

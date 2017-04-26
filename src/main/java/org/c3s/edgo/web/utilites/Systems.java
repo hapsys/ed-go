@@ -32,7 +32,7 @@ public class Systems {
 	
 	
 	public void getSystemByPatiallyName(@ParameterRequest("system") String str, @Parameter("tag") String tag, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
-		System.out.println("HERE");
+		//System.out.println("HERE");
 		List<DBSystemsSearchBean> systems = null;
 		if (str != null && str.length() > 0) {
 			str = str.toLowerCase() + '%';

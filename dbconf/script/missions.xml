@@ -34,7 +34,7 @@
 	    		<annotation>@XMLSimple</annotation>
 			</result_column>
 			<sql>
-				SELECT m.*, t.*, f.faction_id, f.name as faction_name, s.name as system_name, st.name as station_name,
+				SELECT m.*, DATE_FORMAT(m.complete_date, '%Y-%m-%d %T') AS mission_date, t.*, f.faction_id, f.name as faction_name, s.name as system_name, st.name as station_name,
 					GROUP_CONCAT(DISTINCT rc.commodity_id SEPARATOR ',') as commodity_idx, GROUP_CONCAT(DISTINCT rm.material_id SEPARATOR ',') as material_idx
 				FROM mission_types t, factions f, (missions m, station_history h)
 				LEFT JOIN reward_commodities rc ON rc.mission_id = m.mission_id 

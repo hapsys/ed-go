@@ -35,6 +35,9 @@ public class DbAccess {
 	public static final DBSystemFactionsHistoryAccess systemFactionsHistoryAccess = new DBSystemFactionsHistoryAccess();
 	public static final DBSystemFactionControlAccess systemFactionControlAccess = new DBSystemFactionControlAccess();
 	public static final DBStationFactionControlAccess stationFactionControlAccess = new DBStationFactionControlAccess();
+	public static final DBFactionInfluenceAccess factionInfluenceAccess = new DBFactionInfluenceAccess();
+	public static final DBFactionInfluenceNamesAccess factionInfluenceNamesAccess = new DBFactionInfluenceNamesAccess();
+	public static final DBSystemsFactionsInfluenceAccess systemsFactionsInfluenceAccess = new DBSystemsFactionsInfluenceAccess();
 	public static final DBMissionsAccess missionsAccess = new DBMissionsAccess();
 	public static final DBMissionTypesAccess missionTypesAccess = new DBMissionTypesAccess();
 	public static final DBRewardCommoditiesAccess rewardCommoditiesAccess = new DBRewardCommoditiesAccess();

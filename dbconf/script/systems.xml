@@ -65,6 +65,18 @@
 		<select name="ByUniq" single_object="true">
 			<column name="uniq"/>
 		</select>
+		<query name="FactionsSearch">
+			<column name="search" type="String"/>
+			<sql>
+				SELECT f.faction_id, f.name
+				FROM factions f, system_faction_control fc
+				WHERE f.faction_id=fc.faction_id 
+				AND f.name LIKE ?
+				GROUP BY f.faction_id
+				ORDER BY f.name
+				LIMIT 20
+			</sql>
+		</query>
 	</table>
 	
 	<!--  -->
@@ -202,6 +214,20 @@
 				ORDER BY fl.faction_id
 			</sql>
 		</query>
+		<query name="SystemFactionInfluence">
+			<column name="FactionId" type="Long"/>
+			<sql>
+				SELECT sf.*, s.name as system_name, f.name as faction_name, b.*
+				FROM system_factions_history sf1
+				LEFT JOIN system_factions_history sf ON sf.system_id = sf1.system_id
+				LEFT JOIN bgs_states b ON sf.state_id = b.state_id
+				LEFT JOIN systems s ON sf.system_id = s.system_id
+				LEFT JOIN factions f ON sf.faction_id = f.faction_id
+				WHERE sf1.faction_id = ?
+				GROUP BY sf.system_id, f.name, sf.create_date			
+				ORDER BY sf.system_id, f.name, sf.create_date			
+			</sql>
+		</query>
 	</table>
 	
 	<!--  -->
@@ -230,6 +256,29 @@
 		<update name="ByPrimaryKey">
 			<column name="station_faction_control_id"/>
 		</update>
+	</table>
+	<!--  -->
+	
+	<table name="faction_influence">
+		<column name="date" type="String"/>
+		<column name="timestamp" type="java.util.Date"/>
+		<column name="influence" type="Float"/>
+		<column name="state" type="String"/>
+		<column name="see_flag" type="Boolean"/>
+	</table>
+	<table name="faction_influence_names">
+		<column name="faction_name" type="String"/>
+		<column name="faction_id" type="Long"/>
+		<column name="influence_dates" type="List&lt;? extends Object&gt;">
+	    	<annotation>@XMLFieldList</annotation>
+		</column>
+	</table>
+	<table name="systems_factions_influence">
+		<column name="system_name" type="String"/>
+		<column name="system_id" type="java.math.BigInteger"/>
+		<column name="influence_factions" type="List&lt;DBFactionInfluenceNamesBean&gt;">
+	    	<annotation>@XMLFieldList</annotation>
+		</column>
 	</table>
 	<!--  -->
 	

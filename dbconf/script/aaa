@@ -1,0 +1,556 @@
+0 [main] INFO org.c3s.tools.db.DbTools  - Start build
+1 [main] INFO org.c3s.tools.db.DbTools  - Base directory: E:\Projects\java\ed\edgo\src\main\java
+2 [main] INFO org.c3s.tools.db.DbTools  - Configuration: E:\Projects\java\ed\edgo\dbconf\script\db_info.xml
+2 [main] INFO org.c3s.tools.db.DbTools  - Configuration base: E:\Projects\java\ed\edgo\dbconf\script
+154 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: users
+445 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process non-select query : NullCookieByUserId
+445 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: user_keys
+447 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: roles
+449 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : RolesForUser
+465 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: pilots
+470 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process non-select query : NoCurrent
+471 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : MenuPilotsByUserId
+474 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : PilotsLinkedInfo
+475 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : CheckPilotName
+477 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: pilot_last_info
+478 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : LastPilotInfo
+480 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: pilot_game_modes
+482 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : Activity
+484 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: pilot_ships
+486 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : PilotShipsList
+488 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process non-select query : SetDeletedByPilotId
+488 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process non-select query : DeletedByPilotId
+488 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: pilot_modules
+490 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : PilotShipModulesList
+492 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: pilot_materials
+494 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : PilotMaterialsList
+495 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process non-select query : MaterialsForDelete
+496 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process non-select query : MaterialsCanDelete
+506 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: events
+507 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : UnlockEvent
+508 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: location_history
+509 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : LastLocationForPilot
+511 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : MaxMinDateLocationHistoryForPilot
+512 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : SystemPath
+513 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : LocationsPathCount
+514 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : LocationsPath
+518 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: station_history
+520 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: ranks
+521 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: progress
+523 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: events_history
+524 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : LastEventForUser
+525 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : LastActivityTime
+527 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : HistoryActivity
+528 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : EventMaxMinDateForPilot
+529 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : PilotsLastEvents
+534 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: ships
+535 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: slots
+536 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: ship_slots
+537 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process non-select query : SetDeletedByShipId
+537 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process non-select query : FailSlotsByShipId
+539 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: modules
+540 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : ByUniq
+541 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : ByModuleInfoByUniq
+550 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: systems
+551 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : SystemsInBox
+552 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : SystemsSearch
+553 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: stations
+555 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : StationsMaxId
+556 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: factions
+557 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : FactionsSearch
+557 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: bodies
+559 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: body_types
+560 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: planet_classes
+561 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: volc_classes
+562 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: atm_classes
+562 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: settlements
+563 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : SettlementsSearch
+565 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : CountBySystemAndName
+565 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: settlement_types
+566 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: bgs_states
+567 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: system_factions_history
+568 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : LastSystemFactionState
+569 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : SystemFactionInfluence
+570 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: system_faction_control
+571 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: station_faction_control
+572 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: faction_influence
+578 [main] FATAL org.c3s.tools.db.beans.TableBean  - Process table: faction_influence 	incompleted!
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'ed-go.faction_influence' doesn't exist
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.Util.getInstance(Util.java:386)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1054)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4237)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4169)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2617)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2778)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2825)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:2156)
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:1375)
+	at com.mysql.jdbc.PreparedStatement.getMetaData(PreparedStatement.java:2933)
+	at org.c3s.db.DBConnection.getStatementMetaData(DBConnection.java:193)
+	at org.c3s.db.DBConnection.getTableMetaData(DBConnection.java:254)
+	at org.c3s.tools.db.beans.TableBean.processTable(TableBean.java:79)
+	at org.c3s.tools.db.handlers.TableHandler.performAction(TableHandler.java:34)
+	at org.c3s.parsers.XMLManager.processNode(XMLManager.java:125)
+	at org.c3s.parsers.XMLManager.processNode(XMLManager.java:127)
+	at org.c3s.parsers.XMLManager.processNode(XMLManager.java:127)
+	at org.c3s.parsers.XMLManager.parseXML(XMLManager.java:106)
+	at org.c3s.parsers.FileParser.parse(FileParser.java:17)
+	at org.c3s.tools.db.DbTools.run(DbTools.java:188)
+	at org.c3s.tools.db.DbTools.process(DbTools.java:131)
+	at org.c3s.tools.db.DbTools.main(DbTools.java:62)
+580 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: faction_influence_names
+586 [main] FATAL org.c3s.tools.db.beans.TableBean  - Process table: faction_influence_names 	incompleted!
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'ed-go.faction_influence_names' doesn't exist
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.Util.getInstance(Util.java:386)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1054)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4237)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4169)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2617)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2778)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2825)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:2156)
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:1375)
+	at com.mysql.jdbc.PreparedStatement.getMetaData(PreparedStatement.java:2933)
+	at org.c3s.db.DBConnection.getStatementMetaData(DBConnection.java:193)
+	at org.c3s.db.DBConnection.getTableMetaData(DBConnection.java:254)
+	at org.c3s.tools.db.beans.TableBean.processTable(TableBean.java:79)
+	at org.c3s.tools.db.handlers.TableHandler.performAction(TableHandler.java:34)
+	at org.c3s.parsers.XMLManager.processNode(XMLManager.java:125)
+	at org.c3s.parsers.XMLManager.processNode(XMLManager.java:127)
+	at org.c3s.parsers.XMLManager.processNode(XMLManager.java:127)
+	at org.c3s.parsers.XMLManager.parseXML(XMLManager.java:106)
+	at org.c3s.parsers.FileParser.parse(FileParser.java:17)
+	at org.c3s.tools.db.DbTools.run(DbTools.java:188)
+	at org.c3s.tools.db.DbTools.process(DbTools.java:131)
+	at org.c3s.tools.db.DbTools.main(DbTools.java:62)
+587 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: systems_factions_influence
+605 [main] FATAL org.c3s.tools.db.beans.TableBean  - Process table: systems_factions_influence 	incompleted!
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'ed-go.systems_factions_influence' doesn't exist
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.Util.getInstance(Util.java:386)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1054)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4237)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4169)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2617)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2778)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2825)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:2156)
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:1375)
+	at com.mysql.jdbc.PreparedStatement.getMetaData(PreparedStatement.java:2933)
+	at org.c3s.db.DBConnection.getStatementMetaData(DBConnection.java:193)
+	at org.c3s.db.DBConnection.getTableMetaData(DBConnection.java:254)
+	at org.c3s.tools.db.beans.TableBean.processTable(TableBean.java:79)
+	at org.c3s.tools.db.handlers.TableHandler.performAction(TableHandler.java:34)
+	at org.c3s.parsers.XMLManager.processNode(XMLManager.java:125)
+	at org.c3s.parsers.XMLManager.processNode(XMLManager.java:127)
+	at org.c3s.parsers.XMLManager.processNode(XMLManager.java:127)
+	at org.c3s.parsers.XMLManager.parseXML(XMLManager.java:106)
+	at org.c3s.parsers.FileParser.parse(FileParser.java:17)
+	at org.c3s.tools.db.DbTools.run(DbTools.java:188)
+	at org.c3s.tools.db.DbTools.process(DbTools.java:131)
+	at org.c3s.tools.db.DbTools.main(DbTools.java:62)
+610 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: missions
+611 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : getLastComplitedByPilotId
+613 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : MissionsComplitedListByPilots
+614 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: mission_types
+615 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: reward_commodities
+616 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: reward_materials
+616 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: bounty_types
+617 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: bounty_faction
+621 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: commodities
+621 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : CommoditiesList
+622 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: comodity_categories
+623 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: materials
+623 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : MaterialsList
+624 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: material_category
+632 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: powers
+633 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : ByUniqOrAlias
+634 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: power_state
+635 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : PrevWeekSystemStateCount
+636 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : PrevWeekSystemStateSingle
+638 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: power_state_type
+639 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: power_cortage
+644 [main] FATAL org.c3s.tools.db.beans.TableBean  - Process table: power_cortage 	incompleted!
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'ed-go.power_cortage' doesn't exist
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.Util.getInstance(Util.java:386)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1054)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4237)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4169)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2617)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2778)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2825)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:2156)
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:1375)
+	at com.mysql.jdbc.PreparedStatement.getMetaData(PreparedStatement.java:2933)
+	at org.c3s.db.DBConnection.getStatementMetaData(DBConnection.java:193)
+	at org.c3s.db.DBConnection.getTableMetaData(DBConnection.java:254)
+	at org.c3s.tools.db.beans.TableBean.processTable(TableBean.java:79)
+	at org.c3s.tools.db.handlers.TableHandler.performAction(TableHandler.java:34)
+	at org.c3s.parsers.XMLManager.processNode(XMLManager.java:125)
+	at org.c3s.parsers.XMLManager.processNode(XMLManager.java:127)
+	at org.c3s.parsers.XMLManager.processNode(XMLManager.java:127)
+	at org.c3s.parsers.XMLManager.parseXML(XMLManager.java:106)
+	at org.c3s.parsers.FileParser.parse(FileParser.java:17)
+	at org.c3s.tools.db.DbTools.run(DbTools.java:188)
+	at org.c3s.tools.db.DbTools.process(DbTools.java:131)
+	at org.c3s.tools.db.DbTools.main(DbTools.java:62)
+645 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: pilot_power
+646 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : PilotsPowerWeeks
+647 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: pilot_power_spend
+649 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : ListForPilots
+650 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: pilot_deliver
+651 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : ListForPilots
+651 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: pilot_war_merits
+652 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : ListForPilots
+652 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process non-select query : NulledByPilotIdAndTime
+652 [main] INFO org.c3s.tools.db.beans.TableBean  - Process table: pilot_kill_merits
+653 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select query : ListForPilots
+653 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process non-select query : NulledByPilotIdAndTime
+658 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByEmail
+658 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUuid
+658 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByCheckHash
+658 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByEmailAndPassword
+658 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+658 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByCookie
+658 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+659 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+659 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+659 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+660 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUserIdNoIgnored
+660 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUserId
+660 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: LinkedPilots
+660 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUserIdAndName
+660 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+660 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByName
+660 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: CurrentByUserId
+661 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+661 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+661 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+661 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: LastByPilotId
+661 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+661 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+663 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPilotId
+663 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: CurrentByPilotId
+663 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+663 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPilotIdAndLinkShipId
+663 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+663 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+664 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPilotShipIdSlotId
+664 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+664 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+664 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPilotShipIdAndSlotId
+664 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+664 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPilotShipId
+666 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+666 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+666 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+666 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+666 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+666 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+667 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: DirectLastLocation
+667 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: LastLocation
+667 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+668 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: DirectLastStation
+668 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+668 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: LastStation
+668 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+668 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+668 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+669 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+669 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+669 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUserIdTimestampAndHash
+669 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+669 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+669 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+670 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUniq
+670 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+670 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+671 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+671 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUniq
+671 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+671 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+671 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+671 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+671 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+671 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+671 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+671 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+672 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+672 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUniq
+672 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+673 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUniqAndSystemId
+673 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUniq
+673 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+674 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUniq
+674 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+674 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUniq
+674 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+674 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUniq
+674 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+675 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUniq
+675 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+675 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUniq
+675 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+675 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUniq
+675 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+675 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+675 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+676 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByType
+676 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+676 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: Sorted
+676 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+676 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUniq
+676 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+676 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+677 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+677 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: LastSystemControl
+677 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+677 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+677 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: LaststationControl
+677 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+677 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+678 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+678 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPilotIdAndLinkId
+678 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+678 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+679 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUniq
+679 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+679 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+679 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+679 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+679 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+679 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+679 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+679 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+680 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+680 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUniq
+680 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+680 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+680 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+680 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+680 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+680 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+680 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUniq
+680 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+680 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+681 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+681 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUniq
+681 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUniq
+681 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+681 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+681 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+681 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUniq
+681 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+681 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+681 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+681 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+682 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+682 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+682 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByUniq
+682 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+682 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+682 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+682 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: LastByPilotId
+682 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: HistoryByPilotId
+682 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: LastByPilotIdTime
+682 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+682 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+682 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+683 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPilotIdAndWeek
+683 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: HistoryByPilotId
+683 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+683 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+683 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+683 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: HistoryByPilotId
+683 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+683 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPilotIdAndSystemIdAndWeek
+683 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+683 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+684 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: NotConfirmedByPilotIdAndSystemIdAndWeek
+684 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ConfirmedByPilotIdAndSystemIdAndWeek
+684 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: HistoryByPilotId
+684 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+684 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+684 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+684 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: NotConfirmedByPilotIdAndSystemIdAndWeek
+684 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ConfirmedByPilotIdAndSystemIdAndWeek
+684 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: HistoryByPilotId
+684 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process select: ByPrimaryKey
+684 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process update: ByPrimaryKey
+684 [main] DEBUG org.c3s.tools.db.beans.SimpleQueryBean  - Process delete: ByPrimaryKey
+685 [main] INFO org.c3s.tools.db.DbTools  - Package name:	org.c3s.edgo.common
+685 [main] INFO org.c3s.tools.db.DbTools  - Genererate beans classes...
+886 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBUsersBean
+900 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBUserKeysBean
+903 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBRolesBean
+907 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBRolesForUserBean
+919 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPilotsBean
+921 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBMenuPilotsByUserIdBean
+936 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPilotsLinkedInfoBean
+939 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBCheckPilotNameBean
+941 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPilotLastInfoBean
+943 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBLastPilotInfoBean
+954 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPilotGameModesBean
+964 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBActivityBean
+974 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPilotShipsBean
+986 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPilotShipsListBean
+998 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPilotModulesBean
+1007 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPilotShipModulesListBean
+1018 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPilotMaterialsBean
+1020 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPilotMaterialsListBean
+1022 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBEventsBean
+1024 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBUnlockEventBean
+1032 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBLocationHistoryBean
+1035 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBLastLocationForPilotBean
+1037 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBLocationsPathCountBean
+1039 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBMaxMinDateLocationHistoryForPilotBean
+1042 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBLocationsPathBean
+1044 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBSystemPathBean
+1046 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBStationHistoryBean
+1049 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBRanksBean
+1057 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBProgressBean
+1059 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBEventsHistoryBean
+1063 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBLastActivityTimeBean
+1067 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBLastEventForUserBean
+1074 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBEventMaxMinDateForPilotBean
+1076 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBHistoryActivityBean
+1084 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPilotsLastEventsBean
+1093 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBShipsBean
+1095 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBSlotsBean
+1105 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBShipSlotsBean
+1115 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBModulesBean
+1117 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBByModuleInfoByUniqBean
+1119 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBByUniqBean
+1127 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBSystemsBean
+1130 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBSystemsInBoxBean
+1131 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBSystemsSearchBean
+1136 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBStationsBean
+1149 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBStationsMaxIdBean
+1157 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBFactionsBean
+1169 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBFactionsSearchBean
+1172 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBBodiesBean
+1187 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBBodyTypesBean
+1196 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPlanetClassesBean
+1198 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBVolcClassesBean
+1200 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBAtmClassesBean
+1202 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBSettlementsBean
+1211 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBCountBySystemAndNameBean
+1213 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBSettlementsSearchBean
+1225 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBSettlementTypesBean
+1227 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBBgsStatesBean
+1228 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBSystemFactionsHistoryBean
+1239 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBSystemFactionInfluenceBean
+1241 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBLastSystemFactionStateBean
+1243 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBSystemFactionControlBean
+1245 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBStationFactionControlBean
+1253 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBFactionInfluenceBean
+1255 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBFactionInfluenceNamesBean
+1257 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBSystemsFactionsInfluenceBean
+1259 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBMissionsBean
+1272 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBMissionsComplitedListByPilotsBean
+1284 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBgetLastComplitedByPilotIdBean
+1295 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBMissionTypesBean
+1297 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBRewardCommoditiesBean
+1306 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBRewardMaterialsBean
+1308 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBBountyTypesBean
+1317 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBBountyFactionBean
+1319 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBCommoditiesBean
+1327 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBCommoditiesListBean
+1329 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBComodityCategoriesBean
+1331 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBMaterialsBean
+1340 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBMaterialsListBean
+1348 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBMaterialCategoryBean
+1349 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPowersBean
+1358 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBByUniqOrAliasBean
+1359 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPowerStateBean
+1361 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPrevWeekSystemStateSingleBean
+1372 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPrevWeekSystemStateCountBean
+1380 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPowerStateTypeBean
+1382 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPowerCortageBean
+1391 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPilotPowerBean
+1392 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPilotsPowerWeeksBean
+1402 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPilotPowerSpendBean
+1403 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBListForPilotsBean
+1412 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPilotDeliverBean
+1423 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBListForPilotsBean
+1424 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPilotWarMeritsBean
+1439 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBListForPilotsBean
+1441 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBPilotKillMeritsBean
+1442 [main] DEBUG org.c3s.tools.db.DbTools  - Bean: DBListForPilotsBean
+1443 [main] INFO org.c3s.tools.db.DbTools  - Genererate access classes...
+1551 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBUsersAccess
+1576 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBUserKeysAccess
+1587 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBRolesAccess
+1598 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBPilotsAccess
+1607 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBPilotLastInfoAccess
+1616 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBPilotGameModesAccess
+1628 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBPilotShipsAccess
+1631 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBPilotModulesAccess
+1641 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBPilotMaterialsAccess
+1651 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBEventsAccess
+1663 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBLocationHistoryAccess
+1666 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBStationHistoryAccess
+1668 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBRanksAccess
+1680 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBProgressAccess
+1693 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBEventsHistoryAccess
+1702 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBShipsAccess
+1704 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBSlotsAccess
+1716 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBShipSlotsAccess
+1726 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBModulesAccess
+1735 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBSystemsAccess
+1747 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBStationsAccess
+1756 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBFactionsAccess
+1758 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBBodiesAccess
+1767 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBBodyTypesAccess
+1776 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBPlanetClassesAccess
+1784 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBVolcClassesAccess
+1793 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBAtmClassesAccess
+1795 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBSettlementsAccess
+1805 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBSettlementTypesAccess
+1807 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBBgsStatesAccess
+1809 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBSystemFactionsHistoryAccess
+1811 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBSystemFactionControlAccess
+1812 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBStationFactionControlAccess
+1821 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBFactionInfluenceAccess
+1829 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBFactionInfluenceNamesAccess
+1837 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBSystemsFactionsInfluenceAccess
+1840 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBMissionsAccess
+1848 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBMissionTypesAccess
+1850 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBRewardCommoditiesAccess
+1852 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBRewardMaterialsAccess
+1854 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBBountyTypesAccess
+1866 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBBountyFactionAccess
+1875 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBCommoditiesAccess
+1885 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBComodityCategoriesAccess
+1887 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBMaterialsAccess
+1898 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBMaterialCategoryAccess
+1907 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBPowersAccess
+1910 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBPowerStateAccess
+1912 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBPowerStateTypeAccess
+1913 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBPowerCortageAccess
+1923 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBPilotPowerAccess
+1928 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBPilotPowerSpendAccess
+1933 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBPilotDeliverAccess
+1944 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBPilotWarMeritsAccess
+1956 [main] DEBUG org.c3s.tools.db.DbTools  - Access: DBPilotKillMeritsAccess
+1957 [main] DEBUG org.c3s.tools.db.DbTools  - Access File Holder: DbAccess.java
+Для продолжения нажмите любую клавишу . . . 

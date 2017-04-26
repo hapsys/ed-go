@@ -1,5 +1,8 @@
 package org.c3s.edgo.relations;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum Relation {
 
 	ANY		(0b1),
@@ -10,7 +13,22 @@ public enum Relation {
 	;
 	
 	long mask = 0;
+	
 	private Relation(long mask) {
 		this.mask = mask;
+	}
+	
+	public long getMask() {
+		return mask;
+	}
+	
+	public static Relation[] getRelations(long relation) {
+		List<Relation> result = new ArrayList<Relation>();
+		for(Relation rel: values()) {
+			if ((relation & rel.getMask()) != 0) {
+				result.add(rel);
+			}
+		}
+		return result.toArray(new Relation[]{});
 	}
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:i10n="org.c3s.edgo.utils.I10N">
 	<xsl:output encoding="utf-8" indent="yes" method="html"/>
+	<xsl:decimal-format name="revards" grouping-separator=" " digit="#"/>
 	<xsl:include href="../ranks.xsl"/>
 	<xsl:include href="../dates.xsl"/>
 	<xsl:param name="root"/>
@@ -771,11 +772,11 @@
 				<tbody>
 					<xsl:for-each select="childs/item">
 						<tr>
-							<td rowspan="2"><xsl:value-of select="field[@name='completeDate']/@value"/></td>
+							<td rowspan="2"><xsl:value-of select="field[@name='missionDate']/@value"/></td>
 							<td rowspan="2"><xsl:value-of select="field[@name='missionTypeName']/@value"/></td>
 							<td><xsl:value-of select="field[@name='systemName']/@value"/></td>
 							<td><xsl:value-of select="field[@name='stationName']/@value"/></td>
-							<td rowspan="2"><xsl:value-of select="field[@name='reward']/@value"/></td>
+							<td rowspan="2"><xsl:value-of select="format-number(field[@name='reward']/@value, '### ### ###', 'revards')"/></td>
 							<td rowspan="2">
 								<xsl:for-each select="field[@name='commodityId']/value">
 									<xsl:variable name="id" select="@value"/>
