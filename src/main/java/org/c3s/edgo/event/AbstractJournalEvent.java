@@ -8,7 +8,6 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBEventsBean;
@@ -27,7 +26,7 @@ import org.slf4j.LoggerFactory;
 public abstract class AbstractJournalEvent<T extends AbstractEventBean> implements JournalEvent {
 	
 	@SuppressWarnings("serial")
-	private static Map<String, Integer> notClosedEvents = new ConcurrentHashMap<String, Integer>() {{
+	private static Map<String, Integer> notClosedEvents = new HashMap<String, Integer>() {{
 		put("CompanionApi", null);
 		put("LoadGame", null);
 		put("Cargo", null);
