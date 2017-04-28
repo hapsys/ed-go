@@ -172,7 +172,7 @@ public class SystemsDAO {
 	
 	public static void updateSystemFactionStates(Date timestamp, String systemName, Float[] coord, FactionBean[] factions) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		DBSystemsBean system = getOrInsertSystem(systemName, coord);
-		List<DBLastSystemFactionStateBean> history = DbAccess.systemFactionsHistoryAccess.getLastSystemFactionState(system.getSystemId());
+		List<DBLastSystemFactionStateBean> history = DbAccess.systemFactionsHistoryAccess.getLastSystemFactionState(system.getSystemId(), new Timestamp(timestamp.getTime()));
 		Map<String, DBLastSystemFactionStateBean> fmap;
 		if (history == null) {
 			fmap = new HashMap<>();

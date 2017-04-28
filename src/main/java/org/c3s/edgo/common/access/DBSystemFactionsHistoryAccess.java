@@ -136,7 +136,7 @@ public class DBSystemFactionsHistoryAccess extends Access {
 		return ret;
 	}
 	
-	public List<DBLastSystemFactionStateBean> getLastSystemFactionState(java.math.BigInteger paramSystemId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+	public List<DBLastSystemFactionStateBean> getLastSystemFactionState(java.math.BigInteger paramSystemId, java.sql.Timestamp paramDateTime) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
@@ -149,11 +149,11 @@ public class DBSystemFactionsHistoryAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT fsh.*, f.uniq 				FROM factions f, system_factions_history fsh 				LEFT JOIN system_factions_history fl ON fl.faction_id = fsh.faction_id AND fl.system_id = fsh.system_id AND fl.create_date < fsh.create_date 				WHERE fsh.system_id = ? 				AND ISNULL(fl.create_date) 				AND f.faction_id = fsh.faction_id 				ORDER BY fl.faction_id 			";
+			query = " 				SELECT fsh.*, f.uniq 				FROM factions f, system_factions_history fsh 				WHERE fsh.system_id = ? 				AND f.faction_id = fsh.faction_id 				AND fsh.system_factions_history_id = ( 					SELECT sh.system_factions_history_id  					FROM system_factions_history sh 					WHERE sh.system_id = fsh.system_id 					AND sh.faction_id=fsh.faction_id 					AND sh.create_date <= ? 					ORDER BY sh.create_date DESC 					LIMIT 1   				)  				ORDER BY fsh.faction_id 			";
 		}
 
 		
-		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getLastSystemFactionState", query ,  paramSystemId);
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getLastSystemFactionState", query ,  paramSystemId,  paramDateTime);
 		List<DBLastSystemFactionStateBean> ret = null;
 		if (result != null) {
 					ret = new ArrayList<DBLastSystemFactionStateBean>();
