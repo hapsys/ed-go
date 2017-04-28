@@ -16,6 +16,7 @@ import org.c3s.edgo.common.beans.DBBodiesBean;
 import org.c3s.edgo.common.beans.DBBodyTypesBean;
 import org.c3s.edgo.common.beans.DBFactionsBean;
 import org.c3s.edgo.common.beans.DBLastSystemFactionStateBean;
+import org.c3s.edgo.common.beans.DBLastSystemFactionStateDateBean;
 import org.c3s.edgo.common.beans.DBStationFactionControlBean;
 import org.c3s.edgo.common.beans.DBStationsBean;
 import org.c3s.edgo.common.beans.DBSystemFactionControlBean;
@@ -172,40 +173,45 @@ public class SystemsDAO {
 	
 	public static void updateSystemFactionStates(Date timestamp, String systemName, Float[] coord, FactionBean[] factions) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		DBSystemsBean system = getOrInsertSystem(systemName, coord);
-		List<DBLastSystemFactionStateBean> history = DbAccess.systemFactionsHistoryAccess.getLastSystemFactionState(system.getSystemId(), new Timestamp(timestamp.getTime()));
-		Map<String, DBLastSystemFactionStateBean> fmap;
-		if (history == null) {
-			fmap = new HashMap<>();
-		} else {
-			fmap = history.parallelStream().collect(Collectors.toMap(x -> x.getUniq(), x -> x));
-		}
-		Map <String, FactionBean> newStates = Arrays.asList(factions).parallelStream().collect(Collectors.toMap(x -> EDUtils.getFactionUniq(x.getName()), x -> x));
 		
-		for (String uniq: newStates.keySet()) {
-			FactionBean newf = newStates.get(uniq);
-			DBBgsStatesBean state = getOrInsertState(newf.getFactionState());
-			if (fmap.containsKey(uniq)) {
-				DBLastSystemFactionStateBean last = fmap.get(uniq);
-				if (!last.getStateId().equals(state.getStateId()) || Math.abs(last.getInfluence() - newf.getInfluence()) > 0.005f) {
+		DBLastSystemFactionStateDateBean lastDate = DbAccess.systemFactionsHistoryAccess.getLastSystemFactionStateDate(system.getSystemId());
+		
+		if (lastDate == null || lastDate.getCreateDate().getTime() <= timestamp.getTime()) {
+			List<DBLastSystemFactionStateBean> history = DbAccess.systemFactionsHistoryAccess.getLastSystemFactionState(system.getSystemId());
+			Map<String, DBLastSystemFactionStateBean> fmap;
+			if (history == null) {
+				fmap = new HashMap<>();
+			} else {
+				fmap = history.parallelStream().collect(Collectors.toMap(x -> x.getUniq(), x -> x));
+			}
+			Map <String, FactionBean> newStates = Arrays.asList(factions).parallelStream().collect(Collectors.toMap(x -> EDUtils.getFactionUniq(x.getName()), x -> x));
+			
+			for (String uniq: newStates.keySet()) {
+				FactionBean newf = newStates.get(uniq);
+				DBBgsStatesBean state = getOrInsertState(newf.getFactionState());
+				if (fmap.containsKey(uniq)) {
+					DBLastSystemFactionStateBean last = fmap.get(uniq);
+					if (!last.getStateId().equals(state.getStateId()) || Math.abs(last.getInfluence() - newf.getInfluence()) > 0.005f) {
+						DBSystemFactionsHistoryBean bean = new DBSystemFactionsHistoryBean();
+						bean.setSystemId(system.getSystemId()).setFactionId(last.getFactionId()).setCreateDate(new Timestamp(timestamp.getTime())).setStateId(state.getStateId()).setInfluence(newf.getInfluence());
+						DbAccess.systemFactionsHistoryAccess.insert(bean);
+					}
+					fmap.remove(uniq);
+				} else {
+					DBFactionsBean last = getOrInsertFaction(newf.getName(), newf.getGovernment(), newf.getAllegiance());
 					DBSystemFactionsHistoryBean bean = new DBSystemFactionsHistoryBean();
 					bean.setSystemId(system.getSystemId()).setFactionId(last.getFactionId()).setCreateDate(new Timestamp(timestamp.getTime())).setStateId(state.getStateId()).setInfluence(newf.getInfluence());
 					DbAccess.systemFactionsHistoryAccess.insert(bean);
 				}
-				fmap.remove(uniq);
-			} else {
-				DBFactionsBean last = getOrInsertFaction(newf.getName(), newf.getGovernment(), newf.getAllegiance());
-				DBSystemFactionsHistoryBean bean = new DBSystemFactionsHistoryBean();
-				bean.setSystemId(system.getSystemId()).setFactionId(last.getFactionId()).setCreateDate(new Timestamp(timestamp.getTime())).setStateId(state.getStateId()).setInfluence(newf.getInfluence());
-				DbAccess.systemFactionsHistoryAccess.insert(bean);
 			}
-		}
-		// Remove leaving
-		for (String uniq: fmap.keySet()) {
-			DBLastSystemFactionStateBean last = fmap.get(uniq);
-			if (last.getStateId() != null) {
-				DBSystemFactionsHistoryBean bean = new DBSystemFactionsHistoryBean();
-				bean.setSystemId(system.getSystemId()).setFactionId(last.getFactionId()).setCreateDate(new Timestamp(timestamp.getTime())).setStateId(null).setInfluence(null);
-				DbAccess.systemFactionsHistoryAccess.insert(bean);
+			// Remove leaving
+			for (String uniq: fmap.keySet()) {
+				DBLastSystemFactionStateBean last = fmap.get(uniq);
+				if (last.getStateId() != null) {
+					DBSystemFactionsHistoryBean bean = new DBSystemFactionsHistoryBean();
+					bean.setSystemId(system.getSystemId()).setFactionId(last.getFactionId()).setCreateDate(new Timestamp(timestamp.getTime())).setStateId(null).setInfluence(null);
+					DbAccess.systemFactionsHistoryAccess.insert(bean);
+				}
 			}
 		}
 	}

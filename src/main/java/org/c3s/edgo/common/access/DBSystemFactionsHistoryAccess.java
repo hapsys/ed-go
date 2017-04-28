@@ -136,7 +136,7 @@ public class DBSystemFactionsHistoryAccess extends Access {
 		return ret;
 	}
 	
-	public List<DBLastSystemFactionStateBean> getLastSystemFactionState(java.math.BigInteger paramSystemId, java.sql.Timestamp paramDateTime) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+	public List<DBLastSystemFactionStateBean> getLastSystemFactionState(java.math.BigInteger paramSystemId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
@@ -149,11 +149,11 @@ public class DBSystemFactionsHistoryAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT fsh.*, f.uniq 				FROM factions f, system_factions_history fsh 				WHERE fsh.system_id = ? 				AND f.faction_id = fsh.faction_id 				AND fsh.system_factions_history_id = ( 					SELECT sh.system_factions_history_id  					FROM system_factions_history sh 					WHERE sh.system_id = fsh.system_id 					AND sh.faction_id=fsh.faction_id 					AND sh.create_date <= ? 					ORDER BY sh.create_date DESC 					LIMIT 1   				)  				ORDER BY fsh.faction_id 			";
+			query = " 				SELECT fsh.*, f.uniq 				FROM factions f, system_factions_history fsh 				WHERE fsh.system_id = ? 				AND f.faction_id = fsh.faction_id 				AND fsh.system_factions_history_id = ( 					SELECT sh.system_factions_history_id  					FROM system_factions_history sh 					WHERE sh.system_id = fsh.system_id 					AND sh.faction_id=fsh.faction_id 					 					ORDER BY sh.create_date DESC 					LIMIT 1   				)  				ORDER BY fsh.faction_id 			";
 		}
 
 		
-		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getLastSystemFactionState", query ,  paramSystemId,  paramDateTime);
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getLastSystemFactionState", query ,  paramSystemId);
 		List<DBLastSystemFactionStateBean> ret = null;
 		if (result != null) {
 					ret = new ArrayList<DBLastSystemFactionStateBean>();
@@ -163,6 +163,35 @@ public class DBSystemFactionsHistoryAccess extends Access {
 														
 				ret.add(bean);
 			}
+					
+		}
+			
+		return ret;
+	}
+	
+	public DBLastSystemFactionStateDateBean getLastSystemFactionStateDate(java.math.BigInteger paramSystemId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT fsh.create_date 				FROM system_factions_history fsh 				WHERE fsh.system_id = ? 				ORDER BY fsh.create_date DESC 				LIMIT 1 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getLastSystemFactionStateDate", query ,  paramSystemId);
+		DBLastSystemFactionStateDateBean ret = null;
+		if (result != null) {
+					ret = new DBLastSystemFactionStateDateBean();
+				
+					ret = dataMapper.mapFromRow(result.get(0), DBLastSystemFactionStateDateBean.class);
 					
 		}
 			

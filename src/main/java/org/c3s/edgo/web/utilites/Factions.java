@@ -30,7 +30,6 @@ import org.c3s.edgo.common.beans.DBSystemsFactionsInfluenceBean;
 import org.c3s.edgo.web.validator.Result;
 import org.c3s.exceptions.XMLException;
 import org.c3s.reflection.XMLList;
-import org.c3s.reflection.XMLReflectionObj;
 import org.c3s.web.redirect.DropRedirect;
 import org.c3s.xml.utils.XMLUtils;
 import org.slf4j.Logger;

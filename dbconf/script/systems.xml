@@ -216,9 +216,19 @@
 			</sql>
 		</query>
 		 -->
+		<query name="LastSystemFactionStateDate" single_object="true">
+			<column name="SystemId" type="java.math.BigInteger"/>
+			<sql>
+				SELECT fsh.create_date
+				FROM system_factions_history fsh
+				WHERE fsh.system_id = ?
+				ORDER BY fsh.create_date DESC
+				LIMIT 1
+			</sql>			
+		</query>
 		<query name="LastSystemFactionState">
 			<column name="SystemId" type="java.math.BigInteger"/>
-			<column name="DateTime" type="java.sql.Timestamp"/>
+			<!--  column name="DateTime" type="java.sql.Timestamp"/ -->
 			<sql>
 				SELECT fsh.*, f.uniq
 				FROM factions f, system_factions_history fsh
@@ -229,7 +239,7 @@
 					FROM system_factions_history sh
 					WHERE sh.system_id = fsh.system_id
 					AND sh.faction_id=fsh.faction_id
-					AND sh.create_date &lt;= ?
+					<!-- AND sh.create_date &lt;= ?  -->
 					ORDER BY sh.create_date DESC
 					LIMIT 1  
 				) 
