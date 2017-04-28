@@ -17,17 +17,16 @@ public class EventDispatcher {
 	private static Logger logger = LoggerFactory.getLogger(EventDispatcher.class);
 	
 	
-	@SuppressWarnings("serial")
-	private static Map<String, Integer> storedEventsNames = new ConcurrentHashMap<String, Integer>() {{
-		put("cargo", null);
-		put("loadout", null);
-		put("materials", null);
-	}};
-
-	@SuppressWarnings("serial")
-	private static Map<String, Integer> executeEventsNames = new ConcurrentHashMap<String, Integer>() {{
-		put("loadgame", null);
-	}};
+	private static Map<String, Integer> storedEventsNames = new ConcurrentHashMap<String, Integer>();
+	private static Map<String, Integer> executeEventsNames = new ConcurrentHashMap<String, Integer>();
+	
+	static {
+		storedEventsNames.put("cargo", null);
+		storedEventsNames.put("loadout", null);
+		storedEventsNames.put("materials", null);
+		//
+		executeEventsNames.put("loadgame", null);
+	}
 	
 	private Map<String, DBEventsBean> storedEvents = new LinkedHashMap<>(); 
 	
