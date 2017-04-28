@@ -91,6 +91,21 @@ public class DBFactionInfluenceBean implements DbBean, Serializable {
 		return this;
 	}
 	
+	
+	@DataSource({"inherited", "inherited"})
+	@DataTarget("inherited")
+	@XMLSimple("inherited")
+	private Boolean inherited;
+	
+	public Boolean getInherited() {
+		return inherited;
+	}
+	
+	public DBFactionInfluenceBean setInherited(Boolean value) {
+		inherited = value;
+		return this;
+	}
+	
 	@Override
 	public void setAutoincrementField(Object value) {
 		

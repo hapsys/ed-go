@@ -78,6 +78,27 @@ FORMS
 	margin: 0 0 0 0;
 }
 /*
+FACTION FORM
+*/
+
+.faction-inherited {
+	background-color: #ffe0e0;
+}
+
+.faction-delimer {
+	background-color: #aaa;
+	font-size: 1px;
+}
+
+.faction-current {
+	background-color: #e0ffe0;
+}
+
+.faction-border {
+	border-right-color: black;
+}
+
+/*
 SHIPS
 */
 .ship-adder {

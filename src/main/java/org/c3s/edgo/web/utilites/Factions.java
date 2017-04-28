@@ -151,6 +151,7 @@ public class Factions {
 					.setTimestamp(new Date(val.getCreateDate().getTime()))
 					.setInfluence(val.getInfluence())
 					.setSeeFlag(false)
+					.setInherited(false)
 				);
 			}
 			
@@ -161,6 +162,7 @@ public class Factions {
 						infl.add(new DBFactionInfluenceBean()
 							.setDate(startDateStr)
 							.setSeeFlag(true)
+							.setInherited(false)
 						);
 					} else {
 						DBFactionInfluenceBean val = infl.get(infl.size() - 1);
@@ -170,6 +172,7 @@ public class Factions {
 									.setState(val.getState())
 									.setDate(startDateStr)
 									.setSeeFlag(true)
+									.setInherited(true)
 								);
 						} else {
 							val.setDate(startDateStr).setSeeFlag(true);
@@ -194,6 +197,8 @@ public class Factions {
 		
 		//Document xml = new XMLReflectionObj(systems, true).toXML();
 		Document xml = new XMLList(systems, true).toXML("data");
+		
+		xml.getDocumentElement().setAttribute("faction_id", factionIdStr);
 		
 		ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:faction_list"});
 		redirect.setRedirect(new DropRedirect());

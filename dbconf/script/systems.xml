@@ -297,6 +297,7 @@
 		<column name="influence" type="Float"/>
 		<column name="state" type="String"/>
 		<column name="see_flag" type="Boolean"/>
+		<column name="inherited" type="Boolean"/>
 	</table>
 	<table name="faction_influence_names">
 		<column name="faction_name" type="String"/>
