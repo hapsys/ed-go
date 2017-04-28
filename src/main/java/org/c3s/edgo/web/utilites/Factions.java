@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -190,9 +192,21 @@ public class Factions {
 			DBSystemsFactionsInfluenceBean system = new DBSystemsFactionsInfluenceBean().setSystemId(systemId).setSystemName(systemNames.get(systemId)).setInfluenceFactions(new ArrayList<>());
 			systems.add(system);
 			for (Long factId: chkSystems.get(systemId).keySet()) {
-				DBFactionInfluenceNamesBean faction = new DBFactionInfluenceNamesBean().setFactionId(factId).setFactionName(factionNames.get(factId)).setInfluenceDates(chkSystems.get(systemId).get(factId));
+				List<DBFactionInfluenceBean> list = chkSystems.get(systemId).get(factId);
+				Collections.reverse(list);
+				DBFactionInfluenceNamesBean faction = new DBFactionInfluenceNamesBean().setFactionId(factId).setFactionName(factionNames.get(factId)).setInfluenceDates(list);
 				system.getInfluenceFactions().add(faction);
 			}
+			Collections.sort(system.getInfluenceFactions(), new Comparator<DBFactionInfluenceNamesBean>() {
+				@Override
+				public int compare(DBFactionInfluenceNamesBean o1, DBFactionInfluenceNamesBean o2) {
+					if (o1.getFactionId().equals(factionId)) {
+						return -1;
+					} else {
+						return o2.getInfluenceDates().get(0).getInfluence().compareTo(o1.getInfluenceDates().get(0).getInfluence());
+					}
+				}
+			});
 		}
 		
 		//Document xml = new XMLReflectionObj(systems, true).toXML();

@@ -302,7 +302,7 @@
 	<table name="faction_influence_names">
 		<column name="faction_name" type="String"/>
 		<column name="faction_id" type="Long"/>
-		<column name="influence_dates" type="List&lt;? extends Object&gt;">
+		<column name="influence_dates" type="List&lt;DBFactionInfluenceBean&gt;">
 	    	<annotation>@XMLFieldList</annotation>
 		</column>
 	</table>

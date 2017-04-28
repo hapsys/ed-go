@@ -51,13 +51,13 @@ public class DBFactionInfluenceNamesBean implements DbBean, Serializable {
 	@DataTarget("influence_dates")
 	@XMLFieldList
 
-	private List<? extends Object> influenceDates;
+	private List<DBFactionInfluenceBean> influenceDates;
 	
-	public List<? extends Object> getInfluenceDates() {
+	public List<DBFactionInfluenceBean> getInfluenceDates() {
 		return influenceDates;
 	}
 	
-	public DBFactionInfluenceNamesBean setInfluenceDates(List<? extends Object> value) {
+	public DBFactionInfluenceNamesBean setInfluenceDates(List<DBFactionInfluenceBean> value) {
 		influenceDates = value;
 		return this;
 	}

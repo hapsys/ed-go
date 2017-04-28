@@ -34,8 +34,8 @@
 				<select name="faction" id="faction" type="text" class="form-control" data-placeholder="Select faction...">
 					<option></option>
 				</select>
-                <span class="input-group-btn">
-                  <button class="btn btn-default" id="show-faction-info" type="button">Go!</button>
+                <span class="input-group-btn" style="padding-left: 1px;">
+                  <button class="btn btn-default" id="show-faction-info" type="button">Show!</button>
                 </span>
               </div>
             </div>
@@ -76,7 +76,7 @@
 								<xsl:value-of select="floor(number(field[@name='influence']/@value) * 100)"/>%
 							</xsl:if>
 						</td>
-						<td class="{$class}"><xsl:value-of select="field[@name='state']/@value"/></td>
+						<td class="{$is_current} {$class}"><xsl:value-of select="field[@name='state']/@value"/></td>
 					</xsl:for-each>
 				</tr>
 				<xsl:for-each select="influenceFactions/item">
