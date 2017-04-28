@@ -1,5 +1,6 @@
 package org.c3s.edgo.event;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -17,8 +18,8 @@ public class EventDispatcher {
 	private static Logger logger = LoggerFactory.getLogger(EventDispatcher.class);
 	
 	
-	private static Map<String, Integer> storedEventsNames = new ConcurrentHashMap<String, Integer>();
-	private static Map<String, Integer> executeEventsNames = new ConcurrentHashMap<String, Integer>();
+	private static Map<String, Integer> storedEventsNames = new HashMap<String, Integer>();
+	private static Map<String, Integer> executeEventsNames = new HashMap<String, Integer>();
 	
 	static {
 		storedEventsNames.put("cargo", null);
