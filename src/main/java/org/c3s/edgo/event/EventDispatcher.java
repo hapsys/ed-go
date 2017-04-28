@@ -1,5 +1,6 @@
 package org.c3s.edgo.event;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -14,6 +15,21 @@ import org.slf4j.LoggerFactory;
 public class EventDispatcher {
 
 	private static Logger logger = LoggerFactory.getLogger(EventDispatcher.class);
+	
+	
+	@SuppressWarnings("serial")
+	private static Map<String, Integer> storedEventsNames = new ConcurrentHashMap<String, Integer>() {{
+		put("cargo", null);
+		put("loadout", null);
+		put("materials", null);
+	}};
+
+	@SuppressWarnings("serial")
+	private static Map<String, Integer> executeEventsNames = new ConcurrentHashMap<String, Integer>() {{
+		put("loadgame", null);
+	}};
+	
+	private Map<String, DBEventsBean> storedEvents = new LinkedHashMap<>(); 
 	
 	private static Map<String, Class<? extends JournalEvent>> events = new ConcurrentHashMap<String, Class<? extends JournalEvent>>();
 	
@@ -55,24 +71,45 @@ public class EventDispatcher {
 	 * @param parameters
 	 */
 	public void dispatch(DBEventsBean evt) {
-		Class<? extends JournalEvent> eventClass = events.get(evt.getEventName().toLowerCase());
-		if (eventClass != null) {
-			
-			JournalEvent event;
-			try {
-				event = eventClass.newInstance();
-				service.execute(new Runnable() {
-					@Override
-					public void run() {
-						event.process(evt);
-					}
-				});
-			} catch (InstantiationException | IllegalAccessException e) {
-				logger.warn("Create instance fail for class \"{}\"", eventClass.getName(), e);
-			}  
-			
+		
+		String eventName = evt.getEventName().toLowerCase();
+		
+		if (storedEventsNames.containsKey(eventName) && !storedEvents.containsKey(eventName)) {
+			storedEvents.put(eventName, evt);
 		} else {
-			logger.warn("No class for event \"{}\"", evt.getEventName());
+			
+			/*
+			if (!storedEvents.containsKey(eventName)) {
+				storedEvents.remove(eventName);
+			}
+			*/
+			
+			Class<? extends JournalEvent> eventClass = events.get(eventName);
+			if (eventClass != null) {
+				
+				JournalEvent event;
+				try {
+					event = eventClass.newInstance();
+					service.execute(new Runnable() {
+						@Override
+						public void run() {
+							event.process(evt);
+						}
+					});
+					if (executeEventsNames.containsKey(eventName)) {
+						for (String key: storedEvents.keySet()) {
+							dispatch(storedEvents.get(key));
+						}
+						storedEvents.clear();
+					}
+					
+				} catch (InstantiationException | IllegalAccessException e) {
+					logger.warn("Create instance fail for class \"{}\"", eventClass.getName(), e);
+				}  
+				
+			} else {
+				logger.warn("No class for event \"{}\"", evt.getEventName());
+			}
 		}
 	}
 }

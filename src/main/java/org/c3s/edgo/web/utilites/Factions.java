@@ -196,9 +196,9 @@ public class Factions {
 		//Document xml = new XMLReflectionObj(systems, true).toXML();
 		Document xml = new XMLList(systems, true).toXML("data");
 		
-		ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:list"});
+		ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:faction_list"});
 		redirect.setRedirect(new DropRedirect());
 		
-		System.out.println(XMLUtils.saveXML(xml));
+		//System.out.println(XMLUtils.saveXML(xml));
 	}
 }

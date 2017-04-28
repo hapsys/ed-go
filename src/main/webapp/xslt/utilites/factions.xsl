@@ -15,7 +15,8 @@
 	<xsl:template match="/data">
 		<xsl:choose>
 			<xsl:when test="$mode = 'canvas'"><xsl:call-template name="canvas"/></xsl:when>
-	</xsl:choose>
+			<xsl:when test="$mode = 'faction_list'"><xsl:call-template name="faction_list"/></xsl:when>
+		</xsl:choose>
 	</xsl:template>
 <!--
 //
@@ -44,6 +45,51 @@
         <p id="factions">
         </p>
 		<script type="text/javascript" src="{$root}/js/factions.js"></script>
+	</xsl:template>
+<!--
+//
+//
+//
+-->
+	<xsl:template name="faction_list">
+		<table class="table table-bordered">
+			<tr>
+				<th>System</th>
+				<th>Faction</th>
+				<xsl:for-each select="item[1]/influenceFactions/item[1]/influenceDates/item">
+					<th colspan="2"><xsl:value-of select="field[@name='date']/@value"/></th>
+				</xsl:for-each>
+			</tr>
+			<xsl:for-each select="item">
+				<tr>
+					<td rowspan="{count(influenceFactions/item)}"><xsl:value-of select="field[@name='systemName']/@value"/></td>
+					<td><xsl:value-of select="influenceFactions/item[1]/field[@name='factionName']/@value"/></td>
+					<xsl:for-each select="influenceFactions/item[1]/influenceDates/item">
+						<td>
+							<xsl:if test="string-length(field[@name='influence']/@value) != 0">
+								<xsl:value-of select="floor(number(field[@name='influence']/@value) * 100)"/>%
+							</xsl:if>
+						</td>
+						<td><xsl:value-of select="field[@name='state']/@value"/></td>
+					</xsl:for-each>
+				</tr>
+				<xsl:for-each select="influenceFactions/item">
+					<xsl:if test="position() != 1">
+						<tr>
+							<td><xsl:value-of select="field[@name='factionName']/@value"/></td>
+							<xsl:for-each select="influenceDates/item">
+								<td>
+									<xsl:if test="string-length(field[@name='influence']/@value) != 0">
+										<xsl:value-of select="floor(number(field[@name='influence']/@value) * 100)"/>%
+									</xsl:if>
+								</td>
+								<td><xsl:value-of select="field[@name='state']/@value"/></td>
+							</xsl:for-each>
+						</tr>
+					</xsl:if>
+				</xsl:for-each>
+			</xsl:for-each>
+		</table>
 	</xsl:template>
 <!--
 //
