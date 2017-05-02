@@ -47,6 +47,22 @@ public class DBFactionInfluenceNamesBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"faction_info", "factionInfo"})
+	@DataTarget("faction_info")
+	@XMLReflectionField
+
+	private DBFactionsBean factionInfo;
+	
+	public DBFactionsBean getFactionInfo() {
+		return factionInfo;
+	}
+	
+	public DBFactionInfluenceNamesBean setFactionInfo(DBFactionsBean value) {
+		factionInfo = value;
+		return this;
+	}
+	
+	
 	@DataSource({"influence_dates", "influenceDates"})
 	@DataTarget("influence_dates")
 	@XMLFieldList

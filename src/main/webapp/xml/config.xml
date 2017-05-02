@@ -13,6 +13,7 @@
 			<module class="org.c3s.edgo.web.language.I10nManager" action="init">
 				<param name="content" value="xml/i10n/content.xml"/>
 				<param name="content" value="xml/i10n/materials.xml"/>
+				<param name="content" value="xml/i10n/factions.xml"/>
 			</module>
 			<!--
 			-->

@@ -65,6 +65,7 @@
 		<select name="ByUniq" single_object="true">
 			<column name="uniq"/>
 		</select>
+		<select name="FactionInformation" intruder="org.c3s.edgo.common.intruders.InInjector"/>
 		<query name="FactionsSearch">
 			<column name="search" type="String"/>
 			<sql>
@@ -302,6 +303,9 @@
 	<table name="faction_influence_names">
 		<column name="faction_name" type="String"/>
 		<column name="faction_id" type="Long"/>
+		<column name="faction_info" type="DBFactionsBean">
+	    	<annotation>@XMLReflectionField</annotation>
+		</column>
 		<column name="influence_dates" type="List&lt;DBFactionInfluenceBean&gt;">
 	    	<annotation>@XMLFieldList</annotation>
 		</column>

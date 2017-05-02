@@ -63,6 +63,49 @@ public class DBFactionsAccess extends Access {
 	}
 	
 	
+	public List<DBFactionsBean> getFactionInformation() throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		return getFactionInformation(null);
+	}
+	
+	public List<DBFactionsBean> getFactionInformation(org.c3s.edgo.common.intruders.InInjector paramIntruder)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		List<DBFactionsBean> ret = null;
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		if (paramIntruder != null) {
+			injector = paramIntruder;
+		}
+		
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  "+injector.getWhereQuery()+" ";
+		if (injector.getOrderQuery().length() != 0) {
+			sql += injector.getOrderQuery();
+		} else { 
+			
+		}
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			
+		}
+		
+		
+		
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getFactionInformation", sql );
+		if (result != null) {
+			
+			ret = new ArrayList<DBFactionsBean>();
+			for (Map<String, Object> res : result) {
+				DBFactionsBean bean = dataMapper.mapFromRow(res, DBFactionsBean.class);
+				 
+				ret.add(bean);
+			}
+				
+		}
+		return ret;
+	}
+	
 	public DBFactionsBean getByUniq(java.lang.String paramUniq)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		DBFactionsBean ret = null;

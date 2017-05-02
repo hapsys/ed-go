@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<i10n>
+	<match name="None">
+		<select lang="ru"></select>
+		<select lang="en"></select>
+	</match>
+	<match name="Boom">
+		<select lang="ru">B</select>
+		<select lang="en">B</select>
+	</match>
+	<match name="Retreat">
+		<select lang="ru">Re</select>
+		<select lang="en">Re</select>
+	</match>
+	<match name="War">
+		<select lang="ru">W</select>
+		<select lang="en">W</select>
+	</match>
+	<match name="Famine">
+		<select lang="ru">F</select>
+		<select lang="en">F</select>
+	</match>
+	<match name="Lockdown">
+		<select lang="ru">L</select>
+		<select lang="en">L</select>
+	</match>
+	<match name="CivilWar">
+		<select lang="ru">CW</select>
+		<select lang="en">VW</select>
+	</match>
+	<match name="Outbreak">
+		<select lang="ru">O</select>
+		<select lang="en">O</select>
+	</match>
+	<match name="CivilUnrest">
+		<select lang="ru">CU</select>
+		<select lang="en">CU</select>
+	</match>
+	<match name="Expansion">
+		<select lang="ru">Ex</select>
+		<select lang="en">Ex</select>
+	</match>
+	<match name="Election">
+		<select lang="ru">El</select>
+		<select lang="en">El</select>
+	</match>
+	<match name="Bust">
+		<select lang="ru">Bt</select>
+		<select lang="en">Bt</select>
+	</match>
+	<match name="Investment">
+		<select lang="ru">In</select>
+		<select lang="en">In</select>
+	</match>
+
+</i10n>

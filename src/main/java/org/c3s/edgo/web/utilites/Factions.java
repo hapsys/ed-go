@@ -26,12 +26,15 @@ import org.c3s.dispatcher.RedirectControlerInterface;
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBFactionInfluenceBean;
 import org.c3s.edgo.common.beans.DBFactionInfluenceNamesBean;
+import org.c3s.edgo.common.beans.DBFactionsBean;
 import org.c3s.edgo.common.beans.DBFactionsSearchBean;
 import org.c3s.edgo.common.beans.DBSystemFactionInfluenceBean;
 import org.c3s.edgo.common.beans.DBSystemsFactionsInfluenceBean;
+import org.c3s.edgo.common.intruders.InInjector;
 import org.c3s.edgo.web.validator.Result;
 import org.c3s.exceptions.XMLException;
 import org.c3s.reflection.XMLList;
+import org.c3s.utils.Utils;
 import org.c3s.web.redirect.DropRedirect;
 import org.c3s.xml.utils.XMLUtils;
 import org.slf4j.Logger;
@@ -132,6 +135,9 @@ public class Factions {
 			startDate = new Date(startDate.getTime() - 1000L * 24 * 3600);
 		}
 		
+		@SuppressWarnings("unchecked")
+		List<DBFactionsBean> factionsInfo = DbAccess.factionsAccess.getFactionInformation(new InInjector("faction_id", new ArrayList(factionNames.keySet())));
+		Map<Object, List<DBFactionsBean>> factionsInfoMap = Utils.getArrayGrouped(factionsInfo, "factionId");
 		
 		while (startDate.getTime() < max_date) {
 			
@@ -194,7 +200,10 @@ public class Factions {
 			for (Long factId: chkSystems.get(systemId).keySet()) {
 				List<DBFactionInfluenceBean> list = chkSystems.get(systemId).get(factId);
 				Collections.reverse(list);
-				DBFactionInfluenceNamesBean faction = new DBFactionInfluenceNamesBean().setFactionId(factId).setFactionName(factionNames.get(factId)).setInfluenceDates(list);
+				DBFactionInfluenceNamesBean faction = new DBFactionInfluenceNamesBean()
+						.setFactionId(factId)
+						.setFactionName(factionNames.get(factId))
+						.setInfluenceDates(list).setFactionInfo(factionsInfoMap.get(factId).size() > 0? factionsInfoMap.get(factId).get(0): null);
 				system.getInfluenceFactions().add(faction);
 			}
 			Collections.sort(system.getInfluenceFactions(), new Comparator<DBFactionInfluenceNamesBean>() {
@@ -208,6 +217,13 @@ public class Factions {
 				}
 			});
 		}
+		
+		Collections.sort(systems, new Comparator<DBSystemsFactionsInfluenceBean>() {
+			@Override
+			public int compare(DBSystemsFactionsInfluenceBean o1, DBSystemsFactionsInfluenceBean o2) {
+				return o1.getSystemName().compareToIgnoreCase(o2.getSystemName());
+			}
+		});
 		
 		//Document xml = new XMLReflectionObj(systems, true).toXML();
 		Document xml = new XMLList(systems, true).toXML("data");
