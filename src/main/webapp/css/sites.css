@@ -95,7 +95,7 @@ FACTION FORM
 }
 
 .faction-border {
-	border-right-color: black;
+	padding-top:15px;
 }
 
 /*

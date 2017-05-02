@@ -53,16 +53,13 @@
 -->
 	<xsl:template name="faction_list">
 		<table class="table table-bordered">
-			<tr>
-				<th>&#160;</th>
-				<xsl:for-each select="item[1]/influenceFactions/item[1]/influenceDates/item">
-					<th class="faction-border"><xsl:value-of select="field[@name='date']/@value"/></th>
-				</xsl:for-each>
-			</tr>
-			<xsl:variable name="colspan" select="1 + count(item[1]/influenceFactions/item[1]/influenceDates/item)"/>
+			<!-- xsl:variable name="colspan" select="1 + count(item[1]/influenceFactions/item[1]/influenceDates/item)"/ -->
 			<xsl:for-each select="item">
 				<tr>
-					<td colspan="{$colspan}"><h2><xsl:value-of select="field[@name='systemName']/@value"/></h2></td>
+					<td><h2><xsl:value-of select="field[@name='systemName']/@value"/></h2></td>
+					<xsl:for-each select="influenceFactions/item[1]/influenceDates/item">
+						<th class="faction-border" style="padding-top:20px;"><xsl:value-of select="field[@name='date']/@value"/></th>
+					</xsl:for-each>
 				</tr>
 				<xsl:for-each select="influenceFactions/item">
 					<tr>
