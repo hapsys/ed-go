@@ -1109,15 +1109,15 @@
 				<form class="form-inline col-md-6 col-sm-6 col-xs-12 pull-right">
 					<div class="input-group">
 						<select name="eng_caterory" id="eng-caterory" class="form-control" data-placeholder="Select faction..." style="width:250px;">
-							<option value="">&lt;Select Category&gt;</option>
+							<option value="">&lt;<xsl:value-of select="i10n:tr('Select Category')"/>&gt;</option>
 							<xsl:for-each select="eng_types/item">
-								<option value="{field[@name='engTypeUniq']/@value}"><xsl:value-of select="field[@name='engTypeName']/@value"/></option>
+								<option value="{field[@name='engTypeUniq']/@value}"><xsl:value-of select="field[@name='localized']/@value"/></option>
 							</xsl:for-each>
 						</select>
 					</div>
 					<div class="input-group">
 						<select name="eng_blueprint" id="eng-blueprint" class="form-control" data-placeholder="Select faction..." disabled="disabled"  style="width:300px;">
-							<option value=''>&lt;Select Blueprint&gt;</option>
+							<option value=''>&lt;<xsl:value-of select="i10n:tr('Select Blueprint')"/>&gt;</option>
 						</select>
 					</div>
 				</form>
@@ -1402,7 +1402,7 @@
 							result.grades.forEach(function(v) {
 								if (bp != v.engBlueprintUniq) {
 									bp = v.engBlueprintUniq;
-									optgroup = $('&lt;optgroup class="dynamic-option" data-blueprint="' + v.engBlueprintUniq + '" label="' + v.engBlueprintName + '"&gt;&lt;/optgroup &gt;').appendTo('#eng-blueprint');
+									optgroup = $('&lt;optgroup class="dynamic-option" data-blueprint="' + v.engBlueprintUniq + '" label="' + v.localized + '"&gt;&lt;/optgroup &gt;').appendTo('#eng-blueprint');
 								}
 								$($('&lt;option class="dynamic-option" data-blueptint="' + v.grade + '"&gt;' + v.grade + ' [' + v.engeneers + ']' + '&lt;/option &gt;').appendTo(optgroup)); 
 							});

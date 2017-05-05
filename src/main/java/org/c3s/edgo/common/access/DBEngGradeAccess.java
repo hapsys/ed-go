@@ -122,7 +122,7 @@ public class DBEngGradeAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT g.*, b.*, GROUP_CONCAT(DISTINCT e.engeneer_name ORDER BY e.engeneer_name SEPARATOR ', ') as engeneers 				FROM eng_blueprint b, eng_type t, eng_grade g 				LEFT JOIN eng_engeneers_grade eg ON eg.eng_grade_id = g.eng_grade_id  				LEFT JOIN eng_engeneers e ON e.eng_engeneer_id = eg.eng_engeneer_id 				WHERE t.eng_type_uniq = ?  				AND b.eng_type_id = t.eng_type_id 				AND g.eng_blueprint_id = b.eng_blueprint_id 				GROUP BY g.eng_grade_id 				ORDER BY b.eng_blueprint_uniq, g.grade 			";
+			query = " 				SELECT g.*, b.*, GROUP_CONCAT(DISTINCT e.engeneer_name ORDER BY e.engeneer_name SEPARATOR ', ') as engeneers, '' as localized 				FROM eng_blueprint b, eng_type t, eng_grade g 				LEFT JOIN eng_engeneers_grade eg ON eg.eng_grade_id = g.eng_grade_id  				LEFT JOIN eng_engeneers e ON e.eng_engeneer_id = eg.eng_engeneer_id 				WHERE t.eng_type_uniq = ?  				AND b.eng_type_id = t.eng_type_id 				AND g.eng_blueprint_id = b.eng_blueprint_id 				GROUP BY g.eng_grade_id 				ORDER BY b.eng_blueprint_uniq, g.grade 			";
 		}
 
 		

@@ -2,6 +2,7 @@
 <include>
 	<!--  -->
 	<table name="eng_type">
+		<column name="localized" type="String"/> 
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="eng_type_id"/>
 		</select>
@@ -51,7 +52,7 @@
 		<query name="GradesByTypeUniq">
 			<column name="TypeUniq" type="String"/>
 			<sql>
-				SELECT g.*, b.*, GROUP_CONCAT(DISTINCT e.engeneer_name ORDER BY e.engeneer_name SEPARATOR ', ') as engeneers
+				SELECT g.*, b.*, GROUP_CONCAT(DISTINCT e.engeneer_name ORDER BY e.engeneer_name SEPARATOR ', ') as engeneers, '' as localized
 				FROM eng_blueprint b, eng_type t, eng_grade g
 				LEFT JOIN eng_engeneers_grade eg ON eg.eng_grade_id = g.eng_grade_id 
 				LEFT JOIN eng_engeneers e ON e.eng_engeneer_id = eg.eng_engeneer_id

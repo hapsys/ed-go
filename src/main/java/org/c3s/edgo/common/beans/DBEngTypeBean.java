@@ -61,6 +61,21 @@ public class DBEngTypeBean implements DbBean, Serializable {
 		return this;
 	}
 	
+	
+	@DataSource({"localized", "localized"})
+	@DataTarget("localized")
+	@XMLSimple("localized")
+	private String localized;
+	
+	public String getLocalized() {
+		return localized;
+	}
+	
+	public DBEngTypeBean setLocalized(String value) {
+		localized = value;
+		return this;
+	}
+	
 	@Override
 	public void setAutoincrementField(Object value) {
 		

@@ -1,0 +1,1176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<i10n>
+
+	<match name="Select Category">
+		<select lang="ru">Выберите категорию</select>
+	</match>
+	
+	<match name="Select Blueptint">
+		<select lang="ru">Выберите чертеж</select>
+	</match>
+	
+	<match name="Short Range Blaster">
+		<select lang="ru">Бластер малого радиуса</select>
+	</match>
+
+	<match name="Lightweight">
+		<select lang="ru">Облегченный</select>
+	</match>
+
+	<match name="Heavy Duty Hull Reinforcement">
+		<select lang="ru">Утяжеление усилителя корпуса</select>
+	</match>
+
+	<match name="Drive Strengthening">
+		<select lang="ru">Защищённый двигатель</select>
+	</match>
+
+	<match name="Efficient Weapon">
+		<select lang="ru">Эффективное оружие</select>
+	</match>
+
+	<match name="Lightweight Mount">
+		<select lang="ru">Легкое крепление</select>
+	</match>
+
+	<match name="Armoured">
+		<select lang="ru">Бронированный</select>
+	</match>
+
+	<match name="Reinforced">
+		<select lang="ru">Усиленный</select>
+	</match>
+
+	<match name="Sturdy Mount">
+		<select lang="ru">Прочное крепление</select>
+	</match>
+
+	<match name="Longer Range FSD interdictor">
+		<select lang="ru">Увеличение дальности перехвата</select>
+	</match>
+
+	<match name="Reinforced Shields">
+		<select lang="ru">Усиленный щит</select>
+	</match>
+
+	<match name="Enhanced, Low Power Shields">
+		<select lang="ru">Энергосберегающий щит</select>
+	</match>
+
+	<match name="Shielded">
+		<select lang="ru">Бронированный</select>
+	</match>
+
+	<match name="Thermal Resistant">
+		<select lang="ru">Противотепловое усиление</select>
+	</match>
+
+	<match name="Weapon Focused">
+		<select lang="ru">Оружие-ориентированный</select>
+	</match>
+
+	<match name="Blast Resistant">
+		<select lang="ru">Противовзрывное усиление</select>
+	</match>
+
+	<match name="High Capacity Magazine">
+		<select lang="ru">Вместительный магазин</select>
+	</match>
+
+	<match name="Kinetic Resistant">
+		<select lang="ru">Противокинетическое усиление</select>
+	</match>
+
+	<match name="Focused Weapon">
+		<select lang="ru">Сфокусированное оружие</select>
+	</match>
+
+	<match name="Thermal Resistant Shields">
+		<select lang="ru">Противотепловой щит</select>
+	</match>
+
+	<match name="Rapid Fire Modification">
+		<select lang="ru">Увеличение скорострельности</select>
+	</match>
+
+	<match name="Long Range Weapon">
+		<select lang="ru">Увеличенная дальность</select>
+	</match>
+
+	<match name="Ammo Capacity">
+		<select lang="ru">Боезапас</select>
+	</match>
+
+	<match name="Overcharged Weapon">
+		<select lang="ru">Усиленное оружие</select>
+	</match>
+
+	<match name="Low Emissions">
+		<select lang="ru">Снижение излучения</select>
+	</match>
+
+	<match name="System Focused">
+		<select lang="ru">Системо-ориентированный</select>
+	</match>
+
+	<match name="Overcharged">
+		<select lang="ru">Усиленный</select>
+	</match>
+
+	<match name="Increased FSD Range">
+		<select lang="ru">Увеличенная дальность РСД</select>
+	</match>
+
+	<match name="Thermal Resistant Hull Reinforcement">
+		<select lang="ru">Противотепловое усиление</select>
+	</match>
+
+	<match name="Dirty Drive Tuning">
+		<select lang="ru">«Грязная» донастройка</select>
+	</match>
+
+	<match name="Engine Focused">
+		<select lang="ru">Двигатель-ориентированный</select>
+	</match>
+
+	<match name="Kinetic Resistant Hull Reinforcement">
+		<select lang="ru">Противокинетическое усиление</select>
+	</match>
+
+	<match name="High Charge Capacity">
+		<select lang="ru">Высокоёмкий</select>
+	</match>
+
+	<match name="Rapid Charge">
+		<select lang="ru">Быстрозаряжающийся</select>
+	</match>
+
+	<match name="Expanded FSD Interdictor Capture Arc">
+		<select lang="ru">Увеличение угла перехвата</select>
+	</match>
+
+	<match name="Heavy Duty">
+		<select lang="ru">Усиленный</select>
+	</match>
+
+	<match name="Charge Enhanced">
+		<select lang="ru">Быстрозарядный</select>
+	</match>
+
+	<match name="Blast Resistant Hull Reinforcement">
+		<select lang="ru">Противовзрывное усиление корпуса</select>
+	</match>
+
+	<match name="Double Shot">
+		<select lang="ru">Двойной выстрел</select>
+	</match>
+
+	<match name="Lightweight Hull Reinforcement">
+		<select lang="ru">Облегчение усилителя корпуса</select>
+	</match>
+
+	<match name="Resistance Augmented">
+		<select lang="ru">Сбалансированное усиление</select>
+	</match>
+
+	<match name="Specialised">
+		<select lang="ru">Специализированный</select>
+	</match>
+
+	<match name="Faster FSD Boot Sequence">
+		<select lang="ru">Ускорение перезапуска РСД</select>
+	</match>
+
+	<match name="Shielded FSD">
+		<select lang="ru">Защищенный РСД</select>
+	</match>
+
+	<match name="Clean Drive Tuning">
+		<select lang="ru">«Чистая» донастройка</select>
+	</match>
+
+	<match name="Kinetic Resistant Shields">
+		<select lang="ru">Противокинетический щит</select>
+	</match>
+
+	<match name="Plasma Accelerator">
+		<select lang="ru">Ускоритель плазмы</select>
+	</match>
+
+	<match name="Electronic Countermeasure">
+		<select lang="ru">Электронное противодействие</select>
+	</match>
+
+	<match name="Life Support">
+		<select lang="ru">Система жизнеобеспечения</select>
+	</match>
+
+	<match name="Hull Reinforcement Package">
+		<select lang="ru">Набор для усиления корпуса</select>
+	</match>
+
+	<match name="Cannon">
+		<select lang="ru">Орудие</select>
+	</match>
+
+	<match name="Thrusters">
+		<select lang="ru">Маневровые двигатели</select>
+	</match>
+
+	<match name="Multi-cannon">
+		<select lang="ru">Многоствольное орудие</select>
+	</match>
+
+	<match name="Missile Rack">
+		<select lang="ru">Ракетный лоток</select>
+	</match>
+
+	<match name="Power Plant">
+		<select lang="ru">Силовая установка</select>
+	</match>
+
+	<match name="Chaff Launcher">
+		<select lang="ru">Разбрасыватель дип. отражателей</select>
+	</match>
+
+	<match name="Frame Shift Drive Interdictor">
+		<select lang="ru">РСД перехватчик</select>
+	</match>
+
+	<match name="Shield Generator">
+		<select lang="ru">Генератор щита</select>
+	</match>
+
+	<match name="Point Defence">
+		<select lang="ru">Точечная оборона</select>
+	</match>
+
+	<match name="Shield Booster">
+		<select lang="ru">Усилитель щита</select>
+	</match>
+
+	<match name="Kill Warrant Scanner">
+		<select lang="ru">Сканер преступников</select>
+	</match>
+
+	<match name="Rail Gun">
+		<select lang="ru">Электромагнитная пушка</select>
+	</match>
+
+	<match name="Power Distributor">
+		<select lang="ru">Распределитель питания</select>
+	</match>
+
+	<match name="Fragment Cannon">
+		<select lang="ru">Залповое орудие</select>
+	</match>
+
+	<match name="Mine Launcher">
+		<select lang="ru">Минирующее устройство</select>
+	</match>
+
+	<match name="Beam Laser">
+		<select lang="ru">Пучковый лазер</select>
+	</match>
+
+	<match name="Armour">
+		<select lang="ru">Броня</select>
+	</match>
+
+	<match name="Prospector Limpet Controller">
+		<select lang="ru">Контроллер дронов геологов</select>
+	</match>
+
+	<match name="Manifest Scanner">
+		<select lang="ru">Сканер накладной</select>
+	</match>
+
+	<match name="Burst Laser">
+		<select lang="ru">Пульсирующий лазер</select>
+	</match>
+
+	<match name="Heat Sink Launcher">
+		<select lang="ru">Теплоотводная катапульта</select>
+	</match>
+
+	<match name="Frame Shift Wake Scanner">
+		<select lang="ru">Сканер следа РСД</select>
+	</match>
+
+	<match name="Pulse Laser">
+		<select lang="ru">Импульсный лазер</select>
+	</match>
+
+	<match name="Refinery">
+		<select lang="ru">Очиститель</select>
+	</match>
+
+	<match name="Auto Field-Maintenance Unit">
+		<select lang="ru">Блок автоматического полевого ремонта</select>
+	</match>
+
+	<match name="Fuel Transfer Limpet Controller">
+		<select lang="ru">Контроллер дронов заправщиков</select>
+	</match>
+
+	<match name="Frame Shift Drive">
+		<select lang="ru">Рамочно-Сместительный двигатель</select>
+	</match>
+
+	<match name="Hatch Breaker Limpet Controller">
+		<select lang="ru">Контроллер дронов взломщиков</select>
+	</match>
+
+	<match name="Fuel Scoop">
+		<select lang="ru">Топливозаборник</select>
+	</match>
+
+	<match name="Torpedo Pylon">
+		<select lang="ru">Торпедная стойка</select>
+	</match>
+
+	<match name="Collector Limpet Controller">
+		<select lang="ru">Контроллер дронов сборщиков</select>
+	</match>
+
+	<match name="Shield Cell Bank">
+		<select lang="ru">Щитонакопитель</select>
+	</match>
+
+	<match name="Aberrant Shield Pattern Analysis">
+		<select lang="ru">Анализ аномального поведения щита</select>
+	</match>
+
+	<match name="Abnormal Compact Emission Data">
+		<select lang="ru">Аномальные компактные данные об излучении</select>
+	</match>
+
+	<match name="Adaptive Encryptors Capture">
+		<select lang="ru">Захват адаптивного шифровальщика</select>
+	</match>
+
+	<match name="Anomalous Bulk Scan Data">
+		<select lang="ru">Аномальный массив данных сканирования</select>
+	</match>
+
+	<match name="Anomalous FSD Telemetry">
+		<select lang="ru">Аномальная телеметрия РСД</select>
+	</match>
+
+	<match name="Antimony">
+		<select lang="ru">Сурьма</select>
+	</match>
+
+	<match name="Arsenic">
+		<select lang="ru">Мышьяк</select>
+	</match>
+
+	<match name="Articulation Motors">
+		<select lang="ru">Шарнирные моторы</select>
+	</match>
+
+	<match name="Atypical Disrupted Wake Echoes">
+		<select lang="ru">Атипичное эхо поврежденного следа</select>
+	</match>
+
+	<match name="Atypical Encryption Archives">
+		<select lang="ru">Нетипичные архивы шифрования</select>
+	</match>
+
+	<match name="Basic Conductors">
+		<select lang="ru">Простые проводники</select>
+	</match>
+
+	<match name="Biotech Conductors">
+		<select lang="ru">Биотехнические проводники</select>
+	</match>
+
+	<match name="Bromellite">
+		<select lang="ru">Бромеллит</select>
+	</match>
+
+	<match name="Cadmium">
+		<select lang="ru">Кадмий</select>
+	</match>
+
+	<match name="Carbon">
+		<select lang="ru">Углерод</select>
+	</match>
+
+	<match name="Chemical Distillery">
+		<select lang="ru">Оборудование для перегонки химикатов</select>
+	</match>
+
+	<match name="Chemical Manipulators">
+		<select lang="ru">Манипуляторы для работы с химикатами</select>
+	</match>
+
+	<match name="Chemical Processors">
+		<select lang="ru">Оборудование для химобработки</select>
+	</match>
+
+	<match name="Chemical Storage Units">
+		<select lang="ru">Контейнеры для химикатов</select>
+	</match>
+
+	<match name="Chromium">
+		<select lang="ru">Хром</select>
+	</match>
+
+	<match name="Classified Scan Databanks">
+		<select lang="ru">Засекреченные базы данных сканирования</select>
+	</match>
+
+	<match name="Classified Scan Fragment">
+		<select lang="ru">Засекреченные фрагменты данных сканирования</select>
+	</match>
+
+	<match name="CMM Composite">
+		<select lang="ru">СММ-композит</select>
+	</match>
+
+	<match name="Compact Composites">
+		<select lang="ru">Спрессованные композиты</select>
+	</match>
+
+	<match name="Compound Shielding">
+		<select lang="ru">Многоступенчатая защита</select>
+	</match>
+
+	<match name="Conductive Ceramics">
+		<select lang="ru">Проводящая керамика</select>
+	</match>
+
+	<match name="Conductive Components">
+		<select lang="ru">Проводящие компоненты</select>
+	</match>
+
+	<match name="Conductive Polymers">
+		<select lang="ru">Проводящие полимеры</select>
+	</match>
+
+	<match name="Configurable Components">
+		<select lang="ru">Настраиваемые компоненты</select>
+	</match>
+
+	<match name="Core Dynamics Composites">
+		<select lang="ru">Композиты Core Dynamics</select>
+	</match>
+
+	<match name="Cracked Industrial Firmware">
+		<select lang="ru">Взломанные промышленные микропрограммы</select>
+	</match>
+
+	<match name="Crystal Shards">
+		<select lang="ru">Осколки кристаллов</select>
+	</match>
+
+	<match name="Datamined Wake Exceptions">
+		<select lang="ru">Искл. из глубинного анализа данных следа</select>
+	</match>
+
+	<match name="Decoded Emission Data">
+		<select lang="ru">Расшифрованные данные об излучении</select>
+	</match>
+
+	<match name="Distorted Shield Cycle Recordings">
+		<select lang="ru">Поврежденные цикличные записи щита</select>
+	</match>
+
+	<match name="Divergent Scan Data">
+		<select lang="ru">Неформатные данные сканирования</select>
+	</match>
+
+	<match name="Eccentric Hyperspace Trajectories">
+		<select lang="ru">Аномальные траектории в гиперпространстве</select>
+	</match>
+
+	<match name="Electrochemical Arrays">
+		<select lang="ru">Электрохимические массивы</select>
+	</match>
+
+	<match name="Emergency Power Cells">
+		<select lang="ru">Аварийные энергоячейки</select>
+	</match>
+
+	<match name="Energy Grid Assembly">
+		<select lang="ru">Электросеть в сборе</select>
+	</match>
+
+	<match name="Exceptional Scrambled Emission Data">
+		<select lang="ru">Исключительные зашифрованные данные об изл.</select>
+	</match>
+
+	<match name="Exhaust Manifold">
+		<select lang="ru">Выпускной коллектор</select>
+	</match>
+
+	<match name="Exquisite Focus Crystals">
+		<select lang="ru">Отборные фокусировочные кристаллы</select>
+	</match>
+
+	<match name="Filament Composites">
+		<select lang="ru">Волокнистые композиты</select>
+	</match>
+
+	<match name="Flawed Focus Crystals">
+		<select lang="ru">Поврежденные фокусировочные кристаллы</select>
+	</match>
+
+	<match name="Focus Crystals">
+		<select lang="ru">Фокусировочные кристаллы</select>
+	</match>
+
+	<match name="Galvanising Alloys">
+		<select lang="ru">Сплавы для гальванизации</select>
+	</match>
+
+	<match name="Germanium">
+		<select lang="ru">Германий</select>
+	</match>
+
+	<match name="Grid Resistors">
+		<select lang="ru">Наборные резисторы</select>
+	</match>
+
+	<match name="Hardware Diagnostic Sensor">
+		<select lang="ru">Сенсор диагностики оборудования</select>
+	</match>
+
+	<match name="Heat Conduction Wiring">
+		<select lang="ru">Теплопроводящие провода</select>
+	</match>
+
+	<match name="Heat Dispersion Plate">
+		<select lang="ru">Теплорассеивающая пластина</select>
+	</match>
+
+	<match name="Heat Exchangers">
+		<select lang="ru">Теплообменные агрегаты</select>
+	</match>
+
+	<match name="Heat Resistant Ceramics">
+		<select lang="ru">Жаропрочная керамика</select>
+	</match>
+
+	<match name="Heat Vanes">
+		<select lang="ru">Тепловые заслонки</select>
+	</match>
+
+	<match name="Heatsink Interlink">
+		<select lang="ru">Радиаторный соединитель</select>
+	</match>
+
+	<match name="High Density Composites">
+		<select lang="ru">Высокоплотностные композиты</select>
+	</match>
+
+	<match name="HN Shock Mount">
+		<select lang="ru">Разрядная установка HN</select>
+	</match>
+
+	<match name="Hybrid Capacitors">
+		<select lang="ru">Гибридные конденсаторы</select>
+	</match>
+
+	<match name="Imperial Shielding">
+		<select lang="ru">Имперская защита</select>
+	</match>
+
+	<match name="Improvised Components">
+		<select lang="ru">Кустарные компоненты</select>
+	</match>
+
+	<match name="Inconsistent Shield Soak Analysis">
+		<select lang="ru">Неполный анализ поглощения щита</select>
+	</match>
+
+	<match name="Insulating Membrane">
+		<select lang="ru">Изолирующая мембрана</select>
+	</match>
+
+	<match name="Ion Distributor">
+		<select lang="ru">Ионный распределитель</select>
+	</match>
+
+	<match name="Iron">
+		<select lang="ru">Железо</select>
+	</match>
+
+	<match name="Irregular Emission Data">
+		<select lang="ru">Нестандартные данные об излучении</select>
+	</match>
+
+	<match name="Magnetic Emitter Coil">
+		<select lang="ru">Спираль магнитного излучателя</select>
+	</match>
+
+	<match name="Manganese">
+		<select lang="ru">Марганец</select>
+	</match>
+
+	<match name="Mechanical Components">
+		<select lang="ru">Механические компоненты</select>
+	</match>
+
+	<match name="Mechanical Equipment">
+		<select lang="ru">Механическое оборудование</select>
+	</match>
+
+	<match name="Mechanical Scrap">
+		<select lang="ru">Механические отходы</select>
+	</match>
+
+	<match name="Mercury">
+		<select lang="ru">Ртуть</select>
+	</match>
+
+	<match name="Micro Controllers">
+		<select lang="ru">Микроконтроллеры</select>
+	</match>
+
+	<match name="Micro-Weave Cooling Hoses">
+		<select lang="ru">Шланги системы охлаждения малых диаметров</select>
+	</match>
+
+	<match name="Military Grade Alloys">
+		<select lang="ru">Сплавы военного назначения</select>
+	</match>
+
+	<match name="Military Supercapacitors">
+		<select lang="ru">Военные суперконденсаторы</select>
+	</match>
+
+	<match name="Modified Consumer Firmware">
+		<select lang="ru">Измененные пользовательские микропрограммы</select>
+	</match>
+
+	<match name="Modified Embedded Firmware">
+		<select lang="ru">Измененные встроенные микропрограммы</select>
+	</match>
+
+	<match name="Modular Terminals">
+		<select lang="ru">Модульные терминалы</select>
+	</match>
+
+	<match name="Molybdenum">
+		<select lang="ru">Молибден</select>
+	</match>
+
+	<match name="Nanobreakers">
+		<select lang="ru">Нанопрерыватели</select>
+	</match>
+
+	<match name="Neofabric Insulation">
+		<select lang="ru">Высокотехнологичная изоляция</select>
+	</match>
+
+	<match name="Nickel">
+		<select lang="ru">Никель</select>
+	</match>
+
+	<match name="Niobium">
+		<select lang="ru">Ниобий</select>
+	</match>
+
+	<match name="Open Symmetric Keys">
+		<select lang="ru">Открытые симметричные ключи</select>
+	</match>
+
+	<match name="Osmium">
+		<select lang="ru">Осмий</select>
+	</match>
+
+	<match name="Pattern Alpha Obelisk Data">
+		<select lang="ru">Данные с обелиска «Альфа»</select>
+	</match>
+
+	<match name="Pattern Beta Obelisk Data">
+		<select lang="ru">Данные с обелиска «Бета»</select>
+	</match>
+
+	<match name="Pattern Delta Obelisk Data">
+		<select lang="ru">Данные с обелиска «Дельта»</select>
+	</match>
+
+	<match name="Pattern Epsilon Obelisk Data">
+		<select lang="ru">Данные с обелиска «Эпсилон»</select>
+	</match>
+
+	<match name="Pattern Gamma Obelisk Data">
+		<select lang="ru">Данные с обелиска «Гамма»</select>
+	</match>
+
+	<match name="Peculiar Shield Frequency Data">
+		<select lang="ru">Специфические данные о частоте щитов</select>
+	</match>
+
+	<match name="Pharmaceutical Isolators">
+		<select lang="ru">Фармацевтические изоляционные материалы</select>
+	</match>
+
+	<match name="Phase Alloys">
+		<select lang="ru">Фазовые сплавы</select>
+	</match>
+
+	<match name="Phosphorus">
+		<select lang="ru">Фосфор</select>
+	</match>
+
+	<match name="Platinum">
+		<select lang="ru">Платина</select>
+	</match>
+
+	<match name="Polonium">
+		<select lang="ru">Полоний</select>
+	</match>
+
+	<match name="Polymer Capacitors">
+		<select lang="ru">Полимерные конденсаторы</select>
+	</match>
+
+	<match name="Power Converter">
+		<select lang="ru">Преобразователь энергии</select>
+	</match>
+
+	<match name="Power Transfer Bus">
+		<select lang="ru">Энергообменная шина</select>
+	</match>
+
+	<match name="Praseodymium">
+		<select lang="ru">Празеодим</select>
+	</match>
+
+	<match name="Precipitated Alloys">
+		<select lang="ru">Осажденные сплавы</select>
+	</match>
+
+	<match name="Proprietary Composites">
+		<select lang="ru">Патентованные композиты</select>
+	</match>
+
+	<match name="Proto Heat Radiators">
+		<select lang="ru">Прототипы теплоизлучателей</select>
+	</match>
+
+	<match name="Proto Light Alloys">
+		<select lang="ru">Опытные легкие сплавы</select>
+	</match>
+
+	<match name="Proto Radiolic Alloys">
+		<select lang="ru">Сплавы для изготовления зондов</select>
+	</match>
+
+	<match name="Radiation Baffle">
+		<select lang="ru">Отражатель излучения</select>
+	</match>
+
+	<match name="Refined Focus Crystals">
+		<select lang="ru">Обработанные фокусировочные кристаллы</select>
+	</match>
+
+	<match name="Reinforced Mounting Plate">
+		<select lang="ru">Усиленная монтажная плита</select>
+	</match>
+
+	<match name="Ruthenium">
+		<select lang="ru">Рутений</select>
+	</match>
+
+	<match name="Salvaged Alloys">
+		<select lang="ru">Захваченные сплавы</select>
+	</match>
+
+	<match name="Samarium">
+		<select lang="ru">Самарий</select>
+	</match>
+
+	<match name="Security Firmware Patch">
+		<select lang="ru">Обновление для защитной микропрограммы</select>
+	</match>
+
+	<match name="Selenium">
+		<select lang="ru">Селен</select>
+	</match>
+
+	<match name="Shield Emitters">
+		<select lang="ru">Щитоизлучатели</select>
+	</match>
+
+	<match name="Shielding Sensors">
+		<select lang="ru">Сенсоры системы экранирования</select>
+	</match>
+
+	<match name="Specialised Legacy Firmware">
+		<select lang="ru">Спец. микропрограммы предыдущего поколения</select>
+	</match>
+
+	<match name="Strange Wake Solutions">
+		<select lang="ru">Странные расчеты следа</select>
+	</match>
+
+	<match name="Sulphur">
+		<select lang="ru">Сера</select>
+	</match>
+
+	<match name="Tagged Encryption Codes">
+		<select lang="ru">Меченые шифровальные коды</select>
+	</match>
+
+	<match name="Technetium">
+		<select lang="ru">Технеций</select>
+	</match>
+
+	<match name="Telemetry Suite">
+		<select lang="ru">Телеметрический комплект</select>
+	</match>
+
+	<match name="Tellurium">
+		<select lang="ru">Теллурий</select>
+	</match>
+
+	<match name="Tempered Alloys">
+		<select lang="ru">Закаленные сплавы</select>
+	</match>
+
+	<match name="Thermic Alloys">
+		<select lang="ru">Термические сплавы</select>
+	</match>
+
+	<match name="Tin">
+		<select lang="ru">Олово</select>
+	</match>
+
+	<match name="Tungsten">
+		<select lang="ru">Вольфрам</select>
+	</match>
+
+	<match name="Unexpected Emission Data">
+		<select lang="ru">Неожиданные данные об излучении</select>
+	</match>
+
+	<match name="Unidentified Scan Archives">
+		<select lang="ru">Неопознанные архивы сканирования</select>
+	</match>
+
+	<match name="Unknown Fragment">
+		<select lang="ru">Неизвестный фрагмент</select>
+	</match>
+
+	<match name="Untypical Shield Scans">
+		<select lang="ru">Нетипичные данные сканирования щитов</select>
+	</match>
+
+	<match name="Unusual Encrypted Files">
+		<select lang="ru">Особые зашифрованные файлы</select>
+	</match>
+
+	<match name="Vanadium">
+		<select lang="ru">Ванадий</select>
+	</match>
+
+	<match name="Worn Shield Emitters">
+		<select lang="ru">Изношенные щитоизлучатели</select>
+	</match>
+
+	<match name="Yttrium">
+		<select lang="ru">Иттрий</select>
+	</match>
+
+	<match name="Zinc">
+		<select lang="ru">Цинк</select>
+	</match>
+
+	<match name="Zirconium">
+		<select lang="ru">Цирконий</select>
+	</match>
+
+	<match name="ECM">
+		<select lang="ru">ЭПД</select>
+	</match>
+
+	<match name="Hull">
+		<select lang="ru">Корпус</select>
+	</match>
+
+	<match name="FSD Interdictor">
+		<select lang="ru">Перехватчик РСД</select>
+	</match>
+
+	<match name="Prospector LC">
+		<select lang="ru">Контроллер дронов геологов</select>
+	</match>
+
+	<match name="Fuel Transfer LC">
+		<select lang="ru">Контроллер дронов заправщиков</select>
+	</match>
+
+	<match name="Hatch Breaker LC">
+		<select lang="ru">Контроллер дронов взломщиков</select>
+	</match>
+
+	<match name="Collector LC">
+		<select lang="ru">Контроллер дронов сборщиков</select>
+	</match>
+
+	<match name="AFMU">
+		<select lang="ru">БАПР</select>
+	</match>
+
+	<match name="Non Craftable">
+		<select lang="ru">Недоступны для изготовления</select>
+	</match>
+
+	<match name="An error has been thrown by the application:">
+		<select lang="ru">Приложением была выдана ошибка:</select>
+	</match>
+
+	<match name="Unrecoverable Error">
+		<select lang="ru">Неисправимая ошибка</select>
+	</match>
+
+	<match name="Surface prospecting">
+		<select lang="ru">Поверхность планет</select>
+	</match>
+
+	<match name="Mining">
+		<select lang="ru">Добыча</select>
+	</match>
+
+	<match name="Mission reward">
+		<select lang="ru">Награда за миссию</select>
+	</match>
+
+	<match name="Mining (ice rings)">
+		<select lang="ru">Добыча (ледяные кольца)</select>
+	</match>
+
+	<match name="Ship salvage (transport ships)">
+		<select lang="ru">Уничтожение корабля (транспортные)</select>
+	</match>
+
+	<match name="Signal source (high security)">
+		<select lang="ru">Источник сигнала (высокий уровень безопасности)</select>
+	</match>
+
+	<match name="Surface POI">
+		<select lang="ru">Точки интереса на планетах</select>
+	</match>
+
+	<match name="Signal source">
+		<select lang="ru">Источник сигнала</select>
+	</match>
+
+	<match name="Ship salvage (combat ships)">
+		<select lang="ru">Уничтожение корабля (боевые)</select>
+	</match>
+
+	<match name="Signal source (anarchy)">
+		<select lang="ru">Источник сигнала (анархия)</select>
+	</match>
+
+	<match name="Signal source (low security)">
+		<select lang="ru">Источник сигнала (низкий уровень безопасности)</select>
+	</match>
+
+	<match name="Signal source (High grade emissions)">
+		<select lang="ru">Источник сигнала (высокоуровневое излучение)</select>
+	</match>
+
+	<match name="Ship salvage (military &amp; authority ships)">
+		<select lang="ru">Уничтожение корабля (военные и силы правопорядка)</select>
+	</match>
+
+	<match name="Destroyed Unknown Artefact">
+		<select lang="ru">Уничтоженный Неизвестный Артефакт</select>
+	</match>
+
+	<match name="Ship scanning (combat ships)">
+		<select lang="ru">Сканирование корабля (боевые)</select>
+	</match>
+
+	<match name="Deep space data beacon">
+		<select lang="ru">Данные маяка (дальний космос)</select>
+	</match>
+
+	<match name="Ship scanning (transport ships)">
+		<select lang="ru">Сканирование корабля (транспортные)</select>
+	</match>
+
+	<match name="High wake scanning">
+		<select lang="ru">Сканирование высокочастотных следов РСД</select>
+	</match>
+
+	<match name="Surface data point">
+		<select lang="ru">Наземные точки данных</select>
+	</match>
+
+	<match name="Ship scanning">
+		<select lang="ru">Сканирование корабля</select>
+	</match>
+
+	<match name="Markets">
+		<select lang="ru">Рынки</select>
+	</match>
+
+	<match name="Markets near Akhenaten (High Tech/Refinery)">
+		<select lang="ru">Рынки около Akhenaten (Высокотехнологичные/Перерабатывающие)</select>
+	</match>
+
+	<match name="Markets near Stafkarl (Industrial/Refinery)">
+		<select lang="ru">Рынки около Stafkarl (Промышленные/Перерабатывающие)</select>
+	</match>
+
+	<match name="Markets near Run (Industrial/Refinery)">
+		<select lang="ru">Рынки около Run (Промышленные/Перерабатывающие)</select>
+	</match>
+
+	<match name="Markets near Lei Jing (Industrial/Refinery)">
+		<select lang="ru">Рынки около Lei Jing (Промышленные/Перерабатывающие)</select>
+	</match>
+
+	<match name="Markets near Myrbat (Industrial/Refinery)">
+		<select lang="ru">Рынки около Myrbat (Промышленные/Перерабатывающие)</select>
+	</match>
+
+	<match name="Markets near 70 Tauri (Industrial/Extraction)">
+		<select lang="ru">Рынки около 70 Tauri (Промышленные/Добывающие)</select>
+	</match>
+
+	<match name="Markets near Leesti (Industrial/Refinery)">
+		<select lang="ru">Рынки около Leesti (Промышленные/Перерабатывающие)</select>
+	</match>
+
+	<match name="Markets near Lakota (Industrial/Extraction)">
+		<select lang="ru">Рынки около Lakota (Промышленные/Добывающие)</select>
+	</match>
+
+	<match name="Markets near Cilbien Zu (Industrial/Extraction)">
+		<select lang="ru">Рынки около Cilbien Zu (Промышленные/Добывающие)</select>
+	</match>
+
+	<match name="Markets near Heget (Industrial/Extraction)">
+		<select lang="ru">Рынки около Heget (Промышленные/Добывающие)</select>
+	</match>
+
+	<match name="Markets near Eurybia (Extraction/Refinery)">
+		<select lang="ru">Рынки около Eurybia (Добывающие/Перерабатывающие)</select>
+	</match>
+
+	<match name="Materials Almost Full!">
+		<select lang="ru">Хранилище материалов почти заполнено!</select>
+	</match>
+
+	<match name="You have only {0} slots left for your materials.">
+		<select lang="ru">Количество свободных слотов под материалы: {0}.</select>
+	</match>
+
+	<match name="Data Almost Full!">
+		<select lang="ru">Хранилище данных почти заполнено!</select>
+	</match>
+
+	<match name="You have only {0} slots left for your data.">
+		<select lang="ru">Количество свободных слотов под данные: {0}.</select>
+	</match>
+
+	<match name="Cargo Almost Full Warning">
+		<select lang="ru">Грузовой отсек почти полон!</select>
+	</match>
+
+	<match name="Ingredient not used in any blueprint!">
+		<select lang="ru">Материал не используется в чертежах!</select>
+	</match>
+
+	<match name="+100% Fuel Efficiency">
+		<select lang="ru">+100% к эффективности топлива</select>
+	</match>
+
+	<match name="+100% Hull Strength">
+		<select lang="ru">+100% к прочности корпуса</select>
+	</match>
+
+	<match name="+100% Jump Range">
+		<select lang="ru">+100% к дальности прыжка</select>
+	</match>
+
+	<match name="+100% Repair Speed">
+		<select lang="ru">+100% к скорости ремонта</select>
+	</match>
+
+	<match name="+15% Damage Boost">
+		<select lang="ru">+15% к урону</select>
+	</match>
+
+	<match name="+200% Fuel Efficiency">
+		<select lang="ru">+200% к эффективности топлива</select>
+	</match>
+
+	<match name="+25% Jump Range">
+		<select lang="ru">+25% к дальности прыжка</select>
+	</match>
+
+	<match name="+30% Damage Boost">
+		<select lang="ru">+30% к урону</select>
+	</match>
+
+	<match name="+50% Hull Strength">
+		<select lang="ru">+50% к прочности корпуса</select>
+	</match>
+
+	<match name="+50% Jump Range">
+		<select lang="ru">+50% к дальности прыжка</select>
+	</match>
+
+	<match name="+50% Repair Speed">
+		<select lang="ru">+50% к скорости ремонта</select>
+	</match>
+
+	<match name="AFM Refill">
+		<select lang="ru">Снабжение АПР</select>
+	</match>
+
+	<match name="Explosive Munitions">
+		<select lang="ru">Взрывчатые боеприпасы</select>
+	</match>
+
+	<match name="FSD Injection">
+		<select lang="ru">Вброс в РСД</select>
+	</match>
+
+	<match name="High Velocity Munitions">
+		<select lang="ru">Высокоскоростные боеприпасы</select>
+	</match>
+
+	<match name="Large Calibre Munitions">
+		<select lang="ru">Крупнокалиберные боеприпасы</select>
+	</match>
+
+	<match name="None">
+		<select lang="ru">Нет</select>
+	</match>
+
+	<match name="Plasma Munitions">
+		<select lang="ru">Плазменные боеприпасы</select>
+	</match>
+
+	<match name="Small Calibre Munitions">
+		<select lang="ru">Мелкокалиберные боеприпасы</select>
+	</match>
+
+	<match name="SRV Ammo Restock">
+		<select lang="ru">Боеприпасы для ТРП</select>
+	</match>
+
+	<match name="SRV Refuel">
+		<select lang="ru">Заправка ТРП</select>
+	</match>
+
+	<match name="SRV Repair">
+		<select lang="ru">Ремонт ТРП</select>
+	</match>
+
+	<match name="@Synthesis">
+		<select lang="ru">@Синтез</select>
+	</match>
+
+</i10n>

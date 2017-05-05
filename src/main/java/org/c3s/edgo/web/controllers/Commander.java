@@ -438,6 +438,12 @@ public class Commander extends GeneralController {
 			
 			// Add engeneers
 			List<DBEngTypeBean> types = DbAccess.engTypeAccess.getSortedList();
+			types = types.stream().peek(m -> m.setLocalized(I10N.tr(m.getEngTypeName()))).sorted(new Comparator<DBEngTypeBean>() {
+				@Override
+				public int compare(DBEngTypeBean o1, DBEngTypeBean o2) {
+					return o1.getLocalized().compareTo(o2.getLocalized());
+				}
+			}).collect(Collectors.toList());
 			Document exml = new XMLList(types, true).toXML("eng_types");
 			XMLUtils.appendClonedNode(xml, exml);
 			
@@ -520,6 +526,13 @@ public class Commander extends GeneralController {
 			result.put("materials", materials);
 		} else {
 			List<DBGradesByTypeUniqBean> grades = DbAccess.engGradeAccess.getGradesByTypeUniq(category);
+			grades = grades.stream().peek(m -> m.setLocalized(I10N.tr(m.getEngBlueprintName()))).sorted(new Comparator<DBGradesByTypeUniqBean>() {
+				@Override
+				public int compare(DBGradesByTypeUniqBean o1, DBGradesByTypeUniqBean o2) {
+					return o1.getLocalized().compareTo(o2.getLocalized());
+				}
+			}).collect(Collectors.toList());
+
 			List<DBMaterialsByTypeUniqBean> materials = DbAccess.engBlueprintMaterialsAccess.getMaterialsByTypeUniq(category);
 			result.put("materials", materials).put("grades", grades);
 		}

@@ -14,6 +14,7 @@
 				<param name="content" value="xml/i10n/content.xml"/>
 				<param name="content" value="xml/i10n/materials.xml"/>
 				<param name="content" value="xml/i10n/factions.xml"/>
+				<param name="content" value="xml/i10n/engeneers.xml"/>
 			</module>
 			<!--
 			-->

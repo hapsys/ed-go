@@ -107,6 +107,21 @@ public class DBGradesByTypeUniqBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"localized", "localized"})
+	@DataTarget("localized")
+	@XMLSimple("localized")
+	private java.lang.String localized;
+	
+	public java.lang.String getLocalized() {
+		return localized;
+	}
+	
+	public DBGradesByTypeUniqBean setLocalized(java.lang.String value) {
+		localized = value;
+		return this;
+	}
+	
+	
 	@DataSource({"eng_blueprint_name", "engBlueprintName"})
 	@DataTarget("eng_blueprint_name")
 	@XMLSimple("engBlueprintName")
