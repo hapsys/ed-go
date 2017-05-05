@@ -57,5 +57,9 @@ public class DbAccess {
 	public static final DBPilotDeliverAccess pilotDeliverAccess = new DBPilotDeliverAccess();
 	public static final DBPilotWarMeritsAccess pilotWarMeritsAccess = new DBPilotWarMeritsAccess();
 	public static final DBPilotKillMeritsAccess pilotKillMeritsAccess = new DBPilotKillMeritsAccess();
+	public static final DBEngTypeAccess engTypeAccess = new DBEngTypeAccess();
+	public static final DBEngBlueprintAccess engBlueprintAccess = new DBEngBlueprintAccess();
+	public static final DBEngGradeAccess engGradeAccess = new DBEngGradeAccess();
+	public static final DBEngBlueprintMaterialsAccess engBlueprintMaterialsAccess = new DBEngBlueprintMaterialsAccess();
 
 }

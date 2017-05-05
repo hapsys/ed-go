@@ -553,4 +553,9 @@
 		<select lang="en">Pattern Epsilon Obelisk Data</select>
 		<select lang="ru">Данные с обелиска «Эпсилон»</select>
 	</match>
+	
+	<match name="unknownshipsignature">
+		<select lang="en">Unknown Ship Signature</select>
+		<select lang="ru">Сигнатура неизвестного корабля</select>
+	</match>
 </i10n>

@@ -1076,7 +1076,8 @@
 	<xsl:template name="view_materials">
 	
 		<xsl:variable name="lang"><xsl:value-of select="$root"/><xsl:if test="$politic = 'suffix' and $default != 'true'">/<xsl:value-of select="$suffix"/></xsl:if></xsl:variable>
-		<div>
+        <div class="page-title">
+          <div class="title_left">
 			<form class="form-inline">
 				<div class="form-group">
 					<label><xsl:value-of select="i10n:tr('sort_by')"/>:&#160;&#160;&#160;</label>
@@ -1103,7 +1104,25 @@
 					</div>
 				</div>				
 			</form>
-		</div>
+          </div>
+			<div class="title_right">
+				<form class="form-inline col-md-6 col-sm-6 col-xs-12 pull-right">
+					<div class="input-group">
+						<select name="eng_caterory" id="eng-caterory" class="form-control" data-placeholder="Select faction..." style="width:250px;">
+							<option value="">&lt;Select Category&gt;</option>
+							<xsl:for-each select="eng_types/item">
+								<option value="{field[@name='engTypeUniq']/@value}"><xsl:value-of select="field[@name='engTypeName']/@value"/></option>
+							</xsl:for-each>
+						</select>
+					</div>
+					<div class="input-group">
+						<select name="eng_blueprint" id="eng-blueprint" class="form-control" data-placeholder="Select faction..." disabled="disabled"  style="width:300px;">
+							<option value=''>&lt;Select Blueprint&gt;</option>
+						</select>
+					</div>
+				</form>
+			</div>
+        </div>
 		<div class="clearfix"></div>
 		<div class="form-materials updated-by-time" data-update-function="updateFromServer" data-update-interval="30000">
 			<div class="col-md-4 col-xs-12 widget widget_tally_box width-650 encoded" data-material="encoded">
@@ -1119,7 +1138,7 @@
 					<div class="x_content">
 						<table class="table">
 							<xsl:for-each select="childs/item[field[@name='materialCategoryId']/@value=1]">
-								<tr id="{field[@name='materialUniq']/@value}">
+								<tr id="{field[@name='materialUniq']/@value}" class="material-row">
 									<td><xsl:value-of select="field[@name='localized']/@value"/></td>
 									<td style="width:70px;">
 										<button class="btn btn-success button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></button>
@@ -1146,7 +1165,7 @@
 					<div class="x_content">
 						<table class="table">
 							<xsl:for-each select="childs/item[field[@name='materialCategoryId']/@value=2]">
-								<tr id="{field[@name='materialUniq']/@value}">
+								<tr id="{field[@name='materialUniq']/@value}" class="material-row">
 									<td><xsl:value-of select="field[@name='localized']/@value"/></td>
 									<td style="width:70px;">
 										<button class="btn btn-success button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></button>
@@ -1173,7 +1192,7 @@
 					<div class="x_content">
 						<table class="table">
 							<xsl:for-each select="childs/item[field[@name='materialCategoryId']/@value=3]">
-								<tr id="{field[@name='materialUniq']/@value}">
+								<tr id="{field[@name='materialUniq']/@value}" class="material-row">
 									<td><xsl:value-of select="field[@name='localized']/@value"/></td>
 									<td style="width:70px;">
 										<button class="btn btn-success button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></button>
@@ -1312,7 +1331,7 @@
 									materials[m.materialCategoryName].push(m); 
 								});
 								
-								console.log(materials);
+								//console.log(materials);
 								for (key in materials) {
 									var mType = key.toLowerCase();
 									//var trs = $("div." + mType).find("tr");
@@ -1342,6 +1361,78 @@
 					//console.log($("input[name=material_sorting]").val());
 					//console.log(material_sorting);
 					updateFromServer();
+				});
+				
+				// Engeeneers Selectors
+				var showHideMaterialRow = function(materials) {
+					if (!materials) {
+						$('tr.material-row').removeClass('hidden');
+					} else {
+						var matmap = {};
+						materials.forEach(function(v) {
+							matmap[v.materialUniq] = true;
+						});
+						$('tr.material-row').each(function() {
+							var id = $(this).attr('id');
+							if (matmap[id]) {
+								$(this).removeClass('hidden');									
+							} else {
+								$(this).addClass('hidden');									
+							}
+						});
+					}
+				}
+				
+				$('#eng-caterory').on('change', function() {
+					var cat = $(this).val();
+					$('#eng-blueprint').find('.dynamic-option').remove();
+					var data = {};
+					if (!cat) {
+						$('#eng-blueprint').prop('disabled', true);
+						showHideMaterialRow();
+					} else {
+						data['eng-category'] = cat;
+						$('#eng-caterory').prop('disabled', true);
+						$('#eng-blueprint').prop('disabled', true);
+						proxy.makeCall('post', '/ajax/utility/materials/', null, null, data, function(result) {
+							showHideMaterialRow(result.materials);
+							// Upd
+							var bp = '';
+							var optgroup = null; 
+							result.grades.forEach(function(v) {
+								if (bp != v.engBlueprintUniq) {
+									bp = v.engBlueprintUniq;
+									optgroup = $('&lt;optgroup class="dynamic-option" data-blueprint="' + v.engBlueprintUniq + '" label="' + v.engBlueprintName + '"&gt;&lt;/optgroup &gt;').appendTo('#eng-blueprint');
+								}
+								$($('&lt;option class="dynamic-option" data-blueptint="' + v.grade + '"&gt;' + v.grade + ' [' + v.engeneers + ']' + '&lt;/option &gt;').appendTo(optgroup)); 
+							});
+							$('#eng-caterory').prop('disabled', false);
+							$('#eng-blueprint').prop('disabled', false);
+						});
+					}
+				});
+				
+				$('#eng-blueprint').on('change', function() {
+					var grade = $(this).val();
+					var bp = $(this).find('option:selected').parent().data('blueprint');
+					var cat = $('#eng-caterory').val();
+					var data = {};
+					if (cat) {
+						data['eng-category'] = cat;
+					}
+					if (bp) {
+						data['eng-blueprint'] = bp;
+					}
+					if (grade) {
+						data['eng-grade'] = grade;
+					}
+					$('#eng-caterory').prop('disabled', true);
+					$('#eng-blueprint').prop('disabled', true);
+					proxy.makeCall('post', '/ajax/utility/materials/', null, null, data, function(result) {
+						showHideMaterialRow(result.materials);
+						$('#eng-caterory').prop('disabled', false);
+						$('#eng-blueprint').prop('disabled', false);
+					});
 				});
 			});
 		</script>

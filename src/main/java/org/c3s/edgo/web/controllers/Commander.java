@@ -28,9 +28,13 @@ import org.c3s.dispatcher.exceptions.SkipSubLevelsExeption;
 import org.c3s.dispatcher.exceptions.StopDispatchException;
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBActivityBean;
+import org.c3s.edgo.common.beans.DBEngTypeBean;
 import org.c3s.edgo.common.beans.DBEventMaxMinDateForPilotBean;
+import org.c3s.edgo.common.beans.DBGradesByTypeUniqBean;
 import org.c3s.edgo.common.beans.DBLocationsPathBean;
 import org.c3s.edgo.common.beans.DBMaterialsBean;
+import org.c3s.edgo.common.beans.DBMaterialsByBlueprintAndGradeBean;
+import org.c3s.edgo.common.beans.DBMaterialsByTypeUniqBean;
 import org.c3s.edgo.common.beans.DBMaxMinDateLocationHistoryForPilotBean;
 import org.c3s.edgo.common.beans.DBMissionsComplitedListByPilotsBean;
 import org.c3s.edgo.common.beans.DBPilotMaterialsBean;
@@ -50,6 +54,7 @@ import org.c3s.edgo.web.auth.AuthRoles;
 import org.c3s.edgo.web.validator.Result;
 import org.c3s.query.ParametersHolder;
 import org.c3s.query.RequestType;
+import org.c3s.reflection.XMLList;
 import org.c3s.reflection.XMLReflectionObj;
 import org.c3s.storage.StorageFactory;
 import org.c3s.storage.StorageType;
@@ -430,6 +435,13 @@ public class Commander extends GeneralController {
 			}
 			Document xml = new XMLReflectionObj(current).toXML();
 			xml.getDocumentElement().setAttribute("sort", sort);
+			
+			// Add engeneers
+			List<DBEngTypeBean> types = DbAccess.engTypeAccess.getSortedList();
+			Document exml = new XMLList(types, true).toXML("eng_types");
+			XMLUtils.appendClonedNode(xml, exml);
+			
+			
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:materials"});
 			//logger.debug(XMLUtils.saveXML(xml));
 		} else {
@@ -497,6 +509,25 @@ public class Commander extends GeneralController {
 			redirect.setRedirect(new DropRedirect());
 		}
 	}
+	
+	public void getBlueprintsMaterials(@ParameterRequest("eng-category") String category, 
+			@ParameterRequest("eng-blueprint") String blueprint, @ParameterRequest("eng-grade") String grade, @Parameter("tag") String tag, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		
+		Result result = new Result();
+		
+		if (blueprint != null && grade != null) {
+			List<DBMaterialsByBlueprintAndGradeBean> materials = DbAccess.engBlueprintMaterialsAccess.getMaterialsByBlueprintAndGrade(blueprint, grade);
+			result.put("materials", materials);
+		} else {
+			List<DBGradesByTypeUniqBean> grades = DbAccess.engGradeAccess.getGradesByTypeUniq(category);
+			List<DBMaterialsByTypeUniqBean> materials = DbAccess.engBlueprintMaterialsAccess.getMaterialsByTypeUniq(category);
+			result.put("materials", materials).put("grades", grades);
+		}
+		
+		ContentObject.getInstance().setData(tag, result.get());
+		redirect.setRedirect(new DropRedirect());
+	}
+		
 	
 	// ============================================================== -MATERIALS ==============================================================================
 	

@@ -159,6 +159,7 @@
 						<module pattern="system-search/" class="org.c3s.edgo.web.utilites.Systems" action="getSystemByPatiallyName" is_last="true"/>
 						<module pattern="settlements-search/" class="org.c3s.edgo.web.utilites.Settlerments" action="searchSettlements" is_last="true"/>
 						<module pattern="faction-search/" class="org.c3s.edgo.web.utilites.Factions" action="getFactionsByPatiallyName" is_last="true"/>
+						<module pattern="materials/" class="org.c3s.edgo.web.controllers.Commander" action="getBlueprintsMaterials" is_last="true"/>
 					</module>
 				</module>
 				<module pattern="raw/" class="org.c3s.web.modules.template.TemplateModule" action="setTemplate">

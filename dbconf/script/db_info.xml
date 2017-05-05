@@ -10,6 +10,7 @@
 		<include href="missions.xml"/>
 		<include href="comodities.xml"/>
 		<include href="powers.xml"/>
+		<include href="engeneers.xml"/>
 	</source>
 
 </db_info>

@@ -64,6 +64,8 @@ public class DBMaxMinDateLocationHistoryForPilotBean implements DbBean, Serializ
 	@Override
 	public void setAutoincrementField(Object value) {
 		
+		setPilotId(new java.lang.Long(value.toString()));
+		
 	}	
 	
 }

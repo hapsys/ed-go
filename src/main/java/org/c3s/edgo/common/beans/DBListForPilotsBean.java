@@ -109,6 +109,8 @@ public class DBListForPilotsBean implements DbBean, Serializable {
 	@Override
 	public void setAutoincrementField(Object value) {
 		
+		setPilotPowerSpendId(new java.lang.Long(value.toString()));
+		
 	}	
 	
 }
