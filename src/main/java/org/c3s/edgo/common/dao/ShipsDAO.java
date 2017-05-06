@@ -169,9 +169,11 @@ public class ShipsDAO {
 			bean.setModuleId(moduleId);
 			bean.setPilotShipId(pilotShipId);
 			bean.setSlotId(slotId);
+			bean.setCanDeleted(null);
 			DbAccess.pilotModulesAccess.insert(bean);
 		} else if (moduleId != null && bean != null) {
 			bean.setModuleId(moduleId);
+			bean.setCanDeleted(null);
 			DbAccess.pilotModulesAccess.updateByPrimaryKey(bean, bean.getPilotModuleId());
 		} else if (moduleId == null && bean != null) {
 			DbAccess.pilotModulesAccess.deleteByPrimaryKey(bean.getPilotModuleId());

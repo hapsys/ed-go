@@ -260,6 +260,19 @@
 				ORDER BY st.slot_type_name, m.module_class DESC, m.module_rating
 			</sql>
 		</query>
+		<query name="SetDeletedByPilotShipId">
+			<column name="PilotShipId" type="long"/>
+			<sql>
+				UPDATE pilot_modules SET can_deleted = 1 WHERE pilot_module_id = ? 
+			</sql>
+		</query>
+		<query name="FailModulesByPilotShipId">
+			<column name="PilotShipId" type="long"/>
+			<sql>
+				DELETE FROM pilot_modules WHERE pilot_module_id = ? AND can_deleted = 1 
+			</sql>
+		</query>
+		
 	</table>
 	<!--  -->
 	<table name="pilot_materials">

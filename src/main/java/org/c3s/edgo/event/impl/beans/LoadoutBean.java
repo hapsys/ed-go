@@ -2,6 +2,7 @@ package org.c3s.edgo.event.impl.beans;
 
 import java.util.Date;
 import org.c3s.edgo.event.AbstractEventBean;
+import org.c3s.edgo.event.impl.beans.intl.LoadoutModule;
 
 public class LoadoutBean extends AbstractEventBean {
 
@@ -14,7 +15,7 @@ public class LoadoutBean extends AbstractEventBean {
 	/**
 	 *  ship id number (indicates which of your ships you are in)
 	 */
-	private String ShipID;
+	private int ShipID;
 	/**
 	 *  user-defined ship name
 	 */
@@ -24,6 +25,8 @@ public class LoadoutBean extends AbstractEventBean {
 	 */
 	private String ShipIdent;
 	
+	
+	private LoadoutModule[] Modules;
 	/**
 	 * @return
 	 */
@@ -63,13 +66,13 @@ public class LoadoutBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getShipID() {
+	public int getShipID() {
 		return ShipID;
 	}
 	/**
 	 * @param shipid
 	 */
-	public void setShipID(String shipid) {
+	public void setShipID(int shipid) {
 		this.ShipID = shipid;
 	}
 	/**
@@ -95,6 +98,14 @@ public class LoadoutBean extends AbstractEventBean {
 	 */
 	public void setShipIdent(String shipident) {
 		this.ShipIdent = shipident;
+	}
+	
+	public LoadoutModule[] getModules() {
+		return Modules;
+	}
+	
+	public void setModules(LoadoutModule[] modules) {
+		Modules = modules;
 	}
 	
 }	

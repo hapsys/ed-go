@@ -76,6 +76,21 @@ public class DBPilotModulesBean implements DbBean, Serializable {
 		return this;
 	}
 	
+	
+	@DataSource({"can_deleted", "canDeleted"})
+	@DataTarget("can_deleted")
+	@XMLSimple("canDeleted")
+	private java.lang.Integer canDeleted;
+	
+	public java.lang.Integer getCanDeleted() {
+		return canDeleted;
+	}
+	
+	public DBPilotModulesBean setCanDeleted(java.lang.Integer value) {
+		canDeleted = value;
+		return this;
+	}
+	
 	@Override
 	public void setAutoincrementField(Object value) {
 		

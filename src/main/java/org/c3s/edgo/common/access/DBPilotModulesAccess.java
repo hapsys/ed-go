@@ -151,6 +151,28 @@ public class DBPilotModulesAccess extends Access {
 		return getConnection().query(sql, paramPilotShipId);
 	}
 	
+	public int deleteFailModulesByPilotShipId(long paramPilotShipId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				DELETE FROM pilot_modules WHERE pilot_module_id = ? AND can_deleted = 1  			";
+		}
+
+		
+		int ret = getConnection().query(query,  paramPilotShipId);
+			
+		return ret;
+	}
+	
 	public List<DBPilotShipModulesListBean> getPilotShipModulesList(long paramPilotShipId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();
@@ -180,6 +202,28 @@ public class DBPilotModulesAccess extends Access {
 			}
 					
 		}
+			
+		return ret;
+	}
+	
+	public int updateSetDeletedByPilotShipId(long paramPilotShipId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				UPDATE pilot_modules SET can_deleted = 1 WHERE pilot_module_id = ?  			";
+		}
+
+		
+		int ret = getConnection().query(query,  paramPilotShipId);
 			
 		return ret;
 	}
