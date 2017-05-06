@@ -5,7 +5,7 @@
 		<select lang="ru">Выберите категорию</select>
 	</match>
 	
-	<match name="Select Blueptint">
+	<match name="Select Blueprint">
 		<select lang="ru">Выберите чертеж</select>
 	</match>
 	
@@ -1143,10 +1143,6 @@
 
 	<match name="Large Calibre Munitions">
 		<select lang="ru">Крупнокалиберные боеприпасы</select>
-	</match>
-
-	<match name="None">
-		<select lang="ru">Нет</select>
 	</match>
 
 	<match name="Plasma Munitions">
