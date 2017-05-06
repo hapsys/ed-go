@@ -40,6 +40,7 @@ public class ShipsDAO {
 		DBPilotShipsBean pilotShip = null;
 		DBShipsBean ship = getOrInsertShip(shipUniq);
 		if (ship.getIsSpecial() == null || ship.getIsSpecial() != 1) {
+			
 			pilotShip = DbAccess.pilotShipsAccess.getByPilotIdAndLinkShipId(pilot.getPilotId(), linkShipId);
 			if (pilotShip == null) {
 				pilotShip = new DBPilotShipsBean();
@@ -60,8 +61,8 @@ public class ShipsDAO {
 				
 				DbAccess.pilotShipsAccess.insert(pilotShip);
 			} else if (shipName != null && shipIdent != null && (!shipName.equals(pilotShip.getPilotShipName()) || !shipIdent.equals(pilotShip.getPilotShipIdent()))) {
-				pilotShip.setSystemId(locationId);
-				pilotShip.setStationId(stationId);
+				pilotShip.setPilotShipName(shipName);
+				pilotShip.setPilotShipIdent(shipIdent);
 				DbAccess.pilotShipsAccess.updateByPrimaryKey(pilotShip, pilotShip.getPilotShipId());
 			}
 		}
