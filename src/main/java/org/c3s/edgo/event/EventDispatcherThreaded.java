@@ -26,6 +26,7 @@ public class EventDispatcherThreaded {
 		storedEventsNames.put("materials", null);
 		//
 		executeEventsNames.put("loadgame", null);
+		executeEventsNames.put("docked", null);
 	}
 	
 	private static Map<String, Class<? extends JournalEvent>> events = new ConcurrentHashMap<String, Class<? extends JournalEvent>>();
