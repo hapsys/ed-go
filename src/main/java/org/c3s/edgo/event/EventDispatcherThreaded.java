@@ -95,7 +95,7 @@ public class EventDispatcherThreaded {
 						}
 					}
 				}
-				Thread.sleep(0);
+				Thread.sleep(1);
 			}
 		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException | InterruptedException e) {
 			// TODO Auto-generated catch block
