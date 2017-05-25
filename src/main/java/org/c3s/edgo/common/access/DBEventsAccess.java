@@ -138,4 +138,66 @@ public class DBEventsAccess extends Access {
 		return ret;
 	}
 	
+	public DBEventsBean getUnlockEventForUserId(long paramUserId, Integer paramState) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT e.*, MD5(e.event_json) as json_md5 				FROM events e 				WHERE e.user_id = ?  				AND e.is_locked = ? 				ORDER BY event_id ASC 				LIMIT 1 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getUnlockEventForUserId", query ,  paramUserId,  paramState);
+		DBEventsBean ret = null;
+		if (result != null) {
+					ret = new DBEventsBean();
+				
+					ret = dataMapper.mapFromRow(result.get(0), DBEventsBean.class);
+					
+		}
+			
+		return ret;
+	}
+	
+	public List<DBEventUsersBean> getEventUsers() throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT e.user_id 				FROM events e 				WHERE e.is_locked = 0 				GROUP BY e.user_id  			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getEventUsers", query );
+		List<DBEventUsersBean> ret = null;
+		if (result != null) {
+					ret = new ArrayList<DBEventUsersBean>();
+				
+			for (Map<String, Object> res : result) {
+				DBEventUsersBean bean = dataMapper.mapFromRow(res, DBEventUsersBean.class);
+														
+				ret.add(bean);
+			}
+					
+		}
+			
+		return ret;
+	}
+	
 }

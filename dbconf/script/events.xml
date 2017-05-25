@@ -27,6 +27,26 @@
 				LIMIT 1
 			</sql>
 		</query>
+		<query name="UnlockEventForUserId" single_object="true" use="Events">
+			<column name="UserId" type="long"/>
+			<column name="State" type="Integer"/>
+			<sql>
+				SELECT e.*, MD5(e.event_json) as json_md5
+				FROM events e
+				WHERE e.user_id = ? 
+				AND e.is_locked = ?
+				ORDER BY event_id ASC
+				LIMIT 1
+			</sql>
+		</query>
+		<query name="EventUsers">
+			<sql>
+				SELECT e.user_id
+				FROM events e
+				WHERE e.is_locked = 0
+				GROUP BY e.user_id 
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 	<!-- 

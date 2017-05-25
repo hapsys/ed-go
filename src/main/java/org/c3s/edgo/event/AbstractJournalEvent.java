@@ -96,6 +96,13 @@ public abstract class AbstractJournalEvent<T extends AbstractEventBean> implemen
 				logger.error("Error json: {}", event.getEventJson());
 				//logger.error("See json pls. \n{}", (Object[])e.getStackTrace());
 				logger.error("{}", e.getMessage(), e);
+				// update Evnt Error Info
+				event.setIsLocked(99);
+				try {
+					DbAccess.eventsAccess.updateByPrimaryKey(event, event.getEventId());
+				} catch (IllegalArgumentException | IllegalAccessException | SQLException e1) {
+					logger.error("{}", e1.getMessage(), e1);
+				}
 			}
 		} else {
 			processMap(JSONUtils.fromJSON(event.getEventJson(), HashMap.class));
