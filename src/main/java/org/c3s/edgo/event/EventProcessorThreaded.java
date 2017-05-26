@@ -61,7 +61,7 @@ public class EventProcessorThreaded implements Runnable {
 						}
 					}
 				}
-				Thread.sleep(1);
+				Thread.sleep(500);
 			} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException | InterruptedException e) {
 				// TODO Auto-generated catch block
 				abort();
