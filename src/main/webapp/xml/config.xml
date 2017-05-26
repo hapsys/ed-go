@@ -32,6 +32,11 @@
 			
 			<module class="org.c3s.edgo.web.common.CurrentURL" action="getCurrentURL"/>
 			
+			<!-- Markdown main page -->
+			<module class="org.c3s.edgo.web.common.MD2Html" action="publishMD" is_last="true">
+				<param name="tag" value="markdown" inherit="true"/>
+				<param name="source" value="txt/about.md" inherit="true"/>
+			</module>
 			
 			<!-- +Accounting  -->
 			<module pattern="account/">

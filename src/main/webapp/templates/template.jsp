@@ -47,7 +47,9 @@
 
 	List<PathElement> path = cms.getPath();
 	String title = path.get(path.size()-1).getTitle();
-
+	
+	//
+	String markdown = cms.getData("markdown");
 %>
 <!DOCTYPE html>
 <html lang="<%=lang_id%>">
@@ -281,6 +283,7 @@ moment.locale('<%=lang_id%>');
 		 		<% if (includeFile != null) { %>
 		 		<jsp:include page="<%=includeFile%>"/>
 		 		<% } %>
+		 		<%=markdown%>
 	 		</div>
         </div>
         <!-- /page content -->
