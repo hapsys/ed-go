@@ -47,6 +47,51 @@ public class DBPilotLastInfoBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"system_id", "systemId"})
+	@DataTarget("system_id")
+	@XMLSimple("systemId")
+	private java.math.BigInteger systemId;
+	
+	public java.math.BigInteger getSystemId() {
+		return systemId;
+	}
+	
+	public DBPilotLastInfoBean setSystemId(java.math.BigInteger value) {
+		systemId = value;
+		return this;
+	}
+	
+	
+	@DataSource({"station_id", "stationId"})
+	@DataTarget("station_id")
+	@XMLSimple("stationId")
+	private java.lang.Long stationId;
+	
+	public java.lang.Long getStationId() {
+		return stationId;
+	}
+	
+	public DBPilotLastInfoBean setStationId(java.lang.Long value) {
+		stationId = value;
+		return this;
+	}
+	
+	
+	@DataSource({"is_supercruise", "isSupercruise"})
+	@DataTarget("is_supercruise")
+	@XMLSimple("isSupercruise")
+	private java.lang.Integer isSupercruise;
+	
+	public java.lang.Integer getIsSupercruise() {
+		return isSupercruise;
+	}
+	
+	public DBPilotLastInfoBean setIsSupercruise(java.lang.Integer value) {
+		isSupercruise = value;
+		return this;
+	}
+	
+	
 	@DataSource({"pilot_id", "pilotId"})
 	@DataTarget("pilot_id")
 	@XMLSimple("pilotId")
@@ -58,6 +103,21 @@ public class DBPilotLastInfoBean implements DbBean, Serializable {
 	
 	public DBPilotLastInfoBean setPilotId(java.lang.Long value) {
 		pilotId = value;
+		return this;
+	}
+	
+	
+	@DataSource({"body_id", "bodyId"})
+	@DataTarget("body_id")
+	@XMLSimple("bodyId")
+	private java.math.BigInteger bodyId;
+	
+	public java.math.BigInteger getBodyId() {
+		return bodyId;
+	}
+	
+	public DBPilotLastInfoBean setBodyId(java.math.BigInteger value) {
+		bodyId = value;
 		return this;
 	}
 	

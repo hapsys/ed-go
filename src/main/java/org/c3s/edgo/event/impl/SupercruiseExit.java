@@ -1,5 +1,8 @@
 package org.c3s.edgo.event.impl;
 	
+import java.sql.SQLException;
+
+import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.dao.LocationDAO;
 import org.c3s.edgo.event.AbstractJournalEvent;
@@ -17,9 +20,15 @@ public class SupercruiseExit extends AbstractJournalEvent<SupercruiseExitBean> {
 	}
 	
 	protected void processBean(SupercruiseExitBean bean) {
-		DBPilotsBean current = getCurrent();
-		if (current != null) {
-			LocationDAO.insertLocation(current.getPilotId(), bean.getTimestamp(), bean.getStarsystem(), null, null, bean.getBody(), bean.getBodyType());
+		try {
+			DBPilotsBean current = getCurrent();
+			if (current != null) {
+				LocationDAO.insertLocation(current.getPilotId(), bean.getTimestamp(), bean.getStarsystem(), null, null, bean.getBody(), bean.getBodyType());
+				// Update last info supercruise
+				DbAccess.pilotLastInfoAccess.updateSupercruiseFlag(0, current.getPilotId());
+			}
+		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
+			throw new RuntimeException(e);
 		}
 	}
 

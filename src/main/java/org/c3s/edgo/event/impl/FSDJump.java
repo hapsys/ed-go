@@ -2,6 +2,7 @@ package org.c3s.edgo.event.impl;
 	
 import java.sql.SQLException;
 
+import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.dao.LocationDAO;
 import org.c3s.edgo.common.dao.PowersDAO;
@@ -40,6 +41,9 @@ public class FSDJump extends AbstractJournalEvent<FSDJumpBean> {
 					}
 					SystemsDAO.updateSystemFactionControl(bean.getTimestamp(), bean.getStarSystem(), bean.getStarPos(), bean.getSystemFaction(), gov, bean.getSystemAllegiance());
 				}
+				
+				// Update last info supercruise
+				DbAccess.pilotLastInfoAccess.updateSupercruiseFlag(1, pilot.getPilotId());
 			}
 		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
 			throw new RuntimeException(e);

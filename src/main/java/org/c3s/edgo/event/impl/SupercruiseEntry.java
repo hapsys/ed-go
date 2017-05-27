@@ -1,5 +1,9 @@
 package org.c3s.edgo.event.impl;
 	
+import java.sql.SQLException;
+
+import org.c3s.edgo.common.access.DbAccess;
+import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.event.AbstractJournalEvent;
 import org.c3s.edgo.event.impl.beans.SupercruiseEntryBean;
 import org.slf4j.Logger;
@@ -15,6 +19,16 @@ public class SupercruiseEntry extends AbstractJournalEvent<SupercruiseEntryBean>
 	}
 	
 	protected void processBean(SupercruiseEntryBean bean) {
+		try {
+			DBPilotsBean pilot = getCurrent();
+			if (pilot != null) {
+				// Update last info supercruise
+				DbAccess.pilotLastInfoAccess.updateSupercruiseFlag(1, pilot.getPilotId());
+			}
+		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
 	}
 
 }

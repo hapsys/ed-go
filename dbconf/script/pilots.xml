@@ -122,6 +122,16 @@
 				LIMIT 1 
 			</sql>
 		</query>
+		<query name="SupercruiseFlag">
+			<column name="IsSupercruise" type="long"/>
+			<column name="PilotId" type="long"/>
+			<sql>
+				UPDATE pilot_last_info li 
+				SET li.is_supercruise = ?
+				WHERE li.pilot_id = ? 
+				LIMIT 1
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 	<table name="pilot_game_modes">

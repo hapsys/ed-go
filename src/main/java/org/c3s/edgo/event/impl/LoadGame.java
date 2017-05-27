@@ -76,6 +76,7 @@ public class LoadGame extends AbstractJournalEvent<LoadGameBean> {
 					info.setPilotId(current.getPilotId()).setCredits(BigInteger.valueOf(bean.getCredits()))
 					.setLoan(BigInteger.valueOf(bean.getLoan()));
 					if (isInsert) {
+						info.setIsSupercruise(0);
 						DbAccess.pilotLastInfoAccess.insert(info);
 					} else {
 						DbAccess.pilotLastInfoAccess.updateByPrimaryKey(info, current.getPilotId());

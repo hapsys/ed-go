@@ -32,36 +32,6 @@ public class DBLastPilotInfoBean implements DbBean, Serializable {
 	}
 	
 	
-	@DataSource({"pilot_game_mode_id", "pilotGameModeId"})
-	@DataTarget("pilot_game_mode_id")
-	@XMLSimple("pilotGameModeId")
-	private java.math.BigInteger pilotGameModeId;
-	
-	public java.math.BigInteger getPilotGameModeId() {
-		return pilotGameModeId;
-	}
-	
-	public DBLastPilotInfoBean setPilotGameModeId(java.math.BigInteger value) {
-		pilotGameModeId = value;
-		return this;
-	}
-	
-	
-	@DataSource({"credits", "credits"})
-	@DataTarget("credits")
-	@XMLSimple("credits")
-	private java.math.BigInteger credits;
-	
-	public java.math.BigInteger getCredits() {
-		return credits;
-	}
-	
-	public DBLastPilotInfoBean setCredits(java.math.BigInteger value) {
-		credits = value;
-		return this;
-	}
-	
-	
 	@DataSource({"mode_start", "modeStart"})
 	@DataTarget("mode_start")
 	@XMLSimple("modeStart")
@@ -77,17 +47,32 @@ public class DBLastPilotInfoBean implements DbBean, Serializable {
 	}
 	
 	
-	@DataSource({"game_mode", "gameMode"})
-	@DataTarget("game_mode")
-	@XMLSimple("gameMode")
-	private java.lang.String gameMode;
+	@DataSource({"system_id", "systemId"})
+	@DataTarget("system_id")
+	@XMLSimple("systemId")
+	private java.math.BigInteger systemId;
 	
-	public java.lang.String getGameMode() {
-		return gameMode;
+	public java.math.BigInteger getSystemId() {
+		return systemId;
 	}
 	
-	public DBLastPilotInfoBean setGameMode(java.lang.String value) {
-		gameMode = value;
+	public DBLastPilotInfoBean setSystemId(java.math.BigInteger value) {
+		systemId = value;
+		return this;
+	}
+	
+	
+	@DataSource({"station_id", "stationId"})
+	@DataTarget("station_id")
+	@XMLSimple("stationId")
+	private java.lang.Long stationId;
+	
+	public java.lang.Long getStationId() {
+		return stationId;
+	}
+	
+	public DBLastPilotInfoBean setStationId(java.lang.Long value) {
+		stationId = value;
 		return this;
 	}
 	
@@ -122,6 +107,66 @@ public class DBLastPilotInfoBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"pilot_game_mode_id", "pilotGameModeId"})
+	@DataTarget("pilot_game_mode_id")
+	@XMLSimple("pilotGameModeId")
+	private java.math.BigInteger pilotGameModeId;
+	
+	public java.math.BigInteger getPilotGameModeId() {
+		return pilotGameModeId;
+	}
+	
+	public DBLastPilotInfoBean setPilotGameModeId(java.math.BigInteger value) {
+		pilotGameModeId = value;
+		return this;
+	}
+	
+	
+	@DataSource({"credits", "credits"})
+	@DataTarget("credits")
+	@XMLSimple("credits")
+	private java.math.BigInteger credits;
+	
+	public java.math.BigInteger getCredits() {
+		return credits;
+	}
+	
+	public DBLastPilotInfoBean setCredits(java.math.BigInteger value) {
+		credits = value;
+		return this;
+	}
+	
+	
+	@DataSource({"game_mode", "gameMode"})
+	@DataTarget("game_mode")
+	@XMLSimple("gameMode")
+	private java.lang.String gameMode;
+	
+	public java.lang.String getGameMode() {
+		return gameMode;
+	}
+	
+	public DBLastPilotInfoBean setGameMode(java.lang.String value) {
+		gameMode = value;
+		return this;
+	}
+	
+	
+	@DataSource({"is_supercruise", "isSupercruise"})
+	@DataTarget("is_supercruise")
+	@XMLSimple("isSupercruise")
+	private java.lang.Integer isSupercruise;
+	
+	public java.lang.Integer getIsSupercruise() {
+		return isSupercruise;
+	}
+	
+	public DBLastPilotInfoBean setIsSupercruise(java.lang.Integer value) {
+		isSupercruise = value;
+		return this;
+	}
+	
+	
 	@DataSource({"game_mode_id", "gameModeId"})
 	@DataTarget("game_mode_id")
 	@XMLSimple("gameModeId")
@@ -133,6 +178,21 @@ public class DBLastPilotInfoBean implements DbBean, Serializable {
 	
 	public DBLastPilotInfoBean setGameModeId(java.lang.Long value) {
 		gameModeId = value;
+		return this;
+	}
+	
+	
+	@DataSource({"body_id", "bodyId"})
+	@DataTarget("body_id")
+	@XMLSimple("bodyId")
+	private java.math.BigInteger bodyId;
+	
+	public java.math.BigInteger getBodyId() {
+		return bodyId;
+	}
+	
+	public DBLastPilotInfoBean setBodyId(java.math.BigInteger value) {
+		bodyId = value;
 		return this;
 	}
 	

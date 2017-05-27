@@ -1,4 +1,4 @@
-# Elite Dangerous Global Observer
+# Elite Dangerous Global Observer (pre-alpha)
 
 ### Сервера:
 
@@ -23,7 +23,7 @@
 
 ### Программа клиента:
 
-[http://ed-go.ru/client/download/](http://ed-go.ru/client/download/) (там же небольшое описание)
+[http://ed-go.ru/client/download/](http://ed-go.ru/client/download/) (автоматическое обновление)
 
 ### Готовится к реализации (сайт)
 

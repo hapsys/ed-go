@@ -7,6 +7,7 @@ import java.util.Date;
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBBodiesBean;
 import org.c3s.edgo.common.beans.DBLocationHistoryBean;
+import org.c3s.edgo.common.beans.DBPilotLastInfoBean;
 import org.c3s.edgo.common.beans.DBStationHistoryBean;
 import org.c3s.edgo.common.beans.DBStationsBean;
 import org.c3s.edgo.common.beans.DBSystemsBean;
@@ -34,6 +35,9 @@ public class LocationDAO {
 			
 			boolean isNewLocation = false;
 			
+			DBPilotLastInfoBean lastInfo = DbAccess.pilotLastInfoAccess.getByPrimaryKey(pilot_id);
+			lastInfo.setSystemId(null).setStationId(null).setPilotId(null);
+			
 			if (system != null) {
 				DBSystemsBean starSystem = SystemsDAO.getOrInsertSystem(system, coord);
 				if (prevLocation == null || !starSystem.getSystemId().equals(prevLocation.getSystemId())) {
@@ -45,6 +49,8 @@ public class LocationDAO {
 					prevLocation = history;
 					isNewLocation = true;
 				}
+				
+				lastInfo.setSystemId(starSystem.getSystemId());
 			}
 			
 			
@@ -61,14 +67,18 @@ public class LocationDAO {
 						curStation.setStationId(stat.getStationId());
 						DbAccess.stationHistoryAccess.insert(curStation);
 					}
+					lastInfo.setStationId(stat.getStationId());
 				} else if (body != null) {
 					DBBodiesBean bod = SystemsDAO.getOrInsertBody(prevLocation.getSystemId(), body, bodyType);
 					if (prevStation == null || isNewLocation || !bod.getBodyId().equals(prevStation.getBodyId())) {
 						curStation.setBodyId(bod.getBodyId());
 						DbAccess.stationHistoryAccess.insert(curStation);
 					}
+					lastInfo.setBodyId(bod.getBodyId());
 				}
 			}
+			
+			DbAccess.pilotLastInfoAccess.updateByPrimaryKey(lastInfo, pilot_id);
 			
 		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
 			throw new RuntimeException(e);
