@@ -49,7 +49,6 @@ public class LocationDAO {
 					prevLocation = history;
 					isNewLocation = true;
 				}
-				
 				lastInfo.setSystemId(starSystem.getSystemId());
 			}
 			
