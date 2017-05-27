@@ -72,6 +72,12 @@
 		    <artifactId>mail</artifactId>
 		    <version>1.4.7</version>
 		</dependency>		
+		<!-- Markdown -->
+		<dependency>
+			<groupId>es.nitaur.markdown</groupId>
+			<artifactId>txtmark</artifactId>
+			<version>0.16</version>
+		</dependency>				
 		<!-- c3s -->
 		<dependency>
 			<groupId>org.c3s</groupId>
