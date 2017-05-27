@@ -36,7 +36,7 @@ public class LocationDAO {
 			boolean isNewLocation = false;
 			
 			DBPilotLastInfoBean lastInfo = DbAccess.pilotLastInfoAccess.getByPrimaryKey(pilot_id);
-			lastInfo.setSystemId(null).setStationId(null).setPilotId(null);
+			lastInfo.setSystemId(null).setStationId(null).setBodyId(null);
 			
 			if (system != null) {
 				DBSystemsBean starSystem = SystemsDAO.getOrInsertSystem(system, coord);
