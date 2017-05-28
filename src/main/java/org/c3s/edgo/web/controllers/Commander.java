@@ -32,6 +32,7 @@ import org.c3s.edgo.common.beans.DBEngTypeBean;
 import org.c3s.edgo.common.beans.DBEventMaxMinDateForPilotBean;
 import org.c3s.edgo.common.beans.DBGradesByTypeUniqBean;
 import org.c3s.edgo.common.beans.DBLocationsPathBean;
+import org.c3s.edgo.common.beans.DBMaterialUnsingInfoBean;
 import org.c3s.edgo.common.beans.DBMaterialsBean;
 import org.c3s.edgo.common.beans.DBMaterialsByBlueprintAndGradeBean;
 import org.c3s.edgo.common.beans.DBMaterialsByTypeUniqBean;
@@ -541,6 +542,23 @@ public class Commander extends GeneralController {
 		redirect.setRedirect(new DropRedirect());
 	}
 		
+	public void getMaterialInfo(@ParameterRequest("material") String material, @Parameter("tag") String tag, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		
+		Result result = new Result();
+
+		List<DBMaterialUnsingInfoBean> info = DbAccess.engBlueprintMaterialsAccess.getMaterialUnsingInfo(material);
+		if (info != null) {
+			info = info.stream().peek(m -> {
+				m.setMaterialLoc(I10N.tr(m.getMaterialUniq()));
+				m.setEngBlueprintName(I10N.tr(m.getEngBlueprintName()));
+				m.setEngTypeName(I10N.tr(m.getEngTypeName()));
+			}).collect(Collectors.toList());
+			result.put("material", info);
+		}
+		
+		ContentObject.getInstance().setData(tag, result.get());
+		redirect.setRedirect(new DropRedirect());
+	}
 	
 	// ============================================================== -MATERIALS ==============================================================================
 	

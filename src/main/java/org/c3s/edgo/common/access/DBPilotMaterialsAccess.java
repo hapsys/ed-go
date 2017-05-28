@@ -146,7 +146,7 @@ public class DBPilotMaterialsAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT m.*, mc.*, IF(ISNULL(pm.quantity), 0, pm.quantity) as quantity, '' as localized, UNIX_TIMESTAMP() - IF(ISNULL(pm.update_time),0,UNIX_TIMESTAMP(pm.update_time)) as update_time 				FROM material_category mc, materials m 				LEFT JOIN pilot_materials pm ON pm.pilot_id = ? AND pm.material_id = m.material_id 				WHERE m.matherial_category_id = mc.material_category_id   			";
+			query = " 				SELECT m.*, mc.*, IF(ISNULL(pm.quantity), 0, pm.quantity) as quantity, 				'' as localized, UNIX_TIMESTAMP() - IF(ISNULL(pm.update_time),0,UNIX_TIMESTAMP(pm.update_time)) as update_time, COUNT(DISTINCT bm.eng_grade_id) as used 				FROM material_category mc, materials m 				LEFT JOIN pilot_materials pm ON pm.pilot_id = ? AND pm.material_id = m.material_id 				LEFT JOIN eng_blueprint_materials bm ON bm.material_id = m.material_id  				WHERE m.matherial_category_id = mc.material_category_id 				GROUP BY m.material_id    			";
 		}
 
 		

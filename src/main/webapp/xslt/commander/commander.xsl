@@ -1139,7 +1139,12 @@
 						<table class="table">
 							<xsl:for-each select="childs/item[field[@name='materialCategoryId']/@value=1]">
 								<tr id="{field[@name='materialUniq']/@value}" class="material-row">
-									<td><xsl:value-of select="field[@name='localized']/@value"/></td>
+									<td>
+										<xsl:value-of select="field[@name='localized']/@value"/>
+										<xsl:if test="field[@name='used']/@value != '0'">
+											&#160;<sup><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#materialModal"><xsl:value-of select="field[@name='used']/@value"/>&#160;<i class="fa fa-cogs" aria-hidden="true"></i></button></sup>
+										</xsl:if>
+									</td>
 									<td style="width:70px;">
 										<button class="btn btn-success button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></button>
 										<!-- 
@@ -1166,7 +1171,12 @@
 						<table class="table">
 							<xsl:for-each select="childs/item[field[@name='materialCategoryId']/@value=2]">
 								<tr id="{field[@name='materialUniq']/@value}" class="material-row">
-									<td><xsl:value-of select="field[@name='localized']/@value"/></td>
+									<td>
+										<xsl:value-of select="field[@name='localized']/@value"/>
+										<xsl:if test="field[@name='used']/@value != '0'">
+											&#160;<sup><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#materialModal"><xsl:value-of select="field[@name='used']/@value"/>&#160;<i class="fa fa-cogs" aria-hidden="true"></i></button></sup>
+										</xsl:if>
+									</td>
 									<td style="width:70px;">
 										<button class="btn btn-success button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></button>
 										<!-- 
@@ -1193,7 +1203,12 @@
 						<table class="table">
 							<xsl:for-each select="childs/item[field[@name='materialCategoryId']/@value=3]">
 								<tr id="{field[@name='materialUniq']/@value}" class="material-row">
-									<td><xsl:value-of select="field[@name='localized']/@value"/></td>
+									<td>
+										<xsl:value-of select="field[@name='localized']/@value"/>
+										<xsl:if test="field[@name='used']/@value != '0'">
+											&#160;<sup><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#materialModal"><xsl:value-of select="field[@name='used']/@value"/>&#160;<i class="fa fa-cogs" aria-hidden="true"></i></button></sup>
+										</xsl:if>
+									</td>
 									<td style="width:70px;">
 										<button class="btn btn-success button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></button>
 										<!-- 
@@ -1208,9 +1223,64 @@
 			</div>
 		</div>
 		<div class="clearfix"></div>
+		<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="materialModalLabel"  id="materialModal">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true"><xsl:text disable-output-escaping="yes">&amp;times;</xsl:text> 
+							</span>
+						</button>
+						<h4 class="modal-title" id="materialModalLabel">Modal title</h4><small>используется в</small>
+					</div>
+					<div class="modal-body">
+						<table class="table">
+						</table>
+					</div>
+					<!--
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+					-->
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->		
 		<script>
 			$(function() {
-			
+				/*
+				+Modal
+				*/
+				var eng_info = {};
+				
+				var showMaterialInfo = function(material) {
+					if (eng_info[material]) {
+						var container = $('#materialModal').find('table');
+						$(container).children().remove();
+						$('#materialModal').find('h4').html(eng_info[material][0]['materialLoc']);
+						eng_info[material].forEach(function(m) {
+							$('&lt;tr&gt;&lt;td class="col-md-8"&gt;' + m.engTypeName +' / ' + m.engBlueprintName +'&lt;/td&gt;&lt;td&gt;' + m.engeneers +'&lt;/td&gt;&lt;td width="1%"&gt;' + m.grade +'&lt;/td&gt;&lt;/tr&gt;').appendTo(container);
+						});
+					}
+				}
+				
+				$('#materialModal').on('show.bs.modal', function(e)  {
+					var material = $(e.relatedTarget).parents('tr').attr('id');
+					if (eng_info[material]) {
+						showMaterialInfo(material);
+					} else {
+						proxy.makeCall('post', '/ajax/utility/material-grades/', null, null, {material: material}, function(result) {
+							eng_info[material] = result['material'];
+							//console.log(eng_info[material]);
+							showMaterialInfo(material);
+						});
+					}
+				});
+				
+				/*
+				-Modal
+				*/
 				var pilot = '<xsl:value-of select="$pilot"/>';
 			
 				var counter = 0;

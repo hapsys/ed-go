@@ -122,6 +122,21 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"used", "used"})
+	@DataTarget("used")
+	@XMLSimple("used")
+	private java.lang.Long used;
+	
+	public java.lang.Long getUsed() {
+		return used;
+	}
+	
+	public DBPilotMaterialsListBean setUsed(java.lang.Long value) {
+		used = value;
+		return this;
+	}
+	
+	
 	@DataSource({"material_category_name", "materialCategoryName"})
 	@DataTarget("material_category_name")
 	@XMLSimple("materialCategoryName")

@@ -129,4 +129,37 @@ public class DBEngBlueprintMaterialsAccess extends Access {
 		return ret;
 	}
 	
+	public List<DBMaterialUnsingInfoBean> getMaterialUnsingInfo(String paramMaterial) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT m.material_uniq, '' as material_loc, g.*, b.*, t.*, GROUP_CONCAT(e.engeneer_name ORDER BY e.engeneer_name SEPARATOR ', ') as engeneers 				FROM  materials m, eng_blueprint b, eng_grade g, eng_type t,eng_blueprint_materials bm 				LEFT JOIN eng_engeneers_grade eg ON eg.eng_grade_id = bm.eng_grade_id 				LEFT JOIN eng_engeneers e ON e.eng_engeneer_id = eg.eng_engeneer_id 				WHERE m.material_uniq = ? 				AND bm.material_id = m.material_id 				AND g.eng_grade_id = bm.eng_grade_id 				AND b.eng_blueprint_id = g.eng_blueprint_id 				AND t.eng_type_id = b.eng_type_id 				GROUP BY bm.eng_grade_id 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getMaterialUnsingInfo", query ,  paramMaterial);
+		List<DBMaterialUnsingInfoBean> ret = null;
+		if (result != null) {
+					ret = new ArrayList<DBMaterialUnsingInfoBean>();
+				
+			for (Map<String, Object> res : result) {
+				DBMaterialUnsingInfoBean bean = dataMapper.mapFromRow(res, DBMaterialUnsingInfoBean.class);
+														
+				ret.add(bean);
+			}
+					
+		}
+			
+		return ret;
+	}
+	
 }
