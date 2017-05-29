@@ -1,7 +1,6 @@
 package org.c3s.edgo.web.controllers;
 
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -16,10 +15,10 @@ import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.beans.DBPilotsLinkedInfoBean;
 import org.c3s.edgo.common.beans.DBUsersBean;
 import org.c3s.edgo.common.intruders.EventHistoryPilotsInjector;
-import org.c3s.edgo.common.intruders.InInjector;
 import org.c3s.edgo.web.GeneralController;
 import org.c3s.reflection.XMLList;
 import org.c3s.web.redirect.DropRedirect;
+import org.c3s.xml.utils.XMLUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -33,7 +32,13 @@ public class Settings extends GeneralController {
 		
 		List<DBPilotsLinkedInfoBean> pilots = DbAccess.pilotsAccess.getPilotsLinkedInfo(getUser().getUserId());
 		
-		Document xml = new XMLList(pilots, true).toXML("data");	
+		Document xml;
+		
+		if (pilots != null) {
+			xml = new XMLList(pilots, true).toXML("data");
+		} else {
+			xml = XMLUtils.createXML("data");
+		}
 		
 		//logger.debug(XMLUtils.saveXML(xml));
 		//System.out.println(template);

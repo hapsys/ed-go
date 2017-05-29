@@ -17,6 +17,10 @@
 			<column name="email"/>
 			<column name="uid"/>
 		</select>
+		<select name="ByEmailAndTempPassword" single_object="true">
+			<column name="email"/>
+			<column name="temp_password"/>
+		</select>
 		<select name="ByEmail" single_object="true">
 			<column name="email"/>
 		</select>
@@ -50,6 +54,13 @@
 			<column name="UserId" type="long"/>
 			<sql>
 				UPDATE users SET user_cookie = NULL WHERE user_id = ? LIMIT 1 
+			</sql>
+		</query>
+		<query name="NewPassword">
+			<column name="Password" type="String"/>
+			<column name="Email" type="String"/>
+			<sql>
+				UPDATE users SET temp_password = ? WHERE email = ? LIMIT 1 
 			</sql>
 		</query>
 	</table>

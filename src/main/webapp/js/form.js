@@ -84,6 +84,28 @@ $(function() {
 		return false;
 	});
 
+
+	$(".restore-form").submit(function() {
+		var form = this;
+		var data = {
+			email: $('#email').val(),
+		};
+		//console.log(data);
+		$(form).find('input,button,select').prop('disabled', true);
+		Validator.clearErrors(form);
+		proxy.makeCall('post', '/ajax/profile/restore/', null, null, data, function(result) {
+			if (result.error && result.status != 403) {
+				Validator.showErrors(form, result.error);
+				$(form).find('input,button,select').prop('disabled', false);
+			} else {
+				//window.location.href = site_root;
+				$(form).find('.form-section').addClass('hidden');
+				$(form).find('span').html(result.email);
+				$(form).find('.result-section').removeClass('hidden');
+			}
+		});
+		return false;
+	});
 	
 	$(".logout").on('click', function() {
 		proxy.makeCall('post', '/ajax/profile/logout/', null, null, null, function(result) {

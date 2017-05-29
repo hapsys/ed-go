@@ -32,6 +32,21 @@ public class DBUsersBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"temp_password", "tempPassword"})
+	@DataTarget("temp_password")
+	@XMLSimple("tempPassword")
+	private java.lang.String tempPassword;
+	
+	public java.lang.String getTempPassword() {
+		return tempPassword;
+	}
+	
+	public DBUsersBean setTempPassword(java.lang.String value) {
+		tempPassword = value;
+		return this;
+	}
+	
+	
 	@DataSource({"create_time", "createTime"})
 	@DataTarget("create_time")
 	@XMLSimple("createTime")

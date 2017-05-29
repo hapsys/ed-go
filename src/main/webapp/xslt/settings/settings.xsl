@@ -28,12 +28,34 @@
 							<xsl:call-template name="pilots_control_update"/>
 						</div>
 						<p>
+							<xsl:if test="count(item) != 0">
+								<button type="button" class="btn btn-success update"><xsl:value-of select="i10n:tr('pilots-link-update')"/></button>
+							</xsl:if>
+						</p>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<!-- 
+		<div class="row width-650 pilots-content">
+			<div class="x_panel">
+				<div class="x_title">
+					<h2>
+						<xsl:value-of select="i10n:tr('pilots-link-title')"/> <small>(<xsl:value-of select="i10n:tr('pilots-link-description')"/>)</small>
+					</h2>
+					<div class="clearfix"></div>
+				</div>
+				<div class="x_content">
+					<form class="user-settings-form">
+						<p>
 							<button type="button" class="btn btn-success update"><xsl:value-of select="i10n:tr('pilots-link-update')"/></button>
 						</p>
 					</form>
 				</div>
 			</div>
 		</div>
+		 -->
 	</xsl:template>
 <!--
 //

@@ -139,6 +139,9 @@
 							<param name="allow" value="ROLE_NOT_LOGGED"/>
 							<module pattern="login/" class="org.c3s.edgo.web.auth.UserController" action="login" is_last="true"/>
 							<module pattern="registration/" class="org.c3s.edgo.web.auth.UserController" action="registration" is_last="true"/>
+							<module pattern="restore/" class="org.c3s.edgo.web.auth.UserController" action="restore" is_last="true">
+								<param name="subject" value="Restore password" inherit="true"/>
+							</module>
 						</module>
 						<module class="org.c3s.edgo.web.auth.Auth" action="checkRoles">
 							<param name="order" value="deny,allow"/>

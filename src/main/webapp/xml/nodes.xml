@@ -73,6 +73,8 @@
 			<role>ROLE_NOT_LOGGED</role>
 			<title lang="ru">Восстановить пароль</title>
 			<title lang="en">Restore password</title>
+			<include lang="en" value="include/restore_en.jsp" tag="content_include"/>
+			<include lang="ru" value="include/restore_ru.jsp" tag="content_include"/>
 		</node>
 	</node>
 	<!--

@@ -213,6 +213,36 @@ public class DBUsersAccess extends Access {
 		return ret;
 	}
 	
+	public DBUsersBean getByEmailAndTempPassword(java.lang.String paramEmail, java.lang.String paramTempPassword)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		DBUsersBean ret = null;
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  email= ? AND  temp_password= ?  "+injector.getWhereQuery()+" ";
+		if (injector.getOrderQuery().length() != 0) {
+			sql += injector.getOrderQuery();
+		} else { 
+			
+		}
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByEmailAndTempPassword", sql ,  paramEmail,  paramTempPassword);
+		if (result != null) {
+			
+			ret = dataMapper.mapFromRow(result.get(0), DBUsersBean.class);
+			ret.onLoad();
+		}
+		return ret;
+	}
+	
 	public DBUsersBean getByCookie(java.lang.String paramUserCookie)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		DBUsersBean ret = null;
@@ -251,6 +281,28 @@ public class DBUsersAccess extends Access {
 		 keys.put("user_id",  paramUserId);
 		 
 		return getConnection().updateRow("users", map, keys);
+	}
+	
+	public int updateNewPassword(String paramPassword, String paramEmail) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				UPDATE users SET temp_password = ? WHERE email = ? LIMIT 1  			";
+		}
+
+		
+		int ret = getConnection().query(query,  paramPassword,  paramEmail);
+			
+		return ret;
 	}
 	
 	public int updateNullCookieByUserId(long paramUserId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {

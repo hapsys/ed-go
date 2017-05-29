@@ -39,6 +39,7 @@ import org.c3s.edgo.web.validator.Nulled;
 import org.c3s.edgo.web.validator.Regexp;
 import org.c3s.edgo.web.validator.Required;
 import org.c3s.edgo.web.validator.Result;
+import org.c3s.edgo.web.validator.UserExists;
 import org.c3s.edgo.web.validator.ValueChecker;
 import org.c3s.exceptions.XMLException;
 import org.c3s.reflection.XMLReflectionObj;
@@ -84,6 +85,8 @@ public class UserController extends GeneralController {
 		
 			try {
 				ValueChecker chk = new ValueChecker();
+				
+				email = email.toLowerCase();
 				
 				chk.validate("regemail", email, new Required(i10n("Field must have value")));
 				chk.validate("regemail", email, new Regexp("~^[\\.A-z0-9_\\-\\+]+[@][A-z0-9_\\-]+([.][A-z0-9_\\-]+)+[A-z]{1,4}$~isu",i10n("Email is not valid")));
@@ -144,6 +147,18 @@ public class UserController extends GeneralController {
 		
 		new MailSender().send(from, email, subject, body);
 	}
+	
+	private void sendRestoreMail(ServletRequest request, String from, String email, String subject, String template, String newPassword) throws XMLException, AddressException, MessagingException {
+		GeneralSiteAlias alias = SiteLoader.getSite().getCurrentAlias();
+		Document doc = XMLUtils.createXML("message");
+		doc.getDocumentElement().setAttribute("site_name", alias.getAlias());
+		doc.getDocumentElement().setAttribute("new_password", newPassword);
+		
+		String body = XMLUtils.transformXML(doc, XMLManager.getDocument(template), Utils.paramsArrayToMap(new String[]{"type:restore"}));
+		
+		new MailSender().send(from, email, subject, body);
+	}
+	
 	/**
 	 * @param email
 	 * @param password
@@ -165,6 +180,8 @@ public class UserController extends GeneralController {
 			errors = ValueChecker.addError("__common", i10n("already logged"), null);
 		} else {
 		
+			email = email.toLowerCase();
+			
 			ValueChecker chk = new ValueChecker();
 			
 			chk.validate("email", email, new Required(i10n("Field must have value")));
@@ -174,7 +191,21 @@ public class UserController extends GeneralController {
 			
 			if (!chk.hasErrors()) {
 				DBUsersBean user = DbAccess.usersAccess.getByEmailAndPassword(email, Utils.MD5(password));
+				
+				// Restore password
+				if (user == null) {
+					user = DbAccess.usersAccess.getByEmailAndTempPassword(email, password);
+					if (user != null) {
+						//DbAccess.usersAccess.updateChangePassword(password, user.getUserId());
+						user.setUid(Utils.MD5(password));
+					}
+				}
+				
 				if (user != null) {
+					// Clear temp password
+					//DbAccess.usersAccess.updateTempPasswordClear(user.getUserId());
+					user.setTempPassword(null);
+					// Prepare result
 					(result = new Result()).get().put("user_id", user.getUserUuid());
 					storage.put(STORED_USER, user);
 					user.setPrevLoginTime(user.getLastLoginTime());
@@ -350,6 +381,8 @@ public class UserController extends GeneralController {
 			
 			try {
 				
+				email = email.toLowerCase();
+				
 				ValueChecker chk = new ValueChecker();
 				
 				chk.validate("email", email, new Required(i10n("Field must have value")));
@@ -382,6 +415,49 @@ public class UserController extends GeneralController {
 			redirect.setRedirect(new DropRedirect());
 		} 
 	}
+	
+	public void restore(@ParameterRequest("email") String email, @Parameter("tag") String tag, @Parameter("from") String from, @Parameter("subject") String subject, 
+			@Parameter("template") String template, RedirectControlerInterface redirect, ServletRequest request) {
+			Result result = null;
+			Map<?,?> errors = null;
+			
+		try {
+			
+			ValueChecker chk = new ValueChecker();
+			
+			chk.validate("email", email, new Required(i10n("Field must have value")));
+			chk.validate("email", email, new Regexp("~^[\\.A-z0-9_\\-\\+]+[@][A-z0-9_\\-]+([.][A-z0-9_\\-]+)+[A-z]{1,4}$~isu",i10n("Email is not valid")));
+			chk.validate("email", email, new UserExists(i10n("User not exists")));
+			
+			errors = chk.getErrors();
+			if (errors == null) {
+				int length = 10 + Double.valueOf(Math.random() * 10).intValue();
+				String newPass = Utils.generateString(length, "QWERTYUIOPASDFGHJKLZXCVBNM1234567890");
+				DbAccess.usersAccess.updateNewPassword(newPass, email);
+				/*
+				 * Send register message
+				 */
+				try {
+					sendRestoreMail(request, from, email, subject, template, newPass);
+				} catch (MessagingException e) {
+					//e.printStackTrace();
+					errors = ValueChecker.addError("__common", i10n("Some trouble to send email"), null);
+				}
+				
+				(result = new Result()).get().put("email", email);
+				
+			}
+			
+			
+		} catch (IllegalArgumentException | XMLException | IllegalAccessException | InstantiationException | SQLException e) {
+			errors = ValueChecker.addError("__common", i10n(e.getMessage()), null);
+		}
+		
+		Map<?, ?> data = (errors != null)?wrapError(errors):result.get();
+		ContentObject.getInstance().setData(tag, data);
+		redirect.setRedirect(new DropRedirect());
+	}
+	
 }
 
 

@@ -8,6 +8,9 @@
 	ContentObject cms = ContentObject.getInstance();
 	boolean isLogin = cms.getFixedParameter("current_url").toString().endsWith("login/");
 	String root = cms.getFixedParameter("root").toString();
+	String lang_id = cms.getFixedParameter("language_id").toString();
+	String isDefault = cms.getFixedParameter("default").toString();
+	String rootLang = root + ("true".equals(isDefault)?"":"/" + lang_id);
 %>
 <div class="login">
 <style  type="text/css" scoped>
@@ -54,7 +57,7 @@
 						</div>
 						<div>
 							<button type="submit" class="btn btn-default submit">Войти</button> <a
-								class="reset_pass" href="<%=root%>/account/restore/">Забыли пароль?</a>
+								class="reset_pass" href="<%=rootLang%>/account/restore/">Забыли пароль?</a>
 						</div>
 
 						<div class="clearfix"></div>
