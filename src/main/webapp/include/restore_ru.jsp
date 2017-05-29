@@ -39,7 +39,7 @@
 
 			<div class="separator">
 				<p class="change_link">
-					<a href="<%=rootLang%>/login/" class="clear-errors"> Войти </a> <a href="<%=rootLang%>/registration/" class="clear-errors"> Создать аккаунт </a>
+					<a href="<%=rootLang%>/account/login/" class="clear-errors"> Войти </a> <a href="<%=rootLang%>/account/registration/" class="clear-errors"> Создать аккаунт </a>
 				</p>
 	
 				<div class="clearfix"></div>

@@ -37,7 +37,7 @@
 
 			<div class="separator">
 				<p class="change_link">
-					<a href="<%=rootLang%>/login/" class="clear-errors"> Log In </a> <a href="<%=rootLang%>/registration/" class="clear-errors"> Create Account </a>
+					<a href="<%=rootLang%>/account/login/" class="clear-errors"> Log In </a> <a href="<%=rootLang%>/account/registration/" class="clear-errors"> Create Account </a>
 				</p>
 	
 				<div class="clearfix"></div>
