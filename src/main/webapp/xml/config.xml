@@ -153,6 +153,7 @@
 							<param name="order" value="deny,allow"/>
 							<param name="allow" value="ROLE_LOGGED"/>
 							<module pattern="key-update/" class="org.c3s.edgo.web.auth.UserController" action="generateNewKeys" is_last="true"/>
+							<module pattern="change-password/" class="org.c3s.edgo.web.auth.UserController" action="changePassword" is_last="true"/>
 						</module>
 					</module>
 					<!-- PIlots info -->

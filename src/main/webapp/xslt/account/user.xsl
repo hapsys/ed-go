@@ -22,29 +22,66 @@
 //
 -->
 	<xsl:template name="view_form">
-		<div class="row width-650">
-			<div class="x_panel">
-				<div class="x_title">
-					<h2>
-						<xsl:value-of select="i10n:tr('profile-settings')"/> <small>(<xsl:value-of select="i10n:tr('profile-description')"/>)</small>
-					</h2>
-					<div class="clearfix"></div>
-				</div>
-				<div class="x_content">
-					<form class="form-horizontal account-form">
-						<div class="form-group">
-							<label for="lastLoginTime" class="col-md-4 control-label">Last login time</label>
-							<div class="col-md-8">
-								<xsl:value-of select="field[@name='prevLoginTime']/@value"/>
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>
+							<xsl:value-of select="i10n:tr('profile-settings')"/> <small>(<xsl:value-of select="i10n:tr('profile-description')"/>)</small>
+						</h2>
+						<div class="clearfix"></div>
+					</div>
+					<div class="x_content">
+						<br />
+						<form class="form-horizontal account-form">
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><xsl:value-of select="i10n:tr('last-login-time')"/></label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<h5><xsl:value-of select="field[@name='prevLoginTime']/@value"/></h5>
+								</div>
+							</div>			
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email"><xsl:value-of select="i10n:tr('email-login')"/></label>
+		                        <div class="col-md-6 col-sm-6 col-xs-12">
+		                          <h5><xsl:value-of select="field[@name='email']/@value"/></h5>
+		                        </div>
+							</div>			
+							<div class="form-group password-switch">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="password"><xsl:value-of select="i10n:tr('password')"/></label>
+		                        <div class="col-md-6 col-sm-6 col-xs-12">
+		                          <h5><a class="password-change" href="#"><xsl:value-of select="i10n:tr('password-change')"/></a></h5>
+		                        </div>
+							</div>			
+							<div class="form-group password-switch hidden">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="old_password"><xsl:value-of select="i10n:tr('old-password')"/> <span class="required">*</span>
+								</label>
+		                        <div class="col-md-6 col-sm-6 col-xs-12">
+		                          <input type="password" id="old_password" name="old_password" required="required" class="form-control col-md-7 col-xs-12"/>
+		                        </div>
+							</div>			
+							<div class="form-group password-switch hidden">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="new_password"><xsl:value-of select="i10n:tr('new-password')"/> <span class="required">*</span>
+								</label>
+		                        <div class="col-md-6 col-sm-6 col-xs-12">
+		                          <input type="password" id="new_password" name="new_password" required="required" class="form-control col-md-7 col-xs-12"/>
+		                        </div>
+							</div>			
+							<div class="form-group password-switch hidden">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="confirm_new_password"><xsl:value-of select="i10n:tr('confirm-new-password')"/> <span class="required">*</span>
+								</label>
+		                        <div class="col-md-6 col-sm-6 col-xs-12">
+		                          <input type="password" id="confirm_new_password" name="confirm_new_password" required="required" class="form-control col-md-7 col-xs-12"/>
+		                        </div>
 							</div>
-						</div>			
-						<div class="form-group">
-							<label for="email" class="col-md-4 control-label">Email</label>
-							<div class="col-md-8">
-								<input type="email" readonly="readonly" class="form-control" id="email" value="{field[@name='email']/@value}"/>
-							</div>
-						</div>			
-					</form>
+							<div class="ln_solid password-switch hidden"></div>			
+							<div class="form-group password-switch hidden">
+		                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+		                          <button type="button" class="btn btn-primary password-cancel"><xsl:value-of select="i10n:tr('cancel')"/></button>
+		                          <button type="button" class="btn btn-success password-save"><xsl:value-of select="i10n:tr('save-password')"/></button>
+		                        </div>
+							</div>			
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>

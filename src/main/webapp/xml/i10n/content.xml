@@ -64,6 +64,50 @@
 		<select lang="ru">Обновить состояние</select>
 		<select lang="en">Update state</select>
 	</match>
+	<match name="profile-settings">
+		<select lang="ru">Профиль</select>
+		<select lang="en">Profile</select>
+	</match>
+	<match name="profile-description">
+		<select lang="ru">смотреть/изменить настройки</select>
+		<select lang="en">view/change settings</select>
+	</match>
+	<match name="last-login-time">
+		<select lang="ru">Последний вход в</select>
+		<select lang="en">Last login at</select>
+	</match>
+	<match name="email-login">
+		<select lang="ru">Логин/почта</select>
+		<select lang="en">Login/email</select>
+	</match>
+	<match name="password">
+		<select lang="ru">Пароль</select>
+		<select lang="en">Password</select>
+	</match>
+	<match name="password-change">
+		<select lang="ru">Изменить пароль?</select>
+		<select lang="en">Change password?</select>
+	</match>
+	<match name="old-password">
+		<select lang="ru">Старый пароль</select>
+		<select lang="en">Old password</select>
+	</match>
+	<match name="new-password">
+		<select lang="ru">Новый пароль</select>
+		<select lang="en">New password</select>
+	</match>
+	<match name="confirm-new-password">
+		<select lang="ru">Подтвердить пароль</select>
+		<select lang="en">Confirm password</select>
+	</match>
+	<match name="cancel">
+		<select lang="ru">Отмена</select>
+		<select lang="en">Cancel</select>
+	</match>
+	<match name="save-password">
+		<select lang="ru">Сохранить изменения</select>
+		<select lang="en">Save</select>
+	</match>
 	<!-- /USER FORMS -->
 	<!-- COMMANDER -->
 	<match name="Last Info">

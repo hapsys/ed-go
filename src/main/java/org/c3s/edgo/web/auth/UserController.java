@@ -458,6 +458,46 @@ public class UserController extends GeneralController {
 		redirect.setRedirect(new DropRedirect());
 	}
 	
+	@SuppressWarnings("unchecked")
+	public void changePassword(@ParameterRequest("old_password") String oldPassword, @ParameterRequest("new_password") String newPassword, @ParameterRequest("confirm_new_password") String confirmPassword, 
+			@Parameter("tag") String tag, RedirectControlerInterface redirect, ServletRequest request) {
+			Result result = null;
+			Map<?,?> errors = null;
+			
+		try {
+			
+			DBUsersBean user = getUser();
+			
+			ValueChecker chk = new ValueChecker();
+			
+			chk.validate("old_password", oldPassword, new Required(i10n("Field must have value")));
+			chk.validate("new_password", newPassword, new Required(i10n("Field must have value")), new MinLength(8, i10n("Password must be minimum 8 chars length")));
+			chk.validate("confirm_new_password", confirmPassword, new Required(i10n("Field must have value")));
+			errors = chk.getErrors();
+			if (!newPassword.equals(confirmPassword)) {
+				errors = ValueChecker.addError("confirm_new_password", i10n("Passwords must be equals"), (Map<String, List<String>>) errors);
+			}
+			
+			if (!user.getUid().equals(Utils.MD5(oldPassword))) {
+				errors = ValueChecker.addError("old_password", i10n("Old password incorrect"), (Map<String, List<String>>) errors);
+			}
+			if (errors == null) {
+				
+				user.setUid(Utils.MD5(newPassword));
+				DbAccess.usersAccess.updateByPrimaryKey(user, user.getUserId());
+				
+				result = new Result();
+			}
+			
+		} catch (IllegalArgumentException | IllegalAccessException | SQLException e) {
+			errors = ValueChecker.addError("__common", i10n(e.getMessage()), null);
+		}
+		
+		Map<?, ?> data = (errors != null)?wrapError(errors):result.get();
+		ContentObject.getInstance().setData(tag, data);
+		redirect.setRedirect(new DropRedirect());
+	}
+	
 }
 
 

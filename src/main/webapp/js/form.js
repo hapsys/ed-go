@@ -1,5 +1,24 @@
 var proxy = new ProxyApi(false, false, site_root);
 
+var prepareData = function(form) {
+	var data = new FormData();
+	$(form).find('input,textarea,select').each(function() {
+		if ($(this).attr('type') == 'file') {
+			if ($(this)[0].files[0]) {
+				data.append($(this).attr('name'), $(this)[0].files[0], $(this).val());
+			}
+		} else if ($(this).attr('type') == 'checkbox' || $(this).attr('type') == 'radio') {
+			if ($(this).prop('checked')) {
+				data.append($(this).attr('name'), $(this).val());
+			}
+		} else {
+			data.append($(this).attr('name'), $(this).val());
+		}
+	});
+	return data;
+} 
+
+
 $(function() {
 	
 	console.log('Load Forms');
@@ -121,8 +140,42 @@ $(function() {
 		return false;
 	});
 	
-	$(".client-program-form").each(function() {
+	$(".account-form").each(function() {
 		var form = this;
+		
+		$(form).find('.password-change').on('click', function() {
+			$(form).find('.password-switch').toggleClass('hidden');
+			return false;
+		});
+
+		$(form).find('.password-cancel').on('click', function() {
+			$(form).find('.password-switch').toggleClass('hidden');
+			$(form).find('.password-switch input').val('');
+			return false;
+		});
+
+		$(form).find('.password-save').on('click', function() {
+			var data = prepareData(form);
+			Validator.clearErrors(form);
+			proxy.makeCall('post', '/ajax/profile/change-password/', null, null, data, function(result) {
+				if (result.error && result.status != 403) {
+					Validator.showErrors(form, result.error);
+				} else {
+					$(form).find('input,button,select').prop('disabled', false);
+					$(form).find('.password-switch').toggleClass('hidden');
+					$(form).find('.password-switch input').val('');
+				}
+			});
+			return false;
+		});
+		
+		
+		return false;
+	});
+	
+	
+	$(".client-program-form").each(function() {
+			var form = this;
 
 		new Clipboard('.clipboard-copy');
 		
