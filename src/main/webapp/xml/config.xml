@@ -86,6 +86,9 @@
 				<module pattern="powers/" class="org.c3s.edgo.web.controllers.Commander" action="getPowers" is_last="true"/>
 				<module pattern="missions/" class="org.c3s.edgo.web.controllers.Commander" action="getMissions" is_last="true"/>
 				<module pattern="materials/" class="org.c3s.edgo.web.controllers.Commander" action="getMaterials" is_last="true"/>
+				<module pattern="settings/" class="org.c3s.edgo.web.controllers.Commander" action="getAccessSettings" is_last="true">
+					<param name="template" value="{directory.stylesheet}/commander/access.xsl" inherit="true"/>
+				</module>
 			</module>
 			<!-- -Commander  -->
 			<!-- +Utilites  -->
@@ -154,14 +157,16 @@
 							<param name="allow" value="ROLE_LOGGED"/>
 							<module pattern="key-update/" class="org.c3s.edgo.web.auth.UserController" action="generateNewKeys" is_last="true"/>
 							<module pattern="change-password/" class="org.c3s.edgo.web.auth.UserController" action="changePassword" is_last="true"/>
+							<module pattern="update-access/" class="org.c3s.edgo.web.auth.UserController" action="updateAccess" is_last="true"/>
 						</module>
 					</module>
-					<!-- PIlots info -->
+					<!-- Pilots info -->
 					<module pattern="pilots/">
 						<module pattern="*/" class="org.c3s.edgo.web.controllers.Commander" action="checkCommander">
 							<module pattern="activity/" class="org.c3s.edgo.web.controllers.Commander" action="getActivity" is_last="true"/>
 							<module pattern="systems/" class="org.c3s.edgo.web.controllers.Commander" action="getSystems" is_last="true"/>
 							<module pattern="materials/" class="org.c3s.edgo.web.controllers.Commander" action="updateMaterials" is_last="true"/>
+							<module pattern="update-access/" class="org.c3s.edgo.web.controllers.Commander" action="updateAccess" is_last="true"/>
 						</module>
 					</module>
 					<!-- Settlerments and other utility -->

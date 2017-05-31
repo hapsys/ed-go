@@ -11,6 +11,7 @@
 		<include href="comodities.xml"/>
 		<include href="powers.xml"/>
 		<include href="engeneers.xml"/>
+		<include href="relations.xml"/>
 	</source>
 
 </db_info>

@@ -5,12 +5,16 @@ public class DbAccess {
 	public static final DBUsersAccess usersAccess = new DBUsersAccess();
 	public static final DBUserKeysAccess userKeysAccess = new DBUserKeysAccess();
 	public static final DBRolesAccess rolesAccess = new DBRolesAccess();
+	public static final DBInfoAccess infoAccess = new DBInfoAccess();
+	public static final DBUsersInfoAccess usersInfoAccess = new DBUsersInfoAccess();
+	public static final DBUserLevelsAccess userLevelsAccess = new DBUserLevelsAccess();
 	public static final DBPilotsAccess pilotsAccess = new DBPilotsAccess();
 	public static final DBPilotLastInfoAccess pilotLastInfoAccess = new DBPilotLastInfoAccess();
 	public static final DBPilotGameModesAccess pilotGameModesAccess = new DBPilotGameModesAccess();
 	public static final DBPilotShipsAccess pilotShipsAccess = new DBPilotShipsAccess();
 	public static final DBPilotModulesAccess pilotModulesAccess = new DBPilotModulesAccess();
 	public static final DBPilotMaterialsAccess pilotMaterialsAccess = new DBPilotMaterialsAccess();
+	public static final DBPilotsInfoAccess pilotsInfoAccess = new DBPilotsInfoAccess();
 	public static final DBEventsAccess eventsAccess = new DBEventsAccess();
 	public static final DBLocationHistoryAccess locationHistoryAccess = new DBLocationHistoryAccess();
 	public static final DBStationHistoryAccess stationHistoryAccess = new DBStationHistoryAccess();
@@ -61,5 +65,6 @@ public class DbAccess {
 	public static final DBEngBlueprintAccess engBlueprintAccess = new DBEngBlueprintAccess();
 	public static final DBEngGradeAccess engGradeAccess = new DBEngGradeAccess();
 	public static final DBEngBlueprintMaterialsAccess engBlueprintMaterialsAccess = new DBEngBlueprintMaterialsAccess();
+	public static final DBPilotRelationsAccess pilotRelationsAccess = new DBPilotRelationsAccess();
 
 }

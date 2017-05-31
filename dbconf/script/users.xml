@@ -64,6 +64,7 @@
 			</sql>
 		</query>
 	</table>
+	<!--  -->
 	<table name="user_keys">
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="user_key_id"/>
@@ -75,6 +76,7 @@
 			<column name="user_key_id"/>
 		</delete>
 	</table>
+	<!--  -->
 	<table name="roles">
 		<query name="RolesForUser" use="Roles">
 			<column name="userId" type="long"/>
@@ -86,4 +88,41 @@
 			</sql>
 		</query>
 	</table>
+	<!--  -->
+	<table name="info">
+		<select name="Sorted">
+			<sort>
+				sort ASC
+			</sort>
+		</select>
+	</table>
+	
+	<!--  -->
+	<table name="users_info">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="user_id"/>
+			<column name="info_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="user_id"/>
+			<column name="info_id"/>
+		</update>
+		<query name="UserInfoWithDefaults">
+			<column name="UserId" type="Long"/>
+			<sql>
+				SELECT i.*, IF(ISNULL(ui.level), i.def_level, ui.level) as level
+				FROM info i
+				LEFT JOIN users_info ui ON ui.user_id = ? AND ui.info_id = i.info_id
+				ORDER BY i.sort 
+			</sql>
+		</query>
+	</table>
+	<!--  -->
+	<table name="user_levels">
+		<column name="user_id" type="Long"/>
+		<column name="info_id" type="Long"/>
+		<column name="relate_to" type="String"/>
+		<column name="mask" type="Long"/>
+	</table>
+	<!--  -->
 </include>

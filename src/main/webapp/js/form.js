@@ -155,6 +155,7 @@ $(function() {
 		});
 
 		$(form).find('.password-save').on('click', function() {
+			$(form).find('input,button,select').prop('disabled', true);
 			var data = prepareData(form);
 			Validator.clearErrors(form);
 			proxy.makeCall('post', '/ajax/profile/change-password/', null, null, data, function(result) {
@@ -169,6 +170,46 @@ $(function() {
 			return false;
 		});
 		
+		
+		return false;
+	});
+
+	$(".user-info").each(function() {
+		var form = this;
+		
+		$(form).find('.update-access').on('click', function() {
+			$(form).find('input,button,select').prop('disabled', true);
+			var data = prepareData(form);
+			Validator.clearErrors(form);
+			proxy.makeCall('post', '/ajax/profile/update-access/', null, null, data, function(result) {
+				if (result.error && result.status != 403) {
+					Validator.showErrors(form, result.error);
+				} else {
+					$(form).find('input,button,select').prop('disabled', false);
+				}
+			});
+			return false;
+		});
+		
+		return false;
+	});
+
+	$(".pilot-access-info").each(function() {
+		var form = this;
+		
+		$(form).find('.update-access').on('click', function() {
+			$(form).find('input,button,select').prop('disabled', true);
+			var data = prepareData(form);
+			Validator.clearErrors(form);
+			proxy.makeCall('post', '/ajax/pilots/' + pilot + '/update-access/', null, null, data, function(result) {
+				if (result.error && result.status != 403) {
+					Validator.showErrors(form, result.error);
+				} else {
+					$(form).find('input,button,select').prop('disabled', false);
+				}
+			});
+			return false;
+		});
 		
 		return false;
 	});

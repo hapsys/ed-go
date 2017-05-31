@@ -324,4 +324,27 @@
 		</query>
 	</table>
 	<!--  -->
+	<table name="pilots_info">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="pilot_id"/>
+			<column name="info_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="pilot_id"/>
+			<column name="info_id"/>
+		</update>
+		<query name="PilotInfoWithDefaults">
+			<column name="PilotId" type="Long"/>
+			<sql>
+				SELECT i.*, CAST(IF(ISNULL(ip.level), IF(ISNULL(ui.level), i.def_level, ui.level), ip.level) AS UNSIGNED INTEGER) as level
+				FROM (info i, pilots p)
+				LEFT JOIN pilots_info ip ON ip.pilot_id = p.pilot_id AND ip.info_id = i.info_id
+				LEFT JOIN users_info ui ON ui.user_id = p.user_id AND ui.info_id = i.info_id
+				WHERE p.pilot_id = ?
+				GROUP BY i.info_id
+				ORDER BY i.sort 
+			</sql>
+		</query>
+	</table>
+	<!--  -->
 </include>

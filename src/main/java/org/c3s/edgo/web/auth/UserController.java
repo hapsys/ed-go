@@ -10,11 +10,14 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
@@ -23,6 +26,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.jempbox.impl.XMLUtil;
 import org.c3s.annotations.Controller;
 import org.c3s.annotations.Parameter;
 import org.c3s.annotations.ParameterRequest;
@@ -30,9 +34,14 @@ import org.c3s.content.ContentObject;
 import org.c3s.dispatcher.RedirectControlerInterface;
 import org.c3s.dispatcher.UrlPart;
 import org.c3s.edgo.common.access.DbAccess;
+import org.c3s.edgo.common.beans.DBEventUsersBean;
+import org.c3s.edgo.common.beans.DBUserInfoWithDefaultsBean;
 import org.c3s.edgo.common.beans.DBUserKeysBean;
+import org.c3s.edgo.common.beans.DBUserLevelsBean;
 import org.c3s.edgo.common.beans.DBUsersBean;
+import org.c3s.edgo.common.beans.DBUsersInfoBean;
 import org.c3s.edgo.mail.MailSender;
+import org.c3s.edgo.relations.Relation;
 import org.c3s.edgo.web.GeneralController;
 import org.c3s.edgo.web.validator.MinLength;
 import org.c3s.edgo.web.validator.Nulled;
@@ -42,6 +51,7 @@ import org.c3s.edgo.web.validator.Result;
 import org.c3s.edgo.web.validator.UserExists;
 import org.c3s.edgo.web.validator.ValueChecker;
 import org.c3s.exceptions.XMLException;
+import org.c3s.reflection.XMLList;
 import org.c3s.reflection.XMLReflectionObj;
 import org.c3s.site.GeneralSiteAlias;
 import org.c3s.site.SiteLoader;
@@ -258,6 +268,21 @@ public class UserController extends GeneralController {
 		if ((user = getUser()) != null) {
 			Document xml = new XMLReflectionObj(user, true).toXML();
 			//logger.debug(XMLUtils.xml2out(xml));
+			// GET access levels
+			List<DBUserLevelsBean> levels = new ArrayList<>();
+			List<DBUserInfoWithDefaultsBean> info = DbAccess.usersInfoAccess.getUserInfoWithDefaults(user.getUserId());
+			for (DBUserInfoWithDefaultsBean i: info) {
+				for (Relation rel: Relation.values()) {
+					DBUserLevelsBean level = new DBUserLevelsBean();
+					level.setInfoId(i.getInfoId()).setUserId(user.getUserId()).setRelateTo(rel.name()).setMask(i.getLevel() & rel.getMask());
+					levels.add(level);
+				}
+			}
+			XMLUtils.appendClonedNode(xml, new XMLList(levels, true).toXML("levels"));
+			XMLUtils.appendClonedNode(xml, new XMLList(info, true).toXML("info"));
+			XMLUtils.appendClonedNode(xml, new XMLList(Relation.getList(), true).toXML("relations"));
+			//logger.debug(XMLUtils.saveXML(xml));
+			//
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:view"});
 		} else {
 			redirect.setRedirect(new DirectRedirect("/"));
@@ -493,6 +518,41 @@ public class UserController extends GeneralController {
 			errors = ValueChecker.addError("__common", i10n(e.getMessage()), null);
 		}
 		
+		Map<?, ?> data = (errors != null)?wrapError(errors):result.get();
+		ContentObject.getInstance().setData(tag, data);
+		redirect.setRedirect(new DropRedirect());
+	}
+
+	@SuppressWarnings("unchecked")
+	public void updateAccess(@ParameterRequest("level") Map<?,?> level, @Parameter("tag") String tag, RedirectControlerInterface redirect, ServletRequest request) {
+		Result result = null;
+		Map<?,?> errors = null;
+		try {
+			
+			DBUsersBean user = getUser();
+			for (Object infoId: level.keySet()) {
+				//System.out.println(infoId.toString());
+				Long mask = 0L;
+				for (Object relName: ((Map<Object, Object>)level.get(infoId)).keySet()) {
+					//System.out.println("\t" + relName.toString());
+					mask |= Relation.valueOf(relName.toString()).getMask();
+				}
+				DBUsersInfoBean bean = DbAccess.usersInfoAccess.getByPrimaryKey(user.getUserId(), Long.valueOf(infoId.toString()));
+				if (bean == null) {
+					bean = new DBUsersInfoBean().setUserId(user.getUserId()).setInfoId(Long.valueOf(infoId.toString())).setLevel(mask);
+					DbAccess.usersInfoAccess.insert(bean);
+				} else {
+					bean.setLevel(mask);
+					DbAccess.usersInfoAccess.updateByPrimaryKey(bean, bean.getUserId(), bean.getInfoId());
+				}
+			}
+			
+			result = new Result();
+			
+		} catch (Exception e) {
+			errors = ValueChecker.addError("__common", i10n(e.getMessage()), null);
+		}
+		//System.out.println(level);
 		Map<?, ?> data = (errors != null)?wrapError(errors):result.get();
 		ContentObject.getInstance().setData(tag, data);
 		redirect.setRedirect(new DropRedirect());

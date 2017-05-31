@@ -2,6 +2,7 @@ package org.c3s.edgo.web.controllers;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -12,6 +13,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletRequest;
@@ -38,27 +40,38 @@ import org.c3s.edgo.common.beans.DBMaterialsByBlueprintAndGradeBean;
 import org.c3s.edgo.common.beans.DBMaterialsByTypeUniqBean;
 import org.c3s.edgo.common.beans.DBMaxMinDateLocationHistoryForPilotBean;
 import org.c3s.edgo.common.beans.DBMissionsComplitedListByPilotsBean;
+import org.c3s.edgo.common.beans.DBPilotInfoLinkWithDefaultsBean;
+import org.c3s.edgo.common.beans.DBPilotInfoWithDefaultsBean;
 import org.c3s.edgo.common.beans.DBPilotMaterialsBean;
 import org.c3s.edgo.common.beans.DBPilotMaterialsListBean;
 import org.c3s.edgo.common.beans.DBPilotShipsBean;
 import org.c3s.edgo.common.beans.DBPilotShipsListBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
+import org.c3s.edgo.common.beans.DBPilotsInfoBean;
 import org.c3s.edgo.common.beans.DBPilotsPowerWeeksBean;
+import org.c3s.edgo.common.beans.DBPilotsRelationsBean;
 import org.c3s.edgo.common.beans.DBPowerCortageBean;
+import org.c3s.edgo.common.beans.DBUserInfoWithDefaultsBean;
+import org.c3s.edgo.common.beans.DBUserLevelsBean;
 import org.c3s.edgo.common.beans.DBUsersBean;
+import org.c3s.edgo.common.beans.DBUsersInfoBean;
 import org.c3s.edgo.common.intruders.ActivityInjector;
 import org.c3s.edgo.common.intruders.InInjector;
 import org.c3s.edgo.common.intruders.SystemPathInjector;
+import org.c3s.edgo.relations.Relation;
 import org.c3s.edgo.utils.I10N;
 import org.c3s.edgo.web.GeneralController;
 import org.c3s.edgo.web.auth.AuthRoles;
 import org.c3s.edgo.web.validator.Result;
+import org.c3s.edgo.web.validator.ValueChecker;
 import org.c3s.query.ParametersHolder;
 import org.c3s.query.RequestType;
 import org.c3s.reflection.XMLList;
 import org.c3s.reflection.XMLReflectionObj;
 import org.c3s.storage.StorageFactory;
 import org.c3s.storage.StorageType;
+import org.c3s.utils.HTTPUtils;
+import org.c3s.utils.RegexpUtils;
 import org.c3s.web.redirect.DirectRedirect;
 import org.c3s.web.redirect.DropRedirect;
 import org.c3s.web.redirect.RelativeRedirect;
@@ -562,7 +575,173 @@ public class Commander extends GeneralController {
 	
 	// ============================================================== -MATERIALS ==============================================================================
 	
-	public void checkCommander(UrlPart url, RedirectControlerInterface redirect, @CurrentUrl String currentUrl) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException, UnsupportedEncodingException {
+	
+	
+	// ============================================================== +ACCESS SETTINGS ==============================================================================
+	
+	public void getAccessSettings(@Parameter("tag") String tag, @Parameter("template") String template, RedirectControlerInterface redirect) throws Exception {
+		if (current != null) {
+			//System.out.println(">>>>");
+			Document xml = XMLUtils.createXML("item");
+			List<DBUserLevelsBean> levels = new ArrayList<>();
+			List<DBPilotInfoWithDefaultsBean> info = DbAccess.pilotsInfoAccess.getPilotInfoWithDefaults(current.getPilotId());
+			for (DBPilotInfoWithDefaultsBean i: info) {
+				for (Relation rel: Relation.values()) {
+					DBUserLevelsBean level = new DBUserLevelsBean();
+					level.setInfoId(i.getInfoId()).setRelateTo(rel.name()).setMask(i.getLevel().longValue() & rel.getMask());
+					levels.add(level);
+				}
+			}
+			XMLUtils.appendClonedNode(xml, new XMLList(levels, true).toXML("levels"));
+			XMLUtils.appendClonedNode(xml, new XMLList(info, true).toXML("info"));
+			XMLUtils.appendClonedNode(xml, new XMLList(Relation.getList(), true).toXML("relations"));
+			//logger.debug(XMLUtils.saveXML(xml));
+			//
+			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:view"});
+			//redirect.setRedirect(new DropRedirect());
+		} else {
+			redirect.setRedirect(new DirectRedirect("/"));
+			throw new SkipSubLevelsExeption();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void updateAccess(@ParameterRequest("level") Map<?,?> level, @Parameter("tag") String tag, RedirectControlerInterface redirect, ServletRequest request) {
+		if (current != null) {
+			Result result = null;
+			Map<?,?> errors = null;
+			try {
+				for (Object infoId: level.keySet()) {
+					//System.out.println(infoId.toString());
+					Long mask = 0L;
+					for (Object relName: ((Map<Object, Object>)level.get(infoId)).keySet()) {
+						//System.out.println("\t" + relName.toString());
+						mask |= Relation.valueOf(relName.toString()).getMask();
+					}
+					DBPilotsInfoBean bean = DbAccess.pilotsInfoAccess.getByPrimaryKey(current.getPilotId(), Long.valueOf(infoId.toString()));
+					if (bean == null) {
+						bean = new DBPilotsInfoBean().setPilotId(current.getPilotId()).setInfoId(Long.valueOf(infoId.toString())).setLevel(mask);
+						DbAccess.pilotsInfoAccess.insert(bean);
+					} else {
+						bean.setLevel(mask);
+						DbAccess.pilotsInfoAccess.updateByPrimaryKey(bean, current.getPilotId(), bean.getInfoId());
+					}
+				}
+				
+				result = new Result();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				errors = ValueChecker.addError("__common", i10n(e.getMessage()), null);
+			}
+			
+			Map<?, ?> data = (errors != null)?wrapError(errors):result.get();
+			ContentObject.getInstance().setData(tag, data);
+			redirect.setRedirect(new DropRedirect());
+		}
+	}
+	
+	// ============================================================== -ACCESS SETTINGS ==============================================================================
+	
+	public void checkCommander(UrlPart url, RedirectControlerInterface redirect, @CurrentUrl String currentUrl, ServletRequest request) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException, UnsupportedEncodingException, SkipSubLevelsExeption {
+		
+		String actionUrl = URLDecoder.decode(url.getPattern().substring(0, url.getPattern().length() - 1), "utf-8");
+		
+		DBUsersBean user = getUser();
+		DBPilotsBean pilot = DbAccess.pilotsAccess.getByName(actionUrl);
+
+		if (pilot != null && (long)pilot.getIsIgnored() == 0L) {
+			
+			if (pilot.getParentPilotId() != null) {
+				DBPilotsBean parent = DbAccess.pilotsAccess.getByPrimaryKey(pilot.getParentPilotId());
+				// Redirect
+				String name = parent.getPilotName();
+				ContentObject cms = ContentObject.getInstance();
+
+				String lang_id = cms.getFixedParameter("language_id").toString();
+				String isDefault = cms.getFixedParameter("default").toString();
+				
+				String redir = ("true".equals(isDefault)?"":"/" + lang_id) + url.getUrlParsed() + URLEncoder.encode(name, "utf-8") + "/" + url.getUrlReminder();
+				//System.out.println(redir);
+				redirect.setRedirect(new DirectRedirect(redir));
+				//
+				throw new SkipSubLevelsExeption();
+			} else {
+			
+				List<DBPilotsRelationsBean> relations = new ArrayList<>();
+				
+				boolean passed = false;
+				
+				if (user == null) {
+					relations = new ArrayList<>();
+					relations.add(new DBPilotsRelationsBean().setRelation(Relation.UNKNOWN.getMask()).setIsMe(0L));
+				} else if (user.getUserId().equals(pilot.getUserId())) {
+					passed = true;
+				} else {
+					relations = DbAccess.pilotRelationsAccess.getPilotsRelations(user.getUserId(), pilot.getPilotId());
+					if (relations == null) {
+						relations = new ArrayList<>();
+						relations.add(new DBPilotsRelationsBean().setRelation(Relation.LOGGED.getMask()).setIsMe(0L));
+					}
+				}
+				
+				//System.out.println(passed);
+				
+				passed = passed || hasRole(AuthRoles.ROLE_ADMINISTRATOR) || ((relations == null)?false: (relations.stream().filter(m -> (long)m.getIsMe() > 0).findFirst().orElse(null) != null));
+				
+				//System.out.println(passed);
+				
+				if (!passed && relations != null) {
+					//System.out.println(url.getUrlReminder());
+					String action = RegexpUtils.preg_replace("~^([^\\/]+)\\/.*$~", url.getUrlReminder(), "$1");
+					//System.out.println(action);
+					
+					DBPilotInfoLinkWithDefaultsBean link = null;
+					if (HTTPUtils.isAjax(request)) {
+						link = DbAccess.pilotRelationsAccess.getAjaxPilotInfoLinkWithDefaults(pilot.getPilotId(), action);
+					} else {
+						link = DbAccess.pilotRelationsAccess.getPilotInfoLinkWithDefaults(pilot.getPilotId(), action);
+					}
+					//
+					//System.out.println(">>>>" + link.getLevel());
+					
+					if (link != null) {
+						for (DBPilotsRelationsBean rel: relations) {
+							//System.out.println(rel.getRelation());
+							passed = (link.getLevel().intValue() & rel.getRelation()) != 0;
+							if (passed) {
+								break;
+							}
+						}
+					}
+					
+					//System.out.println(action);
+				}
+				
+				if (passed) {
+					current = pilot;
+					
+					List<DBPilotsBean> linked = DbAccess.pilotsAccess.getLinkedPilots(pilot.getPilotId());
+					if (linked != null) {
+						linkedPilots = linked.stream().map(x -> x.getPilotId()).collect(Collectors.toList());
+					}
+					
+					if (linkedPilots == null) {
+						linkedPilots = new ArrayList<>();
+					}
+					
+					linkedPilots.add(current.getPilotId());
+					
+					ContentObject.getInstance().setFixedParameters("pilot", pilot.getPilotName().replace("'", "\\'"));
+					ContentObject.getInstance().setFixedParameters("pilotEncoded", pilot.getPilotName().replace(" ", "%20"));
+					ContentObject.getInstance().setFixedParameters("pilotReal", pilot.getPilotName());
+				}
+			}
+		}
+		System.out.println(current);
+	}
+	
+	public void checkCommander1(UrlPart url, RedirectControlerInterface redirect, @CurrentUrl String currentUrl) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException, UnsupportedEncodingException {
 		
 		//String actionUrl = url.getPattern().substring(0, url.getPattern().length() - 1).toLowerCase();
 		String actionUrl = URLDecoder.decode(url.getPattern().substring(0, url.getPattern().length() - 1), "utf-8");
@@ -574,7 +753,7 @@ public class Commander extends GeneralController {
 		//System.out.println(currentUrl);
 		DBUsersBean user = getUser();
 		DBPilotsBean pilot = null;
-
+		
 		if (user != null) {
 			pilot = DbAccess.pilotsAccess.getByName(actionUrl);
 			if (pilot != null && (long)pilot.getIsIgnored() == 0 && pilot.getParentPilotId() == null && (pilot.getUserId().equals(user.getUserId()) || hasRole(AuthRoles.ROLE_ADMINISTRATOR))) {

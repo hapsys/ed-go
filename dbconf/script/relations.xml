@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<include>
+	<!-- -->
+	<table name="pilot_relations">
+		<query name="PilotsRelations">
+			<column name="SourceUserId" type="Long"/>
+			<column name="TargetPilotId" type="Long"/>
+			<sql>
+				SELECT IF(ISNULL(pr.relation), 2, pr.relation) as relation, IF (sp.pilot_id = tp.pilot_id, 1, 0) as is_me
+				FROM users su, (pilots sp, pilots tp)
+				LEFT JOIN pilot_relations pr ON (pr.source_pilot_id = sp.pilot_id AND pr.target_pilot_id = tp.pilot_id) OR (pr.source_pilot_id = tp.pilot_id AND pr.target_pilot_id = tp.pilot_id)  
+				WHERE su.user_id = ?
+				AND sp.user_id = su.user_id
+				AND sp.is_ignored = 0
+				AND tp.user_id = ?
+				AND tp.is_ignored = 0
+			</sql>
+		</query>
+		<query name="PilotInfoLinkWithDefaults" single_object="true">
+			<column name="PilotId" type="Long"/>
+			<column name="Link" type="String"/>
+			<sql>
+				SELECT i.*, CAST(IF(ISNULL(ip.level), IF(ISNULL(ui.level), i.def_level, ui.level), ip.level) AS UNSIGNED INTEGER) as level
+				FROM (info i, pilots p)
+				LEFT JOIN pilots_info ip ON ip.pilot_id = p.pilot_id AND ip.info_id = i.info_id
+				LEFT JOIN users_info ui ON ui.user_id = p.user_id AND ui.info_id = i.info_id
+				WHERE p.pilot_id = ?
+				AND i.info_link = ? 
+				GROUP BY i.info_id
+				ORDER BY i.sort
+				LIMIT 1
+			</sql>
+		</query>
+		<query name="AjaxPilotInfoLinkWithDefaults" use="PilotInfoLinkWithDefaults" single_object="true">
+			<column name="PilotId" type="Long"/>
+			<column name="Link" type="String"/>
+			<sql>
+				SELECT i.*, CAST(IF(ISNULL(ip.level), IF(ISNULL(ui.level), i.def_level, ui.level), ip.level) AS UNSIGNED INTEGER) as level
+				FROM info_ajax_links al, (info i, pilots p)
+				LEFT JOIN pilots_info ip ON ip.pilot_id = p.pilot_id AND ip.info_id = i.info_id
+				LEFT JOIN users_info ui ON ui.user_id = p.user_id AND ui.info_id = i.info_id
+				WHERE p.pilot_id = ?
+				AND i.info_id = al.info_id
+				AND al.info_ajax_link = ? 
+				GROUP BY i.info_id
+				ORDER BY i.sort
+				LIMIT 1
+			</sql>
+		</query>
+		
+	</table>
+	
+</include>

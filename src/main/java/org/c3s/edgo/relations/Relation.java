@@ -3,9 +3,11 @@ package org.c3s.edgo.relations;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.c3s.reflection.annotation.XMLSimple;
+
 public enum Relation {
 
-	ANY		(0b1),
+	UNKNOWN	(0b1),
 	LOGGED	(0b10),
 	FRIEND	(0b100),
 	WING	(0b1000),
@@ -30,5 +32,31 @@ public enum Relation {
 			}
 		}
 		return result.toArray(new Relation[]{});
+	}
+	
+	public static List<RelationNameValue> getList() {
+		List<RelationNameValue> result = new ArrayList<RelationNameValue>();
+			for(Relation rel: values()) {
+				result.add(new RelationNameValue(rel.mask, rel.name()));
+			}
+		return result;
+	}
+
+	public static class RelationNameValue {
+		@XMLSimple("value")
+		private long value = 0;
+		@XMLSimple("name")
+		private String name = "";
+		public RelationNameValue(long value, String name) {
+			super();
+			this.value = value;
+			this.name = name;
+		}
+		public long getValue() {
+			return value;
+		}
+		public String getName() {
+			return name;
+		}
 	}
 }

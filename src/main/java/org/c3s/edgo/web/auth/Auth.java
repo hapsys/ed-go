@@ -62,27 +62,36 @@ public class Auth extends GeneralController {
 		}
 		 
 		if (user != null) {
-			// Append user email
-			ContentObject.getInstance().setFixedParameters("user", user.getEmail());
-			//System.out.println(user);
-			//System.out.println(user.getIsVerify());
-			if (user.getIsVerify() == 0) {
-				roles.add(AuthRoles.ROLE_REGISTERED);
-			} else {
-				roles.add(AuthRoles.ROLE_LOGGED);
-				List<DBRolesBean> userRoles = user.getUserRoles();
-				if (userRoles != null) {
-				AuthRoles role = null;
-					for (DBRolesBean userRole : userRoles) {
-						try {
-							if ((role = AuthRoles.valueOf(userRole.getRole())) != null) {
-								roles.add(role);
-							}
-						} catch (IllegalArgumentException e) {}
+			try {
+				// Append user email
+				ContentObject.getInstance().setFixedParameters("user", user.getEmail());
+				//System.out.println(user);
+				//System.out.println(user.getIsVerify());
+				if (user.getIsVerify() == 0) {
+					roles.add(AuthRoles.ROLE_REGISTERED);
+				} else {
+					roles.add(AuthRoles.ROLE_LOGGED);
+					List<DBRolesBean> userRoles = user.getUserRoles();
+					if (userRoles != null) {
+					AuthRoles role = null;
+						for (DBRolesBean userRole : userRoles) {
+							try {
+								if ((role = AuthRoles.valueOf(userRole.getRole())) != null) {
+									roles.add(role);
+								}
+							} catch (IllegalArgumentException e) {}
+						}
 					}
 				}
+			} catch (NullPointerException e) {
+				user = null;
+				GeneralController.setUser(null);
+				logger.error(e.getMessage(), e);
+				
 			}
-		} else {
+		} 
+		
+		if (user == null) {
 			roles.add(AuthRoles.ROLE_NOT_LOGGED);
 			ContentObject.getInstance().setFixedParameters("user", "");
 		}

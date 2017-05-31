@@ -139,4 +139,74 @@
 		<select lang="en">by update time</select>
 	</match>
 	<!-- /COMMANDER -->
+	<!-- SETTINGS -->
+	<match name="user-access-settings">
+		<select lang="ru">Доступ по умолчанию</select>
+		<select lang="en">Default access</select>
+	</match>
+	<match name="user-access-description">
+		<select lang="ru">доступ для всех создаваемых пилотов</select>
+		<select lang="en">access for new pilots</select>
+	</match>
+	<match name="pilot-access-settings">
+		<select lang="ru">Доступ для пилота</select>
+		<select lang="en">Access for pilot</select>
+	</match>
+	<match name="pilot-access-description">
+		<select lang="ru">доступ к текущему пилоту</select>
+		<select lang="en">access to current pilot</select>
+	</match>
+	<match name="save-settings">
+		<select lang="ru">Сохранить</select>
+		<select lang="en">Save</select>
+	</match>
+	<match name="UNKNOWN">
+		<select lang="ru">Неизвестный</select>
+		<select lang="en">Unknown</select>
+	</match>
+	<match name="LOGGED">
+		<select lang="ru">Зарегистрированный</select>
+		<select lang="en">Registered</select>
+	</match>
+	<match name="FRIEND">
+		<select lang="ru">Друзья</select>
+		<select lang="en">Friends</select>
+	</match>
+	<match name="WING">
+		<select lang="ru">Крыло</select>
+		<select lang="en">Wings</select>
+	</match>
+	<match name="GROUP">
+		<select lang="ru">Группа</select>
+		<select lang="en">Group</select>
+	</match>
+	<match name="ACCESS_BLOG">
+		<select lang="ru">Лента</select>
+		<select lang="en">Feed</select>
+	</match>
+	<match name="ACCESS_ACTIVITY">
+		<select lang="ru">Информация</select>
+		<select lang="en">Information</select>
+	</match>
+	<match name="ACCESS_SHIPS">
+		<select lang="ru">Корабли/Модули</select>
+		<select lang="en">Ships/modules</select>
+	</match>
+	<match name="ACCESS_SYSTEMS">
+		<select lang="ru">Системы</select>
+		<select lang="en">Systems</select>
+	</match>
+	<match name="ACCESS_MISSIONS">
+		<select lang="ru">Миссии</select>
+		<select lang="en">Missions</select>
+	</match>
+	<match name="ACCESS_POWERS">
+		<select lang="ru">Силы</select>
+		<select lang="en">Power Play</select>
+	</match>
+	<match name="ACCESS_MATERIALS">
+		<select lang="ru">Материалы</select>
+		<select lang="en">Materials</select>
+	</match>
+	<!-- /SETTINGS -->
 </i10n>

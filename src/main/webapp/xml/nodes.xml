@@ -31,8 +31,8 @@
 		</node>
 		<node pattern="profile">
 			<role>ROLE_LOGGED</role>
-			<title lang="ru">Профиль</title>
-			<title lang="en">Profile</title>
+			<title lang="ru">Профиль/настройки</title>
+			<title lang="en">Profile/settings</title>
 			<menu name="main_menu"/>
 			<menu name="user_menu"/>
 		</node>
@@ -117,7 +117,22 @@
 			<title lang="en">Materials</title>
 			<menu name="main_menu"/>
 		</node>
+		<node pattern="settings">
+			<title lang="ru">Натройки доступа</title>
+			<title lang="en">Access settings</title>
+			<menu name="main_menu"/>
+		</node>
 	</node>
+	<!--
+	//
+	// Community
+	// 
+	 -->
+	 <node pattern="community" redirect="info/" class="fa-users">
+		<title lang="ru">Сообщество</title>
+		<title lang="en">Community</title>
+		<menu name="main_menu"/>
+	 </node>
 	<!--
 	//
 	// Utilites
