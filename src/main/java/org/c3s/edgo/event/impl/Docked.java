@@ -2,6 +2,7 @@ package org.c3s.edgo.event.impl;
 	
 import java.sql.SQLException;
 
+import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.dao.LocationDAO;
 import org.c3s.edgo.common.dao.ShipsDAO;
@@ -36,6 +37,8 @@ public class Docked extends AbstractJournalEvent<DockedBean> {
 					SystemsDAO.updateStationFactionControl(bean.getTimestamp(), bean.getStarSystem(), bean.getStationName(), bean.getStationType(), bean.getDistFromStarLS(), 
 							bean.getStationFaction(), gov, bean.getStationAllegiance());
 				}
+				// Insert cruise mode
+				DbAccess.pilotLastInfoAccess.updateSupercruiseFlag(3L, pilot.getPilotId());
 			}
 		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
 			throw new RuntimeException(e);

@@ -155,54 +155,6 @@ public class DBPilotsBean implements DbBean, Serializable {
 	}
 	
 	
-	@DataSource({"Location", "location"})
-	@DataTarget("Location")
-	@XMLReflectionField
-
-	private DBLastLocationForPilotBean location;
-	
-	public DBLastLocationForPilotBean getLocation() {
-		return location;
-	}
-	
-	public DBPilotsBean setLocation(DBLastLocationForPilotBean value) {
-		location = value;
-		return this;
-	}
-	
-	
-	@DataSource({"Rank", "rank"})
-	@DataTarget("Rank")
-	@XMLReflectionField
-
-	private DBRanksBean rank;
-	
-	public DBRanksBean getRank() {
-		return rank;
-	}
-	
-	public DBPilotsBean setRank(DBRanksBean value) {
-		rank = value;
-		return this;
-	}
-	
-	
-	@DataSource({"Progress", "progress"})
-	@DataTarget("Progress")
-	@XMLReflectionField
-
-	private DBProgressBean progress;
-	
-	public DBProgressBean getProgress() {
-		return progress;
-	}
-	
-	public DBPilotsBean setProgress(DBProgressBean value) {
-		progress = value;
-		return this;
-	}
-	
-	
 	@DataSource({"powers", "powers"})
 	@DataTarget("powers")
 	@XMLReflectionField
@@ -219,34 +171,34 @@ public class DBPilotsBean implements DbBean, Serializable {
 	}
 	
 	
-	@DataSource({"last_info", "lastInfo"})
-	@DataTarget("last_info")
+	@DataSource({"Location", "location"})
+	@DataTarget("Location")
 	@XMLReflectionField
 
-	private DBLastPilotInfoBean lastInfo;
+	private DBLastLocationForPilotBean location;
 	
-	public DBLastPilotInfoBean getLastInfo() {
-		return lastInfo;
+	public DBLastLocationForPilotBean getLocation() {
+		return location;
 	}
 	
-	public DBPilotsBean setLastInfo(DBLastPilotInfoBean value) {
-		lastInfo = value;
+	public DBPilotsBean setLocation(DBLastLocationForPilotBean value) {
+		location = value;
 		return this;
 	}
 	
 	
-	@DataSource({"last_activity_time", "lastActivityTime"})
-	@DataTarget("last_activity_time")
+	@DataSource({"last_info", "lastInfo"})
+	@DataTarget("last_info")
 	@XMLReflectionField
 
-	private DBLastActivityTimeBean lastActivityTime;
+	private DBFullLastInfoBean lastInfo;
 	
-	public DBLastActivityTimeBean getLastActivityTime() {
-		return lastActivityTime;
+	public DBFullLastInfoBean getLastInfo() {
+		return lastInfo;
 	}
 	
-	public DBPilotsBean setLastActivityTime(DBLastActivityTimeBean value) {
-		lastActivityTime = value;
+	public DBPilotsBean setLastInfo(DBFullLastInfoBean value) {
+		lastInfo = value;
 		return this;
 	}
 	

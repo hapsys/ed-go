@@ -33,7 +33,7 @@
 
 		<div class="clearfix"></div>
 		<!-- Location -->
-		<div class="x_panel">
+		<div class="x_panel updated-by-time" data-update-function="updateUserInfo" data-update-interval="30000">
 			<div class="x_title">
 				<h2>
 					<xsl:value-of select="i10n:tr('Last Info')"/>
@@ -51,28 +51,14 @@
 						<div class="x_content">
 							<table class="table">
 								<tr>
-									<td colspan="2">
-										<xsl:variable name="y" select="item[@name='lastActivityTime']/field[@name='year']/@value"/>
-										<xsl:variable name="j" select="item[@name='lastActivityTime']/field[@name='monthes']/@value"/>
-										<xsl:variable name="d" select="item[@name='lastActivityTime']/field[@name='days']/@value"/>
-										<xsl:variable name="h" select="item[@name='lastActivityTime']/field[@name='hours']/@value"/>
-										<xsl:variable name="m" select="item[@name='lastActivityTime']/field[@name='minutes']/@value"/>
-										<xsl:variable name="s" select="item[@name='lastActivityTime']/field[@name='seconds']/@value"/>
-										<xsl:call-template name="lastseen">
-											<xsl:with-param name="lang" select="$language_id"/>
-											<xsl:with-param name="sec" select="number($s)"/>
-											<xsl:with-param name="min" select="number($m)"/>
-											<xsl:with-param name="hou" select="number($h)"/>
-											<xsl:with-param name="day" select="number($d)"/>
-											<xsl:with-param name="mon" select="number($j)"/>
-											<xsl:with-param name="yea" select="number($y)"/>
-										</xsl:call-template> 
+									<td colspan="2" >
+										<span id="lastSeen"><xsl:value-of select="item[@name='lastInfo']/field[@name='lastSeen']/@value"/></span>
 										<xsl:value-of select="i10n:tr('ago')"/>
 									</td>
 								</tr>
 								<tr>
-									<td class="col-md-1">Mode:</td>
-									<td>
+									<td class="col-md-2"><xsl:value-of select="i10n:tr('Mode')"/>:</td>
+									<td id="gameMode">
 										<xsl:value-of
 											select="item[@name='lastInfo']/field[@name='gameMode']/@value"
 											disable-output-escaping="yes" />
@@ -82,11 +68,17 @@
 									<xsl:if test="string-length(item[@name='lastInfo']/field[@name='gameGroup']/@value) = 0">
 										<xsl:attribute name="class">hidden</xsl:attribute>
 									</xsl:if>
-									<td class="col-md-1">Group:</td>
-									<td>
+									<td class="col-md-2"><xsl:value-of select="i10n:tr('Group')"/>:</td>
+									<td class="hided" id="gameGroup">
 										<xsl:value-of
 											select="item[@name='lastInfo']/field[@name='gameGroup']/@value"
 											disable-output-escaping="yes" />
+									</td>
+								</tr>
+								<tr>
+									<td class="col-md-2"><xsl:value-of select="i10n:tr('Query')"/>:</td>
+									<td>
+										<xsl:value-of select="item[@name='lastInfo']/field[@name='queredEvents']/@value"/>&#160;<xsl:value-of select="i10n:tr('events')"/>
 									</td>
 								</tr>
 							</table>
@@ -96,24 +88,44 @@
 				<div class="col-md-4 col-xs-12 widget widget_tally_box">
 					<div class="x_panel">
 						<div class="x_title">
-							<h2>Location</h2>
+							<h2><xsl:value-of select="i10n:tr('Current location')"/></h2>
 							<div class="clearfix"></div>
 						</div>
 						<div class="x_content">
 							<table class="table">
 								<tr>
-									<td class="col-md-1">System:</td>
-									<td>
+									<td class="col-md-2"><xsl:value-of select="i10n:tr('System')"/>:</td>
+									<td id="systemName">
 										<xsl:value-of
-											select="item[@name='location']/field[@name='systemName']/@value"
+											select="item[@name='lastInfo']/field[@name='systemName']/@value"
 											disable-output-escaping="yes" />
 									</td>
 								</tr>
 								<tr>
-									<td class="col-md-1">Station:</td>
-									<td>
+									<xsl:if test="string-length(item[@name='lastInfo']/field[@name='stationName']/@value) = 0">
+										<xsl:attribute name="class">hidden</xsl:attribute>
+									</xsl:if>
+									<td class="col-md-2"><xsl:value-of select="i10n:tr('Station')"/>:</td>
+									<td class="hided" id="stationName">
 										<xsl:value-of
-											select="item[@name='location']/field[@name='stationName']/@value"
+											select="item[@name='lastInfo']/field[@name='stationName']/@value"
+											disable-output-escaping="yes" />
+									</td>
+								</tr>
+								<tr>
+									<xsl:if test="string-length(item[@name='lastInfo']/field[@name='bodyName']/@value) = 0">
+										<xsl:attribute name="class">hidden</xsl:attribute>
+									</xsl:if>
+									<td class="col-md-2"><xsl:value-of select="i10n:tr('Body')"/>:</td>
+									<td class="hided" id="bodyName">
+										<xsl:value-of select="item[@name='lastInfo']/field[@name='bodyName']/@value"
+											disable-output-escaping="yes" />
+									</td>
+								</tr>
+								<tr>
+									<td class="col-md-2"><xsl:value-of select="i10n:tr('Fly mode')"/>:</td>
+									<td id="flyMode">
+										<xsl:value-of select="item[@name='lastInfo']/field[@name='flyMode']/@value"
 											disable-output-escaping="yes" />
 									</td>
 								</tr>
@@ -137,7 +149,7 @@
 				<!-- Combat -->
 				<div class="col-md-3 col-xs-12 widget widget_tally_box">
 					<xsl:variable name="percent"
-						select="item[@name='progress']/field[@name='combat']/@value" />
+						select="item[@name='lastInfo']/field[@name='progressCombat']/@value" />
 					<div class="x_panel ui-ribbon-container fixed_height_250">
 						<div class="x_title">
 							<h2>Combat</h2>
@@ -154,7 +166,7 @@
 							<h3 class="name_title">
 								<xsl:call-template name="combat">
 									<xsl:with-param name="rank"
-										select="number(item[@name='rank']/field[@name='combat']/@value)" />
+										select="number(item[@name='lastInfo']/field[@name='combat']/@value)" />
 									<xsl:with-param name="lang" select="$language_id" />
 								</xsl:call-template>
 							</h3>
@@ -164,7 +176,7 @@
 				<!-- Trade -->
 				<div class="col-md-3 col-xs-12 widget widget_tally_box">
 					<xsl:variable name="percent"
-						select="item[@name='progress']/field[@name='trade']/@value" />
+						select="item[@name='lastInfo']/field[@name='progressTrade']/@value" />
 					<div class="x_panel ui-ribbon-container fixed_height_250">
 						<div class="x_title">
 							<h2>Trade</h2>
@@ -181,7 +193,7 @@
 							<h3 class="name_title">
 								<xsl:call-template name="trade">
 									<xsl:with-param name="rank"
-										select="number(item[@name='rank']/field[@name='trade']/@value)" />
+										select="number(item[@name='lastInfo']/field[@name='trade']/@value)" />
 									<xsl:with-param name="lang" select="$language_id" />
 								</xsl:call-template>
 							</h3>
@@ -191,7 +203,7 @@
 				<!-- Explore -->
 				<div class="col-md-3 col-xs-12 widget widget_tally_box">
 					<xsl:variable name="percent"
-						select="item[@name='progress']/field[@name='explore']/@value" />
+						select="item[@name='lastInfo']/field[@name='progressExplore']/@value" />
 					<div class="x_panel ui-ribbon-container fixed_height_250">
 						<div class="x_title">
 							<h2>Explore</h2>
@@ -208,7 +220,7 @@
 							<h3 class="name_title">
 								<xsl:call-template name="explore">
 									<xsl:with-param name="rank"
-										select="number(item[@name='rank']/field[@name='explore']/@value)" />
+										select="number(item[@name='lastInfo']/field[@name='explore']/@value)" />
 									<xsl:with-param name="lang" select="$language_id" />
 								</xsl:call-template>
 							</h3>
@@ -218,7 +230,7 @@
 				<!-- CQC -->
 				<div class="col-md-3 col-xs-12 widget widget_tally_box">
 					<xsl:variable name="percent"
-						select="item[@name='progress']/field[@name='cqc']/@value" />
+						select="item[@name='lastInfo']/field[@name='progressCqc']/@value" />
 					<div class="x_panel ui-ribbon-container fixed_height_250">
 						<div class="x_title">
 							<h2>CQC</h2>
@@ -235,7 +247,7 @@
 							<h3 class="name_title">
 								<xsl:call-template name="cqc">
 									<xsl:with-param name="rank"
-										select="number(item[@name='rank']/field[@name='cqc']/@value)" />
+										select="number(item[@name='lastInfo']/field[@name='cqc']/@value)" />
 									<xsl:with-param name="lang" select="$language_id" />
 								</xsl:call-template>
 							</h3>
@@ -245,7 +257,7 @@
 				<!-- empire -->
 				<div class="col-md-3 col-xs-12 widget widget_tally_box">
 					<xsl:variable name="percent"
-						select="item[@name='progress']/field[@name='empire']/@value" />
+						select="item[@name='lastInfo']/field[@name='progressEmpire']/@value" />
 					<div class="x_panel ui-ribbon-container fixed_height_250">
 						<div class="x_title">
 							<h2>Empire</h2>
@@ -262,7 +274,7 @@
 							<h3 class="name_title">
 								<xsl:call-template name="empire">
 									<xsl:with-param name="rank"
-										select="number(item[@name='rank']/field[@name='empire']/@value)" />
+										select="number(item[@name='lastInfo']/field[@name='empire']/@value)" />
 									<xsl:with-param name="lang" select="$language_id" />
 								</xsl:call-template>
 							</h3>
@@ -272,7 +284,7 @@
 				<!-- federation -->
 				<div class="col-md-3 col-xs-12 widget widget_tally_box">
 					<xsl:variable name="percent"
-						select="item[@name='progress']/field[@name='federation']/@value" />
+						select="item[@name='lastInfo']/field[@name='progressFederation']/@value" />
 					<div class="x_panel ui-ribbon-container fixed_height_250">
 						<div class="x_title">
 							<h2>Federation</h2>
@@ -289,7 +301,7 @@
 							<h3 class="name_title">
 								<xsl:call-template name="federation">
 									<xsl:with-param name="rank"
-										select="number(item[@name='rank']/field[@name='federation']/@value)" />
+										select="number(item[@name='lastInfo']/field[@name='federation']/@value)" />
 									<xsl:with-param name="lang" select="$language_id" />
 								</xsl:call-template>
 							</h3>
@@ -457,6 +469,27 @@
             		$("#select-month").data("DateTimePicker").toggle();
             	});
 				
+				updateUserInfo = function() {
+					proxy.makeCall('post', '/ajax/pilots/'+ pilot + '/update-user-info/', null, null, null, function(result) {
+						if (result.info &amp;&amp; result.info.lastInfo) {
+							for (k in result.info.lastInfo) {
+								var v = result.info.lastInfo[k];
+								var elm = $('#' + k);
+								if (elm.length) {
+									if (elm.hasClass('hided')) {
+										var tr = $(elm).parents('tr')[0];
+										if (v) {
+											$(tr).removeClass('hidden');
+										} else {
+											$(tr).addClass('hidden');
+										}
+									}
+									elm.html(v);
+								}
+							};
+						}
+					});	
+				}
 			});
 		</script>
 	</xsl:template>

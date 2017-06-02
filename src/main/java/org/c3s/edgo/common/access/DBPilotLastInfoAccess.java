@@ -154,4 +154,33 @@ public class DBPilotLastInfoAccess extends Access {
 		return ret;
 	}
 	
+	public DBFullLastInfoBean getFullLastInfo(long paramPilotId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT pr.*,  				pp.combat as progress_combat, pp.trade as progress_trade, pp.explore as progress_explore, pp.empire as progress_empire, pp.federation as progress_federation, pp.cqc as progress_cqc, 				gm.*, gms.*, s.name as system_name, st.name as station_name, b.body_name, 				pli.*, COUNT(e.event_id) as quered_events , TIMESTAMPDIFF(SECOND, gm.mode_end, NOW()) as last_event, eh.event_name, '' as last_seen, '' as fly_mode  				FROM events_history eh, pilots p 				LEFT JOIN events e ON e.user_id = p.user_id AND is_locked < 3 				LEFT JOIN pilot_game_modes gm ON gm.pilot_game_mode_id = 					(SELECT gm1.pilot_game_mode_id  						FROM pilot_game_modes gm1  						WHERE gm1.pilot_id = p.pilot_id 						AND NOT ISNULL(gm1.mode_end) 						ORDER BY gm1.pilot_game_mode_id DESC 						LIMIT 1 					) 				LEFT JOIN game_modes gms ON gms.game_mode_id = gm.game_mode_id 				LEFT JOIN ranks pr ON pr.pilot_id = p.pilot_id 				LEFT JOIN progress pp ON pp.pilot_id = p.pilot_id 				LEFT JOIN pilot_last_info pli ON pli.pilot_id = p.pilot_id 				LEFT JOIN systems s ON s.system_id = pli.system_id 				LEFT JOIN stations st ON st.station_id = pli.station_id 				LEFT JOIN bodies b ON b.body_id = pli.body_id 				WHERE p.pilot_id = ? 				AND  eh.pilot_id = p.pilot_id 				GROUP BY p.user_id 				LIMIT 1 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getFullLastInfo", query ,  paramPilotId);
+		DBFullLastInfoBean ret = null;
+		if (result != null) {
+					ret = new DBFullLastInfoBean();
+				
+					ret = dataMapper.mapFromRow(result.get(0), DBFullLastInfoBean.class);
+					
+		}
+			
+		return ret;
+	}
+	
 }

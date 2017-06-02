@@ -164,6 +164,7 @@
 					<module pattern="pilots/">
 						<module pattern="*/" class="org.c3s.edgo.web.controllers.Commander" action="checkCommander">
 							<module pattern="activity/" class="org.c3s.edgo.web.controllers.Commander" action="getActivity" is_last="true"/>
+							<module pattern="update-user-info/" class="org.c3s.edgo.web.controllers.Commander" action="updateUserInfo" is_last="true"/>
 							<module pattern="systems/" class="org.c3s.edgo.web.controllers.Commander" action="getSystems" is_last="true"/>
 							<module pattern="materials/" class="org.c3s.edgo.web.controllers.Commander" action="updateMaterials" is_last="true"/>
 							<module pattern="update-access/" class="org.c3s.edgo.web.controllers.Commander" action="updateAccess" is_last="true"/>

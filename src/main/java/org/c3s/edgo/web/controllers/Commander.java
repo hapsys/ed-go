@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
@@ -14,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletRequest;
@@ -32,6 +34,7 @@ import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBActivityBean;
 import org.c3s.edgo.common.beans.DBEngTypeBean;
 import org.c3s.edgo.common.beans.DBEventMaxMinDateForPilotBean;
+import org.c3s.edgo.common.beans.DBFullLastInfoBean;
 import org.c3s.edgo.common.beans.DBGradesByTypeUniqBean;
 import org.c3s.edgo.common.beans.DBLocationsPathBean;
 import org.c3s.edgo.common.beans.DBMaterialUnsingInfoBean;
@@ -91,15 +94,111 @@ public class Commander extends GeneralController {
 	
 	// ============================================================== +INFORMATION ==============================================================================
 	
+	private String getDiff(Long time) {
+		
+		StringBuilder sb = new StringBuilder();
+		
+		long sec = time % 60;
+		long min = (time - sec)/60 % 60;
+		long hour = (time - min*60 - sec)/3600 % 24;
+		long day = Double.valueOf(Math.floor(Double.valueOf(time)/(3600*24))).longValue();
+		long mon = 0;
+		long year = 0;
+		
+		
+		String lang = (String)ContentObject.getInstance().getFixedParameter("language_id");
+		if ("ru".equals(lang)) {
+			if (year > 0) {
+				sb.append(year);
+				sb.append(" г ");
+			}
+			if (mon > 0) {
+				sb.append(mon);
+				sb.append(" мес ");
+			}
+			if (day > 0) {
+				sb.append(day);
+				sb.append(" дн ");
+			}
+			if (hour > 0) {
+				sb.append(hour);
+				sb.append(" час ");
+			}
+			if (min > 0) {
+				sb.append(min);
+				sb.append(" мин ");
+			}
+			if (sec > 0) {
+				sb.append(sec);
+				sb.append(" сек ");
+			}
+		} else {
+			if (year > 0) {
+				sb.append(year);
+				sb.append(" y ");
+			}
+			if (mon > 0) {
+				sb.append(mon);
+				sb.append(" mon ");
+			}
+			if (day > 0) {
+				sb.append(day);
+				sb.append(" d ");
+			}
+			if (hour > 0) {
+				sb.append(hour);
+				sb.append(" h ");
+			}
+			if (min > 0) {
+				sb.append(min);
+				sb.append(" min ");
+			}
+			if (sec > 0) {
+				sb.append(sec);
+				sb.append(" sec ");
+			}
+		}
+		
+		return sb.toString();
+		
+	}
+	
+	private String getFlyMode(int flyMode) {
+		String result = "";
+		switch (flyMode) {
+		case 0:
+			result = "Normal Space";
+			break;
+		case 1:
+			result = "Supercruise";
+			break;
+		case 2:
+			result = "Landing";
+			break;
+		case 3:
+			result = "Docked";
+			break;
+		}
+		
+		return result;
+	}
+	
 	public void getInformation(@Parameter("tag") String tag, @Parameter("template") String template, RedirectControlerInterface redirect) throws Exception {
 	
 		if (current != null) {
 			
+			/*
 			current.setRank(DbAccess.ranksAccess.getByPrimaryKey(current.getPilotId()));
 			current.setProgress(DbAccess.progressAccess.getByPrimaryKey(current.getPilotId()));
 			current.setLocation(DbAccess.locationHistoryAccess.getLastLocationForPilot(current.getPilotId()));
 			current.setLastInfo(DbAccess.pilotLastInfoAccess.getLastPilotInfo(current.getPilotId()));
 			current.setLastActivityTime(DbAccess.eventsHistoryAccess.getLastActivityTime(current.getPilotId()));
+			*/
+			DBFullLastInfoBean li = DbAccess.pilotLastInfoAccess.getFullLastInfo(current.getPilotId());
+			li.setFlyMode(i10n(getFlyMode(li.getIsSupercruise())));
+			li.setGameMode(i10n(li.getGameMode()));
+			li.setLastSeen(this.getDiff(li.getLastEvent()));
+			current.setLastInfo(li);
 			
 			Document xml = new XMLReflectionObj(current, true).toXML();	
 			
@@ -123,6 +222,20 @@ public class Commander extends GeneralController {
 			throw new SkipSubLevelsExeption();
 		}
 		
+	}
+	
+	public void updateUserInfo(@Parameter("tag") String tag, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		if (current != null) {
+			
+			DBFullLastInfoBean li = DbAccess.pilotLastInfoAccess.getFullLastInfo(current.getPilotId());
+			li.setFlyMode(i10n(getFlyMode(li.getIsSupercruise())));
+			li.setGameMode(i10n(li.getGameMode()));
+			li.setLastSeen(this.getDiff(li.getLastEvent()));
+			current.setLastInfo(li);
+			
+			ContentObject.getInstance().setData(tag, new Result().put("info", current).get());
+			redirect.setRedirect(new DropRedirect());
+		}
 	}
 	
 	public void getActivity(@ParameterRequest("showdate") String showdate, @Parameter("tag") String tag, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
