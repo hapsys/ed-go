@@ -472,6 +472,9 @@
 				updateUserInfo = function() {
 					proxy.makeCall('post', '/ajax/pilots/'+ pilot + '/update-user-info/', null, null, null, function(result) {
 						if (result.info &amp;&amp; result.info.lastInfo) {
+							$('.hided').each(function() {
+								$($(this).parents('tr')[0]).addClass('hidden');
+							});  
 							for (k in result.info.lastInfo) {
 								var v = result.info.lastInfo[k];
 								var elm = $('#' + k);
@@ -480,8 +483,6 @@
 										var tr = $(elm).parents('tr')[0];
 										if (v) {
 											$(tr).removeClass('hidden');
-										} else {
-											$(tr).addClass('hidden');
 										}
 									}
 									elm.html(v);
