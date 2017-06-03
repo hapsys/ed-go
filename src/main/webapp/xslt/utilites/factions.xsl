@@ -42,7 +42,24 @@
           </div>
         </div>
         <div class="clearfix"></div>
-        <p id="factions">
+		<div class="col-md-12 col-sm-12 col-xs-12 text-center">
+			<ul class="pagination pagination-split">
+				<!-- 
+				<li><a href="#">A</a></li>
+				<li><a href="#">B</a></li>
+				<li><a href="#">C</a></li>
+				<li><a href="#">D</a></li>
+				<li><a href="#">E</a></li>
+				<li>...</li>
+				<li><a href="#">W</a></li>
+				<li><a href="#">X</a></li>
+				<li><a href="#">Y</a></li>
+				<li><a href="#">Z</a></li>
+				 -->
+			</ul>
+		</div>
+        <div class="clearfix"></div>
+        <p id="factions" style="position:relative; height: 100%; overflow-x: hidden; overflow-y: auto;">
         </p>
 		<script type="text/javascript" src="{$root}/js/factions.js"></script>
 	</xsl:template>
@@ -58,7 +75,7 @@
 				<tr>
 					<td><h2><xsl:value-of select="field[@name='systemName']/@value"/></h2></td>
 					<xsl:for-each select="influenceFactions/item[1]/influenceDates/item">
-						<th class="faction-border" style="padding-top:20px;"><xsl:value-of select="field[@name='date']/@value"/></th>
+						<th class="faction-border can-hided hidden" style="padding-top:20px;"><nobr><xsl:value-of select="field[@name='date']/@value"/></nobr></th>
 					</xsl:for-each>
 				</tr>
 				<xsl:for-each select="influenceFactions/item">
@@ -67,15 +84,15 @@
 							<xsl:if test="field[@name='factionId']/@value = /*/@faction_id">faction-current</xsl:if>
 						</xsl:variable>
 						<td class="{$is_current}">
-							<xsl:value-of select="field[@name='factionName']/@value"/>
+							<nobr><xsl:value-of select="field[@name='factionName']/@value"/></nobr>
 							<br/>
-							<small><xsl:value-of select="item[@name='factionInfo']/field[@name='allegiance']/@value"/> / <xsl:value-of select="item[@name='factionInfo']/field[@name='government']/@value"/></small> 
+							<small><nobr><xsl:value-of select="item[@name='factionInfo']/field[@name='allegiance']/@value"/> / <xsl:value-of select="item[@name='factionInfo']/field[@name='government']/@value"/></nobr></small> 
 						</td>
 						<xsl:for-each select="influenceDates/item">
 							<xsl:variable name="class">
 								<xsl:if test="string-length(field[@name='influence']/@value) != 0 and field[@name='inherited']/@value = 'true'">faction-inherited</xsl:if>
 							</xsl:variable>
-							<td class="{$is_current} {$class}">
+							<td class="{$is_current} can-hided hidden {$class}">
 								<xsl:if test="string-length(field[@name='influence']/@value) != 0">
 									<xsl:value-of select="round(number(field[@name='influence']/@value) * 10000) div 100"/>%
 									<xsl:value-of select="i10n:tr(field[@name='state']/@value)"/>

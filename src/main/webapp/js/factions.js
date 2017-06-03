@@ -3,6 +3,95 @@ $(function() {
 	
 	var proxy = new ProxyApi(false, false, site_root);
 
+	var visCount = 0;
+	var page = 1;
+	var hideNotVisisble = function() {
+		var border = $('div.right_col').width() + $('div.right_col').position().left;
+		$('div.right_col tr').each(function() {
+			var cont = true;
+			if (!visCount) {
+				$(this).find('.can-hided').each(function() {
+					$(this).removeClass('hidden');
+					var l = $(this).width() + $(this).position().left;
+					visCount++;
+					if (l > border) {
+						$(this).addClass('hidden');
+						cont = false;
+						visCount--;
+					} else {
+						$(this).addClass('visible');
+					}
+					return cont;
+				});
+			} else {
+				var idx = 0;
+				$(this).find('.can-hided').each(function() {
+					$(this).removeClass('hidden');
+					$(this).addClass('visible');
+					return ++idx < visCount ;
+				});
+			}
+		});
+	}
+	
+	var showPaging = function() {
+		var cont = $('div.right_col ul.pagination-split');
+		var flag = false;
+		var page = 0;
+		$(cont).children().remove();
+		$('div.right_col tr').each(function() {
+			var idx = 0;
+			var start = '';
+			var end = '';
+			$(this).find('.can-hided nobr').each(function() {
+				var ctx = $(this).html();
+				if (!start) {
+					start = ctx;
+				}
+				end = ctx;
+				if (++idx >= visCount) {
+					idx = 0;
+					var elm = $('<li><a href="#" class="page" data-page="' + page + '">' + start + ' &mdash; ' + end + '</a></li>');
+					elm.appendTo($(cont));
+					if (!flag) {
+						//elm.trigger('mouseover');
+					}
+					flag = true;
+					start = '';
+					end = '';
+					page++;
+				}
+			});
+			if (start) {
+				var elm = $('<li><a href="#" class="page" data-page="' + page + '">' + start + ' &mdash; ' + end + '</a></li>');
+				elm.appendTo($(cont));
+			}
+			return false;
+		});
+		
+		$(cont).find('.page').on('click', function() {
+			
+			var curpage = $(this).data('page');
+			var std = curpage * visCount;
+			var etd = std + visCount;
+			
+			$('div.right_col .visible').addClass('hidden').removeClass('visible');
+			
+			$('div.right_col tr').each(function() {
+				var idx = 0;
+					$(this).find('.can-hided').each(function() {
+						if (idx >= std) {
+							$(this).removeClass('hidden').addClass('visible');
+						}
+						return ++idx < etd ;
+					});
+			});
+			
+			return false;
+		});
+		
+	} 
+	
 	var formSubmit = function() {
 		var data = {faction: '', factionname: ''};
 		data.faction = $("#faction").val();
@@ -16,6 +105,10 @@ $(function() {
 
 		proxy.load('#factions', '/raw/utility/faction-info/', null, data, function(response) {
 			window.location.hash = query;
+			visCount = 0;
+			page = 1;
+			hideNotVisisble();
+			showPaging();
 		});
 
 		

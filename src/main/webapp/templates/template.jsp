@@ -287,7 +287,6 @@ moment.locale('<%=lang_id%>');
 	 		</div>
         </div>
         <!-- /page content -->
-
         <!-- footer content -->
         <footer>
           <div class="pull-right">
@@ -343,7 +342,7 @@ moment.locale('<%=lang_id%>');
     <!-- Clipboard -->
     <script src="<%=root%>/vendors/clipboard.js/clipboard.min.js"></script>
     <!-- Custom Theme Scripts -->
-    <script src="<%=root%>/js/custom/custom.min.js"></script>
+    <script src="<%=root%>/js/custom/custom.js"></script>
     <!-- Choosen -->
 	<script type="text/javascript" src="<%=root%>/js/chosen/chosen.jquery.min.js"></script>
 	<script type="text/javascript" src="<%=root%>/js/chosen/ajax-chosen.js"></script>

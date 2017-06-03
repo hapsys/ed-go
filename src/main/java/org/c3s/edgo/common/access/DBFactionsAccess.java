@@ -179,7 +179,7 @@ public class DBFactionsAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT f.faction_id, f.name 				FROM factions f, system_faction_control fc 				WHERE f.faction_id=fc.faction_id  				AND f.name LIKE ? 				GROUP BY f.faction_id 				ORDER BY f.name 				LIMIT 20 			";
+			query = " 				SELECT f.faction_id, f.name 				FROM factions f, system_factions_history fc 				WHERE f.faction_id=fc.faction_id  				AND f.name LIKE ? 				GROUP BY f.faction_id 				ORDER BY f.name 				LIMIT 20 			";
 		}
 
 		

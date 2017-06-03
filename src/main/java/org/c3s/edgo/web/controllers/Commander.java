@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
@@ -15,7 +14,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.TimeZone;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletRequest;
@@ -54,10 +52,8 @@ import org.c3s.edgo.common.beans.DBPilotsInfoBean;
 import org.c3s.edgo.common.beans.DBPilotsPowerWeeksBean;
 import org.c3s.edgo.common.beans.DBPilotsRelationsBean;
 import org.c3s.edgo.common.beans.DBPowerCortageBean;
-import org.c3s.edgo.common.beans.DBUserInfoWithDefaultsBean;
 import org.c3s.edgo.common.beans.DBUserLevelsBean;
 import org.c3s.edgo.common.beans.DBUsersBean;
-import org.c3s.edgo.common.beans.DBUsersInfoBean;
 import org.c3s.edgo.common.intruders.ActivityInjector;
 import org.c3s.edgo.common.intruders.InInjector;
 import org.c3s.edgo.common.intruders.SystemPathInjector;
@@ -851,7 +847,7 @@ public class Commander extends GeneralController {
 				}
 			}
 		}
-		System.out.println(current);
+		//System.out.println(current);
 	}
 	
 	public void checkCommander1(UrlPart url, RedirectControlerInterface redirect, @CurrentUrl String currentUrl) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException, UnsupportedEncodingException {

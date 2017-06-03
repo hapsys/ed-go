@@ -3981,4 +3981,7 @@ ul.notifications {
   min-height: 300px;
   border: 1px solid #e5e5e5; }
 
+p {
+	margin: 0 0 0 0;
+}
 /** /Dropzone.js **/
