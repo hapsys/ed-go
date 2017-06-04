@@ -194,6 +194,7 @@ public class Commander extends GeneralController {
 			li.setFlyMode(i10n(getFlyMode(li.getIsSupercruise())));
 			li.setGameMode(i10n(li.getGameMode()));
 			li.setLastSeen(this.getDiff(li.getLastEvent()));
+			li.setQueredEvents(DbAccess.eventsAccess.getQueriedEvents(current.getUserId()).getQueredEvents());
 			current.setLastInfo(li);
 			
 			Document xml = new XMLReflectionObj(current, true).toXML();	
@@ -227,6 +228,7 @@ public class Commander extends GeneralController {
 			li.setFlyMode(i10n(getFlyMode(li.getIsSupercruise())));
 			li.setGameMode(i10n(li.getGameMode()));
 			li.setLastSeen(this.getDiff(li.getLastEvent()));
+			li.setQueredEvents(DbAccess.eventsAccess.getQueriedEvents(current.getUserId()).getQueredEvents());
 			current.setLastInfo(li);
 			
 			ContentObject.getInstance().setData(tag, new Result().put("info", current).get());

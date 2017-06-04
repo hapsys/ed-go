@@ -47,6 +47,16 @@
 				GROUP BY e.user_id 
 			</sql>
 		</query>
+		<query name="QueriedEvents" single_object="true">
+			<column name="UserId" type="long"/>
+			<sql>
+				SELECT COUNT(DISTINCT e.event_id) as quered_events
+				FROM events e
+				WHERE e.user_id = ? 
+				AND e.is_locked &lt; 3
+				LIMIT 1
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 	<!-- 

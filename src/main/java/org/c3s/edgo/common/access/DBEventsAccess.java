@@ -138,6 +138,35 @@ public class DBEventsAccess extends Access {
 		return ret;
 	}
 	
+	public DBQueriedEventsBean getQueriedEvents(long paramUserId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT COUNT(DISTINCT e.event_id) as quered_events 				FROM events e 				WHERE e.user_id = ?  				AND e.is_locked < 3 				LIMIT 1 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getQueriedEvents", query ,  paramUserId);
+		DBQueriedEventsBean ret = null;
+		if (result != null) {
+					ret = new DBQueriedEventsBean();
+				
+					ret = dataMapper.mapFromRow(result.get(0), DBQueriedEventsBean.class);
+					
+		}
+			
+		return ret;
+	}
+	
 	public DBEventsBean getUnlockEventForUserId(long paramUserId, Integer paramState) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();
