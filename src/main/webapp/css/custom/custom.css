@@ -3983,5 +3983,10 @@ ul.notifications {
 
 p {
 	margin: 0 0 0 0;
+	padding-botton: 10px;
+}
+ol, ul {
+	margin: 0 0 0 0;
+	padding-botton: 10px;
 }
 /** /Dropzone.js **/

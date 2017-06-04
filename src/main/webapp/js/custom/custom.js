@@ -64,7 +64,7 @@ $(document).ready(function() {
         // normalize content
         contentHeight -= $NAV_MENU.height() + footerHeight;
 
-       $RIGHT_COL.css('min-height', contentHeight - $FOOTER.height() - 5);
+       $RIGHT_COL.css('min-height', contentHeight - $FOOTER.height() - 7);
     };
 
     $SIDEBAR_MENU.find('a').on('click', function(ev) {
