@@ -143,7 +143,7 @@
 				SELECT pr.*, 
 				pp.combat as progress_combat, pp.trade as progress_trade, pp.explore as progress_explore, pp.empire as progress_empire, pp.federation as progress_federation, pp.cqc as progress_cqc,
 				gm.*, gms.*, s.name as system_name, st.name as station_name, b.body_name,
-				pli.*, COUNT(e.event_id) as quered_events , TIMESTAMPDIFF(SECOND, gm.mode_end, NOW()) as last_event, eh.event_name, '' as last_seen, '' as fly_mode 
+				pli.*, COUNT(DISTINCT e.event_id) as quered_events , TIMESTAMPDIFF(SECOND, gm.mode_end, NOW()) as last_event, eh.event_name, '' as last_seen, '' as fly_mode 
 				FROM events_history eh, pilots p
 				LEFT JOIN events e ON e.user_id = p.user_id AND is_locked &lt; 3
 				LEFT JOIN pilot_game_modes gm ON gm.pilot_game_mode_id =
