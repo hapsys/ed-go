@@ -78,7 +78,7 @@
 								<tr>
 									<td class="col-md-2"><xsl:value-of select="i10n:tr('Query')"/>:</td>
 									<td>
-										<xsl:value-of select="item[@name='lastInfo']/field[@name='queredEvents']/@value"/>&#160;<xsl:value-of select="i10n:tr('events')"/>
+										<span id="queredEvents"><xsl:value-of select="item[@name='lastInfo']/field[@name='queredEvents']/@value"/></span>&#160;<xsl:value-of select="i10n:tr('events')"/>
 									</td>
 								</tr>
 							</table>
