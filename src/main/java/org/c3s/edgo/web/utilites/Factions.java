@@ -214,9 +214,9 @@ public class Factions {
 					} else if (o1.getInfluenceDates().get(0).getInfluence() == null && o2.getInfluenceDates().get(0).getInfluence() == null) {
 						return 0; 
 					} else if (o1.getInfluenceDates().get(0).getInfluence() == null) {
-						return -1; 
-					} else if (o2.getInfluenceDates().get(0).getInfluence() == null) {
 						return 1; 
+					} else if (o2.getInfluenceDates().get(0).getInfluence() == null) {
+						return -1; 
 					} else {
 						return o2.getInfluenceDates().get(0).getInfluence().compareTo(o1.getInfluenceDates().get(0).getInfluence());
 					}
