@@ -30,32 +30,42 @@
           </div>
           <div class="title_right">
             <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-              <div class="input-group">
-				<select name="faction" id="faction" type="text" class="form-control" data-placeholder="Select faction...">
-					<option></option>
-				</select>
-                <span class="input-group-btn" style="padding-left: 1px;">
-                  <button class="btn btn-default" id="show-faction-info" type="button">Show!</button>
-                </span>
-              </div>
+            	<!-- 
+	            <table class="table">
+	            	<tr>
+	            		<td class="col-md-4 col-sm-4">
+	            			<form class="form-inline">	
+				              <div class="form-group">
+				              	<label>BGS time:</label>
+				              	<select name="update" class="form-control" style="display: inline;">
+				              		<xsl:for-each select="time">
+				              			<option value="{@value}:00"><xsl:value-of select="@value"/></option>
+				              		</xsl:for-each>
+				              	</select>
+				              </div>
+			              	</form>
+	            		</td>
+	            		<td class="col-md-8 col-sm-8">
+	            -->
+			              <div class="input-group">
+							<select name="faction" id="faction" type="text" class="form-control" data-placeholder="Select faction...">
+								<option></option>
+							</select>
+			                <span class="input-group-btn" style="padding-left: 1px;">
+			                  <button class="btn btn-default" id="show-faction-info" type="button">Show!</button>
+			                </span>
+			              </div>
+			   <!-- 
+	            		</td>
+	            	</tr>
+	            </table>
+	            -->
             </div>
           </div>
         </div>
         <div class="clearfix"></div>
 		<div class="col-md-12 col-sm-12 col-xs-12 text-center">
 			<ul class="pagination pagination-split">
-				<!-- 
-				<li><a href="#">A</a></li>
-				<li><a href="#">B</a></li>
-				<li><a href="#">C</a></li>
-				<li><a href="#">D</a></li>
-				<li><a href="#">E</a></li>
-				<li>...</li>
-				<li><a href="#">W</a></li>
-				<li><a href="#">X</a></li>
-				<li><a href="#">Y</a></li>
-				<li><a href="#">Z</a></li>
-				 -->
 			</ul>
 		</div>
         <div class="clearfix"></div>

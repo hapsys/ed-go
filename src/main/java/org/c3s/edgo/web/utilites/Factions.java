@@ -34,6 +34,7 @@ import org.c3s.edgo.common.intruders.InInjector;
 import org.c3s.edgo.web.validator.Result;
 import org.c3s.exceptions.XMLException;
 import org.c3s.reflection.XMLList;
+import org.c3s.utils.RegexpUtils;
 import org.c3s.utils.Utils;
 import org.c3s.web.redirect.DropRedirect;
 import org.c3s.xml.utils.XMLUtils;
@@ -41,6 +42,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 /**
@@ -68,12 +70,19 @@ public class Factions {
 	public void getCanvas(@Parameter("tag") String tag, @Parameter("template") String template) throws XMLException {
 		
 		Document xml = XMLUtils.createXML("data"); 
+		for (int i = 0; i < 24; i++) {
+			String time = (i < 10?"0":"") + i + ":00";
+			Element elm = xml.createElement("time");
+			elm.setAttribute("value", time);
+			xml.getDocumentElement().appendChild(elm);
+		}
 		ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:canvas"});
 		
+		//System.out.println(XMLUtils.saveXML(xml));
 	}
 
 	
-	public void getFactionInformation(@ParameterRequest("faction") String factionIdStr, @Parameter("tag") String tag, @Parameter("template") String template, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException, ParseException, XMLException, DOMException, ParserConfigurationException, SAXException, IOException {
+	public void getFactionInformation(@ParameterRequest("faction") String factionIdStr, @ParameterRequest("update") String updateDate, @Parameter("tag") String tag, @Parameter("template") String template, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException, ParseException, XMLException, DOMException, ParserConfigurationException, SAXException, IOException {
 
 		Long factionId = new Long(factionIdStr);
 		
@@ -92,10 +101,14 @@ public class Factions {
 			}
 		}
 		
+		if (updateDate == null || !RegexpUtils.preg_match("~^\\d{2}:\\d{2}:\\d{2}$~", updateDate, new ArrayList<>())) {
+			updateDate = "16:00:00";
+		}
+		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
-		String startDateString = dateFormat.format(new Date(min_date)) + " 16:00:00";
+		String startDateString = dateFormat.format(new Date(min_date)) + " " + updateDate;
 		
 		Date startDate = dateTimeFormat.parse(startDateString);
 		Date endDate = startDate; 
@@ -135,8 +148,7 @@ public class Factions {
 			startDate = new Date(startDate.getTime() - 1000L * 24 * 3600);
 		}
 		
-		@SuppressWarnings("unchecked")
-		List<DBFactionsBean> factionsInfo = DbAccess.factionsAccess.getFactionInformation(new InInjector("faction_id", new ArrayList(factionNames.keySet())));
+		List<DBFactionsBean> factionsInfo = DbAccess.factionsAccess.getFactionInformation(new InInjector("faction_id", new ArrayList<>(factionNames.keySet())));
 		Map<Object, List<DBFactionsBean>> factionsInfoMap = Utils.getArrayGrouped(factionsInfo, "factionId");
 		
 		while (startDate.getTime() < max_date) {
@@ -193,6 +205,19 @@ public class Factions {
 			endDate = new Date(endDate.getTime() + 1000L * 24 * 3600);
 		}
 		
+		//
+		// Fix double dates
+		//
+		for (BigInteger systemId: chkSystems.keySet()) {
+			for (Long factId: chkSystems.get(systemId).keySet()) {
+				List<DBFactionInfluenceBean> infl = chkSystems.get(systemId).get(factId);
+				infl = infl.parallelStream().filter(m -> m.getDate() != null).collect(Collectors.toList());
+				chkSystems.get(systemId).put(factId, infl);
+			}
+		}
+		//
+		//
+		//
 		List<DBSystemsFactionsInfluenceBean> systems = new ArrayList<>();
 		for (BigInteger systemId: chkSystems.keySet()) {
 			DBSystemsFactionsInfluenceBean system = new DBSystemsFactionsInfluenceBean().setSystemId(systemId).setSystemName(systemNames.get(systemId)).setInfluenceFactions(new ArrayList<>());
@@ -203,14 +228,19 @@ public class Factions {
 				DBFactionInfluenceNamesBean faction = new DBFactionInfluenceNamesBean()
 						.setFactionId(factId)
 						.setFactionName(factionNames.get(factId))
-						.setInfluenceDates(list).setFactionInfo(factionsInfoMap.get(factId).size() > 0? factionsInfoMap.get(factId).get(0): null);
+						.setInfluenceDates(list)
+						.setFactionInfo(factionsInfoMap.get(factId).size() > 0? factionsInfoMap.get(factId).get(0): null);
 				system.getInfluenceFactions().add(faction);
 			}
-			Collections.sort(system.getInfluenceFactions(), new Comparator<DBFactionInfluenceNamesBean>() {
+			
+			List<DBFactionInfluenceNamesBean> sortedFaction = system.getInfluenceFactions(); 
+			Collections.sort(sortedFaction, new Comparator<DBFactionInfluenceNamesBean>() {
 				@Override
 				public int compare(DBFactionInfluenceNamesBean o1, DBFactionInfluenceNamesBean o2) {
 					if (o1.getFactionId().equals(factionId)) {
 						return -1;
+					} else if (o2.getFactionId().equals(factionId)) {
+						return 1;
 					} else if (o1.getInfluenceDates().get(0).getInfluence() == null && o2.getInfluenceDates().get(0).getInfluence() == null) {
 						return 0; 
 					} else if (o1.getInfluenceDates().get(0).getInfluence() == null) {
@@ -222,6 +252,7 @@ public class Factions {
 					}
 				}
 			});
+			system.setInfluenceFactions(sortedFaction);
 		}
 		
 		Collections.sort(systems, new Comparator<DBSystemsFactionsInfluenceBean>() {

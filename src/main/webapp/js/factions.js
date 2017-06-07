@@ -119,6 +119,7 @@ $(function() {
 		if ($("#faction").val()) {
 			formSubmit();
 		}
+		return false;
 	});
 	
 	if (window.location.hash) {

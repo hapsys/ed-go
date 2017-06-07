@@ -132,6 +132,11 @@
 		<title lang="ru">Сообщество</title>
 		<title lang="en">Community</title>
 		<menu name="main_menu"/>
+		<node pattern="pilots">
+			<title lang="ru">Пилоты</title>
+			<title lang="en">Pilots</title>
+			<menu name="main_menu"/>
+		</node>
 	 </node>
 	<!--
 	//
