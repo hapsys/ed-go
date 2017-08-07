@@ -115,7 +115,7 @@ moment.locale('<%=lang_id%>');
   	<!-- Popup -->
   	<div class="popup">
 	    <div class="popup-item">
-	        <img src="<%=root%>/images/preloader.gif" alt="" />
+	        <img src="<%=root%>/images/preloader.png" alt="" />
 	        <div>Please wait...</div>
 	    </div>
 	</div>
