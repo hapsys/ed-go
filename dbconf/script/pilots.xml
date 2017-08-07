@@ -106,6 +106,20 @@
 				WHERE LOWER(p.pilot_name) = LOWER(?)
 			</sql>
 		</query>
+		<query name="SearchPilots">
+			<column name="SearchString" type="String"/>
+			<sql>
+				SELECT p.*
+				FROM pilot_last_info pli, pilots p
+				WHERE ISNULL(p.parent_pilot_id)
+				AND p.is_ignored = 0
+				AND pli.pilot_id = p.pilot_id
+				AND p.pilot_name LIKE ?
+				GROUP BY p.pilot_id
+				ORDER BY p.pilot_name
+				<limit/>
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 	<table name="pilot_last_info">

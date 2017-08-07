@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import org.c3s.db.DBManager;
+import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.event.EventDispatcherThreaded;
 import org.c3s.edgo.event.EventProcessorThreaded;
 import org.c3s.storage.ApplicationStorage;
@@ -12,7 +13,7 @@ import org.c3s.storage.StorageType;
 
 public class ProcessEvents {
 
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		
 		Properties props = new Properties();
 		//props.put("user", "root");
@@ -23,8 +24,9 @@ public class ProcessEvents {
 		props.put("password", "123467890");
 		DBManager.getConnection("edgo", "com.mysql.jdbc.Driver", "jdbc:mysql://192.168.0.10:3306/ed-go", props);
 		
-		
-		
+		// Clear events
+		DbAccess.eventsAccess.updateClearEvents();
+		// Register events
 		EventDispatcherThreaded.registerEventPackage("org.c3s.edgo.event.impl");
 		
 		StorageFactory.register(StorageType.APPLICATION, new ApplicationStorage());

@@ -91,6 +91,13 @@
 				</module>
 			</module>
 			<!-- -Commander  -->
+			<!-- +Community  -->
+			<module pattern="community/">
+				<param name="tag" value="view_ctx" inherit="true"/>
+				<param name="template" value="{directory.stylesheet}/community/pilot_search.xsl" inherit="true"/>
+				<module pattern="pilots/" class="org.c3s.edgo.web.controllers.Searcher" action="pilotSearchCanvas" is_last="true"/>
+			</module>
+			<!-- -Community  -->
 			<!-- +Utilites  -->
 			<module pattern="utility/">
 				<param name="tag" value="view_ctx" inherit="true"/>

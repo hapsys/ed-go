@@ -57,6 +57,11 @@
 				LIMIT 1
 			</sql>
 		</query>
+		<query name="ClearEvents">
+			<sql>
+				UPDATE events SET is_locked = 0 
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 	<!-- 

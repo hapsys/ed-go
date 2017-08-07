@@ -196,6 +196,28 @@ public class DBEventsAccess extends Access {
 		return ret;
 	}
 	
+	public int updateClearEvents() throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				UPDATE events SET is_locked = 0  			";
+		}
+
+		
+		int ret = getConnection().query(query);
+			
+		return ret;
+	}
+	
 	public List<DBEventUsersBean> getEventUsers() throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();

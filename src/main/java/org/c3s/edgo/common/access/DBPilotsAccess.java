@@ -353,6 +353,39 @@ public class DBPilotsAccess extends Access {
 		return ret;
 	}
 	
+	public List<DBSearchPilotsBean> getSearchPilots(String paramSearchString) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT p.* 				FROM pilot_last_info pli, pilots p 				WHERE ISNULL(p.parent_pilot_id) 				AND p.is_ignored = 0 				AND pli.pilot_id = p.pilot_id 				AND p.pilot_name LIKE ? 				GROUP BY p.pilot_id 				ORDER BY p.pilot_name 				" + limit + " 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getSearchPilots", query ,  paramSearchString);
+		List<DBSearchPilotsBean> ret = null;
+		if (result != null) {
+					ret = new ArrayList<DBSearchPilotsBean>();
+				
+			for (Map<String, Object> res : result) {
+				DBSearchPilotsBean bean = dataMapper.mapFromRow(res, DBSearchPilotsBean.class);
+														
+				ret.add(bean);
+			}
+					
+		}
+			
+		return ret;
+	}
+	
 	public List<DBPilotsLinkedInfoBean> getPilotsLinkedInfo(long paramUserId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();

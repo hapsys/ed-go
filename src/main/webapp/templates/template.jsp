@@ -112,6 +112,14 @@ moment.locale('<%=lang_id%>');
 </head>
 <body>
   <body class="nav-md">
+  	<!-- Popup -->
+  	<div class="popup">
+	    <div class="popup-item">
+	        <img src="<%=root%>/images/preloader.gif" alt="" />
+	        <div>Please wait...</div>
+	    </div>
+	</div>
+  	<!-- Popup -->
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col menu_fixed">

@@ -103,12 +103,15 @@ $(function() {
 			  return encodeURIComponent(key) + '=' + encodeURIComponent(data[key]);
 		}).join('&');
 
+		$('.popup').show();
+		
 		proxy.load('#factions', '/raw/utility/faction-info/', null, data, function(response) {
 			window.location.hash = query;
 			visCount = 0;
 			page = 1;
 			hideNotVisisble();
 			showPaging();
+			$('.popup').hide();
 		});
 
 		

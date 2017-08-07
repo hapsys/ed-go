@@ -97,7 +97,40 @@ FACTION FORM
 .faction-border {
 	padding-top:15px;
 }
-
+/*
+POPUP
+*/
+.popup {
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: absolute;	
+	background: #ccc;
+	z-index: 10;
+    opacity: 0.7; /* Полупрозрачный фон */
+    filter: alpha(Opacity=70);
+	text-align: center;
+    
+}
+.popup-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: inline-block;
+    
+}
+.popup-item img {
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.popup-item div {
+	font-size: 20px;
+	color: black;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
 /*
 SHIPS
 */
