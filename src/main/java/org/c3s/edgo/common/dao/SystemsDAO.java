@@ -140,7 +140,7 @@ public class SystemsDAO {
 				.setNameUniq(uniq)
 				.setType(stationType)
 				.setDistanceToStar(dist != null?dist.longValue():null)
-				.setUpdatedAt(new Date().getTime())
+				.setUpdatedAt(new Date().getTime() / 1000)
 				;
 			DbAccess.stationsAccess.insert(bean);
 		}
