@@ -177,6 +177,10 @@
 							<module pattern="update-access/" class="org.c3s.edgo.web.controllers.Commander" action="updateAccess" is_last="true"/>
 						</module>
 					</module>
+					<!-- Search -->
+					<module pattern="search/">
+						<module pattern="pilots/" class="org.c3s.edgo.web.controllers.Searcher" action="pilotSearch" is_last="true"/>
+					</module>
 					<!-- Settlerments and other utility -->
 					<module pattern="utility/">
 						<module pattern="system-search/" class="org.c3s.edgo.web.utilites.Systems" action="getSystemByPatiallyName" is_last="true"/>

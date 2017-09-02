@@ -131,6 +131,10 @@ POPUP
     -moz-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+
+.profile_details1 {
+	height: 100px !important;
+}
 /*
 SHIPS
 */

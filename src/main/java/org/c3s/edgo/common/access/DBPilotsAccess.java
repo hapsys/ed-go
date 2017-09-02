@@ -366,7 +366,7 @@ public class DBPilotsAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT p.* 				FROM pilot_last_info pli, pilots p 				WHERE ISNULL(p.parent_pilot_id) 				AND p.is_ignored = 0 				AND pli.pilot_id = p.pilot_id 				AND p.pilot_name LIKE ? 				GROUP BY p.pilot_id 				ORDER BY p.pilot_name 				" + limit + " 			";
+			query = " 				SELECT p.*, GROUP_CONCAT(DISTINCT pp.pilot_name SEPARATOR ', ') as linked_pilots 				FROM pilots pj 				LEFT JOIN pilots p ON pj.parent_pilot_id = p.pilot_id OR ISNULL(pj.parent_pilot_id) AND p.pilot_id = pj.pilot_id 				LEFT JOIN pilots pp ON pp.parent_pilot_id = p.pilot_id 				WHERE pj.is_ignored = 0 				AND pj.pilot_name LIKE ? 				GROUP BY p.pilot_id 				ORDER BY p.pilot_name 				" + limit + " 			";
 		}
 
 		

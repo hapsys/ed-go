@@ -27,12 +27,15 @@ public class Searcher {
 	
 	public void pilotSearch(@ParameterRequest("search") String search, @Parameter("tag") String tag, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		
-		search = search == null?"":search;
-		search = RegexpUtils.preg_replace("~[%_\\]~", search, "\\$0") + "%";
+		search = (search == null)?"":search;
+		search = RegexpUtils.preg_replace("~[%_]~", search, "") + "%";
+
+		//System.out.println("|" + search + "|");
 		
 		List<DBSearchPilotsBean> pilots = DbAccess.pilotsAccess.getSearchPilots(search);
 		
-		ContentObject.getInstance().setData(tag, new Result().put("factions", pilots).get());
+		ContentObject.getInstance().setData(tag, new Result().put("pilots", pilots).get());
+		
 		redirect.setRedirect(new DropRedirect());
 	}
 }

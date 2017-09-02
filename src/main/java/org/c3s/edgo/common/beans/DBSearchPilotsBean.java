@@ -62,6 +62,21 @@ public class DBSearchPilotsBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"linked_pilots", "linkedPilots"})
+	@DataTarget("linked_pilots")
+	@XMLSimple("linkedPilots")
+	private java.lang.String linkedPilots;
+	
+	public java.lang.String getLinkedPilots() {
+		return linkedPilots;
+	}
+	
+	public DBSearchPilotsBean setLinkedPilots(java.lang.String value) {
+		linkedPilots = value;
+		return this;
+	}
+	
+	
 	@DataSource({"is_current", "isCurrent"})
 	@DataTarget("is_current")
 	@XMLSimple("isCurrent")

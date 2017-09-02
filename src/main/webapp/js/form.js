@@ -1,6 +1,4 @@
-var proxy = new ProxyApi(false, false, site_root);
-
-var prepareData = function(form) {
+prepareData = function(form) {
 	var data = new FormData();
 	$(form).find('input,textarea,select').each(function() {
 		if ($(this).attr('type') == 'file') {
@@ -18,6 +16,7 @@ var prepareData = function(form) {
 	return data;
 } 
 
+var proxy = new ProxyApi(false, false, site_root);
 
 $(function() {
 	
