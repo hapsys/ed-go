@@ -77,6 +77,21 @@ public class DBSearchPilotsBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"target_relation", "targetRelation"})
+	@DataTarget("target_relation")
+	@XMLSimple("targetRelation")
+	private java.math.BigDecimal targetRelation;
+	
+	public java.math.BigDecimal getTargetRelation() {
+		return targetRelation;
+	}
+	
+	public DBSearchPilotsBean setTargetRelation(java.math.BigDecimal value) {
+		targetRelation = value;
+		return this;
+	}
+	
+	
 	@DataSource({"is_current", "isCurrent"})
 	@DataTarget("is_current")
 	@XMLSimple("isCurrent")
@@ -88,6 +103,21 @@ public class DBSearchPilotsBean implements DbBean, Serializable {
 	
 	public DBSearchPilotsBean setIsCurrent(java.lang.Integer value) {
 		isCurrent = value;
+		return this;
+	}
+	
+	
+	@DataSource({"source_relation", "sourceRelation"})
+	@DataTarget("source_relation")
+	@XMLSimple("sourceRelation")
+	private java.math.BigDecimal sourceRelation;
+	
+	public java.math.BigDecimal getSourceRelation() {
+		return sourceRelation;
+	}
+	
+	public DBSearchPilotsBean setSourceRelation(java.math.BigDecimal value) {
+		sourceRelation = value;
 		return this;
 	}
 	
@@ -118,6 +148,21 @@ public class DBSearchPilotsBean implements DbBean, Serializable {
 	
 	public DBSearchPilotsBean setIsIgnored(java.lang.Integer value) {
 		isIgnored = value;
+		return this;
+	}
+	
+	
+	@DataSource({"levels", "levels"})
+	@DataTarget("levels")
+	@XMLSimple("levels")
+	private java.lang.String levels;
+	
+	public java.lang.String getLevels() {
+		return levels;
+	}
+	
+	public DBSearchPilotsBean setLevels(java.lang.String value) {
+		levels = value;
 		return this;
 	}
 	

@@ -87,19 +87,15 @@
 											-->
 										</div>
 										<div class="col-xs-12 col-sm-6 emphasis">
-											<!--
-											<button type="button" class="btn btn-success btn-xs">
-												<i class="fa fa-user">
-												</i>
-												<i class="fa fa-comments-o"></i>
-											</button>
-											<button type="button" class="btn btn-primary btn-xs">
-												<i class="fa fa-user">
-												</i>
-												View Profile
-											</button>
-											-->
-											&#160;
+											<p class="pilot-result-links">
+												<a href="#" class="access_blog" title="Pilot page"><span class="fa fa-home"></span></a>
+												<a href="#" class="access_activity" title="Pilot activity"><span class="fa fa-bar-chart"></span></a>
+												<a href="#" class="access_systems" title="Pilot systems path"><span class="fa fa-star-o"></span></a>
+												<a href="#" class="access_ships" title="Pilot ships"><span class="fa fa-rocket"></span></a>
+												<a href="#" class="access_missions" title="Pilot missions"><span class="fa fa-bolt"></span></a>
+												<a href="#" class="access_powers" title="Pilot power play"><span class="fa fa-flag"></span></a>
+												<a href="#" class="access_materials" title="Pilot materials"><span class="fa fa-tint"></span></a>
+											</p>
 										</div>
 									</div>
 								</div>

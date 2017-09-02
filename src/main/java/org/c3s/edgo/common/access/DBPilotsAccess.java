@@ -353,7 +353,7 @@ public class DBPilotsAccess extends Access {
 		return ret;
 	}
 	
-	public List<DBSearchPilotsBean> getSearchPilots(String paramSearchString) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+	public List<DBSearchPilotsBean> getSearchPilots(Long paramUserId, String paramSearchString) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
@@ -366,11 +366,11 @@ public class DBPilotsAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT p.*, GROUP_CONCAT(DISTINCT pp.pilot_name SEPARATOR ', ') as linked_pilots 				FROM pilots pj 				LEFT JOIN pilots p ON pj.parent_pilot_id = p.pilot_id OR ISNULL(pj.parent_pilot_id) AND p.pilot_id = pj.pilot_id 				LEFT JOIN pilots pp ON pp.parent_pilot_id = p.pilot_id 				WHERE pj.is_ignored = 0 				AND pj.pilot_name LIKE ? 				GROUP BY p.pilot_id 				ORDER BY p.pilot_name 				" + limit + " 			";
+			query = " 				SELECT p.*, GROUP_CONCAT(DISTINCT pp.pilot_name SEPARATOR ', ') as linked_pilots, 				GROUP_CONCAT(DISTINCT CONCAT(i.info_uniq, '|||', i.info_link, '|||', CAST(IF(ISNULL(ip.level), IF(ISNULL(ui.level), i.def_level, ui.level), ip.level) AS UNSIGNED INTEGER)) SEPARATOR '///') as levels, 				SUM(DISTINCT rs.relation) as source_relation, SUM(DISTINCT rt.relation) as target_relation 				FROM (info i, pilots pj) 				LEFT JOIN pilots p ON pj.parent_pilot_id = p.pilot_id OR ISNULL(pj.parent_pilot_id) AND p.pilot_id = pj.pilot_id 				LEFT JOIN pilots pp ON pp.parent_pilot_id = p.pilot_id 				LEFT JOIN pilots_info ip ON ip.pilot_id = p.pilot_id AND ip.info_id = i.info_id 				LEFT JOIN users_info ui ON ui.user_id = p.user_id AND ui.info_id = i.info_id 				LEFT JOIN pilots jp ON jp.user_id = ? 				LEFT JOIN pilot_relations rs ON jp.pilot_id = rs.source_pilot_id AND (p.pilot_id = rs.target_pilot_id OR pp.pilot_id = rs.target_pilot_id) 				LEFT JOIN pilot_relations rt ON jp.pilot_id = rt.target_pilot_id AND (p.pilot_id = rt.source_pilot_id OR pp.pilot_id = rt.source_pilot_id) 				WHERE pj.is_ignored = 0 				AND pj.pilot_name LIKE ? 				GROUP BY p.pilot_id 				ORDER BY p.pilot_name 				" + limit + " 			";
 		}
 
 		
-		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getSearchPilots", query ,  paramSearchString);
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getSearchPilots", query ,  paramUserId,  paramSearchString);
 		List<DBSearchPilotsBean> ret = null;
 		if (result != null) {
 					ret = new ArrayList<DBSearchPilotsBean>();
