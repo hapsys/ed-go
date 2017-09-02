@@ -22,7 +22,7 @@ $(function() {
 				//console.log(result);
 				//$(container).find('.profile_details').remove();
 				var sklt;
-				$(container).find('.profile_details').each(function() {
+				$(container).find('.pilot-search-details').each(function() {
 					if (!$(this).hasClass('skeleton')) {
 						$(this).remove();
 					} else {
@@ -30,6 +30,7 @@ $(function() {
 					}
 				});
 				
+				//console.log(result.pilots);
 				if (result.pilots && result.pilots.length > 0) {
 					result.pilots.forEach(function(v) {
 						//console.log(v);

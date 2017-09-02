@@ -40,7 +40,7 @@
 				<div class="x_panel">
 					<div class="x_content">
 						<div class="row pilot-search-result">
-							<div class="col-md-4 col-sm-4 col-xs-12 profile_details skeleton hidden">
+							<div class="pilot-search-details skeleton hidden">
 								<div class="well profile_view">
 									<div class="col-sm-12">
 										<div class="left col-xs-12">
