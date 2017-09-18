@@ -110,12 +110,13 @@
 			<column name="UserId" type="Long"/>
 			<column name="SearchString" type="String"/>
 			<sql>
-				SELECT p.*, GROUP_CONCAT(DISTINCT pp.pilot_name SEPARATOR ', ') as linked_pilots,
+				SELECT p.*, GROUP_CONCAT(DISTINCT pp.pilot_name SEPARATOR ', ') as linked_pilots, r.*,
 				GROUP_CONCAT(DISTINCT CONCAT(i.info_uniq, '|||', i.info_link, '|||', CAST(IF(ISNULL(ip.level), IF(ISNULL(ui.level), i.def_level, ui.level), ip.level) AS UNSIGNED INTEGER)) SEPARATOR '///') as levels,
 				SUM(DISTINCT rs.relation) as source_relation, SUM(DISTINCT rt.relation) as target_relation
 				FROM (info i, pilots pj)
 				LEFT JOIN pilots p ON pj.parent_pilot_id = p.pilot_id OR ISNULL(pj.parent_pilot_id) AND p.pilot_id = pj.pilot_id
 				LEFT JOIN pilots pp ON pp.parent_pilot_id = p.pilot_id
+				LEFT JOIN ranks r ON p.pilot_id = r.pilot_id
 				LEFT JOIN pilots_info ip ON ip.pilot_id = p.pilot_id AND ip.info_id = i.info_id
 				LEFT JOIN users_info ui ON ui.user_id = p.user_id AND ui.info_id = i.info_id
 				LEFT JOIN pilots jp ON jp.user_id = ?

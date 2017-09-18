@@ -29,7 +29,8 @@
             <h3></h3>
           </div>
           <div class="title_right">
-            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+            <div class="col-md-5 col-sm-5 col-xs-12 input-group form-group pull-right ">
+            	<span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
                 <input type="text" class="form-control" placeholder="Search for..."/>
             </div>
           </div>
@@ -50,45 +51,28 @@
 												Web Designer / UX / Graphic Artist / Coffee Lover
 											</p>
 											<!-- 
-											<ul class="list-unstyled">
-												<li>
-													<i class="fa fa-building"></i>
-													Address:
-												</li>
-												<li>
-													<i class="fa fa-phone"></i>
-													Phone #:
-												</li>
-											</ul>
+											<p class="search-pilot-ranks">
+												<img id="combat" width="30" height="30" title="Combat rank" src="{$root}/images/ranks/combat/rank-1.png"/>
+												<img id="trade" width="30" height="30" title="Trade rank" src="{$root}/images/ranks/trade/rank-1.png"/>
+												<img id="explore" width="30" height="30" title="Explorer rank" src="{$root}/images/ranks/explore/rank-1.png"/>
+											</p>
+											<p>
+												&#160;
+											</p>
 											 -->
 										</div>
 									</div>
 									<div class="col-xs-12 bottom text-center">
 										<div class="col-xs-12 col-sm-6 emphasis">
-											<!-- 
-											<p class="ratings">
-												<a>4.0</a>
-												<a href="#">
-													<span class="fa fa-star"></span>
-												</a>
-												<a href="#">
-													<span class="fa fa-star"></span>
-												</a>
-												<a href="#">
-													<span class="fa fa-star"></span>
-												</a>
-												<a href="#">
-													<span class="fa fa-star"></span>
-												</a>
-												<a href="#">
-													<span class="fa fa-star-o"></span>
-												</a>
+											<p class="pilot-result-action">
+												<a href="#" class="action-friendship" title="Request friendship"><span class="fa fa-handshake-o"></span></a>
+												<a href="#" class="action-observe" title="Observe"><span class="fa fa-eye"></span></a>
+												<a href="#" class="action-message" title="Send message"><span class="fa fa-envelope-o"></span></a>
 											</p>
-											-->
 										</div>
 										<div class="col-xs-12 col-sm-6 emphasis">
 											<p class="pilot-result-links">
-												<a href="#" class="access_blog" title="Pilot page"><span class="fa fa-home"></span></a>
+												<a href="#" class="access_blog" title="Pilot page"><span class="fa fa-address-card-o"></span></a>
 												<a href="#" class="access_activity" title="Pilot activity"><span class="fa fa-bar-chart"></span></a>
 												<a href="#" class="access_systems" title="Pilot systems path"><span class="fa fa-star-o"></span></a>
 												<a href="#" class="access_ships" title="Pilot ships"><span class="fa fa-rocket"></span></a>

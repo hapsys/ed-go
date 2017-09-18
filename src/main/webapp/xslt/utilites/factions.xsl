@@ -26,10 +26,48 @@
 	<xsl:template name="canvas">
         <div class="page-title">
           <div class="title_left">
-            <h3></h3>
+          	<form class="form-inline date-range-form" style="position: relative; visibility1: hidden;">
+			  <div id="select-date-start" class="form-group data">
+					<input id="start-date-selected" class="form-control hidden" type="text" style="border:none;" value="{/*/@start_date}"/>
+					<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+					<span style="padding-left: 5px; padding-right: 5px;"></span>
+					<b class="caret"></b>
+			  </div>
+			  <div class="form-group">
+			  	<label for="exampleInputName2" style="margin-left: 5px; margin-right: 5px;">-</label>
+			  </div>
+			  <div id="select-date-end" class="form-group data">
+				<input id="end-date-selected" class="form-control hidden" type="text" style="border:none;" value="{/*/@end_date}"/>
+				<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+				<span style="padding-left: 5px; padding-right: 5px;"></span>
+				<b class="caret"></b>
+			  </div>
+			</form>
+          	<!-- 
+            <div class="col-md-7 col-sm-7 col-xs-12 form-group pull-right">
+				<div class="filter">
+					<div id="select-date-end" class="pull-left data" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+						<input id="end-date-selected" class="form-control hidden" type="text" style="border:none;" value="{/*/@end_date}"/>
+						<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+						<span style="padding-left: 5px; padding-right: 5px;"></span>
+						<b class="caret"></b>
+					</div>
+					<div class="pull-leftdata" style="background: #fff; cursor: pointer; padding: 5px 10px;">
+						-
+					</div>
+					<div id="select-date-start" class="pull-right data" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+						<input id="start-date-selected" class="form-control hidden" type="text" style="border:none;" value="{/*/@start_date}"/>
+						<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+						<span style="padding-left: 5px; padding-right: 5px;"></span>
+						<b class="caret"></b>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			 -->
           </div>
           <div class="title_right">
-            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
             	<!-- 
 	            <table class="table">
 	            	<tr>
@@ -47,6 +85,8 @@
 	            		</td>
 	            		<td class="col-md-8 col-sm-8">
 	            -->
+	            		<!-- 
+			              -->
 			              <div class="input-group">
 							<select name="faction" id="faction" type="text" class="form-control" data-placeholder="Select faction...">
 								<option></option>
@@ -79,6 +119,8 @@
 //
 -->
 	<xsl:template name="faction_list">
+		<input type="hidden" name="loaded_max_date" value='/*/@maxDate'/>
+		<input type="hidden" name="loaded_min_date" value='/*/@minDate'/>
 		<table class="table table-bordered">
 			<!-- xsl:variable name="colspan" select="1 + count(item[1]/influenceFactions/item[1]/influenceDates/item)"/ -->
 			<xsl:for-each select="item">

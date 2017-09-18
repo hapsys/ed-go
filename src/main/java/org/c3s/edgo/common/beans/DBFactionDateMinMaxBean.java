@@ -11,7 +11,7 @@ import org.c3s.data.annotations.DataTarget;
 import org.c3s.reflection.annotation.*;
 
 
-public class DBFactionsSearchBean implements DbBean, Serializable {
+public class DBFactionDateMinMaxBean implements DbBean, Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,7 +26,7 @@ public class DBFactionsSearchBean implements DbBean, Serializable {
 		return maxDate;
 	}
 	
-	public DBFactionsSearchBean setMaxDate(java.lang.Long value) {
+	public DBFactionDateMinMaxBean setMaxDate(java.lang.Long value) {
 		maxDate = value;
 		return this;
 	}
@@ -41,23 +41,8 @@ public class DBFactionsSearchBean implements DbBean, Serializable {
 		return minDate;
 	}
 	
-	public DBFactionsSearchBean setMinDate(java.lang.Long value) {
+	public DBFactionDateMinMaxBean setMinDate(java.lang.Long value) {
 		minDate = value;
-		return this;
-	}
-	
-	
-	@DataSource({"name", "name"})
-	@DataTarget("name")
-	@XMLSimple("name")
-	private java.lang.String name;
-	
-	public java.lang.String getName() {
-		return name;
-	}
-	
-	public DBFactionsSearchBean setName(java.lang.String value) {
-		name = value;
 		return this;
 	}
 	
@@ -71,15 +56,13 @@ public class DBFactionsSearchBean implements DbBean, Serializable {
 		return factionId;
 	}
 	
-	public DBFactionsSearchBean setFactionId(java.lang.Long value) {
+	public DBFactionDateMinMaxBean setFactionId(java.lang.Long value) {
 		factionId = value;
 		return this;
 	}
 	
 	@Override
 	public void setAutoincrementField(Object value) {
-		
-		setFactionId(new java.lang.Long(value.toString()));
 		
 	}	
 	

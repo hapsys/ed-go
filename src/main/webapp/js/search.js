@@ -72,8 +72,16 @@ $(function() {
 								$(a).css('visibility','hidden');
 							}
 						}
-						
-						
+						/*
+						$(elm).find('.search-pilot-ranks img').each(function() {
+							var id = $(this).attr('id');
+							if (v[id]) {
+								var src = site_root + '/' + 'images/ranks/' + id + '/rank-' + v[id] + '.png';
+								//console.log(src);
+								$(this).attr('src', src);
+							}
+						});
+						*/ 
 						
 						elm.appendTo(container);
 					});

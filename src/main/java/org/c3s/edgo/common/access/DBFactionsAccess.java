@@ -166,6 +166,35 @@ public class DBFactionsAccess extends Access {
 		return ret;
 	}
 	
+	public DBFactionDateMinMaxBean getFactionDateMinMax(long paramFactionId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT fc.faction_id, UNIX_TIMESTAMP(MIN(fc.create_date)) as min_date, UNIX_TIMESTAMP(MAX(fc.create_date)) as max_date  				FROM system_factions_history fc 				WHERE fc.faction_id = ?  				GROUP BY fc.faction_id 				LIMIT 1 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getFactionDateMinMax", query ,  paramFactionId);
+		DBFactionDateMinMaxBean ret = null;
+		if (result != null) {
+					ret = new DBFactionDateMinMaxBean();
+				
+					ret = dataMapper.mapFromRow(result.get(0), DBFactionDateMinMaxBean.class);
+					
+		}
+			
+		return ret;
+	}
+	
 	public List<DBFactionsSearchBean> getFactionsSearch(String paramsearch) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();
@@ -179,7 +208,7 @@ public class DBFactionsAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT f.faction_id, f.name 				FROM factions f, system_factions_history fc 				WHERE f.faction_id=fc.faction_id  				AND f.name LIKE ? 				GROUP BY f.faction_id 				ORDER BY f.name 				LIMIT 20 			";
+			query = " 				SELECT f.faction_id, f.name, UNIX_TIMESTAMP(MIN(fc.create_date)) as min_date, UNIX_TIMESTAMP(MAX(fc.create_date)) as max_date  				FROM factions f, system_factions_history fc 				WHERE f.faction_id=fc.faction_id  				AND f.name LIKE ? 				GROUP BY f.faction_id 				ORDER BY f.name 				LIMIT 20 			";
 		}
 
 		

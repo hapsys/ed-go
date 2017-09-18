@@ -66,10 +66,21 @@
 			<column name="uniq"/>
 		</select>
 		<select name="FactionInformation" intruder="org.c3s.edgo.common.intruders.InInjector"/>
+		
+		<query name="FactionDateMinMax"  single_object="true">
+			<column name="FactionId" type="long"/>
+			<sql>
+				SELECT fc.faction_id, UNIX_TIMESTAMP(MIN(fc.create_date)) as min_date, UNIX_TIMESTAMP(MAX(fc.create_date)) as max_date 
+				FROM system_factions_history fc
+				WHERE fc.faction_id = ? 
+				GROUP BY fc.faction_id
+				LIMIT 1
+			</sql>
+		</query>
 		<query name="FactionsSearch">
 			<column name="search" type="String"/>
 			<sql>
-				SELECT f.faction_id, f.name
+				SELECT f.faction_id, f.name, UNIX_TIMESTAMP(MIN(fc.create_date)) as min_date, UNIX_TIMESTAMP(MAX(fc.create_date)) as max_date 
 				FROM factions f, system_factions_history fc
 				WHERE f.faction_id=fc.faction_id 
 				AND f.name LIKE ?
@@ -247,8 +258,16 @@
 				ORDER BY fsh.faction_id
 			</sql>
 		</query>
-		<query name="SystemFactionInfluence">
+		<query name="SystemFactionInfluence1">
 			<column name="FactionId" type="Long"/>
+			<!-- 
+			<column name="ToDate" type="java.sql.Timestamp"/>
+			<column name="FromDate" type="java.sql.Timestamp"/>
+			<column name="FromDateCheck" type="java.sql.Timestamp"/>
+			 -->
+			<column name="ToDate" type="String"/>
+			<column name="FromDate" type="String"/>
+			<column name="FromDateCheck" type="String"/>
 			<sql>
 				SELECT sf.*, s.name as system_name, f.name as faction_name, b.*
 				FROM system_factions_history sf1
@@ -257,6 +276,83 @@
 				LEFT JOIN systems s ON sf.system_id = s.system_id
 				LEFT JOIN factions f ON sf.faction_id = f.faction_id
 				WHERE sf1.faction_id = ?
+				AND sf1.create_date &lt;= ?
+				AND (sf1.create_date &gt;= ? OR sf1.create_date &gt; (
+					SELECT sf2.create_date 
+					FROM system_factions_history sf2
+					WHERE sf2.create_date &lt; ?
+					ORDER BY sf2.create_date DESC
+					LIMIT 1
+				))    
+				GROUP BY sf.system_id, f.name, sf.create_date			
+				ORDER BY sf.system_id, f.name, sf.create_date			
+			</sql>
+		</query>
+		
+		<query name="SystemsFactionHistory">
+			<column name="FactionId" type="Long"/>
+			<sql>
+				SELECT sf.system_id, sf.faction_id, '' as create_date
+				FROM system_factions_history sf1
+				LEFT JOIN system_factions_history sf ON sf.system_id = sf1.system_id
+				WHERE sf1.faction_id = ?
+				GROUP BY sf.system_id, sf.faction_id
+				ORDER BY sf.system_id, sf.faction_id
+			</sql>
+		</query>
+		
+		<!-- 
+		<query name="StartSystemsFactionDate" single_object="true">
+			<column name="SystemId" type="java.math.BigInteger"/>
+			<column name="FactionId" type="Long"/>
+			<column name="FromDate" type="String"/>
+			<sql>
+				SELECT GetFactionHistoryInfo(?, ?, ?) as create_date LIMIT 1
+			</sql>
+		</query>
+		 -->
+		
+		<query name="SystemFactionInfluence" intruder="org.c3s.edgo.common.intruders.SystemFactionHistoryInjector">
+			<column name="ToDate" type="String"/>
+			<sql>
+				SELECT sf.*, s.name as system_name, f.name as faction_name, b.*
+				FROM system_factions_history sf
+				LEFT JOIN bgs_states b ON sf.state_id = b.state_id
+				LEFT JOIN systems s ON sf.system_id = s.system_id
+				LEFT JOIN factions f ON sf.faction_id = f.faction_id
+				WHERE 1=1
+				AND sf.create_date &lt;= ?  
+				<where/>
+				GROUP BY sf.system_id, f.name, sf.create_date			
+				ORDER BY sf.system_id, f.name, sf.create_date			
+			</sql>
+		</query>
+		<query name="SystemFactionInfluence1">
+			<column name="FactionId" type="Long"/>
+			<!-- 
+			<column name="ToDate" type="java.sql.Timestamp"/>
+			<column name="FromDate" type="java.sql.Timestamp"/>
+			<column name="FromDateCheck" type="java.sql.Timestamp"/>
+			 -->
+			<column name="ToDate" type="String"/>
+			<column name="FromDate" type="String"/>
+			<column name="FromDateCheck" type="String"/>
+			<sql>
+				SELECT sf.*, s.name as system_name, f.name as faction_name, b.*
+				FROM system_factions_history sf1
+				LEFT JOIN system_factions_history sf ON sf.system_id = sf1.system_id
+				LEFT JOIN bgs_states b ON sf.state_id = b.state_id
+				LEFT JOIN systems s ON sf.system_id = s.system_id
+				LEFT JOIN factions f ON sf.faction_id = f.faction_id
+				WHERE sf1.faction_id = ?
+				AND sf1.create_date &lt;= ?
+				AND (sf1.create_date &gt;= ? OR sf1.create_date &gt; (
+					SELECT sf2.create_date 
+					FROM system_factions_history sf2
+					WHERE sf2.create_date &lt; ?
+					ORDER BY sf2.create_date DESC
+					LIMIT 1
+				))    
 				GROUP BY sf.system_id, f.name, sf.create_date			
 				ORDER BY sf.system_id, f.name, sf.create_date			
 			</sql>
