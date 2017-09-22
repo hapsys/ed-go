@@ -41,7 +41,7 @@ public class RemoteClient extends GeneralController {
 	private SimpleJsonParser parser = new SimpleJsonParser();
 	
 
-	public void getRequest(@ParameterRequest("userID") String userId, @ParameterRequest("data") String data, @Parameter("tag") String tag, RedirectControlerInterface redirect) 
+	public void getRequest(@ParameterRequest("userID") String userId, @ParameterRequest("data") String data,  @ParameterRequest("secretKey") String securityKey, @Parameter("tag") String tag, RedirectControlerInterface redirect) 
 			throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException, NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException, InvalidKeyException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException {
 		
 		DBUsersBean user =  DbAccess.usersAccess.getByUuid(userId);
@@ -53,7 +53,8 @@ public class RemoteClient extends GeneralController {
 				
 				
 				//System.out.println("Here");
-				byte[] dataDecoded = Base64.getDecoder().decode(data);
+				//System.out.println(securityKey);
+				byte[] dataDecoded = Base64.getDecoder().decode(securityKey);
 				//System.out.println(dataDecoded.length);
 				Cipher cipher = Cipher.getInstance( "RSA" );
 				cipher.init(Cipher.DECRYPT_MODE, privateKey);
@@ -89,11 +90,13 @@ public class RemoteClient extends GeneralController {
 						event = new DBLastEventForUserBean();
 					}
 					ret.put("data", new GeneralDataMapper().mapToRow(event));
-				} else {
+				} else if (resultStr.equals(data.substring(0, resultStr.length()))) {
 					//System.out.println("|" + resultStr + "|");
 					//logger.debug(resultStr);
 					parser.setUserId(user.getUserId());
 					parser.process(resultStr);
+				} else {
+					throw new Exception("Error security key");
 				}
 				
 				ContentObject.getInstance().setData(tag, ret.get());
