@@ -75,6 +75,13 @@
 		<delete name="ByPrimaryKey">
 			<column name="user_key_id"/>
 		</delete>
+		<query name="SessionKey">
+			<column name="Session" type="String"/>
+			<column name="UserKeyId" type="long"/>
+			<sql>
+				UPDATE user_keys SET session_key = ? WHERE user_key_id = ? LIMIT 1 
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 	<table name="roles">

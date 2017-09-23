@@ -77,6 +77,21 @@ public class DBUserKeysBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"session_key", "sessionKey"})
+	@DataTarget("session_key")
+	@XMLSimple("sessionKey")
+	private java.lang.String sessionKey;
+	
+	public java.lang.String getSessionKey() {
+		return sessionKey;
+	}
+	
+	public DBUserKeysBean setSessionKey(java.lang.String value) {
+		sessionKey = value;
+		return this;
+	}
+	
+	
 	@DataSource({"private_key", "privateKey"})
 	@DataTarget("private_key")
 	@XMLSimple("privateKey")

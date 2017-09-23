@@ -109,4 +109,26 @@ public class DBUserKeysAccess extends Access {
 		return getConnection().query(sql, paramUserKeyId);
 	}
 	
+	public int updateSessionKey(String paramSession, long paramUserKeyId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				UPDATE user_keys SET session_key = ? WHERE user_key_id = ? LIMIT 1  			";
+		}
+
+		
+		int ret = getConnection().query(query,  paramSession,  paramUserKeyId);
+			
+		return ret;
+	}
+	
 }

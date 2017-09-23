@@ -1,7 +1,6 @@
 package org.c3s.edgo.web.client;
 
 import java.io.UnsupportedEncodingException;
-import java.nio.ByteBuffer;
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
@@ -9,11 +8,9 @@ import java.security.PrivateKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.Base64;
 
 import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
@@ -27,6 +24,8 @@ import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBLastEventForUserBean;
 import org.c3s.edgo.common.beans.DBUsersBean;
 import org.c3s.edgo.utils.SimpleJsonParser;
+import org.c3s.edgo.utils.crypto.DESAlgorithm;
+import org.c3s.edgo.utils.crypto.RSAAlgorithm;
 import org.c3s.edgo.web.GeneralController;
 import org.c3s.edgo.web.validator.Result;
 import org.c3s.web.redirect.DropRedirect;
@@ -47,60 +46,50 @@ public class RemoteClient extends GeneralController {
 		DBUsersBean user =  DbAccess.usersAccess.getByUuid(userId);
 		if (user != null) {
 			try {
-				KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-				PKCS8EncodedKeySpec privSpec = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(user.getUserKey().getPrivateKey()));
-				PrivateKey privateKey = (PrivateKey) keyFactory.generatePrivate(privSpec);
 				
-				
-				//System.out.println("Here");
-				//System.out.println(securityKey);
-				byte[] dataDecoded = Base64.getDecoder().decode(securityKey);
-				//System.out.println(dataDecoded.length);
-				Cipher cipher = Cipher.getInstance( "RSA" );
-				cipher.init(Cipher.DECRYPT_MODE, privateKey);
-				
-				//int chunkSize = cipher.getOutputSize(dataDecoded.length);
-				int chunkSize = cipher.getOutputSize(dataDecoded.length);
-				int idx = 0;
-				ByteBuffer buf = ByteBuffer.allocate(dataDecoded.length);
-				while(idx < dataDecoded.length) {
-				    int len = Math.min(dataDecoded.length-idx, chunkSize);
-				    //System.out.println(idx);
-				    //System.out.println(len);
-				    byte[] buffer = Arrays.copyOfRange(dataDecoded, idx, idx + chunkSize);
-				    //System.out.println(buffer.length);
-				    //byte[] chunk = cipher.doFinal(dataDecoded, idx, len);
-				    byte[] chunk = cipher.doFinal(buffer);
-				    buf.put(chunk);
-				    idx += len;
-				}				
-				
-				//byte[] result = cipher.doFinal(dataDecoded);
-				byte[] result = buf.array(); 
-	
-				String resultStr = new String(result, "UTF-8").trim(); 
-				
-				//Map<?,?> res = null;
 				Result ret = new Result().put("result", "OK");
-				if ("HELLO".equals(resultStr)) {
-					// Do nothing
-				} else if ("RESUME".equals(resultStr)) {
-					DBLastEventForUserBean event = DbAccess.eventsHistoryAccess.getLastEventForUser(user.getUserId());
-					if (event == null) {
-						event = new DBLastEventForUserBean();
+				
+				if (securityKey != null) {
+				
+					KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+					PKCS8EncodedKeySpec privSpec = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(user.getUserKey().getPrivateKey()));
+					PrivateKey privateKey = (PrivateKey) keyFactory.generatePrivate(privSpec);
+					
+					RSAAlgorithm rsa = new RSAAlgorithm(privateKey);
+					//System.out.println(securityKey);
+					String resultStr = rsa.decode(securityKey);
+					
+					//Result ret = new Result().put("result", "OK");
+					if ("HELLO".equals(resultStr)) {
+						// Do nothing
+					} else if ("RESUME".equals(resultStr)) {
+						
+						DBLastEventForUserBean event = DbAccess.eventsHistoryAccess.getLastEventForUser(user.getUserId());
+						if (event == null) {
+							event = new DBLastEventForUserBean();
+						}
+						ret.put("data", new GeneralDataMapper().mapToRow(event));
+						// Genetrate session key
+						String sessionKey = DESAlgorithm.generateKey();
+						ret.put("secretKey", rsa.encode(sessionKey));
+						DbAccess.userKeysAccess.updateSessionKey(sessionKey, user.getUserKey().getUserKeyId());
+						
+					} else {
+						throw new Exception("Error security key");
 					}
-					ret.put("data", new GeneralDataMapper().mapToRow(event));
-				} else if (resultStr.equals(data.substring(0, resultStr.length()))) {
-					//System.out.println("|" + resultStr + "|");
-					//logger.debug(resultStr);
+					
+				} else {
+					
+					//System.out.println(data);
+					DESAlgorithm des = new DESAlgorithm(user.getUserKey().getSessionKey());
+					String resultStr = des.decode(data); 
+					//System.out.println(resultStr);
+					
 					parser.setUserId(user.getUserId());
 					parser.process(resultStr);
-				} else {
-					throw new Exception("Error security key");
 				}
 				
 				ContentObject.getInstance().setData(tag, ret.get());
-				
 				
 				redirect.setRedirect(new DropRedirect());
 			
