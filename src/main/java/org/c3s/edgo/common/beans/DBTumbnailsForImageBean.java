@@ -11,11 +11,26 @@ import org.c3s.data.annotations.DataTarget;
 import org.c3s.reflection.annotation.*;
 
 
-public class DBImageTumbnailsBean implements DbBean, Serializable {
+public class DBTumbnailsForImageBean implements DbBean, Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 
+	
+	@DataSource({"config_name", "configName"})
+	@DataTarget("config_name")
+	@XMLSimple("configName")
+	private java.lang.String configName;
+	
+	public java.lang.String getConfigName() {
+		return configName;
+	}
+	
+	public DBTumbnailsForImageBean setConfigName(java.lang.String value) {
+		configName = value;
+		return this;
+	}
+	
 	
 	@DataSource({"update_time", "updateTime"})
 	@DataTarget("update_time")
@@ -26,7 +41,7 @@ public class DBImageTumbnailsBean implements DbBean, Serializable {
 		return updateTime;
 	}
 	
-	public DBImageTumbnailsBean setUpdateTime(java.sql.Timestamp value) {
+	public DBTumbnailsForImageBean setUpdateTime(java.sql.Timestamp value) {
 		updateTime = value;
 		return this;
 	}
@@ -41,7 +56,7 @@ public class DBImageTumbnailsBean implements DbBean, Serializable {
 		return createTime;
 	}
 	
-	public DBImageTumbnailsBean setCreateTime(java.sql.Timestamp value) {
+	public DBTumbnailsForImageBean setCreateTime(java.sql.Timestamp value) {
 		createTime = value;
 		return this;
 	}
@@ -56,7 +71,7 @@ public class DBImageTumbnailsBean implements DbBean, Serializable {
 		return configId;
 	}
 	
-	public DBImageTumbnailsBean setConfigId(java.lang.Long value) {
+	public DBTumbnailsForImageBean setConfigId(java.lang.Long value) {
 		configId = value;
 		return this;
 	}
@@ -71,7 +86,7 @@ public class DBImageTumbnailsBean implements DbBean, Serializable {
 		return width;
 	}
 	
-	public DBImageTumbnailsBean setWidth(java.lang.Long value) {
+	public DBTumbnailsForImageBean setWidth(java.lang.Long value) {
 		width = value;
 		return this;
 	}
@@ -86,7 +101,7 @@ public class DBImageTumbnailsBean implements DbBean, Serializable {
 		return tumbnailId;
 	}
 	
-	public DBImageTumbnailsBean setTumbnailId(java.lang.Long value) {
+	public DBTumbnailsForImageBean setTumbnailId(java.lang.Long value) {
 		tumbnailId = value;
 		return this;
 	}
@@ -101,7 +116,7 @@ public class DBImageTumbnailsBean implements DbBean, Serializable {
 		return imageId;
 	}
 	
-	public DBImageTumbnailsBean setImageId(java.lang.Long value) {
+	public DBTumbnailsForImageBean setImageId(java.lang.Long value) {
 		imageId = value;
 		return this;
 	}
@@ -116,7 +131,7 @@ public class DBImageTumbnailsBean implements DbBean, Serializable {
 		return height;
 	}
 	
-	public DBImageTumbnailsBean setHeight(java.lang.Long value) {
+	public DBTumbnailsForImageBean setHeight(java.lang.Long value) {
 		height = value;
 		return this;
 	}

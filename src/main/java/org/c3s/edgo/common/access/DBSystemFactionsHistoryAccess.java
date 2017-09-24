@@ -68,7 +68,7 @@ public class DBSystemFactionsHistoryAccess extends Access {
 		DBSystemFactionsHistoryBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  system_factions_history_id= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  system_factions_history_id= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 

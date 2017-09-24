@@ -68,7 +68,7 @@ public class DBCommoditiesAccess extends Access {
 		DBCommoditiesBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  commodity_uniq= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  commodity_uniq= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 

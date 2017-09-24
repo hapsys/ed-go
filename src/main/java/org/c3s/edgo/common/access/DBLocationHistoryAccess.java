@@ -68,7 +68,7 @@ public class DBLocationHistoryAccess extends Access {
 		DBLocationHistoryBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_id= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  pilot_id= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -99,7 +99,7 @@ public class DBLocationHistoryAccess extends Access {
 		DBLocationHistoryBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_id= ? AND  location_time<= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  pilot_id= ?  AND  location_time<= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -130,7 +130,7 @@ public class DBLocationHistoryAccess extends Access {
 		DBLocationHistoryBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  location_id= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  location_id= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 

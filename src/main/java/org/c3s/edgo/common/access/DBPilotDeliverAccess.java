@@ -68,7 +68,7 @@ public class DBPilotDeliverAccess extends Access {
 		List<DBPilotDeliverBean> ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_id= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  pilot_id= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -104,7 +104,7 @@ public class DBPilotDeliverAccess extends Access {
 		DBPilotDeliverBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_deliver_id= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  pilot_deliver_id= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -134,7 +134,7 @@ public class DBPilotDeliverAccess extends Access {
 		DBPilotDeliverBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_id= ? AND  system_id= ? AND  start_week= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  pilot_id= ?  AND  system_id= ?  AND  start_week= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -171,7 +171,7 @@ public class DBPilotDeliverAccess extends Access {
 	
 	public int deleteByPrimaryKey(java.lang.Long paramPilotDeliverId) throws SQLException {
 		setNames();
-		String sql = "DELETE FROM " + tablename + " WHERE  1=1 AND  pilot_deliver_id= ?  ";
+		String sql = "DELETE FROM " + tablename + " WHERE  1=1  AND  pilot_deliver_id= ?  ";
 		return getConnection().query(sql, paramPilotDeliverId);
 	}
 	

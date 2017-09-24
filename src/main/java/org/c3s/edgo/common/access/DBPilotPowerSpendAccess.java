@@ -68,7 +68,7 @@ public class DBPilotPowerSpendAccess extends Access {
 		DBPilotPowerSpendBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_id= ? AND  start_week= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  pilot_id= ?  AND  start_week= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -98,7 +98,7 @@ public class DBPilotPowerSpendAccess extends Access {
 		List<DBPilotPowerSpendBean> ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_id= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  pilot_id= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -134,7 +134,7 @@ public class DBPilotPowerSpendAccess extends Access {
 		DBPilotPowerSpendBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_power_spend_id= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  pilot_power_spend_id= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -171,7 +171,7 @@ public class DBPilotPowerSpendAccess extends Access {
 	
 	public int deleteByPrimaryKey(java.lang.Long paramPilotPowerSpendId) throws SQLException {
 		setNames();
-		String sql = "DELETE FROM " + tablename + " WHERE  1=1 AND  pilot_power_spend_id= ?  ";
+		String sql = "DELETE FROM " + tablename + " WHERE  1=1  AND  pilot_power_spend_id= ?  ";
 		return getConnection().query(sql, paramPilotPowerSpendId);
 	}
 	

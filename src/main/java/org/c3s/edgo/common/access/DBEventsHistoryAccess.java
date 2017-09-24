@@ -68,7 +68,7 @@ public class DBEventsHistoryAccess extends Access {
 		DBEventsHistoryBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  user_id= ? AND  event_timestamp= ? AND  event_hash= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  user_id= ?  AND  event_timestamp= ?  AND  event_hash= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -98,7 +98,7 @@ public class DBEventsHistoryAccess extends Access {
 		DBEventsHistoryBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  events_history_id= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  events_history_id= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -135,7 +135,7 @@ public class DBEventsHistoryAccess extends Access {
 	
 	public int deleteByPrimaryKey(java.math.BigInteger paramEventsHistoryId) throws SQLException {
 		setNames();
-		String sql = "DELETE FROM " + tablename + " WHERE  1=1 AND  events_history_id= ?  ";
+		String sql = "DELETE FROM " + tablename + " WHERE  1=1  AND  events_history_id= ?  ";
 		return getConnection().query(sql, paramEventsHistoryId);
 	}
 	

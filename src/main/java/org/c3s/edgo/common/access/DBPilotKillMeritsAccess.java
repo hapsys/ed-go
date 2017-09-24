@@ -68,7 +68,7 @@ public class DBPilotKillMeritsAccess extends Access {
 		DBPilotKillMeritsBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_id= ? AND  system_id= ? AND  start_week= ? AND  is_confirmed=0 "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  pilot_id= ?  AND  system_id= ?  AND  start_week= ?  AND  is_confirmed=0 "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -98,7 +98,7 @@ public class DBPilotKillMeritsAccess extends Access {
 		DBPilotKillMeritsBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_id= ? AND  system_id= ? AND  start_week= ? AND  is_confirmed=1 "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  pilot_id= ?  AND  system_id= ?  AND  start_week= ?  AND  is_confirmed=1 "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -128,7 +128,7 @@ public class DBPilotKillMeritsAccess extends Access {
 		List<DBPilotKillMeritsBean> ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_id= ? AND  is_confirmed=1 "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  pilot_id= ?  AND  is_confirmed=1 "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -164,7 +164,7 @@ public class DBPilotKillMeritsAccess extends Access {
 		DBPilotKillMeritsBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_kill_merits_id= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  pilot_kill_merits_id= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -201,7 +201,7 @@ public class DBPilotKillMeritsAccess extends Access {
 	
 	public int deleteByPrimaryKey(java.lang.Long paramPilotKillMeritsId) throws SQLException {
 		setNames();
-		String sql = "DELETE FROM " + tablename + " WHERE  1=1 AND  pilot_kill_merits_id= ?  ";
+		String sql = "DELETE FROM " + tablename + " WHERE  1=1  AND  pilot_kill_merits_id= ?  ";
 		return getConnection().query(sql, paramPilotKillMeritsId);
 	}
 	

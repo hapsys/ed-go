@@ -68,7 +68,7 @@ public class DBComodityCategoriesAccess extends Access {
 		DBComodityCategoriesBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  comodity_category_id= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  comodity_category_id= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -105,7 +105,7 @@ public class DBComodityCategoriesAccess extends Access {
 	
 	public int deleteByPrimaryKey(java.lang.Long paramComodityCategoryId) throws SQLException {
 		setNames();
-		String sql = "DELETE FROM " + tablename + " WHERE  1=1 AND  comodity_category_id= ?  ";
+		String sql = "DELETE FROM " + tablename + " WHERE  1=1  AND  comodity_category_id= ?  ";
 		return getConnection().query(sql, paramComodityCategoryId);
 	}
 	

@@ -93,7 +93,7 @@ public class Screenshot extends AbstractJournalEvent<ScreenshotBean> {
 						}
 						
 						DBImageTumbnailsBean tbn = new DBImageTumbnailsBean()
-							.setImgConfigId(config.getConfigId())
+							.setConfigId(config.getConfigId())
 							.setImageId(image.getImageId())
 							.setWidth((long)it.getImage().getWidth())
 							.setHeight((long)it.getImage().getHeight());

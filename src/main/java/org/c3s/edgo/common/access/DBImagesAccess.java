@@ -68,7 +68,7 @@ public class DBImagesAccess extends Access {
 		DBImagesBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  image_id= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  image_id= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -121,6 +121,43 @@ public class DBImagesAccess extends Access {
 
 		
 		int ret = getConnection().query(query,  paramImageId);
+			
+		return ret;
+	}
+	
+	public List<DBPilotsImagesBean> getPilotsImages(org.c3s.edgo.common.intruders.InInjector paramIntruder) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		if (paramIntruder != null) {
+			injector = paramIntruder;
+		}
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT i.*, s.name as system_name, st.name as station_name, b.body_name 				FROM images i 				LEFT JOIN location_history lh ON lh.location_id = i.location_id 				LEFT JOIN systems s ON s.system_id = lh.system_id 				LEFT JOIN station_history sh ON sh.station_history_id = i.station_history_id 				LEFT JOIN stations st ON st.station_id = sh.station_id 				LEFT JOIN bodies b ON b.body_id = sh.body_id   				WHERE i.is_active = 1 				" + where + " 				ORDER BY i.create_time DESC  			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getPilotsImages", query );
+		List<DBPilotsImagesBean> ret = null;
+		if (result != null) {
+					ret = new ArrayList<DBPilotsImagesBean>();
+				
+			for (Map<String, Object> res : result) {
+				DBPilotsImagesBean bean = dataMapper.mapFromRow(res, DBPilotsImagesBean.class);
+														
+				ret.add(bean);
+			}
+					
+		}
 			
 		return ret;
 	}

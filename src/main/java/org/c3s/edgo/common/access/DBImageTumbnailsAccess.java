@@ -68,7 +68,7 @@ public class DBImageTumbnailsAccess extends Access {
 		DBImageTumbnailsBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  tumbnail_id= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  tumbnail_id= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -105,8 +105,45 @@ public class DBImageTumbnailsAccess extends Access {
 	
 	public int deleteByPrimaryKey(java.lang.Long paramTumbnailId) throws SQLException {
 		setNames();
-		String sql = "DELETE FROM " + tablename + " WHERE  1=1 AND  tumbnail_id= ?  ";
+		String sql = "DELETE FROM " + tablename + " WHERE  1=1  AND  tumbnail_id= ?  ";
 		return getConnection().query(sql, paramTumbnailId);
+	}
+	
+	public List<DBTumbnailsForImageBean> getTumbnailsForImage(org.c3s.edgo.common.intruders.InInjector paramIntruder) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		if (paramIntruder != null) {
+			injector = paramIntruder;
+		}
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT t.*, c.config_name 				FROM image_tumbnails t, image_configs c 				WHERE 1=1 				" + where + " 				AND c.config_id = t.config_id 				ORDER BY t.image_id, c.config_name 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getTumbnailsForImage", query );
+		List<DBTumbnailsForImageBean> ret = null;
+		if (result != null) {
+					ret = new ArrayList<DBTumbnailsForImageBean>();
+				
+			for (Map<String, Object> res : result) {
+				DBTumbnailsForImageBean bean = dataMapper.mapFromRow(res, DBTumbnailsForImageBean.class);
+														
+				ret.add(bean);
+			}
+					
+		}
+			
+		return ret;
 	}
 	
 }

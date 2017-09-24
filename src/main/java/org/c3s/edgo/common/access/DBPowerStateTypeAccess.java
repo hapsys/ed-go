@@ -68,7 +68,7 @@ public class DBPowerStateTypeAccess extends Access {
 		DBPowerStateTypeBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  power_state_type_uniq= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  power_state_type_uniq= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -98,7 +98,7 @@ public class DBPowerStateTypeAccess extends Access {
 		DBPowerStateTypeBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  power_state_type_id= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  power_state_type_id= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -135,7 +135,7 @@ public class DBPowerStateTypeAccess extends Access {
 	
 	public int deleteByPrimaryKey(java.lang.Long paramPowerStateTypeId) throws SQLException {
 		setNames();
-		String sql = "DELETE FROM " + tablename + " WHERE  1=1 AND  power_state_type_id= ?  ";
+		String sql = "DELETE FROM " + tablename + " WHERE  1=1  AND  power_state_type_id= ?  ";
 		return getConnection().query(sql, paramPowerStateTypeId);
 	}
 	

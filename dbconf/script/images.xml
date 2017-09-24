@@ -16,6 +16,23 @@
 				UPDATE images SET is_active = 1 WHERE image_id = ? LIMIT 1
 			</sql>
 		</query>
+		<query name="PilotsImages" intruder="org.c3s.edgo.common.intruders.InInjector">
+			<result_column name="tumbnails" type="List&lt;DBTumbnailsForImageBean&gt;">
+		    	<annotation>@XMLFieldList</annotation>
+			</result_column>
+			<sql>
+				SELECT i.*, s.name as system_name, st.name as station_name, b.body_name
+				FROM images i
+				LEFT JOIN location_history lh ON lh.location_id = i.location_id
+				LEFT JOIN systems s ON s.system_id = lh.system_id
+				LEFT JOIN station_history sh ON sh.station_history_id = i.station_history_id
+				LEFT JOIN stations st ON st.station_id = sh.station_id
+				LEFT JOIN bodies b ON b.body_id = sh.body_id  
+				WHERE i.is_active = 1
+				<where/>
+				ORDER BY i.create_time DESC 
+			</sql>
+		</query>
 	</table>
 	
 	<!--  -->
@@ -25,11 +42,11 @@
 			<column name="config_id"/>
 		</select>
 		<select name="ActiveAutoConfigurations">
-			<column name="is_active" condition="=" value="1 "/>
-			<column name="is_auto" condition="=" value="1 "/>
+			<column name="is_active" condition="=" value="1"/>
+			<column name="is_auto" condition="=" value="1"/>
 		</select>
 		<select name="ActiveConfigurations">
-			<column name="is_active" condition="=" value="1 "/>
+			<column name="is_active" condition="=" value="1"/>
 		</select>
 		<update name="ByPrimaryKey">
 			<column name="config_id"/>
@@ -51,5 +68,15 @@
 		<delete name="ByPrimaryKey">
 			<column name="tumbnail_id"/>
 		</delete>
+		<query name="TumbnailsForImage" intruder="org.c3s.edgo.common.intruders.InInjector">
+			<sql>
+				SELECT t.*, c.config_name
+				FROM image_tumbnails t, image_configs c
+				WHERE 1=1
+				<where/>
+				AND c.config_id = t.config_id
+				ORDER BY t.image_id, c.config_name
+			</sql>
+		</query>
 	</table>
 </include>

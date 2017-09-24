@@ -68,7 +68,7 @@ public class DBRewardMaterialsAccess extends Access {
 		DBRewardMaterialsBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  mission_id= ? AND  material_id= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  mission_id= ?  AND  material_id= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -107,7 +107,7 @@ public class DBRewardMaterialsAccess extends Access {
 	
 	public int deleteByPrimaryKey(java.math.BigInteger paramMissionId, java.lang.Long paramMaterialId) throws SQLException {
 		setNames();
-		String sql = "DELETE FROM " + tablename + " WHERE  1=1 AND  mission_id= ? AND  material_id= ?  ";
+		String sql = "DELETE FROM " + tablename + " WHERE  1=1  AND  mission_id= ?  AND  material_id= ?  ";
 		return getConnection().query(sql, paramMissionId, paramMaterialId);
 	}
 	

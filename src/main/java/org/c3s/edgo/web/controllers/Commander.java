@@ -48,10 +48,12 @@ import org.c3s.edgo.common.beans.DBPilotMaterialsListBean;
 import org.c3s.edgo.common.beans.DBPilotShipsBean;
 import org.c3s.edgo.common.beans.DBPilotShipsListBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
+import org.c3s.edgo.common.beans.DBPilotsImagesBean;
 import org.c3s.edgo.common.beans.DBPilotsInfoBean;
 import org.c3s.edgo.common.beans.DBPilotsPowerWeeksBean;
 import org.c3s.edgo.common.beans.DBPilotsRelationsBean;
 import org.c3s.edgo.common.beans.DBPowerCortageBean;
+import org.c3s.edgo.common.beans.DBTumbnailsForImageBean;
 import org.c3s.edgo.common.beans.DBUserLevelsBean;
 import org.c3s.edgo.common.beans.DBUsersBean;
 import org.c3s.edgo.common.intruders.ActivityInjector;
@@ -71,6 +73,7 @@ import org.c3s.storage.StorageFactory;
 import org.c3s.storage.StorageType;
 import org.c3s.utils.HTTPUtils;
 import org.c3s.utils.RegexpUtils;
+import org.c3s.utils.Utils;
 import org.c3s.web.redirect.DirectRedirect;
 import org.c3s.web.redirect.DropRedirect;
 import org.c3s.web.redirect.RelativeRedirect;
@@ -685,6 +688,38 @@ public class Commander extends GeneralController {
 	}
 	
 	// ============================================================== -MATERIALS ==============================================================================
+	
+	// ============================================================== +GALLERY ==============================================================================
+	
+	
+	public void getPilotGallety(@Parameter("tag") String tag, @Parameter("template") String template, RedirectControlerInterface redirect) throws Exception {
+		if (current != null) {
+			
+			List<DBPilotsImagesBean> images = DbAccess.imagesAccess.getPilotsImages(new InInjector("l.pilot_id", linkedPilots));
+			
+			Map<Object, List<DBPilotsImagesBean>> grouped = Utils.getArrayGrouped(images, "image_id");
+			
+			List<DBTumbnailsForImageBean> tumbnails = DbAccess.imageTumbnailsAccess.getTumbnailsForImage(new InInjector("t.image_id", new ArrayList<>(grouped.keySet())));
+
+			Map<Object, List<DBTumbnailsForImageBean>> tmb_grouped = Utils.getArrayGrouped(tumbnails, "image_id");
+			for (Object key: tmb_grouped.keySet()) {
+				if (grouped.containsKey(key)) {
+					grouped.get(key).get(0).setTumbnails(tmb_grouped.get(key));
+				}
+			}
+			
+			Document xml = new XMLList(images, true).toXML("data");
+			
+			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:gallery"});
+			
+		} else {
+			redirect.setRedirect(new DirectRedirect("/"));
+			throw new SkipSubLevelsExeption();
+		}
+	}
+	
+	
+	// ============================================================== +GALLERY ==============================================================================
 	
 	
 	

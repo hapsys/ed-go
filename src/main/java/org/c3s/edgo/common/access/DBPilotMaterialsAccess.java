@@ -68,7 +68,7 @@ public class DBPilotMaterialsAccess extends Access {
 		DBPilotMaterialsBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_id= ? AND  material_id= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  pilot_id= ?  AND  material_id= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -107,7 +107,7 @@ public class DBPilotMaterialsAccess extends Access {
 	
 	public int deleteByPrimaryKey(java.lang.Long paramPilotId, java.lang.Long paramMaterialId) throws SQLException {
 		setNames();
-		String sql = "DELETE FROM " + tablename + " WHERE  1=1 AND  pilot_id= ? AND  material_id= ?  ";
+		String sql = "DELETE FROM " + tablename + " WHERE  1=1  AND  pilot_id= ?  AND  material_id= ?  ";
 		return getConnection().query(sql, paramPilotId, paramMaterialId);
 	}
 	

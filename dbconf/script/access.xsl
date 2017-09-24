@@ -180,7 +180,7 @@ public class <xsl:value-of select="$class_name"/> extends Access {
 	</xsl:template>
 	-->
 	<xsl:template name="get_sql_params">
-		<xsl:for-each select="column">AND  <xsl:value-of select="@name"/> <xsl:value-of select="@condition" disable-output-escaping="yes"/> <xsl:choose>
+		<xsl:for-each select="column"> AND  <xsl:value-of select="@name"/> <xsl:value-of select="@condition" disable-output-escaping="yes"/> <xsl:choose>
 			<xsl:when test="@omitted = 'false'">
 				<xsl:choose>
 					<xsl:when test="@type = 'java.lang.String'">"<xsl:value-of select="@value"/>"</xsl:when>

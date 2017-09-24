@@ -68,7 +68,7 @@ public class DBPilotModulesAccess extends Access {
 		DBPilotModulesBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_ship_id= ? AND  slot_id= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  pilot_ship_id= ?  AND  slot_id= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -98,7 +98,7 @@ public class DBPilotModulesAccess extends Access {
 		DBPilotModulesBean ret = null;
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
-		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1 AND  pilot_module_id= ?  "+injector.getWhereQuery()+" ";
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  pilot_module_id= ?  "+injector.getWhereQuery()+" ";
 		if (injector.getOrderQuery().length() != 0) {
 			sql += injector.getOrderQuery();
 		} else { 
@@ -135,19 +135,19 @@ public class DBPilotModulesAccess extends Access {
 	
 	public int deleteByPilotShipIdAndSlotId(java.lang.Long paramPilotShipId, java.lang.Long paramSlotId) throws SQLException {
 		setNames();
-		String sql = "DELETE FROM " + tablename + " WHERE  1=1 AND  pilot_ship_id= ? AND  slot_id= ?  ";
+		String sql = "DELETE FROM " + tablename + " WHERE  1=1  AND  pilot_ship_id= ?  AND  slot_id= ?  ";
 		return getConnection().query(sql, paramPilotShipId, paramSlotId);
 	}
 	
 	public int deleteByPrimaryKey(java.lang.Long paramPilotModuleId) throws SQLException {
 		setNames();
-		String sql = "DELETE FROM " + tablename + " WHERE  1=1 AND  pilot_module_id= ?  ";
+		String sql = "DELETE FROM " + tablename + " WHERE  1=1  AND  pilot_module_id= ?  ";
 		return getConnection().query(sql, paramPilotModuleId);
 	}
 	
 	public int deleteByPilotShipId(java.lang.Long paramPilotShipId) throws SQLException {
 		setNames();
-		String sql = "DELETE FROM " + tablename + " WHERE  1=1 AND  pilot_ship_id= ?  ";
+		String sql = "DELETE FROM " + tablename + " WHERE  1=1  AND  pilot_ship_id= ?  ";
 		return getConnection().query(sql, paramPilotShipId);
 	}
 	
