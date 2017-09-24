@@ -105,6 +105,7 @@ public class EventDispatcherThreaded {
 	}
 	
 	protected void processEvent(DBEventsBean evt) {
+		EventMd5Transform.eventTransformMD5(evt);
 		String eventName = evt.getEventName().toLowerCase();
 		Class<? extends JournalEvent> eventClass = events.get(eventName);
 		if (eventClass != null) {
