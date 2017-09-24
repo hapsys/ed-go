@@ -11,7 +11,6 @@ import org.c3s.edgo.common.beans.DBPilotLastInfoBean;
 import org.c3s.edgo.common.beans.DBStationHistoryBean;
 import org.c3s.edgo.common.beans.DBStationsBean;
 import org.c3s.edgo.common.beans.DBSystemsBean;
-import org.c3s.edgo.utils.EDUtils;
 
 public class LocationDAO {
 

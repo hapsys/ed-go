@@ -41,6 +41,12 @@
 		<param-name>site.loader.parameter</param-name> 
 		<param-value>xml/sites.xml</param-value> 
 	</context-param>
+	
+	<context-param> 
+		<param-name>site.screenshot.directory</param-name> 
+		<param-value>var/lib/screenshot</param-value> 
+	</context-param>
+	
 	<!-- 
 	<context-param> 
 		<param-name>site.loader.class</param-name> 

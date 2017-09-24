@@ -12,6 +12,7 @@
 		<include href="powers.xml"/>
 		<include href="engeneers.xml"/>
 		<include href="relations.xml"/>
+		<include href="images.xml"/>
 	</source>
 
 </db_info>

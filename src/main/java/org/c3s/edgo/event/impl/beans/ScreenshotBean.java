@@ -15,11 +15,11 @@ public class ScreenshotBean extends AbstractEventBean {
 	/**
 	 * size in pixels
 	 */
-	private Integer	Width;
+	private Long	Width;
 	/**
 	 * size in pixels
 	 */
-	private Integer Height;
+	private Long Height;
 	/**
 	 * current star system
 	 */
@@ -76,28 +76,28 @@ public class ScreenshotBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public Integer getWidth() {
+	public Long getWidth() {
 		return Width;
 	}
 
 	/**
 	 * @param width
 	 */
-	public void setWidth(Integer width) {
+	public void setWidth(Long width) {
 		this.Width = width;
 	}
 
 	/**
 	 * @return
 	 */
-	public Integer getHeight() {
+	public Long getHeight() {
 		return Height;
 	}
 
 	/**
 	 * @param height
 	 */
-	public void setHeight(Integer height) {
+	public void setHeight(Long height) {
 		this.Height = height;
 	}
 

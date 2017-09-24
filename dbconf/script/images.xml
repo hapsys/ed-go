@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<include>
+
+	<!--  -->
+	
+	<table name="images">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="image_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="image_id"/>
+		</update>
+		<query name="Activate">
+			<column name="ImageId" type="Long"/>
+			<sql>
+				UPDATE images SET is_active = 1 WHERE image_id = ? LIMIT 1
+			</sql>
+		</query>
+	</table>
+	
+	<!--  -->
+	
+	<table name="image_configs">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="config_id"/>
+		</select>
+		<select name="ActiveAutoConfigurations">
+			<column name="is_active" condition="=" value="1 "/>
+			<column name="is_auto" condition="=" value="1 "/>
+		</select>
+		<select name="ActiveConfigurations">
+			<column name="is_active" condition="=" value="1 "/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="config_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="config_id"/>
+		</delete>
+	</table>
+	
+	<!--  -->
+	
+	<table name="image_tumbnails">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="tumbnail_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="tumbnail_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="tumbnail_id"/>
+		</delete>
+	</table>
+</include>
