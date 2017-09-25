@@ -1576,6 +1576,9 @@
 							 -->
 						</div>
 						<div class="caption">
+							<p class="pull-left">
+								<a href="{$original}" target="_tab"><i class="fa fa-download"></i></a>
+							</p>
 							<p class="pull-right">
 								<small>
 									<strong>
