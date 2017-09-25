@@ -1551,17 +1551,18 @@
 	<xsl:template name="view_gallery">
 		<xsl:variable name="lang"><xsl:value-of select="$root"/><xsl:if test="$politic = 'suffix' and $default != 'true'">/<xsl:value-of select="$suffix"/></xsl:if></xsl:variable>
 		<div><h3></h3></div>
-		<div id="links">
+		<div id="links" style="text-align: center;">
 			<xsl:for-each select="item/tumbnails/item[field[@name='configName' and @value='small']]">
 				<xsl:variable name="pilot_dir">pilot<xsl:value-of select="format-number(../../field[@name='pilotId']/@value, '0000000000')" /></xsl:variable>
 				<xsl:variable name="filename"><xsl:value-of select="format-number(field[@name='imageId']/@value, '0000000000')" /></xsl:variable>
 				<xsl:variable name="slink"><xsl:value-of select="$root"/>/screenshot/<xsl:value-of select="$pilot_dir"/>/small/<xsl:value-of select="$filename"/>.<xsl:value-of select="field[@name='type']/@value"/></xsl:variable>
 				<xsl:variable name="mlink"><xsl:value-of select="$root"/>/screenshot/<xsl:value-of select="$pilot_dir"/>/medium/<xsl:value-of select="$filename"/>.<xsl:value-of select="../item[field[@name='configName' and @value='medium']]/field[@name='type']/@value"/></xsl:variable>
+				<xsl:variable name="original"><xsl:value-of select="$root"/>/screenshot/<xsl:value-of select="$pilot_dir"/>/<xsl:value-of select="$filename"/>.png</xsl:variable>
 				<xsl:variable name="title"><xsl:value-of select="../../field[@name='imageDate']/@value"/>&#160;<xsl:value-of select="../../field[@name='systemName']/@value"/><xsl:if test="string-length(../../field[@name='bodyName']/@value)"> / <xsl:value-of select="../../field[@name='bodyName']/@value"/></xsl:if><xsl:if test="string-length(../../field[@name='stationName']/@value)"> / <xsl:value-of select="../../field[@name='stationName']/@value"/></xsl:if></xsl:variable>
 				<div class="gallery-item">
 					<div class="thumbnail" style="height: 240px;">
 						<div class="image view view-first" style="height: 200px;">
-							<a href="{$mlink}" title="{$title}" data-gallery="data-gallery">
+							<a href="{$mlink}" title="{$title}" data-gallery="data-gallery" data-original="{$original}">
 								<img src="{$slink}" alt="" style="display: block;"/>
 							</a>
 							<!-- 
@@ -1586,7 +1587,16 @@
 			</xsl:for-each>
 		</div>
 		<div class="clearfix"></div>
-				
+		<script type="text/javascript">
+			$(function() {
+				$('#blueimp-gallery').on('slide', function(event, index, slide) {
+					var link = $('a[data-gallery=data-gallery]:eq(' + index + ')');
+				    var href = $(link).data('original');
+				    var $a = $('<a />', { href:href, text:'Download', target:'tab'});
+				    $('.download').html($a);
+				});				
+			});
+		</script>
 	</xsl:template>	
 <!--
 //

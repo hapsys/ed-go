@@ -313,6 +313,7 @@ moment.locale('<%=lang_id%>');
 	<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
 	    <div class="slides"></div>
 	    <h3 class="title"></h3>
+	    <p class="download"></p> <!-- This is my custom tag -->
 	    <a class="prev">‹</a>
 	    <a class="next">›</a>
 	    <a class="close">×</a>
