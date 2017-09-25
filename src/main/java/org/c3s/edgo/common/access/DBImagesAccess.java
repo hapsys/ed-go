@@ -142,7 +142,7 @@ public class DBImagesAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT i.*, s.name as system_name, st.name as station_name, b.body_name 				FROM images i 				LEFT JOIN location_history lh ON lh.location_id = i.location_id 				LEFT JOIN systems s ON s.system_id = lh.system_id 				LEFT JOIN station_history sh ON sh.station_history_id = i.station_history_id 				LEFT JOIN stations st ON st.station_id = sh.station_id 				LEFT JOIN bodies b ON b.body_id = sh.body_id   				WHERE i.is_active = 1 				" + where + " 				ORDER BY i.create_time DESC  			";
+			query = " 				SELECT i.*, DATE_FORMAT(i.create_time, '%Y-%m-%d %T') AS image_date, s.name as system_name, st.name as station_name, b.body_name 				FROM images i 				LEFT JOIN location_history lh ON lh.location_id = i.location_id 				LEFT JOIN systems s ON s.system_id = lh.system_id 				LEFT JOIN station_history sh ON sh.station_history_id = i.station_history_id 				LEFT JOIN stations st ON st.station_id = sh.station_id 				LEFT JOIN bodies b ON b.body_id = sh.body_id   				WHERE i.is_active = 1 				" + where + " 				ORDER BY i.create_time DESC  			";
 		}
 
 		

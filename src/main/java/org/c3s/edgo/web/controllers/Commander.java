@@ -692,26 +692,36 @@ public class Commander extends GeneralController {
 	// ============================================================== +GALLERY ==============================================================================
 	
 	
-	public void getPilotGallety(@Parameter("tag") String tag, @Parameter("template") String template, RedirectControlerInterface redirect) throws Exception {
+	public void getGallery(@Parameter("tag") String tag, @Parameter("template") String template, RedirectControlerInterface redirect) throws Exception {
 		if (current != null) {
 			
-			List<DBPilotsImagesBean> images = DbAccess.imagesAccess.getPilotsImages(new InInjector("l.pilot_id", linkedPilots));
+			Document xml;
 			
-			Map<Object, List<DBPilotsImagesBean>> grouped = Utils.getArrayGrouped(images, "image_id");
+			List<DBPilotsImagesBean> images = DbAccess.imagesAccess.getPilotsImages(new InInjector("i.pilot_id", linkedPilots));
 			
-			List<DBTumbnailsForImageBean> tumbnails = DbAccess.imageTumbnailsAccess.getTumbnailsForImage(new InInjector("t.image_id", new ArrayList<>(grouped.keySet())));
-
-			Map<Object, List<DBTumbnailsForImageBean>> tmb_grouped = Utils.getArrayGrouped(tumbnails, "image_id");
-			for (Object key: tmb_grouped.keySet()) {
-				if (grouped.containsKey(key)) {
-					grouped.get(key).get(0).setTumbnails(tmb_grouped.get(key));
+			if (images != null) {
+			
+				Map<Object, List<DBPilotsImagesBean>> grouped = Utils.getArrayGrouped(images, "imageId");
+				
+				List<DBTumbnailsForImageBean> tumbnails = DbAccess.imageTumbnailsAccess.getTumbnailsForImage(new InInjector("t.image_id", new ArrayList<>(grouped.keySet())));
+	
+				Map<Object, List<DBTumbnailsForImageBean>> tmb_grouped = Utils.getArrayGrouped(tumbnails, "imageId");
+				for (Object key: tmb_grouped.keySet()) {
+					if (grouped.containsKey(key)) {
+						grouped.get(key).get(0).setTumbnails(tmb_grouped.get(key));
+					}
 				}
+				
+				
+				xml = new XMLList(images, true).toXML("data");
+				
+			} else {
+				xml = XMLUtils.createXML("data");
 			}
 			
-			Document xml = new XMLList(images, true).toXML("data");
-			
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:gallery"});
-			
+		
+			//logger.debug(XMLUtils.saveXML(xml));
 		} else {
 			redirect.setRedirect(new DirectRedirect("/"));
 			throw new SkipSubLevelsExeption();
@@ -719,7 +729,7 @@ public class Commander extends GeneralController {
 	}
 	
 	
-	// ============================================================== +GALLERY ==============================================================================
+	// ============================================================== -GALLERY ==============================================================================
 	
 	
 	

@@ -84,10 +84,14 @@
 <link href="<%=root%>/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
 <link href="<%=root%>/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
 <link href="<%=root%>/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
-
+<!-- Gallery -->
+<link href="<%=root%>/vendors/Gallery/css/blueimp-gallery.min.css" rel="stylesheet">
+<link rel="stylesheet" href="<%=root%>/vendors/Gallery/css/blueimp-gallery-indicator.css">
+<link rel="stylesheet" href="<%=root%>/vendors/Gallery/css/blueimp-gallery-video.css">
 <!-- Choosen -->
 <link rel="stylesheet" href="<%=root%>/css/chosen.css" type="text/css"/>
 <link rel="stylesheet" href="<%=root%>/css/bootstrap-chosen.css" type="text/css"/>
+
 <!-- Custom Theme Style -->
 <link href="<%=root%>/css/custom/custom.css" rel="stylesheet">
 
@@ -180,26 +184,6 @@ moment.locale('<%=lang_id%>');
               <ul class="nav navbar-nav navbar-right">
               	<%=user_menu%>
               	<!-- 
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="<%=root%>/images/img.jpg" alt="">hapsys@mmmm.nnn
-                    <span class=" fa fa-angle-down"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-                  </ul>
-                </li>
-                -->
-
-				<!-- 
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
@@ -264,7 +248,27 @@ moment.locale('<%=lang_id%>');
                     </li>
                   </ul>
                 </li>
-                -->
+                <li role="presentation" class="dropdown">
+                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-bell-o"></i>
+                    <span class="badge bg-red">6</span>
+                  </a>
+                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                    <li>
+                      <a>
+                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                 -->
               </ul>
             </nav>
           </div>
@@ -305,8 +309,16 @@ moment.locale('<%=lang_id%>');
         <!-- /footer content -->
       </div>
     </div>
-	
-	
+	<!-- The Gallery as lightbox dialog, should be a child element of the document body -->
+	<div id="blueimp-gallery" class="blueimp-gallery">
+	    <div class="slides"></div>
+	    <h3 class="title"></h3>
+	    <a class="prev">‹</a>
+	    <a class="next">›</a>
+	    <a class="close">×</a>
+	    <a class="play-pause"></a>
+	    <ol class="indicator"></ol>
+	</div>	
 </body>
     <!-- FastClick -->
     <script src="<%=root%>/vendors/fastclick/lib/fastclick.js"></script>
@@ -349,6 +361,14 @@ moment.locale('<%=lang_id%>');
 
     <!-- Clipboard -->
     <script src="<%=root%>/vendors/clipboard.js/clipboard.min.js"></script>
+	<!-- Gallery -->
+    <script src="<%=root%>/vendors/Gallery/js/blueimp-gallery.min.js"></script>
+	<script src="<%=root%>/vendors/Gallery/js/blueimp-gallery-fullscreen.js"></script>
+	<script src="<%=root%>/vendors/Gallery/js/blueimp-gallery-indicator.js"></script>
+	<script src="<%=root%>/vendors/Gallery/js/blueimp-gallery-video.js"></script>
+	<script src="<%=root%>/vendors/Gallery/js/blueimp-gallery-youtube.js"></script>
+	<script src="<%=root%>/vendors/Gallery/js/blueimp-gallery-vimeo.js"></script>
+	<script src="<%=root%>/vendors/Gallery/js/jquery.blueimp-gallery.js"></script>    
     <!-- Custom Theme Scripts -->
     <script src="<%=root%>/js/custom/custom.js"></script>
     <!-- Choosen -->

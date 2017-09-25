@@ -117,6 +117,11 @@
 			<title lang="en">Materials</title>
 			<menu name="main_menu"/>
 		</node>
+		<node pattern="gallery">
+			<title lang="ru">Галерея</title>
+			<title lang="en">Gallery</title>
+			<menu name="main_menu"/>
+		</node>
 		<node pattern="settings">
 			<title lang="ru">Натройки доступа</title>
 			<title lang="en">Access settings</title>

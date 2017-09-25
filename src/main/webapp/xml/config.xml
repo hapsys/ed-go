@@ -86,6 +86,7 @@
 				<module pattern="powers/" class="org.c3s.edgo.web.controllers.Commander" action="getPowers" is_last="true"/>
 				<module pattern="missions/" class="org.c3s.edgo.web.controllers.Commander" action="getMissions" is_last="true"/>
 				<module pattern="materials/" class="org.c3s.edgo.web.controllers.Commander" action="getMaterials" is_last="true"/>
+				<module pattern="gallery/" class="org.c3s.edgo.web.controllers.Commander" action="getGallery" is_last="true"/>
 				<module pattern="settings/" class="org.c3s.edgo.web.controllers.Commander" action="getAccessSettings" is_last="true">
 					<param name="template" value="{directory.stylesheet}/commander/access.xsl" inherit="true"/>
 				</module>

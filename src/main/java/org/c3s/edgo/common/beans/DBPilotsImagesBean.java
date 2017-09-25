@@ -107,6 +107,21 @@ public class DBPilotsImagesBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"image_date", "imageDate"})
+	@DataTarget("image_date")
+	@XMLSimple("imageDate")
+	private java.lang.String imageDate;
+	
+	public java.lang.String getImageDate() {
+		return imageDate;
+	}
+	
+	public DBPilotsImagesBean setImageDate(java.lang.String value) {
+		imageDate = value;
+		return this;
+	}
+	
+	
 	@DataSource({"type", "type"})
 	@DataTarget("type")
 	@XMLSimple("type")

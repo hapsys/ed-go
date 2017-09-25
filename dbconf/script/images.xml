@@ -21,7 +21,7 @@
 		    	<annotation>@XMLFieldList</annotation>
 			</result_column>
 			<sql>
-				SELECT i.*, s.name as system_name, st.name as station_name, b.body_name
+				SELECT i.*, DATE_FORMAT(i.create_time, '%Y-%m-%d %T') AS image_date, s.name as system_name, st.name as station_name, b.body_name
 				FROM images i
 				LEFT JOIN location_history lh ON lh.location_id = i.location_id
 				LEFT JOIN systems s ON s.system_id = lh.system_id
@@ -70,7 +70,7 @@
 		</delete>
 		<query name="TumbnailsForImage" intruder="org.c3s.edgo.common.intruders.InInjector">
 			<sql>
-				SELECT t.*, c.config_name
+				SELECT t.*, c.config_name, LOWER(c.type) as type
 				FROM image_tumbnails t, image_configs c
 				WHERE 1=1
 				<where/>

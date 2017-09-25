@@ -126,7 +126,7 @@ public class DBImageTumbnailsAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT t.*, c.config_name 				FROM image_tumbnails t, image_configs c 				WHERE 1=1 				" + where + " 				AND c.config_id = t.config_id 				ORDER BY t.image_id, c.config_name 			";
+			query = " 				SELECT t.*, c.config_name, LOWER(c.type) as type 				FROM image_tumbnails t, image_configs c 				WHERE 1=1 				" + where + " 				AND c.config_id = t.config_id 				ORDER BY t.image_id, c.config_name 			";
 		}
 
 		

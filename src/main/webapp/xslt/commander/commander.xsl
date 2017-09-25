@@ -22,6 +22,7 @@
 			<xsl:when test="$mode = 'view_missions'"><xsl:call-template name="view_missions"/></xsl:when>
 			<xsl:when test="$mode = 'locations'"><xsl:call-template name="view_locations"/></xsl:when>
 			<xsl:when test="$mode = 'materials'"><xsl:call-template name="view_materials"/></xsl:when>
+			<xsl:when test="$mode = 'gallery'"><xsl:call-template name="view_gallery"/></xsl:when>
 		</xsl:choose>
 	</xsl:template>
 <!--
@@ -1542,6 +1543,34 @@
 		</script>
 
 	</xsl:template>
+<!--
+//
+//
+//
+-->
+	<xsl:template name="view_gallery">
+		<xsl:variable name="lang"><xsl:value-of select="$root"/><xsl:if test="$politic = 'suffix' and $default != 'true'">/<xsl:value-of select="$suffix"/></xsl:if></xsl:variable>
+		<div><h3></h3></div>
+		<div id="links">
+			<xsl:for-each select="item/tumbnails/item[field[@name='configName' and @value='small']]">
+				<xsl:variable name="pilot_dir">pilot<xsl:value-of select="format-number(../../field[@name='pilotId']/@value, '0000000000')" /></xsl:variable>
+				<xsl:variable name="filename"><xsl:value-of select="format-number(field[@name='imageId']/@value, '0000000000')" /></xsl:variable>
+				<xsl:variable name="slink"><xsl:value-of select="$root"/>/screenshot/<xsl:value-of select="$pilot_dir"/>/small/<xsl:value-of select="$filename"/>.<xsl:value-of select="field[@name='type']/@value"/></xsl:variable>
+				<xsl:variable name="mlink"><xsl:value-of select="$root"/>/screenshot/<xsl:value-of select="$pilot_dir"/>/medium/<xsl:value-of select="$filename"/>.<xsl:value-of select="../item[field[@name='configName' and @value='medium']]/field[@name='type']/@value"/></xsl:variable>
+				<xsl:variable name="title">
+					<xsl:value-of select="../../field[@name='imageDate']/@value"/>&#160;
+					<xsl:value-of select="../../field[@name='systemName']/@value"/> 
+					<xsl:if test="string-length(../../field[@name='bodyName']/@value)"> / <xsl:value-of select="../../field[@name='bodyName']/@value"/></xsl:if>
+					<xsl:if test="string-length(../../field[@name='stationName']/@value)"> / <xsl:value-of select="../../field[@name='stationName']/@value"/></xsl:if>
+				</xsl:variable>
+				<a href="{$mlink}" title="{$title}" data-gallery="data-gallery">
+					<img src="{$slink}" alt=""/>
+				</a>
+			</xsl:for-each>
+		</div>
+		<div class="clearfix"></div>
+				
+	</xsl:template>	
 <!--
 //
 //

@@ -122,6 +122,21 @@ public class DBTumbnailsForImageBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"type", "type"})
+	@DataTarget("type")
+	@XMLSimple("type")
+	private java.lang.String type;
+	
+	public java.lang.String getType() {
+		return type;
+	}
+	
+	public DBTumbnailsForImageBean setType(java.lang.String value) {
+		type = value;
+		return this;
+	}
+	
+	
 	@DataSource({"height", "height"})
 	@DataTarget("height")
 	@XMLSimple("height")

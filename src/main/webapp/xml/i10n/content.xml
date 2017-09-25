@@ -208,5 +208,9 @@
 		<select lang="ru">Материалы</select>
 		<select lang="en">Materials</select>
 	</match>
+	<match name="ACCESS_GALLERY">
+		<select lang="ru">Галерея</select>
+		<select lang="en">Gallery</select>
+	</match>
 	<!-- /SETTINGS -->
 </i10n>
