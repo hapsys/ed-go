@@ -19,6 +19,17 @@
 				UPDATE images SET is_active = 1 WHERE image_id = ? LIMIT 1
 			</sql>
 		</query>
+		<query name="DeactivateForUserImage">
+			<column name="ImageId" type="Long"/>
+			<column name="UserId" type="Long"/>
+			<sql>
+				UPDATE images i, pilots p 
+				SET i.is_active = 0 
+				WHERE i.image_id = ?
+				AND i.pilot_id = p.pilot_id
+				AND p.user_id = ?
+			</sql>
+		</query>
 		<query name="PilotsImages" intruder="org.c3s.edgo.common.intruders.InInjector">
 			<result_column name="tumbnails" type="List&lt;DBTumbnailsForImageBean&gt;">
 		    	<annotation>@XMLFieldList</annotation>

@@ -176,6 +176,7 @@
 							<module pattern="systems/" class="org.c3s.edgo.web.controllers.Commander" action="getSystems" is_last="true"/>
 							<module pattern="materials/" class="org.c3s.edgo.web.controllers.Commander" action="updateMaterials" is_last="true"/>
 							<module pattern="update-access/" class="org.c3s.edgo.web.controllers.Commander" action="updateAccess" is_last="true"/>
+							<module pattern="remove-gallery-image/" class="org.c3s.edgo.web.controllers.Commander" action="removeImage" is_last="true"/>
 						</module>
 					</module>
 					<!-- Search -->

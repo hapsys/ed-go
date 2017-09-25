@@ -371,6 +371,8 @@ moment.locale('<%=lang_id%>');
 	<script src="<%=root%>/vendors/Gallery/js/blueimp-gallery-vimeo.js"></script>	
 	<script src="<%=root%>/vendors/Gallery/js/blueimp-gallery-youtube.js"></script>
 	<script src="<%=root%>/vendors/Gallery/js/jquery.blueimp-gallery.js"></script>    
+	<!-- eModal -->
+	<script src="<%=root%>/vendors/eModal/dist/eModal.min.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="<%=root%>/js/custom/custom.js"></script>
     <!-- Choosen -->

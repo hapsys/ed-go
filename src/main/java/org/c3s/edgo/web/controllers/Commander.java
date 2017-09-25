@@ -719,6 +719,11 @@ public class Commander extends GeneralController {
 				xml = XMLUtils.createXML("data");
 			}
 			
+			DBUsersBean user = getUser();
+			if (user != null && (long)user.getUserId() == (long)current.getUserId()) {
+				xml.getDocumentElement().setAttribute("owner", "true");
+			}
+			
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:gallery"});
 		
 			//logger.debug(XMLUtils.saveXML(xml));
@@ -728,7 +733,23 @@ public class Commander extends GeneralController {
 		}
 	}
 	
-	
+	public void removeImage(@ParameterRequest("image_id") String image_id, @Parameter("tag") String tag, RedirectControlerInterface redirect, ServletRequest request) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		System.out.println(image_id);
+		if (current != null) {
+			Long imageId = new Long(image_id);
+			
+			Result result = new Result();
+			
+			int count = DbAccess.imagesAccess.updateDeactivateForUserImage(imageId, current.getUserId());
+			if (count == 0) {
+				result.put("error", "Can't delete image");
+			}
+			
+			ContentObject.getInstance().setData(tag, result);
+			redirect.setRedirect(new DropRedirect());
+		}
+	}
+		
 	// ============================================================== -GALLERY ==============================================================================
 	
 	

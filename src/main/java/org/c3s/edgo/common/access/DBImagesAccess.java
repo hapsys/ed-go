@@ -160,6 +160,28 @@ public class DBImagesAccess extends Access {
 		return ret;
 	}
 	
+	public int updateDeactivateForUserImage(Long paramImageId, Long paramUserId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				UPDATE images i, pilots p  				SET i.is_active = 0  				WHERE i.image_id = ? 				AND i.pilot_id = p.pilot_id 				AND p.user_id = ? 			";
+		}
+
+		
+		int ret = getConnection().query(query,  paramImageId,  paramUserId);
+			
+		return ret;
+	}
+	
 	public List<DBPilotsImagesBean> getPilotsImages(org.c3s.edgo.common.intruders.InInjector paramIntruder) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();

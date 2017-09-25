@@ -1565,12 +1565,14 @@
 							<a href="{$mlink}" title="{$title}" data-gallery="data-gallery" data-original="{$original}">
 								<img src="{$slink}" alt="" style="display: block;"/>
 							</a>
-							<!-- 
-							<div class="mask" style="height: 30px;">
-								<div class="tools tools-bottom pull-right" style="margin-top: 2px;">
-									<a href="#" data-image-id=""><i class="fa fa-times"></i></a>
+							<xsl:if test="string-length(/*/@owner) != 0">
+								<div class="mask" style="height: 30px;">
+									<div class="tools tools-bottom pull-right" style="margin-top: 2px;">
+										<a href="#" class="remove-gallery-image" data-index="{position() - 1}" data-image-id="{field[@name='imageId']/@value}"><i class="fa fa-times"></i></a>
+									</div>
 								</div>
-							</div>
+							</xsl:if>
+							<!-- 
 							 -->
 						</div>
 						<div class="caption">
@@ -1588,6 +1590,7 @@
 		</div>
 		<div class="clearfix"></div>
 		<script type="text/javascript">
+			var pilot = '<xsl:value-of select="$pilot"/>';
 			$(function() {
 				$('#blueimp-gallery').on('slide', function(event, index, slide) {
 					var link = $('a[data-gallery=data-gallery]:eq(' + index + ')');
@@ -1595,6 +1598,24 @@
 				    var $a = $('<a />', { href:href, text:'Download', target:'tab'});
 				    $('.download').html($a);
 				});				
+				
+				$('.remove-gallery-image').on('click', function() {
+					var element = this;
+					eModal.confirm('Do you really delete image?', 'Remove image from gallery')
+      				.then(function() {
+      					
+						var id = $(element).data('image-id');
+						
+      					proxy.makeCall('post', '/ajax/pilots/' + pilot + '/remove-gallery-image/', null, null, {image_id: id}, function(result) {
+      						if(!result.error) {
+								var index = $(element).data('index');
+								$('.slide[data-index=' + index + ']').remove();
+								$(element).parents('div.gallery-item').remove();
+      						}
+      					});
+      				});
+					return false;
+				});
 			});
 		</script>
 	</xsl:template>	
