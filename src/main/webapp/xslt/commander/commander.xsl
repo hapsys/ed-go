@@ -1557,15 +1557,32 @@
 				<xsl:variable name="filename"><xsl:value-of select="format-number(field[@name='imageId']/@value, '0000000000')" /></xsl:variable>
 				<xsl:variable name="slink"><xsl:value-of select="$root"/>/screenshot/<xsl:value-of select="$pilot_dir"/>/small/<xsl:value-of select="$filename"/>.<xsl:value-of select="field[@name='type']/@value"/></xsl:variable>
 				<xsl:variable name="mlink"><xsl:value-of select="$root"/>/screenshot/<xsl:value-of select="$pilot_dir"/>/medium/<xsl:value-of select="$filename"/>.<xsl:value-of select="../item[field[@name='configName' and @value='medium']]/field[@name='type']/@value"/></xsl:variable>
-				<xsl:variable name="title">
-					<xsl:value-of select="../../field[@name='imageDate']/@value"/>&#160;
-					<xsl:value-of select="../../field[@name='systemName']/@value"/> 
-					<xsl:if test="string-length(../../field[@name='bodyName']/@value)"> / <xsl:value-of select="../../field[@name='bodyName']/@value"/></xsl:if>
-					<xsl:if test="string-length(../../field[@name='stationName']/@value)"> / <xsl:value-of select="../../field[@name='stationName']/@value"/></xsl:if>
-				</xsl:variable>
-				<a href="{$mlink}" title="{$title}" data-gallery="data-gallery">
-					<img src="{$slink}" alt=""/>
-				</a>
+				<xsl:variable name="title"><xsl:value-of select="../../field[@name='imageDate']/@value"/>&#160;<xsl:value-of select="../../field[@name='systemName']/@value"/><xsl:if test="string-length(../../field[@name='bodyName']/@value)"> / <xsl:value-of select="../../field[@name='bodyName']/@value"/></xsl:if><xsl:if test="string-length(../../field[@name='stationName']/@value)"> / <xsl:value-of select="../../field[@name='stationName']/@value"/></xsl:if></xsl:variable>
+				<div class="gallery-item">
+					<div class="thumbnail" style="height: 240px;">
+						<div class="image view view-first" style="height: 200px;">
+							<a href="{$mlink}" title="{$title}" data-gallery="data-gallery">
+								<img src="{$slink}" alt="" style="display: block;"/>
+							</a>
+							<!-- 
+							<div class="mask" style="height: 30px;">
+								<div class="tools tools-bottom pull-right" style="margin-top: 2px;">
+									<a href="#" data-image-id=""><i class="fa fa-times"></i></a>
+								</div>
+							</div>
+							 -->
+						</div>
+						<div class="caption">
+							<p class="pull-right">
+								<small>
+									<strong>
+										<xsl:value-of select="../../field[@name='imageDate']/@value" />
+									</strong>
+								</small>
+							</p>
+						</div>
+					</div>
+				</div>
 			</xsl:for-each>
 		</div>
 		<div class="clearfix"></div>

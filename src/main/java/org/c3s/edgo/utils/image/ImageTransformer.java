@@ -1,6 +1,7 @@
 package org.c3s.edgo.utils.image;
 
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -56,6 +57,7 @@ public class ImageTransformer {
 	private BufferedImage scale(int width, int height) {
 		BufferedImage result = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		Graphics2D gr2d = result.createGraphics();
+		setRenderingHints(gr2d);
 		AffineTransform at = AffineTransform.getScaleInstance((double)width/image.getWidth(), (double)height/image.getHeight());
 		gr2d.drawRenderedImage(image, at);
 		gr2d.dispose();
@@ -93,6 +95,7 @@ public class ImageTransformer {
 				
 				BufferedImage result = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 				Graphics2D gr2d = result.createGraphics();
+				setRenderingHints(gr2d);
 				gr2d.drawImage(temp, null, x, y);
 				gr2d.dispose();
 				
@@ -101,4 +104,15 @@ public class ImageTransformer {
 		}
 	}
 	
+	private void setRenderingHints(final Graphics2D graphics) {
+		graphics.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+		graphics.setRenderingHint(RenderingHints.KEY_DITHERING, RenderingHints.VALUE_DITHER_DISABLE);
+		graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		graphics.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+		graphics.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_SPEED);
+		graphics.setRenderingHint(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_SPEED);
+		graphics.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_OFF);
+		graphics.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
+	}	
 }

@@ -7,6 +7,9 @@
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="image_id"/>
 		</select>
+		<select name="ActiveImages">
+			<column name="is_active" condition="=" value="1"/>
+		</select>
 		<update name="ByPrimaryKey">
 			<column name="image_id"/>
 		</update>
@@ -61,6 +64,10 @@
 	<table name="image_tumbnails">
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="tumbnail_id"/>
+		</select>
+		<select name="ByConfigurationIdAndImageId" single_object="true">
+			<column name="config_id"/>
+			<column name="image_id"/>
 		</select>
 		<update name="ByPrimaryKey">
 			<column name="tumbnail_id"/>

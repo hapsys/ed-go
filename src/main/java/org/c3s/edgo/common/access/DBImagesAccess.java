@@ -63,6 +63,41 @@ public class DBImagesAccess extends Access {
 	}
 	
 	
+	public List<DBImagesBean> getActiveImages()  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		List<DBImagesBean> ret = null;
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  is_active=1 "+injector.getWhereQuery()+" ";
+		if (injector.getOrderQuery().length() != 0) {
+			sql += injector.getOrderQuery();
+		} else { 
+			
+		}
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			
+		}
+		
+		
+		
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getActiveImages", sql );
+		if (result != null) {
+			
+			ret = new ArrayList<DBImagesBean>();
+			for (Map<String, Object> res : result) {
+				DBImagesBean bean = dataMapper.mapFromRow(res, DBImagesBean.class);
+				 
+				ret.add(bean);
+			}
+				
+		}
+		return ret;
+	}
+	
 	public DBImagesBean getByPrimaryKey(java.lang.Long paramImageId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		DBImagesBean ret = null;

@@ -86,8 +86,8 @@
 <link href="<%=root%>/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 <!-- Gallery -->
 <link href="<%=root%>/vendors/Gallery/css/blueimp-gallery.min.css" rel="stylesheet">
-<link rel="stylesheet" href="<%=root%>/vendors/Gallery/css/blueimp-gallery-indicator.css">
-<link rel="stylesheet" href="<%=root%>/vendors/Gallery/css/blueimp-gallery-video.css">
+<!-- link rel="stylesheet" href="<%=root%>/vendors/Gallery/css/blueimp-gallery-indicator.css" -->
+<!-- link rel="stylesheet" href="<%=root%>/vendors/Gallery/css/blueimp-gallery-video.css" -->
 <!-- Choosen -->
 <link rel="stylesheet" href="<%=root%>/css/chosen.css" type="text/css"/>
 <link rel="stylesheet" href="<%=root%>/css/bootstrap-chosen.css" type="text/css"/>
@@ -310,7 +310,7 @@ moment.locale('<%=lang_id%>');
       </div>
     </div>
 	<!-- The Gallery as lightbox dialog, should be a child element of the document body -->
-	<div id="blueimp-gallery" class="blueimp-gallery">
+	<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
 	    <div class="slides"></div>
 	    <h3 class="title"></h3>
 	    <a class="prev">‹</a>
@@ -318,7 +318,7 @@ moment.locale('<%=lang_id%>');
 	    <a class="close">×</a>
 	    <a class="play-pause"></a>
 	    <ol class="indicator"></ol>
-	</div>	
+	</div>
 </body>
     <!-- FastClick -->
     <script src="<%=root%>/vendors/fastclick/lib/fastclick.js"></script>
@@ -362,12 +362,13 @@ moment.locale('<%=lang_id%>');
     <!-- Clipboard -->
     <script src="<%=root%>/vendors/clipboard.js/clipboard.min.js"></script>
 	<!-- Gallery -->
-    <script src="<%=root%>/vendors/Gallery/js/blueimp-gallery.min.js"></script>
+	<script src="<%=root%>/vendors/Gallery/js/blueimp-helper.js"></script>
+    <script src="<%=root%>/vendors/Gallery/js/blueimp-gallery.js"></script>
 	<script src="<%=root%>/vendors/Gallery/js/blueimp-gallery-fullscreen.js"></script>
 	<script src="<%=root%>/vendors/Gallery/js/blueimp-gallery-indicator.js"></script>
 	<script src="<%=root%>/vendors/Gallery/js/blueimp-gallery-video.js"></script>
+	<script src="<%=root%>/vendors/Gallery/js/blueimp-gallery-vimeo.js"></script>	
 	<script src="<%=root%>/vendors/Gallery/js/blueimp-gallery-youtube.js"></script>
-	<script src="<%=root%>/vendors/Gallery/js/blueimp-gallery-vimeo.js"></script>
 	<script src="<%=root%>/vendors/Gallery/js/jquery.blueimp-gallery.js"></script>    
     <!-- Custom Theme Scripts -->
     <script src="<%=root%>/js/custom/custom.js"></script>
