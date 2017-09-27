@@ -8,6 +8,10 @@
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="ship_id"/>
 		</select>
+		<select name="ActualShipsList">
+			<column name="is_special" condition="=" value="0"/>
+			<sort>ship_name</sort>
+		</select>
 		<select name="ByUniq" single_object="true">
 			<column name="ship_uniq"/>
 		</select>

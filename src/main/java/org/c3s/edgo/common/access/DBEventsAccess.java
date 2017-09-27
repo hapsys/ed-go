@@ -209,7 +209,7 @@ public class DBEventsAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				UPDATE events SET is_locked = 0  			";
+			query = " 				UPDATE events SET is_locked = 0 WHERE event_name NOT IN ('Cargo', 'Loadout', 'Materials') 			";
 		}
 
 		

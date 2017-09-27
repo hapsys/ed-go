@@ -22,7 +22,8 @@ public class Loadout extends AbstractJournalEvent<LoadoutBean> {
 	@SuppressWarnings("unused")
 	private static Logger logger = LoggerFactory.getLogger(Loadout.class);
 	
-	private List<String> skip =  Arrays.asList(new String[] {"PaintJob", "Decal", "PlanetaryApproachSuite", "Bobble", "WeaponColour", "EngineColour", "ShipKit"});
+	private List<String> skip =  Arrays.asList(new String[] {"PaintJob", "Decal", "PlanetaryApproachSuite", "Bobble", "WeaponColour", "EngineColour", "ShipKit", "ShipName0",
+			"ShipName1", "ShipID0", "ShipID1", "ShipCockpit", "CargoHatch"});
 	
 	{
 		beanClass = LoadoutBean.class;

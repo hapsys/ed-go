@@ -110,6 +110,15 @@
 				</module>
 			</module>
 			<!-- -Utilites  -->
+			<!-- +Administration  -->
+			<module pattern="administration/" class="org.c3s.edgo.web.auth.Auth" action="checkRoles">
+				<param name="allow" value="ROLE_ADMINISTRATOR"/>
+				<param name="tag" value="view_ctx" inherit="true"/>
+				<module pattern="ship-equipment/" class="org.c3s.edgo.web.admin.Ships" action="getCanvas" is_last="true">
+					<param name="template" value="{directory.stylesheet}/admin/ship-eq.xsl"/>
+				</module>
+			</module>
+			<!-- +Administration  -->
 			<!-- +Test  -->
 			<module pattern="ajax-test/" class="org.c3s.web.modules.template.TemplateModule" action="setTemplate">
 				<param name="template" value="{directory.templates}/json.jsp"/>

@@ -179,4 +179,21 @@
 			<include value="include/download.jsp" tag="content_include"/>
 		</node>
 	</node>
+	
+	<!--
+	//
+	// Administration
+	// 
+	 -->
+	<node pattern="administration" redirect=".." class="fa-diamond">
+		<role>ROLE_ADMINISTRATOR</role>
+		<title lang="ru">Администрирование</title>
+		<title lang="en">Administration</title>
+		<menu name="main_menu"/>
+		<node pattern="ship-equipment">
+			<title lang="ru">Оборудование корабля</title>
+			<title lang="en">Ship equipments</title>
+			<menu name="main_menu"/>
+		</node>
+	</node>
 </node>

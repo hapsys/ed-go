@@ -95,6 +95,10 @@
 <!-- Custom Theme Style -->
 <link href="<%=root%>/css/custom/custom.css" rel="stylesheet">
 
+<!-- bootstrap-select -->
+<link href="<%=root%>/vendors/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet">
+
+
 <link rel="stylesheet" href="<%=root%>/css/sites.css"  rel="stylesheet">
 <script type="text/javascript">
 	site_root = "<%=rootLang%>";
@@ -371,6 +375,8 @@ moment.locale('<%=lang_id%>');
 	<script src="<%=root%>/vendors/Gallery/js/blueimp-gallery-vimeo.js"></script>	
 	<script src="<%=root%>/vendors/Gallery/js/blueimp-gallery-youtube.js"></script>
 	<script src="<%=root%>/vendors/Gallery/js/jquery.blueimp-gallery.js"></script>    
+	<!-- bootstrap-select -->
+	<script src="<%=root%>/vendors/bootstrap-select/js/bootstrap-select.min.js"></script>
 	<!-- eModal -->
 	<script src="<%=root%>/vendors/eModal/dist/eModal.min.js"></script>
     <!-- Custom Theme Scripts -->
@@ -387,6 +393,12 @@ moment.locale('<%=lang_id%>');
 	<script type="text/javascript" src="<%=root%>/js/form.js"></script>
 	<script type="text/javascript" src="<%=root%>/js/auto-update.js"></script>
 	<script type="text/javascript" src="<%=root%>/js/date-range.js"></script>
+	
+	<script  type="text/javascript">
+		$(function() {
+			$('.selectpicker').selectpicker();
+		});
+	</script>
 </html>
 <c3s:debug level="E_ALL"/>
 <%-- 

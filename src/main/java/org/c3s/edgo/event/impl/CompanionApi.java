@@ -43,7 +43,8 @@ public class CompanionApi extends AbstractJournalEvent<CompanionApiBean> {
 				DbAccess.pilotsAccess.insert(pilot);
 			}
 			
-			List<String> skip =  Arrays.asList(new String[] {"PaintJob", "Decal", "PlanetaryApproachSuite", "Bobble", "WeaponColour", "EngineColour", "ShipKit"});
+			List<String> skip =  Arrays.asList(new String[] {"PaintJob", "Decal", "PlanetaryApproachSuite", "Bobble", "WeaponColour", "EngineColour", "ShipKit", "ShipName0",
+					"ShipName1", "ShipID0", "ShipID1", "ShipCockpit", "CargoHatch"});
 			
 			CompanionBean companion = companionApiBean.getCompanionData();
 			

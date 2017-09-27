@@ -186,7 +186,7 @@ public class DBPilotModulesAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT ps.pilot_ship_id, sh.ship_name, sl.slot_uniq, st.slot_type_name, st.slot_type_id, m.*, mg.* 				FROM (pilot_ships ps, ships sh, ship_slots ss, slots sl, slot_types st) 				LEFT JOIN  pilot_modules pm ON pm.pilot_ship_id = ps.pilot_ship_id AND pm.slot_id = sl.slot_id 				LEFT JOIN modules m ON m.module_id = pm.module_id 				LEFT JOIN module_groups mg ON mg.module_group_id = m.module_group_id 				WHERE ps.pilot_ship_id = ? 				AND ps.ship_id = sh.ship_id  				AND ss.ship_id = sh.ship_id 				AND sl.slot_id = ss.slot_id 				AND st.slot_type_id = sl.slot_type_id 				ORDER BY st.slot_type_name, m.module_class DESC, m.module_rating 			";
+			query = " 				SELECT ps.pilot_ship_id, sh.ship_name, sl.slot_uniq, st.slot_type_name, st.slot_type_id, m.*, mg.* 				FROM (pilot_ships ps, ships sh, ship_slots ss, slots sl, slot_types st) 				LEFT JOIN  pilot_modules pm ON pm.pilot_ship_id = ps.pilot_ship_id AND pm.slot_id = sl.slot_id 				LEFT JOIN modules m ON m.module_id = pm.module_id 				LEFT JOIN module_groups mg ON mg.module_group_id = m.module_group_id 				WHERE ps.pilot_ship_id = ? 				AND ps.ship_id = sh.ship_id  				AND ss.ship_id = sh.ship_id 				AND sl.slot_id = ss.slot_id 				AND st.slot_type_id = sl.slot_type_id 				GROUP BY pm.pilot_ship_id, pm.slot_id 				ORDER BY st.slot_type_name, m.module_class DESC, m.module_rating 			";
 		}
 
 		

@@ -93,6 +93,42 @@ public class DBShipsAccess extends Access {
 		return ret;
 	}
 	
+	public List<DBShipsBean> getActualShipsList()  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		List<DBShipsBean> ret = null;
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  is_special=0 "+injector.getWhereQuery()+" ";
+		if (injector.getOrderQuery().length() != 0) {
+			sql += injector.getOrderQuery();
+		} else { 
+			sql += "ORDER BY ship_name";
+			
+		}
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			
+		}
+		
+		
+		
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getActualShipsList", sql );
+		if (result != null) {
+			
+			ret = new ArrayList<DBShipsBean>();
+			for (Map<String, Object> res : result) {
+				DBShipsBean bean = dataMapper.mapFromRow(res, DBShipsBean.class);
+				 
+				ret.add(bean);
+			}
+				
+		}
+		return ret;
+	}
+	
 	public DBShipsBean getByPrimaryKey(java.lang.Long paramShipId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		DBShipsBean ret = null;

@@ -47,6 +47,21 @@ public class DBShipSlotsBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"link_size", "linkSize"})
+	@DataTarget("link_size")
+	@XMLSimple("linkSize")
+	private java.lang.Integer linkSize;
+	
+	public java.lang.Integer getLinkSize() {
+		return linkSize;
+	}
+	
+	public DBShipSlotsBean setLinkSize(java.lang.Integer value) {
+		linkSize = value;
+		return this;
+	}
+	
+	
 	@DataSource({"can_deleted", "canDeleted"})
 	@DataTarget("can_deleted")
 	@XMLSimple("canDeleted")

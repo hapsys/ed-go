@@ -324,6 +324,7 @@
 				AND ss.ship_id = sh.ship_id
 				AND sl.slot_id = ss.slot_id
 				AND st.slot_type_id = sl.slot_type_id
+				GROUP BY pm.pilot_ship_id, pm.slot_id
 				ORDER BY st.slot_type_name, m.module_class DESC, m.module_rating
 			</sql>
 		</query>
