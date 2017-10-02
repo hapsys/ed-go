@@ -304,9 +304,10 @@ public class Commander extends GeneralController {
 			current.setCurrentShip(ship);
 			if (ship != null) {
 				ship.setShip(DbAccess.shipsAccess.getByPrimaryKey(ship.getShipId()));
+				//System.out.println(ship.getPilotShipId());
 				ship.setModules(DbAccess.pilotModulesAccess.getPilotShipModulesList(ship.getPilotShipId()));
 				Document xml = new XMLReflectionObj(current).toXML();
-				//logger.debug(XMLUtils.xml2out(xml));
+				//System.out.println(XMLUtils.saveXML(xml));
 				ContentObject.getInstance().addPath("/", ship.getShip().getShipName());
 				ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:view_ship"});
 				redirect.setRedirect(new DropRedirect());

@@ -214,7 +214,7 @@ SHIPS
 	background-size: auto 100%;
 }
 
-.ship-anaconda {h
+.ship-anaconda {
 	background: url(../images/ships/pix.png) repeat,
 			url(../images/ships/anaconda.png) no-repeat center top;
 	background-size: auto 100%;

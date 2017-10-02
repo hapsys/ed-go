@@ -200,6 +200,14 @@
 						<module pattern="materials/" class="org.c3s.edgo.web.controllers.Commander" action="getBlueprintsMaterials" is_last="true"/>
 						<module pattern="material-grades/" class="org.c3s.edgo.web.controllers.Commander" action="getMaterialInfo" is_last="true"/>
 					</module>
+					<!-- +Administration  -->
+					<module pattern="administration/" class="org.c3s.edgo.web.auth.Auth" action="checkRoles">
+						<param name="allow" value="ROLE_ADMINISTRATOR"/>
+						<module pattern="slots-list/" class="org.c3s.edgo.web.admin.Ships" action="getSlots" is_last="true"/>
+						<module pattern="slot-delete/" class="org.c3s.edgo.web.admin.Ships" action="deleteSlotFromShip" is_last="true"/>
+						<module pattern="slot-update/" class="org.c3s.edgo.web.admin.Ships" action="updateSlotForShip" is_last="true"/>
+					</module>
+					
 				</module>
 				<module pattern="raw/" class="org.c3s.web.modules.template.TemplateModule" action="setTemplate">
 					<param name="template" value="{directory.templates}/raw.jsp"/>

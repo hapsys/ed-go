@@ -62,6 +62,21 @@ public class DBPilotShipModulesListBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"link_size", "linkSize"})
+	@DataTarget("link_size")
+	@XMLSimple("linkSize")
+	private java.lang.String linkSize;
+	
+	public java.lang.String getLinkSize() {
+		return linkSize;
+	}
+	
+	public DBPilotShipModulesListBean setLinkSize(java.lang.String value) {
+		linkSize = value;
+		return this;
+	}
+	
+	
 	@DataSource({"slot_type_name", "slotTypeName"})
 	@DataTarget("slot_type_name")
 	@XMLSimple("slotTypeName")

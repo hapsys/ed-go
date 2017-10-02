@@ -627,60 +627,112 @@
 -->
 	<xsl:template name="view_ship">
 		<xsl:variable name="lang"><xsl:value-of select="$root"/><xsl:if test="$politic = 'suffix' and $default != 'true'">/<xsl:value-of select="$suffix"/></xsl:if></xsl:variable>
-		<table class="table">
+		<table class="table" id="shipTable">
 			<thead>
 				<tr>
-					<th class="col-md-3">Weapon</th>
-					<th class="col-md-3">Utility</th>
-					<th class="col-md-3">Essential</th>
-					<th class="col-md-3">Internal</th>
+					<th data-width="20"></th>
+					<th>Weapon</th>
+					<th data-width="20"></th>
+					<th>Utility</th>
+					<th data-width="20"></th>
+					<th>Essential</th>
+					<th data-width="20"></th>
+					<th>Internal</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>
-						<xsl:for-each select="item[@name='currentShip']/modules/item[field[@name='slotTypeId']/@value='50']">
-							<xsl:sort case-order="upper-first" data-type="text" order="ascending" select="field[@name='slotUniq']/@value"/>
-							<div><xsl:call-template name="module_name"/></div>
-						</xsl:for-each>
-					</td>
-					<td>
-						<xsl:for-each select="item[@name='currentShip']/modules/item[field[@name='slotTypeId']/@value='10']">
-							<xsl:sort case-order="upper-first" data-type="text" order="ascending" select="field[@name='slotUniq']/@value"/>
-							<div><xsl:call-template name="module_name"/></div>
-						</xsl:for-each>
-					</td>
-					<td>
-						<xsl:for-each select="item[@name='currentShip']/modules/item[field[@name='slotTypeId' and (@value='30' or @value='40')]]">
-							<xsl:sort case-order="upper-first" data-type="text" order="ascending" select="field[@name='slotUniq']/@value"/>
-							<div><xsl:call-template name="module_name"/></div>
-						</xsl:for-each>
-					</td>
-					<td>
-						<xsl:for-each select="item[@name='currentShip']/modules/item[field[@name='slotTypeId']/@value='20']">
-							<xsl:sort case-order="upper-first" data-type="text" order="ascending" select="field[@name='slotUniq']/@value"/>
-							<div><xsl:call-template name="module_name"/></div>
-						</xsl:for-each>
-					</td>
-				</tr>
+				<xsl:variable name="weapon" select="item[@name='currentShip']/modules/item[field[@name='slotTypeId']/@value='50']"/>
+				<xsl:variable name="utility" select="item[@name='currentShip']/modules/item[field[@name='slotTypeId']/@value='10']"/>
+				<xsl:variable name="essential" select="item[@name='currentShip']/modules/item[field[@name='slotTypeId' and (@value='30' or @value='40')]]"/>
+				<xsl:variable name="internal" select="item[@name='currentShip']/modules/item[field[@name='slotTypeId']/@value='20']"/>
+				<xsl:call-template name="module-line">
+					<xsl:with-param name="weapon" select="$weapon"/>
+					<xsl:with-param name="utility" select="$utility"/>
+					<xsl:with-param name="essential" select="$essential"/>
+					<xsl:with-param name="internal" select="$internal"/>
+					<xsl:with-param name="pos" select="number(1)"/>
+				</xsl:call-template>
 			</tbody>
 		</table>
+		<script>
+			$(function() {
+				$("#shipTable").bootstrapTable({});
+			});
+		</script>
 	</xsl:template>
 <!--
 //
 //
 //
 -->
+		<xsl:template name="module-line">
+			<xsl:param name="weapon"/>
+			<xsl:param name="utility"/>
+			<xsl:param name="essential"/>
+			<xsl:param name="internal"/>
+			<xsl:param name="pos"/>
+			<xsl:if test="count($weapon[$pos]) != 0 or count($utility[$pos]) != 0 or count($essential[$pos]) != 0 or count($internal[$pos]) != 0">
+				<tr>
+					<td>
+						<xsl:value-of select="$weapon[$pos]/field[@name='linkSize']/@value"/>
+					</td> 
+					<td>
+						<xsl:call-template name="module_name">
+							<xsl:with-param name="module" select="$weapon[$pos]"/>
+						</xsl:call-template>
+					</td>
+					<td>
+						<xsl:value-of select="$utility[$pos]/field[@name='linkSize']/@value"/>
+					</td> 
+					<td>
+						<xsl:call-template name="module_name">
+							<xsl:with-param name="module" select="$utility[$pos]"/>
+						</xsl:call-template>
+					</td>
+					<td>
+						<xsl:value-of select="$essential[$pos]/field[@name='linkSize']/@value"/>
+					</td> 
+					<td>
+						<xsl:call-template name="module_name">
+							<xsl:with-param name="module" select="$essential[$pos]"/>
+						</xsl:call-template>
+					</td>
+					<td>
+						<xsl:value-of select="$internal[$pos]/field[@name='linkSize']/@value"/>
+					</td> 
+					<td>
+						<xsl:call-template name="module_name">
+							<xsl:with-param name="module" select="$internal[$pos]"/>
+						</xsl:call-template>
+					</td>
+				</tr>
+				<xsl:call-template name="module-line">
+					<xsl:with-param name="weapon" select="$weapon"/>
+					<xsl:with-param name="utility" select="$utility"/>
+					<xsl:with-param name="essential" select="$essential"/>
+					<xsl:with-param name="internal" select="$internal"/>
+					<xsl:with-param name="pos" select="number($pos + 1)"/>
+				</xsl:call-template>
+			</xsl:if>
+		</xsl:template>
+<!--
+//
+//
+//
+-->
 	<xsl:template name="module_name">
-		<xsl:choose>
-			<xsl:when test="string-length(field[@name='moduleName']/@value) = 0">
-				<xsl:value-of select="field[@name='moduleGroupName']/@value"/>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:value-of select="field[@name='moduleName']/@value"/>
-			</xsl:otherwise>
-		</xsl:choose>		
-		<xsl:text> - </xsl:text><xsl:value-of select="field[@name='moduleRating']/@value"/><xsl:value-of select="field[@name='moduleClass']/@value"/>
+		<xsl:param name="module"/>
+		<xsl:if test="$module">
+			<xsl:choose>
+				<xsl:when test="string-length($module/field[@name='moduleName']/@value) = 0">
+					<xsl:value-of select="$module/field[@name='moduleGroupName']/@value"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="$module/field[@name='moduleName']/@value"/>
+				</xsl:otherwise>
+			</xsl:choose>		
+			<xsl:text> - </xsl:text><xsl:value-of select="$module/field[@name='moduleRating']/@value"/><xsl:value-of select="$module/field[@name='moduleClass']/@value"/>
+		</xsl:if>
 	</xsl:template>
 <!--
 //

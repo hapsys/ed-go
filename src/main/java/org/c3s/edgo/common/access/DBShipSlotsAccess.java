@@ -133,6 +133,28 @@ public class DBShipSlotsAccess extends Access {
 		return ret;
 	}
 	
+	public int updateSlotForShip(String paramSize, String paramShipUniq, String paramShipId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				UPDATE ship_slots ss, ships s  SET ss.link_size = ? WHERE s.ship_uniq = ? AND ss.ship_id = s.ship_id AND ss.slot_id = ?   			";
+		}
+
+		
+		int ret = getConnection().query(query,  paramSize,  paramShipUniq,  paramShipId);
+			
+		return ret;
+	}
+	
 	public int deleteFailSlotsByShipId(long paramShipId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();
@@ -151,6 +173,28 @@ public class DBShipSlotsAccess extends Access {
 
 		
 		int ret = getConnection().query(query,  paramShipId);
+			
+		return ret;
+	}
+	
+	public int deleteSlotFromShip(String paramShipUniq, String paramShipId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				DELETE ss  				FROM ship_slots ss, ships s  				WHERE s.ship_uniq = ?  				AND  ss.ship_id = s.ship_id 				AND ss.slot_id = ? 			";
+		}
+
+		
+		int ret = getConnection().query(query,  paramShipUniq,  paramShipId);
 			
 		return ret;
 	}

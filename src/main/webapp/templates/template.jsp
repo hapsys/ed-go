@@ -88,6 +88,11 @@
 <link href="<%=root%>/vendors/Gallery/css/blueimp-gallery.min.css" rel="stylesheet">
 <!-- link rel="stylesheet" href="<%=root%>/vendors/Gallery/css/blueimp-gallery-indicator.css" -->
 <!-- link rel="stylesheet" href="<%=root%>/vendors/Gallery/css/blueimp-gallery-video.css" -->
+<!-- Table -->
+<link href="<%=root%>/vendors/bootstrap-table/dist/bootstrap-table.min.css" rel="stylesheet">
+<link href="<%=root%>/vendors/bootstrap-table/dist/extensions/group-by-v2/bootstrap-table-group-by.min.js" rel="stylesheet">
+<link href="<%=root%>/vendors/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
+
 <!-- Choosen -->
 <link rel="stylesheet" href="<%=root%>/css/chosen.css" type="text/css"/>
 <link rel="stylesheet" href="<%=root%>/css/bootstrap-chosen.css" type="text/css"/>
@@ -377,6 +382,11 @@ moment.locale('<%=lang_id%>');
 	<script src="<%=root%>/vendors/Gallery/js/jquery.blueimp-gallery.js"></script>    
 	<!-- bootstrap-select -->
 	<script src="<%=root%>/vendors/bootstrap-select/js/bootstrap-select.min.js"></script>
+	<!-- Table -->	
+	<script src="<%=root%>/vendors/bootstrap-table/dist/bootstrap-table.min.js"></script>
+	<script src="<%=root%>/vendors/bootstrap-table/dist/extensions/group-by-v2/bootstrap-table-group-by.min.js"></script>
+	<script src="<%=root%>/vendors/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+	<script src="<%=root%>/vendors/bootstrap-table/dist/extensions/editable/bootstrap-table-editable.js"></script>
 	<!-- eModal -->
 	<script src="<%=root%>/vendors/eModal/dist/eModal.min.js"></script>
     <!-- Custom Theme Scripts -->

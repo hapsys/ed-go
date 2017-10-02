@@ -139,4 +139,37 @@ public class DBSlotsAccess extends Access {
 		return getConnection().query(sql, paramSlotId);
 	}
 	
+	public List<DBShipSlotsByShipUniqBean> getShipSlotsByShipUniq(String paramUniq) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT sl.*, st.*, CAST(IF(ISNULL(ss.link_size), sl.size, ss.link_size) AS CHAR(1)) as link_size, COUNT(DISTINCT pm.pilot_module_id) as used_count, GROUP_CONCAT(DISTINCT m.module_uniq ORDER BY m.module_uniq) as modules 				FROM slots sl, slot_types st, ships s, ship_slots ss 				LEFT JOIN pilot_ships ps ON ps.ship_id = ss.ship_id 				LEFT JOIN pilot_modules pm ON pm.pilot_ship_id = ps.pilot_ship_id AND pm.slot_id = ss.slot_id 				LEFT JOIN modules m ON m.module_id = pm.module_id 				WHERE s.ship_uniq = ? 				AND ss.ship_id = s.ship_id 				AND ss.slot_id = sl.slot_id 				AND sl.slot_type_id = st.slot_type_id 				GROUP BY sl.slot_id, ss.slot_id, ss.ship_id 				ORDER BY st.slot_type_name, sl.slot_uniq ASC 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getShipSlotsByShipUniq", query ,  paramUniq);
+		List<DBShipSlotsByShipUniqBean> ret = null;
+		if (result != null) {
+					ret = new ArrayList<DBShipSlotsByShipUniqBean>();
+				
+			for (Map<String, Object> res : result) {
+				DBShipSlotsByShipUniqBean bean = dataMapper.mapFromRow(res, DBShipSlotsByShipUniqBean.class);
+														
+				ret.add(bean);
+			}
+					
+		}
+			
+		return ret;
+	}
+	
 }
