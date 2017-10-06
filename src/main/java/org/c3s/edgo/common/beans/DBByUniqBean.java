@@ -62,6 +62,21 @@ public class DBByUniqBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"module_weapon_mode", "moduleWeaponMode"})
+	@DataTarget("module_weapon_mode")
+	@XMLSimple("moduleWeaponMode")
+	private java.lang.String moduleWeaponMode;
+	
+	public java.lang.String getModuleWeaponMode() {
+		return moduleWeaponMode;
+	}
+	
+	public DBByUniqBean setModuleWeaponMode(java.lang.String value) {
+		moduleWeaponMode = value;
+		return this;
+	}
+	
+	
 	@DataSource({"module_name", "moduleName"})
 	@DataTarget("module_name")
 	@XMLSimple("moduleName")

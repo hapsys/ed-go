@@ -137,6 +137,21 @@ public class DBPilotShipModulesListBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"module_weapon_mode", "moduleWeaponMode"})
+	@DataTarget("module_weapon_mode")
+	@XMLSimple("moduleWeaponMode")
+	private java.lang.String moduleWeaponMode;
+	
+	public java.lang.String getModuleWeaponMode() {
+		return moduleWeaponMode;
+	}
+	
+	public DBPilotShipModulesListBean setModuleWeaponMode(java.lang.String value) {
+		moduleWeaponMode = value;
+		return this;
+	}
+	
+	
 	@DataSource({"slot_uniq", "slotUniq"})
 	@DataTarget("slot_uniq")
 	@XMLSimple("slotUniq")

@@ -6,9 +6,11 @@ import java.sql.SQLException;
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBByModuleInfoByUniqBean;
 import org.c3s.edgo.common.beans.DBLocationHistoryBean;
+import org.c3s.edgo.common.beans.DBModuleRecipiesBean;
 import org.c3s.edgo.common.beans.DBPilotModulesBean;
 import org.c3s.edgo.common.beans.DBPilotShipsBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
+import org.c3s.edgo.common.beans.DBRecipiesBean;
 import org.c3s.edgo.common.beans.DBShipSlotsBean;
 import org.c3s.edgo.common.beans.DBShipsBean;
 import org.c3s.edgo.common.beans.DBSlotsBean;
@@ -178,6 +180,30 @@ public class ShipsDAO {
 		} else if (moduleId == null && bean != null) {
 			DbAccess.pilotModulesAccess.deleteByPrimaryKey(bean.getPilotModuleId());
 			bean = null;
+		}
+		return bean;
+	}
+	
+	
+	public static DBRecipiesBean gerOrInsertRecipie(String recipieName) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		DBRecipiesBean bean = DbAccess.recipiesAccess.getByName(recipieName);
+		if (bean == null) {
+			bean = new DBRecipiesBean();
+			bean.setRecipieName(recipieName);
+			DbAccess.recipiesAccess.insert(bean);
+		}
+		return bean;
+	}
+	
+	public static DBModuleRecipiesBean insertOrUpdateModuleRecipie(Long pilotModuleId, Long recipieId, Integer level) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		DBModuleRecipiesBean bean = DbAccess.moduleRecipiesAccess.getByPilotModuleIdAndRecipieId(pilotModuleId, recipieId);
+		if (bean == null) {
+			bean = new DBModuleRecipiesBean();
+			bean.setPilotModuleId(pilotModuleId).setRecipieId(recipieId).setRecipieLevel(level);
+			DbAccess.moduleRecipiesAccess.insert(bean);
+		} else {
+			bean.setRecipieLevel(level);
+			DbAccess.moduleRecipiesAccess.updateByPrimaryKey(bean, bean.getModuleRecipeId());
 		}
 		return bean;
 	}

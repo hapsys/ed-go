@@ -13,6 +13,8 @@ public class DbAccess {
 	public static final DBPilotGameModesAccess pilotGameModesAccess = new DBPilotGameModesAccess();
 	public static final DBPilotShipsAccess pilotShipsAccess = new DBPilotShipsAccess();
 	public static final DBPilotModulesAccess pilotModulesAccess = new DBPilotModulesAccess();
+	public static final DBRecipiesAccess recipiesAccess = new DBRecipiesAccess();
+	public static final DBModuleRecipiesAccess moduleRecipiesAccess = new DBModuleRecipiesAccess();
 	public static final DBPilotMaterialsAccess pilotMaterialsAccess = new DBPilotMaterialsAccess();
 	public static final DBPilotsInfoAccess pilotsInfoAccess = new DBPilotsInfoAccess();
 	public static final DBEventsAccess eventsAccess = new DBEventsAccess();

@@ -9,6 +9,7 @@ import org.c3s.edgo.common.beans.DBModulesBean;
 import org.c3s.edgo.common.beans.DBPilotModulesBean;
 import org.c3s.edgo.common.beans.DBPilotShipsBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
+import org.c3s.edgo.common.beans.DBRecipiesBean;
 import org.c3s.edgo.common.beans.DBSlotsBean;
 import org.c3s.edgo.common.dao.ShipsDAO;
 import org.c3s.edgo.event.AbstractJournalEvent;
@@ -47,10 +48,22 @@ public class Loadout extends AbstractJournalEvent<LoadoutBean> {
 							ShipsDAO.insertUpdateShipSlot(pilotShip.getShipId(), slot.getSlotId(), null);
 							DBPilotModulesBean pilot_ship_slot = DbAccess.pilotModulesAccess.getByPilotShipIdSlotId(pilotShip.getShipId(), slot.getSlotId());
 							DBModulesBean stored_module = DbAccess.modulesAccess.getByUniq(module.getItem());
+							
+							DBPilotModulesBean resId = null;
+							
 							if (stored_module != null && pilot_ship_slot != null && !stored_module.getModuleId().equals(pilot_ship_slot.getModuleId())) {
-								ShipsDAO.insertOrUpdatePilotModule(pilotShip.getPilotShipId(), slot.getSlotId(), stored_module.getModuleId());
+								resId = ShipsDAO.insertOrUpdatePilotModule(pilotShip.getPilotShipId(), slot.getSlotId(), stored_module.getModuleId());
 							} else if (stored_module != null && pilot_ship_slot == null) {
-								ShipsDAO.insertOrUpdatePilotModule(pilotShip.getPilotShipId(), slot.getSlotId(), stored_module.getModuleId());
+								resId = ShipsDAO.insertOrUpdatePilotModule(pilotShip.getPilotShipId(), slot.getSlotId(), stored_module.getModuleId());
+							}
+							
+							// Update recipies
+							if (resId != null) {
+								DbAccess.moduleRecipiesAccess.deleteByPilotModuleId(resId.getPilotModuleId());
+								if (module.getEngineerBlueprint() != null) {
+									DBRecipiesBean recipie = ShipsDAO.gerOrInsertRecipie(module.getEngineerBlueprint());
+									ShipsDAO.insertOrUpdateModuleRecipie(resId.getPilotModuleId(), recipie.getRecipieId(), module.getEngineerLevel());
+								}
 							}
 						}
 					}

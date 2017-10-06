@@ -343,6 +343,40 @@
 		
 	</table>
 	<!--  -->
+	<table name="recipies">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="recipie_id"/>
+		</select>
+		<select name="ByName" single_object="true">
+			<column name="recipie_name"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="recipie_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="recipie_id"/>
+		</delete>
+	</table>
+	<!--  -->
+	<table name="module_recipies">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="module_recipe_id"/>
+		</select>
+		<select name="ByPilotModuleIdAndRecipieId" single_object="true">
+			<column name="pilot_module_id"/>
+			<column name="recipie_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="module_recipe_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="module_recipe_id"/>
+		</delete>
+		<delete name="ByPilotModuleId">
+			<column name="pilot_module_id"/>
+		</delete>
+	</table>
+	<!--  -->
 	<table name="pilot_materials">
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="pilot_id"/>
