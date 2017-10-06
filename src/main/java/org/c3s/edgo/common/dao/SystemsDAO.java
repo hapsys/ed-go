@@ -191,7 +191,7 @@ public class SystemsDAO {
 				DBBgsStatesBean state = getOrInsertState(newf.getFactionState());
 				if (fmap.containsKey(uniq)) {
 					DBLastSystemFactionStateBean last = fmap.get(uniq);
-					if (last == null || !last.getStateId().equals(state.getStateId()) || Math.abs(last.getInfluence() - newf.getInfluence()) > 0.005f) {
+					if (last.getStateId() == null || !last.getStateId().equals(state.getStateId()) || Math.abs(last.getInfluence() - newf.getInfluence()) > 0.005f) {
 						DBSystemFactionsHistoryBean bean = new DBSystemFactionsHistoryBean();
 						bean.setSystemId(system.getSystemId()).setFactionId(last.getFactionId()).setCreateDate(new Timestamp(timestamp.getTime())).setStateId(state.getStateId()).setInfluence(newf.getInfluence());
 						DbAccess.systemFactionsHistoryAccess.insert(bean);
