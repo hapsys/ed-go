@@ -27,7 +27,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setSettlementSecurity(java.lang.String value) {
-		settlementSecurity = value;
+		this.settlementSecurity = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setFactionId(java.lang.Long value) {
-		factionId = value;
+		this.factionId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setSettlementSecurityId(java.lang.Long value) {
-		settlementSecurityId = value;
+		this.settlementSecurityId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setType(java.lang.String value) {
-		type = value;
+		this.type = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setHasRefuel(java.lang.Integer value) {
-		hasRefuel = value;
+		this.hasRefuel = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setHasShipyard(java.lang.Integer value) {
-		hasShipyard = value;
+		this.hasShipyard = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setHasBlackmarket(java.lang.Integer value) {
-		hasBlackmarket = value;
+		this.hasBlackmarket = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setHasCommodities(java.lang.Integer value) {
-		hasCommodities = value;
+		this.hasCommodities = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setSettlementSizeId(java.lang.Long value) {
-		settlementSizeId = value;
+		this.settlementSizeId = value;
 		return this;
 	}
 	
@@ -162,7 +162,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setGovernment(java.lang.String value) {
-		government = value;
+		this.government = value;
 		return this;
 	}
 	
@@ -177,7 +177,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setUpdatedAt(java.lang.Long value) {
-		updatedAt = value;
+		this.updatedAt = value;
 		return this;
 	}
 	
@@ -192,7 +192,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setState(java.lang.String value) {
-		state = value;
+		this.state = value;
 		return this;
 	}
 	
@@ -207,7 +207,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setBodyId(java.lang.Long value) {
-		bodyId = value;
+		this.bodyId = value;
 		return this;
 	}
 	
@@ -222,7 +222,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setHasDocking(java.lang.Integer value) {
-		hasDocking = value;
+		this.hasDocking = value;
 		return this;
 	}
 	
@@ -237,7 +237,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setMaxLandingPadSize(java.lang.String value) {
-		maxLandingPadSize = value;
+		this.maxLandingPadSize = value;
 		return this;
 	}
 	
@@ -252,7 +252,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setHasOutfitting(java.lang.Integer value) {
-		hasOutfitting = value;
+		this.hasOutfitting = value;
 		return this;
 	}
 	
@@ -267,7 +267,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -282,7 +282,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setTypeId(java.lang.Long value) {
-		typeId = value;
+		this.typeId = value;
 		return this;
 	}
 	
@@ -297,7 +297,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setHasMarket(java.lang.Integer value) {
-		hasMarket = value;
+		this.hasMarket = value;
 		return this;
 	}
 	
@@ -312,7 +312,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setStationId(java.lang.Long value) {
-		stationId = value;
+		this.stationId = value;
 		return this;
 	}
 	
@@ -327,7 +327,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setAllegiance(java.lang.String value) {
-		allegiance = value;
+		this.allegiance = value;
 		return this;
 	}
 	
@@ -342,7 +342,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setEconomies(java.lang.String value) {
-		economies = value;
+		this.economies = value;
 		return this;
 	}
 	
@@ -357,7 +357,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setHasRepair(java.lang.Integer value) {
-		hasRepair = value;
+		this.hasRepair = value;
 		return this;
 	}
 	
@@ -372,7 +372,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setName(java.lang.String value) {
-		name = value;
+		this.name = value;
 		return this;
 	}
 	
@@ -387,7 +387,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setHasRearm(java.lang.Integer value) {
-		hasRearm = value;
+		this.hasRearm = value;
 		return this;
 	}
 	
@@ -402,7 +402,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setSettlementSize(java.lang.String value) {
-		settlementSize = value;
+		this.settlementSize = value;
 		return this;
 	}
 	
@@ -417,7 +417,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setIsPlanetary(java.lang.Integer value) {
-		isPlanetary = value;
+		this.isPlanetary = value;
 		return this;
 	}
 	
@@ -432,7 +432,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setDistanceToStar(java.lang.Long value) {
-		distanceToStar = value;
+		this.distanceToStar = value;
 		return this;
 	}
 	
@@ -447,7 +447,7 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsBean setNameUniq(java.lang.String value) {
-		nameUniq = value;
+		this.nameUniq = value;
 		return this;
 	}
 	

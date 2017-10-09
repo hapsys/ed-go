@@ -27,7 +27,7 @@ public class DBEngGradeBean implements DbBean, Serializable {
 	}
 	
 	public DBEngGradeBean setEngBlueprintId(java.lang.Long value) {
-		engBlueprintId = value;
+		this.engBlueprintId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBEngGradeBean implements DbBean, Serializable {
 	}
 	
 	public DBEngGradeBean setEngGradeId(java.lang.Long value) {
-		engGradeId = value;
+		this.engGradeId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBEngGradeBean implements DbBean, Serializable {
 	}
 	
 	public DBEngGradeBean setGrade(java.lang.Long value) {
-		grade = value;
+		this.grade = value;
 		return this;
 	}
 	

@@ -27,7 +27,7 @@ public class DBPilotShipsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotShipsBean setLinkShipId(java.lang.Long value) {
-		linkShipId = value;
+		this.linkShipId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBPilotShipsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotShipsBean setPilotShipId(java.lang.Long value) {
-		pilotShipId = value;
+		this.pilotShipId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBPilotShipsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotShipsBean setPilotShipIdent(java.lang.String value) {
-		pilotShipIdent = value;
+		this.pilotShipIdent = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBPilotShipsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotShipsBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBPilotShipsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotShipsBean setIsMain(java.lang.Integer value) {
-		isMain = value;
+		this.isMain = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBPilotShipsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotShipsBean setStationId(java.lang.Long value) {
-		stationId = value;
+		this.stationId = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBPilotShipsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotShipsBean setCanDeleted(java.lang.Integer value) {
-		canDeleted = value;
+		this.canDeleted = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBPilotShipsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotShipsBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBPilotShipsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotShipsBean setShipId(java.lang.Long value) {
-		shipId = value;
+		this.shipId = value;
 		return this;
 	}
 	
@@ -162,7 +162,7 @@ public class DBPilotShipsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotShipsBean setPilotShipName(java.lang.String value) {
-		pilotShipName = value;
+		this.pilotShipName = value;
 		return this;
 	}
 	
@@ -178,7 +178,7 @@ public class DBPilotShipsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotShipsBean setShip(DBShipsBean value) {
-		ship = value;
+		this.ship = value;
 		return this;
 	}
 	
@@ -194,7 +194,7 @@ public class DBPilotShipsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotShipsBean setModules(List<? extends Object> value) {
-		modules = value;
+		this.modules = value;
 		return this;
 	}
 	

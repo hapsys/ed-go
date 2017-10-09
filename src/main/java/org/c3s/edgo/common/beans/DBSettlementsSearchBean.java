@@ -27,7 +27,7 @@ public class DBSettlementsSearchBean implements DbBean, Serializable {
 	}
 	
 	public DBSettlementsSearchBean setSettlementTypeId(java.lang.Long value) {
-		settlementTypeId = value;
+		this.settlementTypeId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBSettlementsSearchBean implements DbBean, Serializable {
 	}
 	
 	public DBSettlementsSearchBean setSettlementId(java.lang.Long value) {
-		settlementId = value;
+		this.settlementId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBSettlementsSearchBean implements DbBean, Serializable {
 	}
 	
 	public DBSettlementsSearchBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBSettlementsSearchBean implements DbBean, Serializable {
 	}
 	
 	public DBSettlementsSearchBean setPlanet(java.lang.String value) {
-		planet = value;
+		this.planet = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBSettlementsSearchBean implements DbBean, Serializable {
 	}
 	
 	public DBSettlementsSearchBean setSystemName(java.lang.String value) {
-		systemName = value;
+		this.systemName = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBSettlementsSearchBean implements DbBean, Serializable {
 	}
 	
 	public DBSettlementsSearchBean setName(java.lang.String value) {
-		name = value;
+		this.name = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBSettlementsSearchBean implements DbBean, Serializable {
 	}
 	
 	public DBSettlementsSearchBean setX(java.lang.Double value) {
-		x = value;
+		this.x = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBSettlementsSearchBean implements DbBean, Serializable {
 	}
 	
 	public DBSettlementsSearchBean setY(java.lang.Double value) {
-		y = value;
+		this.y = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBSettlementsSearchBean implements DbBean, Serializable {
 	}
 	
 	public DBSettlementsSearchBean setZ(java.lang.Double value) {
-		z = value;
+		this.z = value;
 		return this;
 	}
 	
@@ -162,7 +162,7 @@ public class DBSettlementsSearchBean implements DbBean, Serializable {
 	}
 	
 	public DBSettlementsSearchBean setTitle(java.lang.String value) {
-		title = value;
+		this.title = value;
 		return this;
 	}
 	
@@ -178,7 +178,7 @@ public class DBSettlementsSearchBean implements DbBean, Serializable {
 	}
 	
 	public DBSettlementsSearchBean setDest(Double value) {
-		dest = value;
+		this.dest = value;
 		return this;
 	}
 	
@@ -194,7 +194,7 @@ public class DBSettlementsSearchBean implements DbBean, Serializable {
 	}
 	
 	public DBSettlementsSearchBean setSolDest(Double value) {
-		solDest = value;
+		this.solDest = value;
 		return this;
 	}
 	

@@ -27,7 +27,7 @@ public class DBUsersBean implements DbBean, Serializable {
 	}
 	
 	public DBUsersBean setUserCookie(java.lang.String value) {
-		userCookie = value;
+		this.userCookie = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBUsersBean implements DbBean, Serializable {
 	}
 	
 	public DBUsersBean setTempPassword(java.lang.String value) {
-		tempPassword = value;
+		this.tempPassword = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBUsersBean implements DbBean, Serializable {
 	}
 	
 	public DBUsersBean setCreateTime(java.sql.Timestamp value) {
-		createTime = value;
+		this.createTime = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBUsersBean implements DbBean, Serializable {
 	}
 	
 	public DBUsersBean setLastLoginTime(java.sql.Timestamp value) {
-		lastLoginTime = value;
+		this.lastLoginTime = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBUsersBean implements DbBean, Serializable {
 	}
 	
 	public DBUsersBean setPrevLoginTime(java.sql.Timestamp value) {
-		prevLoginTime = value;
+		this.prevLoginTime = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBUsersBean implements DbBean, Serializable {
 	}
 	
 	public DBUsersBean setIsVerify(java.lang.Integer value) {
-		isVerify = value;
+		this.isVerify = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBUsersBean implements DbBean, Serializable {
 	}
 	
 	public DBUsersBean setAdditional(java.lang.String value) {
-		additional = value;
+		this.additional = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBUsersBean implements DbBean, Serializable {
 	}
 	
 	public DBUsersBean setTimeZone(java.lang.Integer value) {
-		timeZone = value;
+		this.timeZone = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBUsersBean implements DbBean, Serializable {
 	}
 	
 	public DBUsersBean setNetwork(java.lang.String value) {
-		network = value;
+		this.network = value;
 		return this;
 	}
 	
@@ -162,7 +162,7 @@ public class DBUsersBean implements DbBean, Serializable {
 	}
 	
 	public DBUsersBean setCheckHash(java.lang.String value) {
-		checkHash = value;
+		this.checkHash = value;
 		return this;
 	}
 	
@@ -177,7 +177,7 @@ public class DBUsersBean implements DbBean, Serializable {
 	}
 	
 	public DBUsersBean setUid(java.lang.String value) {
-		uid = value;
+		this.uid = value;
 		return this;
 	}
 	
@@ -192,7 +192,7 @@ public class DBUsersBean implements DbBean, Serializable {
 	}
 	
 	public DBUsersBean setUserUuid(java.lang.String value) {
-		userUuid = value;
+		this.userUuid = value;
 		return this;
 	}
 	
@@ -207,7 +207,7 @@ public class DBUsersBean implements DbBean, Serializable {
 	}
 	
 	public DBUsersBean setUpdateTime(java.sql.Timestamp value) {
-		updateTime = value;
+		this.updateTime = value;
 		return this;
 	}
 	
@@ -222,7 +222,7 @@ public class DBUsersBean implements DbBean, Serializable {
 	}
 	
 	public DBUsersBean setUserId(java.lang.Long value) {
-		userId = value;
+		this.userId = value;
 		return this;
 	}
 	
@@ -237,7 +237,7 @@ public class DBUsersBean implements DbBean, Serializable {
 	}
 	
 	public DBUsersBean setNewPassword(java.lang.String value) {
-		newPassword = value;
+		this.newPassword = value;
 		return this;
 	}
 	
@@ -252,7 +252,7 @@ public class DBUsersBean implements DbBean, Serializable {
 	}
 	
 	public DBUsersBean setUserKeyId(java.lang.Long value) {
-		userKeyId = value;
+		this.userKeyId = value;
 		return this;
 	}
 	
@@ -267,7 +267,7 @@ public class DBUsersBean implements DbBean, Serializable {
 	}
 	
 	public DBUsersBean setEmail(java.lang.String value) {
-		email = value;
+		this.email = value;
 		return this;
 	}
 	
@@ -283,7 +283,7 @@ public class DBUsersBean implements DbBean, Serializable {
 	}
 	
 	public DBUsersBean setUserKey(DBUserKeysBean value) {
-		userKey = value;
+		this.userKey = value;
 		return this;
 	}
 	
@@ -299,7 +299,7 @@ public class DBUsersBean implements DbBean, Serializable {
 	}
 	
 	public DBUsersBean setUserRoles(List<DBRolesBean> value) {
-		userRoles = value;
+		this.userRoles = value;
 		return this;
 	}
 	

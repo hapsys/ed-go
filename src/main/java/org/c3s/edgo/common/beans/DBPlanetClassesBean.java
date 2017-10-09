@@ -27,7 +27,7 @@ public class DBPlanetClassesBean implements DbBean, Serializable {
 	}
 	
 	public DBPlanetClassesBean setPlanetClassName(java.lang.String value) {
-		planetClassName = value;
+		this.planetClassName = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBPlanetClassesBean implements DbBean, Serializable {
 	}
 	
 	public DBPlanetClassesBean setPlanetClassUniq(java.lang.String value) {
-		planetClassUniq = value;
+		this.planetClassUniq = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBPlanetClassesBean implements DbBean, Serializable {
 	}
 	
 	public DBPlanetClassesBean setPlanetClassId(java.lang.Long value) {
-		planetClassId = value;
+		this.planetClassId = value;
 		return this;
 	}
 	

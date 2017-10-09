@@ -27,7 +27,7 @@ public class DBShipSlotsByShipUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBShipSlotsByShipUniqBean setSize(java.lang.Integer value) {
-		size = value;
+		this.size = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBShipSlotsByShipUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBShipSlotsByShipUniqBean setUsedCount(java.lang.Long value) {
-		usedCount = value;
+		this.usedCount = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBShipSlotsByShipUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBShipSlotsByShipUniqBean setSlotId(java.lang.Long value) {
-		slotId = value;
+		this.slotId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBShipSlotsByShipUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBShipSlotsByShipUniqBean setSlotUniq(java.lang.String value) {
-		slotUniq = value;
+		this.slotUniq = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBShipSlotsByShipUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBShipSlotsByShipUniqBean setSlotTypeId(java.lang.Long value) {
-		slotTypeId = value;
+		this.slotTypeId = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBShipSlotsByShipUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBShipSlotsByShipUniqBean setLinkSize(java.lang.String value) {
-		linkSize = value;
+		this.linkSize = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBShipSlotsByShipUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBShipSlotsByShipUniqBean setSlotTypeName(java.lang.String value) {
-		slotTypeName = value;
+		this.slotTypeName = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBShipSlotsByShipUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBShipSlotsByShipUniqBean setModules(java.lang.String value) {
-		modules = value;
+		this.modules = value;
 		return this;
 	}
 	

@@ -27,7 +27,7 @@ public class DBAjaxPilotInfoLinkWithDefaultsBean implements DbBean, Serializable
 	}
 	
 	public DBAjaxPilotInfoLinkWithDefaultsBean setDefLevel(java.lang.Long value) {
-		defLevel = value;
+		this.defLevel = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBAjaxPilotInfoLinkWithDefaultsBean implements DbBean, Serializable
 	}
 	
 	public DBAjaxPilotInfoLinkWithDefaultsBean setLevel(java.math.BigInteger value) {
-		level = value;
+		this.level = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBAjaxPilotInfoLinkWithDefaultsBean implements DbBean, Serializable
 	}
 	
 	public DBAjaxPilotInfoLinkWithDefaultsBean setInfoId(java.lang.Long value) {
-		infoId = value;
+		this.infoId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBAjaxPilotInfoLinkWithDefaultsBean implements DbBean, Serializable
 	}
 	
 	public DBAjaxPilotInfoLinkWithDefaultsBean setInfoUniq(java.lang.String value) {
-		infoUniq = value;
+		this.infoUniq = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBAjaxPilotInfoLinkWithDefaultsBean implements DbBean, Serializable
 	}
 	
 	public DBAjaxPilotInfoLinkWithDefaultsBean setSort(java.lang.Long value) {
-		sort = value;
+		this.sort = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBAjaxPilotInfoLinkWithDefaultsBean implements DbBean, Serializable
 	}
 	
 	public DBAjaxPilotInfoLinkWithDefaultsBean setInfoLink(java.lang.String value) {
-		infoLink = value;
+		this.infoLink = value;
 		return this;
 	}
 	

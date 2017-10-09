@@ -27,7 +27,7 @@ public class DBSystemsFactionsInfluenceBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemsFactionsInfluenceBean setSystemName(String value) {
-		systemName = value;
+		this.systemName = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBSystemsFactionsInfluenceBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemsFactionsInfluenceBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -58,7 +58,7 @@ public class DBSystemsFactionsInfluenceBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemsFactionsInfluenceBean setInfluenceFactions(List<DBFactionInfluenceNamesBean> value) {
-		influenceFactions = value;
+		this.influenceFactions = value;
 		return this;
 	}
 	

@@ -27,7 +27,7 @@ public class DBImageConfigsBean implements DbBean, Serializable {
 	}
 	
 	public DBImageConfigsBean setConfigName(java.lang.String value) {
-		configName = value;
+		this.configName = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBImageConfigsBean implements DbBean, Serializable {
 	}
 	
 	public DBImageConfigsBean setIsActive(java.lang.Integer value) {
-		isActive = value;
+		this.isActive = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBImageConfigsBean implements DbBean, Serializable {
 	}
 	
 	public DBImageConfigsBean setCreateTime(java.sql.Timestamp value) {
-		createTime = value;
+		this.createTime = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBImageConfigsBean implements DbBean, Serializable {
 	}
 	
 	public DBImageConfigsBean setMaxHeight(java.lang.Long value) {
-		maxHeight = value;
+		this.maxHeight = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBImageConfigsBean implements DbBean, Serializable {
 	}
 	
 	public DBImageConfigsBean setType(java.lang.String value) {
-		type = value;
+		this.type = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBImageConfigsBean implements DbBean, Serializable {
 	}
 	
 	public DBImageConfigsBean setCanScale(java.lang.Integer value) {
-		canScale = value;
+		this.canScale = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBImageConfigsBean implements DbBean, Serializable {
 	}
 	
 	public DBImageConfigsBean setQuality(java.lang.Integer value) {
-		quality = value;
+		this.quality = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBImageConfigsBean implements DbBean, Serializable {
 	}
 	
 	public DBImageConfigsBean setMaxWidth(java.lang.Long value) {
-		maxWidth = value;
+		this.maxWidth = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBImageConfigsBean implements DbBean, Serializable {
 	}
 	
 	public DBImageConfigsBean setCanCrop(java.lang.Integer value) {
-		canCrop = value;
+		this.canCrop = value;
 		return this;
 	}
 	
@@ -162,7 +162,7 @@ public class DBImageConfigsBean implements DbBean, Serializable {
 	}
 	
 	public DBImageConfigsBean setIsAuto(java.lang.Integer value) {
-		isAuto = value;
+		this.isAuto = value;
 		return this;
 	}
 	
@@ -177,7 +177,7 @@ public class DBImageConfigsBean implements DbBean, Serializable {
 	}
 	
 	public DBImageConfigsBean setUpdateTime(java.sql.Timestamp value) {
-		updateTime = value;
+		this.updateTime = value;
 		return this;
 	}
 	
@@ -192,7 +192,7 @@ public class DBImageConfigsBean implements DbBean, Serializable {
 	}
 	
 	public DBImageConfigsBean setMinHeight(java.lang.Long value) {
-		minHeight = value;
+		this.minHeight = value;
 		return this;
 	}
 	
@@ -207,7 +207,7 @@ public class DBImageConfigsBean implements DbBean, Serializable {
 	}
 	
 	public DBImageConfigsBean setConfigId(java.lang.Long value) {
-		configId = value;
+		this.configId = value;
 		return this;
 	}
 	
@@ -222,7 +222,7 @@ public class DBImageConfigsBean implements DbBean, Serializable {
 	}
 	
 	public DBImageConfigsBean setMinWidth(java.lang.Long value) {
-		minWidth = value;
+		this.minWidth = value;
 		return this;
 	}
 	

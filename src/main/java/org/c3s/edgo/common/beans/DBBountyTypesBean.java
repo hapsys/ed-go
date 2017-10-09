@@ -27,7 +27,7 @@ public class DBBountyTypesBean implements DbBean, Serializable {
 	}
 	
 	public DBBountyTypesBean setBountyTypeUniq(java.lang.String value) {
-		bountyTypeUniq = value;
+		this.bountyTypeUniq = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBBountyTypesBean implements DbBean, Serializable {
 	}
 	
 	public DBBountyTypesBean setBountyType(java.lang.String value) {
-		bountyType = value;
+		this.bountyType = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBBountyTypesBean implements DbBean, Serializable {
 	}
 	
 	public DBBountyTypesBean setBountyTypeId(java.lang.Long value) {
-		bountyTypeId = value;
+		this.bountyTypeId = value;
 		return this;
 	}
 	

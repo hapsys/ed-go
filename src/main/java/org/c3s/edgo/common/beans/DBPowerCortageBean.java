@@ -28,7 +28,7 @@ public class DBPowerCortageBean implements DbBean, Serializable {
 	}
 	
 	public DBPowerCortageBean setWeeks(List<? extends Object> value) {
-		weeks = value;
+		this.weeks = value;
 		return this;
 	}
 	
@@ -44,7 +44,7 @@ public class DBPowerCortageBean implements DbBean, Serializable {
 	}
 	
 	public DBPowerCortageBean setMeritsWar(List<? extends Object> value) {
-		meritsWar = value;
+		this.meritsWar = value;
 		return this;
 	}
 	
@@ -60,7 +60,7 @@ public class DBPowerCortageBean implements DbBean, Serializable {
 	}
 	
 	public DBPowerCortageBean setMeritsKill(List<? extends Object> value) {
-		meritsKill = value;
+		this.meritsKill = value;
 		return this;
 	}
 	
@@ -76,7 +76,7 @@ public class DBPowerCortageBean implements DbBean, Serializable {
 	}
 	
 	public DBPowerCortageBean setMeritsDeliver(List<? extends Object> value) {
-		meritsDeliver = value;
+		this.meritsDeliver = value;
 		return this;
 	}
 	
@@ -92,7 +92,7 @@ public class DBPowerCortageBean implements DbBean, Serializable {
 	}
 	
 	public DBPowerCortageBean setCreditsSpend(List<? extends Object> value) {
-		creditsSpend = value;
+		this.creditsSpend = value;
 		return this;
 	}
 	

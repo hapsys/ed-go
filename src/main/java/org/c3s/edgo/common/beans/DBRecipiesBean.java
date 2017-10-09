@@ -27,7 +27,37 @@ public class DBRecipiesBean implements DbBean, Serializable {
 	}
 	
 	public DBRecipiesBean setRecipieId(java.lang.Long value) {
-		recipieId = value;
+		this.recipieId = value;
+		return this;
+	}
+	
+	
+	@DataSource({"recipie_loc_name", "recipieLocName"})
+	@DataTarget("recipie_loc_name")
+	@XMLSimple("recipieLocName")
+	private java.lang.String recipieLocName;
+	
+	public java.lang.String getRecipieLocName() {
+		return recipieLocName;
+	}
+	
+	public DBRecipiesBean setRecipieLocName(java.lang.String value) {
+		this.recipieLocName = value;
+		return this;
+	}
+	
+	
+	@DataSource({"recipie_loc_description", "recipieLocDescription"})
+	@DataTarget("recipie_loc_description")
+	@XMLSimple("recipieLocDescription")
+	private java.lang.String recipieLocDescription;
+	
+	public java.lang.String getRecipieLocDescription() {
+		return recipieLocDescription;
+	}
+	
+	public DBRecipiesBean setRecipieLocDescription(java.lang.String value) {
+		this.recipieLocDescription = value;
 		return this;
 	}
 	
@@ -42,7 +72,7 @@ public class DBRecipiesBean implements DbBean, Serializable {
 	}
 	
 	public DBRecipiesBean setRecipieName(java.lang.String value) {
-		recipieName = value;
+		this.recipieName = value;
 		return this;
 	}
 	

@@ -27,7 +27,7 @@ public class DBFactionsSearchBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionsSearchBean setMaxDate(java.lang.Long value) {
-		maxDate = value;
+		this.maxDate = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBFactionsSearchBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionsSearchBean setMinDate(java.lang.Long value) {
-		minDate = value;
+		this.minDate = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBFactionsSearchBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionsSearchBean setName(java.lang.String value) {
-		name = value;
+		this.name = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBFactionsSearchBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionsSearchBean setFactionId(java.lang.Long value) {
-		factionId = value;
+		this.factionId = value;
 		return this;
 	}
 	

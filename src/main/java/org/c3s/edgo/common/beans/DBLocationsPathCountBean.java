@@ -27,7 +27,7 @@ public class DBLocationsPathCountBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationsPathCountBean setCount(java.lang.Long value) {
-		count = value;
+		this.count = value;
 		return this;
 	}
 	

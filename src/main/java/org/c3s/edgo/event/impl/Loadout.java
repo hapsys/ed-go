@@ -61,7 +61,7 @@ public class Loadout extends AbstractJournalEvent<LoadoutBean> {
 							if (resId != null) {
 								DbAccess.moduleRecipiesAccess.deleteByPilotModuleId(resId.getPilotModuleId());
 								if (module.getEngineerBlueprint() != null) {
-									DBRecipiesBean recipie = ShipsDAO.gerOrInsertRecipie(module.getEngineerBlueprint());
+									DBRecipiesBean recipie = ShipsDAO.getOrInsertRecipie(module.getEngineerBlueprint(), null, null);
 									ShipsDAO.insertOrUpdateModuleRecipie(resId.getPilotModuleId(), recipie.getRecipieId(), module.getEngineerLevel());
 								}
 							}

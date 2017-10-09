@@ -27,7 +27,7 @@ public class DBEngBlueprintBean implements DbBean, Serializable {
 	}
 	
 	public DBEngBlueprintBean setEngBlueprintId(java.lang.Long value) {
-		engBlueprintId = value;
+		this.engBlueprintId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBEngBlueprintBean implements DbBean, Serializable {
 	}
 	
 	public DBEngBlueprintBean setEngBlueprintUniq(java.lang.String value) {
-		engBlueprintUniq = value;
+		this.engBlueprintUniq = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBEngBlueprintBean implements DbBean, Serializable {
 	}
 	
 	public DBEngBlueprintBean setEngTypeId(java.lang.Long value) {
-		engTypeId = value;
+		this.engTypeId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBEngBlueprintBean implements DbBean, Serializable {
 	}
 	
 	public DBEngBlueprintBean setEngBlueprintName(java.lang.String value) {
-		engBlueprintName = value;
+		this.engBlueprintName = value;
 		return this;
 	}
 	

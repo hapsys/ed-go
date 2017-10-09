@@ -27,7 +27,7 @@ public class DBLastLocationForPilotBean implements DbBean, Serializable {
 	}
 	
 	public DBLastLocationForPilotBean setStationName(java.lang.String value) {
-		stationName = value;
+		this.stationName = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBLastLocationForPilotBean implements DbBean, Serializable {
 	}
 	
 	public DBLastLocationForPilotBean setStationTime(java.lang.String value) {
-		stationTime = value;
+		this.stationTime = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBLastLocationForPilotBean implements DbBean, Serializable {
 	}
 	
 	public DBLastLocationForPilotBean setSystemTime(java.lang.String value) {
-		systemTime = value;
+		this.systemTime = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBLastLocationForPilotBean implements DbBean, Serializable {
 	}
 	
 	public DBLastLocationForPilotBean setBodyName(java.lang.String value) {
-		bodyName = value;
+		this.bodyName = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBLastLocationForPilotBean implements DbBean, Serializable {
 	}
 	
 	public DBLastLocationForPilotBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBLastLocationForPilotBean implements DbBean, Serializable {
 	}
 	
 	public DBLastLocationForPilotBean setSystemName(java.lang.String value) {
-		systemName = value;
+		this.systemName = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBLastLocationForPilotBean implements DbBean, Serializable {
 	}
 	
 	public DBLastLocationForPilotBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBLastLocationForPilotBean implements DbBean, Serializable {
 	}
 	
 	public DBLastLocationForPilotBean setLocationId(java.math.BigInteger value) {
-		locationId = value;
+		this.locationId = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBLastLocationForPilotBean implements DbBean, Serializable {
 	}
 	
 	public DBLastLocationForPilotBean setX(java.lang.Double value) {
-		x = value;
+		this.x = value;
 		return this;
 	}
 	
@@ -162,7 +162,7 @@ public class DBLastLocationForPilotBean implements DbBean, Serializable {
 	}
 	
 	public DBLastLocationForPilotBean setY(java.lang.Double value) {
-		y = value;
+		this.y = value;
 		return this;
 	}
 	
@@ -177,7 +177,7 @@ public class DBLastLocationForPilotBean implements DbBean, Serializable {
 	}
 	
 	public DBLastLocationForPilotBean setZ(java.lang.Double value) {
-		z = value;
+		this.z = value;
 		return this;
 	}
 	
@@ -192,7 +192,7 @@ public class DBLastLocationForPilotBean implements DbBean, Serializable {
 	}
 	
 	public DBLastLocationForPilotBean setLocationTime(java.sql.Timestamp value) {
-		locationTime = value;
+		this.locationTime = value;
 		return this;
 	}
 	

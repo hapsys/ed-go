@@ -27,7 +27,7 @@ public class DBBountyFactionBean implements DbBean, Serializable {
 	}
 	
 	public DBBountyFactionBean setBountyFactionId(java.math.BigInteger value) {
-		bountyFactionId = value;
+		this.bountyFactionId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBBountyFactionBean implements DbBean, Serializable {
 	}
 	
 	public DBBountyFactionBean setAmount(java.lang.Long value) {
-		amount = value;
+		this.amount = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBBountyFactionBean implements DbBean, Serializable {
 	}
 	
 	public DBBountyFactionBean setStationHistoryId(java.math.BigInteger value) {
-		stationHistoryId = value;
+		this.stationHistoryId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBBountyFactionBean implements DbBean, Serializable {
 	}
 	
 	public DBBountyFactionBean setBrokerPercent(java.lang.Integer value) {
-		brokerPercent = value;
+		this.brokerPercent = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBBountyFactionBean implements DbBean, Serializable {
 	}
 	
 	public DBBountyFactionBean setFactionId(java.lang.Long value) {
-		factionId = value;
+		this.factionId = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBBountyFactionBean implements DbBean, Serializable {
 	}
 	
 	public DBBountyFactionBean setCreateDate(java.sql.Timestamp value) {
-		createDate = value;
+		this.createDate = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBBountyFactionBean implements DbBean, Serializable {
 	}
 	
 	public DBBountyFactionBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBBountyFactionBean implements DbBean, Serializable {
 	}
 	
 	public DBBountyFactionBean setBountyTypeId(java.lang.Long value) {
-		bountyTypeId = value;
+		this.bountyTypeId = value;
 		return this;
 	}
 	

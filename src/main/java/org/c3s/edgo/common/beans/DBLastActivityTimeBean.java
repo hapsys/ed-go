@@ -27,7 +27,7 @@ public class DBLastActivityTimeBean implements DbBean, Serializable {
 	}
 	
 	public DBLastActivityTimeBean setHours(java.lang.Long value) {
-		hours = value;
+		this.hours = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBLastActivityTimeBean implements DbBean, Serializable {
 	}
 	
 	public DBLastActivityTimeBean setSeconds(java.lang.Long value) {
-		seconds = value;
+		this.seconds = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBLastActivityTimeBean implements DbBean, Serializable {
 	}
 	
 	public DBLastActivityTimeBean setYear(java.lang.Long value) {
-		year = value;
+		this.year = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBLastActivityTimeBean implements DbBean, Serializable {
 	}
 	
 	public DBLastActivityTimeBean setMinutes(java.lang.Long value) {
-		minutes = value;
+		this.minutes = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBLastActivityTimeBean implements DbBean, Serializable {
 	}
 	
 	public DBLastActivityTimeBean setEventDate(java.lang.String value) {
-		eventDate = value;
+		this.eventDate = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBLastActivityTimeBean implements DbBean, Serializable {
 	}
 	
 	public DBLastActivityTimeBean setDays(java.lang.Long value) {
-		days = value;
+		this.days = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBLastActivityTimeBean implements DbBean, Serializable {
 	}
 	
 	public DBLastActivityTimeBean setMonthes(java.lang.Long value) {
-		monthes = value;
+		this.monthes = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBLastActivityTimeBean implements DbBean, Serializable {
 	}
 	
 	public DBLastActivityTimeBean setEventTimestamp(java.sql.Timestamp value) {
-		eventTimestamp = value;
+		this.eventTimestamp = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBLastActivityTimeBean implements DbBean, Serializable {
 	}
 	
 	public DBLastActivityTimeBean setEventTime(java.lang.String value) {
-		eventTime = value;
+		this.eventTime = value;
 		return this;
 	}
 	

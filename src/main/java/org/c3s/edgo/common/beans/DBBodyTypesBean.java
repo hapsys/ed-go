@@ -27,7 +27,7 @@ public class DBBodyTypesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodyTypesBean setBodyTypeUniq(java.lang.String value) {
-		bodyTypeUniq = value;
+		this.bodyTypeUniq = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBBodyTypesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodyTypesBean setBodyTypeName(java.lang.String value) {
-		bodyTypeName = value;
+		this.bodyTypeName = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBBodyTypesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodyTypesBean setBodyTypeId(java.lang.Long value) {
-		bodyTypeId = value;
+		this.bodyTypeId = value;
 		return this;
 	}
 	

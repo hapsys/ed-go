@@ -27,7 +27,7 @@ public class DBLastEventForUserBean implements DbBean, Serializable {
 	}
 	
 	public DBLastEventForUserBean setUsedNames(java.lang.String value) {
-		usedNames = value;
+		this.usedNames = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBLastEventForUserBean implements DbBean, Serializable {
 	}
 	
 	public DBLastEventForUserBean setEvent(java.lang.String value) {
-		event = value;
+		this.event = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBLastEventForUserBean implements DbBean, Serializable {
 	}
 	
 	public DBLastEventForUserBean setHash(java.lang.String value) {
-		hash = value;
+		this.hash = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBLastEventForUserBean implements DbBean, Serializable {
 	}
 	
 	public DBLastEventForUserBean setTimestamp(java.lang.String value) {
-		timestamp = value;
+		this.timestamp = value;
 		return this;
 	}
 	

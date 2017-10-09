@@ -27,7 +27,7 @@ public class DBUserInfoWithDefaultsBean implements DbBean, Serializable {
 	}
 	
 	public DBUserInfoWithDefaultsBean setDefLevel(java.lang.Long value) {
-		defLevel = value;
+		this.defLevel = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBUserInfoWithDefaultsBean implements DbBean, Serializable {
 	}
 	
 	public DBUserInfoWithDefaultsBean setLevel(java.lang.Long value) {
-		level = value;
+		this.level = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBUserInfoWithDefaultsBean implements DbBean, Serializable {
 	}
 	
 	public DBUserInfoWithDefaultsBean setInfoId(java.lang.Long value) {
-		infoId = value;
+		this.infoId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBUserInfoWithDefaultsBean implements DbBean, Serializable {
 	}
 	
 	public DBUserInfoWithDefaultsBean setInfoUniq(java.lang.String value) {
-		infoUniq = value;
+		this.infoUniq = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBUserInfoWithDefaultsBean implements DbBean, Serializable {
 	}
 	
 	public DBUserInfoWithDefaultsBean setSort(java.lang.Long value) {
-		sort = value;
+		this.sort = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBUserInfoWithDefaultsBean implements DbBean, Serializable {
 	}
 	
 	public DBUserInfoWithDefaultsBean setInfoLink(java.lang.String value) {
-		infoLink = value;
+		this.infoLink = value;
 		return this;
 	}
 	

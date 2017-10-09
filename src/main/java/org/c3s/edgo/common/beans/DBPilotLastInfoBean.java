@@ -27,7 +27,7 @@ public class DBPilotLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotLastInfoBean setLoan(java.math.BigInteger value) {
-		loan = value;
+		this.loan = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBPilotLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotLastInfoBean setCredits(java.math.BigInteger value) {
-		credits = value;
+		this.credits = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBPilotLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotLastInfoBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBPilotLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotLastInfoBean setStationId(java.lang.Long value) {
-		stationId = value;
+		this.stationId = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBPilotLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotLastInfoBean setIsSupercruise(java.lang.Integer value) {
-		isSupercruise = value;
+		this.isSupercruise = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBPilotLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotLastInfoBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBPilotLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotLastInfoBean setBodyId(java.math.BigInteger value) {
-		bodyId = value;
+		this.bodyId = value;
 		return this;
 	}
 	

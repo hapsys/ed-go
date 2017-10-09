@@ -27,7 +27,7 @@ public class DBPilotsLastEventsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsLastEventsBean setUserId(java.lang.Long value) {
-		userId = value;
+		this.userId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBPilotsLastEventsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsLastEventsBean setEventHash(java.lang.String value) {
-		eventHash = value;
+		this.eventHash = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBPilotsLastEventsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsLastEventsBean setEventName(java.lang.String value) {
-		eventName = value;
+		this.eventName = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBPilotsLastEventsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsLastEventsBean setEventTimestamp(java.sql.Timestamp value) {
-		eventTimestamp = value;
+		this.eventTimestamp = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBPilotsLastEventsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsLastEventsBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBPilotsLastEventsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsLastEventsBean setEventsHistoryId(java.math.BigInteger value) {
-		eventsHistoryId = value;
+		this.eventsHistoryId = value;
 		return this;
 	}
 	

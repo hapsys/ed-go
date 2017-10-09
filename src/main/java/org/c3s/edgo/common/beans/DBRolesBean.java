@@ -27,7 +27,7 @@ public class DBRolesBean implements DbBean, Serializable {
 	}
 	
 	public DBRolesBean setRole(java.lang.String value) {
-		role = value;
+		this.role = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBRolesBean implements DbBean, Serializable {
 	}
 	
 	public DBRolesBean setRoleId(java.lang.Long value) {
-		roleId = value;
+		this.roleId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBRolesBean implements DbBean, Serializable {
 	}
 	
 	public DBRolesBean setRoleUuid(java.lang.String value) {
-		roleUuid = value;
+		this.roleUuid = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBRolesBean implements DbBean, Serializable {
 	}
 	
 	public DBRolesBean setRoleDescription(java.lang.String value) {
-		roleDescription = value;
+		this.roleDescription = value;
 		return this;
 	}
 	

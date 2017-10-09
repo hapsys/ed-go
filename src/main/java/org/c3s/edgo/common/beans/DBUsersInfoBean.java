@@ -27,7 +27,7 @@ public class DBUsersInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBUsersInfoBean setUserId(java.lang.Long value) {
-		userId = value;
+		this.userId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBUsersInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBUsersInfoBean setLevel(java.lang.Long value) {
-		level = value;
+		this.level = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBUsersInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBUsersInfoBean setInfoId(java.lang.Long value) {
-		infoId = value;
+		this.infoId = value;
 		return this;
 	}
 	

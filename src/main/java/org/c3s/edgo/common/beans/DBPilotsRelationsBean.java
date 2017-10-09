@@ -27,7 +27,7 @@ public class DBPilotsRelationsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsRelationsBean setIsMe(java.lang.Long value) {
-		isMe = value;
+		this.isMe = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBPilotsRelationsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsRelationsBean setRelation(java.lang.Long value) {
-		relation = value;
+		this.relation = value;
 		return this;
 	}
 	

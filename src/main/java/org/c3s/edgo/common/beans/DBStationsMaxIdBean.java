@@ -27,7 +27,7 @@ public class DBStationsMaxIdBean implements DbBean, Serializable {
 	}
 	
 	public DBStationsMaxIdBean setMaxStationId(java.lang.Long value) {
-		maxStationId = value;
+		this.maxStationId = value;
 		return this;
 	}
 	

@@ -2,22 +2,34 @@ package org.c3s.edgo.event.impl;
 	
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
+import org.c3s.edgo.common.access.DBModuleRecipiesAccess;
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBByModuleInfoByUniqBean;
+import org.c3s.edgo.common.beans.DBModifiersBean;
+import org.c3s.edgo.common.beans.DBModuleModifiersBean;
+import org.c3s.edgo.common.beans.DBModuleRecipiesBean;
+import org.c3s.edgo.common.beans.DBModulesBean;
+import org.c3s.edgo.common.beans.DBPilotModulesBean;
 import org.c3s.edgo.common.beans.DBPilotShipsBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
+import org.c3s.edgo.common.beans.DBRecipiesBean;
 import org.c3s.edgo.common.beans.DBSlotsBean;
 import org.c3s.edgo.common.beans.DBStationsBean;
 import org.c3s.edgo.common.beans.DBSystemsBean;
+import org.c3s.edgo.common.dao.PilotDAO;
 import org.c3s.edgo.common.dao.ShipsDAO;
 import org.c3s.edgo.common.dao.SystemsDAO;
 import org.c3s.edgo.companion.CompanionBean;
+import org.c3s.edgo.companion.Modifier;
 import org.c3s.edgo.event.AbstractJournalEvent;
 import org.c3s.edgo.event.impl.beans.CompanionApiBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.sun.syndication.feed.module.Module;
 
 public class CompanionApi extends AbstractJournalEvent<CompanionApiBean> {
 
@@ -111,7 +123,88 @@ public class CompanionApi extends AbstractJournalEvent<CompanionApiBean> {
 				*/
 			}
 			DbAccess.pilotShipsAccess.deleteDeletedByPilotId(pilot.getPilotId());
-			//throw new SQLException();
+			
+			
+			// Update current ship  
+			DBPilotShipsBean ship = ShipsDAO.getOrInsertPilotShip(pilot, companion.ship.name, companion.ship.id, null, null, null, null);
+			DbAccess.pilotModulesAccess.updateSetDeletedByPilotShipId(ship.getPilotShipId());
+			
+			for (String slotName: companion.ship.modules.keySet()) {
+				if (skip.contains(slotName)) {
+					continue;
+				}
+					
+				DBModulesBean module = DbAccess.modulesAccess.getByUniq(companion.ship.modules.get(slotName).module.name);
+				if (module != null) {
+					// Update module
+					if (module.getModuleLocName() == null) {
+						module.setModuleLocName(companion.ship.modules.get(slotName).module.locName);
+						module.setModuleLocDescription(companion.ship.modules.get(slotName).module.locDescription);
+						DbAccess.modulesAccess.updateByPrimaryKey(module, module.getModuleId());
+					}
+
+					DBSlotsBean slot = ShipsDAO.getOrInsertSlot(slotName, null);
+					
+					DBPilotModulesBean pilotModule = DbAccess.pilotModulesAccess.getByPilotShipIdSlotId(ship.getPilotShipId(), slot.getSlotId());
+					
+					if (pilotModule == null) {
+						pilotModule = new DBPilotModulesBean();
+						pilotModule.setPilotShipId(ship.getPilotShipId()).setSlotId(slot.getSlotId()).setModuleId(module.getModuleId()).setCanDeleted(0);
+						DbAccess.pilotModulesAccess.insert(pilotModule);
+					}
+					
+					if (companion.ship.modules.get(slotName).engineer != null) {
+						DBRecipiesBean recipie = ShipsDAO.getOrInsertRecipie(companion.ship.modules.get(slotName).engineer.recipeName, 
+							companion.ship.modules.get(slotName).engineer.recipeLocName, companion.ship.modules.get(slotName).engineer.recipeLocDescription);
+						
+						DBModuleRecipiesBean moduleRecipie = DbAccess.moduleRecipiesAccess.getByPilotModuleIdAndRecipieId(pilotModule.getPilotModuleId(), recipie.getRecipieId());
+						
+						if (moduleRecipie == null) {
+							moduleRecipie = new DBModuleRecipiesBean();
+							moduleRecipie.setPilotModuleId(pilotModule.getPilotModuleId()).setRecipieId(recipie.getRecipieId()).setRecipieLevel(companion.ship.modules.get(slotName).engineer.recipeLevel);
+							DbAccess.moduleRecipiesAccess.insert(moduleRecipie);
+						} else {
+							if (!companion.ship.modules.get(slotName).engineer.recipeLevel.equals(moduleRecipie.getRecipieLevel())) {
+								moduleRecipie.setRecipieLevel(companion.ship.modules.get(slotName).engineer.recipeLevel);
+								DbAccess.moduleRecipiesAccess.updateByPrimaryKey(moduleRecipie, moduleRecipie.getModuleRecipeId());
+							}
+							// Delete modifiers
+							DbAccess.moduleModifiersAccess.deleteByModuleRecipieId(moduleRecipie.getModuleRecipeId());
+						}
+						
+						for(String modifyer: companion.ship.modules.get(slotName).WorkInProgress_modifications.keySet()) {
+							Modifier modification = companion.ship.modules.get(slotName).WorkInProgress_modifications.get(modifyer);
+							String modUniq = modifyer;
+							if (modUniq.startsWith("OutfittingFieldType_")) {
+								modUniq = modUniq.substring("OutfittingFieldType_".length());
+							}
+							
+							DBModifiersBean modBean = ShipsDAO.getOrInsertModifyer(modUniq, modification.locName);
+							
+							DBModuleModifiersBean modModifyer = new DBModuleModifiersBean();
+							
+							modModifyer
+								.setModuleRecipeId(moduleRecipie.getModuleRecipeId())
+								.setModifierId(modBean.getModifierId())
+								.setLessIsGood(modification.LessIsGood?1:0)
+								.setValue(modification.value)
+								.setDisplayValue(modification.displayValue)
+								.setDirection(modification.dir)
+								;
+							
+							DbAccess.moduleModifiersAccess.insert(modModifyer);
+						}
+						
+					} else {
+						DbAccess.moduleRecipiesAccess.deleteByPilotModuleId(pilotModule.getPilotModuleId());
+					}
+					
+				}
+			}
+			
+			DbAccess.pilotModulesAccess.deleteFailModulesByPilotShipId(ship.getPilotShipId());
+			
+			throw new SQLException();
 			
 		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
 			throw new RuntimeException(e);

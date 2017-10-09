@@ -27,7 +27,7 @@ public class DBPilotsImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsImagesBean setStationName(java.lang.String value) {
-		stationName = value;
+		this.stationName = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBPilotsImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsImagesBean setIsActive(java.lang.Integer value) {
-		isActive = value;
+		this.isActive = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBPilotsImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsImagesBean setCreateTime(java.sql.Timestamp value) {
-		createTime = value;
+		this.createTime = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBPilotsImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsImagesBean setBodyName(java.lang.String value) {
-		bodyName = value;
+		this.bodyName = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBPilotsImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsImagesBean setStationHistoryId(java.math.BigInteger value) {
-		stationHistoryId = value;
+		this.stationHistoryId = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBPilotsImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsImagesBean setSystemName(java.lang.String value) {
-		systemName = value;
+		this.systemName = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBPilotsImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsImagesBean setImageDate(java.lang.String value) {
-		imageDate = value;
+		this.imageDate = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBPilotsImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsImagesBean setType(java.lang.String value) {
-		type = value;
+		this.type = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBPilotsImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsImagesBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	
@@ -162,7 +162,7 @@ public class DBPilotsImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsImagesBean setLocationId(java.math.BigInteger value) {
-		locationId = value;
+		this.locationId = value;
 		return this;
 	}
 	
@@ -177,7 +177,7 @@ public class DBPilotsImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsImagesBean setDecription(java.lang.String value) {
-		decription = value;
+		this.decription = value;
 		return this;
 	}
 	
@@ -192,7 +192,7 @@ public class DBPilotsImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsImagesBean setWidth(java.lang.Long value) {
-		width = value;
+		this.width = value;
 		return this;
 	}
 	
@@ -207,7 +207,7 @@ public class DBPilotsImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsImagesBean setImageId(java.lang.Long value) {
-		imageId = value;
+		this.imageId = value;
 		return this;
 	}
 	
@@ -222,7 +222,7 @@ public class DBPilotsImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsImagesBean setHeight(java.lang.Long value) {
-		height = value;
+		this.height = value;
 		return this;
 	}
 	
@@ -238,7 +238,7 @@ public class DBPilotsImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsImagesBean setTumbnails(List<DBTumbnailsForImageBean> value) {
-		tumbnails = value;
+		this.tumbnails = value;
 		return this;
 	}
 	

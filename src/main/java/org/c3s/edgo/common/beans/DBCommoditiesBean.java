@@ -27,7 +27,7 @@ public class DBCommoditiesBean implements DbBean, Serializable {
 	}
 	
 	public DBCommoditiesBean setCommodityId(java.lang.Long value) {
-		commodityId = value;
+		this.commodityId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBCommoditiesBean implements DbBean, Serializable {
 	}
 	
 	public DBCommoditiesBean setComodityCategoryId(java.lang.Long value) {
-		comodityCategoryId = value;
+		this.comodityCategoryId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBCommoditiesBean implements DbBean, Serializable {
 	}
 	
 	public DBCommoditiesBean setCommodityUniq(java.lang.String value) {
-		commodityUniq = value;
+		this.commodityUniq = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBCommoditiesBean implements DbBean, Serializable {
 	}
 	
 	public DBCommoditiesBean setAveragePrice(java.lang.Long value) {
-		averagePrice = value;
+		this.averagePrice = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBCommoditiesBean implements DbBean, Serializable {
 	}
 	
 	public DBCommoditiesBean setIsRare(java.lang.Integer value) {
-		isRare = value;
+		this.isRare = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBCommoditiesBean implements DbBean, Serializable {
 	}
 	
 	public DBCommoditiesBean setCommodityName(java.lang.String value) {
-		commodityName = value;
+		this.commodityName = value;
 		return this;
 	}
 	

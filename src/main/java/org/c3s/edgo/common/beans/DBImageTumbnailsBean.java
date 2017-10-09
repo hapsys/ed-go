@@ -27,7 +27,7 @@ public class DBImageTumbnailsBean implements DbBean, Serializable {
 	}
 	
 	public DBImageTumbnailsBean setUpdateTime(java.sql.Timestamp value) {
-		updateTime = value;
+		this.updateTime = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBImageTumbnailsBean implements DbBean, Serializable {
 	}
 	
 	public DBImageTumbnailsBean setCreateTime(java.sql.Timestamp value) {
-		createTime = value;
+		this.createTime = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBImageTumbnailsBean implements DbBean, Serializable {
 	}
 	
 	public DBImageTumbnailsBean setConfigId(java.lang.Long value) {
-		configId = value;
+		this.configId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBImageTumbnailsBean implements DbBean, Serializable {
 	}
 	
 	public DBImageTumbnailsBean setWidth(java.lang.Long value) {
-		width = value;
+		this.width = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBImageTumbnailsBean implements DbBean, Serializable {
 	}
 	
 	public DBImageTumbnailsBean setTumbnailId(java.lang.Long value) {
-		tumbnailId = value;
+		this.tumbnailId = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBImageTumbnailsBean implements DbBean, Serializable {
 	}
 	
 	public DBImageTumbnailsBean setImageId(java.lang.Long value) {
-		imageId = value;
+		this.imageId = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBImageTumbnailsBean implements DbBean, Serializable {
 	}
 	
 	public DBImageTumbnailsBean setHeight(java.lang.Long value) {
-		height = value;
+		this.height = value;
 		return this;
 	}
 	

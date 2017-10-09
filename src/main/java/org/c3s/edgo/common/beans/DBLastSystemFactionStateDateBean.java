@@ -27,7 +27,7 @@ public class DBLastSystemFactionStateDateBean implements DbBean, Serializable {
 	}
 	
 	public DBLastSystemFactionStateDateBean setCreateDate(java.sql.Timestamp value) {
-		createDate = value;
+		this.createDate = value;
 		return this;
 	}
 	

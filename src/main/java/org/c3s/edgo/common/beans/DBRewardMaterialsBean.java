@@ -27,7 +27,7 @@ public class DBRewardMaterialsBean implements DbBean, Serializable {
 	}
 	
 	public DBRewardMaterialsBean setQuantity(java.lang.Long value) {
-		quantity = value;
+		this.quantity = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBRewardMaterialsBean implements DbBean, Serializable {
 	}
 	
 	public DBRewardMaterialsBean setMissionId(java.math.BigInteger value) {
-		missionId = value;
+		this.missionId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBRewardMaterialsBean implements DbBean, Serializable {
 	}
 	
 	public DBRewardMaterialsBean setMaterialId(java.lang.Long value) {
-		materialId = value;
+		this.materialId = value;
 		return this;
 	}
 	

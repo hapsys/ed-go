@@ -27,7 +27,7 @@ public class DBStationHistoryBean implements DbBean, Serializable {
 	}
 	
 	public DBStationHistoryBean setStationTime(java.sql.Timestamp value) {
-		stationTime = value;
+		this.stationTime = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBStationHistoryBean implements DbBean, Serializable {
 	}
 	
 	public DBStationHistoryBean setStationHistoryId(java.math.BigInteger value) {
-		stationHistoryId = value;
+		this.stationHistoryId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBStationHistoryBean implements DbBean, Serializable {
 	}
 	
 	public DBStationHistoryBean setStationId(java.lang.Long value) {
-		stationId = value;
+		this.stationId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBStationHistoryBean implements DbBean, Serializable {
 	}
 	
 	public DBStationHistoryBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBStationHistoryBean implements DbBean, Serializable {
 	}
 	
 	public DBStationHistoryBean setLocationId(java.math.BigInteger value) {
-		locationId = value;
+		this.locationId = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBStationHistoryBean implements DbBean, Serializable {
 	}
 	
 	public DBStationHistoryBean setIsScan(java.lang.Integer value) {
-		isScan = value;
+		this.isScan = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBStationHistoryBean implements DbBean, Serializable {
 	}
 	
 	public DBStationHistoryBean setBodyId(java.math.BigInteger value) {
-		bodyId = value;
+		this.bodyId = value;
 		return this;
 	}
 	

@@ -27,7 +27,7 @@ public class DBVolcClassesBean implements DbBean, Serializable {
 	}
 	
 	public DBVolcClassesBean setVolcClassName(java.lang.String value) {
-		volcClassName = value;
+		this.volcClassName = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBVolcClassesBean implements DbBean, Serializable {
 	}
 	
 	public DBVolcClassesBean setVolcClassId(java.lang.Long value) {
-		volcClassId = value;
+		this.volcClassId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBVolcClassesBean implements DbBean, Serializable {
 	}
 	
 	public DBVolcClassesBean setVolcClassUniq(java.lang.String value) {
-		volcClassUniq = value;
+		this.volcClassUniq = value;
 		return this;
 	}
 	

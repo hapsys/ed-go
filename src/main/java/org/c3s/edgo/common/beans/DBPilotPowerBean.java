@@ -27,7 +27,7 @@ public class DBPilotPowerBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotPowerBean setPilotPowerId(java.lang.Long value) {
-		pilotPowerId = value;
+		this.pilotPowerId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBPilotPowerBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotPowerBean setPilotPowerTime(java.sql.Timestamp value) {
-		pilotPowerTime = value;
+		this.pilotPowerTime = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBPilotPowerBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotPowerBean setPowerId(java.lang.Long value) {
-		powerId = value;
+		this.powerId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBPilotPowerBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotPowerBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	

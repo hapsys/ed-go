@@ -27,7 +27,7 @@ public class DBSearchPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBSearchPilotsBean setParentPilotId(java.lang.Long value) {
-		parentPilotId = value;
+		this.parentPilotId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBSearchPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBSearchPilotsBean setFederation(java.lang.Integer value) {
-		federation = value;
+		this.federation = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBSearchPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBSearchPilotsBean setExplore(java.lang.Integer value) {
-		explore = value;
+		this.explore = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBSearchPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBSearchPilotsBean setTargetRelation(java.math.BigDecimal value) {
-		targetRelation = value;
+		this.targetRelation = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBSearchPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBSearchPilotsBean setCombat(java.lang.Integer value) {
-		combat = value;
+		this.combat = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBSearchPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBSearchPilotsBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBSearchPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBSearchPilotsBean setTrade(java.lang.Integer value) {
-		trade = value;
+		this.trade = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBSearchPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBSearchPilotsBean setCqc(java.lang.Integer value) {
-		cqc = value;
+		this.cqc = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBSearchPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBSearchPilotsBean setUserId(java.lang.Long value) {
-		userId = value;
+		this.userId = value;
 		return this;
 	}
 	
@@ -162,7 +162,7 @@ public class DBSearchPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBSearchPilotsBean setPilotName(java.lang.String value) {
-		pilotName = value;
+		this.pilotName = value;
 		return this;
 	}
 	
@@ -177,7 +177,7 @@ public class DBSearchPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBSearchPilotsBean setLinkedPilots(java.lang.String value) {
-		linkedPilots = value;
+		this.linkedPilots = value;
 		return this;
 	}
 	
@@ -192,7 +192,7 @@ public class DBSearchPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBSearchPilotsBean setEmpire(java.lang.Integer value) {
-		empire = value;
+		this.empire = value;
 		return this;
 	}
 	
@@ -207,7 +207,7 @@ public class DBSearchPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBSearchPilotsBean setIsCurrent(java.lang.Integer value) {
-		isCurrent = value;
+		this.isCurrent = value;
 		return this;
 	}
 	
@@ -222,7 +222,7 @@ public class DBSearchPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBSearchPilotsBean setSourceRelation(java.math.BigDecimal value) {
-		sourceRelation = value;
+		this.sourceRelation = value;
 		return this;
 	}
 	
@@ -237,7 +237,7 @@ public class DBSearchPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBSearchPilotsBean setIsIgnored(java.lang.Integer value) {
-		isIgnored = value;
+		this.isIgnored = value;
 		return this;
 	}
 	
@@ -252,7 +252,7 @@ public class DBSearchPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBSearchPilotsBean setLevels(java.lang.String value) {
-		levels = value;
+		this.levels = value;
 		return this;
 	}
 	

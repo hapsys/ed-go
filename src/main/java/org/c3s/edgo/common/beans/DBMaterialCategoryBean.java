@@ -27,7 +27,7 @@ public class DBMaterialCategoryBean implements DbBean, Serializable {
 	}
 	
 	public DBMaterialCategoryBean setMaterialCategoryId(java.lang.Long value) {
-		materialCategoryId = value;
+		this.materialCategoryId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBMaterialCategoryBean implements DbBean, Serializable {
 	}
 	
 	public DBMaterialCategoryBean setMaterialCategoryName(java.lang.String value) {
-		materialCategoryName = value;
+		this.materialCategoryName = value;
 		return this;
 	}
 	

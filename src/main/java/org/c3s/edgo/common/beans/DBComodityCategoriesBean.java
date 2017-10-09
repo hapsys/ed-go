@@ -27,7 +27,7 @@ public class DBComodityCategoriesBean implements DbBean, Serializable {
 	}
 	
 	public DBComodityCategoriesBean setComodityCategoryId(java.lang.Long value) {
-		comodityCategoryId = value;
+		this.comodityCategoryId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBComodityCategoriesBean implements DbBean, Serializable {
 	}
 	
 	public DBComodityCategoriesBean setComodityCategoryName(java.lang.String value) {
-		comodityCategoryName = value;
+		this.comodityCategoryName = value;
 		return this;
 	}
 	

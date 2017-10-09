@@ -1,7 +1,13 @@
 package org.c3s.edgo.companion;
 
 public class Modifier {
-	public String name;
-	public float type;
-	public String value;
+	
+	public String locName;
+	public float value;
+	
+	public Boolean LessIsGood;
+	
+	public String displayValue;
+	
+	public String dir;
 }

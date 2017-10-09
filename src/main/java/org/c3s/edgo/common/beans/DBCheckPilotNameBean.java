@@ -27,7 +27,7 @@ public class DBCheckPilotNameBean implements DbBean, Serializable {
 	}
 	
 	public DBCheckPilotNameBean setNameOther(java.lang.Long value) {
-		nameOther = value;
+		this.nameOther = value;
 		return this;
 	}
 	

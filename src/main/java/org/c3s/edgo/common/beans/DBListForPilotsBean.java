@@ -27,7 +27,7 @@ public class DBListForPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBListForPilotsBean setPilotPowerSpendId(java.lang.Long value) {
-		pilotPowerSpendId = value;
+		this.pilotPowerSpendId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBListForPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBListForPilotsBean setQuantity(java.lang.Long value) {
-		quantity = value;
+		this.quantity = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBListForPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBListForPilotsBean setPilotPowerId(java.lang.Long value) {
-		pilotPowerId = value;
+		this.pilotPowerId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBListForPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBListForPilotsBean setStartWeek(java.sql.Timestamp value) {
-		startWeek = value;
+		this.startWeek = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBListForPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBListForPilotsBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBListForPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBListForPilotsBean setQuantitySumm(java.math.BigDecimal value) {
-		quantitySumm = value;
+		this.quantitySumm = value;
 		return this;
 	}
 	

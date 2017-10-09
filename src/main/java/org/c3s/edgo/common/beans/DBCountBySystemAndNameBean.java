@@ -27,7 +27,7 @@ public class DBCountBySystemAndNameBean implements DbBean, Serializable {
 	}
 	
 	public DBCountBySystemAndNameBean setCount(java.lang.Long value) {
-		count = value;
+		this.count = value;
 		return this;
 	}
 	

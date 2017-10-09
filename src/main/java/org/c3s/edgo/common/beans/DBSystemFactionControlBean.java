@@ -27,7 +27,7 @@ public class DBSystemFactionControlBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemFactionControlBean setCreateTime(java.sql.Timestamp value) {
-		createTime = value;
+		this.createTime = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBSystemFactionControlBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemFactionControlBean setSystemFactionControlId(java.lang.Long value) {
-		systemFactionControlId = value;
+		this.systemFactionControlId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBSystemFactionControlBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemFactionControlBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBSystemFactionControlBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemFactionControlBean setFactionId(java.lang.Long value) {
-		factionId = value;
+		this.factionId = value;
 		return this;
 	}
 	

@@ -27,7 +27,7 @@ public class DBPilotMaterialsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotMaterialsBean setUpdateTime(java.sql.Timestamp value) {
-		updateTime = value;
+		this.updateTime = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBPilotMaterialsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotMaterialsBean setQuantity(java.lang.Integer value) {
-		quantity = value;
+		this.quantity = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBPilotMaterialsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotMaterialsBean setCanDelete(java.lang.Integer value) {
-		canDelete = value;
+		this.canDelete = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBPilotMaterialsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotMaterialsBean setMaterialId(java.lang.Long value) {
-		materialId = value;
+		this.materialId = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBPilotMaterialsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotMaterialsBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	

@@ -27,7 +27,7 @@ public class DBMenuPilotsByUserIdBean implements DbBean, Serializable {
 	}
 	
 	public DBMenuPilotsByUserIdBean setParentPilotId(java.lang.Long value) {
-		parentPilotId = value;
+		this.parentPilotId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBMenuPilotsByUserIdBean implements DbBean, Serializable {
 	}
 	
 	public DBMenuPilotsByUserIdBean setUserId(java.lang.Long value) {
-		userId = value;
+		this.userId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBMenuPilotsByUserIdBean implements DbBean, Serializable {
 	}
 	
 	public DBMenuPilotsByUserIdBean setPilotName(java.lang.String value) {
-		pilotName = value;
+		this.pilotName = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBMenuPilotsByUserIdBean implements DbBean, Serializable {
 	}
 	
 	public DBMenuPilotsByUserIdBean setIsCurrent(java.lang.Integer value) {
-		isCurrent = value;
+		this.isCurrent = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBMenuPilotsByUserIdBean implements DbBean, Serializable {
 	}
 	
 	public DBMenuPilotsByUserIdBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBMenuPilotsByUserIdBean implements DbBean, Serializable {
 	}
 	
 	public DBMenuPilotsByUserIdBean setIsIgnored(java.lang.Integer value) {
-		isIgnored = value;
+		this.isIgnored = value;
 		return this;
 	}
 	

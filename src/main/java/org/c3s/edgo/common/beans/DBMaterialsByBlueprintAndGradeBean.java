@@ -27,7 +27,7 @@ public class DBMaterialsByBlueprintAndGradeBean implements DbBean, Serializable 
 	}
 	
 	public DBMaterialsByBlueprintAndGradeBean setMaterialUniq(java.lang.String value) {
-		materialUniq = value;
+		this.materialUniq = value;
 		return this;
 	}
 	

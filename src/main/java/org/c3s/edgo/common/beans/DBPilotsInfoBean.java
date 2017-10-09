@@ -27,7 +27,7 @@ public class DBPilotsInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsInfoBean setLevel(java.lang.Long value) {
-		level = value;
+		this.level = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBPilotsInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsInfoBean setInfoId(java.lang.Long value) {
-		infoId = value;
+		this.infoId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBPilotsInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsInfoBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	

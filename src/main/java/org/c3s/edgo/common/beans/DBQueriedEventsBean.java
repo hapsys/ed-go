@@ -27,7 +27,7 @@ public class DBQueriedEventsBean implements DbBean, Serializable {
 	}
 	
 	public DBQueriedEventsBean setQueredEvents(java.lang.Long value) {
-		queredEvents = value;
+		this.queredEvents = value;
 		return this;
 	}
 	

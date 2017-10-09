@@ -27,7 +27,7 @@ public class DBSystemFactionInfluence1Bean implements DbBean, Serializable {
 	}
 	
 	public DBSystemFactionInfluence1Bean setFactionName(java.lang.String value) {
-		factionName = value;
+		this.factionName = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBSystemFactionInfluence1Bean implements DbBean, Serializable {
 	}
 	
 	public DBSystemFactionInfluence1Bean setStateName(java.lang.String value) {
-		stateName = value;
+		this.stateName = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBSystemFactionInfluence1Bean implements DbBean, Serializable {
 	}
 	
 	public DBSystemFactionInfluence1Bean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBSystemFactionInfluence1Bean implements DbBean, Serializable {
 	}
 	
 	public DBSystemFactionInfluence1Bean setSystemName(java.lang.String value) {
-		systemName = value;
+		this.systemName = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBSystemFactionInfluence1Bean implements DbBean, Serializable {
 	}
 	
 	public DBSystemFactionInfluence1Bean setFactionId(java.lang.Long value) {
-		factionId = value;
+		this.factionId = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBSystemFactionInfluence1Bean implements DbBean, Serializable {
 	}
 	
 	public DBSystemFactionInfluence1Bean setStateId(java.lang.Long value) {
-		stateId = value;
+		this.stateId = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBSystemFactionInfluence1Bean implements DbBean, Serializable {
 	}
 	
 	public DBSystemFactionInfluence1Bean setCreateDate(java.sql.Timestamp value) {
-		createDate = value;
+		this.createDate = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBSystemFactionInfluence1Bean implements DbBean, Serializable {
 	}
 	
 	public DBSystemFactionInfluence1Bean setSystemFactionsHistoryId(java.math.BigInteger value) {
-		systemFactionsHistoryId = value;
+		this.systemFactionsHistoryId = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBSystemFactionInfluence1Bean implements DbBean, Serializable {
 	}
 	
 	public DBSystemFactionInfluence1Bean setInfluence(java.lang.Float value) {
-		influence = value;
+		this.influence = value;
 		return this;
 	}
 	
@@ -162,7 +162,7 @@ public class DBSystemFactionInfluence1Bean implements DbBean, Serializable {
 	}
 	
 	public DBSystemFactionInfluence1Bean setStateUniq(java.lang.String value) {
-		stateUniq = value;
+		this.stateUniq = value;
 		return this;
 	}
 	

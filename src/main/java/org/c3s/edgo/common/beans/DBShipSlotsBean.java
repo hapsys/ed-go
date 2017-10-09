@@ -27,7 +27,7 @@ public class DBShipSlotsBean implements DbBean, Serializable {
 	}
 	
 	public DBShipSlotsBean setModuleId(java.lang.Long value) {
-		moduleId = value;
+		this.moduleId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBShipSlotsBean implements DbBean, Serializable {
 	}
 	
 	public DBShipSlotsBean setSlotId(java.lang.Long value) {
-		slotId = value;
+		this.slotId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBShipSlotsBean implements DbBean, Serializable {
 	}
 	
 	public DBShipSlotsBean setLinkSize(java.lang.Integer value) {
-		linkSize = value;
+		this.linkSize = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBShipSlotsBean implements DbBean, Serializable {
 	}
 	
 	public DBShipSlotsBean setCanDeleted(java.lang.Integer value) {
-		canDeleted = value;
+		this.canDeleted = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBShipSlotsBean implements DbBean, Serializable {
 	}
 	
 	public DBShipSlotsBean setShipId(java.lang.Long value) {
-		shipId = value;
+		this.shipId = value;
 		return this;
 	}
 	

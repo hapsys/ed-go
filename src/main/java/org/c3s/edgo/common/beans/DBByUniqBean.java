@@ -27,7 +27,7 @@ public class DBByUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBByUniqBean setModuleGroupId(java.lang.Long value) {
-		moduleGroupId = value;
+		this.moduleGroupId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBByUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBByUniqBean setModuleRating(java.lang.String value) {
-		moduleRating = value;
+		this.moduleRating = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBByUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBByUniqBean setModuleId(java.lang.Long value) {
-		moduleId = value;
+		this.moduleId = value;
 		return this;
 	}
 	
@@ -72,7 +72,22 @@ public class DBByUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBByUniqBean setModuleWeaponMode(java.lang.String value) {
-		moduleWeaponMode = value;
+		this.moduleWeaponMode = value;
+		return this;
+	}
+	
+	
+	@DataSource({"module_loc_description", "moduleLocDescription"})
+	@DataTarget("module_loc_description")
+	@XMLSimple("moduleLocDescription")
+	private java.lang.String moduleLocDescription;
+	
+	public java.lang.String getModuleLocDescription() {
+		return moduleLocDescription;
+	}
+	
+	public DBByUniqBean setModuleLocDescription(java.lang.String value) {
+		this.moduleLocDescription = value;
 		return this;
 	}
 	
@@ -87,7 +102,7 @@ public class DBByUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBByUniqBean setModuleName(java.lang.String value) {
-		moduleName = value;
+		this.moduleName = value;
 		return this;
 	}
 	
@@ -102,7 +117,22 @@ public class DBByUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBByUniqBean setModuleUniq(java.lang.String value) {
-		moduleUniq = value;
+		this.moduleUniq = value;
+		return this;
+	}
+	
+	
+	@DataSource({"module_loc_name", "moduleLocName"})
+	@DataTarget("module_loc_name")
+	@XMLSimple("moduleLocName")
+	private java.lang.String moduleLocName;
+	
+	public java.lang.String getModuleLocName() {
+		return moduleLocName;
+	}
+	
+	public DBByUniqBean setModuleLocName(java.lang.String value) {
+		this.moduleLocName = value;
 		return this;
 	}
 	
@@ -117,7 +147,7 @@ public class DBByUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBByUniqBean setModuleClass(java.lang.Integer value) {
-		moduleClass = value;
+		this.moduleClass = value;
 		return this;
 	}
 	

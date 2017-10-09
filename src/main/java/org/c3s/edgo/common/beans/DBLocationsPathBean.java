@@ -27,7 +27,7 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationsPathBean setStationName(java.lang.String value) {
-		stationName = value;
+		this.stationName = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationsPathBean setDistance(java.lang.String value) {
-		distance = value;
+		this.distance = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationsPathBean setBodyName(java.lang.String value) {
-		bodyName = value;
+		this.bodyName = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationsPathBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationsPathBean setSystemName(java.lang.String value) {
-		systemName = value;
+		this.systemName = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationsPathBean setStationId(java.lang.Long value) {
-		stationId = value;
+		this.stationId = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationsPathBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationsPathBean setLocationId(java.math.BigInteger value) {
-		locationId = value;
+		this.locationId = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationsPathBean setEddbBodyId(java.math.BigInteger value) {
-		eddbBodyId = value;
+		this.eddbBodyId = value;
 		return this;
 	}
 	
@@ -162,7 +162,7 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationsPathBean setStationTimestamp(java.lang.String value) {
-		stationTimestamp = value;
+		this.stationTimestamp = value;
 		return this;
 	}
 	
@@ -177,7 +177,7 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationsPathBean setX(java.lang.Double value) {
-		x = value;
+		this.x = value;
 		return this;
 	}
 	
@@ -192,7 +192,7 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationsPathBean setY(java.lang.Double value) {
-		y = value;
+		this.y = value;
 		return this;
 	}
 	
@@ -207,7 +207,7 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationsPathBean setZ(java.lang.Double value) {
-		z = value;
+		this.z = value;
 		return this;
 	}
 	
@@ -222,7 +222,7 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationsPathBean setPosition(java.lang.String value) {
-		position = value;
+		this.position = value;
 		return this;
 	}
 	
@@ -237,7 +237,7 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationsPathBean setLocationTime(java.sql.Timestamp value) {
-		locationTime = value;
+		this.locationTime = value;
 		return this;
 	}
 	
@@ -252,7 +252,7 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationsPathBean setBodyId(java.math.BigInteger value) {
-		bodyId = value;
+		this.bodyId = value;
 		return this;
 	}
 	
@@ -267,7 +267,7 @@ public class DBLocationsPathBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationsPathBean setTimestamp(java.lang.String value) {
-		timestamp = value;
+		this.timestamp = value;
 		return this;
 	}
 	

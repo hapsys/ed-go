@@ -27,7 +27,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setProgressExplore(java.lang.Integer value) {
-		progressExplore = value;
+		this.progressExplore = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setLoan(java.math.BigInteger value) {
-		loan = value;
+		this.loan = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setLastSeen(java.lang.String value) {
-		lastSeen = value;
+		this.lastSeen = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setCombat(java.lang.Integer value) {
-		combat = value;
+		this.combat = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setCredits(java.math.BigInteger value) {
-		credits = value;
+		this.credits = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setProgressEmpire(java.lang.Integer value) {
-		progressEmpire = value;
+		this.progressEmpire = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setEmpire(java.lang.Integer value) {
-		empire = value;
+		this.empire = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setBodyId(java.math.BigInteger value) {
-		bodyId = value;
+		this.bodyId = value;
 		return this;
 	}
 	
@@ -162,7 +162,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setGameGroup(java.lang.String value) {
-		gameGroup = value;
+		this.gameGroup = value;
 		return this;
 	}
 	
@@ -177,7 +177,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setFederation(java.lang.Integer value) {
-		federation = value;
+		this.federation = value;
 		return this;
 	}
 	
@@ -192,7 +192,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setStationName(java.lang.String value) {
-		stationName = value;
+		this.stationName = value;
 		return this;
 	}
 	
@@ -207,7 +207,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setExplore(java.lang.Integer value) {
-		explore = value;
+		this.explore = value;
 		return this;
 	}
 	
@@ -222,7 +222,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setBodyName(java.lang.String value) {
-		bodyName = value;
+		this.bodyName = value;
 		return this;
 	}
 	
@@ -237,7 +237,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setModeStart(java.sql.Timestamp value) {
-		modeStart = value;
+		this.modeStart = value;
 		return this;
 	}
 	
@@ -252,7 +252,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -267,7 +267,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setSystemName(java.lang.String value) {
-		systemName = value;
+		this.systemName = value;
 		return this;
 	}
 	
@@ -282,7 +282,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setStationId(java.lang.Long value) {
-		stationId = value;
+		this.stationId = value;
 		return this;
 	}
 	
@@ -297,7 +297,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setProgressCqc(java.lang.Integer value) {
-		progressCqc = value;
+		this.progressCqc = value;
 		return this;
 	}
 	
@@ -312,7 +312,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setQueredEvents(java.lang.Long value) {
-		queredEvents = value;
+		this.queredEvents = value;
 		return this;
 	}
 	
@@ -327,7 +327,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setModeEnd(java.sql.Timestamp value) {
-		modeEnd = value;
+		this.modeEnd = value;
 		return this;
 	}
 	
@@ -342,7 +342,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setProgressFederation(java.lang.Integer value) {
-		progressFederation = value;
+		this.progressFederation = value;
 		return this;
 	}
 	
@@ -357,7 +357,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setFlyMode(java.lang.String value) {
-		flyMode = value;
+		this.flyMode = value;
 		return this;
 	}
 	
@@ -372,7 +372,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setTrade(java.lang.Integer value) {
-		trade = value;
+		this.trade = value;
 		return this;
 	}
 	
@@ -387,7 +387,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setPilotGameModeId(java.math.BigInteger value) {
-		pilotGameModeId = value;
+		this.pilotGameModeId = value;
 		return this;
 	}
 	
@@ -402,7 +402,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setCqc(java.lang.Integer value) {
-		cqc = value;
+		this.cqc = value;
 		return this;
 	}
 	
@@ -417,7 +417,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setProgressCombat(java.lang.Integer value) {
-		progressCombat = value;
+		this.progressCombat = value;
 		return this;
 	}
 	
@@ -432,7 +432,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setLastEvent(java.lang.Long value) {
-		lastEvent = value;
+		this.lastEvent = value;
 		return this;
 	}
 	
@@ -447,7 +447,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setGameMode(java.lang.String value) {
-		gameMode = value;
+		this.gameMode = value;
 		return this;
 	}
 	
@@ -462,7 +462,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setEventName(java.lang.String value) {
-		eventName = value;
+		this.eventName = value;
 		return this;
 	}
 	
@@ -477,7 +477,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setProgressTrade(java.lang.Integer value) {
-		progressTrade = value;
+		this.progressTrade = value;
 		return this;
 	}
 	
@@ -492,7 +492,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setIsSupercruise(java.lang.Integer value) {
-		isSupercruise = value;
+		this.isSupercruise = value;
 		return this;
 	}
 	
@@ -507,7 +507,7 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBFullLastInfoBean setGameModeId(java.lang.Long value) {
-		gameModeId = value;
+		this.gameModeId = value;
 		return this;
 	}
 	

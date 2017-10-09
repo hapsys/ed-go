@@ -27,7 +27,7 @@ public class DBSystemsInBoxBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemsInBoxBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBSystemsInBoxBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemsInBoxBean setX(java.lang.Double value) {
-		x = value;
+		this.x = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBSystemsInBoxBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemsInBoxBean setName(java.lang.String value) {
-		name = value;
+		this.name = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBSystemsInBoxBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemsInBoxBean setIsPopulated(java.lang.Integer value) {
-		isPopulated = value;
+		this.isPopulated = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBSystemsInBoxBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemsInBoxBean setY(java.lang.Double value) {
-		y = value;
+		this.y = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBSystemsInBoxBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemsInBoxBean setZ(java.lang.Double value) {
-		z = value;
+		this.z = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBSystemsInBoxBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemsInBoxBean setNameStations(java.lang.String value) {
-		nameStations = value;
+		this.nameStations = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBSystemsInBoxBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemsInBoxBean setSystemEddbId(java.math.BigInteger value) {
-		systemEddbId = value;
+		this.systemEddbId = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBSystemsInBoxBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemsInBoxBean setNameUniq(java.lang.String value) {
-		nameUniq = value;
+		this.nameUniq = value;
 		return this;
 	}
 	

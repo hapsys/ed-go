@@ -27,7 +27,7 @@ public class DBInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBInfoBean setDefLevel(java.lang.Long value) {
-		defLevel = value;
+		this.defLevel = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBInfoBean setInfoId(java.lang.Long value) {
-		infoId = value;
+		this.infoId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBInfoBean setInfoUniq(java.lang.String value) {
-		infoUniq = value;
+		this.infoUniq = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBInfoBean setSort(java.lang.Long value) {
-		sort = value;
+		this.sort = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBInfoBean setInfoLink(java.lang.String value) {
-		infoLink = value;
+		this.infoLink = value;
 		return this;
 	}
 	

@@ -27,7 +27,7 @@ public class DBImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBImagesBean setDecription(java.lang.String value) {
-		decription = value;
+		this.decription = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBImagesBean setIsActive(java.lang.Integer value) {
-		isActive = value;
+		this.isActive = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBImagesBean setCreateTime(java.sql.Timestamp value) {
-		createTime = value;
+		this.createTime = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBImagesBean setStationHistoryId(java.math.BigInteger value) {
-		stationHistoryId = value;
+		this.stationHistoryId = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBImagesBean setWidth(java.lang.Long value) {
-		width = value;
+		this.width = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBImagesBean setImageId(java.lang.Long value) {
-		imageId = value;
+		this.imageId = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBImagesBean setType(java.lang.String value) {
-		type = value;
+		this.type = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBImagesBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBImagesBean setLocationId(java.math.BigInteger value) {
-		locationId = value;
+		this.locationId = value;
 		return this;
 	}
 	
@@ -162,7 +162,7 @@ public class DBImagesBean implements DbBean, Serializable {
 	}
 	
 	public DBImagesBean setHeight(java.lang.Long value) {
-		height = value;
+		this.height = value;
 		return this;
 	}
 	

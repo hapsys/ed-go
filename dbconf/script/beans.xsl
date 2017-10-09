@@ -50,7 +50,7 @@ public class <xsl:value-of select="$class_name"/> implements DbBean, Serializabl
 	}
 	
 	public <xsl:value-of select="$class_name"/> set<xsl:value-of select="@name"/>(<xsl:value-of select="@type"/> value) {
-		<xsl:value-of select="$varname"/> = value;
+		this.<xsl:value-of select="$varname"/> = value;
 		return this;
 	}
 	</xsl:for-each>

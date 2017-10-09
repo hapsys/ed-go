@@ -27,7 +27,7 @@ public class DBUserKeysBean implements DbBean, Serializable {
 	}
 	
 	public DBUserKeysBean setPublicKey(java.lang.String value) {
-		publicKey = value;
+		this.publicKey = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBUserKeysBean implements DbBean, Serializable {
 	}
 	
 	public DBUserKeysBean setUpdateTime(java.sql.Timestamp value) {
-		updateTime = value;
+		this.updateTime = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBUserKeysBean implements DbBean, Serializable {
 	}
 	
 	public DBUserKeysBean setCreateTime(java.sql.Timestamp value) {
-		createTime = value;
+		this.createTime = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBUserKeysBean implements DbBean, Serializable {
 	}
 	
 	public DBUserKeysBean setUserKeyId(java.lang.Long value) {
-		userKeyId = value;
+		this.userKeyId = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBUserKeysBean implements DbBean, Serializable {
 	}
 	
 	public DBUserKeysBean setSessionKey(java.lang.String value) {
-		sessionKey = value;
+		this.sessionKey = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBUserKeysBean implements DbBean, Serializable {
 	}
 	
 	public DBUserKeysBean setPrivateKey(java.lang.String value) {
-		privateKey = value;
+		this.privateKey = value;
 		return this;
 	}
 	

@@ -27,7 +27,7 @@ public class DBSlotsBean implements DbBean, Serializable {
 	}
 	
 	public DBSlotsBean setSize(java.lang.Integer value) {
-		size = value;
+		this.size = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBSlotsBean implements DbBean, Serializable {
 	}
 	
 	public DBSlotsBean setSlotId(java.lang.Long value) {
-		slotId = value;
+		this.slotId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBSlotsBean implements DbBean, Serializable {
 	}
 	
 	public DBSlotsBean setSlotUniq(java.lang.String value) {
-		slotUniq = value;
+		this.slotUniq = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBSlotsBean implements DbBean, Serializable {
 	}
 	
 	public DBSlotsBean setSlotTypeId(java.lang.Long value) {
-		slotTypeId = value;
+		this.slotTypeId = value;
 		return this;
 	}
 	

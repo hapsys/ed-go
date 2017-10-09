@@ -27,7 +27,7 @@ public class DBUserLevelsBean implements DbBean, Serializable {
 	}
 	
 	public DBUserLevelsBean setUserId(Long value) {
-		userId = value;
+		this.userId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBUserLevelsBean implements DbBean, Serializable {
 	}
 	
 	public DBUserLevelsBean setInfoId(Long value) {
-		infoId = value;
+		this.infoId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBUserLevelsBean implements DbBean, Serializable {
 	}
 	
 	public DBUserLevelsBean setRelateTo(String value) {
-		relateTo = value;
+		this.relateTo = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBUserLevelsBean implements DbBean, Serializable {
 	}
 	
 	public DBUserLevelsBean setMask(Long value) {
-		mask = value;
+		this.mask = value;
 		return this;
 	}
 	

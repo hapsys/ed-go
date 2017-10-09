@@ -27,7 +27,7 @@ public class DBFactionDateMinMaxBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionDateMinMaxBean setMaxDate(java.lang.Long value) {
-		maxDate = value;
+		this.maxDate = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBFactionDateMinMaxBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionDateMinMaxBean setMinDate(java.lang.Long value) {
-		minDate = value;
+		this.minDate = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBFactionDateMinMaxBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionDateMinMaxBean setFactionId(java.lang.Long value) {
-		factionId = value;
+		this.factionId = value;
 		return this;
 	}
 	

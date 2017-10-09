@@ -27,7 +27,7 @@ public class DBFactionsBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionsBean setAllegianceId(java.lang.Long value) {
-		allegianceId = value;
+		this.allegianceId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBFactionsBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionsBean setFactionId(java.lang.Long value) {
-		factionId = value;
+		this.factionId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBFactionsBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionsBean setAllegiance(java.lang.String value) {
-		allegiance = value;
+		this.allegiance = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBFactionsBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionsBean setGovernmentId(java.lang.Long value) {
-		governmentId = value;
+		this.governmentId = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBFactionsBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionsBean setGovernment(java.lang.String value) {
-		government = value;
+		this.government = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBFactionsBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionsBean setUpdatedAt(java.lang.Long value) {
-		updatedAt = value;
+		this.updatedAt = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBFactionsBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionsBean setUniq(java.lang.String value) {
-		uniq = value;
+		this.uniq = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBFactionsBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionsBean setIsPlayerFaction(java.lang.Integer value) {
-		isPlayerFaction = value;
+		this.isPlayerFaction = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBFactionsBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionsBean setName(java.lang.String value) {
-		name = value;
+		this.name = value;
 		return this;
 	}
 	
@@ -162,7 +162,7 @@ public class DBFactionsBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionsBean setStateId(java.lang.Long value) {
-		stateId = value;
+		this.stateId = value;
 		return this;
 	}
 	
@@ -177,7 +177,7 @@ public class DBFactionsBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionsBean setState(java.lang.String value) {
-		state = value;
+		this.state = value;
 		return this;
 	}
 	
@@ -192,7 +192,7 @@ public class DBFactionsBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionsBean setHomeSystemId(java.lang.Long value) {
-		homeSystemId = value;
+		this.homeSystemId = value;
 		return this;
 	}
 	

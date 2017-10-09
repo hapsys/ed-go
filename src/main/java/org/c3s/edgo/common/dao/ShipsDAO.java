@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBByModuleInfoByUniqBean;
 import org.c3s.edgo.common.beans.DBLocationHistoryBean;
+import org.c3s.edgo.common.beans.DBModifiersBean;
 import org.c3s.edgo.common.beans.DBModuleRecipiesBean;
 import org.c3s.edgo.common.beans.DBPilotModulesBean;
 import org.c3s.edgo.common.beans.DBPilotShipsBean;
@@ -185,12 +186,18 @@ public class ShipsDAO {
 	}
 	
 	
-	public static DBRecipiesBean gerOrInsertRecipie(String recipieName) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+	public static DBRecipiesBean getOrInsertRecipie(String recipieName, String recipieLocName, String recipieLocDescription) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		DBRecipiesBean bean = DbAccess.recipiesAccess.getByName(recipieName);
 		if (bean == null) {
 			bean = new DBRecipiesBean();
 			bean.setRecipieName(recipieName);
+			bean.setRecipieLocName(recipieLocName);
+			bean.setRecipieLocDescription(recipieLocDescription);
 			DbAccess.recipiesAccess.insert(bean);
+		} else if (bean.getRecipieLocName() ==  null) {
+			bean.setRecipieLocName(recipieLocName);
+			bean.setRecipieLocDescription(recipieLocDescription);
+			DbAccess.recipiesAccess.updateByPrimaryKey(bean, bean.getRecipieId());
 		}
 		return bean;
 	}
@@ -204,6 +211,16 @@ public class ShipsDAO {
 		} else {
 			bean.setRecipieLevel(level);
 			DbAccess.moduleRecipiesAccess.updateByPrimaryKey(bean, bean.getModuleRecipeId());
+		}
+		return bean;
+	}
+	
+	public static DBModifiersBean getOrInsertModifyer(String uniq, String name) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		DBModifiersBean bean = DbAccess.modifiersAccess.getByModifyerUniq(uniq);
+		if (bean == null) {
+			bean = new DBModifiersBean();
+			bean.setModifierUniq(uniq).setModifierName(name);
+			DbAccess.modifiersAccess.insert(bean);
 		}
 		return bean;
 	}

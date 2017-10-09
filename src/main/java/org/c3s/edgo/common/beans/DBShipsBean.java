@@ -27,7 +27,7 @@ public class DBShipsBean implements DbBean, Serializable {
 	}
 	
 	public DBShipsBean setShipUniq(java.lang.String value) {
-		shipUniq = value;
+		this.shipUniq = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBShipsBean implements DbBean, Serializable {
 	}
 	
 	public DBShipsBean setIsSpecial(java.lang.Integer value) {
-		isSpecial = value;
+		this.isSpecial = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBShipsBean implements DbBean, Serializable {
 	}
 	
 	public DBShipsBean setShipName(java.lang.String value) {
-		shipName = value;
+		this.shipName = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBShipsBean implements DbBean, Serializable {
 	}
 	
 	public DBShipsBean setShipId(java.lang.Long value) {
-		shipId = value;
+		this.shipId = value;
 		return this;
 	}
 	
@@ -88,7 +88,7 @@ public class DBShipsBean implements DbBean, Serializable {
 	}
 	
 	public DBShipsBean setSlots(DBSlotsBean value) {
-		slots = value;
+		this.slots = value;
 		return this;
 	}
 	

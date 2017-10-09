@@ -27,7 +27,7 @@ public class DBTumbnailsForImageBean implements DbBean, Serializable {
 	}
 	
 	public DBTumbnailsForImageBean setConfigName(java.lang.String value) {
-		configName = value;
+		this.configName = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBTumbnailsForImageBean implements DbBean, Serializable {
 	}
 	
 	public DBTumbnailsForImageBean setUpdateTime(java.sql.Timestamp value) {
-		updateTime = value;
+		this.updateTime = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBTumbnailsForImageBean implements DbBean, Serializable {
 	}
 	
 	public DBTumbnailsForImageBean setCreateTime(java.sql.Timestamp value) {
-		createTime = value;
+		this.createTime = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBTumbnailsForImageBean implements DbBean, Serializable {
 	}
 	
 	public DBTumbnailsForImageBean setConfigId(java.lang.Long value) {
-		configId = value;
+		this.configId = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBTumbnailsForImageBean implements DbBean, Serializable {
 	}
 	
 	public DBTumbnailsForImageBean setWidth(java.lang.Long value) {
-		width = value;
+		this.width = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBTumbnailsForImageBean implements DbBean, Serializable {
 	}
 	
 	public DBTumbnailsForImageBean setTumbnailId(java.lang.Long value) {
-		tumbnailId = value;
+		this.tumbnailId = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBTumbnailsForImageBean implements DbBean, Serializable {
 	}
 	
 	public DBTumbnailsForImageBean setImageId(java.lang.Long value) {
-		imageId = value;
+		this.imageId = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBTumbnailsForImageBean implements DbBean, Serializable {
 	}
 	
 	public DBTumbnailsForImageBean setType(java.lang.String value) {
-		type = value;
+		this.type = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBTumbnailsForImageBean implements DbBean, Serializable {
 	}
 	
 	public DBTumbnailsForImageBean setHeight(java.lang.Long value) {
-		height = value;
+		this.height = value;
 		return this;
 	}
 	

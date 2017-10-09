@@ -27,7 +27,7 @@ public class DBLastPilotInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBLastPilotInfoBean setLoan(java.math.BigInteger value) {
-		loan = value;
+		this.loan = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBLastPilotInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBLastPilotInfoBean setModeStart(java.sql.Timestamp value) {
-		modeStart = value;
+		this.modeStart = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBLastPilotInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBLastPilotInfoBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBLastPilotInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBLastPilotInfoBean setStationId(java.lang.Long value) {
-		stationId = value;
+		this.stationId = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBLastPilotInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBLastPilotInfoBean setModeEnd(java.sql.Timestamp value) {
-		modeEnd = value;
+		this.modeEnd = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBLastPilotInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBLastPilotInfoBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBLastPilotInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBLastPilotInfoBean setPilotGameModeId(java.math.BigInteger value) {
-		pilotGameModeId = value;
+		this.pilotGameModeId = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBLastPilotInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBLastPilotInfoBean setCredits(java.math.BigInteger value) {
-		credits = value;
+		this.credits = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBLastPilotInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBLastPilotInfoBean setGameMode(java.lang.String value) {
-		gameMode = value;
+		this.gameMode = value;
 		return this;
 	}
 	
@@ -162,7 +162,7 @@ public class DBLastPilotInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBLastPilotInfoBean setIsSupercruise(java.lang.Integer value) {
-		isSupercruise = value;
+		this.isSupercruise = value;
 		return this;
 	}
 	
@@ -177,7 +177,7 @@ public class DBLastPilotInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBLastPilotInfoBean setGameModeId(java.lang.Long value) {
-		gameModeId = value;
+		this.gameModeId = value;
 		return this;
 	}
 	
@@ -192,7 +192,7 @@ public class DBLastPilotInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBLastPilotInfoBean setBodyId(java.math.BigInteger value) {
-		bodyId = value;
+		this.bodyId = value;
 		return this;
 	}
 	
@@ -207,7 +207,7 @@ public class DBLastPilotInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBLastPilotInfoBean setGameGroup(java.lang.String value) {
-		gameGroup = value;
+		this.gameGroup = value;
 		return this;
 	}
 	

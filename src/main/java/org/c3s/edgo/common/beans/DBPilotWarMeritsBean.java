@@ -27,7 +27,7 @@ public class DBPilotWarMeritsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotWarMeritsBean setQuantity(java.lang.Long value) {
-		quantity = value;
+		this.quantity = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBPilotWarMeritsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotWarMeritsBean setIsConfirmed(java.lang.Integer value) {
-		isConfirmed = value;
+		this.isConfirmed = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBPilotWarMeritsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotWarMeritsBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBPilotWarMeritsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotWarMeritsBean setPilotPowerId(java.lang.Long value) {
-		pilotPowerId = value;
+		this.pilotPowerId = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBPilotWarMeritsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotWarMeritsBean setPilotWarMeritsId(java.lang.Long value) {
-		pilotWarMeritsId = value;
+		this.pilotWarMeritsId = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBPilotWarMeritsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotWarMeritsBean setStartWeek(java.sql.Timestamp value) {
-		startWeek = value;
+		this.startWeek = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBPilotWarMeritsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotWarMeritsBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	
@@ -133,7 +133,7 @@ public class DBPilotWarMeritsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotWarMeritsBean setSystemName(String value) {
-		systemName = value;
+		this.systemName = value;
 		return this;
 	}
 	
@@ -149,7 +149,7 @@ public class DBPilotWarMeritsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotWarMeritsBean setQuantitySumm(java.math.BigDecimal value) {
-		quantitySumm = value;
+		this.quantitySumm = value;
 		return this;
 	}
 	

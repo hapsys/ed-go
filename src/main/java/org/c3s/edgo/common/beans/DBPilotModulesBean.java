@@ -27,7 +27,7 @@ public class DBPilotModulesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotModulesBean setPilotShipId(java.lang.Long value) {
-		pilotShipId = value;
+		this.pilotShipId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBPilotModulesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotModulesBean setModuleId(java.lang.Long value) {
-		moduleId = value;
+		this.moduleId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBPilotModulesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotModulesBean setPilotModuleId(java.lang.Long value) {
-		pilotModuleId = value;
+		this.pilotModuleId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBPilotModulesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotModulesBean setSlotId(java.lang.Long value) {
-		slotId = value;
+		this.slotId = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBPilotModulesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotModulesBean setCanDeleted(java.lang.Integer value) {
-		canDeleted = value;
+		this.canDeleted = value;
 		return this;
 	}
 	

@@ -27,7 +27,7 @@ public class DBSystemsFactionHistoryBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemsFactionHistoryBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBSystemsFactionHistoryBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemsFactionHistoryBean setFactionId(java.lang.Long value) {
-		factionId = value;
+		this.factionId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBSystemsFactionHistoryBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemsFactionHistoryBean setCreateDate(java.lang.String value) {
-		createDate = value;
+		this.createDate = value;
 		return this;
 	}
 	

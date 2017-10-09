@@ -27,7 +27,7 @@ public class DBModuleRecipiesBean implements DbBean, Serializable {
 	}
 	
 	public DBModuleRecipiesBean setPilotModuleId(java.lang.Long value) {
-		pilotModuleId = value;
+		this.pilotModuleId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBModuleRecipiesBean implements DbBean, Serializable {
 	}
 	
 	public DBModuleRecipiesBean setRecipieLevel(java.lang.Integer value) {
-		recipieLevel = value;
+		this.recipieLevel = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBModuleRecipiesBean implements DbBean, Serializable {
 	}
 	
 	public DBModuleRecipiesBean setModuleRecipeId(java.lang.Long value) {
-		moduleRecipeId = value;
+		this.moduleRecipeId = value;
 		return this;
 	}
 	
@@ -72,12 +72,14 @@ public class DBModuleRecipiesBean implements DbBean, Serializable {
 	}
 	
 	public DBModuleRecipiesBean setRecipieId(java.lang.Long value) {
-		recipieId = value;
+		this.recipieId = value;
 		return this;
 	}
 	
 	@Override
 	public void setAutoincrementField(Object value) {
+		
+		setModuleRecipeId(new java.lang.Long(value.toString()));
 		
 	}	
 	

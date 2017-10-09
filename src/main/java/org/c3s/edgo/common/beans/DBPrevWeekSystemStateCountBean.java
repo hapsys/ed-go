@@ -27,7 +27,7 @@ public class DBPrevWeekSystemStateCountBean implements DbBean, Serializable {
 	}
 	
 	public DBPrevWeekSystemStateCountBean setCount(java.lang.Long value) {
-		count = value;
+		this.count = value;
 		return this;
 	}
 	

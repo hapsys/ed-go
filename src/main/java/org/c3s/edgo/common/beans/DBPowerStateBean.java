@@ -27,7 +27,7 @@ public class DBPowerStateBean implements DbBean, Serializable {
 	}
 	
 	public DBPowerStateBean setPowerStateId(java.lang.Long value) {
-		powerStateId = value;
+		this.powerStateId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBPowerStateBean implements DbBean, Serializable {
 	}
 	
 	public DBPowerStateBean setEndWeek(java.sql.Timestamp value) {
-		endWeek = value;
+		this.endWeek = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBPowerStateBean implements DbBean, Serializable {
 	}
 	
 	public DBPowerStateBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBPowerStateBean implements DbBean, Serializable {
 	}
 	
 	public DBPowerStateBean setPowerStateTypeId(java.lang.Long value) {
-		powerStateTypeId = value;
+		this.powerStateTypeId = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBPowerStateBean implements DbBean, Serializable {
 	}
 	
 	public DBPowerStateBean setPowerId(java.lang.Long value) {
-		powerId = value;
+		this.powerId = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBPowerStateBean implements DbBean, Serializable {
 	}
 	
 	public DBPowerStateBean setStartWeek(java.sql.Timestamp value) {
-		startWeek = value;
+		this.startWeek = value;
 		return this;
 	}
 	

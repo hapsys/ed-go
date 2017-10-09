@@ -27,7 +27,7 @@ public class DBMaterialsByTypeUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBMaterialsByTypeUniqBean setMaterialUniq(java.lang.String value) {
-		materialUniq = value;
+		this.materialUniq = value;
 		return this;
 	}
 	

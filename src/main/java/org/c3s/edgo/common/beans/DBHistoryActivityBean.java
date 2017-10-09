@@ -27,7 +27,7 @@ public class DBHistoryActivityBean implements DbBean, Serializable {
 	}
 	
 	public DBHistoryActivityBean setTimes(java.lang.Long value) {
-		times = value;
+		this.times = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBHistoryActivityBean implements DbBean, Serializable {
 	}
 	
 	public DBHistoryActivityBean setEventDate(java.lang.Long value) {
-		eventDate = value;
+		this.eventDate = value;
 		return this;
 	}
 	

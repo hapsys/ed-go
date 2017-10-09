@@ -27,7 +27,7 @@ public class DBSystemPathBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemPathBean setDistance(java.lang.String value) {
-		distance = value;
+		this.distance = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBSystemPathBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemPathBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBSystemPathBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemPathBean setSystemName(java.lang.String value) {
-		systemName = value;
+		this.systemName = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBSystemPathBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemPathBean setX(java.lang.Double value) {
-		x = value;
+		this.x = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBSystemPathBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemPathBean setY(java.lang.Double value) {
-		y = value;
+		this.y = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBSystemPathBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemPathBean setZ(java.lang.Double value) {
-		z = value;
+		this.z = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBSystemPathBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemPathBean setPosition(java.lang.String value) {
-		position = value;
+		this.position = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBSystemPathBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemPathBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBSystemPathBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemPathBean setLocationId(java.math.BigInteger value) {
-		locationId = value;
+		this.locationId = value;
 		return this;
 	}
 	
@@ -162,7 +162,7 @@ public class DBSystemPathBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemPathBean setLocationTime(java.sql.Timestamp value) {
-		locationTime = value;
+		this.locationTime = value;
 		return this;
 	}
 	
@@ -177,7 +177,7 @@ public class DBSystemPathBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemPathBean setTimestamp(java.lang.String value) {
-		timestamp = value;
+		this.timestamp = value;
 		return this;
 	}
 	

@@ -27,7 +27,7 @@ public class DBMissionTypesBean implements DbBean, Serializable {
 	}
 	
 	public DBMissionTypesBean setMissionTypeUniq(java.lang.String value) {
-		missionTypeUniq = value;
+		this.missionTypeUniq = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBMissionTypesBean implements DbBean, Serializable {
 	}
 	
 	public DBMissionTypesBean setMissionTypeName(java.lang.String value) {
-		missionTypeName = value;
+		this.missionTypeName = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBMissionTypesBean implements DbBean, Serializable {
 	}
 	
 	public DBMissionTypesBean setMissionTypeId(java.lang.Long value) {
-		missionTypeId = value;
+		this.missionTypeId = value;
 		return this;
 	}
 	

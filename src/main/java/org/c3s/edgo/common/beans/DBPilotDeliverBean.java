@@ -27,7 +27,7 @@ public class DBPilotDeliverBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotDeliverBean setQuantity(java.lang.Long value) {
-		quantity = value;
+		this.quantity = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBPilotDeliverBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotDeliverBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBPilotDeliverBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotDeliverBean setPilotPowerId(java.lang.Long value) {
-		pilotPowerId = value;
+		this.pilotPowerId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBPilotDeliverBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotDeliverBean setPilotDeliverId(java.lang.Long value) {
-		pilotDeliverId = value;
+		this.pilotDeliverId = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBPilotDeliverBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotDeliverBean setStartWeek(java.sql.Timestamp value) {
-		startWeek = value;
+		this.startWeek = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBPilotDeliverBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotDeliverBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	
@@ -118,7 +118,7 @@ public class DBPilotDeliverBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotDeliverBean setSystemName(String value) {
-		systemName = value;
+		this.systemName = value;
 		return this;
 	}
 	
@@ -134,7 +134,7 @@ public class DBPilotDeliverBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotDeliverBean setQuantitySumm(java.math.BigDecimal value) {
-		quantitySumm = value;
+		this.quantitySumm = value;
 		return this;
 	}
 	

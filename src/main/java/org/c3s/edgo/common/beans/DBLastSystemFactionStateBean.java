@@ -27,7 +27,7 @@ public class DBLastSystemFactionStateBean implements DbBean, Serializable {
 	}
 	
 	public DBLastSystemFactionStateBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBLastSystemFactionStateBean implements DbBean, Serializable {
 	}
 	
 	public DBLastSystemFactionStateBean setUniq(java.lang.String value) {
-		uniq = value;
+		this.uniq = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBLastSystemFactionStateBean implements DbBean, Serializable {
 	}
 	
 	public DBLastSystemFactionStateBean setFactionId(java.lang.Long value) {
-		factionId = value;
+		this.factionId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBLastSystemFactionStateBean implements DbBean, Serializable {
 	}
 	
 	public DBLastSystemFactionStateBean setStateId(java.lang.Long value) {
-		stateId = value;
+		this.stateId = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBLastSystemFactionStateBean implements DbBean, Serializable {
 	}
 	
 	public DBLastSystemFactionStateBean setCreateDate(java.sql.Timestamp value) {
-		createDate = value;
+		this.createDate = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBLastSystemFactionStateBean implements DbBean, Serializable {
 	}
 	
 	public DBLastSystemFactionStateBean setSystemFactionsHistoryId(java.math.BigInteger value) {
-		systemFactionsHistoryId = value;
+		this.systemFactionsHistoryId = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBLastSystemFactionStateBean implements DbBean, Serializable {
 	}
 	
 	public DBLastSystemFactionStateBean setInfluence(java.lang.Float value) {
-		influence = value;
+		this.influence = value;
 		return this;
 	}
 	

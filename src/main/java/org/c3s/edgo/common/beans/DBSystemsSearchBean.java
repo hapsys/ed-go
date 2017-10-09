@@ -27,7 +27,7 @@ public class DBSystemsSearchBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemsSearchBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBSystemsSearchBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemsSearchBean setName(java.lang.String value) {
-		name = value;
+		this.name = value;
 		return this;
 	}
 	

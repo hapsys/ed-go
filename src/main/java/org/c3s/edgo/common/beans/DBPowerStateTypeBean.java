@@ -27,7 +27,7 @@ public class DBPowerStateTypeBean implements DbBean, Serializable {
 	}
 	
 	public DBPowerStateTypeBean setIsWarzone(java.lang.Integer value) {
-		isWarzone = value;
+		this.isWarzone = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBPowerStateTypeBean implements DbBean, Serializable {
 	}
 	
 	public DBPowerStateTypeBean setPowerStateTypeId(java.lang.Long value) {
-		powerStateTypeId = value;
+		this.powerStateTypeId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBPowerStateTypeBean implements DbBean, Serializable {
 	}
 	
 	public DBPowerStateTypeBean setPowerStateTypeName(java.lang.String value) {
-		powerStateTypeName = value;
+		this.powerStateTypeName = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBPowerStateTypeBean implements DbBean, Serializable {
 	}
 	
 	public DBPowerStateTypeBean setPowerStateTypeUniq(java.lang.String value) {
-		powerStateTypeUniq = value;
+		this.powerStateTypeUniq = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBPowerStateTypeBean implements DbBean, Serializable {
 	}
 	
 	public DBPowerStateTypeBean setIsPermanent(java.lang.Integer value) {
-		isPermanent = value;
+		this.isPermanent = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBPowerStateTypeBean implements DbBean, Serializable {
 	}
 	
 	public DBPowerStateTypeBean setIsMerits(java.lang.Integer value) {
-		isMerits = value;
+		this.isMerits = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBPowerStateTypeBean implements DbBean, Serializable {
 	}
 	
 	public DBPowerStateTypeBean setIsWeekly(java.lang.Integer value) {
-		isWeekly = value;
+		this.isWeekly = value;
 		return this;
 	}
 	

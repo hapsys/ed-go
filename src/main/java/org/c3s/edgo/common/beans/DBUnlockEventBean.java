@@ -27,7 +27,7 @@ public class DBUnlockEventBean implements DbBean, Serializable {
 	}
 	
 	public DBUnlockEventBean setIsLocked(java.lang.Integer value) {
-		isLocked = value;
+		this.isLocked = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBUnlockEventBean implements DbBean, Serializable {
 	}
 	
 	public DBUnlockEventBean setEventId(java.math.BigInteger value) {
-		eventId = value;
+		this.eventId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBUnlockEventBean implements DbBean, Serializable {
 	}
 	
 	public DBUnlockEventBean setUserId(java.lang.Long value) {
-		userId = value;
+		this.userId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBUnlockEventBean implements DbBean, Serializable {
 	}
 	
 	public DBUnlockEventBean setEventName(java.lang.String value) {
-		eventName = value;
+		this.eventName = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBUnlockEventBean implements DbBean, Serializable {
 	}
 	
 	public DBUnlockEventBean setJsonMd5(java.lang.String value) {
-		jsonMd5 = value;
+		this.jsonMd5 = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBUnlockEventBean implements DbBean, Serializable {
 	}
 	
 	public DBUnlockEventBean setEventJson(java.lang.String value) {
-		eventJson = value;
+		this.eventJson = value;
 		return this;
 	}
 	

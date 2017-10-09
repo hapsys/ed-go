@@ -698,7 +698,7 @@
 						</xsl:call-template>
 					</td>
 					<td>
-						<xsl:value-of select="$internal[$pos]/field[@name='linkSize']/@value"/>
+						<xsl:value-of select="$internal[$pos]/field[@name='linkSize']/@value"/><xsl:if test="substring($internal[$pos]/field[@name='slotUniq']/@value, 1, 8) = 'Military'">M</xsl:if>
 					</td> 
 					<td>
 						<xsl:call-template name="module_name">
@@ -723,6 +723,7 @@
 	<xsl:template name="module_name">
 		<xsl:param name="module"/>
 		<xsl:if test="$module">
+			<xsl:value-of select="$module/field[@name='moduleRating']/@value"/><xsl:value-of select="$module/field[@name='moduleClass']/@value"/><xsl:text> </xsl:text>
 			<xsl:choose>
 				<xsl:when test="string-length($module/field[@name='moduleName']/@value) = 0">
 					<xsl:value-of select="$module/field[@name='moduleGroupName']/@value"/>
@@ -731,7 +732,6 @@
 					<xsl:value-of select="$module/field[@name='moduleName']/@value"/>
 				</xsl:otherwise>
 			</xsl:choose>		
-			<xsl:text> - </xsl:text><xsl:value-of select="$module/field[@name='moduleRating']/@value"/><xsl:value-of select="$module/field[@name='moduleClass']/@value"/>
 		</xsl:if>
 	</xsl:template>
 <!--

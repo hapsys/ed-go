@@ -27,7 +27,7 @@ public class DBPowersBean implements DbBean, Serializable {
 	}
 	
 	public DBPowersBean setPowerName(java.lang.String value) {
-		powerName = value;
+		this.powerName = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBPowersBean implements DbBean, Serializable {
 	}
 	
 	public DBPowersBean setPowerUniq(java.lang.String value) {
-		powerUniq = value;
+		this.powerUniq = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBPowersBean implements DbBean, Serializable {
 	}
 	
 	public DBPowersBean setPowerId(java.lang.Long value) {
-		powerId = value;
+		this.powerId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBPowersBean implements DbBean, Serializable {
 	}
 	
 	public DBPowersBean setPowerAliases(java.lang.String value) {
-		powerAliases = value;
+		this.powerAliases = value;
 		return this;
 	}
 	

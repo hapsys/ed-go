@@ -27,7 +27,7 @@ public class DBEngBlueprintMaterialsBean implements DbBean, Serializable {
 	}
 	
 	public DBEngBlueprintMaterialsBean setQuantity(java.lang.Integer value) {
-		quantity = value;
+		this.quantity = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBEngBlueprintMaterialsBean implements DbBean, Serializable {
 	}
 	
 	public DBEngBlueprintMaterialsBean setEngGradeId(java.lang.Long value) {
-		engGradeId = value;
+		this.engGradeId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBEngBlueprintMaterialsBean implements DbBean, Serializable {
 	}
 	
 	public DBEngBlueprintMaterialsBean setMaterialId(java.lang.Long value) {
-		materialId = value;
+		this.materialId = value;
 		return this;
 	}
 	

@@ -27,7 +27,7 @@ public class DBPilotGameModesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotGameModesBean setPilotGameModeId(java.math.BigInteger value) {
-		pilotGameModeId = value;
+		this.pilotGameModeId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBPilotGameModesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotGameModesBean setModeStart(java.sql.Timestamp value) {
-		modeStart = value;
+		this.modeStart = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBPilotGameModesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotGameModesBean setModeEnd(java.sql.Timestamp value) {
-		modeEnd = value;
+		this.modeEnd = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBPilotGameModesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotGameModesBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBPilotGameModesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotGameModesBean setGameModeId(java.lang.Long value) {
-		gameModeId = value;
+		this.gameModeId = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBPilotGameModesBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotGameModesBean setGameGroup(java.lang.String value) {
-		gameGroup = value;
+		this.gameGroup = value;
 		return this;
 	}
 	

@@ -27,7 +27,7 @@ public class DBPilotRelationsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotRelationsBean setUpdateTime(java.sql.Timestamp value) {
-		updateTime = value;
+		this.updateTime = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBPilotRelationsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotRelationsBean setCreateTime(java.sql.Timestamp value) {
-		createTime = value;
+		this.createTime = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBPilotRelationsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotRelationsBean setPilotRelationId(java.lang.Integer value) {
-		pilotRelationId = value;
+		this.pilotRelationId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBPilotRelationsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotRelationsBean setSourcePilotId(java.lang.Long value) {
-		sourcePilotId = value;
+		this.sourcePilotId = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBPilotRelationsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotRelationsBean setTargetPilotId(java.lang.Long value) {
-		targetPilotId = value;
+		this.targetPilotId = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBPilotRelationsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotRelationsBean setRelation(java.lang.Long value) {
-		relation = value;
+		this.relation = value;
 		return this;
 	}
 	

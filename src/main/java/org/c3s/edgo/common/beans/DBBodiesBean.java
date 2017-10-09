@@ -27,7 +27,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setRingClass(java.lang.String value) {
-		ringClass = value;
+		this.ringClass = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setSurfacePressure(java.lang.Float value) {
-		surfacePressure = value;
+		this.surfacePressure = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setMassEm(java.lang.Float value) {
-		massEm = value;
+		this.massEm = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setOrbitalInclination(java.lang.Float value) {
-		orbitalInclination = value;
+		this.orbitalInclination = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setMassMt(java.lang.Float value) {
-		massMt = value;
+		this.massMt = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setVolcClassId(java.lang.Long value) {
-		volcClassId = value;
+		this.volcClassId = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setTerraformState(java.lang.String value) {
-		terraformState = value;
+		this.terraformState = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setBodyTypeId(java.lang.Long value) {
-		bodyTypeId = value;
+		this.bodyTypeId = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setAgeMy(java.lang.Long value) {
-		ageMy = value;
+		this.ageMy = value;
 		return this;
 	}
 	
@@ -162,7 +162,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setSurfaceTemperature(java.lang.Float value) {
-		surfaceTemperature = value;
+		this.surfaceTemperature = value;
 		return this;
 	}
 	
@@ -177,7 +177,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setBodyUniq(java.lang.String value) {
-		bodyUniq = value;
+		this.bodyUniq = value;
 		return this;
 	}
 	
@@ -192,7 +192,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setEddbBodyId(java.math.BigInteger value) {
-		eddbBodyId = value;
+		this.eddbBodyId = value;
 		return this;
 	}
 	
@@ -207,7 +207,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setSemiMajorAxis(java.lang.Float value) {
-		semiMajorAxis = value;
+		this.semiMajorAxis = value;
 		return this;
 	}
 	
@@ -222,7 +222,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setOrbitalPeriod(java.lang.Float value) {
-		orbitalPeriod = value;
+		this.orbitalPeriod = value;
 		return this;
 	}
 	
@@ -237,7 +237,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setTidalLock(java.lang.Integer value) {
-		tidalLock = value;
+		this.tidalLock = value;
 		return this;
 	}
 	
@@ -252,7 +252,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setSurfaceGravity(java.lang.Float value) {
-		surfaceGravity = value;
+		this.surfaceGravity = value;
 		return this;
 	}
 	
@@ -267,7 +267,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setLandable(java.lang.Integer value) {
-		landable = value;
+		this.landable = value;
 		return this;
 	}
 	
@@ -282,7 +282,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setRadius(java.lang.Float value) {
-		radius = value;
+		this.radius = value;
 		return this;
 	}
 	
@@ -297,7 +297,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setBodyId(java.math.BigInteger value) {
-		bodyId = value;
+		this.bodyId = value;
 		return this;
 	}
 	
@@ -312,7 +312,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setInnerRad(java.lang.Float value) {
-		innerRad = value;
+		this.innerRad = value;
 		return this;
 	}
 	
@@ -327,7 +327,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setPeriapsis(java.lang.Float value) {
-		periapsis = value;
+		this.periapsis = value;
 		return this;
 	}
 	
@@ -342,7 +342,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setBodyName(java.lang.String value) {
-		bodyName = value;
+		this.bodyName = value;
 		return this;
 	}
 	
@@ -357,7 +357,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setOuterRad(java.lang.Float value) {
-		outerRad = value;
+		this.outerRad = value;
 		return this;
 	}
 	
@@ -372,7 +372,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -387,7 +387,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setStellarMass(java.lang.Float value) {
-		stellarMass = value;
+		this.stellarMass = value;
 		return this;
 	}
 	
@@ -402,7 +402,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setAbsoluteMagnitude(java.lang.Float value) {
-		absoluteMagnitude = value;
+		this.absoluteMagnitude = value;
 		return this;
 	}
 	
@@ -417,7 +417,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setAtmClassId(java.lang.Long value) {
-		atmClassId = value;
+		this.atmClassId = value;
 		return this;
 	}
 	
@@ -432,7 +432,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setEccentricity(java.lang.Float value) {
-		eccentricity = value;
+		this.eccentricity = value;
 		return this;
 	}
 	
@@ -447,7 +447,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setParentBodyId(java.math.BigInteger value) {
-		parentBodyId = value;
+		this.parentBodyId = value;
 		return this;
 	}
 	
@@ -462,7 +462,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setRotationPeriod(java.lang.Float value) {
-		rotationPeriod = value;
+		this.rotationPeriod = value;
 		return this;
 	}
 	
@@ -477,7 +477,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setDistanceFromArrivalLs(java.lang.Float value) {
-		distanceFromArrivalLs = value;
+		this.distanceFromArrivalLs = value;
 		return this;
 	}
 	
@@ -492,7 +492,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setStarType(java.lang.String value) {
-		starType = value;
+		this.starType = value;
 		return this;
 	}
 	
@@ -507,7 +507,7 @@ public class DBBodiesBean implements DbBean, Serializable {
 	}
 	
 	public DBBodiesBean setPlanetClassId(java.lang.Long value) {
-		planetClassId = value;
+		this.planetClassId = value;
 		return this;
 	}
 	

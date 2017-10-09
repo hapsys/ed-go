@@ -27,7 +27,7 @@ public class DBSettlementTypesBean implements DbBean, Serializable {
 	}
 	
 	public DBSettlementTypesBean setSettlementTypeId(java.lang.Long value) {
-		settlementTypeId = value;
+		this.settlementTypeId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBSettlementTypesBean implements DbBean, Serializable {
 	}
 	
 	public DBSettlementTypesBean setType(java.lang.String value) {
-		type = value;
+		this.type = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBSettlementTypesBean implements DbBean, Serializable {
 	}
 	
 	public DBSettlementTypesBean setTitle(java.lang.String value) {
-		title = value;
+		this.title = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBSettlementTypesBean implements DbBean, Serializable {
 	}
 	
 	public DBSettlementTypesBean setGroup(String value) {
-		group = value;
+		this.group = value;
 		return this;
 	}
 	

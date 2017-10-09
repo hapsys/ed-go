@@ -27,7 +27,7 @@ public class DBStationFactionControlBean implements DbBean, Serializable {
 	}
 	
 	public DBStationFactionControlBean setStationFactionControlId(java.lang.Long value) {
-		stationFactionControlId = value;
+		this.stationFactionControlId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBStationFactionControlBean implements DbBean, Serializable {
 	}
 	
 	public DBStationFactionControlBean setCreateTime(java.sql.Timestamp value) {
-		createTime = value;
+		this.createTime = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBStationFactionControlBean implements DbBean, Serializable {
 	}
 	
 	public DBStationFactionControlBean setStationId(java.lang.Long value) {
-		stationId = value;
+		this.stationId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBStationFactionControlBean implements DbBean, Serializable {
 	}
 	
 	public DBStationFactionControlBean setFactionId(java.lang.Long value) {
-		factionId = value;
+		this.factionId = value;
 		return this;
 	}
 	

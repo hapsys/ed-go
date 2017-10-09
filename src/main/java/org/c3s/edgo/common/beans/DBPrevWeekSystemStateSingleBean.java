@@ -27,7 +27,7 @@ public class DBPrevWeekSystemStateSingleBean implements DbBean, Serializable {
 	}
 	
 	public DBPrevWeekSystemStateSingleBean setPowerName(java.lang.String value) {
-		powerName = value;
+		this.powerName = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBPrevWeekSystemStateSingleBean implements DbBean, Serializable {
 	}
 	
 	public DBPrevWeekSystemStateSingleBean setEndWeek(java.sql.Timestamp value) {
-		endWeek = value;
+		this.endWeek = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBPrevWeekSystemStateSingleBean implements DbBean, Serializable {
 	}
 	
 	public DBPrevWeekSystemStateSingleBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBPrevWeekSystemStateSingleBean implements DbBean, Serializable {
 	}
 	
 	public DBPrevWeekSystemStateSingleBean setIsWarzone(java.lang.Integer value) {
-		isWarzone = value;
+		this.isWarzone = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBPrevWeekSystemStateSingleBean implements DbBean, Serializable {
 	}
 	
 	public DBPrevWeekSystemStateSingleBean setPowerStateTypeId(java.lang.Long value) {
-		powerStateTypeId = value;
+		this.powerStateTypeId = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBPrevWeekSystemStateSingleBean implements DbBean, Serializable {
 	}
 	
 	public DBPrevWeekSystemStateSingleBean setPowerStateTypeName(java.lang.String value) {
-		powerStateTypeName = value;
+		this.powerStateTypeName = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBPrevWeekSystemStateSingleBean implements DbBean, Serializable {
 	}
 	
 	public DBPrevWeekSystemStateSingleBean setIsPermanent(java.lang.Integer value) {
-		isPermanent = value;
+		this.isPermanent = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBPrevWeekSystemStateSingleBean implements DbBean, Serializable {
 	}
 	
 	public DBPrevWeekSystemStateSingleBean setPowerAliases(java.lang.String value) {
-		powerAliases = value;
+		this.powerAliases = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBPrevWeekSystemStateSingleBean implements DbBean, Serializable {
 	}
 	
 	public DBPrevWeekSystemStateSingleBean setStartWeek(java.sql.Timestamp value) {
-		startWeek = value;
+		this.startWeek = value;
 		return this;
 	}
 	
@@ -162,7 +162,7 @@ public class DBPrevWeekSystemStateSingleBean implements DbBean, Serializable {
 	}
 	
 	public DBPrevWeekSystemStateSingleBean setIsMerits(java.lang.Integer value) {
-		isMerits = value;
+		this.isMerits = value;
 		return this;
 	}
 	
@@ -177,7 +177,7 @@ public class DBPrevWeekSystemStateSingleBean implements DbBean, Serializable {
 	}
 	
 	public DBPrevWeekSystemStateSingleBean setIsWeekly(java.lang.Integer value) {
-		isWeekly = value;
+		this.isWeekly = value;
 		return this;
 	}
 	
@@ -192,7 +192,7 @@ public class DBPrevWeekSystemStateSingleBean implements DbBean, Serializable {
 	}
 	
 	public DBPrevWeekSystemStateSingleBean setPowerStateId(java.lang.Long value) {
-		powerStateId = value;
+		this.powerStateId = value;
 		return this;
 	}
 	
@@ -207,7 +207,7 @@ public class DBPrevWeekSystemStateSingleBean implements DbBean, Serializable {
 	}
 	
 	public DBPrevWeekSystemStateSingleBean setPowerUniq(java.lang.String value) {
-		powerUniq = value;
+		this.powerUniq = value;
 		return this;
 	}
 	
@@ -222,7 +222,7 @@ public class DBPrevWeekSystemStateSingleBean implements DbBean, Serializable {
 	}
 	
 	public DBPrevWeekSystemStateSingleBean setPowerId(java.lang.Long value) {
-		powerId = value;
+		this.powerId = value;
 		return this;
 	}
 	
@@ -237,7 +237,7 @@ public class DBPrevWeekSystemStateSingleBean implements DbBean, Serializable {
 	}
 	
 	public DBPrevWeekSystemStateSingleBean setPowerStateTypeUniq(java.lang.String value) {
-		powerStateTypeUniq = value;
+		this.powerStateTypeUniq = value;
 		return this;
 	}
 	

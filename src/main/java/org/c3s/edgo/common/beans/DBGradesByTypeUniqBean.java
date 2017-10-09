@@ -27,7 +27,7 @@ public class DBGradesByTypeUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBGradesByTypeUniqBean setEngBlueprintId(java.lang.Long value) {
-		engBlueprintId = value;
+		this.engBlueprintId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBGradesByTypeUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBGradesByTypeUniqBean setEngeneers(java.lang.String value) {
-		engeneers = value;
+		this.engeneers = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBGradesByTypeUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBGradesByTypeUniqBean setEngGradeId(java.lang.Long value) {
-		engGradeId = value;
+		this.engGradeId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBGradesByTypeUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBGradesByTypeUniqBean setEngBlueprintUniq(java.lang.String value) {
-		engBlueprintUniq = value;
+		this.engBlueprintUniq = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBGradesByTypeUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBGradesByTypeUniqBean setGrade(java.lang.Long value) {
-		grade = value;
+		this.grade = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBGradesByTypeUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBGradesByTypeUniqBean setEngTypeId(java.lang.Long value) {
-		engTypeId = value;
+		this.engTypeId = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBGradesByTypeUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBGradesByTypeUniqBean setLocalized(java.lang.String value) {
-		localized = value;
+		this.localized = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBGradesByTypeUniqBean implements DbBean, Serializable {
 	}
 	
 	public DBGradesByTypeUniqBean setEngBlueprintName(java.lang.String value) {
-		engBlueprintName = value;
+		this.engBlueprintName = value;
 		return this;
 	}
 	

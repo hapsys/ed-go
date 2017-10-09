@@ -27,7 +27,7 @@ public class DBLocationHistoryBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationHistoryBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBLocationHistoryBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationHistoryBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBLocationHistoryBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationHistoryBean setLocationId(java.math.BigInteger value) {
-		locationId = value;
+		this.locationId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBLocationHistoryBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationHistoryBean setLocationTime(java.sql.Timestamp value) {
-		locationTime = value;
+		this.locationTime = value;
 		return this;
 	}
 	
@@ -88,7 +88,7 @@ public class DBLocationHistoryBean implements DbBean, Serializable {
 	}
 	
 	public DBLocationHistoryBean setSystemName(String value) {
-		systemName = value;
+		this.systemName = value;
 		return this;
 	}
 	

@@ -27,7 +27,7 @@ public class DBPilotsPowerWeeksBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsPowerWeeksBean setStartWeek(java.sql.Timestamp value) {
-		startWeek = value;
+		this.startWeek = value;
 		return this;
 	}
 	

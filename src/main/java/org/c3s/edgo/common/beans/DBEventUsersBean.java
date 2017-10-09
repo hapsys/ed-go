@@ -27,7 +27,7 @@ public class DBEventUsersBean implements DbBean, Serializable {
 	}
 	
 	public DBEventUsersBean setUserId(java.lang.Long value) {
-		userId = value;
+		this.userId = value;
 		return this;
 	}
 	

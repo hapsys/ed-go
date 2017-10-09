@@ -27,7 +27,7 @@ public class DBFactionInfluenceBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionInfluenceBean setDate(String value) {
-		date = value;
+		this.date = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBFactionInfluenceBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionInfluenceBean setTimestamp(java.util.Date value) {
-		timestamp = value;
+		this.timestamp = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBFactionInfluenceBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionInfluenceBean setInfluence(Float value) {
-		influence = value;
+		this.influence = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBFactionInfluenceBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionInfluenceBean setState(String value) {
-		state = value;
+		this.state = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBFactionInfluenceBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionInfluenceBean setSeeFlag(Boolean value) {
-		seeFlag = value;
+		this.seeFlag = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBFactionInfluenceBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionInfluenceBean setInherited(Boolean value) {
-		inherited = value;
+		this.inherited = value;
 		return this;
 	}
 	

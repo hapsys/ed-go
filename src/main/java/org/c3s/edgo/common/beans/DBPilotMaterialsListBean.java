@@ -27,7 +27,7 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotMaterialsListBean setUpdateTime(java.lang.Long value) {
-		updateTime = value;
+		this.updateTime = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotMaterialsListBean setQuantity(java.lang.Long value) {
-		quantity = value;
+		this.quantity = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotMaterialsListBean setMatherialCategoryId(java.lang.Long value) {
-		matherialCategoryId = value;
+		this.matherialCategoryId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotMaterialsListBean setLocalized(java.lang.String value) {
-		localized = value;
+		this.localized = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotMaterialsListBean setMaterialId(java.lang.Long value) {
-		materialId = value;
+		this.materialId = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotMaterialsListBean setMaterialCategoryId(java.lang.Long value) {
-		materialCategoryId = value;
+		this.materialCategoryId = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotMaterialsListBean setMaterialUniq(java.lang.String value) {
-		materialUniq = value;
+		this.materialUniq = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotMaterialsListBean setUsed(java.lang.Long value) {
-		used = value;
+		this.used = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotMaterialsListBean setMaterialCategoryName(java.lang.String value) {
-		materialCategoryName = value;
+		this.materialCategoryName = value;
 		return this;
 	}
 	

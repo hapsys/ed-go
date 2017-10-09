@@ -27,7 +27,7 @@ public class DBSystemFactionsHistoryBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemFactionsHistoryBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBSystemFactionsHistoryBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemFactionsHistoryBean setFactionId(java.lang.Long value) {
-		factionId = value;
+		this.factionId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBSystemFactionsHistoryBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemFactionsHistoryBean setStateId(java.lang.Long value) {
-		stateId = value;
+		this.stateId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBSystemFactionsHistoryBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemFactionsHistoryBean setCreateDate(java.sql.Timestamp value) {
-		createDate = value;
+		this.createDate = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBSystemFactionsHistoryBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemFactionsHistoryBean setSystemFactionsHistoryId(java.math.BigInteger value) {
-		systemFactionsHistoryId = value;
+		this.systemFactionsHistoryId = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBSystemFactionsHistoryBean implements DbBean, Serializable {
 	}
 	
 	public DBSystemFactionsHistoryBean setInfluence(java.lang.Float value) {
-		influence = value;
+		this.influence = value;
 		return this;
 	}
 	

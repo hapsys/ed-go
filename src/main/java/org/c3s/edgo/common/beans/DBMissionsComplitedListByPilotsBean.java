@@ -27,7 +27,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setTargetSystemId(java.math.BigInteger value) {
-		targetSystemId = value;
+		this.targetSystemId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setCommodityIdx(java.lang.String value) {
-		commodityIdx = value;
+		this.commodityIdx = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setMissionId(java.math.BigInteger value) {
-		missionId = value;
+		this.missionId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setReputation(java.lang.String value) {
-		reputation = value;
+		this.reputation = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setFactionId(java.lang.Long value) {
-		factionId = value;
+		this.factionId = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setCompleteDate(java.sql.Timestamp value) {
-		completeDate = value;
+		this.completeDate = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setIsFailed(java.lang.Integer value) {
-		isFailed = value;
+		this.isFailed = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setMaterialIdx(java.lang.String value) {
-		materialIdx = value;
+		this.materialIdx = value;
 		return this;
 	}
 	
@@ -162,7 +162,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setInfluence(java.lang.String value) {
-		influence = value;
+		this.influence = value;
 		return this;
 	}
 	
@@ -177,7 +177,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setMissionTypeId(java.lang.Long value) {
-		missionTypeId = value;
+		this.missionTypeId = value;
 		return this;
 	}
 	
@@ -192,7 +192,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setTargetFactionId(java.lang.Long value) {
-		targetFactionId = value;
+		this.targetFactionId = value;
 		return this;
 	}
 	
@@ -207,7 +207,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setReward(java.lang.Integer value) {
-		reward = value;
+		this.reward = value;
 		return this;
 	}
 	
@@ -222,7 +222,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setStationName(java.lang.String value) {
-		stationName = value;
+		this.stationName = value;
 		return this;
 	}
 	
@@ -237,7 +237,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setFactionName(java.lang.String value) {
-		factionName = value;
+		this.factionName = value;
 		return this;
 	}
 	
@@ -252,7 +252,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setStationHistoryId(java.math.BigInteger value) {
-		stationHistoryId = value;
+		this.stationHistoryId = value;
 		return this;
 	}
 	
@@ -267,7 +267,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setSystemName(java.lang.String value) {
-		systemName = value;
+		this.systemName = value;
 		return this;
 	}
 	
@@ -282,7 +282,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setMissionTypeUniq(java.lang.String value) {
-		missionTypeUniq = value;
+		this.missionTypeUniq = value;
 		return this;
 	}
 	
@@ -297,7 +297,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setTargetStationId(java.lang.Long value) {
-		targetStationId = value;
+		this.targetStationId = value;
 		return this;
 	}
 	
@@ -312,7 +312,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setMissionTypeName(java.lang.String value) {
-		missionTypeName = value;
+		this.missionTypeName = value;
 		return this;
 	}
 	
@@ -327,7 +327,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setExpireDate(java.sql.Timestamp value) {
-		expireDate = value;
+		this.expireDate = value;
 		return this;
 	}
 	
@@ -342,7 +342,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setAcceptDate(java.sql.Timestamp value) {
-		acceptDate = value;
+		this.acceptDate = value;
 		return this;
 	}
 	
@@ -357,7 +357,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setMissionLinkId(java.lang.Long value) {
-		missionLinkId = value;
+		this.missionLinkId = value;
 		return this;
 	}
 	
@@ -372,7 +372,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setMissionDate(java.lang.String value) {
-		missionDate = value;
+		this.missionDate = value;
 		return this;
 	}
 	
@@ -388,7 +388,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setCommodityId(Integer[] value) {
-		commodityId = value;
+		this.commodityId = value;
 		return this;
 	}
 	
@@ -404,7 +404,7 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	public DBMissionsComplitedListByPilotsBean setMaterialId(Integer[] value) {
-		materialId = value;
+		this.materialId = value;
 		return this;
 	}
 	

@@ -27,7 +27,7 @@ public class DBPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsBean setParentPilotId(java.lang.Long value) {
-		parentPilotId = value;
+		this.parentPilotId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsBean setUserId(java.lang.Long value) {
-		userId = value;
+		this.userId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsBean setPilotName(java.lang.String value) {
-		pilotName = value;
+		this.pilotName = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsBean setIsCurrent(java.lang.Integer value) {
-		isCurrent = value;
+		this.isCurrent = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsBean setIsIgnored(java.lang.Integer value) {
-		isIgnored = value;
+		this.isIgnored = value;
 		return this;
 	}
 	
@@ -118,7 +118,7 @@ public class DBPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsBean setShips(List<DBPilotShipsBean> value) {
-		ships = value;
+		this.ships = value;
 		return this;
 	}
 	
@@ -134,7 +134,7 @@ public class DBPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsBean setCurrentShip(DBPilotShipsBean value) {
-		currentShip = value;
+		this.currentShip = value;
 		return this;
 	}
 	
@@ -150,7 +150,7 @@ public class DBPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsBean setChilds(List<? extends Object> value) {
-		childs = value;
+		this.childs = value;
 		return this;
 	}
 	
@@ -166,7 +166,7 @@ public class DBPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsBean setPowers(DBPowerCortageBean value) {
-		powers = value;
+		this.powers = value;
 		return this;
 	}
 	
@@ -182,7 +182,7 @@ public class DBPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsBean setLocation(DBLastLocationForPilotBean value) {
-		location = value;
+		this.location = value;
 		return this;
 	}
 	
@@ -198,7 +198,7 @@ public class DBPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsBean setLastInfo(DBFullLastInfoBean value) {
-		lastInfo = value;
+		this.lastInfo = value;
 		return this;
 	}
 	
@@ -214,7 +214,7 @@ public class DBPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsBean setAdditionOne(List<? extends Object> value) {
-		additionOne = value;
+		this.additionOne = value;
 		return this;
 	}
 	
@@ -230,7 +230,7 @@ public class DBPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsBean setAdditionTwo(List<? extends Object> value) {
-		additionTwo = value;
+		this.additionTwo = value;
 		return this;
 	}
 	
@@ -246,7 +246,7 @@ public class DBPilotsBean implements DbBean, Serializable {
 	}
 	
 	public DBPilotsBean setAdditionThree(List<? extends Object> value) {
-		additionThree = value;
+		this.additionThree = value;
 		return this;
 	}
 	

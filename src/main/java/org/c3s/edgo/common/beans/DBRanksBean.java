@@ -27,7 +27,7 @@ public class DBRanksBean implements DbBean, Serializable {
 	}
 	
 	public DBRanksBean setFederation(java.lang.Integer value) {
-		federation = value;
+		this.federation = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBRanksBean implements DbBean, Serializable {
 	}
 	
 	public DBRanksBean setTrade(java.lang.Integer value) {
-		trade = value;
+		this.trade = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBRanksBean implements DbBean, Serializable {
 	}
 	
 	public DBRanksBean setExplore(java.lang.Integer value) {
-		explore = value;
+		this.explore = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBRanksBean implements DbBean, Serializable {
 	}
 	
 	public DBRanksBean setCqc(java.lang.Integer value) {
-		cqc = value;
+		this.cqc = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBRanksBean implements DbBean, Serializable {
 	}
 	
 	public DBRanksBean setEmpire(java.lang.Integer value) {
-		empire = value;
+		this.empire = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBRanksBean implements DbBean, Serializable {
 	}
 	
 	public DBRanksBean setCombat(java.lang.Integer value) {
-		combat = value;
+		this.combat = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBRanksBean implements DbBean, Serializable {
 	}
 	
 	public DBRanksBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	

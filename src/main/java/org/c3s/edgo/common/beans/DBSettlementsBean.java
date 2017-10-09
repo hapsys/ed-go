@@ -27,7 +27,7 @@ public class DBSettlementsBean implements DbBean, Serializable {
 	}
 	
 	public DBSettlementsBean setSettlementTypeId(java.lang.Long value) {
-		settlementTypeId = value;
+		this.settlementTypeId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBSettlementsBean implements DbBean, Serializable {
 	}
 	
 	public DBSettlementsBean setSettlementId(java.lang.Long value) {
-		settlementId = value;
+		this.settlementId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBSettlementsBean implements DbBean, Serializable {
 	}
 	
 	public DBSettlementsBean setSystemId(java.math.BigInteger value) {
-		systemId = value;
+		this.systemId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBSettlementsBean implements DbBean, Serializable {
 	}
 	
 	public DBSettlementsBean setPlanet(java.lang.String value) {
-		planet = value;
+		this.planet = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBSettlementsBean implements DbBean, Serializable {
 	}
 	
 	public DBSettlementsBean setName(java.lang.String value) {
-		name = value;
+		this.name = value;
 		return this;
 	}
 	

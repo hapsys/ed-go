@@ -5,8 +5,8 @@ public class Module {
 	public int id;
 	public String name;
 	
-	public String recipeName;
-	public int recipeLevel;
+	public String locName;
 	
-	public Modifier[] modifyers;
+	public String locDescription;
+	
 }

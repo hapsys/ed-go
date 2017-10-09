@@ -27,7 +27,7 @@ public class DBMaterialUnsingInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBMaterialUnsingInfoBean setEngBlueprintId(java.lang.Long value) {
-		engBlueprintId = value;
+		this.engBlueprintId = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBMaterialUnsingInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBMaterialUnsingInfoBean setEngeneers(java.lang.String value) {
-		engeneers = value;
+		this.engeneers = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBMaterialUnsingInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBMaterialUnsingInfoBean setEngTypeName(java.lang.String value) {
-		engTypeName = value;
+		this.engTypeName = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBMaterialUnsingInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBMaterialUnsingInfoBean setMaterialLoc(java.lang.String value) {
-		materialLoc = value;
+		this.materialLoc = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBMaterialUnsingInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBMaterialUnsingInfoBean setEngTypeUniq(java.lang.String value) {
-		engTypeUniq = value;
+		this.engTypeUniq = value;
 		return this;
 	}
 	
@@ -102,7 +102,7 @@ public class DBMaterialUnsingInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBMaterialUnsingInfoBean setEngGradeId(java.lang.Long value) {
-		engGradeId = value;
+		this.engGradeId = value;
 		return this;
 	}
 	
@@ -117,7 +117,7 @@ public class DBMaterialUnsingInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBMaterialUnsingInfoBean setEngBlueprintUniq(java.lang.String value) {
-		engBlueprintUniq = value;
+		this.engBlueprintUniq = value;
 		return this;
 	}
 	
@@ -132,7 +132,7 @@ public class DBMaterialUnsingInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBMaterialUnsingInfoBean setGrade(java.lang.Long value) {
-		grade = value;
+		this.grade = value;
 		return this;
 	}
 	
@@ -147,7 +147,7 @@ public class DBMaterialUnsingInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBMaterialUnsingInfoBean setEngTypeId(java.lang.Long value) {
-		engTypeId = value;
+		this.engTypeId = value;
 		return this;
 	}
 	
@@ -162,7 +162,7 @@ public class DBMaterialUnsingInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBMaterialUnsingInfoBean setMaterialUniq(java.lang.String value) {
-		materialUniq = value;
+		this.materialUniq = value;
 		return this;
 	}
 	
@@ -177,7 +177,7 @@ public class DBMaterialUnsingInfoBean implements DbBean, Serializable {
 	}
 	
 	public DBMaterialUnsingInfoBean setEngBlueprintName(java.lang.String value) {
-		engBlueprintName = value;
+		this.engBlueprintName = value;
 		return this;
 	}
 	

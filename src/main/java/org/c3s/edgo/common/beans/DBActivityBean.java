@@ -27,7 +27,7 @@ public class DBActivityBean implements DbBean, Serializable {
 	}
 	
 	public DBActivityBean setTimes(java.math.BigDecimal value) {
-		times = value;
+		this.times = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBActivityBean implements DbBean, Serializable {
 	}
 	
 	public DBActivityBean setTimesGroup(java.math.BigDecimal value) {
-		timesGroup = value;
+		this.timesGroup = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBActivityBean implements DbBean, Serializable {
 	}
 	
 	public DBActivityBean setTimesSolo(java.math.BigDecimal value) {
-		timesSolo = value;
+		this.timesSolo = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBActivityBean implements DbBean, Serializable {
 	}
 	
 	public DBActivityBean setEventDate(java.lang.Integer value) {
-		eventDate = value;
+		this.eventDate = value;
 		return this;
 	}
 	
@@ -87,7 +87,7 @@ public class DBActivityBean implements DbBean, Serializable {
 	}
 	
 	public DBActivityBean setTimesOpen(java.math.BigDecimal value) {
-		timesOpen = value;
+		this.timesOpen = value;
 		return this;
 	}
 	

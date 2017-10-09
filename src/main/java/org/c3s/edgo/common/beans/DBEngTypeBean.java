@@ -27,7 +27,7 @@ public class DBEngTypeBean implements DbBean, Serializable {
 	}
 	
 	public DBEngTypeBean setEngTypeName(java.lang.String value) {
-		engTypeName = value;
+		this.engTypeName = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBEngTypeBean implements DbBean, Serializable {
 	}
 	
 	public DBEngTypeBean setEngTypeUniq(java.lang.String value) {
-		engTypeUniq = value;
+		this.engTypeUniq = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBEngTypeBean implements DbBean, Serializable {
 	}
 	
 	public DBEngTypeBean setEngTypeId(java.lang.Long value) {
-		engTypeId = value;
+		this.engTypeId = value;
 		return this;
 	}
 	
@@ -72,7 +72,7 @@ public class DBEngTypeBean implements DbBean, Serializable {
 	}
 	
 	public DBEngTypeBean setLocalized(String value) {
-		localized = value;
+		this.localized = value;
 		return this;
 	}
 	

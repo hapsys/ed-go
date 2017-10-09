@@ -27,7 +27,7 @@ public class DBBgsStatesBean implements DbBean, Serializable {
 	}
 	
 	public DBBgsStatesBean setStateName(java.lang.String value) {
-		stateName = value;
+		this.stateName = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBBgsStatesBean implements DbBean, Serializable {
 	}
 	
 	public DBBgsStatesBean setStateId(java.lang.Long value) {
-		stateId = value;
+		this.stateId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBBgsStatesBean implements DbBean, Serializable {
 	}
 	
 	public DBBgsStatesBean setStateUniq(java.lang.String value) {
-		stateUniq = value;
+		this.stateUniq = value;
 		return this;
 	}
 	

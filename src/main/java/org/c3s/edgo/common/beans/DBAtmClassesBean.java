@@ -27,7 +27,7 @@ public class DBAtmClassesBean implements DbBean, Serializable {
 	}
 	
 	public DBAtmClassesBean setAtmClassUniq(java.lang.String value) {
-		atmClassUniq = value;
+		this.atmClassUniq = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBAtmClassesBean implements DbBean, Serializable {
 	}
 	
 	public DBAtmClassesBean setAtmClassId(java.lang.Long value) {
-		atmClassId = value;
+		this.atmClassId = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBAtmClassesBean implements DbBean, Serializable {
 	}
 	
 	public DBAtmClassesBean setAtmClassName(java.lang.String value) {
-		atmClassName = value;
+		this.atmClassName = value;
 		return this;
 	}
 	

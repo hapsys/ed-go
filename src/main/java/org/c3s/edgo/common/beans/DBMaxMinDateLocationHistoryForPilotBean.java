@@ -27,7 +27,7 @@ public class DBMaxMinDateLocationHistoryForPilotBean implements DbBean, Serializ
 	}
 	
 	public DBMaxMinDateLocationHistoryForPilotBean setMaxDate(java.lang.String value) {
-		maxDate = value;
+		this.maxDate = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBMaxMinDateLocationHistoryForPilotBean implements DbBean, Serializ
 	}
 	
 	public DBMaxMinDateLocationHistoryForPilotBean setMinDate(java.lang.String value) {
-		minDate = value;
+		this.minDate = value;
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class DBMaxMinDateLocationHistoryForPilotBean implements DbBean, Serializ
 	}
 	
 	public DBMaxMinDateLocationHistoryForPilotBean setPilotId(java.lang.Long value) {
-		pilotId = value;
+		this.pilotId = value;
 		return this;
 	}
 	

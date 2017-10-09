@@ -27,7 +27,7 @@ public class DBFactionInfluenceNamesBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionInfluenceNamesBean setFactionName(String value) {
-		factionName = value;
+		this.factionName = value;
 		return this;
 	}
 	
@@ -42,7 +42,7 @@ public class DBFactionInfluenceNamesBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionInfluenceNamesBean setFactionId(Long value) {
-		factionId = value;
+		this.factionId = value;
 		return this;
 	}
 	
@@ -58,7 +58,7 @@ public class DBFactionInfluenceNamesBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionInfluenceNamesBean setFactionInfo(DBFactionsBean value) {
-		factionInfo = value;
+		this.factionInfo = value;
 		return this;
 	}
 	
@@ -74,7 +74,7 @@ public class DBFactionInfluenceNamesBean implements DbBean, Serializable {
 	}
 	
 	public DBFactionInfluenceNamesBean setInfluenceDates(List<DBFactionInfluenceBean> value) {
-		influenceDates = value;
+		this.influenceDates = value;
 		return this;
 	}
 	
