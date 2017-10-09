@@ -313,17 +313,19 @@ public class Commander extends GeneralController {
 				if (modules != null) {
 					List<Long> indexes = modules.stream().filter(x -> x.getModuleRecipeId() != null).map(x -> x.getModuleRecipeId()).collect(Collectors.toList());
 					final List<DBModifyersByPilotModuleIdBean> modifyers = DbAccess.moduleModifiersAccess.getModifyersByPilotModuleId(new InInjector("mm.module_recipe_id", indexes));
-					Map<Object, List<DBModifyersByPilotModuleIdBean>> mods = Utils.getArrayGrouped(modifyers, "moduleRecipeId");
-					for (DBPilotShipModulesListBean module: modules) {
-						if (mods.containsKey(module.getModuleRecipeId())) {
-							module.setModifyers(mods.get(module.getModuleRecipeId()));
+					if (modifyers != null) {
+						Map<Object, List<DBModifyersByPilotModuleIdBean>> mods = Utils.getArrayGrouped(modifyers, "moduleRecipeId");
+						for (DBPilotShipModulesListBean module: modules) {
+							if (mods.containsKey(module.getModuleRecipeId())) {
+								module.setModifyers(mods.get(module.getModuleRecipeId()));
+							}
 						}
 					}
 				}
 				
 				ship.setModules(modules);
 				Document xml = new XMLReflectionObj(current).toXML();
-				System.out.println(XMLUtils.saveXML(xml));
+				//System.out.println(XMLUtils.saveXML(xml));
 				ContentObject.getInstance().addPath("/", ship.getShip().getShipName());
 				ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:view_ship"});
 				redirect.setRedirect(new DropRedirect());
