@@ -204,7 +204,7 @@ public class CompanionApi extends AbstractJournalEvent<CompanionApiBean> {
 			
 			DbAccess.pilotModulesAccess.deleteFailModulesByPilotShipId(ship.getPilotShipId());
 			
-			throw new SQLException();
+			//throw new SQLException();
 			
 		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
 			throw new RuntimeException(e);
