@@ -657,6 +657,10 @@
 		<script>
 			$(function() {
 				$("#shipTable").bootstrapTable({});
+				$('.show-modifyers').on('click', function() {
+					$(this).parents('td').find('.modifyer').toggleClass('hidden');
+					return false;
+				});
 			});
 		</script>
 	</xsl:template>
@@ -731,7 +735,56 @@
 				<xsl:otherwise>
 					<xsl:value-of select="$module/field[@name='moduleName']/@value"/>
 				</xsl:otherwise>
-			</xsl:choose>		
+			</xsl:choose>
+			<xsl:if test="$module/field[@name='recipieName']/@value">
+				<br/>
+				<xsl:choose>
+					<xsl:when test="$module/field[@name='recipieLevel']/@value = 1"><img src="{$root}/images/engineer_sm.png"/></xsl:when>
+					<xsl:when test="$module/field[@name='recipieLevel']/@value = 2"><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/></xsl:when>
+					<xsl:when test="$module/field[@name='recipieLevel']/@value = 3"><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/></xsl:when>
+					<xsl:when test="$module/field[@name='recipieLevel']/@value = 4"><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/></xsl:when>
+					<xsl:when test="$module/field[@name='recipieLevel']/@value = 5"><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/></xsl:when>
+				</xsl:choose>
+				<a class="show-modifyers" href="#" style="margin-left: 5px; text-decoration: underline;">
+					<xsl:choose>
+						<xsl:when test="string-length($module/field[@name='recipieLocName']/@value) != 0"><xsl:value-of select="$module/field[@name='recipieLocName']/@value"/></xsl:when>
+						<xsl:otherwise><xsl:value-of select="$module/field[@name='recipieName']/@value"/></xsl:otherwise>
+					</xsl:choose>
+				</a>
+				<xsl:if test="count($module/modifyers/item) != 0">
+					<div class="modifyer hidden">
+						<xsl:for-each select="$module/modifyers/item">
+							<div>&#160;</div>
+							<div class="col-md-4">
+								<xsl:value-of select="field[@name='direction']/@value"/>
+								<xsl:choose>
+									<xsl:when test="string-length(field[@name='modifierName']/@value) != 0"><xsl:value-of select="field[@name='modifierName']/@value"/></xsl:when>
+									<xsl:otherwise><xsl:value-of select="field[@name='modifierUniq']/@value"/></xsl:otherwise>
+								</xsl:choose>
+							</div>
+							<div class="col-md-7">
+								<xsl:value-of select="field[@name='displayValue']/@value"/>(<xsl:value-of select="field[@name='value']/@value"/>)
+							</div>
+						</xsl:for-each>
+					</div>
+				</xsl:if>
+				<!-- 
+				<table class="table table-condensed">
+					<xsl:for-each select="$module/modifyers/item">
+						<tr>
+							<td width="20px;">&#160;</td>
+							<td width="30%"><xsl:value-of select="field[@name='direction']/@value"/>
+								<xsl:choose>
+									<xsl:when test="string-length(field[@name='modifierName']/@value) != 0"><xsl:value-of select="field[@name='modifierName']/@value"/></xsl:when>
+									<xsl:otherwise><xsl:value-of select="field[@name='modifierUniq']/@value"/></xsl:otherwise>
+								</xsl:choose>
+							</td>
+							<td><xsl:value-of select="field[@name='displayValue']/@value"/>(<xsl:value-of select="field[@name='value']/@value"/>)</td>
+						</tr>	
+					</xsl:for-each>
+				</table>
+				 -->
+			</xsl:if>		
 		</xsl:if>
 	</xsl:template>
 <!--

@@ -313,12 +313,18 @@
 		</delete>
 		<query name="PilotShipModulesList">
 			<column name="PilotShipId" type="long"/>
+			<result_column name="modifyers" type="List&lt;DBModifyersByPilotModuleIdBean&gt;">
+	    		<annotation>@XMLFieldList</annotation>
+			</result_column>
 			<sql>
-				SELECT ps.pilot_ship_id, sh.ship_name, sl.slot_uniq, st.slot_type_name, st.slot_type_id, m.*, mg.*, CAST(IF(ISNULL(ss.link_size), sl.size, ss.link_size) AS CHAR(1)) as link_size
+				SELECT ps.pilot_ship_id, sh.ship_name, sl.slot_uniq, st.slot_type_name, st.slot_type_id, m.*, mg.*, CAST(IF(ISNULL(ss.link_size), sl.size, ss.link_size) AS CHAR(1)) as link_size,
+				mr.recipie_level, mr.module_recipe_id, r.* 
 				FROM (pilot_ships ps, ships sh, ship_slots ss, slots sl, slot_types st)
 				LEFT JOIN  pilot_modules pm ON pm.pilot_ship_id = ps.pilot_ship_id AND pm.slot_id = sl.slot_id
 				LEFT JOIN modules m ON m.module_id = pm.module_id
 				LEFT JOIN module_groups mg ON mg.module_group_id = m.module_group_id
+				LEFT JOIN module_recipies mr ON mr.pilot_module_id = pm.pilot_module_id
+				LEFT JOIN recipies r ON r.recipie_id = mr.recipie_id
 				WHERE ps.pilot_ship_id = ?
 				AND ps.ship_id = sh.ship_id 
 				AND ss.ship_id = sh.ship_id
@@ -401,8 +407,19 @@
 		<delete name="ByModuleRecipieId">
 			<column name="module_recipe_id"/>
 		</delete>
+		<query name="ModifyersByPilotModuleId" intruder="org.c3s.db.injectors.EmptySqlInjector">
+			<sql>
+				SELECT mm.*, m.*
+				FROM module_modifiers mm, modifiers m
+				WHERE 1=1
+				<where/>
+				AND m.modifier_id = mm.modifier_id
+				ORDER BY mm.module_recipe_id, m.modifier_uniq
+			</sql>		
+		</query>
 	</table>
 	<!--  -->
+	
 	<table name="pilot_materials">
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="pilot_id"/>

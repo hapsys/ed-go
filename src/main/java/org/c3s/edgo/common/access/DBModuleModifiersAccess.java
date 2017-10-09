@@ -117,4 +117,41 @@ public class DBModuleModifiersAccess extends Access {
 		return getConnection().query(sql, paramModuleRecipeId, paramModifierId);
 	}
 	
+	public List<DBModifyersByPilotModuleIdBean> getModifyersByPilotModuleId(org.c3s.db.injectors.EmptySqlInjector paramIntruder) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		if (paramIntruder != null) {
+			injector = paramIntruder;
+		}
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT mm.*, m.* 				FROM module_modifiers mm, modifiers m 				WHERE 1=1 				" + where + " 				AND m.modifier_id = mm.modifier_id 				ORDER BY mm.module_recipe_id, m.modifier_uniq 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getModifyersByPilotModuleId", query );
+		List<DBModifyersByPilotModuleIdBean> ret = null;
+		if (result != null) {
+					ret = new ArrayList<DBModifyersByPilotModuleIdBean>();
+				
+			for (Map<String, Object> res : result) {
+				DBModifyersByPilotModuleIdBean bean = dataMapper.mapFromRow(res, DBModifyersByPilotModuleIdBean.class);
+														
+				ret.add(bean);
+			}
+					
+		}
+			
+		return ret;
+	}
+	
 }

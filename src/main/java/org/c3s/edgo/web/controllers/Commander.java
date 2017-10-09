@@ -41,10 +41,12 @@ import org.c3s.edgo.common.beans.DBMaterialsByBlueprintAndGradeBean;
 import org.c3s.edgo.common.beans.DBMaterialsByTypeUniqBean;
 import org.c3s.edgo.common.beans.DBMaxMinDateLocationHistoryForPilotBean;
 import org.c3s.edgo.common.beans.DBMissionsComplitedListByPilotsBean;
+import org.c3s.edgo.common.beans.DBModifyersByPilotModuleIdBean;
 import org.c3s.edgo.common.beans.DBPilotInfoLinkWithDefaultsBean;
 import org.c3s.edgo.common.beans.DBPilotInfoWithDefaultsBean;
 import org.c3s.edgo.common.beans.DBPilotMaterialsBean;
 import org.c3s.edgo.common.beans.DBPilotMaterialsListBean;
+import org.c3s.edgo.common.beans.DBPilotShipModulesListBean;
 import org.c3s.edgo.common.beans.DBPilotShipsBean;
 import org.c3s.edgo.common.beans.DBPilotShipsListBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
@@ -305,9 +307,23 @@ public class Commander extends GeneralController {
 			if (ship != null) {
 				ship.setShip(DbAccess.shipsAccess.getByPrimaryKey(ship.getShipId()));
 				//System.out.println(ship.getPilotShipId());
-				ship.setModules(DbAccess.pilotModulesAccess.getPilotShipModulesList(ship.getPilotShipId()));
+				List<DBPilotShipModulesListBean> modules = DbAccess.pilotModulesAccess.getPilotShipModulesList(ship.getPilotShipId());
+				
+				// 
+				if (modules != null) {
+					List<Long> indexes = modules.stream().filter(x -> x.getModuleRecipeId() != null).map(x -> x.getModuleRecipeId()).collect(Collectors.toList());
+					final List<DBModifyersByPilotModuleIdBean> modifyers = DbAccess.moduleModifiersAccess.getModifyersByPilotModuleId(new InInjector("mm.module_recipe_id", indexes));
+					Map<Object, List<DBModifyersByPilotModuleIdBean>> mods = Utils.getArrayGrouped(modifyers, "moduleRecipeId");
+					for (DBPilotShipModulesListBean module: modules) {
+						if (mods.containsKey(module.getModuleRecipeId())) {
+							module.setModifyers(mods.get(module.getModuleRecipeId()));
+						}
+					}
+				}
+				
+				ship.setModules(modules);
 				Document xml = new XMLReflectionObj(current).toXML();
-				//System.out.println(XMLUtils.saveXML(xml));
+				System.out.println(XMLUtils.saveXML(xml));
 				ContentObject.getInstance().addPath("/", ship.getShip().getShipName());
 				ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:view_ship"});
 				redirect.setRedirect(new DropRedirect());

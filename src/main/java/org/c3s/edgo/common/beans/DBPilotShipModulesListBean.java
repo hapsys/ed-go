@@ -62,6 +62,21 @@ public class DBPilotShipModulesListBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"recipie_level", "recipieLevel"})
+	@DataTarget("recipie_level")
+	@XMLSimple("recipieLevel")
+	private java.lang.Integer recipieLevel;
+	
+	public java.lang.Integer getRecipieLevel() {
+		return recipieLevel;
+	}
+	
+	public DBPilotShipModulesListBean setRecipieLevel(java.lang.Integer value) {
+		this.recipieLevel = value;
+		return this;
+	}
+	
+	
 	@DataSource({"link_size", "linkSize"})
 	@DataTarget("link_size")
 	@XMLSimple("linkSize")
@@ -73,6 +88,51 @@ public class DBPilotShipModulesListBean implements DbBean, Serializable {
 	
 	public DBPilotShipModulesListBean setLinkSize(java.lang.String value) {
 		this.linkSize = value;
+		return this;
+	}
+	
+	
+	@DataSource({"module_recipe_id", "moduleRecipeId"})
+	@DataTarget("module_recipe_id")
+	@XMLSimple("moduleRecipeId")
+	private java.lang.Long moduleRecipeId;
+	
+	public java.lang.Long getModuleRecipeId() {
+		return moduleRecipeId;
+	}
+	
+	public DBPilotShipModulesListBean setModuleRecipeId(java.lang.Long value) {
+		this.moduleRecipeId = value;
+		return this;
+	}
+	
+	
+	@DataSource({"recipie_id", "recipieId"})
+	@DataTarget("recipie_id")
+	@XMLSimple("recipieId")
+	private java.lang.Long recipieId;
+	
+	public java.lang.Long getRecipieId() {
+		return recipieId;
+	}
+	
+	public DBPilotShipModulesListBean setRecipieId(java.lang.Long value) {
+		this.recipieId = value;
+		return this;
+	}
+	
+	
+	@DataSource({"recipie_loc_name", "recipieLocName"})
+	@DataTarget("recipie_loc_name")
+	@XMLSimple("recipieLocName")
+	private java.lang.String recipieLocName;
+	
+	public java.lang.String getRecipieLocName() {
+		return recipieLocName;
+	}
+	
+	public DBPilotShipModulesListBean setRecipieLocName(java.lang.String value) {
+		this.recipieLocName = value;
 		return this;
 	}
 	
@@ -242,6 +302,21 @@ public class DBPilotShipModulesListBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"recipie_loc_description", "recipieLocDescription"})
+	@DataTarget("recipie_loc_description")
+	@XMLSimple("recipieLocDescription")
+	private java.lang.String recipieLocDescription;
+	
+	public java.lang.String getRecipieLocDescription() {
+		return recipieLocDescription;
+	}
+	
+	public DBPilotShipModulesListBean setRecipieLocDescription(java.lang.String value) {
+		this.recipieLocDescription = value;
+		return this;
+	}
+	
+	
 	@DataSource({"module_class", "moduleClass"})
 	@DataTarget("module_class")
 	@XMLSimple("moduleClass")
@@ -256,10 +331,45 @@ public class DBPilotShipModulesListBean implements DbBean, Serializable {
 		return this;
 	}
 	
+	
+	@DataSource({"recipie_name", "recipieName"})
+	@DataTarget("recipie_name")
+	@XMLSimple("recipieName")
+	private java.lang.String recipieName;
+	
+	public java.lang.String getRecipieName() {
+		return recipieName;
+	}
+	
+	public DBPilotShipModulesListBean setRecipieName(java.lang.String value) {
+		this.recipieName = value;
+		return this;
+	}
+	
+	
+	@DataSource({"modifyers", "modifyers"})
+	@DataTarget("modifyers")
+	@XMLFieldList
+
+	private List<DBModifyersByPilotModuleIdBean> modifyers;
+	
+	public List<DBModifyersByPilotModuleIdBean> getModifyers() {
+		return modifyers;
+	}
+	
+	public DBPilotShipModulesListBean setModifyers(List<DBModifyersByPilotModuleIdBean> value) {
+		this.modifyers = value;
+		return this;
+	}
+	
 	@Override
 	public void setAutoincrementField(Object value) {
 		
 		setPilotShipId(new java.lang.Long(value.toString()));
+		
+		setModuleRecipeId(new java.lang.Long(value.toString()));
+		
+		setRecipieId(new java.lang.Long(value.toString()));
 		
 	}	
 	
