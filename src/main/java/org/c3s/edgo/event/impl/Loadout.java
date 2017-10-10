@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.c3s.edgo.common.access.DbAccess;
+import org.c3s.edgo.common.beans.DBModuleRecipiesBean;
 import org.c3s.edgo.common.beans.DBModulesBean;
 import org.c3s.edgo.common.beans.DBPilotModulesBean;
 import org.c3s.edgo.common.beans.DBPilotShipsBean;
@@ -51,18 +52,30 @@ public class Loadout extends AbstractJournalEvent<LoadoutBean> {
 							
 							DBPilotModulesBean resId = null;
 							
-							if (stored_module != null && pilot_ship_slot != null && !stored_module.getModuleId().equals(pilot_ship_slot.getModuleId())) {
-								resId = ShipsDAO.insertOrUpdatePilotModule(pilotShip.getPilotShipId(), slot.getSlotId(), stored_module.getModuleId());
+							if (stored_module != null && pilot_ship_slot != null) {
+								if (!stored_module.getModuleId().equals(pilot_ship_slot.getModuleId())) {
+									resId = ShipsDAO.insertOrUpdatePilotModule(pilotShip.getPilotShipId(), slot.getSlotId(), stored_module.getModuleId());
+								} else {
+									resId = pilot_ship_slot;
+								}
 							} else if (stored_module != null && pilot_ship_slot == null) {
 								resId = ShipsDAO.insertOrUpdatePilotModule(pilotShip.getPilotShipId(), slot.getSlotId(), stored_module.getModuleId());
 							}
 							
 							// Update recipies
 							if (resId != null) {
-								DbAccess.moduleRecipiesAccess.deleteByPilotModuleId(resId.getPilotModuleId());
+								//DbAccess.moduleRecipiesAccess.deleteByPilotModuleId(resId.getPilotModuleId());
 								if (module.getEngineerBlueprint() != null) {
 									DBRecipiesBean recipie = ShipsDAO.getOrInsertRecipie(module.getEngineerBlueprint(), null, null);
+									DBModuleRecipiesBean modRec = DbAccess.moduleRecipiesAccess.getByPilotModuleIdAndRecipieId(resId.getPilotModuleId(), recipie.getRecipieId());
+									if (modRec == null) {
+										DbAccess.moduleRecipiesAccess.deleteByPilotModuleId(resId.getPilotModuleId());
+									} else if (!modRec.getRecipieLevel().equals(module.getEngineerLevel())) {
+										DbAccess.moduleModifiersAccess.deleteByModuleRecipieId(modRec.getModuleRecipeId());
+									}
 									ShipsDAO.insertOrUpdateModuleRecipie(resId.getPilotModuleId(), recipie.getRecipieId(), module.getEngineerLevel());
+								} else {
+									DbAccess.moduleRecipiesAccess.deleteByPilotModuleId(resId.getPilotModuleId());
 								}
 							}
 						}
