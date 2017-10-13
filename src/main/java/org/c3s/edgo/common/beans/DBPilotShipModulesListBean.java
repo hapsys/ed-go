@@ -32,36 +32,6 @@ public class DBPilotShipModulesListBean implements DbBean, Serializable {
 	}
 	
 	
-	@DataSource({"module_rating", "moduleRating"})
-	@DataTarget("module_rating")
-	@XMLSimple("moduleRating")
-	private java.lang.String moduleRating;
-	
-	public java.lang.String getModuleRating() {
-		return moduleRating;
-	}
-	
-	public DBPilotShipModulesListBean setModuleRating(java.lang.String value) {
-		this.moduleRating = value;
-		return this;
-	}
-	
-	
-	@DataSource({"slot_type_id", "slotTypeId"})
-	@DataTarget("slot_type_id")
-	@XMLSimple("slotTypeId")
-	private java.lang.Long slotTypeId;
-	
-	public java.lang.Long getSlotTypeId() {
-		return slotTypeId;
-	}
-	
-	public DBPilotShipModulesListBean setSlotTypeId(java.lang.Long value) {
-		this.slotTypeId = value;
-		return this;
-	}
-	
-	
 	@DataSource({"recipie_level", "recipieLevel"})
 	@DataTarget("recipie_level")
 	@XMLSimple("recipieLevel")
@@ -137,6 +107,111 @@ public class DBPilotShipModulesListBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"eddb_id", "eddbId"})
+	@DataTarget("eddb_id")
+	@XMLSimple("eddbId")
+	private java.lang.Integer eddbId;
+	
+	public java.lang.Integer getEddbId() {
+		return eddbId;
+	}
+	
+	public DBPilotShipModulesListBean setEddbId(java.lang.Integer value) {
+		this.eddbId = value;
+		return this;
+	}
+	
+	
+	@DataSource({"slot_uniq", "slotUniq"})
+	@DataTarget("slot_uniq")
+	@XMLSimple("slotUniq")
+	private java.lang.String slotUniq;
+	
+	public java.lang.String getSlotUniq() {
+		return slotUniq;
+	}
+	
+	public DBPilotShipModulesListBean setSlotUniq(java.lang.String value) {
+		this.slotUniq = value;
+		return this;
+	}
+	
+	
+	@DataSource({"ship_name", "shipName"})
+	@DataTarget("ship_name")
+	@XMLSimple("shipName")
+	private java.lang.String shipName;
+	
+	public java.lang.String getShipName() {
+		return shipName;
+	}
+	
+	public DBPilotShipModulesListBean setShipName(java.lang.String value) {
+		this.shipName = value;
+		return this;
+	}
+	
+	
+	@DataSource({"module_loc_name", "moduleLocName"})
+	@DataTarget("module_loc_name")
+	@XMLSimple("moduleLocName")
+	private java.lang.String moduleLocName;
+	
+	public java.lang.String getModuleLocName() {
+		return moduleLocName;
+	}
+	
+	public DBPilotShipModulesListBean setModuleLocName(java.lang.String value) {
+		this.moduleLocName = value;
+		return this;
+	}
+	
+	
+	@DataSource({"module_rating", "moduleRating"})
+	@DataTarget("module_rating")
+	@XMLSimple("moduleRating")
+	private java.lang.String moduleRating;
+	
+	public java.lang.String getModuleRating() {
+		return moduleRating;
+	}
+	
+	public DBPilotShipModulesListBean setModuleRating(java.lang.String value) {
+		this.moduleRating = value;
+		return this;
+	}
+	
+	
+	@DataSource({"slot_type_id", "slotTypeId"})
+	@DataTarget("slot_type_id")
+	@XMLSimple("slotTypeId")
+	private java.lang.Long slotTypeId;
+	
+	public java.lang.Long getSlotTypeId() {
+		return slotTypeId;
+	}
+	
+	public DBPilotShipModulesListBean setSlotTypeId(java.lang.Long value) {
+		this.slotTypeId = value;
+		return this;
+	}
+	
+	
+	@DataSource({"coriolis_id", "coriolisId"})
+	@DataTarget("coriolis_id")
+	@XMLSimple("coriolisId")
+	private java.lang.String coriolisId;
+	
+	public java.lang.String getCoriolisId() {
+		return coriolisId;
+	}
+	
+	public DBPilotShipModulesListBean setCoriolisId(java.lang.String value) {
+		this.coriolisId = value;
+		return this;
+	}
+	
+	
 	@DataSource({"slot_type_name", "slotTypeName"})
 	@DataTarget("slot_type_name")
 	@XMLSimple("slotTypeName")
@@ -148,6 +223,21 @@ public class DBPilotShipModulesListBean implements DbBean, Serializable {
 	
 	public DBPilotShipModulesListBean setSlotTypeName(java.lang.String value) {
 		this.slotTypeName = value;
+		return this;
+	}
+	
+	
+	@DataSource({"coriolis_name", "coriolisName"})
+	@DataTarget("name")
+	@XMLSimple("coriolisName")
+	private java.lang.String coriolisName;
+	
+	public java.lang.String getCoriolisName() {
+		return coriolisName;
+	}
+	
+	public DBPilotShipModulesListBean setCoriolisName(java.lang.String value) {
+		this.coriolisName = value;
 		return this;
 	}
 	
@@ -212,21 +302,6 @@ public class DBPilotShipModulesListBean implements DbBean, Serializable {
 	}
 	
 	
-	@DataSource({"slot_uniq", "slotUniq"})
-	@DataTarget("slot_uniq")
-	@XMLSimple("slotUniq")
-	private java.lang.String slotUniq;
-	
-	public java.lang.String getSlotUniq() {
-		return slotUniq;
-	}
-	
-	public DBPilotShipModulesListBean setSlotUniq(java.lang.String value) {
-		this.slotUniq = value;
-		return this;
-	}
-	
-	
 	@DataSource({"module_loc_description", "moduleLocDescription"})
 	@DataTarget("module_loc_description")
 	@XMLSimple("moduleLocDescription")
@@ -257,21 +332,6 @@ public class DBPilotShipModulesListBean implements DbBean, Serializable {
 	}
 	
 	
-	@DataSource({"ship_name", "shipName"})
-	@DataTarget("ship_name")
-	@XMLSimple("shipName")
-	private java.lang.String shipName;
-	
-	public java.lang.String getShipName() {
-		return shipName;
-	}
-	
-	public DBPilotShipModulesListBean setShipName(java.lang.String value) {
-		this.shipName = value;
-		return this;
-	}
-	
-	
 	@DataSource({"module_uniq", "moduleUniq"})
 	@DataTarget("module_uniq")
 	@XMLSimple("moduleUniq")
@@ -283,21 +343,6 @@ public class DBPilotShipModulesListBean implements DbBean, Serializable {
 	
 	public DBPilotShipModulesListBean setModuleUniq(java.lang.String value) {
 		this.moduleUniq = value;
-		return this;
-	}
-	
-	
-	@DataSource({"module_loc_name", "moduleLocName"})
-	@DataTarget("module_loc_name")
-	@XMLSimple("moduleLocName")
-	private java.lang.String moduleLocName;
-	
-	public java.lang.String getModuleLocName() {
-		return moduleLocName;
-	}
-	
-	public DBPilotShipModulesListBean setModuleLocName(java.lang.String value) {
-		this.moduleLocName = value;
 		return this;
 	}
 	

@@ -107,6 +107,21 @@ public class DBByModuleInfoByUniqBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"eddb_id", "eddbId"})
+	@DataTarget("eddb_id")
+	@XMLSimple("eddbId")
+	private java.lang.Integer eddbId;
+	
+	public java.lang.Integer getEddbId() {
+		return eddbId;
+	}
+	
+	public DBByModuleInfoByUniqBean setEddbId(java.lang.Integer value) {
+		this.eddbId = value;
+		return this;
+	}
+	
+	
 	@DataSource({"module_weapon_mode", "moduleWeaponMode"})
 	@DataTarget("module_weapon_mode")
 	@XMLSimple("moduleWeaponMode")

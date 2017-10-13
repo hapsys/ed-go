@@ -167,6 +167,21 @@ public class DBPilotShipsListBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"eddb_id", "eddbId"})
+	@DataTarget("eddb_id")
+	@XMLSimple("eddbId")
+	private java.lang.Long eddbId;
+	
+	public java.lang.Long getEddbId() {
+		return eddbId;
+	}
+	
+	public DBPilotShipsListBean setEddbId(java.lang.Long value) {
+		this.eddbId = value;
+		return this;
+	}
+	
+	
 	@DataSource({"pilot_ship_ident", "pilotShipIdent"})
 	@DataTarget("pilot_ship_ident")
 	@XMLSimple("pilotShipIdent")

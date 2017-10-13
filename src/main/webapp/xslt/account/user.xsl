@@ -153,7 +153,7 @@
 							<textarea rows="5" readonly="readonly" id="accessKey" class="form-control">
 								<xsl:value-of select="item[@name='userKey']/field[@name='publicKey']/@value"/>
 							</textarea>
-							<div><span><button class="btn btn-primary btn-sm key-generate">Generate new key</button></span><span><button class="btn btn-sm clipboard-copy" style="margin-left: 50px;" data-clipboard-target="#accessKey">Copy to clipboard</button></span></div>
+							<div><span><button class="btn btn-primary btn-sm key-generate">Generate new key</button></span><span><button type="button" class="btn btn-sm clipboard-copy" style="margin-left: 50px;" data-clipboard-target="#accessKey">Copy to clipboard</button></span></div>
 						</p>
 					</form>
 				</div>

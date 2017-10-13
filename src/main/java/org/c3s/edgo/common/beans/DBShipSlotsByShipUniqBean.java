@@ -17,6 +17,21 @@ public class DBShipSlotsByShipUniqBean implements DbBean, Serializable {
 
 
 	
+	@DataSource({"slot_order", "slotOrder"})
+	@DataTarget("slot_order")
+	@XMLSimple("slotOrder")
+	private java.lang.Integer slotOrder;
+	
+	public java.lang.Integer getSlotOrder() {
+		return slotOrder;
+	}
+	
+	public DBShipSlotsByShipUniqBean setSlotOrder(java.lang.Integer value) {
+		this.slotOrder = value;
+		return this;
+	}
+	
+	
 	@DataSource({"size", "size"})
 	@DataTarget("size")
 	@XMLSimple("size")

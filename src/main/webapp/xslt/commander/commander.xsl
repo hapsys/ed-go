@@ -630,14 +630,14 @@
 		<table class="table" id="shipTable">
 			<thead>
 				<tr>
-					<th data-width="20"></th>
-					<th>Weapon</th>
-					<th data-width="20"></th>
-					<th>Utility</th>
-					<th data-width="20"></th>
-					<th>Essential</th>
-					<th data-width="20"></th>
-					<th>Internal</th>
+					<th data-width="1%"></th>
+					<th data-width="24%">Weapon</th>
+					<th data-width="1%"></th>
+					<th data-width="24%">Utility</th>
+					<th data-width="1%"></th>
+					<th data-width="24%">Essential</th>
+					<th data-width="1%"></th>
+					<th data-width="24%">Internal</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -654,8 +654,61 @@
 				</xsl:call-template>
 			</tbody>
 		</table>
+		<p>
+			<a class="coriolis-link" href="https://coriolis.edcd.io/outfit/" target="_tab">View at coriolis</a>
+		</p>
 		<script>
+			// Make ship 
+			var coriolisShip = '<xsl:value-of select="item[@name='currentShip']/modules/item/field[@name='coriolisName']/@value"/>';
+			var data = {
+				weapons: {
+				<xsl:for-each select="item[@name='currentShip']/modules/item[field[@name='slotTypeId']/@value='50']">
+					<xsl:value-of select="field[@name='slotUniq']/@value"/>: '<xsl:value-of select="field[@name='coriolisId']/@value"/>',  
+				</xsl:for-each>
+				},
+
+				unity: {
+				<xsl:for-each select="item[@name='currentShip']/modules/item[field[@name='slotTypeId']/@value='10']">
+					<xsl:value-of select="field[@name='slotUniq']/@value"/>: '<xsl:value-of select="field[@name='coriolisId']/@value"/>',  
+				</xsl:for-each>
+				},
+
+				standart : {
+				<xsl:for-each select="item[@name='currentShip']/modules/item[field[@name='slotTypeId' and (@value='30' or @value='40')]]">
+					<xsl:value-of select="field[@name='slotUniq']/@value"/>: '<xsl:value-of select="field[@name='coriolisId']/@value"/>',  
+				</xsl:for-each>
+				},
+
+				internal: {
+				<xsl:for-each select="item[@name='currentShip']/modules/item[field[@name='slotTypeId']/@value='20']">
+					<xsl:sort select="field[@name='linkSize']/@value" data-type="number" order="descending"/>
+					<!-- 
+					<xsl:sort select="substring(field[@name='slotUniq']/@value, 1, 1)" data-type="text" order="asceding"/>
+					 -->
+					<xsl:sort select="field[@name='slotUniq']/@value" data-type="text" order="descending"/>
+					<xsl:value-of select="field[@name='slotUniq']/@value"/>: '<xsl:value-of select="field[@name='coriolisId']/@value"/>',  
+				</xsl:for-each>
+			}};
+			 
+			var orders = ['standart', 'weapons', 'unity', 'internal'];
+			
+			var linkStr = '';
+			
+			orders.forEach(function(v, i) {
+				//console.log(v);
+				//console.log(i);
+				//console.log(data[v]);
+				for (key in data[v]) {
+					var val = data[v][key];
+					linkStr += val?val:'-';  
+				}
+			});
+			 
+			//console.log(linkStr);
+			
+			// Load
 			$(function() {
+				$('.coriolis-link').attr('href', $('.coriolis-link').attr('href') + coriolisShip + '?code=' + linkStr);
 				$("#shipTable").bootstrapTable({});
 				$('.show-modifyers').on('click', function() {
 					$(this).parents('td').find('.modifyer').toggleClass('hidden');

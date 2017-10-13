@@ -205,6 +205,11 @@ POPUP
     top: 50px;
 }
 
+.coriolis-link {
+	font-size: 16px;
+	color:blue;
+	text-decoration: underline;
+}
 /*
 SHIPS
 */
