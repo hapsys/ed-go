@@ -222,6 +222,7 @@ $(function() {
 			var end_date = moment(values.to);
 			dRange.setMinMax();
 			dRange.setRange(start_date, end_date);
+			$('.date-range-form').css('visibility', 'visible');
 			//dRange.setStartDateLabel();
 			//dRange.setEndDateLabel();
 		}
@@ -248,6 +249,7 @@ $(function() {
 		});
 		return results;
 	}).on('change', function() {
+		$('.date-range-form').css('visibility', 'visible');
 		//console.log($(this).val());
 		var factionId = $(this).val();
 		//start_date = moment.unix(dates[factionId].minDate);

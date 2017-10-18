@@ -26,7 +26,7 @@
 	<xsl:template name="canvas">
         <div class="page-title">
           <div class="title_left">
-          	<form class="form-inline date-range-form" style="position: relative; visibility1: hidden;">
+          	<form class="form-inline date-range-form" style="position: relative; visibility: hidden;">
 			  <div id="select-date-start" class="form-group data">
 					<input id="start-date-selected" class="form-control hidden" type="text" style="border:none;" value="{/*/@start_date}"/>
 					<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
