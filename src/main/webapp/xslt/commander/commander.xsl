@@ -1756,6 +1756,7 @@
 				$('#blueimp-gallery').on('slide', function(event, index, slide) {
 					var link = $('a[data-gallery=data-gallery]:eq(' + index + ')');
 				    var href = $(link).data('original');
+				    console.log(href);
 				    var $a = $('<a />', { href:href, text:'Download', target:'tab'});
 				    $('.download').html($a);
 				});				
