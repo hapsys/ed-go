@@ -47,6 +47,21 @@ public class DBMissionsBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"passengers", "passengers"})
+	@DataTarget("passengers")
+	@XMLSimple("passengers")
+	private java.lang.Long passengers;
+	
+	public java.lang.Long getPassengers() {
+		return passengers;
+	}
+	
+	public DBMissionsBean setPassengers(java.lang.Long value) {
+		this.passengers = value;
+		return this;
+	}
+	
+	
 	@DataSource({"station_history_id", "stationHistoryId"})
 	@DataTarget("station_history_id")
 	@XMLSimple("stationHistoryId")
@@ -88,6 +103,21 @@ public class DBMissionsBean implements DbBean, Serializable {
 	
 	public DBMissionsBean setReputation(java.lang.String value) {
 		this.reputation = value;
+		return this;
+	}
+	
+	
+	@DataSource({"description", "description"})
+	@DataTarget("description")
+	@XMLSimple("description")
+	private java.lang.String description;
+	
+	public java.lang.String getDescription() {
+		return description;
+	}
+	
+	public DBMissionsBean setDescription(java.lang.String value) {
+		this.description = value;
 		return this;
 	}
 	

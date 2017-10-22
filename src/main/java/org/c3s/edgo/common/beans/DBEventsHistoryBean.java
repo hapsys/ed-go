@@ -17,6 +17,21 @@ public class DBEventsHistoryBean implements DbBean, Serializable {
 
 
 	
+	@DataSource({"create_time", "createTime"})
+	@DataTarget("create_time")
+	@XMLSimple("createTime")
+	private java.sql.Timestamp createTime;
+	
+	public java.sql.Timestamp getCreateTime() {
+		return createTime;
+	}
+	
+	public DBEventsHistoryBean setCreateTime(java.sql.Timestamp value) {
+		this.createTime = value;
+		return this;
+	}
+	
+	
 	@DataSource({"user_id", "userId"})
 	@DataTarget("user_id")
 	@XMLSimple("userId")

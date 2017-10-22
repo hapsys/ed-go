@@ -45,6 +45,8 @@ public class MissionAccepted extends AbstractJournalEvent<MissionAcceptedBean> {
 					mission.setIsFailed(0);
 					mission.setInfluence(bean.getInfluence());
 					mission.setReputation(bean.getReputation());
+					mission.setPassengers(Long.valueOf(bean.getPassengerCount()));
+					mission.setDescription(bean.getLocalisedName());
 					if (bean.getDestinationSystem() != null) {
 						DBSystemsBean system = DbAccess.systemsAccess.getByUniq(EDUtils.getSystemUniq(bean.getDestinationSystem()));
 						if (system != null) {

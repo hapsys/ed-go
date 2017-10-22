@@ -55,7 +55,7 @@ public class MissionAcceptedBean extends AbstractEventBean {
 	/**
 	 * 
 	 */
-	private int PassengerCount;
+	private Integer PassengerCount;
 	/**
 	 * bool
 	 */
@@ -76,6 +76,10 @@ public class MissionAcceptedBean extends AbstractEventBean {
 	 * 
 	 */
 	private String Reputation;
+	
+	
+	private String LocalisedName;
+	
 	/**
 	 * @return
 	 */
@@ -261,14 +265,14 @@ public class MissionAcceptedBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public int getPassengerCount() {
+	public Integer getPassengerCount() {
 		return PassengerCount;
 	}
 
 	/**
 	 * @param passengercount
 	 */
-	public void setPassengerCount(int passengercount) {
+	public void setPassengerCount(Integer passengercount) {
 		this.PassengerCount = passengercount;
 	}
 
@@ -330,4 +334,13 @@ public class MissionAcceptedBean extends AbstractEventBean {
 		Reputation = reputation;
 	}
 
+	public String getLocalisedName() {
+		return LocalisedName;
+	}
+
+	public void setLocalisedName(String localisedName) {
+		LocalisedName = localisedName;
+	}
+
+	
 }
