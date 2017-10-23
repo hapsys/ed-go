@@ -245,13 +245,13 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	@DataSource({"passengers", "passengers"})
 	@DataTarget("passengers")
 	@XMLSimple("passengers")
-	private java.lang.Long passengers;
+	private java.lang.Integer passengers;
 	
-	public java.lang.Long getPassengers() {
+	public java.lang.Integer getPassengers() {
 		return passengers;
 	}
 	
-	public DBMissionsComplitedListByPilotsBean setPassengers(java.lang.Long value) {
+	public DBMissionsComplitedListByPilotsBean setPassengers(java.lang.Integer value) {
 		this.passengers = value;
 		return this;
 	}
