@@ -560,66 +560,6 @@
 		<div class="clearfix"></div>
 
 	</xsl:template>
-	<xsl:template name="view_ships1">
-	
-		<xsl:variable name="lang"><xsl:value-of select="$root"/><xsl:if test="$politic = 'suffix' and $default != 'true'">/<xsl:value-of select="$suffix"/></xsl:if></xsl:variable>
-		<div><h3><xsl:value-of select="field[@name='pilotName']/@value"/></h3></div>
-
-		<div>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>Ship</th>
-						<th>System/Station</th>
-						<th>#</th>
-						<th>Ship</th>
-						<th>System/Station</th>
-					</tr>
-				</thead>
-				<tbody>
-					<xsl:for-each select="childs/item">
-						<!--
-						<xsl:sort case-order="upper-first" data-type="text" order="ascending" select="field[@name='ship']/field[@name='name']/@value"/>
-						-->
-						<xsl:variable name="class">
-							<xsl:if test="field[@name='isMain']/@value = 1">1</xsl:if>
-						</xsl:variable>
-						<xsl:if test="position() mod 2 = 1"><xsl:text disable-output-escaping="yes">&lt;tr&gt;</xsl:text></xsl:if>
-							<td>
-								<xsl:if test="$class = 1"><xsl:attribute name="class">success</xsl:attribute></xsl:if>
-								<xsl:value-of select="field[@name='linkShipId']/@value"/>
-							</td>
-							<td>
-								<xsl:if test="$class = 1"><xsl:attribute name="class">success</xsl:attribute></xsl:if>
-								<a href="{$lang}/{../../field[@name='pilotName']/@value}/ships/{field[@name='linkShipId']/@value}/">
-									<xsl:value-of select="field[@name='shipName']/@value"/>
-								</a>
-							</td>
-							<td>
-								<xsl:if test="$class = 1"><xsl:attribute name="class">success</xsl:attribute></xsl:if>
-								<xsl:choose>
-									<xsl:when test="string-length(field[@name='systemName']/@value) != 0">
-										<xsl:value-of select="field[@name='systemName']/@value"/><br/>
-										<xsl:value-of select="field[@name='stationName']/@value"/>
-									</xsl:when>
-									<xsl:otherwise>
-										<xsl:value-of select="/item/item[@name='location']/field[@name='systemName']/@value"/><br/>
-										<xsl:value-of select="/item/item[@name='location']/field[@name='stationName']/@value"/>
-									</xsl:otherwise>
-								</xsl:choose>
-							</td>
-						<xsl:if test="position() mod 2 = 0"><xsl:text disable-output-escaping="yes">&lt;/tr&gt;</xsl:text></xsl:if>
-					</xsl:for-each>
-					<xsl:if test="count(childs/item) mod 2 = 1"><td colspan="3"></td><xsl:text disable-output-escaping="yes">&lt;/tr&gt;</xsl:text></xsl:if>
-				</tbody>
-				
-			</table>
-
-		
-		</div>
-	
-	</xsl:template>
 <!--
 //
 //
@@ -947,50 +887,142 @@
 	<xsl:template name="view_missions">
 		<xsl:variable name="lang"><xsl:value-of select="$root"/><xsl:if test="$politic = 'suffix' and $default != 'true'">/<xsl:value-of select="$suffix"/></xsl:if></xsl:variable>
 		<div><h3><xsl:value-of select="field[@name='pilotName']/@value"/></h3></div>
-			<table class="table table-bordered">
-				<thead>
+        <div class="page-title">
+          <div class="title_left">
+          	<form class="form-inline date-range-form" style="position: relative;">
+			  <div class="form-group">
+			  	<label for="exampleInputName2">Range: </label>
+			  </div>
+			  <div id="select-date-start" class="form-group data">
+					<input id="start-date-selected" class="form-control hidden" type="text" style="border:none;" value="{/*/@start_date}" name="from"/>
+					<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+					<span style="padding-left: 5px; padding-right: 5px;"></span>
+					<b class="caret"></b>
+			  </div>
+			  <div class="form-group">
+			  	<label for="exampleInputName2" style="margin-left: 5px; margin-right: 5px;">-</label>
+			  </div>
+			  <div id="select-date-end" class="form-group data">
+				<input id="end-date-selected" class="form-control hidden" type="text" style="border:none;" value="{/*/@end_date}" name="to"/>
+				<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+				<span style="padding-left: 5px; padding-right: 5px;"></span>
+				<b class="caret"></b>
+			  </div>
+			  <div class="form-group">
+			  	<label for="exampleInputName2" style="margin-left: 25px;">System: </label>
+			  </div>
+			  <div class="form-group data">
+			  	<select name="system" class="selectpicker reset-selector" data-live-search="true" title="Select system...">
+			  		<option value=""></option>
+			  		<xsl:for-each select="additionFour/item">
+			  			<option value="{field[@name='systemId']/@value}">
+			  				<xsl:if test="field[@name='systemId']/@value = /*/@systemid">
+			  					<xsl:attribute name="selected">selected</xsl:attribute>
+			  				</xsl:if>
+			  				<xsl:value-of select="field[@name='systemName']/@value"/>
+			  			</option>
+			  		</xsl:for-each> 
+			  	</select>
+			  </div>
+			  <div class="form-group">
+			  	<label for="exampleInputName2" style="margin-left: 25px;">Faction: </label>
+			  </div>
+			  <div class="form-group data">
+			  	<select name="faction" class="selectpicker reset-selector" data-live-search="true" title="Select faction...">
+			  		<option value=""></option>
+			  		<xsl:for-each select="additionThree/item">
+			  			<option value="{field[@name='factionId']/@value}">
+			  				<xsl:if test="field[@name='factionId']/@value = /*/@factionid">
+			  					<xsl:attribute name="selected">selected</xsl:attribute>
+			  				</xsl:if>
+			  				<xsl:value-of select="field[@name='factionName']/@value"/>
+			  			</option>
+			  		</xsl:for-each> 
+			  	</select>
+			  </div>
+			  <div class="form-group"><button type="submit" class="btn">Filter</button></div>
+			</form>
+          </div>
+		</div>	
+		<div>	
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Complete</th>
+					<th>Type</th>
+					<th>Faction</th>
+					<th>Source</th>
+					<th>Destination</th>
+					<th>Passengers</th>
+					<th>Credits</th>
+					<th>Commodities</th>
+					<th>Materials</th>
+				</tr>
+			</thead>
+			<tbody>
+				<xsl:for-each select="childs/item">
 					<tr>
-						<th rowspan="2">Complete Time</th>
-						<th rowspan="2">Mission type</th>
-						<th colspan="2">Location</th>
-						<th colspan="3">Reward</th>
+						<td><xsl:value-of select="field[@name='missionDate']/@value"/></td>
+						<td><xsl:value-of select="field[@name='missionTypeName']/@value"/></td>
+						<td><xsl:value-of select="field[@name='factionName']/@value"/></td>
+						<td><xsl:value-of select="field[@name='systemName']/@value"/> / <xsl:value-of select="field[@name='stationName']/@value"/></td>
+						<td>
+							<xsl:if test="string-length(field[@name='targetSystemName']/@value) != 0">
+								<xsl:value-of select="field[@name='targetSystemName']/@value"/>
+								<xsl:if test="string-length(field[@name='targetStationName']/@value) != 0">
+									/ <xsl:value-of select="field[@name='targetStationName']/@value"/>
+								</xsl:if>
+							</xsl:if>
+						</td>
+						<td><xsl:value-of select="field[@name='passengers']/@value"/></td>
+						<td><xsl:value-of select="format-number(field[@name='reward']/@value, '### ### ###', 'revards')"/></td>
+						<td>
+							<xsl:for-each select="field[@name='commodityId']/value">
+								<xsl:variable name="id" select="@value"/>
+								<xsl:value-of select="/item/additionOne/item[field[@name='commodityId']/@value = $id]/field[@name='commodityName']/@value"></xsl:value-of><br/>
+							</xsl:for-each>
+						</td>
+						<td>
+							<xsl:for-each select="field[@name='materialId']/value">
+								<xsl:variable name="id" select="@value"/>
+								<xsl:value-of select="i10n:tr(/item/additionTwo/item[field[@name='materialId']/@value = $id]/field[@name='materialUniq']/@value)"></xsl:value-of><br/>
+							</xsl:for-each>
+						</td>
 					</tr>
-					<tr>
-						<th colspan="2">Fraction</th>
-						<th>Credits</th>
-						<th>Commodities</th>
-						<th>Materials</th>
-					</tr>
-				</thead>
-				<tbody>
-					<xsl:for-each select="childs/item">
-						<tr>
-							<td rowspan="2"><xsl:value-of select="field[@name='missionDate']/@value"/></td>
-							<td rowspan="2"><xsl:value-of select="field[@name='missionTypeName']/@value"/></td>
-							<td><xsl:value-of select="field[@name='systemName']/@value"/></td>
-							<td><xsl:value-of select="field[@name='stationName']/@value"/></td>
-							<td rowspan="2"><xsl:value-of select="format-number(field[@name='reward']/@value, '### ### ###', 'revards')"/></td>
-							<td rowspan="2">
-								<xsl:for-each select="field[@name='commodityId']/value">
-									<xsl:variable name="id" select="@value"/>
-									<xsl:value-of select="/item/additionOne/item[field[@name='commodityId']/@value = $id]/field[@name='commodityName']/@value"></xsl:value-of><br/>
-								</xsl:for-each>
-							</td>
-							<td rowspan="2">
-								<xsl:for-each select="field[@name='materialId']/value">
-									<xsl:variable name="id" select="@value"/>
-									<xsl:value-of select="i10n:tr(/item/additionTwo/item[field[@name='materialId']/@value = $id]/field[@name='materialUniq']/@value)"></xsl:value-of><br/>
-								</xsl:for-each>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2"><xsl:value-of select="field[@name='factionName']/@value"/></td>
-						</tr>
-					</xsl:for-each>
-				</tbody>
-			</table>			
-		<div>
-		</div>
+				</xsl:for-each>
+				<tr>
+					<td colspan="6" align="right">
+						<strong>Total:</strong>
+					</td>
+					<td colspan="3"><strong><xsl:value-of select="format-number(sum(childs/item/field[@name='reward']/@value), '### ### ### ###', 'revards')"/></strong></td>
+					
+				</tr>
+			</tbody>
+		</table>
+		</div>			
+		<script type="text/javascript">
+			$(function() {
+				var dRange = new DateRange();
+				
+				var mindate = '<xsl:value-of select="/*/@mindate"/>';
+				var maxdate = '<xsl:value-of select="/*/@maxdate"/>';
+				var start_date = '<xsl:value-of select="/*/@start_date"/>';
+				var end_date = '<xsl:value-of select="/*/@end_date"/>';
+				dRange.setMinMax(mindate,maxdate);
+				dRange.setRange(start_date,end_date);
+				
+				$('.reset-selector').on('change', function() {
+					if ($(this).val()) {
+						dRange.setRange(mindate, maxdate);
+					} else {
+						dRange.setRange(start_date,end_date);
+					}
+					$('#start-date-selected').val(dRange.getStartDate().format('YYYY-MM-DD'));
+					$('#end-date-selected').val(dRange.getEndDate().format('YYYY-MM-DD'));
+				});
+			});
+		</script>
+		<div class="clearfix"></div>
 	</xsl:template>
 <!--
 //

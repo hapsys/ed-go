@@ -26,7 +26,7 @@
 				LIMIT 1 
 			</sql>
 		</query>
-		<query name="MissionsComplitedListByPilots" intruder="org.c3s.edgo.common.intruders.InInjector">
+		<query name="MissionsComplitedListByPilots" intruder="org.c3s.edgo.common.intruders.CommonInjector">
 			<result_column name="commodity_id" type="Integer[]">
 	    		<annotation>@XMLSimple</annotation>
 			</result_column>
@@ -34,7 +34,8 @@
 	    		<annotation>@XMLSimple</annotation>
 			</result_column>
 			<sql>
-				SELECT m.*, DATE_FORMAT(m.complete_date, '%Y-%m-%d %T') AS mission_date, t.*, f.faction_id, f.name as faction_name, s.name as system_name, st.name as station_name,
+				SELECT m.*, DATE_FORMAT(m.complete_date, '%Y-%m-%d %T') AS mission_date, t.*, f.faction_id, f.name as faction_name, s.name as system_name, st.name as station_name, 
+					s1.name as target_system_name, st1.name as target_station_name,
 					GROUP_CONCAT(DISTINCT rc.commodity_id SEPARATOR ',') as commodity_idx, GROUP_CONCAT(DISTINCT rm.material_id SEPARATOR ',') as material_idx
 				FROM mission_types t, factions f, (missions m, station_history h)
 				LEFT JOIN reward_commodities rc ON rc.mission_id = m.mission_id 
@@ -42,6 +43,8 @@
 				LEFT JOIN location_history l ON l.location_id = h.location_id 
 				LEFT JOIN systems s ON s.system_id = l.system_id
 				LEFT JOIN stations st ON st.station_id = h.station_id
+				LEFT JOIN systems s1 ON s1.system_id = m.target_system_id
+				LEFT JOIN stations st1 ON st1.station_id = m.target_station_id
 				LEFT JOIN bodies b ON b.body_id = h.body_id
 				WHERE 1=1 
 				<where/>
@@ -51,6 +54,40 @@
 				AND h.station_history_id = m.station_history_id
 				GROUP BY m.mission_id 
 				ORDER BY m.complete_date DESC
+			</sql>
+		</query>
+		
+		<query name="MissionsDateRange" intruder="org.c3s.edgo.common.intruders.InInjector">
+			<sql>
+				SELECT DATE_FORMAT(MIN(m.complete_date), '%Y-%m-%d') AS min_date, DATE_FORMAT(MAX(m.complete_date), '%Y-%m-%d') AS max_date
+				FROM missions m
+				WHERE NOT ISNULL(m.complete_date)
+				<where/>
+				GROUP BY m.pilot_id				
+			</sql>
+		</query>
+		<query name="MissionsFactionsList" intruder="org.c3s.edgo.common.intruders.InInjector">
+			<sql>
+				SELECT f.faction_id, f.name as faction_name
+				FROM missions m, factions f
+				WHERE NOT ISNULL(m.complete_date)
+				<where/>
+				AND f.faction_id = m.faction_id
+				GROUP BY f.faction_id
+				ORDER BY faction_name
+			</sql>
+		</query>
+		<query name="MissionsSystemsList" intruder="org.c3s.edgo.common.intruders.InInjector">
+			<sql>
+				SELECT s.system_id, s.name as system_name
+				FROM missions m, station_history h, location_history l, systems s
+				WHERE NOT ISNULL(m.complete_date)
+				<where/>
+				AND h.station_history_id = m.station_history_id
+				AND l.location_id = h.location_id
+				AND s.system_id = l.system_id
+				GROUP BY s.system_id
+				ORDER BY system_name
 			</sql>
 		</query>
 	</table>

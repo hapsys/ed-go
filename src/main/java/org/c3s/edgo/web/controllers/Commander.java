@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
@@ -40,7 +41,7 @@ import org.c3s.edgo.common.beans.DBMaterialsBean;
 import org.c3s.edgo.common.beans.DBMaterialsByBlueprintAndGradeBean;
 import org.c3s.edgo.common.beans.DBMaterialsByTypeUniqBean;
 import org.c3s.edgo.common.beans.DBMaxMinDateLocationHistoryForPilotBean;
-import org.c3s.edgo.common.beans.DBMissionsComplitedListByPilotsBean;
+import org.c3s.edgo.common.beans.DBMissionsDateRangeBean;
 import org.c3s.edgo.common.beans.DBModifyersByPilotModuleIdBean;
 import org.c3s.edgo.common.beans.DBPilotInfoLinkWithDefaultsBean;
 import org.c3s.edgo.common.beans.DBPilotInfoWithDefaultsBean;
@@ -62,6 +63,7 @@ import org.c3s.edgo.common.intruders.ActivityInjector;
 import org.c3s.edgo.common.intruders.InInjector;
 import org.c3s.edgo.common.intruders.SystemPathInjector;
 import org.c3s.edgo.relations.Relation;
+import org.c3s.edgo.repo.Missions;
 import org.c3s.edgo.utils.I10N;
 import org.c3s.edgo.web.GeneralController;
 import org.c3s.edgo.web.auth.AuthRoles;
@@ -377,55 +379,70 @@ public class Commander extends GeneralController {
 	// ============================================================== -POWERS ==============================================================================
 	
 	// ============================================================== +MISSIONS ==============================================================================
-	public void getMissions(@Parameter("tag") String tag, @Parameter("template") String template, UrlPart url, RedirectControlerInterface redirect, PatternerInterface patterner) throws Exception {
+	public void getMissions(@ParameterRequest("from") String startDate, @ParameterRequest("to") String endDate, @ParameterRequest("system") String system, @ParameterRequest("faction") String faction,
+			@Parameter("tag") String tag, @Parameter("template") String template, RedirectControlerInterface redirect, PatternerInterface patterner) throws Exception {
 		
 		if (current != null) {
 
-			//List<Object> in = new ArrayList<>();
-			//in.add(current.getPilotId());
-			InInjector injector = new InInjector("m.pilot_id", linkedPilots);
+			DBMissionsDateRangeBean minmax = Missions.getMinMaxDate(linkedPilots);
 			
-			List<Object> mat_in = new ArrayList<>();
-			List<Object> com_in = new ArrayList<>();
-			List<DBMissionsComplitedListByPilotsBean> missions = DbAccess.missionsAccess.getMissionsComplitedListByPilots(injector);
-			if (missions != null) {
-				for (DBMissionsComplitedListByPilotsBean mission: missions) {
-					if (mission.getCommodityIdx() != null) {
-						String[] cidxs = mission.getCommodityIdx().split(",");
-						mission.setCommodityId(new Integer[cidxs.length]);
-						int i = 0;
-						for (String cid: cidxs) {
-							Integer val = new Integer(cid);
-							mission.getCommodityId()[i] = val;
-							com_in.add(val);
-							i++;
-						}
-					}
-					if (mission.getMaterialIdx() != null) {
-						String[] cidxs = mission.getMaterialIdx().split(",");
-						mission.setMaterialId(new Integer[cidxs.length]);
-						int i = 0;
-						for (String cid: cidxs) {
-							Integer val = new Integer(cid);
-							mission.getMaterialId()[i] = val;
-							mat_in.add(val);
-							i++;
-						}
-					}
+			if (minmax != null) {
+			
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				
+				Date sdate, edate;
+				
+				try {
+					edate = dateFormat.parse(endDate);
+				} catch (Exception e) {
+					edate = dateFormat.parse(minmax.getMaxDate());
 				}
-				current.setChilds(missions);
+				try {
+					sdate = dateFormat.parse(startDate);
+				} catch (Exception e) {
+					sdate = new Date(edate.getTime() - 31 * 24 * 3600 * 1000L);
+				}
+				
+				startDate = dateFormat.format(sdate);
+				endDate = dateFormat.format(edate);
+				
+				List<Long> systems = null;
+				
+				try {
+					systems = Arrays.asList(Long.parseLong(system));
+				} catch (Exception e) {}
+
+				List<Long> factions = null;
+				
+				try {
+					factions = Arrays.asList(Long.parseLong(faction));
+				} catch (Exception e) {}
+				
+				
+				Missions missions = new Missions(linkedPilots, startDate, endDate, factions, systems);
+	
+				current.setChilds(missions.getMissions());
+				current.setAdditionOne(missions.getCommodities());
+				current.setAdditionTwo(missions.getMaterials());
+				current.setAdditionThree(missions.getFactions());
+				current.setAdditionFour(missions.getSystems());
+				
+				Document xml = new XMLReflectionObj(current).toXML();
+				
+				xml.getDocumentElement().setAttribute("systemid", system);
+				xml.getDocumentElement().setAttribute("factionid", faction);
+				
+				xml.getDocumentElement().setAttribute("mindate", minmax.getMinDate());
+				xml.getDocumentElement().setAttribute("maxdate", minmax.getMaxDate());
+				
+				xml.getDocumentElement().setAttribute("start_date", startDate == null? minmax.getMinDate():startDate);
+				xml.getDocumentElement().setAttribute("end_date", endDate == null? minmax.getMaxDate():endDate);
+				
+				//logger.debug(XMLUtils.xml2out(xml));
+				//System.out.println(XMLUtils.saveXML(xml));
+				ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:view_missions"});
+				
 			}
-			if (com_in.size() > 0) {
-				InInjector injectorCom = new InInjector("commodity_id", com_in);
-				current.setAdditionOne(DbAccess.commoditiesAccess.getCommoditiesList(injectorCom));
-			}
-			if (mat_in.size() > 0) {
-				InInjector injectorCom = new InInjector("material_id", mat_in);
-				current.setAdditionTwo(DbAccess.materialsAccess.getMaterialsList(injectorCom));
-			}
-			Document xml = new XMLReflectionObj(current).toXML();
-			//logger.debug(XMLUtils.xml2out(xml));
-			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:view_missions"});
 		} else {
 			redirect.setRedirect(new DirectRedirect("/"));
 			throw new SkipSubLevelsExeption();

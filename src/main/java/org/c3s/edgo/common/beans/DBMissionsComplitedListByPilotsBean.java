@@ -182,6 +182,21 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	
+	@DataSource({"target_system_name", "targetSystemName"})
+	@DataTarget("name")
+	@XMLSimple("targetSystemName")
+	private java.lang.String targetSystemName;
+	
+	public java.lang.String getTargetSystemName() {
+		return targetSystemName;
+	}
+	
+	public DBMissionsComplitedListByPilotsBean setTargetSystemName(java.lang.String value) {
+		this.targetSystemName = value;
+		return this;
+	}
+	
+	
 	@DataSource({"mission_type_id", "missionTypeId"})
 	@DataTarget("mission_type_id")
 	@XMLSimple("missionTypeId")
@@ -343,6 +358,21 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	
 	public DBMissionsComplitedListByPilotsBean setMissionTypeName(java.lang.String value) {
 		this.missionTypeName = value;
+		return this;
+	}
+	
+	
+	@DataSource({"target_station_name", "targetStationName"})
+	@DataTarget("name")
+	@XMLSimple("targetStationName")
+	private java.lang.String targetStationName;
+	
+	public java.lang.String getTargetStationName() {
+		return targetStationName;
+	}
+	
+	public DBMissionsComplitedListByPilotsBean setTargetStationName(java.lang.String value) {
+		this.targetStationName = value;
 		return this;
 	}
 	

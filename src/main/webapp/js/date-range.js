@@ -9,7 +9,7 @@ DateRange = function(locale) {
 	var update_date = end_date;
 	
 	this.setStartDate = function(_start_date) {
-		start_date = _start_date;
+		start_date = moment(_start_date);
 	};
 	
 
@@ -18,7 +18,7 @@ DateRange = function(locale) {
 	};
 	
 	this.setEndDate = function(_end_date) {
-		end_date = _end_date;
+		end_date = moment(_end_date);
 	};
 	
 	this.getEndDate = function() {

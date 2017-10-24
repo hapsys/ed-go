@@ -43,6 +43,9 @@
 		<column name="addition_three" type="List&lt;? extends Object&gt;">
 	    	<annotation>@XMLFieldList</annotation>
 		</column>
+		<column name="addition_four" type="List&lt;? extends Object&gt;">
+	    	<annotation>@XMLFieldList</annotation>
+		</column>
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="pilot_id"/>
 		</select>

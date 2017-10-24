@@ -250,6 +250,22 @@ public class DBPilotsBean implements DbBean, Serializable {
 		return this;
 	}
 	
+	
+	@DataSource({"addition_four", "additionFour"})
+	@DataTarget("addition_four")
+	@XMLFieldList
+
+	private List<? extends Object> additionFour;
+	
+	public List<? extends Object> getAdditionFour() {
+		return additionFour;
+	}
+	
+	public DBPilotsBean setAdditionFour(List<? extends Object> value) {
+		this.additionFour = value;
+		return this;
+	}
+	
 	@Override
 	public void setAutoincrementField(Object value) {
 		
