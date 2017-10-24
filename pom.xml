@@ -7,6 +7,26 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Elite:Dangerouse Community Board</name>
 	<url>http://maven.apache.org</url>
+	<profiles>
+		<profile>
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<build-target>${project.artifactId}</build-target>
+			</properties>
+		</profile>
+		<profile>
+			<id>develop</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<build-target>${project.artifactId}-develop</build-target>
+			</properties>
+		</profile>
+	</profiles>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -99,7 +119,7 @@
 		
 	</dependencies>
 	<build>
-		<finalName>${project.artifactId}</finalName>
+		<finalName>${build-target}</finalName>
 		<pluginManagement>
 			<plugins>
 			</plugins>
@@ -133,7 +153,7 @@
 					<url>http://192.168.0.10:8080/manager/text</url>
 					<!-- Refer to the server settings in your ~/.m2/settings.xml -->
 					<server>dev-tomcat</server>
-					<path>/${project.artifactId}</path>
+					<path>/${build-target}</path>
 					<update>true</update>
 				</configuration>
 			</plugin>
