@@ -886,6 +886,13 @@
 -->
 	<xsl:template name="view_missions">
 		<xsl:variable name="lang"><xsl:value-of select="$root"/><xsl:if test="$politic = 'suffix' and $default != 'true'">/<xsl:value-of select="$suffix"/></xsl:if></xsl:variable>
+		<xsl:variable name="total" select="format-number(sum(childs/item/field[@name='reward']/@value), '### ### ### ###', 'revards')"/>	
+		<xsl:variable name="infH" select="count(childs/item[field[@name='influence' and @value = 'High']])"/>	
+		<xsl:variable name="infM" select="count(childs/item[field[@name='influence' and @value = 'Med']])"/>	
+		<xsl:variable name="infL" select="count(childs/item[field[@name='influence' and @value = 'Low']])"/>	
+		<xsl:variable name="repH" select="count(childs/item[field[@name='reputation' and @value = 'High']])"/>	
+		<xsl:variable name="repM" select="count(childs/item[field[@name='reputation' and @value = 'Med']])"/>	
+		<xsl:variable name="repL" select="count(childs/item[field[@name='reputation' and @value = 'Low']])"/>
 		<div><h3><xsl:value-of select="field[@name='pilotName']/@value"/></h3></div>
         <div class="page-title">
           <div class="title_left">
@@ -944,12 +951,29 @@
 			</form>
           </div>
 		</div>	
-		<div>	
+		<div>
+		<div class="list-group">
+  			<a class="list-group-item show-statistic" href="#">Show statistic<i class="fa fa-sort-down fa-fw" aria-hidden="true"></i></a>
+  			<a class="list-group-item hide-statistic hidden" href="#">Hide statistic<i class="fa fa-sort-up fa-fw" aria-hidden="true"></i></a>
+			<dl class="dl-horizontal list-group-item statistic hidden" >
+				<dt>Missions: </dt>
+				<dd class="sum-count"><xsl:value-of select="count(childs/item)"/></dd>
+				<dt>Credits: </dt>
+				<dd class="sum-total"><xsl:value-of select="$total"/></dd>
+				<dt>Influence: </dt>
+				<dd class="sum-influence"><xsl:value-of select="$infH"/>/+++, <xsl:value-of select="$infM"/>/++, <xsl:value-of select="$infL"/>/+</dd>
+				<dt>Reputation: </dt>
+				<dd class="sum-reputation"><xsl:value-of select="$repH"/>/+++, <xsl:value-of select="$repM"/>/++, <xsl:value-of select="$repL"/>/+</dd>
+			</dl>
+  		</div>	
 		<table class="table table-bordered">
 			<thead>
 				<tr>
+					<th width="20px;"></th>
 					<th>Complete</th>
 					<th>Type</th>
+					<th>Inf</th>
+					<th>Rep</th>
 					<th>Faction</th>
 					<th>Source</th>
 					<th>Destination</th>
@@ -962,8 +986,11 @@
 			<tbody>
 				<xsl:for-each select="childs/item">
 					<tr>
+						<td><input type="checkbox" class="recount"/></td>
 						<td><xsl:value-of select="field[@name='missionDate']/@value"/></td>
 						<td><xsl:value-of select="field[@name='missionTypeName']/@value"/></td>
+						<td class="count-influence" data-influence="{field[@name='influence']/@value}"><xsl:call-template name="showInfRep"><xsl:with-param name="inf" select="field[@name='influence']/@value"/></xsl:call-template></td>
+						<td class="count-reputation" data-reputation="{field[@name='reputation']/@value}"><xsl:call-template name="showInfRep"><xsl:with-param name="inf" select="field[@name='reputation']/@value"/></xsl:call-template></td>
 						<td><xsl:value-of select="field[@name='factionName']/@value"/></td>
 						<td><xsl:value-of select="field[@name='systemName']/@value"/> / <xsl:value-of select="field[@name='stationName']/@value"/></td>
 						<td>
@@ -975,7 +1002,7 @@
 							</xsl:if>
 						</td>
 						<td><xsl:value-of select="field[@name='passengers']/@value"/></td>
-						<td><xsl:value-of select="format-number(field[@name='reward']/@value, '### ### ###', 'revards')"/></td>
+						<td class="count-rewards" data-rewards="{number(field[@name='reward']/@value)}"><xsl:value-of select="format-number(field[@name='reward']/@value, '### ### ###', 'revards')"/></td>
 						<td>
 							<xsl:for-each select="field[@name='commodityId']/value">
 								<xsl:variable name="id" select="@value"/>
@@ -990,13 +1017,6 @@
 						</td>
 					</tr>
 				</xsl:for-each>
-				<tr>
-					<td colspan="6" align="right">
-						<strong>Total:</strong>
-					</td>
-					<td colspan="3"><strong><xsl:value-of select="format-number(sum(childs/item/field[@name='reward']/@value), '### ### ### ###', 'revards')"/></strong></td>
-					
-				</tr>
 			</tbody>
 		</table>
 		</div>			
@@ -1020,9 +1040,68 @@
 					$('#start-date-selected').val(dRange.getStartDate().format('YYYY-MM-DD'));
 					$('#end-date-selected').val(dRange.getEndDate().format('YYYY-MM-DD'));
 				});
+				
+				$('.show-statistic, .hide-statistic').on('click', function() {
+					$('.show-statistic, .hide-statistic, .statistic').toggleClass('hidden');
+					return false;
+				});
+				
+				// Count statistic
+				var dCount = "<xsl:value-of select="count(childs/item)"/>";
+				var dTotal = "<xsl:value-of select="$total"/>";
+				var dInfH = "<xsl:value-of select="$infH"/>";
+				var dInfM = "<xsl:value-of select="$infM"/>";
+				var dInfL = "<xsl:value-of select="$infL"/>";
+				var dRepH = "<xsl:value-of select="$repH"/>";
+				var dRepM = "<xsl:value-of select="$repM"/>";
+				var dRepL = "<xsl:value-of select="$repL"/>";
+				
+				var count = 0, total = 0, inf = {'High': 0, 'Med': 0, 'Low': 0}, rep = {'High': 0, 'Med': 0, 'Low': 0};
+				
+				var showStatistic = function() {
+					var c = dCount, t = dTotal, i = {'High': dInfH, 'Med': dInfM, 'Low': dInfL}, r = {'High': dRepH, 'Med': dRepM, 'Low': dRepL};
+					if (count > 0) {
+						c = count;
+						var absTotal = number_format(Math.abs(total), 0, '', ' '); 
+						t = (total &lt; 0?'-':'') + absTotal; 
+						i = inf; 
+						r = rep;
+					}
+					$('.sum-count').html(c);
+					$('.sum-total').html(t);
+					$('.sum-influence').html(i['High'] + '/+++, ' + i['Med'] + '/++, ' + i['Low'] + '/+')
+					$('.sum-reputation').html(r['High'] + '/+++, ' + r['Med'] + '/++, ' + r['Low'] + '/+')
+				}; 
+				
+				$('.recount').on('change', function() {
+					var sign = $(this).prop('checked')?1:-1;
+					var tr = $(this).parents('tr')[0];
+					
+					count += sign;
+					total += sign * parseInt($(tr).find('.count-rewards').data('rewards'));
+					var key = $(tr).find('.count-influence').data('influence'); 
+					inf[key] += sign;
+					key = $(tr).find('.count-reputation').data('reputation'); 
+					rep[key] += sign;
+					
+					showStatistic();
+				});
 			});
 		</script>
 		<div class="clearfix"></div>
+	</xsl:template>
+<!--
+//
+//
+//
+-->
+	<xsl:template name="showInfRep">
+		<xsl:param name="inf"/>
+		<xsl:choose>
+			<xsl:when test="$inf = 'Low'">+</xsl:when>
+			<xsl:when test="$inf = 'Med'">++</xsl:when>
+			<xsl:when test="$inf = 'High'">+++</xsl:when>
+		</xsl:choose>
 	</xsl:template>
 <!--
 //
