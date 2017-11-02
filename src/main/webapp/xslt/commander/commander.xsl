@@ -958,12 +958,12 @@
 			<dl class="dl-horizontal list-group-item statistic hidden" >
 				<dt>Missions: </dt>
 				<dd class="sum-count"><xsl:value-of select="count(childs/item)"/></dd>
-				<dt>Credits: </dt>
-				<dd class="sum-total"><xsl:value-of select="$total"/></dd>
 				<dt>Influence: </dt>
 				<dd class="sum-influence"><xsl:value-of select="$infH"/>/+++, <xsl:value-of select="$infM"/>/++, <xsl:value-of select="$infL"/>/+</dd>
 				<dt>Reputation: </dt>
 				<dd class="sum-reputation"><xsl:value-of select="$repH"/>/+++, <xsl:value-of select="$repM"/>/++, <xsl:value-of select="$repL"/>/+</dd>
+				<dt>Credits: </dt>
+				<dd class="sum-total"><xsl:value-of select="$total"/></dd>
 			</dl>
   		</div>	
 		<table class="table table-bordered">
