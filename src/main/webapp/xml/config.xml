@@ -112,6 +112,7 @@
 			<!-- -Utilites  -->
 			<!-- +Administration  -->
 			<module pattern="administration/" class="org.c3s.edgo.web.auth.Auth" action="checkRoles">
+				<param name="order" value="deny,allow" inherit="true"/>
 				<param name="allow" value="ROLE_ADMINISTRATOR"/>
 				<param name="tag" value="view_ctx" inherit="true"/>
 				<module pattern="ship-equipment/" class="org.c3s.edgo.web.admin.Ships" action="getCanvas" is_last="true">
@@ -202,6 +203,7 @@
 					</module>
 					<!-- +Administration  -->
 					<module pattern="administration/" class="org.c3s.edgo.web.auth.Auth" action="checkRoles">
+						<param name="order" value="deny,allow" inherit="true"/>
 						<param name="allow" value="ROLE_ADMINISTRATOR"/>
 						<module pattern="slots-list/" class="org.c3s.edgo.web.admin.Ships" action="getSlots" is_last="true"/>
 						<module pattern="slot-delete/" class="org.c3s.edgo.web.admin.Ships" action="deleteSlotFromShip" is_last="true"/>
