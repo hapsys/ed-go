@@ -208,7 +208,7 @@ public class DBFactionsAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT f.faction_id, f.name, UNIX_TIMESTAMP(MIN(fc.create_date)) as min_date, UNIX_TIMESTAMP(MAX(fc.create_date)) as max_date  				FROM factions f, system_factions_history fc 				WHERE f.faction_id=fc.faction_id  				AND f.name LIKE ? 				GROUP BY f.faction_id 				ORDER BY f.name 				LIMIT 20 			";
+			query = " 				SELECT f.faction_id, f.name, UNIX_TIMESTAMP(MIN(fc.create_date)) as min_date, UNIX_TIMESTAMP(MAX(fc.create_date)) as max_date  				FROM factions f, system_factions_history fc 				WHERE f.faction_id=fc.faction_id  				AND f.name LIKE ? 				AND f.faction_id != 75458 				GROUP BY f.faction_id 				ORDER BY f.name 				LIMIT 20 			";
 		}
 
 		
