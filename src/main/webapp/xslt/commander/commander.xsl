@@ -893,8 +893,7 @@
 		<xsl:variable name="repH" select="count(childs/item[field[@name='reputation' and @value = 'High']])"/>	
 		<xsl:variable name="repM" select="count(childs/item[field[@name='reputation' and @value = 'Med']])"/>	
 		<xsl:variable name="repL" select="count(childs/item[field[@name='reputation' and @value = 'Low']])"/>
-		<div><h3><xsl:value-of select="field[@name='pilotName']/@value"/></h3></div>
-        <div class="page-title">
+        <div class="row">
           <div class="title_left">
           	<form class="form-inline date-range-form" style="position: relative;">
 			  <div class="form-group">
@@ -951,7 +950,7 @@
 			</form>
           </div>
 		</div>	
-		<div>
+		<div class="row">
 		<div class="list-group">
   			<a class="list-group-item show-statistic" href="#">Show statistic<i class="fa fa-sort-down fa-fw" aria-hidden="true"></i></a>
   			<a class="list-group-item hide-statistic hidden" href="#">Hide statistic<i class="fa fa-sort-up fa-fw" aria-hidden="true"></i></a>
