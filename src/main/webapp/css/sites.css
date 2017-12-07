@@ -49,10 +49,10 @@ FORMS
   max-width: 650px;
 }
 
-.table > thead > tr > th {
+/* .table > thead > tr > th {
     vertical-align: top;
     padding-left: 20px;
-}
+} */
 
 .bg-new-system {
 	background-color: #eee;	
