@@ -63,14 +63,14 @@
 										</div>
 									</div>
 									<div class="col-xs-12 bottom text-center">
-										<div class="col-xs-12 col-sm-6 emphasis">
+										<div class="col-xs-12 col-sm-5 emphasis">
 											<p class="pilot-result-action">
 												<a href="#" class="action-friendship" title="Request friendship"><span class="fa fa-handshake-o"></span></a>
 												<a href="#" class="action-observe" title="Observe"><span class="fa fa-eye"></span></a>
 												<a href="#" class="action-message" title="Send message"><span class="fa fa-envelope-o"></span></a>
 											</p>
 										</div>
-										<div class="col-xs-12 col-sm-6 emphasis">
+										<div class="col-xs-12 col-sm-7 emphasis">
 											<p class="pilot-result-links">
 												<a href="#" class="access_blog" title="Pilot page"><span class="fa fa-address-card-o"></span></a>
 												<a href="#" class="access_activity" title="Pilot activity"><span class="fa fa-bar-chart"></span></a>
@@ -79,6 +79,7 @@
 												<a href="#" class="access_missions" title="Pilot missions"><span class="fa fa-bolt"></span></a>
 												<a href="#" class="access_powers" title="Pilot power play"><span class="fa fa-flag"></span></a>
 												<a href="#" class="access_materials" title="Pilot materials"><span class="fa fa-tint"></span></a>
+												<a href="#" class="access_gallery" title="Pilot gallery"><span class="fa fa-image"></span></a>
 											</p>
 										</div>
 									</div>
