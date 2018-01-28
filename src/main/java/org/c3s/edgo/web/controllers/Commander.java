@@ -615,7 +615,7 @@ public class Commander extends GeneralController {
 			
 			
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:materials"});
-			//logger.debug(XMLUtils.saveXML(xml));
+			logger.debug(XMLUtils.saveXML(xml));
 		} else {
 			redirect.setRedirect(new DirectRedirect("/"));
 			throw new SkipSubLevelsExeption();

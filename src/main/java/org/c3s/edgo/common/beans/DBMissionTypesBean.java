@@ -17,6 +17,21 @@ public class DBMissionTypesBean implements DbBean, Serializable {
 
 
 	
+	@DataSource({"common_type_id", "commonTypeId"})
+	@DataTarget("common_type_id")
+	@XMLSimple("commonTypeId")
+	private java.lang.Long commonTypeId;
+	
+	public java.lang.Long getCommonTypeId() {
+		return commonTypeId;
+	}
+	
+	public DBMissionTypesBean setCommonTypeId(java.lang.Long value) {
+		this.commonTypeId = value;
+		return this;
+	}
+	
+	
 	@DataSource({"mission_type_uniq", "missionTypeUniq"})
 	@DataTarget("mission_type_uniq")
 	@XMLSimple("missionTypeUniq")

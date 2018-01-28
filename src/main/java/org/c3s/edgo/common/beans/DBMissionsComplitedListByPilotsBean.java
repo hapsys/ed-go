@@ -272,6 +272,21 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	
+	@DataSource({"common_type_id", "commonTypeId"})
+	@DataTarget("common_type_id")
+	@XMLSimple("commonTypeId")
+	private java.lang.Long commonTypeId;
+	
+	public java.lang.Long getCommonTypeId() {
+		return commonTypeId;
+	}
+	
+	public DBMissionsComplitedListByPilotsBean setCommonTypeId(java.lang.Long value) {
+		this.commonTypeId = value;
+		return this;
+	}
+	
+	
 	@DataSource({"faction_name", "factionName"})
 	@DataTarget("name")
 	@XMLSimple("factionName")

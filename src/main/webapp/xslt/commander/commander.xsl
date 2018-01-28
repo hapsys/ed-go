@@ -503,62 +503,74 @@
 	<xsl:template name="view_ships">
 	
 		<xsl:variable name="lang"><xsl:value-of select="$root"/><xsl:if test="$politic = 'suffix' and $default != 'true'">/<xsl:value-of select="$suffix"/></xsl:if></xsl:variable>
+		<!-- 
 		<div><h3><xsl:value-of select="field[@name='pilotName']/@value"/></h3></div>
-		<div>
-			<xsl:for-each select="childs/item">
-				<div class="col-md-4 col-xs-12 widget widget_tally_box">
-					<xsl:variable name="class">
-						<xsl:if test="field[@name='isMain']/@value = 1">ship-active</xsl:if>
-					</xsl:variable>
-					<div class="x_panel ship-{field[@name='shipUniq']/@value} {$class}">
-						<div class="x_title">
-							<h2><a href="{$lang}/{../../field[@name='pilotName']/@value}/ships/{field[@name='linkShipId']/@value}/">
-									<xsl:value-of select="field[@name='shipName']/@value"/>&#160;<i class="fa fa-share fa-fw" aria-hidden="true"></i>
-								</a></h2>
-							<div class="clearfix"></div>
+		 -->
+		<div class="" role="tabpanel" data-example-id="togglable-tabs">
+			<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#ship_tab_content" id="ships-tab" role="tab" data-toggle="tab" aria-expanded="true"><xsl:value-of select="i10n:tr('ships_ships')"/></a></li>
+				<li role="presentation" class=""><a href="#module_tab_content" role="tab" id="modules-tab" data-toggle="tab" aria-expanded="false"><xsl:value-of select="i10n:tr('ships_modules')"/></a></li>
+			</ul>
+			<div id="myTabContent" class="tab-content">
+				<div role="tabpanel" class="tab-pane fade active in" id="ship_tab_content" aria-labelledby="ships-tab">
+					<xsl:for-each select="childs/item">
+						<div class="col-md-4 col-xs-12 widget widget_tally_box">
+							<xsl:variable name="class">
+								<xsl:if test="field[@name='isMain']/@value = 1">ship-active</xsl:if>
+							</xsl:variable>
+							<div class="x_panel ship-{field[@name='shipUniq']/@value} {$class}">
+								<div class="x_title">
+									<h2><a href="{$lang}/{../../field[@name='pilotName']/@value}/ships/{field[@name='linkShipId']/@value}/">
+											<xsl:value-of select="field[@name='shipName']/@value"/>&#160;<i class="fa fa-share fa-fw" aria-hidden="true"></i>
+										</a></h2>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+									<table style="font-weight: bold;">
+										<tr>
+											<td class="col-md-1">System:</td>
+											<td>
+												<xsl:choose>
+													<xsl:when test="string-length(field[@name='systemName']/@value) != 0">
+														<xsl:value-of select="field[@name='systemName']/@value"/><br/>
+													</xsl:when>
+													<xsl:otherwise>
+														<xsl:value-of select="/item/item[@name='location']/field[@name='systemName']/@value"/><br/>
+													</xsl:otherwise>
+												</xsl:choose>
+											</td>
+										</tr>
+										<tr>
+											<td class="col-md-1">Station:</td>
+											<td>
+												<xsl:choose>
+													<xsl:when test="string-length(field[@name='systemName']/@value) != 0">
+														<xsl:value-of select="field[@name='stationName']/@value"/>
+													</xsl:when>
+													<xsl:otherwise>
+														<xsl:value-of select="/item/item[@name='location']/field[@name='stationName']/@value"/>
+													</xsl:otherwise>
+												</xsl:choose>
+											</td>
+										</tr>
+										<tr>
+											<td class="col-md-1">Distance:</td>
+											<td>
+												<xsl:value-of select="translate(format-number(field[@name='distance']/@value, '###,###,###,###.00'),',',' ')"/> ly
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
 						</div>
-						<div class="x_content">
-							<table style="font-weight: bold;">
-								<tr>
-									<td class="col-md-1">System:</td>
-									<td>
-										<xsl:choose>
-											<xsl:when test="string-length(field[@name='systemName']/@value) != 0">
-												<xsl:value-of select="field[@name='systemName']/@value"/><br/>
-											</xsl:when>
-											<xsl:otherwise>
-												<xsl:value-of select="/item/item[@name='location']/field[@name='systemName']/@value"/><br/>
-											</xsl:otherwise>
-										</xsl:choose>
-									</td>
-								</tr>
-								<tr>
-									<td class="col-md-1">Station:</td>
-									<td>
-										<xsl:choose>
-											<xsl:when test="string-length(field[@name='systemName']/@value) != 0">
-												<xsl:value-of select="field[@name='stationName']/@value"/>
-											</xsl:when>
-											<xsl:otherwise>
-												<xsl:value-of select="/item/item[@name='location']/field[@name='stationName']/@value"/>
-											</xsl:otherwise>
-										</xsl:choose>
-									</td>
-								</tr>
-								<tr>
-									<td class="col-md-1">Distance:</td>
-									<td>
-										<xsl:value-of select="translate(format-number(field[@name='distance']/@value, '###,###,###,###.00'),',',' ')"/> ly
-									</td>
-								</tr>
-							</table>
-						</div>
-					</div>
+					</xsl:for-each>
 				</div>
-			</xsl:for-each>
+				<div role="tabpanel" class="tab-pane fade in" id="module_tab_content" aria-labelledby="modules-tab">
+					Modules
+				</div>
+			</div>
 		</div>
 		<div class="clearfix"></div>
-
 	</xsl:template>
 <!--
 //
@@ -729,6 +741,7 @@
 					<xsl:value-of select="$module/field[@name='moduleName']/@value"/>
 				</xsl:otherwise>
 			</xsl:choose>
+			<xsl:if test="string-length($module/field[@name='moduleWeaponMode']/@value) != 0">&#160;<img width="15" height="15" src="{$root}/images/weapon/ed-{$module/field[@name='moduleWeaponMode']/@value}.png" title="{$module/field[@name='moduleWeaponMode']/@value}"/></xsl:if>
 			<xsl:if test="$module/field[@name='recipieName']/@value">
 				<br/>
 				<xsl:choose>
@@ -1443,6 +1456,7 @@
 							<xsl:for-each select="childs/item[field[@name='materialCategoryId']/@value=1]">
 								<tr id="{field[@name='materialUniq']/@value}" class="material-row">
 									<td>
+										<img src="{$root}/images/materials/grade-{field[@name='materialGrade']/@value}.png" width="20" height="20"/>&#160;
 										<xsl:value-of select="field[@name='localized']/@value"/>
 										<xsl:if test="field[@name='used']/@value != '0'">
 											&#160;<sup><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#materialModal"><xsl:value-of select="field[@name='used']/@value"/>&#160;<i class="fa fa-cogs" aria-hidden="true"></i></button></sup>
@@ -1475,6 +1489,7 @@
 							<xsl:for-each select="childs/item[field[@name='materialCategoryId']/@value=2]">
 								<tr id="{field[@name='materialUniq']/@value}" class="material-row">
 									<td>
+										<img src="{$root}/images/materials/grade-{field[@name='materialGrade']/@value}.png" width="20" height="20"/>&#160;
 										<xsl:value-of select="field[@name='localized']/@value"/>
 										<xsl:if test="field[@name='used']/@value != '0'">
 											&#160;<sup><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#materialModal"><xsl:value-of select="field[@name='used']/@value"/>&#160;<i class="fa fa-cogs" aria-hidden="true"></i></button></sup>
@@ -1507,6 +1522,7 @@
 							<xsl:for-each select="childs/item[field[@name='materialCategoryId']/@value=3]">
 								<tr id="{field[@name='materialUniq']/@value}" class="material-row">
 									<td>
+										<img src="{$root}/images/materials/grade-{field[@name='materialGrade']/@value}.png" width="20" height="20"/>&#160;
 										<xsl:value-of select="field[@name='localized']/@value"/>
 										<xsl:if test="field[@name='used']/@value != '0'">
 											&#160;<sup><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#materialModal"><xsl:value-of select="field[@name='used']/@value"/>&#160;<i class="fa fa-cogs" aria-hidden="true"></i></button></sup>
