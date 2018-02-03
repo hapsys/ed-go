@@ -231,6 +231,12 @@
 		<column name="modules" type="List&lt;? extends Object&gt;">
 	    	<annotation>@XMLFieldList</annotation>
 		</column>
+		<column name="system_name" type="String">
+	    	<annotation>@XMLSimple("systemName")</annotation>
+		</column>
+		<column name="station_name" type="String">
+	    	<annotation>@XMLSimple("stationName")</annotation>
+		</column>
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="pilot_ship_id"/>
 		</select>
@@ -264,6 +270,19 @@
 				WHERE ps.pilot_id = ?
 				AND ps.ship_id = sh.ship_id
 				ORDER BY ps.is_main DESC, sh.ship_name
+			</sql>
+		</query>
+		<query name="ByPilotIdAndLinkShipIdWithLocation" single_object="true" use="PilotShips">
+			<column name="PilotId" type="long"/>
+			<column name="LinkShiptId" type="long"/>
+			<sql>
+				SELECT ps.*, ss.name as system_name, st.name as station_name
+				FROM pilot_ships ps
+				LEFT JOIN systems ss ON ss.system_id = ps.system_id
+				LEFT JOIN stations st ON st.station_id = ps.station_id
+				WHERE ps.pilot_id = ?
+				AND ps.link_ship_id = ?
+				LIMIT 1 
 			</sql>
 		</query>
 		<query name="SetDeletedByPilotId">
@@ -352,7 +371,22 @@
 				DELETE FROM pilot_modules WHERE pilot_module_id = ? AND can_deleted = 1 
 			</sql>
 		</query>
-		
+		<query name="PilotModulesList">
+			<column name="PilotId" type="long"/>
+			<sql>
+				SELECT IF(ISNULL(m.module_name), mg.module_group_name, m.module_name) as common_module_name, m.module_class, m.module_rating, m.module_weapon_mode, 
+					COUNT(DISTINCT ps.link_ship_id) as ships_count, GROUP_CONCAT(DISTINCT CONCAT(s.ship_name, ':', ps.link_ship_id)  ORDER BY s.ship_name ASC) as ships
+				FROM pilot_ships ps, pilot_modules pm, modules m, ships s, module_groups mg
+				WHERE ps.pilot_id = ?
+				AND pm.pilot_ship_id = ps.pilot_ship_id
+				AND pm.module_id = m.module_id
+				AND m.module_group_id != 50
+				AND m.module_group_id = mg.module_group_id
+				AND s.ship_id = ps.ship_id
+				GROUP BY common_module_name, m.module_class, m.module_rating, m.module_weapon_mode
+				ORDER BY common_module_name, m.module_class DESC, m.module_rating ASC				
+			</sql>
+		</query>		
 	</table>
 	<!--  -->
 	<table name="recipies">

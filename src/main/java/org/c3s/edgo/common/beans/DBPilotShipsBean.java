@@ -198,6 +198,38 @@ public class DBPilotShipsBean implements DbBean, Serializable {
 		return this;
 	}
 	
+	
+	@DataSource({"system_name", "systemName"})
+	@DataTarget("system_name")
+	@XMLSimple("systemName")
+
+	private String systemName;
+	
+	public String getSystemName() {
+		return systemName;
+	}
+	
+	public DBPilotShipsBean setSystemName(String value) {
+		this.systemName = value;
+		return this;
+	}
+	
+	
+	@DataSource({"station_name", "stationName"})
+	@DataTarget("station_name")
+	@XMLSimple("stationName")
+
+	private String stationName;
+	
+	public String getStationName() {
+		return stationName;
+	}
+	
+	public DBPilotShipsBean setStationName(String value) {
+		this.stationName = value;
+		return this;
+	}
+	
 	@Override
 	public void setAutoincrementField(Object value) {
 		

@@ -513,7 +513,7 @@
 			</ul>
 			<div id="myTabContent" class="tab-content">
 				<div role="tabpanel" class="tab-pane fade active in" id="ship_tab_content" aria-labelledby="ships-tab">
-					<xsl:for-each select="childs/item">
+					<xsl:for-each select="additionOne/item">
 						<div class="col-md-4 col-xs-12 widget widget_tally_box">
 							<xsl:variable name="class">
 								<xsl:if test="field[@name='isMain']/@value = 1">ship-active</xsl:if>
@@ -566,11 +566,51 @@
 					</xsl:for-each>
 				</div>
 				<div role="tabpanel" class="tab-pane fade in" id="module_tab_content" aria-labelledby="modules-tab">
-					Modules
+					<table class="table">
+						<tr>
+							<th>Module</th>
+							<th>Class</th>
+							<th><nobr>Ships Count</nobr></th>
+							<th>Ships</th>
+						</tr>
+						<xsl:for-each select="additionTwo/item">
+							<tr>
+								<td>
+									<nobr>
+									<xsl:value-of select="field[@name='commonModuleName']/@value"/>
+									<xsl:if test="string-length(field[@name='moduleWeaponMode']/@value) != 0">&#160;<img width="15" height="15" src="{$root}/images/weapon/ed-{field[@name='moduleWeaponMode']/@value}.png" title="{field[@name='moduleWeaponMode']/@value}"/></xsl:if>
+									</nobr>
+								</td>
+								<td>
+									<xsl:value-of select="field[@name='moduleClass']/@value"/>
+									<xsl:value-of select="field[@name='moduleRating']/@value"/>								
+								</td>
+								<td>
+									<xsl:value-of select="field[@name='shipsCount']/@value"/>
+								</td>
+								<td class="ships-list">
+									<xsl:value-of select="field[@name='ships']/@value"/>
+								</td>
+							</tr>
+						</xsl:for-each>
+					</table>
 				</div>
 			</div>
 		</div>
 		<div class="clearfix"></div>
+		<script>
+			$(function() {
+				$('.ships-list').each(function() {
+					var link = [];
+					var list = $(this).html();
+					list.split(',').forEach(function(v) {
+						var l = v.split(':');
+						link.push('&lt;a class="link" href="./' + l[1] + '/"&gt;' + l[0] + '&lt;a&gt;');
+					});
+					$(this).html(link.join(','));
+				});
+			});
+		</script>
 	</xsl:template>
 <!--
 //
@@ -579,6 +619,15 @@
 -->
 	<xsl:template name="view_ship">
 		<xsl:variable name="lang"><xsl:value-of select="$root"/><xsl:if test="$politic = 'suffix' and $default != 'true'">/<xsl:value-of select="$suffix"/></xsl:if></xsl:variable>
+		<p>
+			<dl class="dl-horizontal pull-left">
+				<dt>System:</dt>
+				<dd><xsl:value-of select="item[@name='currentShip']/field[@name='systemName']/@value"/></dd>
+				<dt>Station:</dt>
+				<dd><xsl:value-of select="item[@name='currentShip']/field[@name='stationName']/@value"/></dd>
+			</dl>
+		</p>
+		<div class="clearfix"></div>
 		<table class="table" id="shipTable">
 			<thead>
 				<tr>

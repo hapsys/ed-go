@@ -151,6 +151,39 @@ public class DBPilotModulesAccess extends Access {
 		return getConnection().query(sql, paramPilotShipId);
 	}
 	
+	public List<DBPilotModulesListBean> getPilotModulesList(long paramPilotId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT IF(ISNULL(m.module_name), mg.module_group_name, m.module_name) as common_module_name, m.module_class, m.module_rating, m.module_weapon_mode,  					COUNT(DISTINCT ps.link_ship_id) as ships_count, GROUP_CONCAT(DISTINCT CONCAT(s.ship_name, ':', ps.link_ship_id)  ORDER BY s.ship_name ASC) as ships 				FROM pilot_ships ps, pilot_modules pm, modules m, ships s, module_groups mg 				WHERE ps.pilot_id = ? 				AND pm.pilot_ship_id = ps.pilot_ship_id 				AND pm.module_id = m.module_id 				AND m.module_group_id != 50 				AND m.module_group_id = mg.module_group_id 				AND s.ship_id = ps.ship_id 				GROUP BY common_module_name, m.module_class, m.module_rating, m.module_weapon_mode 				ORDER BY common_module_name, m.module_class DESC, m.module_rating ASC				 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getPilotModulesList", query ,  paramPilotId);
+		List<DBPilotModulesListBean> ret = null;
+		if (result != null) {
+					ret = new ArrayList<DBPilotModulesListBean>();
+				
+			for (Map<String, Object> res : result) {
+				DBPilotModulesListBean bean = dataMapper.mapFromRow(res, DBPilotModulesListBean.class);
+														
+				ret.add(bean);
+			}
+					
+		}
+			
+		return ret;
+	}
+	
 	public int deleteFailModulesByPilotShipId(long paramPilotShipId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();
