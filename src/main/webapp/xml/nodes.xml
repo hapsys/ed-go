@@ -123,7 +123,7 @@
 			<menu name="main_menu"/>
 		</node>
 		<node pattern="settings">
-			<title lang="ru">Натройки доступа</title>
+			<title lang="ru">Настройки доступа</title>
 			<title lang="en">Access settings</title>
 			<menu name="main_menu"/>
 		</node>
