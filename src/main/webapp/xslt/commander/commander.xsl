@@ -605,9 +605,9 @@
 					var list = $(this).html();
 					list.split(',').forEach(function(v) {
 						var l = v.split(':');
-						link.push('&lt;a class="link" href="./' + l[1] + '/"&gt;' + l[0] + '&lt;a&gt;');
+						link.push('&lt;a class="text-primary" href="./' + l[1] + '/"&gt;' + l[0] + '&lt;a&gt;');
 					});
-					$(this).html(link.join(','));
+					$(this).html(link.join(', '));
 				});
 			});
 		</script>
@@ -656,7 +656,7 @@
 			</tbody>
 		</table>
 		<p>
-			<a class="coriolis-link" href="https://coriolis.edcd.io/outfit/" target="_tab">View at coriolis</a>
+			<a class="text-primary" href="https://coriolis.edcd.io/outfit/" target="_tab">View at coriolis</a>
 		</p>
 		<script>
 			// Make ship 
