@@ -122,6 +122,21 @@
 		</delete>
 	</table>
 	<!--  -->
+	<table name="commodity_deliver">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="mission_id"/>
+			<column name="commodity_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="mission_id"/>
+			<column name="commodity_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="mission_id"/>
+			<column name="commodity_id"/>
+		</delete>
+	</table>
+	<!--  -->
 	<table name="reward_materials">
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="mission_id"/>

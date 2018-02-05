@@ -11,6 +11,7 @@ import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBBountyFactionBean;
 import org.c3s.edgo.common.beans.DBBountyTypesBean;
 import org.c3s.edgo.common.beans.DBCommoditiesBean;
+import org.c3s.edgo.common.beans.DBCommodityDeliverBean;
 import org.c3s.edgo.common.beans.DBFactionsBean;
 import org.c3s.edgo.common.beans.DBMaterialCategoryBean;
 import org.c3s.edgo.common.beans.DBMaterialsBean;
@@ -20,6 +21,7 @@ import org.c3s.edgo.common.beans.DBRewardCommoditiesBean;
 import org.c3s.edgo.common.beans.DBRewardMaterialsBean;
 import org.c3s.edgo.common.beans.DBStationHistoryBean;
 import org.c3s.edgo.utils.EDUtils;
+import org.c3s.utils.RegexpUtils;
 
 public class MissionsDAO {
 
@@ -126,5 +128,15 @@ public class MissionsDAO {
 			.setBrokerPercent(brokerPerc);
 		DbAccess.bountyFactionAccess.insert(bean);
 		
+	}
+	
+	public static void insertDeliverCommodity(BigInteger mission_id, String commodity, int quantity) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		String uniq = RegexpUtils.preg_replace("~^(.+)_[^_]*$~isu", commodity, "$1");
+		DBCommoditiesBean com = getComodity(uniq);
+		if (com != null) {
+			DBCommodityDeliverBean bean = new DBCommodityDeliverBean();
+			bean.setMissionId(mission_id).setCommodityId(com.getCommodityId()).setQuantity(Long.valueOf(quantity));
+			DbAccess.commodityDeliverAccess.insert(bean);
+		}
 	}
 }

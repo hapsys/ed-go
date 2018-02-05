@@ -49,6 +49,7 @@ public class DbAccess {
 	public static final DBMissionsAccess missionsAccess = new DBMissionsAccess();
 	public static final DBMissionTypesAccess missionTypesAccess = new DBMissionTypesAccess();
 	public static final DBRewardCommoditiesAccess rewardCommoditiesAccess = new DBRewardCommoditiesAccess();
+	public static final DBCommodityDeliverAccess commodityDeliverAccess = new DBCommodityDeliverAccess();
 	public static final DBRewardMaterialsAccess rewardMaterialsAccess = new DBRewardMaterialsAccess();
 	public static final DBBountyTypesAccess bountyTypesAccess = new DBBountyTypesAccess();
 	public static final DBBountyFactionAccess bountyFactionAccess = new DBBountyFactionAccess();
