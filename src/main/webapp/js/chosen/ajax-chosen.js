@@ -24,7 +24,8 @@
       return $(this).next('.chosen-container').find(".search-field > input, .chosen-search > input").bind('keyup', function() {
         var field, msg, success, untrimmed_val, val;
         untrimmed_val = $(this).val();
-        val = $.trim($(this).val());
+        //val = $.trim($(this).val());
+        val = $(this).val();
         msg = val.length < options.minTermLength ? options.keepTypingMsg : options.lookingForMsg + (" '" + val + "'");
         select.next('.chosen-container').find('.no-results').text(msg);
         if (val === $(this).data('prevVal')) {
