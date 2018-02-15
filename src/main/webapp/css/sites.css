@@ -211,17 +211,6 @@ POPUP
 	text-decoration: underline;
 }
 /*
-NAVPANEL
-*/
-ul.nav > li {
-	margin-right: 10px;
-}
-ul.nav > li > label {
-	padding-top: 6px;
-	padding-left: 10px;
-	vertical-align: middle;
-}
-/*
 SHIPS
 */
 .ship-adder {
