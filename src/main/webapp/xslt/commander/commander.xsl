@@ -955,64 +955,6 @@
 		<xsl:variable name="repH" select="count(childs/item[field[@name='reputation' and @value = 'High']])"/>	
 		<xsl:variable name="repM" select="count(childs/item[field[@name='reputation' and @value = 'Med']])"/>	
 		<xsl:variable name="repL" select="count(childs/item[field[@name='reputation' and @value = 'Low']])"/>
-<<<<<<< HEAD
-        <div class="row">
-          <div class="title_left">
-          	<form class="form-inline date-range-form" style="position: relative;">
-			  <div class="form-group">
-			  	<label for="exampleInputName2">Range: </label>
-			  </div>
-			  <div id="select-date-start" class="form-group data">
-					<input id="start-date-selected" class="form-control hidden" type="text" style="border:none;" value="{/*/@start_date}" name="from"/>
-					<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-					<span style="padding-left: 5px; padding-right: 5px;"></span>
-					<b class="caret"></b>
-			  </div>
-			  <div class="form-group">
-			  	<label for="exampleInputName2" style="margin-left: 5px; margin-right: 5px;">-</label>
-			  </div>
-			  <div id="select-date-end" class="form-group data">
-				<input id="end-date-selected" class="form-control hidden" type="text" style="border:none;" value="{/*/@end_date}" name="to"/>
-				<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-				<span style="padding-left: 5px; padding-right: 5px;"></span>
-				<b class="caret"></b>
-			  </div>
-			  <div class="form-group">
-			  	<label for="exampleInputName2" style="margin-left: 25px;">System: </label>
-			  </div>
-			  <div class="form-group data">
-			  	<select name="system" class="selectpicker reset-selector" data-live-search="true" title="Select system...">
-			  		<option value=""></option>
-			  		<xsl:for-each select="additionFour/item">
-			  			<option value="{field[@name='systemId']/@value}">
-			  				<xsl:if test="field[@name='systemId']/@value = /*/@systemid">
-			  					<xsl:attribute name="selected">selected</xsl:attribute>
-			  				</xsl:if>
-			  				<xsl:value-of select="field[@name='systemName']/@value"/>
-			  			</option>
-			  		</xsl:for-each> 
-			  	</select>
-			  </div>
-			  <div class="form-group">
-			  	<label for="exampleInputName2" style="margin-left: 25px;">Faction: </label>
-			  </div>
-			  <div class="form-group data">
-			  	<select name="faction" class="selectpicker reset-selector" data-live-search="true" title="Select faction...">
-			  		<option value=""></option>
-			  		<xsl:for-each select="additionThree/item">
-			  			<option value="{field[@name='factionId']/@value}">
-			  				<xsl:if test="field[@name='factionId']/@value = /*/@factionid">
-			  					<xsl:attribute name="selected">selected</xsl:attribute>
-			  				</xsl:if>
-			  				<xsl:value-of select="field[@name='factionName']/@value"/>
-			  			</option>
-			  		</xsl:for-each> 
-			  	</select>
-			  </div>
-			  <div class="form-group"><button type="submit" class="btn">Filter</button></div>
-			</form>
-          </div>
-=======
         <div class="page-title">
 			<nav class="navbar navbar-default">
 				<div class="collapse navbar-collapse" style="padding-top:5px;">
@@ -1057,9 +999,8 @@
 					</ul>
 				</div>
 			</nav>
->>>>>>> refs/heads/develop
 		</div>	
-		<div class="row">
+		<div>
 		<div class="list-group">
   			<a class="list-group-item show-statistic" href="#">Show statistic<i class="fa fa-sort-down fa-fw" aria-hidden="true"></i></a>
   			<a class="list-group-item hide-statistic hidden" href="#">Hide statistic<i class="fa fa-sort-up fa-fw" aria-hidden="true"></i></a>
