@@ -956,61 +956,49 @@
 		<xsl:variable name="repM" select="count(childs/item[field[@name='reputation' and @value = 'Med']])"/>	
 		<xsl:variable name="repL" select="count(childs/item[field[@name='reputation' and @value = 'Low']])"/>
         <div class="page-title">
-          <div class="title_left">
-          	<form class="form-inline date-range-form" style="position: relative;">
-			  <div class="form-group">
-			  	<label for="exampleInputName2">Range: </label>
-			  </div>
-			  <div id="select-date-start" class="form-group data">
-					<input id="start-date-selected" class="form-control hidden" type="text" style="border:none;" value="{/*/@start_date}" name="from"/>
-					<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-					<span style="padding-left: 5px; padding-right: 5px;"></span>
-					<b class="caret"></b>
-			  </div>
-			  <div class="form-group">
-			  	<label for="exampleInputName2" style="margin-left: 5px; margin-right: 5px;">-</label>
-			  </div>
-			  <div id="select-date-end" class="form-group data">
-				<input id="end-date-selected" class="form-control hidden" type="text" style="border:none;" value="{/*/@end_date}" name="to"/>
-				<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-				<span style="padding-left: 5px; padding-right: 5px;"></span>
-				<b class="caret"></b>
-			  </div>
-			  <div class="form-group">
-			  	<label for="exampleInputName2" style="margin-left: 25px;">System: </label>
-			  </div>
-			  <div class="form-group data">
-			  	<select name="system" class="selectpicker reset-selector" data-live-search="true" title="Select system...">
-			  		<option value=""></option>
-			  		<xsl:for-each select="additionFour/item">
-			  			<option value="{field[@name='systemId']/@value}">
-			  				<xsl:if test="field[@name='systemId']/@value = /*/@systemid">
-			  					<xsl:attribute name="selected">selected</xsl:attribute>
-			  				</xsl:if>
-			  				<xsl:value-of select="field[@name='systemName']/@value"/>
-			  			</option>
-			  		</xsl:for-each> 
-			  	</select>
-			  </div>
-			  <div class="form-group">
-			  	<label for="exampleInputName2" style="margin-left: 25px;">Faction: </label>
-			  </div>
-			  <div class="form-group data">
-			  	<select name="faction" class="selectpicker reset-selector" data-live-search="true" title="Select faction...">
-			  		<option value=""></option>
-			  		<xsl:for-each select="additionThree/item">
-			  			<option value="{field[@name='factionId']/@value}">
-			  				<xsl:if test="field[@name='factionId']/@value = /*/@factionid">
-			  					<xsl:attribute name="selected">selected</xsl:attribute>
-			  				</xsl:if>
-			  				<xsl:value-of select="field[@name='factionName']/@value"/>
-			  			</option>
-			  		</xsl:for-each> 
-			  	</select>
-			  </div>
-			  <div class="form-group"><button type="submit" class="btn">Filter</button></div>
-			</form>
-          </div>
+			<nav class="navbar navbar-default">
+				<div class="collapse navbar-collapse" style="padding-top:5px;">
+					<ul class="nav navbar-nav">
+						<li>
+	                        <div id="showrange" class="pull-left" style="background: #fff; cursor: pointer; padding: 5px 8px; border: 1px solid #ccc">
+	                          <i class="glyphicon glyphicon-calendar fa fa-calendar">&#160;</i>
+	                          <span><xsl:value-of select="/*/@start_date"/> - <xsl:value-of select="/*/@end_date"/></span> <b class="caret"></b>
+	                        </div>
+						</li>
+						<li><label>System:</label></li>
+						<li>
+						  	<select name="system" class="selectpicker reset-selector" data-live-search="true" title="Select system...">
+						  		<option value=""></option>
+						  		<xsl:for-each select="additionFour/item">
+						  			<option value="{field[@name='systemId']/@value}">
+						  				<xsl:if test="field[@name='systemId']/@value = /*/@systemid">
+						  					<xsl:attribute name="selected">selected</xsl:attribute>
+						  				</xsl:if>
+						  				<xsl:value-of select="field[@name='systemName']/@value"/>
+						  			</option>
+						  		</xsl:for-each> 
+						  	</select>
+						</li>
+						<li><label>Faction:</label></li>
+						<li>
+						  	<select name="faction" class="selectpicker reset-selector" data-live-search="true" title="Select faction...">
+						  		<option value=""></option>
+						  		<xsl:for-each select="additionThree/item">
+						  			<option value="{field[@name='factionId']/@value}">
+						  				<xsl:if test="field[@name='factionId']/@value = /*/@factionid">
+						  					<xsl:attribute name="selected">selected</xsl:attribute>
+						  				</xsl:if>
+						  				<xsl:value-of select="field[@name='factionName']/@value"/>
+						  			</option>
+						  		</xsl:for-each> 
+						  	</select>
+						</li>
+						<li>
+							<button type="button" class="btn">Filter</button>
+						</li>
+					</ul>
+				</div>
+			</nav>
 		</div>	
 		<div>
 		<div class="list-group">
@@ -1083,23 +1071,23 @@
 		</div>			
 		<script type="text/javascript">
 			$(function() {
-				var dRange = new DateRange();
+				var last =  moment('<xsl:value-of select="/*/@maxdate"/>');
 				
-				var mindate = '<xsl:value-of select="/*/@mindate"/>';
-				var maxdate = '<xsl:value-of select="/*/@maxdate"/>';
-				var start_date = '<xsl:value-of select="/*/@start_date"/>';
-				var end_date = '<xsl:value-of select="/*/@end_date"/>';
-				dRange.setMinMax(mindate,maxdate);
-				dRange.setRange(start_date,end_date);
-				
-				$('.reset-selector').on('change', function() {
-					if ($(this).val()) {
-						dRange.setRange(mindate, maxdate);
-					} else {
-						dRange.setRange(start_date,end_date);
-					}
-					$('#start-date-selected').val(dRange.getStartDate().format('YYYY-MM-DD'));
-					$('#end-date-selected').val(dRange.getEndDate().format('YYYY-MM-DD'));
+				$('#showrange').dateRange({
+					startDate: moment('<xsl:value-of select="/*/@start_date"/>'),
+					endDate: moment('<xsl:value-of select="/*/@end_date"/>'),
+					minDate: moment('<xsl:value-of select="/*/@mindate"/>'),
+					maxDate: moment('<xsl:value-of select="/*/@maxdate"/>'),
+					locale: daterange_locale_<xsl:value-of select="$language_id"/>, 
+					ranges: {
+						'Last Day': [last, last],
+						'Last Yesterday': [last.subtract(1, 'days'), last.subtract(1, 'days')],
+						'Last 7 Days': [last.subtract(6, 'days'), last],
+						'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+						'This Month': [moment().startOf('month'), moment().endOf('month')],
+						'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+					},
+					
 				});
 				
 				$('.show-statistic, .hide-statistic').on('click', function() {
