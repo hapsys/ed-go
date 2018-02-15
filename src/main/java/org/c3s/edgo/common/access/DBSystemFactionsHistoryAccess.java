@@ -153,7 +153,7 @@ public class DBSystemFactionsHistoryAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT sf.*, s.name as system_name, f.name as faction_name, b.* 				FROM system_factions_history sf 				LEFT JOIN bgs_states b ON sf.state_id = b.state_id 				LEFT JOIN systems s ON sf.system_id = s.system_id 				LEFT JOIN factions f ON sf.faction_id = f.faction_id 				WHERE 1=1 				AND sf.create_date <= ?   				" + where + " 				GROUP BY sf.system_id, f.name, sf.create_date			 				ORDER BY sf.system_id, f.name, sf.create_date			 			";
+			query = " 				SELECT sf.*, s.name as system_name, f.name as faction_name, b.* 				FROM system_factions_history sf 				LEFT JOIN bgs_states b ON sf.state_id = b.state_id 				LEFT JOIN systems s ON sf.system_id = s.system_id 				LEFT JOIN factions f ON sf.faction_id = f.faction_id 				WHERE 1=1 				AND sf.faction_id != 75458 				AND sf.create_date <= ?   				" + where + " 				GROUP BY sf.system_id, f.name, sf.create_date			 				ORDER BY sf.system_id, f.name, sf.create_date			 			";
 		}
 
 		

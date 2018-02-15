@@ -9,6 +9,7 @@
 		<alias>develop.ed-go.ru</alias>
 		<alias>test.ed-go.ru/c3s-edgo</alias>
 		<alias>edgo.ddns.net</alias>
+		<alias>ed.elite-games.ru</alias>
 		<language ref="ru" default="true"/>
 		<language ref="en"/>
 		<!-- 

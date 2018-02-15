@@ -237,6 +237,35 @@ public class DBPilotShipsAccess extends Access {
 		return ret;
 	}
 	
+	public DBPilotShipsBean getByPilotIdAndLinkShipIdWithLocation(long paramPilotId, long paramLinkShiptId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT ps.*, ss.name as system_name, st.name as station_name 				FROM pilot_ships ps 				LEFT JOIN systems ss ON ss.system_id = ps.system_id 				LEFT JOIN stations st ON st.station_id = ps.station_id 				WHERE ps.pilot_id = ? 				AND ps.link_ship_id = ? 				LIMIT 1  			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPilotIdAndLinkShipIdWithLocation", query ,  paramPilotId,  paramLinkShiptId);
+		DBPilotShipsBean ret = null;
+		if (result != null) {
+					ret = new DBPilotShipsBean();
+				
+					ret = dataMapper.mapFromRow(result.get(0), DBPilotShipsBean.class);
+					
+		}
+			
+		return ret;
+	}
+	
 	public int deleteDeletedByPilotId(long paramPilotId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();

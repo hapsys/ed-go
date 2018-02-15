@@ -45,6 +45,17 @@ public class ShipsDAO {
 		if (ship.getIsSpecial() == null || ship.getIsSpecial() != 1) {
 			
 			pilotShip = DbAccess.pilotShipsAccess.getByPilotIdAndLinkShipId(pilot.getPilotId(), linkShipId);
+			
+			/*
+			 * if ship link id fail remove prevoius ship
+			 */
+			if (pilotShip != null && !pilotShip.getShipId().equals(ship.getShipId())) {
+				removePilotShip(pilotShip);
+				pilotShip = null;
+			}
+			/*
+			 * 
+			 */
 			if (pilotShip == null) {
 				pilotShip = new DBPilotShipsBean();
 				pilotShip.setPilotId(pilot.getPilotId());

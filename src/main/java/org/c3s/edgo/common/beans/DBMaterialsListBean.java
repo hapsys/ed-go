@@ -61,6 +61,21 @@ public class DBMaterialsListBean implements DbBean, Serializable {
 		return this;
 	}
 	
+	
+	@DataSource({"material_grade", "materialGrade"})
+	@DataTarget("material_grade")
+	@XMLSimple("materialGrade")
+	private java.lang.Integer materialGrade;
+	
+	public java.lang.Integer getMaterialGrade() {
+		return materialGrade;
+	}
+	
+	public DBMaterialsListBean setMaterialGrade(java.lang.Integer value) {
+		this.materialGrade = value;
+		return this;
+	}
+	
 	@Override
 	public void setAutoincrementField(Object value) {
 		

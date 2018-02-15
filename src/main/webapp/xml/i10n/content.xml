@@ -138,6 +138,14 @@
 		<select lang="ru">по времени обновления</select>
 		<select lang="en">by update time</select>
 	</match>
+	<match name="ships_ships">
+		<select lang="ru">Корабли</select>
+		<select lang="en">Ships</select>
+	</match>
+	<match name="ships_modules">
+		<select lang="ru">Модули</select>
+		<select lang="en">Modules</select>
+	</match>
 	<!-- /COMMANDER -->
 	<!-- SETTINGS -->
 	<match name="user-access-settings">

@@ -84,6 +84,7 @@
 				FROM factions f, system_factions_history fc
 				WHERE f.faction_id=fc.faction_id 
 				AND f.name LIKE ?
+				AND f.faction_id != 75458
 				GROUP BY f.faction_id
 				ORDER BY f.name
 				LIMIT 20
@@ -321,6 +322,7 @@
 				LEFT JOIN systems s ON sf.system_id = s.system_id
 				LEFT JOIN factions f ON sf.faction_id = f.faction_id
 				WHERE 1=1
+				AND sf.faction_id != 75458
 				AND sf.create_date &lt;= ?  
 				<where/>
 				GROUP BY sf.system_id, f.name, sf.create_date			

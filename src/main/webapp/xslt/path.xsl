@@ -20,7 +20,7 @@
 				<xsl:for-each select="item"><xsl:choose>
 						<xsl:when test="position() != last()">
 							<li>
-							<a href="{$lang}{@href}">
+							<a href="{$lang}{@href}" class="text-primary">
 								<xsl:value-of select="@title"/><xsl:if test="position() = 2 and string-length($pilotReal) != 0 and contains(@href, concat($pilotEncoded,'/'))">&#160;<xsl:value-of select="$pilotReal"/></xsl:if>
 							</a>
 							</li>

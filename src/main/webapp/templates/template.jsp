@@ -74,6 +74,8 @@
 <link href="<%=root%>/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
 <!-- Animate.css -->
 <link href="<%=root%>/vendors/animate.css/animate.min.css" rel="stylesheet">
+<!-- bootstrap-daterangepicker -->
+<link href="<%=root%>/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 <!-- Datepicker.css -->
 <link href="<%=root%>/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <!-- Switchery -->
@@ -340,6 +342,8 @@ moment.locale('<%=lang_id%>');
     <script src="<%=root%>/vendors/gauge.js/dist/gauge.min.js"></script>
     <!-- bootstrap-progressbar -->
     <script src="<%=root%>/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="<%=root%>/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
     <!-- bootstrap-datetimepicker -->
     <script src="<%=root%>/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
     <!-- iCheck -->
@@ -403,6 +407,8 @@ moment.locale('<%=lang_id%>');
 	<script type="text/javascript" src="<%=root%>/js/form.js"></script>
 	<script type="text/javascript" src="<%=root%>/js/auto-update.js"></script>
 	<script type="text/javascript" src="<%=root%>/js/date-range.js"></script>
+
+	<script type="text/javascript" src="<%=root%>/js/daterange-jq.js"></script>
 	
 	<script  type="text/javascript">
 		$(function() {

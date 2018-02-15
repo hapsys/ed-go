@@ -137,6 +137,21 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"material_grade", "materialGrade"})
+	@DataTarget("material_grade")
+	@XMLSimple("materialGrade")
+	private java.lang.Integer materialGrade;
+	
+	public java.lang.Integer getMaterialGrade() {
+		return materialGrade;
+	}
+	
+	public DBPilotMaterialsListBean setMaterialGrade(java.lang.Integer value) {
+		this.materialGrade = value;
+		return this;
+	}
+	
+	
 	@DataSource({"material_category_name", "materialCategoryName"})
 	@DataTarget("material_category_name")
 	@XMLSimple("materialCategoryName")

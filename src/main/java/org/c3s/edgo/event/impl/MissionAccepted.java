@@ -68,7 +68,14 @@ public class MissionAccepted extends AbstractJournalEvent<MissionAcceptedBean> {
 					if (bean.getExpiry() != null) {
 						mission.setExpireDate(new Timestamp(bean.getExpiry().getTime()));
 					}
+					
+					/*
+					 * Insert deliver commodities
+					 */
 					DbAccess.missionsAccess.insert(mission);
+					if (bean.getCommodity() != null && bean.getCommodity().length() > 0) {
+						MissionsDAO.insertDeliverCommodity(mission.getMissionId(), bean.getCommodity(), bean.getCount());
+					}
 				}
 			}
 			

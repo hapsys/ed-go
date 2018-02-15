@@ -64,6 +64,7 @@ import org.c3s.edgo.common.intruders.InInjector;
 import org.c3s.edgo.common.intruders.SystemPathInjector;
 import org.c3s.edgo.relations.Relation;
 import org.c3s.edgo.repo.Missions;
+import org.c3s.edgo.repo.PilotsShips;
 import org.c3s.edgo.utils.I10N;
 import org.c3s.edgo.web.GeneralController;
 import org.c3s.edgo.web.auth.AuthRoles;
@@ -278,19 +279,28 @@ public class Commander extends GeneralController {
 	
 		if (current != null) {
 			current.setLocation(DbAccess.locationHistoryAccess.getLastLocationForPilot(current.getPilotId()));
+			Double x = current.getLocation().getX();
+			Double y = current.getLocation().getY();
+			Double z = current.getLocation().getZ();
+			
+			PilotsShips pilotShipsRepo = new PilotsShips(current.getPilotId(), null);
+			/*
 			List<DBPilotShipsListBean> pilotShips = DbAccess.pilotShipsAccess.getPilotShipsList(current.getPilotId());
 			if (pilotShips != null) {
-				Double x = current.getLocation().getX();
-				Double y = current.getLocation().getY();
-				Double z = current.getLocation().getZ();
 				for (DBPilotShipsListBean ship: pilotShips) {
 					Double distance = Math.sqrt(Math.pow(x - ship.getX(), 2) + Math.pow(y - ship.getY(), 2) + Math.pow(z - ship.getZ(), 2));
 					ship.setDistance(distance);
 				}
 				current.setChilds(pilotShips);
 			}
+			*/
+			List<DBPilotShipsListBean> pilotShips = pilotShipsRepo.getShips(x, y, z);
+			current.setAdditionOne(pilotShips);
+			current.setAdditionTwo(pilotShipsRepo.getModules());
+			
 			Document xml = new XMLReflectionObj(current).toXML();
 			//logger.debug(XMLUtils.xml2out(xml));
+			//logger.debug(XMLUtils.saveXML(xml));
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:ships"});
 		} else {
 			redirect.setRedirect(new DirectRedirect("/"));
@@ -303,8 +313,8 @@ public class Commander extends GeneralController {
 	public void getShip(@Parameter("tag") String tag, @Parameter("template") String template, UrlPart url, RedirectControlerInterface redirect, PatternerInterface patterner) throws Exception {
 	
 		if (current != null) {
-			DBPilotShipsBean ship = DbAccess.pilotShipsAccess.getByPilotIdAndLinkShipId(current.getPilotId(), Long.valueOf(url.getPattern().substring(0, url.getPattern().length() - 1)));
-			//PilotShip ship = current.getPilotShip(Integer.valueOf(url.getPattern().substring(0, url.getPattern().length() - 1)));  
+			DBPilotShipsBean ship = DbAccess.pilotShipsAccess.getByPilotIdAndLinkShipIdWithLocation(current.getPilotId(), Long.valueOf(url.getPattern().substring(0, url.getPattern().length() - 1)));
+			//PilotShip ship = current.getPilotShip(Integer.valueOf(url.getPattern().substring(0, url.getPattern().length() - 1)));
 			current.setCurrentShip(ship);
 			if (ship != null) {
 				ship.setShip(DbAccess.shipsAccess.getByPrimaryKey(ship.getShipId()));
@@ -327,7 +337,7 @@ public class Commander extends GeneralController {
 				
 				ship.setModules(modules);
 				Document xml = new XMLReflectionObj(current).toXML();
-				//System.out.println(XMLUtils.saveXML(xml));
+				System.out.println(XMLUtils.saveXML(xml));
 				ContentObject.getInstance().addPath("/", ship.getShip().getShipName());
 				ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:view_ship"});
 				redirect.setRedirect(new DropRedirect());
@@ -615,7 +625,7 @@ public class Commander extends GeneralController {
 			
 			
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:materials"});
-			//logger.debug(XMLUtils.saveXML(xml));
+			logger.debug(XMLUtils.saveXML(xml));
 		} else {
 			redirect.setRedirect(new DirectRedirect("/"));
 			throw new SkipSubLevelsExeption();

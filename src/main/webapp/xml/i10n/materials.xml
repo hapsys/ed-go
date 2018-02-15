@@ -558,4 +558,75 @@
 		<select lang="en">Unknown Ship Signature</select>
 		<select lang="ru">Сигнатура неизвестного корабля</select>
 	</match>
+	
+	<match name="unknownwakedata">
+		<select lang="en">Thargoid Wake Data</select>
+		<select lang="ru">Данные следа таргоидского корабля</select>
+	</match>
+	
+	<match name="unknowncarapace">
+		<select lang="en">Thargoid Carapace</select>
+		<select lang="ru">Таргоидский панцирь</select>
+	</match>
+	
+	<match name="unknownenergycell">
+		<select lang="en">Thargoid Energy Cell</select>
+		<select lang="ru">Таргоидская энергоячейка</select>
+	</match>
+	
+	<match name="unknownorganiccircuitry">
+		<select lang="en">Thargoid Organic Circuitry</select>
+		<select lang="ru">Таргоидская органическая схема</select>
+	</match>
+	
+	<match name="unknowntechnologycomponents">
+		<select lang="en">Thargoid Technological Components</select>
+		<select lang="ru">Компоненты таргоидской техники</select>
+	</match>
+	
+	<match name="tgcompositiondata">
+		<select lang="en">Thargoid Material Composition Data</select>
+		<select lang="ru">Данные о составе таргоидских материалов</select>
+	</match>
+	
+	<match name="tgresiduedata">
+		<select lang="en">Thargoid Residue Data</select>
+		<select lang="ru">Данные об осадке таргоидского происхождения</select>
+	</match>
+	
+	<match name="tgshipflightdata">
+		<select lang="en">Ship Flight Data</select>
+		<select lang="ru">Данные полетов корабля</select>
+	</match>
+	
+	<match name="tgshipsystemsdata">
+		<select lang="en">Ship System Data</select>
+		<select lang="ru">Данные системы корабля</select>
+	</match>
+	
+	<match name="tgstructuraldata">
+		<select lang="en">Thargoid Structural Data</select>
+		<select lang="ru">Данные о структуре таргоидского объекта</select>
+	</match>
+	
+	<match name="tgbiomechanicalconduits">
+		<select lang="en">Bio-Mechanical Conduits</select>
+		<select lang="ru">Биомеханические проводники</select>
+	</match>
+	
+	<match name="tgpropulsionelement">
+		<select lang="en">Propulsion Elements</select>
+		<select lang="ru">Пропульсивные элементы</select>
+	</match>
+	
+	<match name="tgweaponparts">
+		<select lang="en">Weapon Parts</select>
+		<select lang="ru">Части оружия</select>
+	</match>
+	
+	<match name="tgwreckagecomponents">
+		<select lang="en">Wreckage Components</select>
+		<select lang="ru">Компоненты обломков</select>
+	</match>
+	
 </i10n>
