@@ -8,10 +8,14 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBEventsBean;
+import org.c3s.edgo.event.annotation.DateRangeAnnotation;
+import org.c3s.edgo.event.annotation.EventAnnotation;
 import org.c3s.utils.RegexpUtils;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import antlr.debug.Event;
 
 public class EventDispatcherThreaded {
 
@@ -34,15 +38,35 @@ public class EventDispatcherThreaded {
 		executors.put(new EventDateRange(), new EventExecutors(storedEventsNames, executeEventsNames));
 	}
 	
-	private static Map<String, Class<? extends JournalEvent>> events = new ConcurrentHashMap<String, Class<? extends JournalEvent>>();
+	//private static Map<String, Class<? extends JournalEvent>> events = new ConcurrentHashMap<String, Class<? extends JournalEvent>>();
+	private static Map<String, Map<EventDateRange, Class<? extends JournalEvent>>> events = new ConcurrentHashMap<String, Map<EventDateRange, Class<? extends JournalEvent>>>();
 	
 	/**
 	 * @param name
 	 * @param event
 	 */
 	public static void registerEvent(Class<? extends JournalEvent> event, String name) {
-		events.put(name.toLowerCase(), event);
-		logger.info("Register event \"{}\" class \"{}\"", name, event.getName());
+		String eventName = name.toLowerCase();
+		EventAnnotation anno = event.getAnnotation(EventAnnotation.class);
+		if (anno != null && anno.value().length() > 0) {
+			eventName = anno.value().toLowerCase();
+		}
+		
+		if (!events.containsKey(eventName)) {
+			events.put(eventName, new ConcurrentHashMap<>());
+		}
+		
+		DateRangeAnnotation drAnno = event.getAnnotation(DateRangeAnnotation.class);
+		EventDateRange eventDateRange = null;
+		if (drAnno != null) {
+			eventDateRange = new EventDateRange(drAnno.start(), drAnno.end());
+		} else {
+			eventDateRange = new EventDateRange();
+		}
+		
+		events.get(eventName).put(eventDateRange, event);
+		
+		logger.info("Register event \"{}\" class \"{}\" period \"{}\"", eventName, name, eventDateRange.toString());
 	}
 	
 	/**
@@ -131,18 +155,37 @@ public class EventDispatcherThreaded {
 	protected void processEvent(DBEventsBean evt) {
 		EventMd5Transform.eventTransformMD5(evt);
 		String eventName = evt.getEventName().toLowerCase();
-		Class<? extends JournalEvent> eventClass = events.get(eventName);
-		if (eventClass != null) {
-				JournalEvent event;
-			try {
-				event = eventClass.newInstance();
-				event.process(evt);
-			} catch (InstantiationException | IllegalAccessException e) {
-				logger.warn("Create instance fail for class \"{}\"", eventClass.getName(), e);
-			}  
+		String eventTime = evt.getEventJson().substring(15, 35);
+		
+		
+		//Class<? extends JournalEvent> eventClass = events.get(eventName);
+		
+		Map<EventDateRange, Class<? extends JournalEvent>> eventRanges = events.get(eventName); 
+		
+		if (eventRanges != null) {
+			
+			Class<? extends JournalEvent> eventClass = null;
+			for(EventDateRange range: eventRanges.keySet()) {
+				if (range.compareRange(eventTime)) {
+					eventClass = eventRanges.get(range);
+					break;
+				}
+			}
+			
+			if (eventClass != null) {
+				JournalEvent event = null;
+				try {
+					event = eventClass.newInstance();
+					event.process(evt);
+				} catch (InstantiationException | IllegalAccessException e) {
+					logger.warn("Create instance fail for class \"{}\"", eventClass.getName(), e);
+				}
+			} else {
+				logger.warn("No period found for event \"{}\" time \"{}\"", evt.getEventName(), eventTime);
+			}
 			
 		} else {
-			logger.warn("No class for event \"{}\"", evt.getEventName());
+			logger.warn("No class found for event \"{}\"", evt.getEventName());
 		}
 		
 	}

@@ -23,4 +23,8 @@ public class EventDateRange {
 		int cmpEnd = this.endDate.compareTo(date);
 		return cmpStart <= 0 && cmpEnd > 0; 
 	}
+	
+	public String toString() {
+		return startDate + " - " + endDate;
+	}
 }
