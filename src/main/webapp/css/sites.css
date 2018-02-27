@@ -210,6 +210,11 @@ POPUP
 	color:blue;
 	text-decoration: underline;
 }
+
+.material-quantity {
+	padding: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+}
 /*
 SHIPS
 */

@@ -10,12 +10,9 @@ import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBEventsBean;
 import org.c3s.edgo.event.annotation.DateRangeAnnotation;
 import org.c3s.edgo.event.annotation.EventAnnotation;
-import org.c3s.utils.RegexpUtils;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import antlr.debug.Event;
 
 public class EventDispatcherThreaded {
 
@@ -35,7 +32,7 @@ public class EventDispatcherThreaded {
 		executeEventsNames.put("loadgame", null);
 		executeEventsNames.put("docked", null);
 		//
-		executors.put(new EventDateRange(), new EventExecutors(storedEventsNames, executeEventsNames));
+		executors.put(new EventDateRange("2018-02-27T15:00:00Z" /* End Date */), new EventExecutors(storedEventsNames, executeEventsNames));
 	}
 	
 	//private static Map<String, Class<? extends JournalEvent>> events = new ConcurrentHashMap<String, Class<? extends JournalEvent>>();

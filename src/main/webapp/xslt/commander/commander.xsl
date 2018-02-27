@@ -1512,10 +1512,10 @@
 										</xsl:if>
 									</td>
 									<td style="width:70px;">
-										<button class="btn btn-success button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></button>
 										<!-- 
-										<input class="hidden" name="{field[@name='materialUniq']/@value}" type="number" min="0" max="1000" step="1" value="{field[@name='quantity']/@value}"/>
+										<button class="btn btn-success button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></button>
 										 -->
+										 <nobr class="material-quantity bg-success"><span class="button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></span> / 100</nobr>
 									</td>
 								</tr>
 							</xsl:for-each>
@@ -1545,10 +1545,7 @@
 										</xsl:if>
 									</td>
 									<td style="width:70px;">
-										<button class="btn btn-success button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></button>
-										<!-- 
-										<input class="hidden" name="{field[@name='materialUniq']/@value}" type="number" min="0" max="1000" step="1" value="{field[@name='quantity']/@value}"/>
-										 -->
+										 <nobr class="material-quantity bg-success"><span class="button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></span> / 100</nobr>
 									</td>
 								</tr>
 							</xsl:for-each>
@@ -1578,10 +1575,7 @@
 										</xsl:if>
 									</td>
 									<td style="width:70px;">
-										<button class="btn btn-success button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></button>
-										<!-- 
-										<input class="hidden" name="{field[@name='materialUniq']/@value}" type="number" min="0" max="1000" step="1" value="{field[@name='quantity']/@value}"/>
-										 -->
+										 <nobr class="material-quantity bg-success"><span class="button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></span> / 100</nobr>
 									</td>
 								</tr>
 							</xsl:for-each>
@@ -1655,88 +1649,6 @@
 				
 				var send_data = null; 
 				
-				/*
-				var focusLost = function(imput) {
-					if ($(imput).parents('tr').find('.button-switch').html() != $(imput).val()) {
-						$(imput).addClass('hidden');
-						$(imput).parents('tr').find('.button-switch').html($(imput).val()).removeClass('hidden btn-success btn-danger btn-info ').addClass('btn-default');
-					} else {
-						$(imput).addClass('hidden');
-						$(imput).parents('tr').find('.button-switch').removeClass('hidden');
-					}
-				}
-
-				var switchClick = function() {				
-					$('.form-materials').find('.button-switch').on('click', function() {
-						
-						$('.form-materials').find('.button-switch.hidden').each(function() {
-							focusLost($(this).parents('tr').find('input'));
-						});
-						
-						$(this).parents('tr').find('.hidden').removeClass('hidden');
-						$(this).parents('tr').find('button').addClass('hidden');
-					});
-				}
-				
-				switchClick();
-				
-				function updateInputEvents() {
-					$('.form-materials').find('.widget_tally_box').each(function() {
-						var mtype = $(this).data('material');
-						$(this).find('input[type=number]').on('keyup change', function() {
-							var val = $(this).val();
-							
-							if (val.length > 0) {
-								if (!send_data) {
-									send_data = {};
-								} 
-								if (!send_data[mtype]) {
-									send_data[mtype] = {};
-								}
-								send_data[mtype][$(this).attr('name')] = val;
-							}	
-							counter = 0; 
-						});
-					});
-				}
-
-				updateInputEvents();
-
-				var timeUpdate = function() {
-					if (send_data) {
-						if (counter > 3) {
-							var data = {};
-							for (i in send_data) {
-								//console.log(i);
-								$('.form-materials').find('.' + i).find('.fa-spin').removeClass('hidden');
-								for (k in send_data[i]) {
-									data[k] = send_data[i][k]; 	
-								}
-							}
-							data['material_sorting'] = $("input[name=material_sorting]").val();
-							counter = 0;
-							send_data = null;
-							updateFromServer(data, function(result) {
-								$('.form-materials').find('.button-switch.hidden, .button-switch.btn-default').each(function() {
-									$(this).html($(this).parents('tr').find('input').val());
-									$(this).parents('tr').find('input').addClass('hidden');
-									$(this).removeClass('hidden btn-success btn-default btn-info btn-primary').addClass('btn-danger');
-								});
-								$('.form-materials').find('.fa-spin').addClass('hidden');
-								setTimeout(timeUpdate, 1000);
-							});
-						} else {
-							counter++;
-							setTimeout(timeUpdate, 1000);
-							
-						}
-					} else {
-						setTimeout(timeUpdate, 1000);
-					}
-				}
-				timeUpdate();
-				*/
-				
 				var material_sorting = '<xsl:value-of select="/*/@sort"/>';
 				
 				var updating = false;
@@ -1750,17 +1662,19 @@
 						data['material_sorting'] = material_sorting; 
 						proxy.makeCall('post', '/ajax/pilots/'+ pilot + '/materials/', null, null, data, function(result) {
 							//console.log(result);
-							$('.form-materials').find('.button-switch').each(function() {
-								$(this).removeClass('btn-danger btn-info').addClass('btn-success');
+							$('.form-materials').find('.material-quantity').each(function() {
+								$(this).removeClass('bg-danger bg-info').addClass('bg-success');
 							});
 							if (result.materials) {
 								var materials = {};
 								result.materials.forEach(function(m, i) {
 									if (m.quantity != $('#' + m.materialUniq).find('.button-switch').html()) {
 										$('#' + m.materialUniq).find('input').val(m.quantity);
-										$('#' + m.materialUniq).find('.button-switch').removeClass('btn-success btn-info btn-primary btn-danger').addClass(m.updateTime &lt; 31?'btn-info':'btn-primary').html(m.quantity);
+										$('#' + m.materialUniq).find('.material-quantity').removeClass('bg-success bg-info bg-primary bg-danger').addClass(m.updateTime &lt; 31?'bg-info':'bg-primary');
+										$('#' + m.materialUniq).find('.button-switch').html(m.quantity);
 									} else if (m.updateTime &lt; 61) {
-										$('#' + m.materialUniq).find('.button-switch').removeClass('btn-success btn-info btn-primary btn-danger').addClass(m.updateTime &lt; 31?'btn-info':'btn-primary').html(m.quantity);
+										$('#' + m.materialUniq).find('.material-quantity').removeClass('bg-success bg-info bg-primary bg-danger').addClass(m.updateTime &lt; 31?'bg-info':'bg-primary');
+										$('#' + m.materialUniq).find('.button-switch').html(m.quantity);
 									}
 									if (!materials[m.materialCategoryName]) {
 										materials[m.materialCategoryName] = [];

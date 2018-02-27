@@ -63,6 +63,7 @@
 <!-- Bootstrap -->
 <link href="<%=root%>/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- Font Awesome -->
+
 <link href="<%=root%>/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <!-- NProgress -->
 <link href="<%=root%>/vendors/nprogress/nprogress.css" rel="stylesheet">
