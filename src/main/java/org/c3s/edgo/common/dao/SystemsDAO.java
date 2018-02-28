@@ -50,7 +50,7 @@ public class SystemsDAO {
 				DbAccess.systemsAccess.insert(starSystem);
 			} else if (starSystem.getSystemAddress() == null && systemAddress != null) {
 				// update System Address
-				DbAccess.systemsAccess.updateUpdateSystemAddress(systemAddress, starSystem.getSystemId());
+				DbAccess.systemsAccess.updateSystemAddress(systemAddress, starSystem.getSystemId());
 			}
 			return starSystem;
 		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
@@ -135,7 +135,7 @@ public class SystemsDAO {
 	}
 
 
-	public static DBStationsBean getOrInsertStation(BigInteger systemId, String station, String stationType, Float dist) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+	public static DBStationsBean getOrInsertStation(BigInteger systemId, String station, BigInteger marketId, String stationType, Float dist) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		String uniq = EDUtils.getStationUniq(station);
 		DBStationsBean bean = getStation(station, systemId);
 		if (bean == null) {
@@ -146,9 +146,13 @@ public class SystemsDAO {
 				.setNameUniq(uniq)
 				.setType(stationType)
 				.setDistanceToStar(dist != null?dist.longValue():null)
+				.setMarketId(marketId)
 				.setUpdatedAt(new Date().getTime() / 1000)
 				;
 			DbAccess.stationsAccess.insert(bean);
+		} if (bean.getMarketId() == null && marketId != null) {
+			// Update station market Id
+			DbAccess.stationsAccess.updateStationMarketId(marketId, bean.getStationId());
 		}
 		return bean;
 	}
@@ -233,9 +237,9 @@ public class SystemsDAO {
 		}
 	}
 	
-	public static void updateStationFactionControl(Date timestamp, String systemName, String stationName, String stationType, Float dist, String factionName, String government, String allegiance) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+	public static void updateStationFactionControl(Date timestamp, String systemName, String stationName, BigInteger marketId, String stationType, Float dist, String factionName, String government, String allegiance) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		DBSystemsBean system = getOrInsertSystem(systemName, null, null);
-		DBStationsBean station = getOrInsertStation(system.getSystemId(), stationName, stationType, dist);
+		DBStationsBean station = getOrInsertStation(system.getSystemId(), stationName, marketId, stationType, dist);
 		DBFactionsBean faction = getOrInsertFaction(factionName, government, allegiance);
 		DBStationFactionControlBean control = DbAccess.stationFactionControlAccess.getLaststationControl(station.getStationId());
 		if (control == null || !control.getFactionId().equals(faction.getFactionId())) {

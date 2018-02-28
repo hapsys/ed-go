@@ -23,7 +23,7 @@ public class SupercruiseExit extends AbstractJournalEvent<SupercruiseExitBean> {
 		try {
 			DBPilotsBean current = getCurrent();
 			if (current != null) {
-				LocationDAO.insertLocation(current.getPilotId(), bean.getTimestamp(), bean.getStarsystem(), null, null, null, null, null, bean.getBody(), bean.getBodyType());
+				LocationDAO.insertLocation(current.getPilotId(), bean.getTimestamp(), bean.getStarsystem(), null, null, null, null, null, null, bean.getBody(), bean.getBodyType());
 				// Update last info supercruise
 				DbAccess.pilotLastInfoAccess.updateSupercruiseFlag(0, current.getPilotId());
 			}

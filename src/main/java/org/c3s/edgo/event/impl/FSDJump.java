@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 public class FSDJump extends AbstractJournalEvent<FSDJumpBean> {
 
 	@SuppressWarnings("unused")
-	private static Logger logger = LoggerFactory.getLogger(LoadGame.class);
+	private static Logger logger = LoggerFactory.getLogger(FSDJump.class);
 	
 	{
 		beanClass = FSDJumpBean.class;
@@ -28,7 +28,7 @@ public class FSDJump extends AbstractJournalEvent<FSDJumpBean> {
 		try {
 			DBPilotsBean pilot = getCurrent();
 			if (pilot != null) {
-				LocationDAO.insertLocation(pilot.getPilotId(), bean.getTimestamp(), bean.getStarSystem(), bean.getStarPos(), bean.getSystemAddress(), null, null, null, null, null);
+				LocationDAO.insertLocation(pilot.getPilotId(), bean.getTimestamp(), bean.getStarSystem(), bean.getStarPos(), bean.getSystemAddress(), null, null, null, null, null, null);
 				PowersDAO.updateOrInsertPowerState(bean.getStarSystem(), bean.getPowers(), bean.getPowerplayState(), bean.getTimestamp());
 				ShipsDAO.updateCurrentShipPosition(pilot);
 				if (bean.getFactions() != null) {

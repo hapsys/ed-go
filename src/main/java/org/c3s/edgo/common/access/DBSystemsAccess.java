@@ -123,6 +123,28 @@ public class DBSystemsAccess extends Access {
 		return ret;
 	}
 	
+	public int updateSystemAddress(java.math.BigInteger paramSystemAdress, java.math.BigInteger paramSystemId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				UPDATE systems SET system_address = ? WHERE system_id = ? LIMIT 1 			";
+		}
+
+		
+		int ret = getConnection().query(query,  paramSystemAdress,  paramSystemId);
+			
+		return ret;
+	}
+	
 	public List<DBSystemsInBoxBean> getSystemsInBox(float paramx1, float paramx2, float paramy1, float paramy2, float paramz1, float paramz2) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();
@@ -152,28 +174,6 @@ public class DBSystemsAccess extends Access {
 			}
 					
 		}
-			
-		return ret;
-	}
-	
-	public int updateUpdateSystemAddress(java.math.BigInteger paramSystemAdress, java.math.BigInteger paramSystemId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
-		setNames();
-		SqlInjectorInterface injector = new EmptySqlInjector();
-		
-		
-		String query = injector.getFullQuery();
-		if (query == null) {
-			String record = injector.getRecordQuery();
-			String from = injector.getFromQuery();
-			String join = injector.getJoinQuery();
-			String where = injector.getWhereQuery();
-			String order = injector.getOrderQuery();
-			String limit = injector.getLimitQuery();
-			query = " 				UPDATE systems SET system_address = ? WHERE system_id = ? LIMIT 1 			";
-		}
-
-		
-		int ret = getConnection().query(query,  paramSystemAdress,  paramSystemId);
 			
 		return ret;
 	}

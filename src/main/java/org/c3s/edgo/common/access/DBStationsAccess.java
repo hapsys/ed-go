@@ -182,4 +182,26 @@ public class DBStationsAccess extends Access {
 		return ret;
 	}
 	
+	public int updateStationMarketId(java.math.BigInteger paramMarketId, Long paramStationId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				UPDATE stations SET market_id = ? WHERE station_id = ? LIMIT 1 			";
+		}
+
+		
+		int ret = getConnection().query(query,  paramMarketId,  paramStationId);
+			
+		return ret;
+	}
+	
 }

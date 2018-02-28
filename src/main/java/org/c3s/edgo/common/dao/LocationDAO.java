@@ -15,7 +15,7 @@ import org.c3s.edgo.common.beans.DBSystemsBean;
 
 public class LocationDAO {
 
-	public static void insertLocation(long pilot_id, Date timestamp, String system, Float[] coord, BigInteger systemAddress, String station, String stationType, Float dist, String body, String bodyType) {
+	public static void insertLocation(long pilot_id, Date timestamp, String system, Float[] coord, BigInteger systemAddress, String station, BigInteger marketId, String stationType, Float dist, String body, String bodyType) {
 		try {
 			
 			if ("".equals(station)) {
@@ -62,7 +62,7 @@ public class LocationDAO {
 				if (station != null) {
 					//String stauniq = EDUtils.getStationUniq(station);
 					//DBStationsBean stat = DbAccess.stationsAccess.getByUniq(stauniq);
-					DBStationsBean stat = SystemsDAO.getOrInsertStation(prevLocation.getSystemId(), station, stationType, dist);
+					DBStationsBean stat = SystemsDAO.getOrInsertStation(prevLocation.getSystemId(), station, marketId, stationType, dist);
 					if (prevStation == null || isNewLocation || !stat.getStationId().equals(prevStation.getStationId())) {
 						curStation.setStationId(stat.getStationId());
 						DbAccess.stationHistoryAccess.insert(curStation);

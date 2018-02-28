@@ -27,7 +27,7 @@ public class Location extends AbstractJournalEvent<LocationBean> {
 		try {
 			DBPilotsBean pilot = getCurrent();
 			if (pilot != null) {
-				LocationDAO.insertLocation(pilot.getPilotId(), bean.getTimestamp(), bean.getStarSystem(), bean.getStarPos(), bean.getSystemAddress(), bean.getStationName(), bean.getStationType(), null, bean.getBody(), bean.getBodyType());
+				LocationDAO.insertLocation(pilot.getPilotId(), bean.getTimestamp(), bean.getStarSystem(), bean.getStarPos(), bean.getSystemAddress(), bean.getStationName(), bean.getMarketID(), bean.getStationType(), null, bean.getBody(), bean.getBodyType());
 				PowersDAO.updateOrInsertPowerState(bean.getStarSystem(), bean.getPowers(), bean.getPowerplayState(), bean.getTimestamp());
 				ShipsDAO.updateCurrentShipPosition(pilot);
 				if (bean.getFactions() != null) {

@@ -57,6 +57,11 @@ public class DockedBean extends AbstractEventBean {
 	private BigInteger SystemAddress;
 	
 	/**
+	 * 
+	 */
+	private BigInteger MarketID;
+	
+	/**
 	 * @return
 	 */
 	public Date getTimestamp() {
@@ -224,5 +229,13 @@ public class DockedBean extends AbstractEventBean {
 
 	public void setSystemAddress(BigInteger systemAddress) {
 		SystemAddress = systemAddress;
+	}
+
+	public BigInteger getMarketID() {
+		return MarketID;
+	}
+
+	public void setMarketID(BigInteger marketID) {
+		MarketID = marketID;
 	}
 }

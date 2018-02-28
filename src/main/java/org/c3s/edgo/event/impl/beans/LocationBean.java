@@ -21,6 +21,11 @@ public class LocationBean extends AbstractEventBean {
 	private BigInteger SystemAddress;
 	
 	/**
+	 * 
+	 */
+	private BigInteger MarketID;
+	
+	/**
 	 * star position, as a Json array [x, y, z], in light years
 	 */
 	private Float[] StarPos;
@@ -334,6 +339,14 @@ public class LocationBean extends AbstractEventBean {
 
 	public void setSystemAddress(BigInteger systemAddress) {
 		SystemAddress = systemAddress;
+	}
+
+	public BigInteger getMarketID() {
+		return MarketID;
+	}
+
+	public void setMarketID(BigInteger marketID) {
+		MarketID = marketID;
 	}
 
 }
