@@ -1,5 +1,6 @@
 package org.c3s.edgo.common.dao;
 
+import java.math.BigInteger;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -14,7 +15,7 @@ import org.c3s.edgo.common.beans.DBSystemsBean;
 
 public class LocationDAO {
 
-	public static void insertLocation(long pilot_id, Date timestamp, String system, Float[] coord, String station, String stationType, Float dist, String body, String bodyType) {
+	public static void insertLocation(long pilot_id, Date timestamp, String system, Float[] coord, BigInteger systemAddress, String station, String stationType, Float dist, String body, String bodyType) {
 		try {
 			
 			if ("".equals(station)) {
@@ -38,7 +39,7 @@ public class LocationDAO {
 			lastInfo.setSystemId(null).setStationId(null).setBodyId(null);
 			
 			if (system != null) {
-				DBSystemsBean starSystem = SystemsDAO.getOrInsertSystem(system, coord);
+				DBSystemsBean starSystem = SystemsDAO.getOrInsertSystem(system, coord, systemAddress);
 				if (prevLocation == null || !starSystem.getSystemId().equals(prevLocation.getSystemId())) {
 					DBLocationHistoryBean history = new DBLocationHistoryBean(); 
 					history.setPilotId(pilot_id);

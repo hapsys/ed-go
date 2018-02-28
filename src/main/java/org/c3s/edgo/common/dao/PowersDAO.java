@@ -68,7 +68,7 @@ public class PowersDAO {
 	
 	
 	public static void updateOrInsertPowerState(String system, String[] powers, String state, Date timestamp) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
-		DBSystemsBean sys = SystemsDAO.getOrInsertSystem(system, null);
+		DBSystemsBean sys = SystemsDAO.getOrInsertSystem(system, null, null);
 		if (sys != null && powers != null) {
 			DBPowerStateTypeBean pstate = getOrInsertState(state);
 			Date weekDate = getStartWeek(timestamp);

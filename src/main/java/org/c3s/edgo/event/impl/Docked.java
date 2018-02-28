@@ -27,7 +27,7 @@ public class Docked extends AbstractJournalEvent<DockedBean> {
 		try {
 			DBPilotsBean pilot = getCurrent();
 			if (pilot != null) {
-				LocationDAO.insertLocation(pilot.getPilotId(), bean.getTimestamp(), bean.getStarSystem(), null, bean.getStationName(), bean.getStationType(), bean.getDistFromStarLS(), null, null);
+				LocationDAO.insertLocation(pilot.getPilotId(), bean.getTimestamp(), bean.getStarSystem(), null, bean.getSystemAddress(), bean.getStationName(), bean.getStationType(), bean.getDistFromStarLS(), null, null);
 				ShipsDAO.updateCurrentShipPosition(pilot);
 				if (bean.getStationFaction() != null) {
 					String gov = bean.getStationGovernment();

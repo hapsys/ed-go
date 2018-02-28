@@ -1,5 +1,6 @@
 package org.c3s.edgo.event.impl.beans;
 
+import java.math.BigInteger;
 import java.util.Date;
 
 import org.c3s.edgo.event.AbstractEventBean;
@@ -13,6 +14,12 @@ public class LocationBean extends AbstractEventBean {
 	 * name of destination starsystem
 	 */
 	private String StarSystem;
+	
+	/**
+	 * 
+	 */
+	private BigInteger SystemAddress;
+	
 	/**
 	 * star position, as a Json array [x, y, z], in light years
 	 */
@@ -319,6 +326,14 @@ public class LocationBean extends AbstractEventBean {
 
 	public void setFactions(FactionBean[] factions) {
 		Factions = factions;
+	}
+
+	public BigInteger getSystemAddress() {
+		return SystemAddress;
+	}
+
+	public void setSystemAddress(BigInteger systemAddress) {
+		SystemAddress = systemAddress;
 	}
 
 }

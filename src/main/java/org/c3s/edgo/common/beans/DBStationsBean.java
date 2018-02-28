@@ -317,6 +317,21 @@ public class DBStationsBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"market_id", "marketId"})
+	@DataTarget("market_id")
+	@XMLSimple("marketId")
+	private java.math.BigInteger marketId;
+	
+	public java.math.BigInteger getMarketId() {
+		return marketId;
+	}
+	
+	public DBStationsBean setMarketId(java.math.BigInteger value) {
+		this.marketId = value;
+		return this;
+	}
+	
+	
 	@DataSource({"allegiance", "allegiance"})
 	@DataTarget("allegiance")
 	@XMLSimple("allegiance")

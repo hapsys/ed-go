@@ -1,5 +1,6 @@
 package org.c3s.edgo.event.impl.beans;
 
+import java.math.BigInteger;
 import java.util.Date;
 
 import org.c3s.edgo.event.AbstractEventBean;
@@ -50,6 +51,11 @@ public class DockedBean extends AbstractEventBean {
 	 */
 	private Float DistFromStarLS;
 
+	/**
+	 * 
+	 */
+	private BigInteger SystemAddress;
+	
 	/**
 	 * @return
 	 */
@@ -210,5 +216,13 @@ public class DockedBean extends AbstractEventBean {
 
 	public void setDistFromStarLS(Float distFromStarLS) {
 		DistFromStarLS = distFromStarLS;
+	}
+
+	public BigInteger getSystemAddress() {
+		return SystemAddress;
+	}
+
+	public void setSystemAddress(BigInteger systemAddress) {
+		SystemAddress = systemAddress;
 	}
 }

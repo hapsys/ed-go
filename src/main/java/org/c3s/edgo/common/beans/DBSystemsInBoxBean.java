@@ -32,6 +32,21 @@ public class DBSystemsInBoxBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"system_address", "systemAddress"})
+	@DataTarget("system_address")
+	@XMLSimple("systemAddress")
+	private java.math.BigInteger systemAddress;
+	
+	public java.math.BigInteger getSystemAddress() {
+		return systemAddress;
+	}
+	
+	public DBSystemsInBoxBean setSystemAddress(java.math.BigInteger value) {
+		this.systemAddress = value;
+		return this;
+	}
+	
+	
 	@DataSource({"x", "x"})
 	@DataTarget("x")
 	@XMLSimple("x")

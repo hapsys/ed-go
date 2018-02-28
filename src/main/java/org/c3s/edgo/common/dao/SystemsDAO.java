@@ -27,7 +27,7 @@ import org.c3s.edgo.utils.EDUtils;
 
 public class SystemsDAO {
 
-	public static DBSystemsBean getOrInsertSystem(String system, Float[] coord) {
+	public static DBSystemsBean getOrInsertSystem(String system, Float[] coord, BigInteger systemAddress) {
 		try {
 			String sysuniq = EDUtils.getSystemUniq(system);
 			
@@ -41,10 +41,16 @@ public class SystemsDAO {
 					starSystem.setY(new Double(coord[1]));
 					starSystem.setZ(new Double(coord[2]));
 				}
+				if (systemAddress != null) {
+					starSystem.setSystemAddress(systemAddress);
+				}
 				starSystem.setIsPopulated(0);
 				starSystem.setNameUniq(sysuniq);
 				starSystem.setSystemId(BigInteger.valueOf(System.nanoTime()));
 				DbAccess.systemsAccess.insert(starSystem);
+			} else if (starSystem.getSystemAddress() == null && systemAddress != null) {
+				// update System Address
+				
 			}
 			return starSystem;
 		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
@@ -171,8 +177,8 @@ public class SystemsDAO {
 		return result;
 	}
 	
-	public static void updateSystemFactionStates(Date timestamp, String systemName, Float[] coord, FactionBean[] factions) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
-		DBSystemsBean system = getOrInsertSystem(systemName, coord);
+	public static void updateSystemFactionStates(Date timestamp, String systemName, Float[] coord, BigInteger systemAddress, FactionBean[] factions) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		DBSystemsBean system = getOrInsertSystem(systemName, coord, systemAddress);
 		
 		DBLastSystemFactionStateDateBean lastDate = DbAccess.systemFactionsHistoryAccess.getLastSystemFactionStateDate(system.getSystemId());
 		
@@ -216,8 +222,8 @@ public class SystemsDAO {
 		}
 	}
 	
-	public static void updateSystemFactionControl(Date timestamp, String systemName, Float[] coord, String factionName, String government, String allegiance) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
-		DBSystemsBean system = getOrInsertSystem(systemName, coord);
+	public static void updateSystemFactionControl(Date timestamp, String systemName, Float[] coord, BigInteger systemAddress,  String factionName, String government, String allegiance) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		DBSystemsBean system = getOrInsertSystem(systemName, coord, systemAddress);
 		DBFactionsBean faction = getOrInsertFaction(factionName, government, allegiance);
 		DBSystemFactionControlBean control = DbAccess.systemFactionControlAccess.getLastSystemControl(system.getSystemId());
 		if (control == null || !control.getFactionId().equals(faction.getFactionId())) {
@@ -228,7 +234,7 @@ public class SystemsDAO {
 	}
 	
 	public static void updateStationFactionControl(Date timestamp, String systemName, String stationName, String stationType, Float dist, String factionName, String government, String allegiance) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
-		DBSystemsBean system = getOrInsertSystem(systemName, null);
+		DBSystemsBean system = getOrInsertSystem(systemName, null, null);
 		DBStationsBean station = getOrInsertStation(system.getSystemId(), stationName, stationType, dist);
 		DBFactionsBean faction = getOrInsertFaction(factionName, government, allegiance);
 		DBStationFactionControlBean control = DbAccess.stationFactionControlAccess.getLaststationControl(station.getStationId());

@@ -1,5 +1,6 @@
 package org.c3s.edgo.event.impl.beans;
 
+import java.math.BigInteger;
 import java.util.Date;
 
 import org.c3s.edgo.event.AbstractEventBean;
@@ -76,6 +77,12 @@ public class FSDJumpBean extends AbstractEventBean {
 	 * 
 	 */
 	private FactionBean[] Factions;
+	
+	/**
+	 * 
+	 */
+	private BigInteger SystemAddress;
+	
 	
 	public String getPowerplayState() {
 		return PowerplayState;
@@ -309,6 +316,14 @@ public class FSDJumpBean extends AbstractEventBean {
 
 	public void setFactions(FactionBean[] factions) {
 		Factions = factions;
+	}
+
+	public BigInteger getSystemAddress() {
+		return SystemAddress;
+	}
+
+	public void setSystemAddress(BigInteger systemAddress) {
+		SystemAddress = systemAddress;
 	}
 
 }

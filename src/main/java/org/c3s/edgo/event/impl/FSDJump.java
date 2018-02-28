@@ -28,18 +28,18 @@ public class FSDJump extends AbstractJournalEvent<FSDJumpBean> {
 		try {
 			DBPilotsBean pilot = getCurrent();
 			if (pilot != null) {
-				LocationDAO.insertLocation(pilot.getPilotId(), bean.getTimestamp(), bean.getStarSystem(), bean.getStarPos(), null, null, null, null, null);
+				LocationDAO.insertLocation(pilot.getPilotId(), bean.getTimestamp(), bean.getStarSystem(), bean.getStarPos(), bean.getSystemAddress(), null, null, null, null, null);
 				PowersDAO.updateOrInsertPowerState(bean.getStarSystem(), bean.getPowers(), bean.getPowerplayState(), bean.getTimestamp());
 				ShipsDAO.updateCurrentShipPosition(pilot);
 				if (bean.getFactions() != null) {
-					SystemsDAO.updateSystemFactionStates(bean.getTimestamp(), bean.getStarSystem(), bean.getStarPos(), bean.getFactions());
+					SystemsDAO.updateSystemFactionStates(bean.getTimestamp(), bean.getStarSystem(), bean.getStarPos(), bean.getSystemAddress(), bean.getFactions());
 				}
 				if (bean.getSystemFaction() != null) {
 					String gov = bean.getSystemGovernment();
 					if (gov != null && gov.startsWith("$government_")) {
 						gov = RegexpUtils.preg_replace("~^.*_(.+);?$~is", gov, "$1");
 					}
-					SystemsDAO.updateSystemFactionControl(bean.getTimestamp(), bean.getStarSystem(), bean.getStarPos(), bean.getSystemFaction(), gov, bean.getSystemAllegiance());
+					SystemsDAO.updateSystemFactionControl(bean.getTimestamp(), bean.getStarSystem(), bean.getStarPos(), bean.getSystemAddress(), bean.getSystemFaction(), gov, bean.getSystemAllegiance());
 				}
 				
 				// Update last info supercruise

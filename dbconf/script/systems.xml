@@ -36,6 +36,15 @@
 				LIMIT 20
 			</sql>
 		</query>
+		
+		<query name="SystemAddress">
+			<column name="SystemAdress" type="java.math.BigInteger"/>
+			<column name="SystemId" type="java.math.BigInteger"/>
+			<sql>
+				UPDATE systems SET system_address = ? WHERE system_id = ? LIMIT 1
+			</sql>
+		</query>
+		
 	</table>
 	<!--  -->
 	<table name="stations">
@@ -56,6 +65,7 @@
 				LIMIT 1
 			</sql>
 		</query>
+		
 	</table>
 	<!--  -->
 	<table name="factions">
