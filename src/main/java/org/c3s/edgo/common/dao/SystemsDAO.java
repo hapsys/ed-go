@@ -50,7 +50,7 @@ public class SystemsDAO {
 				DbAccess.systemsAccess.insert(starSystem);
 			} else if (starSystem.getSystemAddress() == null && systemAddress != null) {
 				// update System Address
-				
+				DbAccess.systemsAccess.updateUpdateSystemAddress(systemAddress, starSystem.getSystemId());
 			}
 			return starSystem;
 		} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
