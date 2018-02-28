@@ -1515,7 +1515,7 @@
 										<!-- 
 										<button class="btn btn-success button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></button>
 										 -->
-										 <nobr class="material-quantity bg-success"><span class="button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></span> / 100</nobr>
+										 <nobr class="material-quantity bg-success"><span class="button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></span> / <xsl:call-template name="view-material-grade"><xsl:with-param name="grade" select="field[@name='materialGrade']/@value"/></xsl:call-template></nobr>
 									</td>
 								</tr>
 							</xsl:for-each>
@@ -1545,7 +1545,7 @@
 										</xsl:if>
 									</td>
 									<td style="width:70px;">
-										 <nobr class="material-quantity bg-success"><span class="button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></span> / 100</nobr>
+										 <nobr class="material-quantity bg-success"><span class="button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></span> / <xsl:call-template name="view-material-grade"><xsl:with-param name="grade" select="field[@name='materialGrade']/@value"/></xsl:call-template></nobr>
 									</td>
 								</tr>
 							</xsl:for-each>
@@ -1575,7 +1575,7 @@
 										</xsl:if>
 									</td>
 									<td style="width:70px;">
-										 <nobr class="material-quantity bg-success"><span class="button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></span> / 100</nobr>
+										 <nobr class="material-quantity bg-success"><span class="button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></span> / <xsl:call-template name="view-material-grade"><xsl:with-param name="grade" select="field[@name='materialGrade']/@value"/></xsl:call-template></nobr>
 									</td>
 								</tr>
 							</xsl:for-each>
@@ -1663,7 +1663,7 @@
 						proxy.makeCall('post', '/ajax/pilots/'+ pilot + '/materials/', null, null, data, function(result) {
 							//console.log(result);
 							$('.form-materials').find('.material-quantity').each(function() {
-								$(this).removeClass('bg-danger bg-info').addClass('bg-success');
+								$(this).removeClass('bg-danger bg-info bg-primary').addClass('bg-success');
 							});
 							if (result.materials) {
 								var materials = {};
@@ -1789,6 +1789,22 @@
 			});
 		</script>
 
+	</xsl:template>
+<!--
+//
+//
+//
+-->
+	<xsl:template name="view-material-grade">
+		<xsl:param name="grade"/>
+		<xsl:choose>
+			<xsl:when test="$grade = 5">100</xsl:when>
+			<xsl:when test="$grade = 4">150</xsl:when>
+			<xsl:when test="$grade = 3">200</xsl:when>
+			<xsl:when test="$grade = 2">250</xsl:when>
+			<xsl:when test="$grade = 1">300</xsl:when>
+			<xsl:otherwise>?</xsl:otherwise>			
+		</xsl:choose>
 	</xsl:template>
 <!--
 //
