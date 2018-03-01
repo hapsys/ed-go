@@ -104,8 +104,8 @@ public class Loadout30 extends AbstractJournalEvent<Loadout30Bean> {
 										
 										Float persent = ((modification.getValue() - modification.getOriginalValue()) * 100 / modification.getOriginalValue());
 										persent = Math.round(persent * 100f) / 100f;
-										persent = (persent < 0.001)?0:persent; 
-										String  displayValue = persent + "%";
+										persent = (persent < 0.001f)?0f:persent; 
+										String  displayValue = (persent > 1000f)?">100%": (persent + "%");
 										String dir = (persent > 0)?"˄":"˅"; 
 										
 										modModifyer
