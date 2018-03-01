@@ -205,7 +205,7 @@ public class ShipsDAO {
 			bean.setRecipieLocName(recipieLocName);
 			bean.setRecipieLocDescription(recipieLocDescription);
 			DbAccess.recipiesAccess.insert(bean);
-		} else if (bean.getRecipieLocName() ==  null) {
+		} else if (bean.getRecipieLocName() ==  null && recipieLocName != null) {
 			bean.setRecipieLocName(recipieLocName);
 			bean.setRecipieLocDescription(recipieLocDescription);
 			DbAccess.recipiesAccess.updateByPrimaryKey(bean, bean.getRecipieId());
@@ -232,6 +232,9 @@ public class ShipsDAO {
 			bean = new DBModifiersBean();
 			bean.setModifierUniq(uniq).setModifierName(name);
 			DbAccess.modifiersAccess.insert(bean);
+		} else if (bean.getModifierName() == null && name != null) {
+			bean.setModifierName(name);
+			DbAccess.modifiersAccess.updateByPrimaryKey(bean, bean.getModifierId());
 		}
 		return bean;
 	}

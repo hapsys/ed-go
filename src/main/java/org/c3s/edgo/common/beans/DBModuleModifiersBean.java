@@ -47,6 +47,21 @@ public class DBModuleModifiersBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"original_value", "originalValue"})
+	@DataTarget("original_value")
+	@XMLSimple("originalValue")
+	private java.lang.Float originalValue;
+	
+	public java.lang.Float getOriginalValue() {
+		return originalValue;
+	}
+	
+	public DBModuleModifiersBean setOriginalValue(java.lang.Float value) {
+		this.originalValue = value;
+		return this;
+	}
+	
+	
 	@DataSource({"modifier_id", "modifierId"})
 	@DataTarget("modifier_id")
 	@XMLSimple("modifierId")

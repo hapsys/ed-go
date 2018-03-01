@@ -430,6 +430,9 @@
 		<select name="ByModifyerUniq" single_object="true">
 			<column name="modifier_uniq"/>
 		</select>
+		<update name="ByPrimaryKey">
+			<column name="modifier_id"/>
+		</update>
 	</table>
 	<table name="module_modifiers">
 		<select name="ByPrimaryKey" single_object="true">

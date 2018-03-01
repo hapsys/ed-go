@@ -14,11 +14,13 @@ import org.c3s.edgo.common.beans.DBRecipiesBean;
 import org.c3s.edgo.common.beans.DBSlotsBean;
 import org.c3s.edgo.common.dao.ShipsDAO;
 import org.c3s.edgo.event.AbstractJournalEvent;
+import org.c3s.edgo.event.annotation.DateRangeAnnotation;
 import org.c3s.edgo.event.impl.beans.LoadoutBean;
 import org.c3s.edgo.event.impl.beans.intl.LoadoutModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@DateRangeAnnotation(end="2018-02-27T15:00:00Z" /* End Date */)
 public class Loadout extends AbstractJournalEvent<LoadoutBean> {
 
 	@SuppressWarnings("unused")

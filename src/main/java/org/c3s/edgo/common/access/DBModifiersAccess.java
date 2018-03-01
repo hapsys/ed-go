@@ -123,4 +123,14 @@ public class DBModifiersAccess extends Access {
 		return ret;
 	}
 	
+	public int updateByPrimaryKey(DBModifiersBean bean, java.lang.Long paramModifierId) throws SQLException, IllegalArgumentException, IllegalAccessException {
+		setNames();
+		 Map<String, Object> map = dataMapper.mapToRow(bean);
+		 Map<String, Object> keys = new HashMap<String, Object>();
+		 
+		 keys.put("modifier_id",  paramModifierId);
+		 
+		return getConnection().updateRow("modifiers", map, keys);
+	}
+	
 }
