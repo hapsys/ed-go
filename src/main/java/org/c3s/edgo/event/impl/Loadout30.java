@@ -47,7 +47,7 @@ public class Loadout30 extends AbstractJournalEvent<Loadout30Bean> {
 			DBPilotsBean current = getCurrent();
 			if (current != null) {
 				DBPilotShipsBean pilotShip = ShipsDAO.getOrInsertPilotShip(current, bean.getShip().toLowerCase(), bean.getShipID(), null, null, bean.getShipName(), bean.getShipIdent());
-				if (bean.getModules() != null) {
+				if (pilotShip != null && bean.getModules() != null) {
 					DbAccess.pilotModulesAccess.updateSetDeletedByPilotShipId(pilotShip.getPilotShipId());
 					for (Module module: bean.getModules()) {
 						if (skip.stream().filter(s -> module.getSlot().toLowerCase().startsWith(s.toLowerCase())).map(s->true).findFirst().orElse(false)) {
