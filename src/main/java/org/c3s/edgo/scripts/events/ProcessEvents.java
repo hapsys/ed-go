@@ -5,8 +5,8 @@ import java.util.Properties;
 
 import org.c3s.db.DBManager;
 import org.c3s.edgo.common.access.DbAccess;
-import org.c3s.edgo.event.EventDispatcherThreaded;
 import org.c3s.edgo.event.EventProcessorThreaded;
+import org.c3s.edgo.event.EventsRegister;
 import org.c3s.storage.ApplicationStorage;
 import org.c3s.storage.StorageFactory;
 import org.c3s.storage.StorageType;
@@ -27,20 +27,12 @@ public class ProcessEvents {
 		// Clear events
 		DbAccess.eventsAccess.updateClearEvents();
 		// Register events
-		EventDispatcherThreaded.registerEventPackage("org.c3s.edgo.event.impl");
+		EventsRegister.registerEventPackage("org.c3s.edgo.event.impl");
 		
 		StorageFactory.register(StorageType.APPLICATION, new ApplicationStorage());
 		
 		new Thread(new EventProcessorThreaded()).start();
-		/**
-		while(true) {
-			try {
-				Thread.sleep(60000);
-			} catch (InterruptedException e) {
-				System.exit(-1);
-			}
-		}
-		*/
+		
 	}
 
 }

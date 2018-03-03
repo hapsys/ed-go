@@ -3,14 +3,9 @@ package org.c3s.edgo.event;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBEventsBean;
-import org.c3s.edgo.event.annotation.DateRangeAnnotation;
-import org.c3s.edgo.event.annotation.EventAnnotation;
-import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,59 +28,6 @@ public class EventDispatcherThreaded {
 		executeEventsNames.put("docked", null);
 		//
 		executors.put(new EventDateRange("2018-02-27T15:00:00Z" /* End Date */), new EventExecutors(storedEventsNames, executeEventsNames));
-	}
-	
-	//private static Map<String, Class<? extends JournalEvent>> events = new ConcurrentHashMap<String, Class<? extends JournalEvent>>();
-	private static Map<String, Map<EventDateRange, Class<? extends JournalEvent>>> events = new ConcurrentHashMap<String, Map<EventDateRange, Class<? extends JournalEvent>>>();
-	
-	/**
-	 * @param name
-	 * @param event
-	 */
-	public static void registerEvent(Class<? extends JournalEvent> event, String name) {
-		String eventName = name.toLowerCase();
-		EventAnnotation anno = event.getAnnotation(EventAnnotation.class);
-		if (anno != null && anno.value().length() > 0) {
-			eventName = anno.value().toLowerCase();
-		}
-		
-		if (!events.containsKey(eventName)) {
-			events.put(eventName, new ConcurrentHashMap<>());
-		}
-		
-		DateRangeAnnotation drAnno = event.getAnnotation(DateRangeAnnotation.class);
-		EventDateRange eventDateRange = null;
-		if (drAnno != null) {
-			eventDateRange = new EventDateRange(drAnno.start(), drAnno.end());
-		} else {
-			eventDateRange = new EventDateRange();
-		}
-		
-		events.get(eventName).put(eventDateRange, event);
-		
-		logger.info("Register event \"{}\" class \"{}\" period \"{}\"", eventName, name, eventDateRange.toString());
-	}
-	
-	/**
-	 * @param event
-	 */
-	public static void registerEvent(Class<? extends JournalEvent> event) {
-		String clazz = event.getName();
-		registerEvent(event, clazz.substring(clazz.lastIndexOf('.') + 1));
-	}
-	
-	/**
-	 * @param packageName
-	 */
-	public static void registerEventPackage(String packageName) {
-		
-		Reflections reflections = new Reflections(packageName);
-		@SuppressWarnings("rawtypes")
-		Set<Class<? extends AbstractJournalEvent>> events = reflections.getSubTypesOf(AbstractJournalEvent.class);
-		
-		for (Class<? extends JournalEvent> clazz: events) {
-			registerEvent(clazz);
-		}
 	}
 	
 	Long userId = 0L;
@@ -151,36 +93,19 @@ public class EventDispatcherThreaded {
 	
 	protected void processEvent(DBEventsBean evt) {
 		EventMd5Transform.eventTransformMD5(evt);
-		String eventName = evt.getEventName().toLowerCase();
+		//String eventName = evt.getEventName().toLowerCase();
 		String eventTime = evt.getEventJson().substring(15, 35);
 		
+		Class<? extends JournalEvent> eventClass = EventsRegister.getEventClass(evt.getEventName(), eventTime);
 		
-		//Class<? extends JournalEvent> eventClass = events.get(eventName);
-		
-		Map<EventDateRange, Class<? extends JournalEvent>> eventRanges = events.get(eventName); 
-		
-		if (eventRanges != null) {
-			
-			Class<? extends JournalEvent> eventClass = null;
-			for(EventDateRange range: eventRanges.keySet()) {
-				if (range.compareRange(eventTime)) {
-					eventClass = eventRanges.get(range);
-					break;
-				}
+		if (eventClass != null) {
+			JournalEvent event = null;
+			try {
+				event = eventClass.newInstance();
+				event.process(evt);
+			} catch (InstantiationException | IllegalAccessException e) {
+				logger.warn("Create instance fail for class \"{}\"", eventClass.getName(), e);
 			}
-			
-			if (eventClass != null) {
-				JournalEvent event = null;
-				try {
-					event = eventClass.newInstance();
-					event.process(evt);
-				} catch (InstantiationException | IllegalAccessException e) {
-					logger.warn("Create instance fail for class \"{}\"", eventClass.getName(), e);
-				}
-			} else {
-				logger.warn("No period found for event \"{}\" time \"{}\"", evt.getEventName(), eventTime);
-			}
-			
 		} else {
 			logger.warn("No class found for event \"{}\"", evt.getEventName());
 		}

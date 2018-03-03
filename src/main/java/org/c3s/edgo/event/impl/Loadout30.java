@@ -71,7 +71,7 @@ public class Loadout30 extends AbstractJournalEvent<Loadout30Bean> {
 							}
 							
 							// Engeneers
-							if (module.getEngineering() != null) {
+							if (module.getEngineering() != null && resId != null) {
 								Engineering eng = module.getEngineering(); 
 								DBRecipiesBean recipie = ShipsDAO.getOrInsertRecipie(eng.getBlueprintName(), null, null);
 								
