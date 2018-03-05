@@ -77,6 +77,21 @@ public class DBModifyersByPilotModuleIdBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"value_string", "valueString"})
+	@DataTarget("value_string")
+	@XMLSimple("valueString")
+	private java.lang.String valueString;
+	
+	public java.lang.String getValueString() {
+		return valueString;
+	}
+	
+	public DBModifyersByPilotModuleIdBean setValueString(java.lang.String value) {
+		this.valueString = value;
+		return this;
+	}
+	
+	
 	@DataSource({"modifier_id", "modifierId"})
 	@DataTarget("modifier_id")
 	@XMLSimple("modifierId")

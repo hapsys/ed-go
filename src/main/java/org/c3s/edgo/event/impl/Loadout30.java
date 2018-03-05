@@ -22,6 +22,7 @@ import org.c3s.edgo.event.impl.beans.Loadout30Bean;
 import org.c3s.edgo.event.impl.beans.intl.loadout30.Engineering;
 import org.c3s.edgo.event.impl.beans.intl.loadout30.Modification;
 import org.c3s.edgo.event.impl.beans.intl.loadout30.Module;
+import org.c3s.edgo.utils.EDUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -102,24 +103,39 @@ public class Loadout30 extends AbstractJournalEvent<Loadout30Bean> {
 										
 										DBModuleModifiersBean modModifyer = new DBModuleModifiersBean();
 										
-										Float persent = ((modification.getValue() - modification.getOriginalValue()) * 100 / modification.getOriginalValue());
-										persent = Math.round(persent * 100f) / 100f;
-										persent = (persent < 0.001f)?0f:persent; 
-										String  displayValue = (persent > 1000f)?">100%": (persent + "%");
-										String dir = (persent > 0)?"˄":"˅"; 
+										//System.out.println(modification.getLabel() + " ---> " + modification.getValue().getClass().getName());
 										
 										modModifyer
-											.setModuleRecipeId(moduleRecipie.getModuleRecipeId())
-											.setModifierId(modBean.getModifierId())
+										.setModuleRecipeId(moduleRecipie.getModuleRecipeId())
+										.setModifierId(modBean.getModifierId());
+
+										if (modification.getValue() instanceof String) {
+											modModifyer
+											.setValueString(EDUtils.cutFull(modification.getValue().toString()))
 											.setLessIsGood(modification.getLessIsGood())
-											.setValue(modification.getValue())
-											.setOriginalValue(modification.getOriginalValue())
-											.setDisplayValue(displayValue)
-											.setDirection(dir)
+											.setDisplayValue("")
+											.setDirection("")
 											;
-										
+										} else {
+											Float value = ((Double)modification.getValue()).floatValue();
+											Float originalValue = ((Double)modification.getOriginalValue()).floatValue();
+											Float persent = ((value - originalValue) * 100 / originalValue);
+											persent = Math.round(persent * 100f) / 100f;
+											persent = (persent < 0.001f)?0f:persent; 
+											String  displayValue = (persent > 1000f)?">100%": (persent + "%");
+											String dir = (persent > 0)?"˄":"˅"; 
+											
+											modModifyer
+												.setLessIsGood(modification.getLessIsGood())
+												.setValue(value)
+												.setOriginalValue(originalValue)
+												.setDisplayValue(displayValue)
+												.setDirection(dir)
+												;
+										}
 										DbAccess.moduleModifiersAccess.insert(modModifyer);
 									}
+									//System.out.println(">>>>>>>>>>>>>>>>>>>");
 								}
 							}
 						}

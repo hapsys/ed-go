@@ -18,6 +18,7 @@ public class Engineering {
 	
 	private String ExperimentalEffect_Localised;
 	
+	//private Modification[] Modifiers;
 	private Modification[] Modifiers;
 
 	public long getEngineerID() {

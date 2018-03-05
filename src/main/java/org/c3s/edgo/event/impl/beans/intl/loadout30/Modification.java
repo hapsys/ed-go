@@ -4,9 +4,9 @@ public class Modification {
 
 	private String Label;
 
-	private float Value;
+	private Object Value;
 
-	private float OriginalValue;
+	private Object OriginalValue;
 	
 	private int LessIsGood;
 
@@ -18,19 +18,19 @@ public class Modification {
 		Label = label;
 	}
 
-	public float getValue() {
+	public Object getValue() {
 		return Value;
 	}
 
-	public void setValue(float value) {
+	public void setValue(Object value) {
 		Value = value;
 	}
 
-	public float getOriginalValue() {
+	public Object getOriginalValue() {
 		return OriginalValue;
 	}
 
-	public void setOriginalValue(float originalValue) {
+	public void setOriginalValue(Object originalValue) {
 		OriginalValue = originalValue;
 	}
 
