@@ -32,6 +32,21 @@ public class DBMaterialsBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"material_max", "materialMax"})
+	@DataTarget("material_max")
+	@XMLSimple("materialMax")
+	private java.lang.Long materialMax;
+	
+	public java.lang.Long getMaterialMax() {
+		return materialMax;
+	}
+	
+	public DBMaterialsBean setMaterialMax(java.lang.Long value) {
+		this.materialMax = value;
+		return this;
+	}
+	
+	
 	@DataSource({"material_id", "materialId"})
 	@DataTarget("material_id")
 	@XMLSimple("materialId")

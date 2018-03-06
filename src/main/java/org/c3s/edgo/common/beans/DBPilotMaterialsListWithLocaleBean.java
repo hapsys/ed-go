@@ -11,7 +11,7 @@ import org.c3s.data.annotations.DataTarget;
 import org.c3s.reflection.annotation.*;
 
 
-public class DBPilotMaterialsListBean implements DbBean, Serializable {
+public class DBPilotMaterialsListWithLocaleBean implements DbBean, Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,7 +26,7 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 		return updateTime;
 	}
 	
-	public DBPilotMaterialsListBean setUpdateTime(java.lang.Long value) {
+	public DBPilotMaterialsListWithLocaleBean setUpdateTime(java.lang.Long value) {
 		this.updateTime = value;
 		return this;
 	}
@@ -41,7 +41,7 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 		return quantity;
 	}
 	
-	public DBPilotMaterialsListBean setQuantity(java.lang.Long value) {
+	public DBPilotMaterialsListWithLocaleBean setQuantity(java.lang.Long value) {
 		this.quantity = value;
 		return this;
 	}
@@ -56,7 +56,7 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 		return matherialCategoryId;
 	}
 	
-	public DBPilotMaterialsListBean setMatherialCategoryId(java.lang.Long value) {
+	public DBPilotMaterialsListWithLocaleBean setMatherialCategoryId(java.lang.Long value) {
 		this.matherialCategoryId = value;
 		return this;
 	}
@@ -71,14 +71,14 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 		return materialMax;
 	}
 	
-	public DBPilotMaterialsListBean setMaterialMax(java.lang.Long value) {
+	public DBPilotMaterialsListWithLocaleBean setMaterialMax(java.lang.Long value) {
 		this.materialMax = value;
 		return this;
 	}
 	
 	
 	@DataSource({"localized", "localized"})
-	@DataTarget("localized")
+	@DataTarget("material_name")
 	@XMLSimple("localized")
 	private java.lang.String localized;
 	
@@ -86,7 +86,7 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 		return localized;
 	}
 	
-	public DBPilotMaterialsListBean setLocalized(java.lang.String value) {
+	public DBPilotMaterialsListWithLocaleBean setLocalized(java.lang.String value) {
 		this.localized = value;
 		return this;
 	}
@@ -101,7 +101,7 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 		return materialId;
 	}
 	
-	public DBPilotMaterialsListBean setMaterialId(java.lang.Long value) {
+	public DBPilotMaterialsListWithLocaleBean setMaterialId(java.lang.Long value) {
 		this.materialId = value;
 		return this;
 	}
@@ -116,7 +116,7 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 		return materialCategoryId;
 	}
 	
-	public DBPilotMaterialsListBean setMaterialCategoryId(java.lang.Long value) {
+	public DBPilotMaterialsListWithLocaleBean setMaterialCategoryId(java.lang.Long value) {
 		this.materialCategoryId = value;
 		return this;
 	}
@@ -131,7 +131,7 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 		return materialUniq;
 	}
 	
-	public DBPilotMaterialsListBean setMaterialUniq(java.lang.String value) {
+	public DBPilotMaterialsListWithLocaleBean setMaterialUniq(java.lang.String value) {
 		this.materialUniq = value;
 		return this;
 	}
@@ -146,7 +146,7 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 		return used;
 	}
 	
-	public DBPilotMaterialsListBean setUsed(java.lang.Long value) {
+	public DBPilotMaterialsListWithLocaleBean setUsed(java.lang.Long value) {
 		this.used = value;
 		return this;
 	}
@@ -161,7 +161,7 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 		return materialGrade;
 	}
 	
-	public DBPilotMaterialsListBean setMaterialGrade(java.lang.Integer value) {
+	public DBPilotMaterialsListWithLocaleBean setMaterialGrade(java.lang.Integer value) {
 		this.materialGrade = value;
 		return this;
 	}
@@ -176,7 +176,7 @@ public class DBPilotMaterialsListBean implements DbBean, Serializable {
 		return materialCategoryName;
 	}
 	
-	public DBPilotMaterialsListBean setMaterialCategoryName(java.lang.String value) {
+	public DBPilotMaterialsListWithLocaleBean setMaterialCategoryName(java.lang.String value) {
 		this.materialCategoryName = value;
 		return this;
 	}

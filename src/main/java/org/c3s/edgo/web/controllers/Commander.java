@@ -47,6 +47,7 @@ import org.c3s.edgo.common.beans.DBPilotInfoLinkWithDefaultsBean;
 import org.c3s.edgo.common.beans.DBPilotInfoWithDefaultsBean;
 import org.c3s.edgo.common.beans.DBPilotMaterialsBean;
 import org.c3s.edgo.common.beans.DBPilotMaterialsListBean;
+import org.c3s.edgo.common.beans.DBPilotMaterialsListWithLocaleBean;
 import org.c3s.edgo.common.beans.DBPilotShipModulesListBean;
 import org.c3s.edgo.common.beans.DBPilotShipsBean;
 import org.c3s.edgo.common.beans.DBPilotShipsListBean;
@@ -583,16 +584,17 @@ public class Commander extends GeneralController {
 			}
 			final String sort = __sort;
 			
-			List<DBPilotMaterialsListBean> pilotMaterials = DbAccess.pilotMaterialsAccess.getPilotMaterialsList(current.getPilotId());
+			List<DBPilotMaterialsListWithLocaleBean> pilotMaterials = DbAccess.pilotMaterialsAccess.getPilotMaterialsListWithLocale(current.getPilotId(), 
+					(String)ContentObject.getInstance().getFixedParameter("language_id"));
 			if (pilotMaterials != null) {
 				/*
 				for (DBPilotMaterialsListBean m: pilotMaterials) {
 					m.setLocalized(I10N.tr(m.getMaterialUniq()));
 				}
 				*/
-				pilotMaterials = pilotMaterials.stream().peek(m -> m.setLocalized(I10N.tr(m.getMaterialUniq()))).sorted(new Comparator<DBPilotMaterialsListBean>() {
+				pilotMaterials = pilotMaterials.stream().peek(m -> { if (m.getLocalized() == null) m.setLocalized(I10N.tr(m.getMaterialUniq())); }).sorted(new Comparator<DBPilotMaterialsListWithLocaleBean>() {
 					@Override
-					public int compare(DBPilotMaterialsListBean o1, DBPilotMaterialsListBean o2) {
+					public int compare(DBPilotMaterialsListWithLocaleBean o1, DBPilotMaterialsListWithLocaleBean o2) {
 						if ("updated".equals(sort)) {
 							if (o1.getUpdateTime().equals(o2.getUpdateTime())) {
 								return o1.getLocalized().compareToIgnoreCase(o2.getLocalized());
@@ -668,10 +670,11 @@ public class Commander extends GeneralController {
 			final String sort = __sort;
 			//System.out.println(sort);
 			StorageFactory.getStorage(StorageType.SESSION).put(sortedParameterName, sort);
-			List<DBPilotMaterialsListBean> pilotMaterials = DbAccess.pilotMaterialsAccess.getPilotMaterialsList(current.getPilotId());
-			pilotMaterials = pilotMaterials.stream().peek(m -> m.setLocalized(I10N.tr(m.getMaterialUniq()))).sorted(new Comparator<DBPilotMaterialsListBean>() {
+			List<DBPilotMaterialsListWithLocaleBean> pilotMaterials = DbAccess.pilotMaterialsAccess.getPilotMaterialsListWithLocale(current.getPilotId(), 
+					(String)ContentObject.getInstance().getFixedParameter("language_id"));
+			pilotMaterials = pilotMaterials.stream().peek(m -> { if (m.getLocalized() == null) m.setLocalized(I10N.tr(m.getMaterialUniq())); }).sorted(new Comparator<DBPilotMaterialsListWithLocaleBean>() {
 				@Override
-				public int compare(DBPilotMaterialsListBean o1, DBPilotMaterialsListBean o2) {
+				public int compare(DBPilotMaterialsListWithLocaleBean o1, DBPilotMaterialsListWithLocaleBean o2) {
 					if ("updated".equals(sort)) {
 						if (o1.getUpdateTime().equals(o2.getUpdateTime())) {
 							return o1.getLocalized().compareToIgnoreCase(o2.getLocalized());

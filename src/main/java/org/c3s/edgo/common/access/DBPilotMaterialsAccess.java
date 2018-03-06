@@ -188,4 +188,37 @@ public class DBPilotMaterialsAccess extends Access {
 		return ret;
 	}
 	
+	public List<DBPilotMaterialsListWithLocaleBean> getPilotMaterialsListWithLocale(long paramPilotId, String paramLangId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT m.*, mc.*, IF(ISNULL(pm.quantity), 0, pm.quantity) as quantity, 				ml.material_name as localized, UNIX_TIMESTAMP() - IF(ISNULL(pm.update_time),0,UNIX_TIMESTAMP(pm.update_time)) as update_time, COUNT(DISTINCT bm.eng_grade_id) as used 				FROM material_category mc, materials m 				LEFT JOIN pilot_materials pm ON pm.pilot_id = ? AND pm.material_id = m.material_id 				LEFT JOIN eng_blueprint_materials bm ON bm.material_id = m.material_id 				LEFT JOIN languages l ON l.lang_uniq = ? 				LEFT JOIN material_langs ml ON ml.lang_id = l.lang_id AND ml.material_id = m.material_id      				WHERE m.matherial_category_id = mc.material_category_id 				GROUP BY m.material_id    			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getPilotMaterialsListWithLocale", query ,  paramPilotId,  paramLangId);
+		List<DBPilotMaterialsListWithLocaleBean> ret = null;
+		if (result != null) {
+					ret = new ArrayList<DBPilotMaterialsListWithLocaleBean>();
+				
+			for (Map<String, Object> res : result) {
+				DBPilotMaterialsListWithLocaleBean bean = dataMapper.mapFromRow(res, DBPilotMaterialsListWithLocaleBean.class);
+														
+				ret.add(bean);
+			}
+					
+		}
+			
+		return ret;
+	}
+	
 }
