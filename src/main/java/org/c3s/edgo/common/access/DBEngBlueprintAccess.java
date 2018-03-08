@@ -99,6 +99,42 @@ public class DBEngBlueprintAccess extends Access {
 		return ret;
 	}
 	
+	public List<DBEngBlueprintBean> getOrdered()  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		List<DBEngBlueprintBean> ret = null;
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  "+injector.getWhereQuery()+" ";
+		if (injector.getOrderQuery().length() != 0) {
+			sql += injector.getOrderQuery();
+		} else { 
+			sql += "ORDER BY eng_blueprint_uniq";
+			
+		}
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			
+		}
+		
+		
+		
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getOrdered", sql );
+		if (result != null) {
+			
+			ret = new ArrayList<DBEngBlueprintBean>();
+			for (Map<String, Object> res : result) {
+				DBEngBlueprintBean bean = dataMapper.mapFromRow(res, DBEngBlueprintBean.class);
+				 
+				ret.add(bean);
+			}
+				
+		}
+		return ret;
+	}
+	
 	public DBEngBlueprintBean getByUniq(java.lang.String paramEngBlueprintUniq)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		DBEngBlueprintBean ret = null;

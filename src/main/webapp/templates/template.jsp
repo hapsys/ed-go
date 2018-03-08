@@ -94,6 +94,9 @@
 <link href="<%=root%>/vendors/bootstrap-table/dist/extensions/group-by-v2/bootstrap-table-group-by.min.js" rel="stylesheet">
 <link href="<%=root%>/vendors/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
 
+<!-- Tree -->
+<link href="<%=root%>/vendors/bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+
 <!-- Choosen -->
 <link rel="stylesheet" href="<%=root%>/css/chosen.css" type="text/css"/>
 <link rel="stylesheet" href="<%=root%>/css/bootstrap-chosen.css" type="text/css"/>
@@ -388,6 +391,8 @@ moment.locale('<%=lang_id%>');
 	<script src="<%=root%>/vendors/bootstrap-table/dist/extensions/group-by-v2/bootstrap-table-group-by.min.js"></script>
 	<script src="<%=root%>/vendors/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
 	<script src="<%=root%>/vendors/bootstrap-table/dist/extensions/editable/bootstrap-table-editable.js"></script>
+	<!-- Tree -->	
+	<script src="<%=root%>/vendors/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
 	<!-- eModal -->
 	<script src="<%=root%>/vendors/eModal/dist/eModal.min.js"></script>
     <!-- Custom Theme Scripts -->

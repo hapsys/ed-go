@@ -31,7 +31,10 @@ import org.c3s.dispatcher.exceptions.SkipSubLevelsExeption;
 import org.c3s.dispatcher.exceptions.StopDispatchException;
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBActivityBean;
+import org.c3s.edgo.common.beans.DBEngBlueprintBean;
+import org.c3s.edgo.common.beans.DBEngGradeBean;
 import org.c3s.edgo.common.beans.DBEngTypeBean;
+import org.c3s.edgo.common.beans.DBEngeneersForBlueprintsBean;
 import org.c3s.edgo.common.beans.DBEventMaxMinDateForPilotBean;
 import org.c3s.edgo.common.beans.DBFullLastInfoBean;
 import org.c3s.edgo.common.beans.DBGradesByTypeUniqBean;
@@ -40,6 +43,7 @@ import org.c3s.edgo.common.beans.DBMaterialUnsingInfoBean;
 import org.c3s.edgo.common.beans.DBMaterialsBean;
 import org.c3s.edgo.common.beans.DBMaterialsByBlueprintAndGradeBean;
 import org.c3s.edgo.common.beans.DBMaterialsByTypeUniqBean;
+import org.c3s.edgo.common.beans.DBMaterialsForBlueprintsBean;
 import org.c3s.edgo.common.beans.DBMaxMinDateLocationHistoryForPilotBean;
 import org.c3s.edgo.common.beans.DBMissionsDateRangeBean;
 import org.c3s.edgo.common.beans.DBModifyersByPilotModuleIdBean;
@@ -624,6 +628,28 @@ public class Commander extends GeneralController {
 			}).collect(Collectors.toList());
 			Document exml = new XMLList(types, true).toXML("eng_types");
 			XMLUtils.appendClonedNode(xml, exml);
+			
+			List<DBEngBlueprintBean> blueprints = DbAccess.engBlueprintAccess.getOrdered();
+			blueprints = blueprints.stream().peek(m -> m.setLocalized(I10N.tr(m.getEngBlueprintName()))).sorted(new Comparator<DBEngBlueprintBean>() {
+				@Override
+				public int compare(DBEngBlueprintBean o1, DBEngBlueprintBean o2) {
+					return o1.getLocalized().compareTo(o2.getLocalized());
+				}
+			}).collect(Collectors.toList());
+			Document bxml = new XMLList(blueprints, true).toXML("eng_blueprints");
+			XMLUtils.appendClonedNode(xml, bxml);
+			
+			List<DBEngGradeBean> grades = DbAccess.engGradeAccess.getAllGrades();
+			Document gxml = new XMLList(grades, true).toXML("eng_grades");
+			XMLUtils.appendClonedNode(xml, gxml);
+			
+			List<DBMaterialsForBlueprintsBean> gmat = DbAccess.engBlueprintMaterialsAccess.getMaterialsForBlueprints();
+			Document gmxml = new XMLList(gmat, true).toXML("eng_materials");
+			XMLUtils.appendClonedNode(xml, gmxml);
+
+			List<DBEngeneersForBlueprintsBean> geng = DbAccess.engEngeneersGradeAccess.getEngeneersForBlueprints();
+			Document gexml = new XMLList(geng, true).toXML("eng_engeneers");
+			XMLUtils.appendClonedNode(xml, gexml);
 			
 			
 			ContentObject.getInstance().setData(tag, xml, template, new String[]{"mode:materials"});

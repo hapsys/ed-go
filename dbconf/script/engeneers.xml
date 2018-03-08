@@ -21,6 +21,7 @@
 	</table>
 	<!--  -->
 	<table name="eng_blueprint">
+		<column name="localized" type="String"/> 
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="eng_blueprint_id"/>
 		</select>
@@ -29,6 +30,9 @@
 		</select>
 		<select name="OrderedByTypeId">
 			<column name="eng_type_id"/>
+			<sort>eng_blueprint_uniq</sort>
+		</select>
+		<select name="Ordered">
 			<sort>eng_blueprint_uniq</sort>
 		</select>
 		<update name="ByPrimaryKey">
@@ -42,6 +46,9 @@
 	<table name="eng_grade">
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="eng_grade_id"/>
+		</select>
+		<select name="AllGrades">
+			<sort>eng_blueprint_id, grade</sort>
 		</select>
 		<update name="ByPrimaryKey">
 			<column name="eng_grade_id"/>
@@ -110,6 +117,26 @@
 				GROUP BY bm.eng_grade_id
 			</sql>
 		</query>
+		<query name="MaterialsForBlueprints">
+			<sql>
+				SELECT bm.eng_grade_id, m.material_uniq
+				FROM eng_blueprint_materials bm, materials m
+				WHERE bm.material_id = m.material_id
+				ORDER BY bm.eng_grade_id, m.material_uniq
+			</sql>
+		</query>
 	</table>
+	<!--  -->
+	<table name="eng_engeneers_grade">
+		<query name="EngeneersForBlueprints">
+			<sql>
+				SELECT eg.eng_grade_id, GROUP_CONCAT(e.engeneer_name ORDER BY e.engeneer_name SEPARATOR ', ') as engeneers
+				FROM eng_engeneers_grade eg
+				LEFT JOIN eng_engeneers e ON e.eng_engeneer_id = eg.eng_engeneer_id
+				GROUP BY eg.eng_grade_id
+				ORDER BY eg.eng_grade_id
+			</sql>
+		</query>
+	</table>	
 	<!--  -->
 </include>

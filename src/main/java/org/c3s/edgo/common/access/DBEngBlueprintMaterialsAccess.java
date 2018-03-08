@@ -129,6 +129,39 @@ public class DBEngBlueprintMaterialsAccess extends Access {
 		return ret;
 	}
 	
+	public List<DBMaterialsForBlueprintsBean> getMaterialsForBlueprints() throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT bm.eng_grade_id, m.material_uniq 				FROM eng_blueprint_materials bm, materials m 				WHERE bm.material_id = m.material_id 				ORDER BY bm.eng_grade_id, m.material_uniq 			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getMaterialsForBlueprints", query );
+		List<DBMaterialsForBlueprintsBean> ret = null;
+		if (result != null) {
+					ret = new ArrayList<DBMaterialsForBlueprintsBean>();
+				
+			for (Map<String, Object> res : result) {
+				DBMaterialsForBlueprintsBean bean = dataMapper.mapFromRow(res, DBMaterialsForBlueprintsBean.class);
+														
+				ret.add(bean);
+			}
+					
+		}
+			
+		return ret;
+	}
+	
 	public List<DBMaterialUnsingInfoBean> getMaterialUnsingInfo(String paramMaterial) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();

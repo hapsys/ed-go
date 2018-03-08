@@ -70,6 +70,7 @@ public class DbAccess {
 	public static final DBEngBlueprintAccess engBlueprintAccess = new DBEngBlueprintAccess();
 	public static final DBEngGradeAccess engGradeAccess = new DBEngGradeAccess();
 	public static final DBEngBlueprintMaterialsAccess engBlueprintMaterialsAccess = new DBEngBlueprintMaterialsAccess();
+	public static final DBEngEngeneersGradeAccess engEngeneersGradeAccess = new DBEngEngeneersGradeAccess();
 	public static final DBPilotRelationsAccess pilotRelationsAccess = new DBPilotRelationsAccess();
 	public static final DBImagesAccess imagesAccess = new DBImagesAccess();
 	public static final DBImageConfigsAccess imageConfigsAccess = new DBImageConfigsAccess();

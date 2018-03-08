@@ -76,6 +76,21 @@ public class DBEngBlueprintBean implements DbBean, Serializable {
 		return this;
 	}
 	
+	
+	@DataSource({"localized", "localized"})
+	@DataTarget("localized")
+	@XMLSimple("localized")
+	private String localized;
+	
+	public String getLocalized() {
+		return localized;
+	}
+	
+	public DBEngBlueprintBean setLocalized(String value) {
+		this.localized = value;
+		return this;
+	}
+	
 	@Override
 	public void setAutoincrementField(Object value) {
 		

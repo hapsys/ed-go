@@ -1441,53 +1441,58 @@
 	<xsl:template name="view_materials">
 	
 		<xsl:variable name="lang"><xsl:value-of select="$root"/><xsl:if test="$politic = 'suffix' and $default != 'true'">/<xsl:value-of select="$suffix"/></xsl:if></xsl:variable>
-        <div class="page-title">
-          <div class="title_left">
-			<form class="form-inline">
-				<div class="form-group">
-					<label><xsl:value-of select="i10n:tr('sort_by')"/>:&#160;&#160;&#160;</label>
-					<div class="radio">
+		<div class="page-title">
+			<div class="title_left">
+				<form class="form-inline">
+					<div class="form-group">
 						<label>
-							<input type="radio" class="flat" value="alphabetical" name="material_sorting">
-								<xsl:if test="/*/@sort = 'alphabetical'"><xsl:attribute name="checked">checked</xsl:attribute></xsl:if>
-							</input>&#160;<xsl:value-of select="i10n:tr('sort_by_alphabetial')"/>&#160;&#160;
+							<xsl:value-of select="i10n:tr('sort_by')" />
+							:&#160;&#160;&#160;
 						</label>
+						<div class="radio">
+							<label>
+								<input type="radio" class="flat" value="alphabetical" name="material_sorting">
+									<xsl:if test="/*/@sort = 'alphabetical'">
+										<xsl:attribute name="checked">checked</xsl:attribute>
+									</xsl:if>
+								</input>
+								&#160;
+								<xsl:value-of select="i10n:tr('sort_by_alphabetial')" />
+								&#160;&#160;
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" class="flat" value="updated" name="material_sorting">
+									<xsl:if test="/*/@sort = 'updated'">
+										<xsl:attribute name="checked">checked</xsl:attribute>
+									</xsl:if>
+								</input>
+								&#160;
+								<xsl:value-of select="i10n:tr('sort_by_updated')" />
+								&#160;&#160;
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" class="flat" value="quantity" name="material_sorting">
+									<xsl:if test="/*/@sort = 'quantity'">
+										<xsl:attribute name="checked">checked</xsl:attribute>
+									</xsl:if>
+								</input>
+								&#160;
+								<xsl:value-of select="i10n:tr('sort_by_quantity')" />
+								&#160;&#160;
+							</label>
+						</div>
 					</div>
-					<div class="radio">
-						<label>
-							<input type="radio" class="flat" value="updated" name="material_sorting">
-								<xsl:if test="/*/@sort = 'updated'"><xsl:attribute name="checked">checked</xsl:attribute></xsl:if>
-							</input>&#160;<xsl:value-of select="i10n:tr('sort_by_updated')"/>&#160;&#160;
-						</label>
-					</div>
-					<div class="radio">
-						<label>
-							<input type="radio" class="flat" value="quantity" name="material_sorting">
-								<xsl:if test="/*/@sort = 'quantity'"><xsl:attribute name="checked">checked</xsl:attribute></xsl:if> 
-							</input>&#160;<xsl:value-of select="i10n:tr('sort_by_quantity')"/>&#160;&#160;
-						</label>
-					</div>
-				</div>				
-			</form>
-          </div>
-			<div class="title_right">
-				<form class="form-inline col-md-6 col-sm-6 col-xs-12 pull-right">
-					<div class="input-group">
-						<select name="eng_caterory" id="eng-caterory" class="form-control" data-placeholder="Select faction..." style="width:250px;">
-							<option value="">&lt;<xsl:value-of select="i10n:tr('Select Category')"/>&gt;</option>
-							<xsl:for-each select="eng_types/item">
-								<option value="{field[@name='engTypeUniq']/@value}"><xsl:value-of select="field[@name='localized']/@value"/></option>
-							</xsl:for-each>
-						</select>
-					</div>
-					<div class="input-group">
-						<select name="eng_blueprint" id="eng-blueprint" class="form-control" data-placeholder="Select faction..." disabled="disabled"  style="width:300px;">
-							<option value=''>&lt;<xsl:value-of select="i10n:tr('Select Blueprint')"/>&gt;</option>
-						</select>
+					<div class="form-group" style="margin-left: 50px;">
+						<button type="button" class="btn" data-toggle="modal" data-target="#engeenerModal" id="btn-engeneers"><i class="fa fa-gear"></i> Engeneers Filter</button>
+						<button type="button" class="btn hidden" id="main-btn-clear">X</button>
 					</div>
 				</form>
 			</div>
-        </div>
+		</div>
 		<div class="clearfix"></div>
 		<div class="form-materials updated-by-time" data-update-function="updateFromServer" data-update-interval="30000">
 			<div class="col-md-4 col-xs-12 widget widget_tally_box width-650 encoded" data-material="encoded">
@@ -1503,21 +1508,7 @@
 					<div class="x_content">
 						<table class="table">
 							<xsl:for-each select="childs/item[field[@name='materialCategoryId']/@value=1]">
-								<tr id="{field[@name='materialUniq']/@value}" class="material-row">
-									<td>
-										<img src="{$root}/images/materials/grade-{field[@name='materialGrade']/@value}.png" width="20" height="20"/>&#160;
-										<xsl:value-of select="field[@name='localized']/@value"/>
-										<xsl:if test="field[@name='used']/@value != '0'">
-											&#160;<sup><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#materialModal"><xsl:value-of select="field[@name='used']/@value"/>&#160;<i class="fa fa-cogs" aria-hidden="true"></i></button></sup>
-										</xsl:if>
-									</td>
-									<td style="width:70px;">
-										<!-- 
-										<button class="btn btn-success button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></button>
-										 -->
-										 <nobr class="material-quantity bg-success"><span class="button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></span> / <xsl:call-template name="view-material-grade"><xsl:with-param name="grade" select="field[@name='materialGrade']/@value"/></xsl:call-template></nobr>
-									</td>
-								</tr>
+								<xsl:call-template name="view-material"></xsl:call-template>
 							</xsl:for-each>
 						</table>
 					</div>
@@ -1536,18 +1527,7 @@
 					<div class="x_content">
 						<table class="table">
 							<xsl:for-each select="childs/item[field[@name='materialCategoryId']/@value=2]">
-								<tr id="{field[@name='materialUniq']/@value}" class="material-row">
-									<td>
-										<img src="{$root}/images/materials/grade-{field[@name='materialGrade']/@value}.png" width="20" height="20"/>&#160;
-										<xsl:value-of select="field[@name='localized']/@value"/>
-										<xsl:if test="field[@name='used']/@value != '0'">
-											&#160;<sup><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#materialModal"><xsl:value-of select="field[@name='used']/@value"/>&#160;<i class="fa fa-cogs" aria-hidden="true"></i></button></sup>
-										</xsl:if>
-									</td>
-									<td style="width:70px;">
-										 <nobr class="material-quantity bg-success"><span class="button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></span> / <xsl:call-template name="view-material-grade"><xsl:with-param name="grade" select="field[@name='materialGrade']/@value"/></xsl:call-template></nobr>
-									</td>
-								</tr>
+								<xsl:call-template name="view-material"></xsl:call-template>
 							</xsl:for-each>
 						</table>
 					</div>
@@ -1566,18 +1546,7 @@
 					<div class="x_content">
 						<table class="table">
 							<xsl:for-each select="childs/item[field[@name='materialCategoryId']/@value=3]">
-								<tr id="{field[@name='materialUniq']/@value}" class="material-row">
-									<td>
-										<img src="{$root}/images/materials/grade-{field[@name='materialGrade']/@value}.png" width="20" height="20"/>&#160;
-										<xsl:value-of select="field[@name='localized']/@value"/>
-										<xsl:if test="field[@name='used']/@value != '0'">
-											&#160;<sup><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#materialModal"><xsl:value-of select="field[@name='used']/@value"/>&#160;<i class="fa fa-cogs" aria-hidden="true"></i></button></sup>
-										</xsl:if>
-									</td>
-									<td style="width:70px;">
-										 <nobr class="material-quantity bg-success"><span class="button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></span> / <xsl:call-template name="view-material-grade"><xsl:with-param name="grade" select="field[@name='materialGrade']/@value"/></xsl:call-template></nobr>
-									</td>
-								</tr>
+								<xsl:call-template name="view-material"></xsl:call-template>
 							</xsl:for-each>
 						</table>
 					</div>
@@ -1609,7 +1578,68 @@
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->		
+		<div class="clearfix"></div>
+		<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="#engeenerModalLabel"  id="engeenerModal">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"><xsl:text disable-output-escaping="yes">&amp;times;</xsl:text> 
+							</span>
+						</button>
+						<h4 class="modal-title" id="engeenerModalLabel">Engeneers filter</h4><small>выберите чертежи для фильтрации</small>
+					</div>
+					<div class="modal-body">
+						<div id="engeneerTree">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-danger" id="btn-clear">Clear</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->		
 		<script>
+		
+			// +Tree data
+			var tree = [
+				<xsl:for-each select="eng_types/item"><xsl:variable name="typeId" select="field[@name='engTypeId']/@value"/>
+				{
+					text: "<xsl:value-of select="field[@name='localized']/@value"/>",
+					selectable: false,
+					nodeType: "type",
+					state: {
+						expanded: false,
+					},
+					nodes: [
+						<xsl:for-each select="/item/eng_blueprints/item[field[@name='engTypeId']/@value = $typeId]"><xsl:variable name="blueprintId" select="field[@name='engBlueprintId']/@value"/>
+						{
+							text: "<xsl:value-of select="field[@name='localized']/@value"/>",
+							selectable: false,
+							nodeType: "blueprint",
+							nodes: [
+								<xsl:for-each select="/item/eng_grades/item[field[@name='engBlueprintId']/@value = $blueprintId]"><xsl:variable name="gradeId" select="field[@name='engGradeId']/@value"/>
+								{
+									text: "<xsl:value-of select="field[@name='grade']/@value"/> grade " <xsl:if test="count(/item/eng_engeneers/item[field[@name='engGradeId']/@value = $gradeId])">+ "[<xsl:value-of select="/item/eng_engeneers/item[field[@name='engGradeId']/@value = $gradeId]/field[@name='engeneers']/@value"/>]"</xsl:if>,
+									selectable: false,
+									nodeType: "grade",
+									materials: [<xsl:for-each select="/item/eng_materials/item[field[@name='engGradeId']/@value = $gradeId]">
+										"<xsl:value-of select="field[@name='materialUniq']/@value"/>",
+									</xsl:for-each>],
+								},
+								</xsl:for-each>
+							],
+						},
+						</xsl:for-each>
+					],
+				},
+				</xsl:for-each>
+			]; 
+		
+			var relation = {};
+			
+			// -Tree data
 			$(function() {
 				/*
 				+Modal
@@ -1717,12 +1747,13 @@
 				
 				// Engeeneers Selectors
 				var showHideMaterialRow = function(materials) {
-					if (!materials) {
+					if (!materials || !materials.length) {
 						$('tr.material-row').removeClass('hidden');
 					} else {
 						var matmap = {};
 						materials.forEach(function(v) {
-							matmap[v.materialUniq] = true;
+							//matmap[v.materialUniq] = true;
+							matmap[v] = true;
 						});
 						$('tr.material-row').each(function() {
 							var id = $(this).attr('id');
@@ -1734,7 +1765,8 @@
 						});
 					}
 				}
-				
+
+				/*				
 				$('#eng-caterory').on('change', function() {
 					var cat = $(this).val();
 					$('#eng-blueprint').find('.dynamic-option').remove();
@@ -1786,9 +1818,126 @@
 						$('#eng-blueprint').prop('disabled', false);
 					});
 				});
+				*/
+				
+				// Tree
+				var childsChecked = function(node) {
+					var result = false;
+					if (node.nodes) {
+						result = true;
+						node.nodes.forEach(function(n) {
+							if (!n.state || !n.state.checked) {
+								result = false;
+								return false;
+							}
+						});
+					}
+					return result;
+				} 
+				
+				var checkedMaterials = [];
+				var getCheckedMaterials = function(node) {
+					if (node) {
+						if (node.nodes) {
+							node.nodes.forEach(function(v) {
+								getCheckedMaterials(v);
+							});
+						} else if (node.state.checked &amp;&amp; node.materials) {
+							checkedMaterials = checkedMaterials.concat(node.materials);
+						}
+					} else {
+						tree.forEach(function(v) {
+							getCheckedMaterials(v);
+						});
+					}
+				}
+				
+				var checkNode = function(node, checked) {
+					checkedMaterials = [];
+					if (checked) {
+						if (node.nodeType != 'grade') {
+							$('#engeneerTree').treeview('expandNode', node.nodeId, {silent: true });
+							node.nodes.forEach(function(v) {
+								$('#engeneerTree').treeview('checkNode', v.nodeId, {silent: v.nodeType == 'grade' });
+							});
+						}
+					} else {
+						if (node.nodeType != 'grade') {
+							if (childsChecked(node)) {
+								node.nodes.forEach(function(v) {
+									$('#engeneerTree').treeview('uncheckNode', v.nodeId, {silent: v.nodeType == 'grade' });
+								});
+							}
+						}
+						if (node.nodeType != 'type') {
+							var parent = $('#engeneerTree').treeview('getParent', node.nodeId);
+							$('#engeneerTree').treeview('uncheckNode', parent.nodeId, {silent: true });
+							if (parent.parentId) {
+								$('#engeneerTree').treeview('uncheckNode', parent.parentId, {silent: true });
+							}
+						}
+					}
+					getCheckedMaterials();
+					if (!checkedMaterials.length) {
+						$('#main-btn-clear').addClass('hidden');
+						$('#btn-engeneers').removeClass('btn-primary');
+					} else {
+						$('#btn-engeneers').addClass('btn-primary');
+						$('#main-btn-clear').removeClass('hidden');
+						showHideMaterialRow(checkedMaterials);
+					}
+				};
+		
+				$('#engeneerTree').treeview({
+					data: tree,
+					showCheckbox: true,
+					levels: 3,
+				});
+				
+				$('#engeneerTree').on('nodeChecked', function(event, node) {
+					checkNode(node, true);
+				});
+				$('#engeneerTree').on('nodeUnchecked', function(event, node) {
+					checkNode(node, false);
+				});
+				
+				var clearEngeneers = function() {
+					showHideMaterialRow();
+					$('#main-btn-clear').addClass('hidden');
+					$('#btn-engeneers').removeClass('btn-primary');
+					$('#engeneerTree').treeview('uncheckAll', {silent: true });
+				}
+				
+				$('#btn-clear').on('click', function() {
+					clearEngeneers();
+				});
+				
+				$('#main-btn-clear').on('click', function() {
+					clearEngeneers();
+				});
+				
 			});
 		</script>
 
+	</xsl:template>
+<!--
+//
+//
+//
+-->
+	<xsl:template name="view-material">
+		<tr id="{field[@name='materialUniq']/@value}" class="material-row">
+			<td>
+				<img src="{$root}/images/materials/grade-{field[@name='materialGrade']/@value}.png" width="20" height="20"/>&#160;
+				<xsl:value-of select="field[@name='localized']/@value"/>
+				<xsl:if test="field[@name='used']/@value != '0'">
+					&#160;<sup><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#materialModal"><xsl:value-of select="field[@name='used']/@value"/>&#160;<i class="fa fa-cogs" aria-hidden="true"></i></button></sup>
+				</xsl:if>
+			</td>
+			<td style="width:70px;">
+				 <nobr class="material-quantity bg-success"><span class="button-switch"><xsl:value-of select="field[@name='quantity']/@value"/></span> / <xsl:value-of select="field[@name='materialMax']/@value"/></nobr>
+			</td>
+		</tr>
 	</xsl:template>
 <!--
 //

@@ -63,6 +63,42 @@ public class DBEngGradeAccess extends Access {
 	}
 	
 	
+	public List<DBEngGradeBean> getAllGrades()  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		List<DBEngGradeBean> ret = null;
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  "+injector.getWhereQuery()+" ";
+		if (injector.getOrderQuery().length() != 0) {
+			sql += injector.getOrderQuery();
+		} else { 
+			sql += "ORDER BY eng_blueprint_id, grade";
+			
+		}
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			
+		}
+		
+		
+		
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getAllGrades", sql );
+		if (result != null) {
+			
+			ret = new ArrayList<DBEngGradeBean>();
+			for (Map<String, Object> res : result) {
+				DBEngGradeBean bean = dataMapper.mapFromRow(res, DBEngGradeBean.class);
+				 
+				ret.add(bean);
+			}
+				
+		}
+		return ret;
+	}
+	
 	public DBEngGradeBean getByPrimaryKey(java.lang.Long paramEngGradeId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		DBEngGradeBean ret = null;
