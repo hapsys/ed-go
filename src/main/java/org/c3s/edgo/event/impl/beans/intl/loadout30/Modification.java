@@ -8,6 +8,8 @@ public class Modification {
 
 	private Object OriginalValue;
 	
+	private String ValueStr;
+	
 	private int LessIsGood;
 
 	public String getLabel() {
@@ -40,5 +42,13 @@ public class Modification {
 
 	public void setLessIsGood(int lessIsGood) {
 		LessIsGood = lessIsGood;
+	}
+
+	public String getValueStr() {
+		return ValueStr;
+	}
+
+	public void setValueStr(String valueStr) {
+		ValueStr = valueStr;
 	}
 }

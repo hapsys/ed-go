@@ -109,6 +109,10 @@ public class Loadout30 extends AbstractJournalEvent<Loadout30Bean> {
 										.setModuleRecipeId(moduleRecipie.getModuleRecipeId())
 										.setModifierId(modBean.getModifierId());
 
+										if (modification.getValue() == null && modification.getValueStr() != null) {
+											modification.setValue(modification.getValueStr());
+										}
+											
 										if (modification.getValue() instanceof String) {
 											modModifyer
 											.setValueString(EDUtils.cutFull(modification.getValue().toString()))
