@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 
 import org.c3s.edgo.common.access.DbAccess;
+import org.c3s.edgo.common.beans.DBMaterialsBean;
 import org.c3s.edgo.common.beans.DBMissionsBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.dao.MissionsDAO;
+import org.c3s.edgo.common.dao.PilotDAO;
 import org.c3s.edgo.event.AbstractJournalEvent;
 import org.c3s.edgo.event.impl.beans.MissionCompletedBean;
 import org.c3s.edgo.event.impl.beans.MissionCompletedBean.Commodity;
 import org.c3s.edgo.event.impl.beans.intl.MaterialNameCount;
-import org.c3s.edgo.event.impl.beans.intl.NameCount;
 import org.c3s.utils.RegexpUtils;
-import org.hibernate.type.MaterializedNClobType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,8 +42,10 @@ public class MissionCompleted extends AbstractJournalEvent<MissionCompletedBean>
 
 					if (bean.getMaterialsReward() != null) {
 						for (MaterialNameCount com: bean.getMaterialsReward()) {
+							DBMaterialsBean mat = MissionsDAO.getMaterial(com.getName(), RegexpUtils.preg_replace("~^.+_([^_]+)$~iu", com.getCategory(), "$1")); 
 							MissionsDAO.insertUpdateMissionMaterial(mission.getMissionId(), 
-									MissionsDAO.getMaterial(com.getName(), RegexpUtils.preg_replace("~^.+_([^_]+)$~iu", com.getCategory(), "$1")).getMaterialId(), com.getCount());
+									mat.getMaterialId(), com.getCount());
+							PilotDAO.insertUpdateMaterial(pilot.getPilotId(), mat.getMaterialId(), com.getCount());
 						}
 					}
 					
