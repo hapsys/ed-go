@@ -10,6 +10,10 @@ import org.c3s.edgo.common.dao.MissionsDAO;
 import org.c3s.edgo.event.AbstractJournalEvent;
 import org.c3s.edgo.event.impl.beans.MissionCompletedBean;
 import org.c3s.edgo.event.impl.beans.MissionCompletedBean.Commodity;
+import org.c3s.edgo.event.impl.beans.intl.MaterialNameCount;
+import org.c3s.edgo.event.impl.beans.intl.NameCount;
+import org.c3s.utils.RegexpUtils;
+import org.hibernate.type.MaterializedNClobType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,6 +39,13 @@ public class MissionCompleted extends AbstractJournalEvent<MissionCompletedBean>
 					}
 					mission.setCompleteDate(new Timestamp(bean.getTimestamp().getTime()));
 					DbAccess.missionsAccess.updateByPrimaryKey(mission, mission.getMissionId());
+
+					if (bean.getMaterialsReward() != null) {
+						for (MaterialNameCount com: bean.getMaterialsReward()) {
+							MissionsDAO.insertUpdateMissionMaterial(mission.getMissionId(), 
+									MissionsDAO.getMaterial(com.getName(), RegexpUtils.preg_replace("~^.+_([^_]+)$~iu", com.getCategory(), "$1")).getMaterialId(), com.getCount());
+						}
+					}
 					
 					if (bean.getCommodityReward() != null) {
 						for (Commodity com: bean.getCommodityReward()) {
