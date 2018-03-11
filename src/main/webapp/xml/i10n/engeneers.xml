@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <i10n>
 
-	<match name="Select Category">
-		<select lang="ru">Выберите категорию</select>
-	</match>
-	
-	<match name="Select Blueprint">
-		<select lang="ru">Выберите чертеж</select>
-	</match>
-	
 	<match name="Short Range Blaster">
 		<select lang="ru">Бластер малого радиуса</select>
 	</match>
@@ -118,7 +110,7 @@
 	</match>
 
 	<match name="Increased FSD Range">
-		<select lang="ru">Увеличенная дальность РСД</select>
+		<select lang="ru">Увеличенная дальность FSD</select>
 	</match>
 
 	<match name="Thermal Resistant Hull Reinforcement">
@@ -178,11 +170,11 @@
 	</match>
 
 	<match name="Faster FSD Boot Sequence">
-		<select lang="ru">Ускорение перезапуска РСД</select>
+		<select lang="ru">Ускорение перезапуска FSD</select>
 	</match>
 
 	<match name="Shielded FSD">
-		<select lang="ru">Защищенный РСД</select>
+		<select lang="ru">Защищенный FSD</select>
 	</match>
 
 	<match name="Clean Drive Tuning">
@@ -234,11 +226,11 @@
 	</match>
 
 	<match name="Frame Shift Drive Interdictor">
-		<select lang="ru">РСД перехватчик</select>
+		<select lang="ru">FSD перехватчик</select>
 	</match>
 
 	<match name="Shield Generator">
-		<select lang="ru">Генератор щита</select>
+		<select lang="ru">Щитогенератор</select>
 	</match>
 
 	<match name="Point Defence">
@@ -293,10 +285,6 @@
 		<select lang="ru">Теплоотводная катапульта</select>
 	</match>
 
-	<match name="Frame Shift Wake Scanner">
-		<select lang="ru">Сканер следа РСД</select>
-	</match>
-
 	<match name="Pulse Laser">
 		<select lang="ru">Импульсный лазер</select>
 	</match>
@@ -314,7 +302,7 @@
 	</match>
 
 	<match name="Frame Shift Drive">
-		<select lang="ru">Рамочно-Сместительный двигатель</select>
+		<select lang="ru">FSD</select>
 	</match>
 
 	<match name="Hatch Breaker Limpet Controller">
@@ -354,7 +342,7 @@
 	</match>
 
 	<match name="Anomalous FSD Telemetry">
-		<select lang="ru">Аномальная телеметрия РСД</select>
+		<select lang="ru">Аномальная телеметрия FSD</select>
 	</match>
 
 	<match name="Antimony">
@@ -426,7 +414,7 @@
 	</match>
 
 	<match name="CMM Composite">
-		<select lang="ru">СММ-композит</select>
+		<select lang="ru">CMM-композит</select>
 	</match>
 
 	<match name="Compact Composites">
@@ -466,7 +454,7 @@
 	</match>
 
 	<match name="Datamined Wake Exceptions">
-		<select lang="ru">Искл. из глубинного анализа данных следа</select>
+		<select lang="ru">Исключения из глубинного анализа данных следа</select>
 	</match>
 
 	<match name="Decoded Emission Data">
@@ -498,7 +486,7 @@
 	</match>
 
 	<match name="Exceptional Scrambled Emission Data">
-		<select lang="ru">Исключительные зашифрованные данные об изл.</select>
+		<select lang="ru">Исключительные зашифрованные данные об излучении</select>
 	</match>
 
 	<match name="Exhaust Manifold">
@@ -777,6 +765,10 @@
 		<select lang="ru">Рутений</select>
 	</match>
 
+	<match name="Rhenium">
+		<select lang="ru">Рений</select>
+	</match>
+
 	<match name="Salvaged Alloys">
 		<select lang="ru">Захваченные сплавы</select>
 	</match>
@@ -802,7 +794,7 @@
 	</match>
 
 	<match name="Specialised Legacy Firmware">
-		<select lang="ru">Спец. микропрограммы предыдущего поколения</select>
+		<select lang="ru">Специальные микропрограммы предыдущего поколения</select>
 	</match>
 
 	<match name="Strange Wake Solutions">
@@ -853,8 +845,8 @@
 		<select lang="ru">Неопознанные архивы сканирования</select>
 	</match>
 
-	<match name="Unknown Fragment">
-		<select lang="ru">Неизвестный фрагмент</select>
+	<match name="Sensor Fragment">
+		<select lang="ru">Обломок сенсора</select>
 	</match>
 
 	<match name="Untypical Shield Scans">
@@ -894,7 +886,7 @@
 	</match>
 
 	<match name="FSD Interdictor">
-		<select lang="ru">Перехватчик РСД</select>
+		<select lang="ru">Перехватчик FSD</select>
 	</match>
 
 	<match name="Prospector LC">
@@ -917,8 +909,176 @@
 		<select lang="ru">БАПР</select>
 	</match>
 
+	<match name="Data">
+		<select lang="ru">Данные</select>
+	</match>
+
+	<match name="Commodity">
+		<select lang="ru">Товар</select>
+	</match>
+
+	<match name="Commodities">
+		<select lang="ru">Товары</select>
+	</match>
+
+	<match name="Material">
+		<select lang="ru">Материал</select>
+	</match>
+
+	<match name="Materials">
+		<select lang="ru">Материалы</select>
+	</match>
+
+	<match name="Type">
+		<select lang="ru">Тип</select>
+	</match>
+
+	<match name="Name">
+		<select lang="ru">Название</select>
+	</match>
+
+	<match name="Progress">
+		<select lang="ru">Прогресс</select>
+	</match>
+
+	<match name="Last update:">
+		<select lang="ru">Последнее обновление:</select>
+	</match>
+
+	<match name="Unlock Window">
+		<select lang="ru">Разблокировать окно</select>
+	</match>
+
+	<match name="Show entries with no stock?">
+		<select lang="ru">Показывать пустые записи?</select>
+	</match>
+
+	<match name="Show only for favorites?">
+		<select lang="ru">Показывать только для избранных?</select>
+	</match>
+
+	<match name="Grade Filter">
+		<select lang="ru">Фильтр по уровню</select>
+	</match>
+
+	<match name="Engineer Filter">
+		<select lang="ru">Фильтр по инженеру</select>
+	</match>
+
+	<match name="Type Filter">
+		<select lang="ru">Фильтр по типу</select>
+	</match>
+
+	<match name="Ignored And Favorite Filter">
+		<select lang="ru">Фильтр по игнорируемым и избранным</select>
+	</match>
+
+	<match name="Craftable Filter">
+		<select lang="ru">Фильтр по доступности</select>
+	</match>
+
+	<match name="Ingredient Filter (Reversed)">
+		<select lang="ru">Фильтр по ингредиентам (Обратный)</select>
+	</match>
+
+	<match name="can craft">
+		<select lang="ru">можно создать</select>
+	</match>
+
+	<match name="Reset">
+		<select lang="ru">Сброс</select>
+	</match>
+
+	<match name="Lock Window">
+		<select lang="ru">Заблокировать окно</select>
+	</match>
+
+	<match name="Show">
+		<select lang="ru">Открыть</select>
+	</match>
+
+	<match name="Toggle Window Mode (Locked/Unlocked)">
+		<select lang="ru">Переключить режим окна (Заблокировано/Разблокировано)</select>
+	</match>
+
+	<match name="Reset Window Position">
+		<select lang="ru">Сбросить положение окна</select>
+	</match>
+
+	<match name="Set Shortcut">
+		<select lang="ru">Настройка комбинации клавиш</select>
+	</match>
+
+	<match name="Help">
+		<select lang="ru">Помощь</select>
+	</match>
+
+	<match name="Quit">
+		<select lang="ru">Выйти</select>
+	</match>
+
+	<match name="OK">
+		<select lang="ru">ОК</select>
+	</match>
+
+	<match name="Cancel">
+		<select lang="ru">Отмена</select>
+	</match>
+
+	<match name="Input a shortcut that's going to be used to show the window">
+		<select lang="ru">Нажмите комбинацию клавиш, которая будет раскрывать окно</select>
+	</match>
+
+	<match name="You can't use an empty shortcut">
+		<select lang="ru">Вы не можете использовать пустую комбинацию клавиш</select>
+	</match>
+
+	<match name="Error">
+		<select lang="ru">Ошибка</select>
+	</match>
+
+	<match name="The requested shortcut ({0}) is invalid">
+		<select lang="ru">Указанное сочетание клавиш ({0}) недействительно</select>
+	</match>
+
+	<match name="You must use a regular key to accompany the modifier key like (Ctrl+F10 or Shift+R)">
+		<select lang="ru">Вы должны использовать символьную клавишу вместе с клавишей-модификатором, например (Ctrl+F10 или Shift+R)</select>
+	</match>
+
+	<match name="Something went wrong in parsing your logs, open an issue on GitHub with this information :">
+		<select lang="ru">Что-то пошло не так при чтении ваших логов, создайте issue на GitHub c этой информацией :</select>
+	</match>
+
+	<match name="Unknown material, please contact the author ! {0}">
+		<select lang="ru">Неизвестный материал, пожалуйста свяжитесь с автором ! {0}</select>
+	</match>
+
+	<match name="Neither">
+		<select lang="ru">Никакой</select>
+	</match>
+
+	<match name="Favorite">
+		<select lang="ru">Избранные</select>
+	</match>
+
+	<match name="Ignored">
+		<select lang="ru">Игнорируемые</select>
+	</match>
+
+	<match name="Craftable">
+		<select lang="ru">Доступны для изготовления</select>
+	</match>
+
 	<match name="Non Craftable">
 		<select lang="ru">Недоступны для изготовления</select>
+	</match>
+
+	<match name="Missing Commodities">
+		<select lang="ru">Не хватает товаров</select>
+	</match>
+
+	<match name="All">
+		<select lang="ru">Все</select>
 	</match>
 
 	<match name="An error has been thrown by the application:">
@@ -927,6 +1087,42 @@
 
 	<match name="Unrecoverable Error">
 		<select lang="ru">Неисправимая ошибка</select>
+	</match>
+
+	<match name="Close">
+		<select lang="ru">Закрыть</select>
+	</match>
+
+	<match name="Select a new log directory">
+		<select lang="ru">Выбрать новую папку с log файлом</select>
+	</match>
+
+	<match name="Couldn't find the log folder for elite, you'll have to specify it">
+		<select lang="ru">Не удается найти папку с log файлом, вы должны выбрать ее самостоятельно</select>
+	</match>
+
+	<match name="Selected directory doesn't seem to contain any log file ; are you sure?">
+		<select lang="ru">Выбранная папка не содержит log файл ; вы уверены?</select>
+	</match>
+
+	<match name="Warning">
+		<select lang="ru">Предупреждение</select>
+	</match>
+
+	<match name="You did not select a log directory, EDEngineer won't be able to track changes. You can still use the app manually though.">
+		<select lang="ru">Вы не выбрали папку с log файлом, EDEngineer не сможет отслеживать изменения. Но вы все еще можете вносить изменения вручную.</select>
+	</match>
+
+	<match name="No folder in use ; click to change">
+		<select lang="ru">Папка не указана ; нажмите для изменения</select>
+	</match>
+
+	<match name="Favorite Blueprint Ready">
+		<select lang="ru">Чертеж готов</select>
+	</match>
+
+	<match name="Select Language">
+		<select lang="ru">Выбрать язык</select>
 	</match>
 
 	<match name="Surface prospecting">
@@ -998,7 +1194,7 @@
 	</match>
 
 	<match name="High wake scanning">
-		<select lang="ru">Сканирование высокочастотных следов РСД</select>
+		<select lang="ru">Сканирование высокочастотных следов FSD</select>
 	</match>
 
 	<match name="Surface data point">
@@ -1057,28 +1253,8 @@
 		<select lang="ru">Рынки около Eurybia (Добывающие/Перерабатывающие)</select>
 	</match>
 
-	<match name="Materials Almost Full!">
-		<select lang="ru">Хранилище материалов почти заполнено!</select>
-	</match>
-
-	<match name="You have only {0} slots left for your materials.">
-		<select lang="ru">Количество свободных слотов под материалы: {0}.</select>
-	</match>
-
-	<match name="Data Almost Full!">
-		<select lang="ru">Хранилище данных почти заполнено!</select>
-	</match>
-
-	<match name="You have only {0} slots left for your data.">
-		<select lang="ru">Количество свободных слотов под данные: {0}.</select>
-	</match>
-
-	<match name="Cargo Almost Full Warning">
-		<select lang="ru">Грузовой отсек почти полон!</select>
-	</match>
-
 	<match name="Ingredient not used in any blueprint!">
-		<select lang="ru">Материал не используется в чертежах!</select>
+		<select lang="ru">Ингредиент не используется в чертежах!</select>
 	</match>
 
 	<match name="+100% Fuel Efficiency">
@@ -1134,7 +1310,7 @@
 	</match>
 
 	<match name="FSD Injection">
-		<select lang="ru">Вброс в РСД</select>
+		<select lang="ru">Вброс в FSD</select>
 	</match>
 
 	<match name="High Velocity Munitions">
@@ -1143,6 +1319,10 @@
 
 	<match name="Large Calibre Munitions">
 		<select lang="ru">Крупнокалиберные боеприпасы</select>
+	</match>
+
+	<match name="None">
+		<select lang="ru">Нет</select>
 	</match>
 
 	<match name="Plasma Munitions">
@@ -1169,4 +1349,499 @@
 		<select lang="ru">@Синтез</select>
 	</match>
 
+	<match name="Launch Local API">
+		<select lang="ru">Запустить локальный API сервер</select>
+	</match>
+
+	<match name="Select the port for the local API server">
+		<select lang="ru">Выберите порт для локального API сервера</select>
+	</match>
+
+	<match name="Auto run server on EDEngineer startup with this port? (if not ticked, the server will stop when you unlock/lock the window)">
+		<select lang="ru">Запускать сервер с этим портом автоматически при запуске EDEngineer? (если этот параметр не выбран, сервер остановится, когда вы разблокируете/заблокируете окно)</select>
+	</match>
+
+	<match name="Shopping List">
+		<select lang="ru">Список покупок</select>
+	</match>
+
+	<match name="Needed for Marco Qwent (25)">
+		<select lang="ru">Необходимо для Marco Qwent (25)</select>
+	</match>
+
+	<match name="Needed for Ram Tah (50)">
+		<select lang="ru">Необходимо для Ram Tah (50)</select>
+	</match>
+
+	<match name="Needed for Professor Palin (25)">
+		<select lang="ru">Необходимо для Professor Palin (25)</select>
+	</match>
+
+	<match name="Needed for Tiana Fortune (50)">
+		<select lang="ru">Необходимо для Tiana Fortune (50)</select>
+	</match>
+
+	<match name="Needed for The Sarge (50)">
+		<select lang="ru">Необходимо для The Sarge (50)</select>
+	</match>
+
+	<match name="Needed for Bill Turner (50)">
+		<select lang="ru">Необходимо для Bill Turner (50)</select>
+	</match>
+
+	<match name="Show information about resources?">
+		<select lang="ru">Показывать информацию о ресурсах?</select>
+	</match>
+
+	<match name="Count">
+		<select lang="ru">Количество</select>
+	</match>
+
+	<match name="Thargoid Ship Signature">
+		<select lang="ru">Сигнатура таргоидского корабля</select>
+	</match>
+
+	<match name="Thargoid Wake Data">
+		<select lang="ru">Данные следа таргоидского корабля</select>
+	</match>
+
+	<match name="Check all filters">
+		<select lang="ru">Включить все фильтры</select>
+	</match>
+
+	<match name="Uncheck all filters">
+		<select lang="ru">Отключить все фильтры</select>
+	</match>
+
+	<match name="Rarity">
+		<select lang="ru">Редкость</select>
+	</match>
+
+	<match name="Kind">
+		<select lang="ru">Вид</select>
+	</match>
+
+	<match name="Search">
+		<select lang="ru">Поиск</select>
+	</match>
+
+	<match name="Apply">
+		<select lang="ru">Применить</select>
+	</match>
+
+	<match name="Rare">
+		<select lang="ru">Редкие</select>
+	</match>
+
+	<match name="Very Rare">
+		<select lang="ru">Очень редкие</select>
+	</match>
+
+	<match name="Very Common">
+		<select lang="ru">Очень распространенные</select>
+	</match>
+
+	<match name="Common">
+		<select lang="ru">Распространенные</select>
+	</match>
+
+	<match name="Standard">
+		<select lang="ru">Обычные</select>
+	</match>
+
+	<match name="Multiple Blueprints Ready">
+		<select lang="ru">Готово несколько чертежей</select>
+	</match>
+
+	<match name="{0} blueprints are available to craft!">
+		<select lang="ru">Можно создать {0} чертежей!</select>
+	</match>
+
+	<match name="Sensors">
+		<select lang="ru">Сенсоры</select>
+	</match>
+
+	<match name="Surface Scanner">
+		<select lang="ru">Сканер поверхности</select>
+	</match>
+
+	<match name="Wake Scanner">
+		<select lang="ru">Сканер следа</select>
+	</match>
+
+	<match name="Last update: ">
+		<select lang="ru">Последнее обновление:</select>
+	</match>
+
+	<match name="Silent Launch">
+		<select lang="ru">Скрытый запуск</select>
+	</match>
+
+	<match name="Search visible blueprints (by Type, Name, Grade or Engineer) - split your terms with a space for multi-criteria search">
+		<select lang="ru">Поиск видимых чертежей (по Типу, Названию, Уровню или Инженеру) - введите условия через пробел для использования нескольких критериев сортировки</select>
+	</match>
+
+	<match name="Configure Notifications">
+		<select lang="ru">Настройка оповещений</select>
+	</match>
+
+	<match name="Notifications">
+		<select lang="ru">Оповещения</select>
+	</match>
+
+	<match name="Test Notification">
+		<select lang="ru">Проверка оповещения</select>
+	</match>
+
+	<match name="Toast">
+		<select lang="ru">Toast</select>
+	</match>
+
+	<match name="Voice">
+		<select lang="ru">Голос</select>
+	</match>
+
+	<match name="Long Range Scanner">
+		<select lang="ru">Сканер увеличенной дальности</select>
+	</match>
+
+	<match name="Wide Angle Scanner">
+		<select lang="ru">Широкоугольный сканер</select>
+	</match>
+
+	<match name="Light Weight Scanner">
+		<select lang="ru">Облегченный сканер</select>
+	</match>
+
+	<match name="Fast Scanner">
+		<select lang="ru">Быстрый сканер</select>
+	</match>
+
+	<match name="Unlock">
+		<select lang="ru">Расшифровка</select>
+	</match>
+
+	<match name="Available Voices:">
+		<select lang="ru">Доступные голоса:</select>
+	</match>
+
+	<match name="filtered entries - click this to clear">
+		<select lang="ru">отфильтрованные записи - нажмите для очистки</select>
+	</match>
+
+	<match name="Thargoid Material Composition Data">
+		<select lang="ru">Данные о составе таргоидских материалов</select>
+	</match>
+
+	<match name="Thargoid Residue Data">
+		<select lang="ru">Данные об осадке таргоидского происхождения</select>
+	</match>
+
+	<match name="Thargoid Structural Data">
+		<select lang="ru">Данные о структуре таргоидского объекта</select>
+	</match>
+
+	<match name="Thargoid Carapace">
+		<select lang="ru">Таргоидский панцирь</select>
+	</match>
+
+	<match name="Thargoid Energy Cell">
+		<select lang="ru">Таргоидская энергоячейка</select>
+	</match>
+
+	<match name="Thargoid Organic Circuitry">
+		<select lang="ru">Таргоидская органическая схема</select>
+	</match>
+
+	<match name="Thargoid Technological Components">
+		<select lang="ru">Компоненты таргоидской техники</select>
+	</match>
+
+	<match name="Ship Flight Data">
+		<select lang="ru">Полетные данные корабля</select>
+	</match>
+
+	<match name="Ship System Data">
+		<select lang="ru">Данные бортовых систем корабля</select>
+	</match>
+
+	<match name="Wreckage Components">
+		<select lang="ru">Обломки кораблекрушений</select>
+	</match>
+
+	<match name="Weapon Parts">
+		<select lang="ru">Детали вооружения</select>
+	</match>
+
+	<match name="Bio-Mechanical Conduits">
+		<select lang="ru">Биомеханические энергопроводники</select>
+	</match>
+
+	<match name="Propulsion Elements">
+		<select lang="ru">Реактивные элементы</select>
+	</match>
+
+	<match name="Settings">
+		<select lang="ru">Настройки</select>
+	</match>
+
+	<match name="Configure Graphics">
+		<select lang="ru">Настройки графики</select>
+	</match>
+
+	<match name="100% Refill">
+		<select lang="ru">100% заправка</select>
+	</match>
+
+	<match name="100% Refill, +15% Heat Dissipation">
+		<select lang="ru">100% заправка, +15% рассеивание тепла</select>
+	</match>
+
+	<match name="100% Refill, +2 Seconds Duration">
+		<select lang="ru">100% заправка, +2 секунды действия</select>
+	</match>
+
+	<match name="100% Refill, +30% Heat Dissipation">
+		<select lang="ru">100% заправка, +30% рассеивание тепла</select>
+	</match>
+
+	<match name="4 Limpets, Cargo Hold Required">
+		<select lang="ru">4 беспилотника, необходим грузовой отсек</select>
+	</match>
+
+	<match name="50% Refill">
+		<select lang="ru">50% заправка</select>
+	</match>
+
+	<match name="Fujin Tea">
+		<select lang="ru">Чай Fujin</select>
+	</match>
+
+	<match name="Gold">
+		<select lang="ru">Золото</select>
+	</match>
+
+	<match name="Kamitra Cigars">
+		<select lang="ru">Сигары Kamitra</select>
+	</match>
+
+	<match name="Kongga Ale">
+		<select lang="ru">Эль Конгга</select>
+	</match>
+
+	<match name="Landmines">
+		<select lang="ru">Мины</select>
+	</match>
+
+	<match name="Lavian Brandy">
+		<select lang="ru">Лавианский бренди</select>
+	</match>
+
+	<match name="Limpets">
+		<select lang="ru">Беспилотники</select>
+	</match>
+
+	<match name="Meta-alloys">
+		<select lang="ru">Метасплавы</select>
+	</match>
+
+	<match name="Painite">
+		<select lang="ru">Пейнит</select>
+	</match>
+
+	<match name="Soontill Relics">
+		<select lang="ru">Реликты Сунтилла</select>
+	</match>
+
+	<match name="Xihe Companions">
+		<select lang="ru">Спутники Xihe</select>
+	</match>
+
+	<match name="Raw">
+		<select lang="ru">Неочищенные минералы</select>
+	</match>
+
+	<match name="Raw Only">
+		<select lang="ru">Только неочищенные минералы</select>
+	</match>
+
+	<match name="Manufactured">
+		<select lang="ru">Компоненты</select>
+	</match>
+
+	<match name="Manufactured Only">
+		<select lang="ru">Только компоненты</select>
+	</match>
+
+	<match name="Unrecognized Ingredient (showing name as it appears in the logs). Please open a GitHub issue to let the author know what is the real name of this!">
+		<select lang="ru">Нераспознанный ингредиент (отображается название из логов). Пожалуйста, создайте issue на GitHub, чтобы оповестить разработчика о фактическом названии!</select>
+	</match>
+
+	<match name="Group ingredients?">
+		<select lang="ru">Группировать ингредиенты?</select>
+	</match>
+
+	<match name="Unknown">
+		<select lang="ru">Неизвестные</select>
+	</match>
+
+	<match name="Carrying ">
+		<select lang="ru">В наличии</select>
+	</match>
+
+	<match name="Emission Data">
+		<select lang="ru">Данные об излучениях</select>
+	</match>
+
+	<match name="Wake Scans">
+		<select lang="ru">Сканирования следа FSD</select>
+	</match>
+
+	<match name="Shield Data">
+		<select lang="ru">Данные о щитах</select>
+	</match>
+
+	<match name="Encryption Files">
+		<select lang="ru">Файлы шифрования</select>
+	</match>
+
+	<match name="Data Archives">
+		<select lang="ru">Архивы данных</select>
+	</match>
+
+	<match name="Encoded Firmware">
+		<select lang="ru">Закодированные микропрограммы</select>
+	</match>
+
+	<match name="Category 1">
+		<select lang="ru">Категория 1</select>
+	</match>
+
+	<match name="Category 2">
+		<select lang="ru">Категория 2</select>
+	</match>
+
+	<match name="Category 3">
+		<select lang="ru">Категория 3</select>
+	</match>
+
+	<match name="Category 4">
+		<select lang="ru">Категория 4</select>
+	</match>
+
+	<match name="Category 5">
+		<select lang="ru">Категория 5</select>
+	</match>
+
+	<match name="Category 6">
+		<select lang="ru">Категория 6</select>
+	</match>
+
+	<match name="Category 7">
+		<select lang="ru">Категория 7</select>
+	</match>
+
+	<match name="Chemical">
+		<select lang="ru">Химикаты</select>
+	</match>
+
+	<match name="Thermic">
+		<select lang="ru">Термические сплавы</select>
+	</match>
+
+	<match name="Heat">
+		<select lang="ru">Теплообмен</select>
+	</match>
+
+	<match name="Conductive">
+		<select lang="ru">Проводники</select>
+	</match>
+
+	<match name="Capacitors">
+		<select lang="ru">Конденсаторы</select>
+	</match>
+
+	<match name="Shielding">
+		<select lang="ru">Защита</select>
+	</match>
+
+	<match name="Composite">
+		<select lang="ru">Композиты</select>
+	</match>
+
+	<match name="Crystals">
+		<select lang="ru">Кристаллы</select>
+	</match>
+
+	<match name="Alloys">
+		<select lang="ru">Сплавы</select>
+	</match>
+
+	<match name="Lead">
+		<select lang="ru">Свинец</select>
+	</match>
+
+	<match name="Boron">
+		<select lang="ru">Бор</select>
+	</match>
+
+	<match name="Guardian Weapon Blueprint Segment">
+		<select lang="ru">Фрагмент чертежа оружия Стражей</select>
+	</match>
+
+	<match name="Guardian Power Cell">
+		<select lang="ru">Энергоячейка Стражей</select>
+	</match>
+
+	<match name="Guardian Technology Component">
+		<select lang="ru">Компоненты технологий Стражей</select>
+	</match>
+
+	<match name="Guardian Power Conduit">
+		<select lang="ru">Энергопроводники Стражей</select>
+	</match>
+
+	<match name="Guardian Sentinel Weapon Parts">
+		<select lang="ru">Детали вооружения Стражей</select>
+	</match>
+
+	<match name="Guardian Module Blueprint Segment">
+		<select lang="ru">Фрагмент чертежа модуля Стражей</select>
+	</match>
+
+	<match name="Guardian Sentinel Wreckage Components">
+		<select lang="ru">Обломки кораблекрушений Стража Sentinel</select>
+	</match>
+
+	<match name="Guardian Vessel Blueprint Segment">
+		<select lang="ru">Сегмент чертежа судна Стражей</select>
+	</match>
+
+	<match name="@Technology">
+		<select lang="ru">@Технология</select>
+	</match>
+
+	<match name="Module">
+		<select lang="ru">Модули</select>
+	</match>
+
+	<match name="Synthesis">
+		<select lang="ru">Синтез</select>
+	</match>
+
+	<match name="Experimental">
+		<select lang="ru">Экспериментальные</select>
+	</match>
+
+	<match name="Technology">
+		<select lang="ru">Технологии</select>
+	</match>
+
+	<match name="Ancient/Guardian ruins">
+		<select lang="ru">Руины Стражей</select>
+	</match>
+
+	<match name="EDEngineer will try to remove blueprints from your shopping list if you craft them in game">
+		<select lang="ru">EDEngineer попытается удалять чертежи из списка покупок при создании их в игре</select>
+	</match>
 </i10n>
