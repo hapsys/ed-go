@@ -79,6 +79,7 @@ public class Loadout30 extends AbstractJournalEvent<Loadout30Bean> {
 								DBModuleRecipiesBean moduleRecipie = DbAccess.moduleRecipiesAccess.getByPilotModuleIdAndRecipieId(resId.getPilotModuleId(), recipie.getRecipieId());
 								
 								if (moduleRecipie == null) {
+									DbAccess.moduleRecipiesAccess.deleteByPilotModuleId(resId.getPilotModuleId());
 									moduleRecipie = new DBModuleRecipiesBean();
 									moduleRecipie.setPilotModuleId(resId.getPilotModuleId()).setRecipieId(recipie.getRecipieId()).setRecipieLevel(eng.getLevel());
 									DbAccess.moduleRecipiesAccess.insert(moduleRecipie);
