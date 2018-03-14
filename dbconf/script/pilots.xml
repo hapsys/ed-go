@@ -386,6 +386,17 @@
 				GROUP BY common_module_name, m.module_class, m.module_rating, m.module_weapon_mode
 				ORDER BY common_module_name, m.module_class DESC, m.module_rating ASC				
 			</sql>
+		</query>
+		<query name="PilotModuleByPilotShipIdAndModuleUniq" single_object="true" use="PilotModules">
+			<column name="SlotUniq" type="String"/>
+			<column name="PilotShipId" type="Long"/>
+			<sql>
+				SELECT pm.*, s.slot_id
+				FROM slots s
+				LEFT JOIN pilot_modules pm ON pm.pilot_ship_id = ? AND pm.slot_id = s.slot_id 
+				WHERE s.slot_uniq = ? 
+				LIMIT 1 
+			</sql>
 		</query>		
 	</table>
 	<!--  -->
@@ -411,6 +422,9 @@
 		<select name="ByPilotModuleIdAndRecipieId" single_object="true">
 			<column name="pilot_module_id"/>
 			<column name="recipie_id"/>
+		</select>
+		<select name="ByPilotModuleId" single_object="true">
+			<column name="pilot_module_id"/>
 		</select>
 		<update name="ByPrimaryKey">
 			<column name="module_recipe_id"/>

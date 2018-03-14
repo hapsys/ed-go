@@ -184,6 +184,35 @@ public class DBPilotModulesAccess extends Access {
 		return ret;
 	}
 	
+	public DBPilotModulesBean getPilotModuleByPilotShipIdAndModuleUniq(String paramSlotUniq, Long paramPilotShipId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				SELECT pm.*, s.slot_id 				FROM slots s 				LEFT JOIN pilot_modules pm ON pm.pilot_ship_id = ? AND pm.slot_id = s.slot_id  				WHERE s.slot_uniq = ?  				LIMIT 1  			";
+		}
+
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getPilotModuleByPilotShipIdAndModuleUniq", query ,  paramSlotUniq,  paramPilotShipId);
+		DBPilotModulesBean ret = null;
+		if (result != null) {
+					ret = new DBPilotModulesBean();
+				
+					ret = dataMapper.mapFromRow(result.get(0), DBPilotModulesBean.class);
+					
+		}
+			
+		return ret;
+	}
+	
 	public int deleteFailModulesByPilotShipId(long paramPilotShipId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();

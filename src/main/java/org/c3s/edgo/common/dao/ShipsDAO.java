@@ -251,19 +251,75 @@ public class ShipsDAO {
 	 * @throws IllegalAccessException 
 	 * @throws IllegalArgumentException 
 	 */
-	public static void updatePilotShipModule(DBPilotsBean pilot, String ship, long linkShipId, String slot, String module) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+	public static DBPilotModulesBean updatePilotShipModule(DBPilotsBean pilot, String ship, long linkShipId, String slot, String module) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		DBPilotModulesBean result = null;
 		DBPilotShipsBean pilotShip = getOrInsertPilotShip(pilot, ship.toLowerCase(), linkShipId, null, null, null, null);
 		DBByModuleInfoByUniqBean moduleInfo = getModuleInfo(module);
 		if (moduleInfo != null) {
 			DBSlotsBean slotBean = getOrInsertSlot(slot, moduleInfo.getSlotTypeId());
 			insertUpdateShipSlot(pilotShip.getShipId(), slotBean.getSlotId(), null);
-			insertOrUpdatePilotModule(pilotShip.getPilotShipId(), slotBean.getSlotId(), moduleInfo.getModuleId());
+			result = insertOrUpdatePilotModule(pilotShip.getPilotShipId(), slotBean.getSlotId(), moduleInfo.getModuleId());
 		}
+		return result;
 	}
 	
 	public static void swapShipModules(DBPilotsBean pilot, String ship, long linkShipId, String fromSlot, String fromModule, String toSlot, String toModule) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
-		updatePilotShipModule(pilot, ship, linkShipId, fromSlot, toModule);
-		updatePilotShipModule(pilot, ship, linkShipId, toSlot, fromModule);
+		DBPilotShipsBean pilotShip = getOrInsertPilotShip(pilot, ship.toLowerCase(), linkShipId, null, null, null, null);
+		DBPilotModulesBean from = DbAccess.pilotModulesAccess.getPilotModuleByPilotShipIdAndModuleUniq(fromSlot, pilotShip.getPilotShipId());
+		DBPilotModulesBean to = DbAccess.pilotModulesAccess.getPilotModuleByPilotShipIdAndModuleUniq(toSlot, pilotShip.getPilotShipId());
+		
+		Long fsid = from.getSlotId(); 
+		from.setSlotId(to.getSlotId());
+		to.setSlotId(fsid);
+		if (from.getPilotModuleId() != null) {
+			DbAccess.pilotModulesAccess.updateByPrimaryKey(from, from.getPilotModuleId());
+		} else {
+			updatePilotShipModule(pilot, ship, linkShipId, fromSlot, toModule);
+		}
+		
+		if (to.getPilotModuleId() != null) {
+			DbAccess.pilotModulesAccess.updateByPrimaryKey(to, to.getPilotModuleId());
+		} else {
+			updatePilotShipModule(pilot, ship, linkShipId, toSlot, fromModule);
+		}
+		/*
+		DBPilotModulesBean first = updatePilotShipModule(pilot, ship, linkShipId, fromSlot, toModule);
+		DBPilotModulesBean second = updatePilotShipModule(pilot, ship, linkShipId, toSlot, fromModule);
+		// Switch recipies
+		DBModuleRecipiesBean fr = null;
+		DBModuleRecipiesBean sr = null;
+		if (first != null) {
+			fr = DbAccess.moduleRecipiesAccess.getByPilotModuleId(first.getPilotModuleId());
+		}
+		if (second != null) {
+			sr = DbAccess.moduleRecipiesAccess.getByPilotModuleId(second.getPilotModuleId());
+		}
+		if (fr != null && sr != null) {
+			Long rtmp = fr.getRecipieId();
+			Integer ltmp = fr.getRecipieLevel();
+			fr.setRecipieId(sr.getRecipieId()).setRecipieLevel(sr.getRecipieLevel());
+			sr.setRecipieId(rtmp).setRecipieLevel(ltmp);
+			DbAccess.moduleRecipiesAccess.updateByPrimaryKey(fr, fr.getModuleRecipeId());
+			DbAccess.moduleRecipiesAccess.updateByPrimaryKey(sr, sr.getModuleRecipeId());
+		} else if (fr != null && second != null) {
+			sr = new DBModuleRecipiesBean();
+			sr.setPilotModuleId(second.getPilotModuleId()).setRecipieId(fr.getRecipieId()).setRecipieLevel(fr.getRecipieLevel());
+			DbAccess.moduleRecipiesAccess.insert(sr);
+			DbAccess.moduleRecipiesAccess.deleteByPrimaryKey(fr.getPilotModuleId());
+		} else if (sr != null && first != null) {
+			fr = new DBModuleRecipiesBean();
+			fr.setPilotModuleId(first.getPilotModuleId()).setRecipieId(sr.getRecipieId()).setRecipieLevel(sr.getRecipieLevel());
+			DbAccess.moduleRecipiesAccess.insert(fr);
+			DbAccess.moduleRecipiesAccess.deleteByPrimaryKey(sr.getPilotModuleId());
+		} else {
+			if (first != null) {
+				DbAccess.moduleRecipiesAccess.deleteByPilotModuleId(first.getPilotModuleId());
+			}
+			if (second != null) {
+				DbAccess.moduleRecipiesAccess.deleteByPilotModuleId(second.getPilotModuleId());
+			}
+		}
+		*/
 	}
 	
 	public static void removePilotShipModule(DBPilotsBean pilot, String ship, long linkShipId, String slot, String module) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
