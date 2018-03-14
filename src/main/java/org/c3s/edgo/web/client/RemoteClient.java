@@ -69,6 +69,8 @@ public class RemoteClient extends GeneralController {
 							event = new DBLastEventForUserBean();
 						}
 						ret.put("data", new GeneralDataMapper().mapToRow(event));
+						//List events
+						ret.put("events", DbAccess.eventsListAccess.getFullEventsList().getList());
 						// Genetrate session key
 						String sessionKey = DESAlgorithm.generateKey();
 						ret.put("secretKey", rsa.encode(sessionKey));

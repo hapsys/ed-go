@@ -243,6 +243,17 @@
 		</update>
 	</table>
 	<!--  -->
+	<table name="events_list">
+		<query name="FullEventsList" single_object="true">
+			<sql>
+				SELECT GROUP_CONCAT(el.event_uniq ORDER BY el.event_uniq) AS list
+				FROM events_list el
+				GROUP BY el.grouped
+				LIMIT 1				
+			</sql>
+		</query>
+	</table>
+	<!--  -->
 	<table name="events_history">
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="events_history_id"/>
