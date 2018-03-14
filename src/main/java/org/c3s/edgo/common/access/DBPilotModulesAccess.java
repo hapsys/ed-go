@@ -184,7 +184,7 @@ public class DBPilotModulesAccess extends Access {
 		return ret;
 	}
 	
-	public DBPilotModulesBean getPilotModuleByPilotShipIdAndModuleUniq(String paramSlotUniq, Long paramPilotShipId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+	public DBPilotModulesBean getPilotModuleByPilotShipIdAndModuleUniq(Long paramPilotShipId, String paramSlotUniq) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
@@ -201,7 +201,7 @@ public class DBPilotModulesAccess extends Access {
 		}
 
 		
-		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getPilotModuleByPilotShipIdAndModuleUniq", query ,  paramSlotUniq,  paramPilotShipId);
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getPilotModuleByPilotShipIdAndModuleUniq", query ,  paramPilotShipId,  paramSlotUniq);
 		DBPilotModulesBean ret = null;
 		if (result != null) {
 					ret = new DBPilotModulesBean();

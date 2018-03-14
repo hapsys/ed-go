@@ -266,8 +266,8 @@ public class ShipsDAO {
 	public static void swapShipModules(DBPilotsBean pilot, String ship, long linkShipId, String fromSlot, String fromModule, String toSlot, String toModule) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 
 		DBPilotShipsBean pilotShip = getOrInsertPilotShip(pilot, ship.toLowerCase(), linkShipId, null, null, null, null);
-		DBPilotModulesBean from = DbAccess.pilotModulesAccess.getPilotModuleByPilotShipIdAndModuleUniq(fromSlot, pilotShip.getPilotShipId());
-		DBPilotModulesBean to = DbAccess.pilotModulesAccess.getPilotModuleByPilotShipIdAndModuleUniq(toSlot, pilotShip.getPilotShipId());
+		DBPilotModulesBean from = DbAccess.pilotModulesAccess.getPilotModuleByPilotShipIdAndModuleUniq(pilotShip.getPilotShipId(), fromSlot);
+		DBPilotModulesBean to = DbAccess.pilotModulesAccess.getPilotModuleByPilotShipIdAndModuleUniq(pilotShip.getPilotShipId(), toSlot);
 		
 		Long fsid = from.getSlotId(); 
 		from.setSlotId(to.getSlotId());

@@ -53,7 +53,7 @@ public class ProcessSingleEvent {
 		StorageFactory.register(StorageType.APPLICATION, new ApplicationStorage());
 		
 		// Process event
-		DBEventsBean evt = DbAccess.eventsAccess.getByPrimaryKey(new BigInteger("1177492943656284"));
+		DBEventsBean evt = DbAccess.eventsAccess.getByPrimaryKey(new BigInteger("1273081655112474"));
 		
 		EventMd5Transform.eventTransformMD5(evt);
 		String eventTime = evt.getEventJson().substring(15, 35);

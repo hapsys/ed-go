@@ -388,8 +388,8 @@
 			</sql>
 		</query>
 		<query name="PilotModuleByPilotShipIdAndModuleUniq" single_object="true" use="PilotModules">
-			<column name="SlotUniq" type="String"/>
 			<column name="PilotShipId" type="Long"/>
+			<column name="SlotUniq" type="String"/>
 			<sql>
 				SELECT pm.*, s.slot_id
 				FROM slots s
