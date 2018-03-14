@@ -412,6 +412,9 @@
 			<column name="pilot_module_id"/>
 			<column name="recipie_id"/>
 		</select>
+		<select name="ByPilotModuleId" single_object="true">
+			<column name="pilot_module_id"/>
+		</select>
 		<update name="ByPrimaryKey">
 			<column name="module_recipe_id"/>
 		</update>

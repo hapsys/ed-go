@@ -93,6 +93,36 @@ public class DBModuleRecipiesAccess extends Access {
 		return ret;
 	}
 	
+	public DBModuleRecipiesBean getByPilotModuleId(java.lang.Long paramPilotModuleId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		DBModuleRecipiesBean ret = null;
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  pilot_module_id= ?  "+injector.getWhereQuery()+" ";
+		if (injector.getOrderQuery().length() != 0) {
+			sql += injector.getOrderQuery();
+		} else { 
+			
+		}
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByPilotModuleId", sql ,  paramPilotModuleId);
+		if (result != null) {
+			
+			ret = dataMapper.mapFromRow(result.get(0), DBModuleRecipiesBean.class);
+			
+		}
+		return ret;
+	}
+	
 	public DBModuleRecipiesBean getByPrimaryKey(java.lang.Long paramModuleRecipeId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		DBModuleRecipiesBean ret = null;
