@@ -16,6 +16,8 @@ import org.c3s.edgo.common.beans.DBShipSlotsBean;
 import org.c3s.edgo.common.beans.DBShipsBean;
 import org.c3s.edgo.common.beans.DBSlotsBean;
 import org.c3s.edgo.common.beans.DBStationHistoryBean;
+import org.c3s.edgo.common.beans.DBStoredModulesBean;
+import org.c3s.edgo.common.beans.DBSystemsBean;
 import org.c3s.edgo.utils.EDUtils;
 
 public class ShipsDAO {
@@ -309,6 +311,20 @@ public class ShipsDAO {
 				pilotShip.setStationId(stationId);
 				DbAccess.pilotShipsAccess.updateByPrimaryKey(pilotShip, pilotShip.getPilotShipId());
 			}
+		}
+	}
+	
+	public static void insertStoredModule(DBPilotsBean pilot, String module, String system, BigInteger marketId, String engeneer, Integer grade) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		DBByModuleInfoByUniqBean moduleInfo = getModuleInfo(module);
+		if (moduleInfo != null) {
+			DBSystemsBean systemBean = SystemsDAO.getOrInsertSystem(system, null, null);
+			DBStoredModulesBean bean = new DBStoredModulesBean();
+			bean.setPilotId(pilot.getPilotId()).setModuleId(moduleInfo.getModuleId()).setSystemId(systemBean.getSystemId()).setMarketId(marketId);
+			if (engeneer != null) {
+				DBRecipiesBean recipie = getOrInsertRecipie(engeneer, null, null);
+				bean.setRecipieId(recipie.getRecipieId()).setRecipieGrade(grade);
+			}
+			DbAccess.storedModulesAccess.insert(bean);
 		}
 	}
 }

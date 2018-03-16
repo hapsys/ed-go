@@ -400,6 +400,26 @@
 		</query>		
 	</table>
 	<!--  -->
+	<table name="stored_modules">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="stored_module_id"/>
+		</select>
+		<delete name="ByPrimaryKey">
+			<column name="stored_module_id"/>
+		</delete>
+		<query name="StoredModulesList">
+			<column name="PilotId" type="long"/>
+			<sql>
+				SELECT sm.*, LOWER(m.module_uniq) AS module_uniq, LOWER(s.name) AS system_name, LOWER(r.recipie_name) AS recipie_name, CONCAT(LOWER(s.name), sm.market_id, LOWER(m.module_uniq)) AS str_hash 
+				FROM modules m, systems s, stored_modules sm
+				LEFT JOIN recipies r ON r.recipie_id = sm.recipie_id
+				WHERE sm.pilot_id = ?
+				AND m.module_id = sm.module_id
+				AND s.system_id = sm.system_id
+			</sql>
+		</query>		
+	</table>
+	<!--  -->
 	<table name="recipies">
 		<select name="ByPrimaryKey" single_object="true">
 			<column name="recipie_id"/>
