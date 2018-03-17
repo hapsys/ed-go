@@ -63,6 +63,13 @@
 				UPDATE users SET temp_password = ? WHERE email = ? LIMIT 1 
 			</sql>
 		</query>
+		<query name="UserLanguage">
+			<column name="LangId" type="long"/>
+			<column name="UserId" type="long"/>
+			<sql>
+				UPDATE users SET lang_id = NULL WHERE user_id = ? LIMIT 1 
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 	<table name="user_keys">
@@ -132,4 +139,20 @@
 		<column name="mask" type="Long"/>
 	</table>
 	<!--  -->
+	<!--  -->
+	<table name="languages">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="lang_id"/>
+		</select>
+		<select name="ByLangUniq" single_object="true">
+			<column name="lang_uniq"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="lang_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="lang_id"/>
+		</delete>
+	</table>
+	
 </include>

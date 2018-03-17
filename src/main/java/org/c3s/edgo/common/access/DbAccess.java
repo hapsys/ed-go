@@ -8,6 +8,7 @@ public class DbAccess {
 	public static final DBInfoAccess infoAccess = new DBInfoAccess();
 	public static final DBUsersInfoAccess usersInfoAccess = new DBUsersInfoAccess();
 	public static final DBUserLevelsAccess userLevelsAccess = new DBUserLevelsAccess();
+	public static final DBLanguagesAccess languagesAccess = new DBLanguagesAccess();
 	public static final DBPilotsAccess pilotsAccess = new DBPilotsAccess();
 	public static final DBPilotLastInfoAccess pilotLastInfoAccess = new DBPilotLastInfoAccess();
 	public static final DBPilotGameModesAccess pilotGameModesAccess = new DBPilotGameModesAccess();

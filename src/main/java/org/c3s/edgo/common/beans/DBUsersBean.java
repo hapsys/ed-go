@@ -122,6 +122,21 @@ public class DBUsersBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"lang_id", "langId"})
+	@DataTarget("lang_id")
+	@XMLSimple("langId")
+	private java.lang.Long langId;
+	
+	public java.lang.Long getLangId() {
+		return langId;
+	}
+	
+	public DBUsersBean setLangId(java.lang.Long value) {
+		this.langId = value;
+		return this;
+	}
+	
+	
 	@DataSource({"time_zone", "timeZone"})
 	@DataTarget("time_zone")
 	@XMLSimple("timeZone")

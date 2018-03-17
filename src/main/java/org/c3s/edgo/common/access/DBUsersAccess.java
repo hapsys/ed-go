@@ -305,6 +305,28 @@ public class DBUsersAccess extends Access {
 		return ret;
 	}
 	
+	public int updateUserLanguage(long paramLangId, long paramUserId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				UPDATE users SET lang_id = NULL WHERE user_id = ? LIMIT 1  			";
+		}
+
+		
+		int ret = getConnection().query(query,  paramLangId,  paramUserId);
+			
+		return ret;
+	}
+	
 	public int updateNullCookieByUserId(long paramUserId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();

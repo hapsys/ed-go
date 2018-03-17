@@ -8,6 +8,7 @@ public class FileheaderBean extends AbstractEventBean {
 	private Date timestamp;
 	private String event;
 	
+	private String language;
 	/**
 	 * @return
 	 */
@@ -34,6 +35,14 @@ public class FileheaderBean extends AbstractEventBean {
 	 */
 	public void setEvent(String event) {
 		this.event = event;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 
 }
