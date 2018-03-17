@@ -143,8 +143,12 @@
 		<select lang="en">Ships</select>
 	</match>
 	<match name="ships_modules">
-		<select lang="ru">Модули</select>
-		<select lang="en">Modules</select>
+		<select lang="ru">Модули на кораблях</select>
+		<select lang="en">Modules on ships</select>
+	</match>
+	<match name="stored_modules">
+		<select lang="ru">Модули в хранилище</select>
+		<select lang="en">Stored modules</select>
 	</match>
 	<!-- /COMMANDER -->
 	<!-- SETTINGS -->

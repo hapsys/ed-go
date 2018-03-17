@@ -510,6 +510,7 @@
 			<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
 				<li role="presentation" class="active"><a href="#ship_tab_content" id="ships-tab" role="tab" data-toggle="tab" aria-expanded="true"><xsl:value-of select="i10n:tr('ships_ships')"/></a></li>
 				<li role="presentation" class=""><a href="#module_tab_content" role="tab" id="modules-tab" data-toggle="tab" aria-expanded="false"><xsl:value-of select="i10n:tr('ships_modules')"/></a></li>
+				<li role="presentation" class=""><a href="#stored_tab_content" role="tab" id="stored-tab" data-toggle="tab" aria-expanded="false"><xsl:value-of select="i10n:tr('stored_modules')"/></a></li>
 			</ul>
 			<div id="myTabContent" class="tab-content">
 				<div role="tabpanel" class="tab-pane fade active in" id="ship_tab_content" aria-labelledby="ships-tab">
@@ -590,6 +591,50 @@
 								</td>
 								<td class="ships-list">
 									<xsl:value-of select="field[@name='ships']/@value"/>
+								</td>
+							</tr>
+						</xsl:for-each>
+					</table>
+				</div>
+				<div role="tabpanel" class="tab-pane fade in" id="stored_tab_content" aria-labelledby="strored-tab">
+					<table class="table">
+						<tr>
+							<th>Module</th>
+							<th>Class</th>
+							<th>Recipie</th>
+							<th><nobr>Moduels Count</nobr></th>
+							<th><nobr>System/Station</nobr></th>
+						</tr>
+						<xsl:for-each select="additionThree/item">
+							<tr>
+								<td>
+									<nobr>
+									<xsl:value-of select="field[@name='commonModuleName']/@value"/>
+									<xsl:if test="string-length(field[@name='moduleWeaponMode']/@value) != 0">&#160;<img width="15" height="15" src="{$root}/images/weapon/ed-{field[@name='moduleWeaponMode']/@value}.png" title="{field[@name='moduleWeaponMode']/@value}"/></xsl:if>
+									</nobr>
+								</td>
+								<td>
+									<xsl:value-of select="field[@name='moduleClass']/@value"/>
+									<xsl:value-of select="field[@name='moduleRating']/@value"/>								
+								</td>
+								<td>
+									<xsl:if test="string-length(field[@name='recipieName']/@value) != 0">
+										<xsl:value-of select="i10n:tr(field[@name='recipieName']/@value)"/>
+										&#160;
+										<xsl:choose>
+											<xsl:when test="field[@name='recipieGrade']/@value = 1"><img src="{$root}/images/engineer_sm.png"/></xsl:when>
+											<xsl:when test="field[@name='recipieGrade']/@value = 2"><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/></xsl:when>
+											<xsl:when test="field[@name='recipieGrade']/@value = 3"><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/></xsl:when>
+											<xsl:when test="field[@name='recipieGrade']/@value = 4"><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/></xsl:when>
+											<xsl:when test="field[@name='recipieGrade']/@value = 5"><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/></xsl:when>
+										</xsl:choose>
+									</xsl:if>
+								</td>
+								<td>
+									<xsl:value-of select="field[@name='moduleCount']/@value"/>
+								</td>
+								<td>
+									<xsl:value-of select="field[@name='modulePlace']/@value"/>
 								</td>
 							</tr>
 						</xsl:for-each>

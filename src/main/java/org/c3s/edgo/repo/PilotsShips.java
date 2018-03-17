@@ -6,6 +6,7 @@ import java.util.List;
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBPilotModulesListBean;
 import org.c3s.edgo.common.beans.DBPilotShipsListBean;
+import org.c3s.edgo.common.beans.DBPilotStoredModulesListBean;
 
 public class PilotsShips {
 
@@ -37,6 +38,10 @@ public class PilotsShips {
 	
 	public List<DBPilotModulesListBean> getModules() throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		return DbAccess.pilotModulesAccess.getPilotModulesList(pilot);
+	}
+
+	public List<DBPilotStoredModulesListBean> getStoredModules() throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		return DbAccess.storedModulesAccess.getPilotStoredModulesList(pilot);
 	}
 	
 }

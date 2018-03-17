@@ -302,6 +302,7 @@ public class Commander extends GeneralController {
 			List<DBPilotShipsListBean> pilotShips = pilotShipsRepo.getShips(x, y, z);
 			current.setAdditionOne(pilotShips);
 			current.setAdditionTwo(pilotShipsRepo.getModules());
+			current.setAdditionThree(pilotShipsRepo.getStoredModules());
 			
 			Document xml = new XMLReflectionObj(current).toXML();
 			//logger.debug(XMLUtils.xml2out(xml));
