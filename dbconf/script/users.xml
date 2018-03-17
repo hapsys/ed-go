@@ -67,7 +67,7 @@
 			<column name="LangId" type="long"/>
 			<column name="UserId" type="long"/>
 			<sql>
-				UPDATE users SET lang_id = NULL WHERE user_id = ? LIMIT 1 
+				UPDATE users SET lang_id = ? WHERE user_id = ? LIMIT 1 
 			</sql>
 		</query>
 	</table>

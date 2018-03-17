@@ -318,7 +318,7 @@ public class DBUsersAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				UPDATE users SET lang_id = NULL WHERE user_id = ? LIMIT 1  			";
+			query = " 				UPDATE users SET lang_id = ? WHERE user_id = ? LIMIT 1  			";
 		}
 
 		

@@ -35,6 +35,7 @@ public class Fileheader extends AbstractJournalEvent<FileheaderBean> {
 					DbAccess.languagesAccess.insert(language);
 				}
 				DbAccess.usersAccess.updateUserLanguage(language.getLangId(), user.getUserId());
+				//throw new RuntimeException();
 			} catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SQLException e) {
 				throw new RuntimeException(e);
 			}
