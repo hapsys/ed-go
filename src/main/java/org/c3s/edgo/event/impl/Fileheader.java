@@ -24,6 +24,9 @@ public class Fileheader extends AbstractJournalEvent<FileheaderBean> {
 		if (lang != null) {
 			String name = RegexpUtils.preg_replace("~^([^/]+)/.*$~isu", lang, "$1");
 			String uniq = RegexpUtils.preg_replace("~^.*/([^/]+)$~isu", lang, "$1").toLowerCase();
+			if ("uk".equals(uniq)) {
+				uniq = "us";
+			}
 			try {
 				DBLanguagesBean language = DbAccess.languagesAccess.getByLangUniq(uniq);
 				if (language == null) {
