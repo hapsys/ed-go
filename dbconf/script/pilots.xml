@@ -423,7 +423,7 @@
 			<sql>
 				SELECT IF(ISNULL(m.module_name), mg.module_group_name, m.module_name) as common_module_name, m.module_class, m.module_rating, m.module_weapon_mode,
 				GROUP_CONCAT(DISTINCT CONCAT(s.name, IF(ISNULL(st.name), '', ' / '), IF(ISNULL(st.name), '', st.name)) SEPARATOR ', ') as module_place, COUNT(sm.stored_module_id) AS module_count, 
-				r.recipie_name, sm.recipie_grade
+				IF(ISNULL(r.recipie_loc_name), r.recipie_name, r.recipie_loc_name) as recipie_name , sm.recipie_grade
 				FROM modules m, module_groups mg, systems s, stored_modules sm
 				LEFT JOIN stations st ON st.market_id = sm.market_id 
 				LEFT JOIN recipies r ON r.recipie_id = sm.recipie_id

@@ -619,8 +619,6 @@
 								</td>
 								<td>
 									<xsl:if test="string-length(field[@name='recipieName']/@value) != 0">
-										<xsl:value-of select="i10n:tr(field[@name='recipieName']/@value)"/>
-										&#160;
 										<xsl:choose>
 											<xsl:when test="field[@name='recipieGrade']/@value = 1"><img src="{$root}/images/engineer_sm.png"/></xsl:when>
 											<xsl:when test="field[@name='recipieGrade']/@value = 2"><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/></xsl:when>
@@ -628,6 +626,8 @@
 											<xsl:when test="field[@name='recipieGrade']/@value = 4"><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/></xsl:when>
 											<xsl:when test="field[@name='recipieGrade']/@value = 5"><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/><img src="{$root}/images/engineer_sm.png"/></xsl:when>
 										</xsl:choose>
+										&#160;
+										<xsl:value-of select="i10n:tr(field[@name='recipieName']/@value)"/>
 									</xsl:if>
 								</td>
 								<td>
@@ -847,8 +847,8 @@
 				</xsl:choose>
 				<a class="show-modifyers" href="#" style="margin-left: 5px; text-decoration: underline;">
 					<xsl:choose>
-						<xsl:when test="string-length($module/field[@name='recipieLocName']/@value) != 0"><xsl:value-of select="$module/field[@name='recipieLocName']/@value"/></xsl:when>
-						<xsl:otherwise><xsl:value-of select="$module/field[@name='recipieName']/@value"/></xsl:otherwise>
+						<xsl:when test="string-length($module/field[@name='recipieLocName']/@value) != 0"><xsl:value-of select="i10n:tr($module/field[@name='recipieLocName']/@value)"/></xsl:when>
+						<xsl:otherwise><xsl:value-of select="i10n:tr($module/field[@name='recipieName']/@value)"/></xsl:otherwise>
 					</xsl:choose>
 				</a>
 				<xsl:if test="count($module/modifyers/item) != 0">
@@ -858,8 +858,8 @@
 							<div class="col-md-4">
 								<xsl:value-of select="field[@name='direction']/@value"/>
 								<xsl:choose>
-									<xsl:when test="string-length(field[@name='modifierName']/@value) != 0"><xsl:value-of select="field[@name='modifierName']/@value"/></xsl:when>
-									<xsl:otherwise><xsl:value-of select="field[@name='modifierUniq']/@value"/></xsl:otherwise>
+									<xsl:when test="string-length(field[@name='modifierName']/@value) != 0"><xsl:value-of select="i10n:tr(field[@name='modifierName']/@value)"/></xsl:when>
+									<xsl:otherwise><xsl:value-of select="i10n:tr(field[@name='modifierUniq']/@value)"/></xsl:otherwise>
 								</xsl:choose>
 							</div>
 							<div class="col-md-7">
