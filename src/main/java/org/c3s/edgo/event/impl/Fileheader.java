@@ -22,10 +22,10 @@ public class Fileheader extends AbstractJournalEvent<FileheaderBean> {
 	protected void processBean(FileheaderBean bean) {
 		String lang = bean.getLanguage();
 		if (lang != null) {
-			String name = RegexpUtils.preg_replace("~^([^/]+)/.*$~isu", lang, "$1");
-			String uniq = RegexpUtils.preg_replace("~^.*/([^/]+)$~isu", lang, "$1").toLowerCase();
+			String name = RegexpUtils.preg_replace("~^([^\\\\]+)\\\\.*$~isu", lang, "$1");
+			String uniq = RegexpUtils.preg_replace("~^.*\\\\([^\\\\]+)$~isu", lang, "$1").toLowerCase();
 			if ("uk".equals(uniq)) {
-				uniq = "us";
+				uniq = "en";
 			}
 			try {
 				DBLanguagesBean language = DbAccess.languagesAccess.getByLangUniq(uniq);
