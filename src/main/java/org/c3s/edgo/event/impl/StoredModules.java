@@ -42,7 +42,11 @@ public class StoredModules extends AbstractJournalEvent<StoredModulesBean> {
 				List<StoredModule> modules = (bean.getItems() != null)? Arrays.asList(bean.getItems()): new ArrayList<>();
 				
 				for (StoredModule module: modules) {
-					module.setStrHash(module.getStarSystem().toLowerCase() + module.getMarketID() + EDUtils.getModuleUniq(module.getName()));
+					if (module.getStarSystem() != null) {
+						module.setStrHash(module.getStarSystem().toLowerCase() + module.getMarketID() + EDUtils.getModuleUniq(module.getName()));
+					} else {
+						module.setStrHash("transit_" + EDUtils.getModuleUniq(module.getName()));
+					}
 				}
 				
 				Map<StoredModule, Boolean> insert = modules.stream().collect(Collectors.toMap(x -> x, x -> true));
@@ -103,7 +107,9 @@ public class StoredModules extends AbstractJournalEvent<StoredModulesBean> {
 				//System.out.println("Insert >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 				for(StoredModule x: insert.keySet()) {
 					//System.out.println(x.getStrHash());
-					ShipsDAO.insertStoredModule(pilot, x.getName(), x.getStarSystem(), x.getMarketID(), x.getEngineerModifications(), x.getLevel());
+					if (x.getStarSystem() != null) {
+						ShipsDAO.insertStoredModule(pilot, x.getName(), x.getStarSystem(), x.getMarketID(), x.getEngineerModifications(), x.getLevel());
+					}
 				}
 				//throw new RuntimeException();
 			}
