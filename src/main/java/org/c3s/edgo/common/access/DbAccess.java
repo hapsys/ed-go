@@ -19,6 +19,8 @@ public class DbAccess {
 	public static final DBModuleRecipiesAccess moduleRecipiesAccess = new DBModuleRecipiesAccess();
 	public static final DBModifiersAccess modifiersAccess = new DBModifiersAccess();
 	public static final DBModuleModifiersAccess moduleModifiersAccess = new DBModuleModifiersAccess();
+	public static final DBModuleEffectsAccess moduleEffectsAccess = new DBModuleEffectsAccess();
+	public static final DBModuleEffectLocaleAccess moduleEffectLocaleAccess = new DBModuleEffectLocaleAccess();
 	public static final DBPilotMaterialsAccess pilotMaterialsAccess = new DBPilotMaterialsAccess();
 	public static final DBPilotsInfoAccess pilotsInfoAccess = new DBPilotsInfoAccess();
 	public static final DBEventsAccess eventsAccess = new DBEventsAccess();

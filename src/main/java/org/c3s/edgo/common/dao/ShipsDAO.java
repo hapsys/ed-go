@@ -7,6 +7,8 @@ import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBByModuleInfoByUniqBean;
 import org.c3s.edgo.common.beans.DBLocationHistoryBean;
 import org.c3s.edgo.common.beans.DBModifiersBean;
+import org.c3s.edgo.common.beans.DBModuleEffectLocaleBean;
+import org.c3s.edgo.common.beans.DBModuleEffectsBean;
 import org.c3s.edgo.common.beans.DBModuleRecipiesBean;
 import org.c3s.edgo.common.beans.DBPilotModulesBean;
 import org.c3s.edgo.common.beans.DBPilotShipsBean;
@@ -239,6 +241,25 @@ public class ShipsDAO {
 			DbAccess.modifiersAccess.updateByPrimaryKey(bean, bean.getModifierId());
 		}
 		return bean;
+	}
+	
+	public static DBModuleEffectsBean getOrInsertExperimantalEffect(String effectUniq, String effectLocale, Long langId) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		String uniq = effectUniq.toLowerCase();
+		DBModuleEffectsBean effect = DbAccess.moduleEffectsAccess.getByUniq(uniq);
+		if (effect == null) {
+			effect = new DBModuleEffectsBean();
+			effect.setEffectUniq(uniq);
+			DbAccess.moduleEffectsAccess.insert(effect);
+		}
+		
+		DBModuleEffectLocaleBean locale = DbAccess.moduleEffectLocaleAccess.getByPrimaryKey(effect.getEffectId(), langId);
+		if (locale == null && effectLocale != null) {
+			locale = new DBModuleEffectLocaleBean();
+			locale.setEffectId(effect.getEffectId()).setEffectId(langId).setEffectName(effectLocale);
+			DbAccess.moduleEffectLocaleAccess.insert(locale);
+		}
+		
+		return effect;
 	}
 	
 	/**

@@ -515,6 +515,37 @@
 		</query>
 	</table>
 	<!--  -->
+	<table name="module_effects">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="effect_id"/>
+		</select>
+		<select name="ByUniq" single_object="true">
+			<column name="effect_uniq"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="effect_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="effect_id"/>
+		</delete>
+	</table>
+	<!--  -->
+	<table name="module_effect_locale">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="effect_id"/>
+			<column name="lang_id"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="effect_id"/>
+			<column name="lang_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="effect_id"/>
+			<column name="lang_id"/>
+		</delete>
+	</table>
+	
+	<!--  -->
 	
 	<table name="pilot_materials">
 		<select name="ByPrimaryKey" single_object="true">

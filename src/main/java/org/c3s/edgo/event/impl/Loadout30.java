@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBModifiersBean;
+import org.c3s.edgo.common.beans.DBModuleEffectsBean;
 import org.c3s.edgo.common.beans.DBModuleModifiersBean;
 import org.c3s.edgo.common.beans.DBModuleRecipiesBean;
 import org.c3s.edgo.common.beans.DBModulesBean;
@@ -92,6 +93,15 @@ public class Loadout30 extends AbstractJournalEvent<Loadout30Bean> {
 									DbAccess.moduleModifiersAccess.deleteByModuleRecipieId(moduleRecipie.getModuleRecipeId());
 								}
 								
+								// + Effects
+								if (eng.getExperimentalEffect() != null) {
+									DBModuleEffectsBean effect = ShipsDAO.getOrInsertExperimantalEffect(eng.getExperimentalEffect(), eng.getExperimentalEffect_Localised(), user.getLangId());
+									moduleRecipie.setEffectId(effect.getEffectId());
+								} else {
+									moduleRecipie.setEffectId(null);
+								}
+								DbAccess.moduleRecipiesAccess.updateByPrimaryKey(moduleRecipie, moduleRecipie.getModuleRecipeId());
+								// - Effects
 								if (eng.getModifiers() != null) {
 									for(Modification modification: eng.getModifiers()) {
 										//Modifier modification = companion.ship.modules.get(slotName).WorkInProgress_modifications.get(modifyer);

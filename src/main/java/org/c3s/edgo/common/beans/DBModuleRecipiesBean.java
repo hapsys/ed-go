@@ -76,6 +76,21 @@ public class DBModuleRecipiesBean implements DbBean, Serializable {
 		return this;
 	}
 	
+	
+	@DataSource({"effect_id", "effectId"})
+	@DataTarget("effect_id")
+	@XMLSimple("effectId")
+	private java.lang.Long effectId;
+	
+	public java.lang.Long getEffectId() {
+		return effectId;
+	}
+	
+	public DBModuleRecipiesBean setEffectId(java.lang.Long value) {
+		this.effectId = value;
+		return this;
+	}
+	
 	@Override
 	public void setAutoincrementField(Object value) {
 		

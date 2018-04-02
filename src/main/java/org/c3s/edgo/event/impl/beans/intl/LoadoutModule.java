@@ -21,6 +21,7 @@ public class LoadoutModule {
 	
 	private String EngineerBlueprint;
 	private int EngineerLevel;
+	
 	public String getSlot() {
 		return Slot;
 	}

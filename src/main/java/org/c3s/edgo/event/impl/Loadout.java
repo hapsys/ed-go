@@ -75,7 +75,8 @@ public class Loadout extends AbstractJournalEvent<LoadoutBean> {
 									} else if (!modRec.getRecipieLevel().equals(module.getEngineerLevel())) {
 										DbAccess.moduleModifiersAccess.deleteByModuleRecipieId(modRec.getModuleRecipeId());
 									}
-									ShipsDAO.insertOrUpdateModuleRecipie(resId.getPilotModuleId(), recipie.getRecipieId(), module.getEngineerLevel());
+									DBModuleRecipiesBean moduleRecipie = ShipsDAO.insertOrUpdateModuleRecipie(resId.getPilotModuleId(), recipie.getRecipieId(), module.getEngineerLevel());
+									//if (module.get)
 								} else {
 									DbAccess.moduleRecipiesAccess.deleteByPilotModuleId(resId.getPilotModuleId());
 								}

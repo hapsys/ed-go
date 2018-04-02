@@ -60,15 +60,12 @@ public class StoredModules extends AbstractJournalEvent<StoredModulesBean> {
 					for (DBStoredModulesListBean dbModule: dbModules) {
 						delete.put(dbModule, false);
 						if (mg.containsKey(dbModule.getStrHash())) {
-							//System.out.println("Delete >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + dbModule.getStrHash());
 							StoredModule found = null;
 							for (StoredModule sm: mg.get(dbModule.getStrHash())) {
 								if (dbModule.getRecipieName() == null && sm.getEngineerModifications() == null ||  
 										dbModule.getRecipieName() != null && sm.getEngineerModifications() != null && sm.getEngineerModifications().equalsIgnoreCase(dbModule.getRecipieName())) {
 									delete.remove(dbModule);
 									insert.remove(sm);
-									//System.out.println("Insert >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + sm.getStrHash());
-									//System.out.println(mg.get(dbModule.getStrHash()).size());
 									found = sm;
 									break;
 								}
@@ -78,35 +75,15 @@ public class StoredModules extends AbstractJournalEvent<StoredModulesBean> {
 								mg.get(dbModule.getStrHash()).remove(found);
 							}
 							
-						} else {
-							//System.out.println("Error >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + dbModule.getStrHash());
 						}
 					}
 				}
 				
-				/*
-				List<StoredModule> sorted = new ArrayList<>(insert.keySet());
-				Collections.sort(sorted, new Comparator<StoredModule>() {
-					@Override
-					public int compare(StoredModule o1, StoredModule o2) {
-						// TODO Auto-generated method stub
-						return o1.getStrHash().compareTo(o2.getStrHash());
-					}
-				});
-				for(StoredModule x: sorted) {
-					System.out.println(x.getStrHash());
-				}
-				*/
-				
-				//System.out.println("Delete >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 				for(DBStoredModulesListBean x: delete.keySet()) {
-					//System.out.println(x.getStrHash());
 					DbAccess.storedModulesAccess.deleteByPrimaryKey(x.getStoredModuleId());
 				}
 				
-				//System.out.println("Insert >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 				for(StoredModule x: insert.keySet()) {
-					//System.out.println(x.getStrHash());
 					if (x.getStarSystem() != null) {
 						ShipsDAO.insertStoredModule(pilot, x.getName(), x.getStarSystem(), x.getMarketID(), x.getEngineerModifications(), x.getLevel());
 					}
