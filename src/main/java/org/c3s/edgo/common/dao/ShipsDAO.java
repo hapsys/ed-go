@@ -255,7 +255,7 @@ public class ShipsDAO {
 		DBModuleEffectLocaleBean locale = DbAccess.moduleEffectLocaleAccess.getByPrimaryKey(effect.getEffectId(), langId);
 		if (locale == null && effectLocale != null) {
 			locale = new DBModuleEffectLocaleBean();
-			locale.setEffectId(effect.getEffectId()).setEffectId(langId).setEffectName(effectLocale);
+			locale.setEffectId(effect.getEffectId()).setLangId(langId).setEffectName(effectLocale);
 			DbAccess.moduleEffectLocaleAccess.insert(locale);
 		}
 		
