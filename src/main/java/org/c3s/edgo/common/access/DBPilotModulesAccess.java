@@ -235,7 +235,7 @@ public class DBPilotModulesAccess extends Access {
 		return ret;
 	}
 	
-	public List<DBPilotShipModulesListBean> getPilotShipModulesList(long paramPilotShipId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+	public List<DBPilotShipModulesListBean> getPilotShipModulesList(long paramPilotShipId, String paramLangUniq) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();
 		
@@ -248,11 +248,11 @@ public class DBPilotModulesAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT ps.pilot_ship_id, sh.ship_name, sl.slot_uniq, cs.name as coriolis_name, cm.data->>'$.id' as coriolis_id, st.slot_type_name, st.slot_type_id, m.*, mg.*,  				CAST(IF(ISNULL(ss.link_size), sl.size, ss.link_size) AS CHAR(1)) as link_size, 				mr.recipie_level, mr.module_recipe_id, r.*  				FROM (pilot_ships ps, ships sh, ship_slots ss, slots sl, slot_types st) 				LEFT JOIN  pilot_modules pm ON pm.pilot_ship_id = ps.pilot_ship_id AND pm.slot_id = sl.slot_id 				LEFT JOIN modules m ON m.module_id = pm.module_id 				LEFT JOIN module_groups mg ON mg.module_group_id = m.module_group_id 				LEFT JOIN module_recipies mr ON mr.pilot_module_id = pm.pilot_module_id 				LEFT JOIN recipies r ON r.recipie_id = mr.recipie_id 				LEFT JOIN coriolis_ships cs ON cs.eddb_id = sh.eddb_id 				LEFT JOIN coriolis_modules cm ON cm.eddb_id = m.eddb_id 				WHERE ps.pilot_ship_id = ? 				AND ps.ship_id = sh.ship_id  				AND ss.ship_id = sh.ship_id 				AND sl.slot_id = ss.slot_id 				AND st.slot_type_id = sl.slot_type_id 				GROUP BY pm.pilot_ship_id, sl.slot_id 				ORDER BY st.slot_type_name, sl.slot_order ASC, sl.slot_uniq ASC 			";
+			query = " 				SELECT ps.pilot_ship_id, sh.ship_name, sl.slot_uniq, cs.name as coriolis_name, cm.data->>'$.id' as coriolis_id, st.slot_type_name, st.slot_type_id, m.*, mg.*,  				CAST(IF(ISNULL(ss.link_size), sl.size, ss.link_size) AS CHAR(1)) as link_size, 				mr.recipie_level, mr.module_recipe_id, r.*, me.effect_name  				FROM (pilot_ships ps, ships sh, ship_slots ss, slots sl, slot_types st, languages l) 				LEFT JOIN  pilot_modules pm ON pm.pilot_ship_id = ps.pilot_ship_id AND pm.slot_id = sl.slot_id 				LEFT JOIN modules m ON m.module_id = pm.module_id 				LEFT JOIN module_groups mg ON mg.module_group_id = m.module_group_id 				LEFT JOIN module_recipies mr ON mr.pilot_module_id = pm.pilot_module_id 				LEFT JOIN recipies r ON r.recipie_id = mr.recipie_id 				LEFT JOIN coriolis_ships cs ON cs.eddb_id = sh.eddb_id 				LEFT JOIN coriolis_modules cm ON cm.eddb_id = m.eddb_id 				LEFT JOIN module_effect_locale me ON me.effect_id = mr.effect_id AND me.lang_id = l.lang_id      				WHERE ps.pilot_ship_id = ? 				AND ps.ship_id = sh.ship_id  				AND ss.ship_id = sh.ship_id 				AND sl.slot_id = ss.slot_id 				AND st.slot_type_id = sl.slot_type_id 				AND l.lang_uniq = ? 				GROUP BY pm.pilot_ship_id, sl.slot_id 				ORDER BY st.slot_type_name, sl.slot_order ASC, sl.slot_uniq ASC 			";
 		}
 
 		
-		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getPilotShipModulesList", query ,  paramPilotShipId);
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getPilotShipModulesList", query ,  paramPilotShipId,  paramLangUniq);
 		List<DBPilotShipModulesListBean> ret = null;
 		if (result != null) {
 					ret = new ArrayList<DBPilotShipModulesListBean>();

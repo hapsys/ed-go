@@ -850,6 +850,7 @@
 						<xsl:when test="string-length($module/field[@name='recipieLocName']/@value) != 0"><xsl:value-of select="i10n:tr($module/field[@name='recipieLocName']/@value)"/></xsl:when>
 						<xsl:otherwise><xsl:value-of select="i10n:tr($module/field[@name='recipieName']/@value)"/></xsl:otherwise>
 					</xsl:choose>
+					<xsl:if test="string-length($module/field[@name='effectName']/@value) != 0"> / <xsl:value-of select="$module/field[@name='effectName']/@value"/> </xsl:if>
 				</a>
 				<xsl:if test="count($module/modifyers/item) != 0">
 					<div class="modifyer hidden">

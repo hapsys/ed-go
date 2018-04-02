@@ -302,6 +302,21 @@ public class DBPilotShipModulesListBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"effect_name", "effectName"})
+	@DataTarget("effect_name")
+	@XMLSimple("effectName")
+	private java.lang.String effectName;
+	
+	public java.lang.String getEffectName() {
+		return effectName;
+	}
+	
+	public DBPilotShipModulesListBean setEffectName(java.lang.String value) {
+		this.effectName = value;
+		return this;
+	}
+	
+	
 	@DataSource({"module_loc_description", "moduleLocDescription"})
 	@DataTarget("module_loc_description")
 	@XMLSimple("moduleLocDescription")
