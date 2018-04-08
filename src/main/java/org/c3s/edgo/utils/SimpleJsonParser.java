@@ -10,6 +10,7 @@ import org.c3s.lib.parsers.StringParser;
 import org.c3s.lib.parsers.interceptors.CharInterceptor;
 import org.c3s.lib.parsers.interceptors.RegMatchInterceptor;
 import org.c3s.utils.RegexpUtils;
+import org.c3s.utils.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -97,19 +98,23 @@ public class SimpleJsonParser extends StringParser {
 	
 	protected void onJson(String json) {
 		//System.out.println(json);
-		String name = RegexpUtils.preg_replace("~^.+\"event\"\\s*:\\s*\"([^\"]+)\".*$~isu", json, "$1");
-		DBEventsBean evt = new DBEventsBean();
-		evt.setEventId(BigInteger.valueOf(System.nanoTime()));
-		evt.setUserId(getUserId());
-		evt.setEventName(name);
-		evt.setEventJson(json);
-		evt.setIsLocked(0);
+		String md5 = Utils.MD5(json);
 		try {
-			DbAccess.eventsAccess.insert(evt);
-		} catch (IllegalArgumentException | IllegalAccessException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new RuntimeException(e);
+			if (DbAccess.eventsAccess.getCheckEvent(getUserId(), md5).getEventsCount().intValue() == 0) {
+				String name = RegexpUtils.preg_replace("~^.+\"event\"\\s*:\\s*\"([^\"]+)\".*$~isu", json, "$1");
+				DBEventsBean evt = new DBEventsBean();
+				evt.setEventId(BigInteger.valueOf(System.nanoTime()));
+				evt.setUserId(getUserId());
+				evt.setEventName(name);
+				evt.setEventJson(json);
+				evt.setIsLocked(0);
+				evt.setCheckHash(md5);
+				DbAccess.eventsAccess.insert(evt);
+			}
+		} catch (IllegalArgumentException | IllegalAccessException | SQLException | InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				throw new RuntimeException(e);
 		}
 	}
 	

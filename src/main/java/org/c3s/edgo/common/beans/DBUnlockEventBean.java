@@ -17,6 +17,21 @@ public class DBUnlockEventBean implements DbBean, Serializable {
 
 
 	
+	@DataSource({"check_hash", "checkHash"})
+	@DataTarget("check_hash")
+	@XMLSimple("checkHash")
+	private java.lang.String checkHash;
+	
+	public java.lang.String getCheckHash() {
+		return checkHash;
+	}
+	
+	public DBUnlockEventBean setCheckHash(java.lang.String value) {
+		this.checkHash = value;
+		return this;
+	}
+	
+	
 	@DataSource({"is_locked", "isLocked"})
 	@DataTarget("is_locked")
 	@XMLSimple("isLocked")

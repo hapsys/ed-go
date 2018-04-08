@@ -27,6 +27,17 @@
 				LIMIT 1
 			</sql>
 		</query>
+		<query name="CheckEvent" single_object="true">
+			<column name="UserId" type="long"/>
+			<column name="JsonChek" type="String"/>
+			<sql>
+				SELECT COUNT(e.event_id) as events_count
+				FROM events e
+				WHERE e.user_id = ? 
+				AND e.check_hash = ?
+				LIMIT 1
+			</sql>
+		</query>
 		<query name="UnlockEventForUserId" single_object="true" use="Events">
 			<column name="UserId" type="long"/>
 			<column name="State" type="Integer"/>
