@@ -62,7 +62,7 @@ public class MissionsDAO {
 	public static DBMaterialsBean getMaterial(String name, String type) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		String uniq = EDUtils.cutFull(name);
 		DBMaterialsBean bean = DbAccess.materialsAccess.getByUniq(uniq);
-		if (bean == null) {
+		if (bean == null && type != null) {
 			DBMaterialCategoryBean typeBean = DbAccess.materialCategoryAccess.getByUniq(type);
 			if (typeBean == null) {
 				typeBean = new DBMaterialCategoryBean();

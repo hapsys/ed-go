@@ -42,10 +42,13 @@ public class MissionCompleted extends AbstractJournalEvent<MissionCompletedBean>
 
 					if (bean.getMaterialsReward() != null) {
 						for (MaterialNameCount com: bean.getMaterialsReward()) {
-							DBMaterialsBean mat = MissionsDAO.getMaterial(com.getName(), RegexpUtils.preg_replace("~^.+_([^_]+)$~iu", com.getCategory(), "$1")); 
-							MissionsDAO.insertUpdateMissionMaterial(mission.getMissionId(), 
-									mat.getMaterialId(), com.getCount());
-							PilotDAO.insertUpdateMaterial(pilot.getPilotId(), mat.getMaterialId(), com.getCount());
+							String category = com.getCategory() != null?RegexpUtils.preg_replace("~^.+_([^_]+)$~iu", com.getCategory(), "$1"):null; 
+							DBMaterialsBean mat = MissionsDAO.getMaterial(com.getName(), category);
+							if (mat != null) {
+								MissionsDAO.insertUpdateMissionMaterial(mission.getMissionId(), 
+										mat.getMaterialId(), com.getCount());
+								PilotDAO.insertUpdateMaterial(pilot.getPilotId(), mat.getMaterialId(), com.getCount());
+							}
 						}
 					}
 					
