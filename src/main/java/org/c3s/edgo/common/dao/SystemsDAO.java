@@ -20,9 +20,12 @@ import org.c3s.edgo.common.beans.DBLastSystemFactionStateDateBean;
 import org.c3s.edgo.common.beans.DBStationFactionControlBean;
 import org.c3s.edgo.common.beans.DBStationsBean;
 import org.c3s.edgo.common.beans.DBSystemFactionControlBean;
+import org.c3s.edgo.common.beans.DBSystemFactionPendingStatesBean;
+import org.c3s.edgo.common.beans.DBSystemFactionRecoveryStatesBean;
 import org.c3s.edgo.common.beans.DBSystemFactionsHistoryBean;
 import org.c3s.edgo.common.beans.DBSystemsBean;
 import org.c3s.edgo.event.impl.beans.intl.FactionBean;
+import org.c3s.edgo.event.impl.beans.intl.FactionPRState;
 import org.c3s.edgo.utils.EDUtils;
 
 public class SystemsDAO {
@@ -203,15 +206,20 @@ public class SystemsDAO {
 					DBLastSystemFactionStateBean last = fmap.get(uniq);
 					if (last.getStateId() == null || !last.getStateId().equals(state.getStateId()) || Math.abs(last.getInfluence() - newf.getInfluence()) > 0.005f) {
 						DBSystemFactionsHistoryBean bean = new DBSystemFactionsHistoryBean();
-						bean.setSystemId(system.getSystemId()).setFactionId(last.getFactionId()).setCreateDate(new Timestamp(timestamp.getTime())).setStateId(state.getStateId()).setInfluence(newf.getInfluence());
+						bean.setSystemId(system.getSystemId()).setFactionId(last.getFactionId()).setCreateDate(new Timestamp(timestamp.getTime())).setUpdateDate(new Timestamp(timestamp.getTime())).setStateId(state.getStateId()).setInfluence(newf.getInfluence());
 						DbAccess.systemFactionsHistoryAccess.insert(bean);
+						insertHistoryStates(bean.getSystemFactionsHistoryId(), newf.getPendingStates(), newf.getRecovingStates());
+					} else {
+						// Update update_time
+						DbAccess.systemFactionsHistoryAccess.updateSetUpdateTime(new Timestamp(timestamp.getTime()), last.getSystemFactionsHistoryId());
 					}
 					fmap.remove(uniq);
 				} else {
 					DBFactionsBean last = getOrInsertFaction(newf.getName(), newf.getGovernment(), newf.getAllegiance());
 					DBSystemFactionsHistoryBean bean = new DBSystemFactionsHistoryBean();
-					bean.setSystemId(system.getSystemId()).setFactionId(last.getFactionId()).setCreateDate(new Timestamp(timestamp.getTime())).setStateId(state.getStateId()).setInfluence(newf.getInfluence());
+					bean.setSystemId(system.getSystemId()).setFactionId(last.getFactionId()).setCreateDate(new Timestamp(timestamp.getTime())).setUpdateDate(new Timestamp(timestamp.getTime())).setStateId(state.getStateId()).setInfluence(newf.getInfluence());
 					DbAccess.systemFactionsHistoryAccess.insert(bean);
+					insertHistoryStates(bean.getSystemFactionsHistoryId(), newf.getPendingStates(), newf.getRecovingStates());
 				}
 			}
 			// Remove leaving
@@ -222,6 +230,25 @@ public class SystemsDAO {
 					bean.setSystemId(system.getSystemId()).setFactionId(last.getFactionId()).setCreateDate(new Timestamp(timestamp.getTime())).setStateId(null).setInfluence(null);
 					DbAccess.systemFactionsHistoryAccess.insert(bean);
 				}
+			}
+		}
+	}
+	
+	private static void insertHistoryStates(BigInteger historyId, FactionPRState[] pending, FactionPRState[] recovery) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		if (pending != null) {
+			for (FactionPRState val: pending) {
+				DBBgsStatesBean state = getOrInsertState(val.getState());
+				DBSystemFactionPendingStatesBean bean = new DBSystemFactionPendingStatesBean();
+				bean.setStateId(state.getStateId()).setTrend(val.getTrend()).setSystemFactionsHistoryId(historyId);
+				DbAccess.systemFactionPendingStatesAccess.insert(bean);
+			}
+		}
+		if (recovery != null) {
+			for (FactionPRState val: recovery) {
+				DBBgsStatesBean state = getOrInsertState(val.getState());
+				DBSystemFactionRecoveryStatesBean bean = new DBSystemFactionRecoveryStatesBean();
+				bean.setStateId(state.getStateId()).setTrend(val.getTrend()).setSystemFactionsHistoryId(historyId);
+				DbAccess.systemFactionRecoveryStatesAccess.insert(bean);
 			}
 		}
 	}

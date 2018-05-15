@@ -173,6 +173,28 @@ public class DBSystemFactionsHistoryAccess extends Access {
 		return ret;
 	}
 	
+	public int updateSetUpdateTime(java.sql.Timestamp paramUpdateTime, java.math.BigInteger paramFactionHistoryId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				UPDATE system_factions_history SET update_time = ? WHERE system_factions_history_id = ? LIMIT 1  			";
+		}
+
+		
+		int ret = getConnection().query(query,  paramUpdateTime,  paramFactionHistoryId);
+			
+		return ret;
+	}
+	
 	public List<DBSystemFactionInfluence1Bean> getSystemFactionInfluence1(Long paramFactionId, String paramToDate, String paramFromDate, String paramFromDateCheck) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();
@@ -219,7 +241,7 @@ public class DBSystemFactionsHistoryAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT fsh.*, f.uniq 				FROM factions f, system_factions_history fsh 				WHERE fsh.system_id = ? 				AND f.faction_id = fsh.faction_id 				AND fsh.system_factions_history_id = ( 					SELECT sh.system_factions_history_id  					FROM system_factions_history sh 					WHERE sh.system_id = fsh.system_id 					AND sh.faction_id=fsh.faction_id 					 					ORDER BY sh.create_date DESC 					LIMIT 1   				)  				ORDER BY fsh.faction_id 			";
+			query = " 				SELECT fsh.*, f.uniq, GROUP_CONCAT(DISTINCT bps.state_uniq ORDER BY bps.state_uniq) AS pending_states, GROUP_CONCAT(DISTINCT brs.state_uniq ORDER BY brs.state_uniq) AS recovery_states  				FROM factions f, system_factions_history fsh 				LEFT JOIN system_faction_pending_states ps ON ps.system_factions_history_id = fsh.system_factions_history_id 				LEFT JOIN system_faction_recovery_states rs ON rs.system_factions_history_id = fsh.system_factions_history_id 				LEFT JOIN bgs_states bps ON bps.state_id = ps.state_id   				LEFT JOIN bgs_states brs ON brs.state_id = ps.state_id   				WHERE fsh.system_id = ? 				AND f.faction_id = fsh.faction_id 				AND fsh.system_factions_history_id = ( 					SELECT sh.system_factions_history_id  					FROM system_factions_history sh 					WHERE sh.system_id = fsh.system_id 					AND sh.faction_id=fsh.faction_id 					 					ORDER BY sh.create_date DESC 					LIMIT 1   				)  				GROUP BY fsh.faction_id 				ORDER BY fsh.faction_id 			";
 		}
 
 		
@@ -252,7 +274,7 @@ public class DBSystemFactionsHistoryAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				SELECT fsh.create_date 				FROM system_factions_history fsh 				WHERE fsh.system_id = ? 				ORDER BY fsh.create_date DESC 				LIMIT 1 			";
+			query = " 				SELECT IF(ISNULL(fsh.update_date), fsh.create_date, fsh.update_date) as create_date  				FROM system_factions_history fsh 				WHERE fsh.system_id = ? 				ORDER BY fsh.create_date DESC, fsh.update_date DESC 				LIMIT 1 			";
 		}
 
 		

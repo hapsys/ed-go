@@ -47,6 +47,21 @@ public class DBLastSystemFactionStateBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"pending_states", "pendingStates"})
+	@DataTarget("pending_states")
+	@XMLSimple("pendingStates")
+	private java.lang.String pendingStates;
+	
+	public java.lang.String getPendingStates() {
+		return pendingStates;
+	}
+	
+	public DBLastSystemFactionStateBean setPendingStates(java.lang.String value) {
+		this.pendingStates = value;
+		return this;
+	}
+	
+	
 	@DataSource({"faction_id", "factionId"})
 	@DataTarget("faction_id")
 	@XMLSimple("factionId")
@@ -88,6 +103,36 @@ public class DBLastSystemFactionStateBean implements DbBean, Serializable {
 	
 	public DBLastSystemFactionStateBean setCreateDate(java.sql.Timestamp value) {
 		this.createDate = value;
+		return this;
+	}
+	
+	
+	@DataSource({"recovery_states", "recoveryStates"})
+	@DataTarget("recovery_states")
+	@XMLSimple("recoveryStates")
+	private java.lang.String recoveryStates;
+	
+	public java.lang.String getRecoveryStates() {
+		return recoveryStates;
+	}
+	
+	public DBLastSystemFactionStateBean setRecoveryStates(java.lang.String value) {
+		this.recoveryStates = value;
+		return this;
+	}
+	
+	
+	@DataSource({"update_date", "updateDate"})
+	@DataTarget("update_date")
+	@XMLSimple("updateDate")
+	private java.sql.Timestamp updateDate;
+	
+	public java.sql.Timestamp getUpdateDate() {
+		return updateDate;
+	}
+	
+	public DBLastSystemFactionStateBean setUpdateDate(java.sql.Timestamp value) {
+		this.updateDate = value;
 		return this;
 	}
 	

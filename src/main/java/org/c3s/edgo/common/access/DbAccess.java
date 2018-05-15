@@ -46,6 +46,8 @@ public class DbAccess {
 	public static final DBSettlementTypesAccess settlementTypesAccess = new DBSettlementTypesAccess();
 	public static final DBBgsStatesAccess bgsStatesAccess = new DBBgsStatesAccess();
 	public static final DBSystemFactionsHistoryAccess systemFactionsHistoryAccess = new DBSystemFactionsHistoryAccess();
+	public static final DBSystemFactionPendingStatesAccess systemFactionPendingStatesAccess = new DBSystemFactionPendingStatesAccess();
+	public static final DBSystemFactionRecoveryStatesAccess systemFactionRecoveryStatesAccess = new DBSystemFactionRecoveryStatesAccess();
 	public static final DBSystemFactionControlAccess systemFactionControlAccess = new DBSystemFactionControlAccess();
 	public static final DBStationFactionControlAccess stationFactionControlAccess = new DBStationFactionControlAccess();
 	public static final DBFactionInfluenceAccess factionInfluenceAccess = new DBFactionInfluenceAccess();

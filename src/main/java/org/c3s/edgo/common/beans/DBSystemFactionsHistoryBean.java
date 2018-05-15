@@ -77,6 +77,21 @@ public class DBSystemFactionsHistoryBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"update_date", "updateDate"})
+	@DataTarget("update_date")
+	@XMLSimple("updateDate")
+	private java.sql.Timestamp updateDate;
+	
+	public java.sql.Timestamp getUpdateDate() {
+		return updateDate;
+	}
+	
+	public DBSystemFactionsHistoryBean setUpdateDate(java.sql.Timestamp value) {
+		this.updateDate = value;
+		return this;
+	}
+	
+	
 	@DataSource({"system_factions_history_id", "systemFactionsHistoryId"})
 	@DataTarget("system_factions_history_id")
 	@XMLSimple("systemFactionsHistoryId")

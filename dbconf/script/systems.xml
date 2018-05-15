@@ -246,13 +246,20 @@
 			</sql>
 		</query>
 		 -->
+		<query name="SetUpdateTime">
+			<column name="UpdateTime" type="java.sql.Timestamp"/>
+			<column name="FactionHistoryId" type="java.math.BigInteger"/>
+			<sql>
+				UPDATE system_factions_history SET update_time = ? WHERE system_factions_history_id = ? LIMIT 1 
+			</sql>
+		</query>
 		<query name="LastSystemFactionStateDate" single_object="true">
 			<column name="SystemId" type="java.math.BigInteger"/>
 			<sql>
-				SELECT fsh.create_date
+				SELECT IF(ISNULL(fsh.update_date), fsh.create_date, fsh.update_date) as create_date 
 				FROM system_factions_history fsh
 				WHERE fsh.system_id = ?
-				ORDER BY fsh.create_date DESC
+				ORDER BY fsh.create_date DESC, fsh.update_date DESC
 				LIMIT 1
 			</sql>			
 		</query>
@@ -260,8 +267,12 @@
 			<column name="SystemId" type="java.math.BigInteger"/>
 			<!--  column name="DateTime" type="java.sql.Timestamp"/ -->
 			<sql>
-				SELECT fsh.*, f.uniq
+				SELECT fsh.*, f.uniq, GROUP_CONCAT(DISTINCT bps.state_uniq ORDER BY bps.state_uniq) AS pending_states, GROUP_CONCAT(DISTINCT brs.state_uniq ORDER BY brs.state_uniq) AS recovery_states 
 				FROM factions f, system_factions_history fsh
+				LEFT JOIN system_faction_pending_states ps ON ps.system_factions_history_id = fsh.system_factions_history_id
+				LEFT JOIN system_faction_recovery_states rs ON rs.system_factions_history_id = fsh.system_factions_history_id
+				LEFT JOIN bgs_states bps ON bps.state_id = ps.state_id  
+				LEFT JOIN bgs_states brs ON brs.state_id = ps.state_id  
 				WHERE fsh.system_id = ?
 				AND f.faction_id = fsh.faction_id
 				AND fsh.system_factions_history_id = (
@@ -273,6 +284,7 @@
 					ORDER BY sh.create_date DESC
 					LIMIT 1  
 				) 
+				GROUP BY fsh.faction_id
 				ORDER BY fsh.faction_id
 			</sql>
 		</query>
@@ -377,6 +389,13 @@
 			</sql>
 		</query>
 	</table>
+	<!--  -->
+	<table name="system_faction_pending_states">
+	</table>
+	<!--  -->
+	<table name="system_faction_recovery_states">
+	</table>
+	
 	
 	<!--  -->
 	<table name="system_faction_control">
