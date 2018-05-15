@@ -250,7 +250,7 @@
 			<column name="UpdateTime" type="java.sql.Timestamp"/>
 			<column name="FactionHistoryId" type="java.math.BigInteger"/>
 			<sql>
-				UPDATE system_factions_history SET update_time = ? WHERE system_factions_history_id = ? LIMIT 1 
+				UPDATE system_factions_history SET update_date = ? WHERE system_factions_history_id = ? LIMIT 1 
 			</sql>
 		</query>
 		<query name="LastSystemFactionStateDate" single_object="true">

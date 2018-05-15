@@ -186,7 +186,7 @@ public class DBSystemFactionsHistoryAccess extends Access {
 			String where = injector.getWhereQuery();
 			String order = injector.getOrderQuery();
 			String limit = injector.getLimitQuery();
-			query = " 				UPDATE system_factions_history SET update_time = ? WHERE system_factions_history_id = ? LIMIT 1  			";
+			query = " 				UPDATE system_factions_history SET update_date = ? WHERE system_factions_history_id = ? LIMIT 1  			";
 		}
 
 		
