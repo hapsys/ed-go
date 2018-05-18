@@ -701,7 +701,7 @@
 			</tbody>
 		</table>
 		<p>
-			<a class="text-primary" href="https://coriolis.edcd.io/outfit/" target="_tab">View at coriolis</a>
+			<a class="text-primary coriolis-link" href="https://coriolis.edcd.io/outfit/" target="_tab">View at coriolis</a>
 		</p>
 		<script>
 			// Make ship 
