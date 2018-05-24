@@ -12,10 +12,15 @@ import org.c3s.edgo.common.beans.DBBountyFactionBean;
 import org.c3s.edgo.common.beans.DBBountyTypesBean;
 import org.c3s.edgo.common.beans.DBCommoditiesBean;
 import org.c3s.edgo.common.beans.DBCommodityDeliverBean;
+import org.c3s.edgo.common.beans.DBEffectLocalesBean;
+import org.c3s.edgo.common.beans.DBEffectsBean;
 import org.c3s.edgo.common.beans.DBFactionsBean;
 import org.c3s.edgo.common.beans.DBMaterialCategoryBean;
 import org.c3s.edgo.common.beans.DBMaterialsBean;
+import org.c3s.edgo.common.beans.DBMissionFactionEffectsBean;
+import org.c3s.edgo.common.beans.DBMissionFactionInfluenceBean;
 import org.c3s.edgo.common.beans.DBMissionTypesBean;
+import org.c3s.edgo.common.beans.DBModuleEffectsBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.beans.DBRewardCommoditiesBean;
 import org.c3s.edgo.common.beans.DBRewardMaterialsBean;
@@ -138,5 +143,42 @@ public class MissionsDAO {
 			bean.setMissionId(mission_id).setCommodityId(com.getCommodityId()).setQuantity(Long.valueOf(quantity));
 			DbAccess.commodityDeliverAccess.insert(bean);
 		}
+	}
+	
+	public static DBEffectsBean getOrInsertEffect(String effect, Long langId, String effectLocale) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+		DBEffectsBean bean = null;
+		
+		boolean insert = false;
+		
+		if ((bean = DbAccess.effectsAccess.getByUniq(effect)) == null) {
+			insert = true;
+			bean = new DBEffectsBean();
+			bean.setEffect(effect);
+			DbAccess.effectsAccess.insert(bean);
+		}
+		
+		if (insert || DbAccess.effectLocalesAccess.getByPrimaryKey(bean.getEffectId(), langId) == null) {
+			DBEffectLocalesBean loc = new DBEffectLocalesBean();
+			loc.setEffectId(bean.getEffectId()).setLangId(langId).setEffectLocale(effectLocale);
+			DbAccess.effectLocalesAccess.insert(loc);
+		}
+		
+		return bean;
+	}
+	
+	public static void insertInfluence(BigInteger missionEffectId, BigInteger systemAddress, String trend) throws IllegalArgumentException, IllegalAccessException, SQLException {
+		DBMissionFactionInfluenceBean bean = new DBMissionFactionInfluenceBean();
+		bean.setMissionFactionEffectId(missionEffectId).setSystemAddress(systemAddress).setTrend(trend);
+		DbAccess.missionFactionInfluenceAccess.insert(bean);
+	}
+	
+	public static DBMissionFactionEffectsBean insertMissionEffect(BigInteger missionId, Long factionId, String reputation) throws IllegalArgumentException, IllegalAccessException, SQLException {
+		DBMissionFactionEffectsBean bean = new DBMissionFactionEffectsBean();
+		
+		bean.setMissionId(missionId).setFactionId(factionId).setReputation(reputation);
+		
+		DbAccess.missionFactionEffectsAccess.insert(bean);
+		
+		return bean;
 	}
 }

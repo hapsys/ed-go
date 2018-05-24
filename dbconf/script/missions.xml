@@ -179,4 +179,38 @@
 		</delete>
 	</table>
 	<!--  -->
+	
+	<!--  -->
+	<table name="effects">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="effect_id"/>
+		</select>
+		<select name="ByUniq" single_object="true">
+			<column name="effect"/>
+		</select>
+		<update name="ByPrimaryKey">
+			<column name="effect_id"/>
+		</update>
+		<delete name="ByPrimaryKey">
+			<column name="effect_id"/>
+		</delete>
+	</table>
+	<!--  -->
+	<table name="effect_locales">
+		<select name="ByPrimaryKey" single_object="true">
+			<column name="effect_id"/>
+			<column name="lang_id"/>
+		</select>
+	</table>
+	<!--  -->
+	<table name="mission_faction_influence">
+	</table>
+	<!--  -->
+	<table name="mission_faction_effects">
+	</table>
+	<!--  -->
+	<table name="mission_effects">
+	</table>
+	<!--  -->
+	
 </include>

@@ -5,6 +5,7 @@ import java.util.Date;
 import org.c3s.edgo.event.AbstractEventBean;
 import org.c3s.edgo.event.impl.beans.intl.MaterialNameCount;
 import org.c3s.edgo.event.impl.beans.intl.NameCount;
+import org.c3s.edgo.event.impl.beans.intl.missions.FactionEffect;
 
 public class MissionCompletedBean extends AbstractEventBean {
 
@@ -60,6 +61,9 @@ public class MissionCompletedBean extends AbstractEventBean {
 	private Commodity[] CommodityReward;
 
 	private MaterialNameCount[] MaterialsReward;
+	
+	private FactionEffect[] FactionEffects;
+	
 	/**
 	 * @return
 	 */
@@ -281,6 +285,14 @@ public class MissionCompletedBean extends AbstractEventBean {
 
 	public void setMaterialsReward(MaterialNameCount[] materialsReward) {
 		MaterialsReward = materialsReward;
+	}
+
+	public FactionEffect[] getFactionEffects() {
+		return FactionEffects;
+	}
+
+	public void setFactionEffects(FactionEffect[] factionEffects) {
+		FactionEffects = factionEffects;
 	}
 	
 }

@@ -60,6 +60,11 @@ public class DbAccess {
 	public static final DBRewardMaterialsAccess rewardMaterialsAccess = new DBRewardMaterialsAccess();
 	public static final DBBountyTypesAccess bountyTypesAccess = new DBBountyTypesAccess();
 	public static final DBBountyFactionAccess bountyFactionAccess = new DBBountyFactionAccess();
+	public static final DBEffectsAccess effectsAccess = new DBEffectsAccess();
+	public static final DBEffectLocalesAccess effectLocalesAccess = new DBEffectLocalesAccess();
+	public static final DBMissionFactionInfluenceAccess missionFactionInfluenceAccess = new DBMissionFactionInfluenceAccess();
+	public static final DBMissionFactionEffectsAccess missionFactionEffectsAccess = new DBMissionFactionEffectsAccess();
+	public static final DBMissionEffectsAccess missionEffectsAccess = new DBMissionEffectsAccess();
 	public static final DBCommoditiesAccess commoditiesAccess = new DBCommoditiesAccess();
 	public static final DBComodityCategoriesAccess comodityCategoriesAccess = new DBComodityCategoriesAccess();
 	public static final DBMaterialsAccess materialsAccess = new DBMaterialsAccess();

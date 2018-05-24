@@ -4,15 +4,23 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 
 import org.c3s.edgo.common.access.DbAccess;
+import org.c3s.edgo.common.beans.DBEffectsBean;
+import org.c3s.edgo.common.beans.DBFactionsBean;
 import org.c3s.edgo.common.beans.DBMaterialsBean;
+import org.c3s.edgo.common.beans.DBMissionEffectsBean;
+import org.c3s.edgo.common.beans.DBMissionFactionEffectsBean;
 import org.c3s.edgo.common.beans.DBMissionsBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.dao.MissionsDAO;
 import org.c3s.edgo.common.dao.PilotDAO;
+import org.c3s.edgo.common.dao.SystemsDAO;
 import org.c3s.edgo.event.AbstractJournalEvent;
 import org.c3s.edgo.event.impl.beans.MissionCompletedBean;
 import org.c3s.edgo.event.impl.beans.MissionCompletedBean.Commodity;
 import org.c3s.edgo.event.impl.beans.intl.MaterialNameCount;
+import org.c3s.edgo.event.impl.beans.intl.missions.Effect;
+import org.c3s.edgo.event.impl.beans.intl.missions.FactionEffect;
+import org.c3s.edgo.event.impl.beans.intl.missions.MissionInfluence;
 import org.c3s.utils.RegexpUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,6 +63,28 @@ public class MissionCompleted extends AbstractJournalEvent<MissionCompletedBean>
 					if (bean.getCommodityReward() != null) {
 						for (Commodity com: bean.getCommodityReward()) {
 							MissionsDAO.insertUpdateMissionComodity(mission.getMissionId(), MissionsDAO.getComodity(com.getName()).getCommodityId(), com.getCount());
+						}
+					}
+					
+					// Mission Effects
+					if (bean.getFactionEffects() != null) {
+						for (FactionEffect eff : bean.getFactionEffects()) {
+							if (eff.getFaction().length() > 0) {
+								DBFactionsBean faction = SystemsDAO.getOrInsertFaction(eff.getFaction());
+								DBMissionFactionEffectsBean missEff = MissionsDAO.insertMissionEffect(mission.getMissionId(), faction.getFactionId(), eff.getReputation());
+								if (eff.getEffects() != null) {
+									for (Effect effect: eff.getEffects()) {
+										DBEffectsBean dbEffect = MissionsDAO.getOrInsertEffect(effect.getEffect(), this.user.getLangId() , effect.getEffect_Localised());
+										DBMissionEffectsBean dbMissionEffectsBean = (new DBMissionEffectsBean()).setEffectId(dbEffect.getEffectId()).setMissionFactionEffectId(missEff.getMissionFactionEffectId()).setTrend(effect.getTrend());
+										DbAccess.missionEffectsAccess.insert(dbMissionEffectsBean);
+									}
+								}
+								if (eff.getInfluence() != null) {
+									for (MissionInfluence infl: eff.getInfluence()) {
+										MissionsDAO.insertInfluence(missEff.getMissionFactionEffectId(), infl.getSystemAddress(), infl.getTrend());
+									}
+								}
+							}
 						}
 					}
 				}
