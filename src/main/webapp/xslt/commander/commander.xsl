@@ -654,6 +654,21 @@
 					});
 					$(this).html(link.join(', '));
 				});
+				
+				// check tabs
+				$('#myTab').find('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+					//console.log($(e.target).attr('id'));
+					var id = $(e.target).attr('id');
+					var tabname = id.substring(0, id.indexOf('-'));
+					//console.log(tabname);
+					window.location.hash = tabname; 
+				});
+				
+				if (window.location.hash.length &gt; 1) {
+					var tabname = window.location.hash.substring(1);
+					console.log(tabname);
+					$('#' + tabname + '-tab').tab('show');
+				}
 			});
 		</script>
 	</xsl:template>
@@ -2020,7 +2035,7 @@
 				<div class="gallery-item">
 					<div class="thumbnail" style="height: 240px;">
 						<div class="image view view-first" style="height: 200px;">
-							<a href="{$mlink}" title="{$title}" data-gallery="data-gallery" data-original="{$original}">
+							<a id="image-{$filename}" href="{$mlink}" title="{$title}" data-gallery="data-gallery" data-original="{$original}">
 								<img src="{$slink}" alt="" style="display: block;"/>
 							</a>
 							<xsl:if test="string-length(/*/@owner) != 0">
@@ -2057,9 +2072,13 @@
 					var link = $('a[data-gallery=data-gallery]:eq(' + index + ')');
 				    var href = $(link).data('original');
 				    console.log(href);
-				    var $a = $('<a />', { href:href, text:'Download', target:'tab'});
-				    $('.download').html($a);
+				    var a = $('<a />', { href:href, text:'Download', target:'tab'});
+				    $('.download').html(a);
 				});				
+				
+				$('#blueimp-gallery').on('opened', function(e) {
+					console.log(e);
+				});
 				
 				$('.remove-gallery-image').on('click', function() {
 					var element = this;
@@ -2078,6 +2097,11 @@
       				});
 					return false;
 				});
+				
+				if (window.location.hash.length &gt; 1) {
+					var img = window.location.hash.substring(1);
+					$('#image-' + img).trigger('click');
+				}
 			});
 		</script>
 	</xsl:template>	
