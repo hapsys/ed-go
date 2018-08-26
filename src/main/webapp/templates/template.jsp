@@ -402,6 +402,8 @@ moment.locale('<%=lang_id%>');
 	<script type="text/javascript" src="<%=root%>/js/chosen/ajax-chosen.js"></script>
     <!-- Json -->
     <script src="<%=root%>/js/json/jquery.json.min.js"></script>
+    <!-- Stomp -->
+    <script src="<%=root%>/js/stomp/stomp.js"></script>
 
 	<script type="text/javascript" src="<%=root%>/js/proxy.js"></script>
 	<script type="text/javascript" src="<%=root%>/js/store.js"></script>
