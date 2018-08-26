@@ -15,6 +15,7 @@ import org.c3s.edgo.common.beans.DBEventsHistoryBean;
 import org.c3s.edgo.common.beans.DBPilotGameModesBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.beans.DBUsersBean;
+import org.c3s.edgo.event.annotation.Bind;
 import org.c3s.utils.JSONUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -84,6 +85,16 @@ public abstract class AbstractJournalEvent<T extends AbstractEventBean> implemen
 				 */
 				if (DbAccess.eventsHistoryAccess.getByUserIdTimestampAndHash(event.getUserId(), new Timestamp(bean.getTimestamp().getTime()), event.getJsonMd5()) == null) {
 					this.processBean(bean);
+					/*
+					 * +Add AMPQ event
+					 */
+					Bind bind = this.getClass().getAnnotation(Bind.class);
+					if (bind != null) {
+						DispatcherAMQP.getInstance().fireEvent(bind.value(), getCurrent().getPilotName());
+					}
+					/*
+					 * -Add AMPQ event
+					 */
 					if ("CompanionApi".equals(event.getEventName())) {
 						addEventHistory(event, new Date());
 					} else {

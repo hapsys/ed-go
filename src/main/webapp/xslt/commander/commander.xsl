@@ -34,7 +34,7 @@
 
 		<div class="clearfix"></div>
 		<!-- Location -->
-		<div class="x_panel updated-by-time" data-update-function="updateUserInfo" data-update-interval="30000">
+		<div class="x_panel updated-by-stomp" data-update-function="updateUserInfo" data-update-interval="30000" data-update-tag="user-info" data-update-pilot="{$pilot}">
 			<div class="x_title">
 				<h2>
 					<xsl:value-of select="i10n:tr('Last Info')"/>

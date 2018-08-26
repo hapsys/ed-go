@@ -13,10 +13,12 @@ import org.c3s.edgo.common.beans.DBPilotLastInfoBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.dao.ShipsDAO;
 import org.c3s.edgo.event.AbstractJournalEvent;
+import org.c3s.edgo.event.annotation.Bind;
 import org.c3s.edgo.event.impl.beans.LoadGameBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Bind({"user-info"})
 public class LoadGame extends AbstractJournalEvent<LoadGameBean> {
 
 	@SuppressWarnings("serial")

@@ -108,6 +108,12 @@
 		    <artifactId>amqp-client</artifactId>
 		    <version>5.0.0</version>
 		</dependency>
+		<!-- rabbit MQ -->
+		<dependency>
+			<groupId>com.rabbitmq</groupId>
+			<artifactId>amqp-client</artifactId>
+			<version>5.3.0</version>
+		</dependency>
 		<!-- c3s -->
 		<dependency>
 			<groupId>org.c3s</groupId>
