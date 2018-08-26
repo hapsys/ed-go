@@ -5,10 +5,12 @@ import java.sql.SQLException;
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.event.AbstractJournalEvent;
+import org.c3s.edgo.event.annotation.Bind;
 import org.c3s.edgo.event.impl.beans.SupercruiseEntryBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Bind({"user-info", "user-location"})
 public class SupercruiseEntry extends AbstractJournalEvent<SupercruiseEntryBean> {
 
 	@SuppressWarnings("unused")
