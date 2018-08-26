@@ -5,6 +5,7 @@ import java.util.Properties;
 
 import org.c3s.db.DBManager;
 import org.c3s.edgo.common.access.DbAccess;
+import org.c3s.edgo.event.DispatcherAMQP;
 import org.c3s.edgo.event.EventProcessorThreaded;
 import org.c3s.edgo.event.EventsRegister;
 import org.c3s.storage.ApplicationStorage;
@@ -30,6 +31,9 @@ public class ProcessEvents {
 		EventsRegister.registerEventPackage("org.c3s.edgo.event.impl");
 		
 		StorageFactory.register(StorageType.APPLICATION, new ApplicationStorage());
+
+		// init AMQP
+		DispatcherAMQP.getInstance();
 		
 		new Thread(new EventProcessorThreaded()).start();
 		
