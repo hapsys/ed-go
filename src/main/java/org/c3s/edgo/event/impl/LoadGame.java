@@ -18,7 +18,7 @@ import org.c3s.edgo.event.impl.beans.LoadGameBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Bind({"user-info"})
+//@Bind({"user-info"})
 public class LoadGame extends AbstractJournalEvent<LoadGameBean> {
 
 	@SuppressWarnings("serial")
