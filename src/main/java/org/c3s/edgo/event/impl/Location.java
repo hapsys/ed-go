@@ -8,13 +8,11 @@ import org.c3s.edgo.common.dao.PowersDAO;
 import org.c3s.edgo.common.dao.ShipsDAO;
 import org.c3s.edgo.common.dao.SystemsDAO;
 import org.c3s.edgo.event.AbstractJournalEvent;
-import org.c3s.edgo.event.annotation.Bind;
 import org.c3s.edgo.event.impl.beans.LocationBean;
 import org.c3s.utils.RegexpUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Bind({"user-info", "user-location"})
 public class Location extends AbstractJournalEvent<LocationBean> {
 
 	@SuppressWarnings("unused")

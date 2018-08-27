@@ -7,12 +7,10 @@ import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.dao.LocationDAO;
 import org.c3s.edgo.event.AbstractJournalEvent;
-import org.c3s.edgo.event.annotation.Bind;
 import org.c3s.edgo.event.impl.beans.SupercruiseExitBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Bind({"user-info", "user-location"})
 public class SupercruiseExit extends AbstractJournalEvent<SupercruiseExitBean> {
 
 	@SuppressWarnings("unused")
