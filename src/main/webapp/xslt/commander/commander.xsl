@@ -1567,7 +1567,7 @@
 				</form>
 			</div>
 		</div>
-		<div class="clearfix"></div>
+		<div class="clearfix"> </div>
 		<div class="form-materials updated-by-stomp" data-update-function="updateFromServer" data-update-interval="30000" data-update-tag="user-location" data-update-pilot="{$pilot}">
 		
 			<div class="col-md-4 col-xs-12 widget widget_tally_box width-650 encoded" data-material="encoded">
