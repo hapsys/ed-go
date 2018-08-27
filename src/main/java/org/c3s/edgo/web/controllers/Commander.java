@@ -206,7 +206,7 @@ public class Commander extends GeneralController {
 			DBFullLastInfoBean li = DbAccess.pilotLastInfoAccess.getFullLastInfo(current.getPilotId());
 			li.setFlyMode(i10n(getFlyMode(li.getIsSupercruise())));
 			li.setGameMode(i10n(li.getGameMode()));
-			li.setLastSeen(this.getDiff(li.getLastEvent()));
+			//li.setLastSeen(this.getDiff(li.getLastEvent()));
 			li.setQueredEvents(DbAccess.eventsAccess.getQueriedEvents(current.getUserId()).getQueredEvents());
 			current.setLastInfo(li);
 			
@@ -240,7 +240,7 @@ public class Commander extends GeneralController {
 			DBFullLastInfoBean li = DbAccess.pilotLastInfoAccess.getFullLastInfo(current.getPilotId());
 			li.setFlyMode(i10n(getFlyMode(li.getIsSupercruise())));
 			li.setGameMode(i10n(li.getGameMode()));
-			li.setLastSeen(this.getDiff(li.getLastEvent()));
+			//li.setLastSeen(this.getDiff(li.getLastEvent()));
 			li.setQueredEvents(DbAccess.eventsAccess.getQueriedEvents(current.getUserId()).getQueredEvents());
 			current.setLastInfo(li);
 			

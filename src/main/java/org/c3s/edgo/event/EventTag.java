@@ -17,6 +17,8 @@ public class EventTag {
 	private static final Map<String, String[]> tag2events = new HashMap<>();
 	static {
 		tag2events.put("user-info", new String[] {"Location", "Docked", "FSDJump", "Liftoff", "SupercruiseEntry", "SupercruiseExit", "Touchdown", "Undocked"});
+		tag2events.put("user-location", new String[] {"Location", "Docked", "FSDJump", "Liftoff", "SupercruiseEntry", "SupercruiseExit", "Touchdown", "Undocked"});
+		tag2events.put("user-meterials", new String[] {"EngineerCraft", "MaterialCollected", "MaterialDiscarded", "MaterialDiscovered", "Materials", "MaterialTrade", "Synthesis"});
 	}
 	private static final Map<String, String[]> events2tags = new HashMap<>(); 
 	static {

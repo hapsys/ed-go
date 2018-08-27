@@ -1,7 +1,8 @@
 $(function() {
 	console.log('Load Auto Update');
 	
-	var ws = new WebSocket('ws://' + window.location.hostname + ':15674/ws');
+	//var ws = new WebSocket('ws://' + window.location.hostname + ':15674/ws');
+	var ws = new WebSocket('ws://ed-go.xyz:15674/ws');
 	
 	var client = Stomp.over(ws);
 	client.heartbeat.outgoing = 0;

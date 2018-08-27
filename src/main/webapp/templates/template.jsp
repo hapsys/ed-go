@@ -117,14 +117,15 @@
 <script src="<%=root%>/vendors/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="<%=root%>/vendors/moment/min/moment-with-locales.min.js"></script>
+<script type="text/javascript">
+moment.locale('<%=lang_id%>');
+</script>
+<script src="<%=root%>/vendors/moment/min/moment-duration-format.js"></script>
 
 <script src="<%=root%>/vendors/bootstrap/js/transition.js"></script>
 <script src="<%=root%>/vendors/bootstrap/js/collapse.js"></script>
 <script src="<%=root%>/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 
-<script type="text/javascript">
-moment.locale('<%=lang_id%>');
-</script>
 
 </head>
 <body>

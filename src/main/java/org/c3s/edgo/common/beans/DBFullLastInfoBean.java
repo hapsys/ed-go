@@ -47,21 +47,6 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	}
 	
 	
-	@DataSource({"last_seen", "lastSeen"})
-	@DataTarget("last_seen")
-	@XMLSimple("lastSeen")
-	private java.lang.String lastSeen;
-	
-	public java.lang.String getLastSeen() {
-		return lastSeen;
-	}
-	
-	public DBFullLastInfoBean setLastSeen(java.lang.String value) {
-		this.lastSeen = value;
-		return this;
-	}
-	
-	
 	@DataSource({"combat", "combat"})
 	@DataTarget("combat")
 	@XMLSimple("combat")
@@ -283,6 +268,21 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	
 	public DBFullLastInfoBean setStationId(java.lang.Long value) {
 		this.stationId = value;
+		return this;
+	}
+	
+	
+	@DataSource({"last_seen_timestamp", "lastSeenTimestamp"})
+	@DataTarget("last_seen_timestamp")
+	@XMLSimple("lastSeenTimestamp")
+	private java.lang.Long lastSeenTimestamp;
+	
+	public java.lang.Long getLastSeenTimestamp() {
+		return lastSeenTimestamp;
+	}
+	
+	public DBFullLastInfoBean setLastSeenTimestamp(java.lang.Long value) {
+		this.lastSeenTimestamp = value;
 		return this;
 	}
 	

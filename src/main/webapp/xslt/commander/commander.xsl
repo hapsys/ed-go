@@ -54,7 +54,7 @@
 								<tr>
 									<td colspan="2" >
 										<span id="lastSeen"><xsl:value-of select="item[@name='lastInfo']/field[@name='lastSeen']/@value"/></span>
-										<xsl:value-of select="i10n:tr('ago')"/>
+										&#160;<xsl:value-of select="i10n:tr('ago')"/>
 									</td>
 								</tr>
 								<tr>
@@ -470,6 +470,15 @@
             		$("#select-month").data("DateTimePicker").toggle();
             	});
 				
+				
+				var lastSeenTimestamp = parseInt('<xsl:value-of select="item[@name='lastInfo']/field[@name='lastSeenTimestamp']/@value"/> ');
+				//console.log(lastSeenTimestamp);
+				setInterval(function() {
+					var lastSeen = moment.duration((new Date()).getTime() - lastSeenTimestamp*1000, "ms").format("d [days] hh [hrs] mm [min] ss [sec]");
+					$('#lastSeen').html(lastSeen);
+					//console.log(lastSeen);
+				}, 1000);
+				
 				updateUserInfo = function() {
 					proxy.makeCall('post', '/ajax/pilots/'+ pilot + '/update-user-info/', null, null, null, function(result) {
 						if (result.info &amp;&amp; result.info.lastInfo) {
@@ -477,16 +486,20 @@
 								$($(this).parents('tr')[0]).addClass('hidden');
 							});  
 							for (k in result.info.lastInfo) {
-								var v = result.info.lastInfo[k];
-								var elm = $('#' + k);
-								if (elm.length) {
-									if (elm.hasClass('hided')) {
-										var tr = $(elm).parents('tr')[0];
-										if (v) {
-											$(tr).removeClass('hidden');
+								if (k == 'lastSeenTimestamp') {
+									lastSeenTimestamp = result.info.lastInfo[k]; 
+								} else {
+									var v = result.info.lastInfo[k];
+									var elm = $('#' + k);
+									if (elm.length) {
+										if (elm.hasClass('hided')) {
+											var tr = $(elm).parents('tr')[0];
+											if (v) {
+												$(tr).removeClass('hidden');
+											}
 										}
+										elm.html(v);
 									}
-									elm.html(v);
 								}
 							};
 						}
@@ -1326,7 +1339,7 @@
 	                    <th>Activity</th>
 	                  </tr>
 	                </thead>
-	                <tbody id="locations-content" class="updated-by-time" data-update-function="updateSystems" data-update-interval="30000">
+	                <tbody id="locations-content" class="updated-by-stomp" data-update-function="updateSystems" data-update-interval="30000" data-update-tag="user-location" data-update-pilot="{$pilot}">>
 						<tr class="sceleton hidden">
 							<td><nobr class="star-time"></nobr></td>
 							<td><nobr class="star-name"></nobr></td>
@@ -1555,7 +1568,8 @@
 			</div>
 		</div>
 		<div class="clearfix"></div>
-		<div class="form-materials updated-by-time" data-update-function="updateFromServer" data-update-interval="30000">
+		<div class="form-materials updated-by-stomp" data-update-function="updateFromServer" data-update-interval="30000" data-update-tag="user-location" data-update-pilot="{$pilot}">
+		
 			<div class="col-md-4 col-xs-12 widget widget_tally_box width-650 encoded" data-material="encoded">
 				<div class="x_panel">
 					<div class="x_title">
