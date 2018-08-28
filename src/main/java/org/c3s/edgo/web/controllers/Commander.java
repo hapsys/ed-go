@@ -571,6 +571,8 @@ public class Commander extends GeneralController {
 	public void getSystemsTest(@ParameterRequest("startdate") String startdate, @ParameterRequest("enddate") String enddate, @ParameterRequest("page") Integer page, @ParameterRequest("per_page") Integer per_page, 
 		@Parameter("tag") String tag, RedirectControlerInterface redirect) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		current = DbAccess.pilotsAccess.getByPrimaryKey(1L);
+		linkedPilots = new ArrayList<>();
+		linkedPilots.add(current.getPilotId());
 		getSystems(startdate, enddate, page, per_page, tag, redirect);
 	}
 	// ============================================================== -SYSTEMS PATH ==============================================================================
