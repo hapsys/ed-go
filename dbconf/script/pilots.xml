@@ -269,6 +269,7 @@
 				LEFT JOIN stations st ON ps.station_id = st.station_id
 				WHERE ps.pilot_id = ?
 				AND ps.ship_id = sh.ship_id
+				AND sh.is_special = 0
 				ORDER BY ps.is_main DESC, sh.ship_name
 			</sql>
 		</query>
