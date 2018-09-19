@@ -4,7 +4,7 @@ $(function() {
 	//var ws = new WebSocket('ws://' + window.location.hostname + ':15674/ws');
 	var server = 'ws://ed-go.xyz:15674/ws';
 	if (window.location.protocol.toLowerCase() == 'https:') {
-		var server = 'https://ed-go.xyz:15671/stomp';
+		server = 'https://ed-go.xyz:15671/stomp';
 	}
 	var ws = new WebSocket(server);
 	
