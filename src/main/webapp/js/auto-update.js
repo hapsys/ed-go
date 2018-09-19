@@ -2,13 +2,11 @@ $(function() {
 	console.log('Load Auto Update');
 	
 	//var ws = new WebSocket('ws://' + window.location.hostname + ':15674/ws');
-	var prot = 'ws';
-	var port = '15674';
+	var server = 'ws://ed-go.xyz:15674/ws';
 	if (window.location.protocol.toLowerCase() == 'https:') {
-		prot = 'wss';
-		port = '15671';
+		var server = 'https://ed-go.xyz:15671/stomp';
 	}
-	var ws = new WebSocket(prot + '://ed-go.xyz:' + port + '/ws');
+	var ws = new WebSocket(server);
 	
 	var client = Stomp.over(ws);
 	client.heartbeat.outgoing = 0;
