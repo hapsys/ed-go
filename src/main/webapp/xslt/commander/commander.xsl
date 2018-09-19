@@ -1329,7 +1329,6 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
-			
 				<table class="table table-striped table-bordered">
 	                <thead>
 	                  <tr>
@@ -1354,7 +1353,6 @@
 		</div>
 		<script>
 			$(function() {
-			
 				var pilot = '<xsl:value-of select="$pilot"/>';
 				
 				var start_date = moment(Date.parse("<xsl:value-of select="/*/@start_date"/>").getTime());

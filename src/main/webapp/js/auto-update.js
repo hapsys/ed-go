@@ -3,10 +3,12 @@ $(function() {
 	
 	//var ws = new WebSocket('ws://' + window.location.hostname + ':15674/ws');
 	var prot = 'ws';
+	var port = '15674';
 	if (window.location.protocol.toLowerCase() == 'https:') {
 		prot = 'wss';
+		port = '15671';
 	}
-	var ws = new WebSocket(prot + '://ed-go.xyz:15674/ws');
+	var ws = new WebSocket(prot + '://ed-go.xyz:' + port + '/ws');
 	
 	var client = Stomp.over(ws);
 	client.heartbeat.outgoing = 0;
