@@ -2,9 +2,9 @@ $(function() {
 	console.log('Load Auto Update');
 	
 	//var ws = new WebSocket('ws://' + window.location.hostname + ':15674/ws');
-	var server = 'ws://ed-go.xyz:15674/ws';
+	var server = 'ws://websoket.ed-go.xyz/ws';
 	if (window.location.protocol.toLowerCase() == 'https:') {
-		server = 'wss://ed-go.xyz:15671/stomp';
+		server = 'wss://websoket.ed-go.xyz/ws';
 	}
 	var ws = new WebSocket(server);
 	
