@@ -32,6 +32,8 @@ public abstract class AbstractJournalEvent<T extends AbstractEventBean> implemen
 		put("Cargo", null);
 		put("Loadout", null);
 		put("Materials", null);
+		put("Fileheader", null);
+		put("Commander", null);
 	}};
 
 	//protected static Map<Long, >
