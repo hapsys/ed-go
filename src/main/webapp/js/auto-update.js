@@ -9,8 +9,8 @@ $(function() {
 	var ws = new WebSocket(server);
 	
 	var client = Stomp.over(ws);
-	client.heartbeat.outgoing = 0;
-	client.heartbeat.incoming = 0;
+	client.heartbeat.outgoing = 10000;
+	client.heartbeat.incoming = 10000;
 
 	client.debug = false;
 	
@@ -50,5 +50,7 @@ $(function() {
 				);			
 			
 		}
+		
+		return false;
 	});
 });
