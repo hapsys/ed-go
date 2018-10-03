@@ -36,7 +36,7 @@ $(function() {
 			
 			client.connect('remoteuser', 'remoteuser', 
 					function(arg1, arg2, arg3) {
-						client.subscribe("/exchange/edgo.topic/" + tag + '-' + encodeURIComponent(pilot), function(d) {
+						client.subscribe("/exchange/edgo.topic/" + tag + '-' + pilot, function(d) {
 							eval(callback + '();');
 				        });
 					},	

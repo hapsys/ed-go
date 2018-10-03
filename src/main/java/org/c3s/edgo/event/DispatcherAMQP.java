@@ -52,7 +52,7 @@ public class DispatcherAMQP {
 	
 	public void fireEvent(String[] tags, String pilotName) {
 		try {
-			String pilot = URLEncoder.encode(pilotName, "UTF-8");
+			String pilot = pilotName; //URLEncoder.encode(pilotName, "UTF-8");
 			for (String tag: tags) {
 				channel.basicPublish(exchange, tag + "-" + pilot, props, message);
 			}
