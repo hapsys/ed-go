@@ -71,7 +71,7 @@ public class MissionCompleted extends AbstractJournalEvent<MissionCompletedBean>
 						for (FactionEffect eff : bean.getFactionEffects()) {
 							if (eff.getFaction().length() > 0) {
 								DBFactionsBean faction = SystemsDAO.getOrInsertFaction(eff.getFaction());
-								DBMissionFactionEffectsBean missEff = MissionsDAO.insertMissionEffect(mission.getMissionId(), faction.getFactionId(), eff.getReputation());
+								DBMissionFactionEffectsBean missEff = MissionsDAO.insertMissionEffect(mission.getMissionId(), faction.getFactionId(), eff.getReputation(), eff.getReputationTrend());
 								if (eff.getEffects() != null) {
 									for (Effect effect: eff.getEffects()) {
 										DBEffectsBean dbEffect = MissionsDAO.getOrInsertEffect(effect.getEffect(), this.user.getLangId() , effect.getEffect_Localised());
@@ -81,7 +81,7 @@ public class MissionCompleted extends AbstractJournalEvent<MissionCompletedBean>
 								}
 								if (eff.getInfluence() != null) {
 									for (MissionInfluence infl: eff.getInfluence()) {
-										MissionsDAO.insertInfluence(missEff.getMissionFactionEffectId(), infl.getSystemAddress(), infl.getTrend());
+										MissionsDAO.insertInfluence(missEff.getMissionFactionEffectId(), infl.getSystemAddress(), infl.getTrend(), infl.getInfluence());
 									}
 								}
 							}

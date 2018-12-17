@@ -17,6 +17,21 @@ public class DBMissionFactionEffectsBean implements DbBean, Serializable {
 
 
 	
+	@DataSource({"reputation_trend", "reputationTrend"})
+	@DataTarget("reputation_trend")
+	@XMLSimple("reputationTrend")
+	private java.lang.String reputationTrend;
+	
+	public java.lang.String getReputationTrend() {
+		return reputationTrend;
+	}
+	
+	public DBMissionFactionEffectsBean setReputationTrend(java.lang.String value) {
+		this.reputationTrend = value;
+		return this;
+	}
+	
+	
 	@DataSource({"mission_id", "missionId"})
 	@DataTarget("mission_id")
 	@XMLSimple("missionId")

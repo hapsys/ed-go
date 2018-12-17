@@ -61,6 +61,21 @@ public class DBMissionFactionInfluenceBean implements DbBean, Serializable {
 		return this;
 	}
 	
+	
+	@DataSource({"influence", "influence"})
+	@DataTarget("influence")
+	@XMLSimple("influence")
+	private java.lang.String influence;
+	
+	public java.lang.String getInfluence() {
+		return influence;
+	}
+	
+	public DBMissionFactionInfluenceBean setInfluence(java.lang.String value) {
+		this.influence = value;
+		return this;
+	}
+	
 	@Override
 	public void setAutoincrementField(Object value) {
 		

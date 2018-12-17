@@ -8,6 +8,8 @@ public class MissionInfluence {
 	
 	private String Trend;
 
+	private String Influence;
+
 	public BigInteger getSystemAddress() {
 		return SystemAddress;
 	}
@@ -22,6 +24,14 @@ public class MissionInfluence {
 
 	public void setTrend(String trend) {
 		Trend = trend;
+	}
+
+	public String getInfluence() {
+		return Influence;
+	}
+
+	public void setInfluence(String influence) {
+		Influence = influence;
 	}
 	
 	

@@ -9,6 +9,8 @@ public class FactionEffect {
 	private MissionInfluence[] Influence; 
 	
 	private String Reputation;
+	
+	private String ReputationTrend;
 
 	public String getFaction() {
 		return Faction;
@@ -40,6 +42,14 @@ public class FactionEffect {
 
 	public void setReputation(String reputation) {
 		Reputation = reputation;
+	}
+
+	public String getReputationTrend() {
+		return ReputationTrend;
+	}
+
+	public void setReputationTrend(String reputationTrend) {
+		ReputationTrend = reputationTrend;
 	}
 	
 	

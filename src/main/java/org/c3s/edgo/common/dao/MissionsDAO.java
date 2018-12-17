@@ -166,16 +166,21 @@ public class MissionsDAO {
 		return bean;
 	}
 	
-	public static void insertInfluence(BigInteger missionEffectId, BigInteger systemAddress, String trend) throws IllegalArgumentException, IllegalAccessException, SQLException {
+	public static void insertInfluence(BigInteger missionEffectId, BigInteger systemAddress, String trend, String influence) throws IllegalArgumentException, IllegalAccessException, SQLException {
 		DBMissionFactionInfluenceBean bean = new DBMissionFactionInfluenceBean();
-		bean.setMissionFactionEffectId(missionEffectId).setSystemAddress(systemAddress).setTrend(trend);
+		bean.setMissionFactionEffectId(missionEffectId).setSystemAddress(systemAddress).setTrend(trend).setInfluence(influence);
 		DbAccess.missionFactionInfluenceAccess.insert(bean);
 	}
 	
-	public static DBMissionFactionEffectsBean insertMissionEffect(BigInteger missionId, Long factionId, String reputation) throws IllegalArgumentException, IllegalAccessException, SQLException {
+	public static DBMissionFactionEffectsBean insertMissionEffect(BigInteger missionId, Long factionId, String reputation, String reputationTrend) throws IllegalArgumentException, IllegalAccessException, SQLException {
 		DBMissionFactionEffectsBean bean = new DBMissionFactionEffectsBean();
 		
-		bean.setMissionId(missionId).setFactionId(factionId).setReputation(reputation);
+		if (reputationTrend == null) {
+			reputationTrend = reputation;
+			reputation = null;
+		}
+		
+		bean.setMissionId(missionId).setFactionId(factionId).setReputation(reputation).setReputationTrend(reputationTrend);
 		
 		DbAccess.missionFactionEffectsAccess.insert(bean);
 		
