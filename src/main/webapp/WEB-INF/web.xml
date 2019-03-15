@@ -157,7 +157,7 @@
 		 -->
 		<init-param>
 			<param-name>connection.edgo.driver</param-name>
-			<param-value>com.mysql.jdbc.Driver</param-value>
+			<param-value>org.mariadb.jdbc.Driver</param-value>
 		</init-param>
 		<!-- 
 		<init-param>
@@ -175,7 +175,7 @@
 		 -->
 		<init-param>
 			<param-name>connection.edgo.dsn</param-name>
-			<param-value>jdbc:mysql://192.168.0.10:3306/ed-go</param-value>
+			<param-value>jdbc:mariadb://192.168.0.10:3306/ed-go</param-value>
 		</init-param>
 		<init-param>
 			<param-name>connection.edgo.user</param-name>

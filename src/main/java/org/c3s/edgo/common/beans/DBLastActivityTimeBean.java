@@ -20,13 +20,13 @@ public class DBLastActivityTimeBean implements DbBean, Serializable {
 	@DataSource({"hours", "hours"})
 	@DataTarget("hours")
 	@XMLSimple("hours")
-	private java.lang.Long hours;
+	private java.lang.Integer hours;
 	
-	public java.lang.Long getHours() {
+	public java.lang.Integer getHours() {
 		return hours;
 	}
 	
-	public DBLastActivityTimeBean setHours(java.lang.Long value) {
+	public DBLastActivityTimeBean setHours(java.lang.Integer value) {
 		this.hours = value;
 		return this;
 	}
@@ -35,13 +35,13 @@ public class DBLastActivityTimeBean implements DbBean, Serializable {
 	@DataSource({"seconds", "seconds"})
 	@DataTarget("seconds")
 	@XMLSimple("seconds")
-	private java.lang.Long seconds;
+	private java.lang.Integer seconds;
 	
-	public java.lang.Long getSeconds() {
+	public java.lang.Integer getSeconds() {
 		return seconds;
 	}
 	
-	public DBLastActivityTimeBean setSeconds(java.lang.Long value) {
+	public DBLastActivityTimeBean setSeconds(java.lang.Integer value) {
 		this.seconds = value;
 		return this;
 	}
@@ -50,13 +50,13 @@ public class DBLastActivityTimeBean implements DbBean, Serializable {
 	@DataSource({"year", "year"})
 	@DataTarget("year")
 	@XMLSimple("year")
-	private java.lang.Long year;
+	private java.lang.Integer year;
 	
-	public java.lang.Long getYear() {
+	public java.lang.Integer getYear() {
 		return year;
 	}
 	
-	public DBLastActivityTimeBean setYear(java.lang.Long value) {
+	public DBLastActivityTimeBean setYear(java.lang.Integer value) {
 		this.year = value;
 		return this;
 	}
@@ -65,13 +65,13 @@ public class DBLastActivityTimeBean implements DbBean, Serializable {
 	@DataSource({"minutes", "minutes"})
 	@DataTarget("minutes")
 	@XMLSimple("minutes")
-	private java.lang.Long minutes;
+	private java.lang.Integer minutes;
 	
-	public java.lang.Long getMinutes() {
+	public java.lang.Integer getMinutes() {
 		return minutes;
 	}
 	
-	public DBLastActivityTimeBean setMinutes(java.lang.Long value) {
+	public DBLastActivityTimeBean setMinutes(java.lang.Integer value) {
 		this.minutes = value;
 		return this;
 	}
@@ -95,13 +95,13 @@ public class DBLastActivityTimeBean implements DbBean, Serializable {
 	@DataSource({"days", "days"})
 	@DataTarget("days")
 	@XMLSimple("days")
-	private java.lang.Long days;
+	private java.lang.Integer days;
 	
-	public java.lang.Long getDays() {
+	public java.lang.Integer getDays() {
 		return days;
 	}
 	
-	public DBLastActivityTimeBean setDays(java.lang.Long value) {
+	public DBLastActivityTimeBean setDays(java.lang.Integer value) {
 		this.days = value;
 		return this;
 	}
@@ -110,13 +110,13 @@ public class DBLastActivityTimeBean implements DbBean, Serializable {
 	@DataSource({"monthes", "monthes"})
 	@DataTarget("monthes")
 	@XMLSimple("monthes")
-	private java.lang.Long monthes;
+	private java.lang.Integer monthes;
 	
-	public java.lang.Long getMonthes() {
+	public java.lang.Integer getMonthes() {
 		return monthes;
 	}
 	
-	public DBLastActivityTimeBean setMonthes(java.lang.Long value) {
+	public DBLastActivityTimeBean setMonthes(java.lang.Integer value) {
 		this.monthes = value;
 		return this;
 	}

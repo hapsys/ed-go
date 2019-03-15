@@ -35,13 +35,13 @@ public class DBHistoryActivityBean implements DbBean, Serializable {
 	@DataSource({"event_date", "eventDate"})
 	@DataTarget("event_date")
 	@XMLSimple("eventDate")
-	private java.lang.Long eventDate;
+	private java.lang.Integer eventDate;
 	
-	public java.lang.Long getEventDate() {
+	public java.lang.Integer getEventDate() {
 		return eventDate;
 	}
 	
-	public DBHistoryActivityBean setEventDate(java.lang.Long value) {
+	public DBHistoryActivityBean setEventDate(java.lang.Integer value) {
 		this.eventDate = value;
 		return this;
 	}

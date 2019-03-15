@@ -20,13 +20,13 @@ public class DBPilotsRelationsBean implements DbBean, Serializable {
 	@DataSource({"is_me", "isMe"})
 	@DataTarget("is_me")
 	@XMLSimple("isMe")
-	private java.lang.Long isMe;
+	private java.lang.Integer isMe;
 	
-	public java.lang.Long getIsMe() {
+	public java.lang.Integer getIsMe() {
 		return isMe;
 	}
 	
-	public DBPilotsRelationsBean setIsMe(java.lang.Long value) {
+	public DBPilotsRelationsBean setIsMe(java.lang.Integer value) {
 		this.isMe = value;
 		return this;
 	}
@@ -35,13 +35,13 @@ public class DBPilotsRelationsBean implements DbBean, Serializable {
 	@DataSource({"relation", "relation"})
 	@DataTarget("relation")
 	@XMLSimple("relation")
-	private java.lang.Long relation;
+	private java.math.BigDecimal relation;
 	
-	public java.lang.Long getRelation() {
+	public java.math.BigDecimal getRelation() {
 		return relation;
 	}
 	
-	public DBPilotsRelationsBean setRelation(java.lang.Long value) {
+	public DBPilotsRelationsBean setRelation(java.math.BigDecimal value) {
 		this.relation = value;
 		return this;
 	}

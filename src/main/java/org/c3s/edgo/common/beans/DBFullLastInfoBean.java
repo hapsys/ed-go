@@ -305,13 +305,13 @@ public class DBFullLastInfoBean implements DbBean, Serializable {
 	@DataSource({"quered_events", "queredEvents"})
 	@DataTarget("quered_events")
 	@XMLSimple("queredEvents")
-	private java.lang.Long queredEvents;
+	private java.lang.Integer queredEvents;
 	
-	public java.lang.Long getQueredEvents() {
+	public java.lang.Integer getQueredEvents() {
 		return queredEvents;
 	}
 	
-	public DBFullLastInfoBean setQueredEvents(java.lang.Long value) {
+	public DBFullLastInfoBean setQueredEvents(java.lang.Integer value) {
 		this.queredEvents = value;
 		return this;
 	}

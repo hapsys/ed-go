@@ -1,6 +1,7 @@
 package org.c3s.edgo.web.controllers;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.sql.SQLException;
@@ -207,19 +208,19 @@ public class Commander extends GeneralController {
 			li.setFlyMode(i10n(getFlyMode(li.getIsSupercruise())));
 			li.setGameMode(i10n(li.getGameMode()));
 			//li.setLastSeen(this.getDiff(li.getLastEvent()));
-			li.setQueredEvents(DbAccess.eventsAccess.getQueriedEvents(current.getUserId()).getQueredEvents());
+			li.setQueredEvents(DbAccess.eventsAccess.getQueriedEvents(current.getUserId()).getQueredEvents().intValue());
 			current.setLastInfo(li);
 			
 			Document xml = new XMLReflectionObj(current, true).toXML();	
 			
 			DBEventMaxMinDateForPilotBean minmax = DbAccess.eventsHistoryAccess.getEventMaxMinDateForPilot(new InInjector("p.pilot_id", linkedPilots));
 			
-			if (minmax != null && minmax.getMinDate() != null && minmax.getMinDate().length() > 0) {
-				xml.getDocumentElement().setAttribute("mindate", minmax.getMinDate());
-				xml.getDocumentElement().setAttribute("maxdate", minmax.getMaxDate());
+			if (minmax != null && minmax.getMinDate() != null && minmax.getMinDate().toString().length() > 0) {
+				xml.getDocumentElement().setAttribute("mindate", minmax.getMinDate().toString());
+				xml.getDocumentElement().setAttribute("maxdate", minmax.getMaxDate().toString());
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				SimpleDateFormat monthFormat = new SimpleDateFormat("LLLL yyyy", Locale.US);
-				String monthYear = monthFormat.format(dateFormat.parse(minmax.getMaxDate()));
+				String monthYear = monthFormat.format(dateFormat.parse(minmax.getMaxDate().toString()));
 				xml.getDocumentElement().setAttribute("currentdate", monthYear);
 			}
 			
@@ -241,7 +242,7 @@ public class Commander extends GeneralController {
 			li.setFlyMode(i10n(getFlyMode(li.getIsSupercruise())));
 			li.setGameMode(i10n(li.getGameMode()));
 			//li.setLastSeen(this.getDiff(li.getLastEvent()));
-			li.setQueredEvents(DbAccess.eventsAccess.getQueriedEvents(current.getUserId()).getQueredEvents());
+			li.setQueredEvents(DbAccess.eventsAccess.getQueriedEvents(current.getUserId()).getQueredEvents().intValue());
 			current.setLastInfo(li);
 			
 			ContentObject.getInstance().setData(tag, new Result().put("info", current).get());
@@ -931,14 +932,14 @@ public class Commander extends GeneralController {
 				
 				if (user == null) {
 					relations = new ArrayList<>();
-					relations.add(new DBPilotsRelationsBean().setRelation(Relation.UNKNOWN.getMask()).setIsMe(0L));
+					relations.add(new DBPilotsRelationsBean().setRelation(new BigDecimal(Relation.UNKNOWN.getMask())).setIsMe(0));
 				} else if (user.getUserId().equals(pilot.getUserId())) {
 					passed = true;
 				} else {
 					relations = DbAccess.pilotRelationsAccess.getPilotsRelations(user.getUserId(), pilot.getPilotId());
 					if (relations == null) {
 						relations = new ArrayList<>();
-						relations.add(new DBPilotsRelationsBean().setRelation(Relation.LOGGED.getMask()).setIsMe(0L));
+						relations.add(new DBPilotsRelationsBean().setRelation(new BigDecimal(Relation.LOGGED.getMask())).setIsMe(0));
 					}
 				}
 				
@@ -965,7 +966,7 @@ public class Commander extends GeneralController {
 					if (link != null) {
 						for (DBPilotsRelationsBean rel: relations) {
 							//System.out.println(rel.getRelation());
-							passed = (link.getLevel().intValue() & rel.getRelation()) != 0;
+							passed = (link.getLevel().intValue() & rel.getRelation().longValueExact()) != 0;
 							if (passed) {
 								break;
 							}
