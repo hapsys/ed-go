@@ -169,8 +169,6 @@ public class DBModifyersByPilotModuleIdBean implements DbBean, Serializable {
 	@Override
 	public void setAutoincrementField(Object value) {
 		
-		setModifierId(new java.lang.Long(value.toString()));
-		
 	}	
 	
 }

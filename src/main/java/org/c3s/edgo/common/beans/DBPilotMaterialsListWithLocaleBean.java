@@ -35,13 +35,13 @@ public class DBPilotMaterialsListWithLocaleBean implements DbBean, Serializable 
 	@DataSource({"quantity", "quantity"})
 	@DataTarget("quantity")
 	@XMLSimple("quantity")
-	private java.lang.Integer quantity;
+	private java.lang.Long quantity;
 	
-	public java.lang.Integer getQuantity() {
+	public java.lang.Long getQuantity() {
 		return quantity;
 	}
 	
-	public DBPilotMaterialsListWithLocaleBean setQuantity(java.lang.Integer value) {
+	public DBPilotMaterialsListWithLocaleBean setQuantity(java.lang.Long value) {
 		this.quantity = value;
 		return this;
 	}

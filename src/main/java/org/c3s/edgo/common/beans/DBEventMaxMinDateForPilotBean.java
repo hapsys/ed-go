@@ -20,13 +20,13 @@ public class DBEventMaxMinDateForPilotBean implements DbBean, Serializable {
 	@DataSource({"max_date", "maxDate"})
 	@DataTarget("max_date")
 	@XMLSimple("maxDate")
-	private java.sql.Date maxDate;
+	private java.lang.String maxDate;
 	
-	public java.sql.Date getMaxDate() {
+	public java.lang.String getMaxDate() {
 		return maxDate;
 	}
 	
-	public DBEventMaxMinDateForPilotBean setMaxDate(java.sql.Date value) {
+	public DBEventMaxMinDateForPilotBean setMaxDate(java.lang.String value) {
 		this.maxDate = value;
 		return this;
 	}
@@ -35,13 +35,13 @@ public class DBEventMaxMinDateForPilotBean implements DbBean, Serializable {
 	@DataSource({"min_date", "minDate"})
 	@DataTarget("min_date")
 	@XMLSimple("minDate")
-	private java.sql.Date minDate;
+	private java.lang.String minDate;
 	
-	public java.sql.Date getMinDate() {
+	public java.lang.String getMinDate() {
 		return minDate;
 	}
 	
-	public DBEventMaxMinDateForPilotBean setMinDate(java.sql.Date value) {
+	public DBEventMaxMinDateForPilotBean setMinDate(java.lang.String value) {
 		this.minDate = value;
 		return this;
 	}

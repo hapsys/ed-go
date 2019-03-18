@@ -35,13 +35,13 @@ public class DBAjaxPilotInfoLinkWithDefaultsBean implements DbBean, Serializable
 	@DataSource({"level", "level"})
 	@DataTarget("level")
 	@XMLSimple("level")
-	private java.lang.Long level;
+	private java.math.BigInteger level;
 	
-	public java.lang.Long getLevel() {
+	public java.math.BigInteger getLevel() {
 		return level;
 	}
 	
-	public DBAjaxPilotInfoLinkWithDefaultsBean setLevel(java.lang.Long value) {
+	public DBAjaxPilotInfoLinkWithDefaultsBean setLevel(java.math.BigInteger value) {
 		this.level = value;
 		return this;
 	}

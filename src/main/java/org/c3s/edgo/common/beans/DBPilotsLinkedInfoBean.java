@@ -124,8 +124,6 @@ public class DBPilotsLinkedInfoBean implements DbBean, Serializable {
 	@Override
 	public void setAutoincrementField(Object value) {
 		
-		setPilotId(new java.lang.Long(value.toString()));
-		
 	}	
 	
 }

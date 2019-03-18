@@ -320,10 +320,6 @@ public class DBPilotShipsListBean implements DbBean, Serializable {
 	@Override
 	public void setAutoincrementField(Object value) {
 		
-		setPilotShipId(new java.lang.Long(value.toString()));
-		
-		setShipId(new java.lang.Long(value.toString()));
-		
 	}	
 	
 }

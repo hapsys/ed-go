@@ -341,7 +341,7 @@
 	    		<annotation>@XMLFieldList</annotation>
 			</result_column>
 			<sql>
-				SELECT ps.pilot_ship_id, sh.ship_name, sl.slot_uniq, cs.name as coriolis_name, json_extract(cm.data, '$.id') as coriolis_id, st.slot_type_name, st.slot_type_id, m.*, mg.*, 
+				SELECT ps.pilot_ship_id, sh.ship_name, sl.slot_uniq, cs.name as coriolis_name, cm.data-&gt;&gt;'$.id' as coriolis_id, st.slot_type_name, st.slot_type_id, m.*, mg.*, 
 				CAST(IF(ISNULL(ss.link_size), sl.size, ss.link_size) AS CHAR(1)) as link_size,
 				mr.recipie_level, mr.module_recipe_id, r.*, me.effect_name 
 				FROM (pilot_ships ps, ships sh, ship_slots ss, slots sl, slot_types st, languages l)
