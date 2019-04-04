@@ -35,7 +35,7 @@ public class Docked extends AbstractJournalEvent<DockedBean> {
 						gov = RegexpUtils.preg_replace("~^.*_(.+);?$~is", gov, "$1");
 					}
 					SystemsDAO.updateStationFactionControl(bean.getTimestamp(), bean.getStarSystem(), bean.getStationName(), bean.getMarketID(), bean.getStationType(), bean.getDistFromStarLS(), 
-							bean.getStationFaction(), gov, bean.getStationAllegiance());
+							bean.getStationFaction() != null?bean.getStationFaction().getName():null, gov, bean.getStationAllegiance());
 				}
 				// Insert cruise mode
 				DbAccess.pilotLastInfoAccess.updateSupercruiseFlag(3L, pilot.getPilotId());

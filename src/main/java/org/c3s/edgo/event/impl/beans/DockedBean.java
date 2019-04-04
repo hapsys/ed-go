@@ -4,6 +4,10 @@ import java.math.BigInteger;
 import java.util.Date;
 
 import org.c3s.edgo.event.AbstractEventBean;
+import org.c3s.edgo.event.impl.beans.intl.FactionBean;
+import org.c3s.edgo.utils.json.SystemFactionAdapter;
+
+import com.google.gson.annotations.JsonAdapter;
 
 public class DockedBean extends AbstractEventBean {
 
@@ -28,7 +32,8 @@ public class DockedBean extends AbstractEventBean {
 	/**
 	 * stations controlling faction
 	 */
-	private String StationFaction;
+	@JsonAdapter(SystemFactionAdapter.class)
+	private FactionBean StationFaction;
 	/**
 	 * 
 	 */
@@ -148,14 +153,14 @@ public class DockedBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getStationFaction() {
+	public FactionBean getStationFaction() {
 		return StationFaction;
 	}
 
 	/**
 	 * @param stationfaction
 	 */
-	public void setStationFaction(String stationfaction) {
+	public void setStationFaction(FactionBean stationfaction) {
 		this.StationFaction = stationfaction;
 	}
 
