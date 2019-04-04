@@ -5,6 +5,9 @@ import java.util.Date;
 
 import org.c3s.edgo.event.AbstractEventBean;
 import org.c3s.edgo.event.impl.beans.intl.FactionBean;
+import org.c3s.edgo.utils.json.SystemFactionAdapter;
+
+import com.google.gson.annotations.JsonAdapter;
 
 public class FSDJumpBean extends AbstractEventBean {
 
@@ -41,7 +44,8 @@ public class FSDJumpBean extends AbstractEventBean {
 	/**
 	 * system controlling faction
 	 */
-	private String SystemFaction;
+	@JsonAdapter(SystemFactionAdapter.class)
+	private FactionBean SystemFaction;
 	/**
 	 * 
 	 */
@@ -229,14 +233,14 @@ public class FSDJumpBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getSystemFaction() {
+	public FactionBean getSystemFaction() {
 		return SystemFaction;
 	}
 
 	/**
 	 * @param systemfaction
 	 */
-	public void setSystemFaction(String systemfaction) {
+	public void setSystemFaction(FactionBean systemfaction) {
 		this.SystemFaction = systemfaction;
 	}
 

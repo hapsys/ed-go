@@ -39,7 +39,7 @@ public class FSDJump extends AbstractJournalEvent<FSDJumpBean> {
 					if (gov != null && gov.startsWith("$government_")) {
 						gov = RegexpUtils.preg_replace("~^.*_(.+);?$~is", gov, "$1");
 					}
-					SystemsDAO.updateSystemFactionControl(bean.getTimestamp(), bean.getStarSystem(), bean.getStarPos(), bean.getSystemAddress(), bean.getSystemFaction(), gov, bean.getSystemAllegiance());
+					SystemsDAO.updateSystemFactionControl(bean.getTimestamp(), bean.getStarSystem(), bean.getStarPos(), bean.getSystemAddress(), bean.getSystemFaction() != null?bean.getSystemFaction().getName():null, gov, bean.getSystemAllegiance());
 				}
 				
 				// Update last info supercruise

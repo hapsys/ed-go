@@ -6,6 +6,9 @@ import java.util.Date;
 import org.c3s.edgo.event.AbstractEventBean;
 import org.c3s.edgo.event.impl.beans.intl.FactionBean;
 
+import com.google.gson.annotations.JsonAdapter;
+import org.c3s.edgo.utils.json.SystemFactionAdapter;
+
 public class LocationBean extends AbstractEventBean {
 
 	private Date timestamp;
@@ -52,7 +55,10 @@ public class LocationBean extends AbstractEventBean {
 	/**
 	 * star system controlling faction
 	 */
-	private String SystemFaction;
+	
+	//private String SystemFaction;
+	@JsonAdapter(SystemFactionAdapter.class)
+	private FactionBean SystemFaction;
 	/**
 	 * 
 	 */
@@ -216,14 +222,14 @@ public class LocationBean extends AbstractEventBean {
 	/**
 	 * @return
 	 */
-	public String getSystemFaction() {
+	public FactionBean getSystemFaction() {
 		return SystemFaction;
 	}
 
 	/**
 	 * @param systemfaction
 	 */
-	public void setSystemFaction(String systemfaction) {
+	public void setSystemFaction(FactionBean systemfaction) {
 		this.SystemFaction = systemfaction;
 	}
 

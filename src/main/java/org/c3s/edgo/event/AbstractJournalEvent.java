@@ -66,7 +66,18 @@ public abstract class AbstractJournalEvent<T extends AbstractEventBean> implemen
 				if ("CompanionApi".equals(event.getEventName())) {
 					json = json.replaceAll("\\[\\]", "{}");
 				}
-				T bean = JSONUtils.fromJSON(json, this.beanClass);
+				
+				T bean = null;
+				try {
+					bean = JSONUtils.fromJSON(json, this.beanClass);
+				} catch (Exception e) {
+					logger.error("Error at event: {}", event.getEventName());
+					logger.error("Error json: {}", event.getEventJson());
+					//logger.error("See json pls. \n{}", (Object[])e.getStackTrace());
+					logger.error("{}", e.getMessage(), e);
+					// update Evnt Error Info
+					System.exit(0);
+				}
 				
 				/**
 				 * + Update game mode 
