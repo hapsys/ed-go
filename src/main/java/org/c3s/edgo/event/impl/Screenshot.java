@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.sql.Timestamp;
 import java.util.Base64;
+import java.util.Date;
 import java.util.List;
 
 import org.c3s.edgo.common.access.DbAccess;
@@ -93,6 +94,7 @@ public class Screenshot extends AbstractJournalEvent<ScreenshotBean> {
 						}
 						
 						DBImageTumbnailsBean tbn = new DBImageTumbnailsBean()
+							.setCreateTime(new Timestamp(new Date().getTime()))
 							.setConfigId(config.getConfigId())
 							.setImageId(image.getImageId())
 							.setWidth((long)it.getImage().getWidth())

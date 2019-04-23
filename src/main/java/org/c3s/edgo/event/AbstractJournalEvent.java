@@ -170,6 +170,7 @@ public abstract class AbstractJournalEvent<T extends AbstractEventBean> implemen
 				bean.setEventName(event.getEventName());
 				bean.setEventTimestamp(new Timestamp(timestamp.getTime()));
 				bean.setEventHash(event.getJsonMd5());
+				bean.setCreateTime(new Timestamp(new Date().getTime()));
 				DbAccess.eventsHistoryAccess.insert(bean);
 			}
 			
