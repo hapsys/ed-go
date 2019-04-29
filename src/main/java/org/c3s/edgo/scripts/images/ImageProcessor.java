@@ -8,7 +8,6 @@ import java.util.Properties;
 import org.c3s.db.DBManager;
 import org.c3s.edgo.common.access.DbAccess;
 import org.c3s.edgo.common.beans.DBImageConfigsBean;
-import org.c3s.edgo.common.beans.DBImageTumbnailsBean;
 import org.c3s.edgo.common.beans.DBImagesBean;
 import org.c3s.edgo.event.impl.Screenshot;
 import org.c3s.edgo.utils.image.ImageTransformer;
@@ -20,7 +19,7 @@ public class ImageProcessor {
 		Properties props = new Properties();
 		props.put("user", "hapsys");
 		props.put("password", "123467890");
-		DBManager.getConnection("edgo", "com.mysql.jdbc.Driver", "jdbc:mysql://192.168.0.10:3306/ed-go", props);
+		DBManager.getConnection("edgo", "com.mysql.cj.jdbc.Driver", "jdbc:mysql://192.168.0.10:3306/ed-go", props);
 		
 		List<DBImagesBean> images = DbAccess.imagesAccess.getActiveImages();
 		

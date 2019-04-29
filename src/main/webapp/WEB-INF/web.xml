@@ -157,7 +157,7 @@
 		 -->
 		<init-param>
 			<param-name>connection.edgo.driver</param-name>
-			<param-value>com.mysql.jdbc.Driver</param-value>
+			<param-value>com.mysql.cj.jdbc.Driver</param-value>
 		</init-param>
 		<!-- 
 		<init-param>

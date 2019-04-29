@@ -1,12 +1,14 @@
 package org.c3s.edgo.event.impl.beans.intl.loadout30;
 
+import java.math.BigInteger;
+
 public class Engineering {
 
-	private long EngineerID;
+	private BigInteger EngineerID;
 	
 	private String Engineer;
 	
-	private long BlueprintID;
+	private BigInteger BlueprintID;
 	
 	private String BlueprintName;
 	
@@ -21,11 +23,11 @@ public class Engineering {
 	//private Modification[] Modifiers;
 	private Modification[] Modifiers;
 
-	public long getEngineerID() {
+	public BigInteger getEngineerID() {
 		return EngineerID;
 	}
 
-	public void setEngineerID(long engineerID) {
+	public void setEngineerID(BigInteger engineerID) {
 		EngineerID = engineerID;
 	}
 
@@ -37,11 +39,11 @@ public class Engineering {
 		Engineer = engineer;
 	}
 
-	public long getBlueprintID() {
+	public BigInteger getBlueprintID() {
 		return BlueprintID;
 	}
 
-	public void setBlueprintID(long blueprintID) {
+	public void setBlueprintID(BigInteger blueprintID) {
 		BlueprintID = blueprintID;
 	}
 
