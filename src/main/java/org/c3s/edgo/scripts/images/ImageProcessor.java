@@ -16,6 +16,7 @@ import org.c3s.edgo.utils.image.ImageUtils;
 public class ImageProcessor {
 
 	public static void main(String[] args) throws Exception {
+		
 		Properties props = new Properties();
 		props.put("user", "hapsys");
 		props.put("password", "123467890");
