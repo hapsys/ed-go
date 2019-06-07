@@ -6,6 +6,7 @@ package org.c3s.edgo.scripts.check;
 import java.math.BigInteger;
 import java.sql.SQLException;
 import java.util.Properties;
+import java.util.TimeZone;
 
 import org.c3s.db.DBManager;
 import org.c3s.edgo.common.access.DbAccess;
@@ -36,6 +37,9 @@ public class ProcessSingleEvent {
 	 * @throws IllegalArgumentException 
 	 */
 	public static void main(String[] args) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		
+		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+		
 		// TODO Auto-generated method stub
 
 		Properties props = new Properties();
@@ -45,6 +49,7 @@ public class ProcessSingleEvent {
 		//DBManager.getConnection("edgo", "com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ed-go", props);
 		props.put("user", "hapsys");
 		props.put("password", "123467890");
+		props.put("useServerPrepStmts", "true");
 		DBManager.getConnection("edgo", "com.mysql.cj.jdbc.Driver", "jdbc:mysql://192.168.0.10:3306/ed-go", props);
 		
 		// Register events
@@ -53,7 +58,7 @@ public class ProcessSingleEvent {
 		StorageFactory.register(StorageType.APPLICATION, new ApplicationStorage());
 		
 		// Process event
-		DBEventsBean evt = DbAccess.eventsAccess.getByPrimaryKey(new BigInteger("458223912169131"));
+		DBEventsBean evt = DbAccess.eventsAccess.getByPrimaryKey(new BigInteger("22149419968299"));
 		
 		EventMd5Transform.eventTransformMD5(evt);
 		String eventTime = evt.getEventJson().substring(15, 35);
