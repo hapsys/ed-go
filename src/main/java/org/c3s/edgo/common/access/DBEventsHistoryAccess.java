@@ -82,8 +82,6 @@ public class DBEventsHistoryAccess extends Access {
 		}
 		
 		
-		
-		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByUserIdTimestampAndHash", sql ,  paramUserId,  paramEventTimestamp,  paramEventHash);
 		if (result != null) {
 			

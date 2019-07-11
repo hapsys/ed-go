@@ -76,7 +76,12 @@ public class MissionCompleted extends AbstractJournalEvent<MissionCompletedBean>
 									for (Effect effect: eff.getEffects()) {
 										DBEffectsBean dbEffect = MissionsDAO.getOrInsertEffect(effect.getEffect(), this.user.getLangId() , effect.getEffect_Localised());
 										DBMissionEffectsBean dbMissionEffectsBean = (new DBMissionEffectsBean()).setEffectId(dbEffect.getEffectId()).setMissionFactionEffectId(missEff.getMissionFactionEffectId()).setTrend(effect.getTrend());
-										DbAccess.missionEffectsAccess.insert(dbMissionEffectsBean);
+										// TODO костыль бля!
+										try {
+											DbAccess.missionEffectsAccess.insert(dbMissionEffectsBean);
+										} catch (Exception e) {
+											logger.info("!!!!!!!!! Seee it!!!!!", e);
+										}
 									}
 								}
 								if (eff.getInfluence() != null) {

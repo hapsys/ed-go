@@ -65,13 +65,13 @@ public class DBActivityBean implements DbBean, Serializable {
 	@DataSource({"event_date", "eventDate"})
 	@DataTarget("event_date")
 	@XMLSimple("eventDate")
-	private java.lang.Integer eventDate;
+	private java.lang.Long eventDate;
 	
-	public java.lang.Integer getEventDate() {
+	public java.lang.Long getEventDate() {
 		return eventDate;
 	}
 	
-	public DBActivityBean setEventDate(java.lang.Integer value) {
+	public DBActivityBean setEventDate(java.lang.Long value) {
 		this.eventDate = value;
 		return this;
 	}

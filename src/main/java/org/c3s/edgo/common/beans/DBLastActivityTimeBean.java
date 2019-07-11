@@ -50,13 +50,13 @@ public class DBLastActivityTimeBean implements DbBean, Serializable {
 	@DataSource({"year", "year"})
 	@DataTarget("year")
 	@XMLSimple("year")
-	private java.lang.Long year;
+	private java.math.BigInteger year;
 	
-	public java.lang.Long getYear() {
+	public java.math.BigInteger getYear() {
 		return year;
 	}
 	
-	public DBLastActivityTimeBean setYear(java.lang.Long value) {
+	public DBLastActivityTimeBean setYear(java.math.BigInteger value) {
 		this.year = value;
 		return this;
 	}
