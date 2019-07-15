@@ -21,6 +21,7 @@ import org.c3s.db.injectors.SqlInjectorInterface;
 import org.c3s.db.injectors.EmptySqlInjector;
 import org.c3s.data.mapers.*;
 import org.c3s.data.cast.*;
+import org.c3s.edgo.utils.cast.EdGoCast;
 
 <!--
 <xsl:for-each select="table/bean">import <xsl:value-of select="$package"/>.beans.DB<xsl:value-of select="@name"/>Bean;
@@ -36,7 +37,7 @@ public class <xsl:value-of select="$class_name"/> extends Access {
 		return getCon();
 	}
 	
-	private DataMapper dataMapper = new GeneralDataMapper(new GeneralCastType()); 
+	private DataMapper dataMapper = new GeneralDataMapper(new EdGoCast()); 
 	
 	protected void setNames() {
 		con_name = "<xsl:value-of select="table/@connection"/>";

@@ -15,6 +15,7 @@ import org.c3s.db.injectors.SqlInjectorInterface;
 import org.c3s.db.injectors.EmptySqlInjector;
 import org.c3s.data.mapers.*;
 import org.c3s.data.cast.*;
+import org.c3s.edgo.utils.cast.EdGoCast;
 
 
 import org.c3s.edgo.common.beans.*;
@@ -27,7 +28,7 @@ public class DBEventsHistoryAccess extends Access {
 		return getCon();
 	}
 	
-	private DataMapper dataMapper = new GeneralDataMapper(new GeneralCastType()); 
+	private DataMapper dataMapper = new GeneralDataMapper(new EdGoCast()); 
 	
 	protected void setNames() {
 		con_name = "edgo";
@@ -80,6 +81,8 @@ public class DBEventsHistoryAccess extends Access {
 		} else {
 			sql += " LIMIT 1";
 		}
+		
+		
 		
 		
 		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByUserIdTimestampAndHash", sql ,  paramUserId,  paramEventTimestamp,  paramEventHash);

@@ -24,7 +24,7 @@ public class ProcessEvents {
 		props.put("user", "hapsys");
 		props.put("password", "123467890");
 		props.put("useServerPrepStmts", "true");
-		DBManager.getConnection("edgo", "com.mysql.cj.jdbc.Driver", "jdbc:mysql://192.168.0.10:3306/ed-go", props);
+		DBManager.getConnection("edgo", "com.mysql.cj.jdbc.Driver", "jdbc:mysql://192.168.0.10:3306/ed-go?useServerPrepStmts=true", props);
 		
 		// Clear events
 		DbAccess.eventsAccess.updateClearEvents();
