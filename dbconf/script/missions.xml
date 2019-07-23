@@ -36,7 +36,8 @@
 			<sql>
 				SELECT m.*, DATE_FORMAT(m.complete_date, '%Y-%m-%d %T') AS mission_date, t.*, f.faction_id, f.name as faction_name, s.name as system_name, st.name as station_name, 
 					s1.name as target_system_name, st1.name as target_station_name,
-					GROUP_CONCAT(DISTINCT rc.commodity_id SEPARATOR ',') as commodity_idx, GROUP_CONCAT(DISTINCT rm.material_id SEPARATOR ',') as material_idx
+					GROUP_CONCAT(DISTINCT rc.commodity_id SEPARATOR ',') as commodity_idx, GROUP_CONCAT(DISTINCT rm.material_id SEPARATOR ',') as material_idx,
+					mfe.reputation as rep, mfi.influence as inf
 				FROM mission_types t, factions f, (missions m, station_history h)
 				LEFT JOIN reward_commodities rc ON rc.mission_id = m.mission_id 
 				LEFT JOIN reward_materials rm ON rm.mission_id = m.mission_id
@@ -46,6 +47,9 @@
 				LEFT JOIN systems s1 ON s1.system_id = m.target_system_id
 				LEFT JOIN stations st1 ON st1.station_id = m.target_station_id
 				LEFT JOIN bodies b ON b.body_id = h.body_id
+				
+				LEFT JOIN mission_faction_effects mfe ON mfe.mission_id = m.mission_id AND mfe.faction_id = m.faction_id
+				LEFT JOIN mission_faction_influence mfi ON mfi.mission_faction_effect_id = mfe.mission_faction_effect_id AND mfi.system_address = s.system_address   
 				WHERE 1=1 
 				<where/>
 				AND NOT ISNULL(m.complete_date)

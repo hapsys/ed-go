@@ -197,6 +197,21 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	}
 	
 	
+	@DataSource({"rep", "rep"})
+	@DataTarget("reputation")
+	@XMLSimple("rep")
+	private java.lang.String rep;
+	
+	public java.lang.String getRep() {
+		return rep;
+	}
+	
+	public DBMissionsComplitedListByPilotsBean setRep(java.lang.String value) {
+		this.rep = value;
+		return this;
+	}
+	
+	
 	@DataSource({"mission_type_id", "missionTypeId"})
 	@DataTarget("mission_type_id")
 	@XMLSimple("missionTypeId")
@@ -253,6 +268,21 @@ public class DBMissionsComplitedListByPilotsBean implements DbBean, Serializable
 	
 	public DBMissionsComplitedListByPilotsBean setStationName(java.lang.String value) {
 		this.stationName = value;
+		return this;
+	}
+	
+	
+	@DataSource({"inf", "inf"})
+	@DataTarget("influence")
+	@XMLSimple("inf")
+	private java.lang.String inf;
+	
+	public java.lang.String getInf() {
+		return inf;
+	}
+	
+	public DBMissionsComplitedListByPilotsBean setInf(java.lang.String value) {
+		this.inf = value;
 		return this;
 	}
 	

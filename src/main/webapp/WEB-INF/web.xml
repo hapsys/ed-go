@@ -175,7 +175,7 @@
 		 -->
 		<init-param>
 			<param-name>connection.edgo.dsn</param-name>
-			<param-value>jdbc:mysql://192.168.0.10:3306/ed-go?useServerPrepStmts=true</param-value>
+			<param-value>jdbc:mysql://192.168.0.10:3306/ed-go?useServerPrepStmts=true&amp;autoReconnect=true</param-value>
 		</init-param>
 		<init-param>
 			<param-name>connection.edgo.user</param-name>

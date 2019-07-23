@@ -1023,12 +1023,16 @@
 	<xsl:template name="view_missions">
 		<xsl:variable name="lang"><xsl:value-of select="$root"/><xsl:if test="$politic = 'suffix' and $default != 'true'">/<xsl:value-of select="$suffix"/></xsl:if></xsl:variable>
 		<xsl:variable name="total" select="format-number(sum(childs/item/field[@name='reward']/@value), '### ### ### ###', 'revards')"/>	
-		<xsl:variable name="infH" select="count(childs/item[field[@name='influence' and @value = 'High']])"/>	
-		<xsl:variable name="infM" select="count(childs/item[field[@name='influence' and @value = 'Med']])"/>	
-		<xsl:variable name="infL" select="count(childs/item[field[@name='influence' and @value = 'Low']])"/>	
-		<xsl:variable name="repH" select="count(childs/item[field[@name='reputation' and @value = 'High']])"/>	
-		<xsl:variable name="repM" select="count(childs/item[field[@name='reputation' and @value = 'Med']])"/>	
-		<xsl:variable name="repL" select="count(childs/item[field[@name='reputation' and @value = 'Low']])"/>
+		<xsl:variable name="inf1" select="count(childs/item[field[@name='inf' and @value = '+']])"/>	
+		<xsl:variable name="inf2" select="count(childs/item[field[@name='inf' and @value = '++']])"/>	
+		<xsl:variable name="inf3" select="count(childs/item[field[@name='inf' and @value = '+++']])"/>	
+		<xsl:variable name="inf4" select="count(childs/item[field[@name='inf' and @value = '++++']])"/>	
+		<xsl:variable name="inf5" select="count(childs/item[field[@name='inf' and @value = '+++++']])"/>	
+		<xsl:variable name="rep1" select="count(childs/item[field[@name='rep' and @value = '+']])"/>	
+		<xsl:variable name="rep2" select="count(childs/item[field[@name='rep' and @value = '++']])"/>	
+		<xsl:variable name="rep3" select="count(childs/item[field[@name='rep' and @value = '+++']])"/>	
+		<xsl:variable name="rep4" select="count(childs/item[field[@name='rep' and @value = '++++']])"/>	
+		<xsl:variable name="rep5" select="count(childs/item[field[@name='rep' and @value = '+++++']])"/>	
         <div class="page-title">
           <div class="title_left">
           	<form class="form-inline date-range-form" style="position: relative;">
@@ -1094,9 +1098,9 @@
 				<dt>Missions: </dt>
 				<dd class="sum-count"><xsl:value-of select="count(childs/item)"/></dd>
 				<dt>Influence: </dt>
-				<dd class="sum-influence"><xsl:value-of select="$infH"/>/+++, <xsl:value-of select="$infM"/>/++, <xsl:value-of select="$infL"/>/+</dd>
+				<dd class="sum-influence"><xsl:value-of select="$inf5"/>/+++++, <xsl:value-of select="$inf4"/>/++++, <xsl:value-of select="$inf3"/>/+++, <xsl:value-of select="$inf2"/>/++, <xsl:value-of select="$inf1"/>/+</dd>
 				<dt>Reputation: </dt>
-				<dd class="sum-reputation"><xsl:value-of select="$repH"/>/+++, <xsl:value-of select="$repM"/>/++, <xsl:value-of select="$repL"/>/+</dd>
+				<dd class="sum-reputation"><xsl:value-of select="$rep5"/>/+++++, <xsl:value-of select="$rep4"/>/++++, <xsl:value-of select="$rep3"/>/+++, <xsl:value-of select="$rep2"/>/++, <xsl:value-of select="$rep1"/>/+</dd>
 				<dt>Credits: </dt>
 				<dd class="sum-total"><xsl:value-of select="$total"/></dd>
 			</dl>
@@ -1124,8 +1128,12 @@
 						<td><input type="checkbox" class="recount"/></td>
 						<td><xsl:value-of select="field[@name='missionDate']/@value"/></td>
 						<td><xsl:value-of select="field[@name='missionTypeName']/@value"/></td>
+						<!-- 
 						<td class="count-influence" data-influence="{field[@name='influence']/@value}"><xsl:call-template name="showInfRep"><xsl:with-param name="inf" select="field[@name='influence']/@value"/></xsl:call-template></td>
 						<td class="count-reputation" data-reputation="{field[@name='reputation']/@value}"><xsl:call-template name="showInfRep"><xsl:with-param name="inf" select="field[@name='reputation']/@value"/></xsl:call-template></td>
+						-->
+						<td class="count-influence" data-influence="{field[@name='inf']/@value}"><xsl:value-of select="field[@name='inf']/@value"/></td>
+						<td class="count-reputation" data-reputation="{field[@name='rep']/@value}"><xsl:value-of select="field[@name='rep']/@value"/></td>
 						<td><xsl:value-of select="field[@name='factionName']/@value"/></td>
 						<td><xsl:value-of select="field[@name='systemName']/@value"/> / <xsl:value-of select="field[@name='stationName']/@value"/></td>
 						<td>
@@ -1180,21 +1188,33 @@
 					$('.show-statistic, .hide-statistic, .statistic').toggleClass('hidden');
 					return false;
 				});
-				
 				// Count statistic
 				var dCount = "<xsl:value-of select="count(childs/item)"/>";
 				var dTotal = "<xsl:value-of select="$total"/>";
+				
+				var dInf = [];
+				var dRep = [];
+				for (var i = 0; i &lt; 5; i++) {
+					var pl = '+'.repeat(i+1);
+					dInf.push($('.count-influence[data-influence="'+ pl +'"]').length); 
+					dRep.push($('.count-reputation[data-reputation="'+ pl +'"]').length); 
+				}
+				
+				//console.log(dInf);
+				//console.log(dRep);
+				<!-- 
 				var dInfH = "<xsl:value-of select="$infH"/>";
 				var dInfM = "<xsl:value-of select="$infM"/>";
 				var dInfL = "<xsl:value-of select="$infL"/>";
 				var dRepH = "<xsl:value-of select="$repH"/>";
 				var dRepM = "<xsl:value-of select="$repM"/>";
 				var dRepL = "<xsl:value-of select="$repL"/>";
+				-->
 				
-				var count = 0, total = 0, inf = {'High': 0, 'Med': 0, 'Low': 0}, rep = {'High': 0, 'Med': 0, 'Low': 0};
+				var count = 0, total = 0, inf = [0,0,0,0,0], rep = [0,0,0,0,0];
 				
 				var showStatistic = function() {
-					var c = dCount, t = dTotal, i = {'High': dInfH, 'Med': dInfM, 'Low': dInfL}, r = {'High': dRepH, 'Med': dRepM, 'Low': dRepL};
+					var c = dCount, t = dTotal, i = dInf, r = dRep;
 					if (count > 0) {
 						c = count;
 						var absTotal = number_format(Math.abs(total), 0, '', ' '); 
@@ -1204,8 +1224,19 @@
 					}
 					$('.sum-count').html(c);
 					$('.sum-total').html(t);
-					$('.sum-influence').html(i['High'] + '/+++, ' + i['Med'] + '/++, ' + i['Low'] + '/+')
-					$('.sum-reputation').html(r['High'] + '/+++, ' + r['Med'] + '/++, ' + r['Low'] + '/+')
+					
+					var sInf = [];
+					var sRep = [];
+
+					for (var j = 0; j &lt; 5; j++) {
+						var pl = '+'.repeat(j+1);
+						sInf.push(i[j] + '/' + pl); 
+						sRep.push(r[j] + '/' + pl); 
+					}
+					
+					$('.sum-influence').html(sInf.join(', '));
+					$('.sum-reputation').html(sRep.join(', '));
+					
 				}; 
 				
 				$('.recount').on('change', function() {
@@ -1214,9 +1245,9 @@
 					
 					count += sign;
 					total += sign * parseInt($(tr).find('.count-rewards').data('rewards'));
-					var key = $(tr).find('.count-influence').data('influence'); 
+					var key = $(tr).find('.count-influence').data('influence').length - 1;
 					inf[key] += sign;
-					key = $(tr).find('.count-reputation').data('reputation'); 
+					key = $(tr).find('.count-reputation').data('reputation').length - 1; 
 					rep[key] += sign;
 					
 					showStatistic();
