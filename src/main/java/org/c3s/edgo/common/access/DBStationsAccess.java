@@ -94,6 +94,36 @@ public class DBStationsAccess extends Access {
 		return ret;
 	}
 	
+	public DBStationsBean getByMarketId(java.math.BigInteger paramMarketId)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		DBStationsBean ret = null;
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		String sql = "SELECT t.* "+injector.getRecordQuery()+" FROM " + tablename + " as t "+injector.getFromQuery()+" WHERE 1=1  AND  market_id= ?  "+injector.getWhereQuery()+" ";
+		if (injector.getOrderQuery().length() != 0) {
+			sql += injector.getOrderQuery();
+		} else { 
+			
+		}
+		String limit = injector.getLimitQuery();
+		if (limit.length() != 0) {
+			sql += limit;
+		} else {
+			sql += " LIMIT 1";
+		}
+		
+		
+		
+		
+		List<Map<String, Object>> result = getConnection().fetchRows(tablename + ".getByMarketId", sql ,  paramMarketId);
+		if (result != null) {
+			
+			ret = dataMapper.mapFromRow(result.get(0), DBStationsBean.class);
+			
+		}
+		return ret;
+	}
+	
 	public DBStationsBean getByUniq(java.lang.String paramNameUniq)  throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		DBStationsBean ret = null;

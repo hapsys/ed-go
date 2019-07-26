@@ -43,7 +43,7 @@ public class ShipsDAO {
 		return bean;
 	}
 	
-	public static DBPilotShipsBean getOrInsertPilotShip(DBPilotsBean pilot, String shipUniq, long linkShipId, BigInteger locationId, Long stationId, String shipName, String shipIdent) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
+	public static DBPilotShipsBean getOrInsertPilotShip(DBPilotsBean pilot, String shipUniq, long linkShipId, BigInteger systemId, Long stationId, String shipName, String shipIdent) throws IllegalArgumentException, IllegalAccessException, InstantiationException, SQLException {
 		DBPilotShipsBean pilotShip = null;
 		DBShipsBean ship = getOrInsertShip(shipUniq);
 		if (ship.getIsSpecial() == null || ship.getIsSpecial() != 1) {
@@ -74,7 +74,7 @@ public class ShipsDAO {
 					pilotShip.setStationId(location.getStationId());
 				}
 				*/
-				pilotShip.setSystemId(locationId);
+				pilotShip.setSystemId(systemId);
 				pilotShip.setStationId(stationId);
 				
 				DbAccess.pilotShipsAccess.insert(pilotShip);

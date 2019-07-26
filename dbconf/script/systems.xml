@@ -58,6 +58,9 @@
 			<column name="name_uniq"/>
 			<column name="system_id"/>
 		</select>
+		<select name="ByMarketId" single_object="true">
+			<column name="market_id"/>
+		</select>
 		<query name="StationsMaxId" single_object="true">
 			<sql>
 				SELECT MAX(s.station_id) as max_station_id

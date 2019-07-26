@@ -289,6 +289,28 @@ public class DBPilotShipsAccess extends Access {
 		return ret;
 	}
 	
+	public int updatePilotShipLocation(java.math.BigInteger paramSystemId, Long paramStationId, Long paramPilotId, Long paramLinkShipId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+		setNames();
+		SqlInjectorInterface injector = new EmptySqlInjector();
+		
+		
+		String query = injector.getFullQuery();
+		if (query == null) {
+			String record = injector.getRecordQuery();
+			String from = injector.getFromQuery();
+			String join = injector.getJoinQuery();
+			String where = injector.getWhereQuery();
+			String order = injector.getOrderQuery();
+			String limit = injector.getLimitQuery();
+			query = " 				UPDATE pilot_ships SET system_id = ?, station_id = ? WHERE pilot_id = ? AND link_ship_id = ? LIMIT 1 			";
+		}
+
+		
+		int ret = getConnection().query(query,  paramSystemId,  paramStationId,  paramPilotId,  paramLinkShipId);
+			
+		return ret;
+	}
+	
 	public int updateSetDeletedByPilotId(long paramPilotId) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException {
 		setNames();
 		SqlInjectorInterface injector = new EmptySqlInjector();

@@ -311,6 +311,15 @@
 			</sql>
 			 -->
 		</query>
+		<query name="PilotShipLocation">
+			<column name="SystemId" type="java.math.BigInteger"/>
+			<column name="StationId" type="Long"/>
+			<column name="PilotId" type="Long"/>
+			<column name="LinkShipId" type="Long"/>
+			<sql>
+				UPDATE pilot_ships SET system_id = ?, station_id = ? WHERE pilot_id = ? AND link_ship_id = ? LIMIT 1
+			</sql>
+		</query>
 	</table>
 	<!--  -->
 	<table name="pilot_modules">

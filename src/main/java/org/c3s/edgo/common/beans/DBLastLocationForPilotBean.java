@@ -107,6 +107,21 @@ public class DBLastLocationForPilotBean implements DbBean, Serializable {
 	}
 	
 	
+	@DataSource({"market_id", "marketId"})
+	@DataTarget("market_id")
+	@XMLSimple("marketId")
+	private java.math.BigInteger marketId;
+	
+	public java.math.BigInteger getMarketId() {
+		return marketId;
+	}
+	
+	public DBLastLocationForPilotBean setMarketId(java.math.BigInteger value) {
+		this.marketId = value;
+		return this;
+	}
+	
+	
 	@DataSource({"pilot_id", "pilotId"})
 	@DataTarget("pilot_id")
 	@XMLSimple("pilotId")
