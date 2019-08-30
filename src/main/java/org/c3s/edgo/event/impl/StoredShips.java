@@ -6,12 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.c3s.edgo.common.access.DbAccess;
-import org.c3s.edgo.common.beans.DBLastLocationForPilotBean;
 import org.c3s.edgo.common.beans.DBPilotShipsListBean;
 import org.c3s.edgo.common.beans.DBPilotsBean;
 import org.c3s.edgo.common.beans.DBStationsBean;
 import org.c3s.edgo.common.beans.DBSystemsBean;
-import org.c3s.edgo.common.dao.LocationDAO;
 import org.c3s.edgo.common.dao.ShipsDAO;
 import org.c3s.edgo.common.dao.SystemsDAO;
 import org.c3s.edgo.event.AbstractJournalEvent;

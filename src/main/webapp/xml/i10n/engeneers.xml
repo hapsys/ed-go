@@ -1802,7 +1802,7 @@
 	</match>
 
 	<match name="Guardian Sentinel Weapon Parts">
-		<select lang="ru">Детали вооружения Стражей</select>
+		<select lang="ru">Детали вооружения часовых Стражей</select>
 	</match>
 
 	<match name="Guardian Module Blueprint Segment">
@@ -1810,11 +1810,231 @@
 	</match>
 
 	<match name="Guardian Sentinel Wreckage Components">
-		<select lang="ru">Обломки кораблекрушений Стража Sentinel</select>
+		<select lang="ru">Обломки часовых Стражей</select>
 	</match>
 
 	<match name="Guardian Vessel Blueprint Segment">
-		<select lang="ru">Сегмент чертежа судна Стражей</select>
+		<select lang="ru">Фрагмент чертежа судна Стражей</select>
+	</match>
+
+	<match name="Human">
+		<select lang="ru">Люди</select>
+	</match>
+
+	<match name="Corrosion Resistant Cargo Rack (2D and 4D)">
+		<select lang="ru">Коррозийно-устойчивый грузовой стеллаж (2D и 4D)</select>
+	</match>
+
+	<match name="Enzyme Missile Rack">
+		<select lang="ru">Блок энзимных ракет</select>
+	</match>
+
+	<match name="Guardian">
+		<select lang="ru">Стражи</select>
+	</match>
+
+	<match name="Guardian Ruins">
+		<select lang="ru">Руины Стражей</select>
+	</match>
+
+	<match name="Guardian Ruins (Active)">
+		<select lang="ru">Руины Стражей (Активные)</select>
+	</match>
+
+	<match name="Guardian Gauss Cannon (Fixed)">
+		<select lang="ru">Пушка Гаусса Стражей (фиксированное)</select>
+	</match>
+
+	<match name="Guardian Plasma Charger (Fixed)">
+		<select lang="ru">Плазменная пушка Стражей (фиксированное)</select>
+	</match>
+
+	<match name="Guardian Plasma Charger (Turreted)">
+		<select lang="ru">Плазменная пушка Стражей (турель)</select>
+	</match>
+
+	<match name="Guardian Hybrid Power Plant">
+		<select lang="ru">Силовая установка Стражей</select>
+	</match>
+
+	<match name="Meta Alloy Hull Reinforcement">
+		<select lang="ru">Метасплавное усиление корпуса</select>
+	</match>
+
+	<match name="Remote Release Flechette Launcher (Fixed)">
+		<select lang="ru">Зенитная установка с дистанционным подрывом (фиксированное)</select>
+	</match>
+
+	<match name="Remote Release Flechette Launcher (Turreted)">
+		<select lang="ru">Зенитная установка с дистанционным подрывом (турель)</select>
+	</match>
+
+	<match name="Shock Cannon (Fixed)">
+		<select lang="ru">Шоковое орудие (фиксированное)</select>
+	</match>
+
+	<match name="Shock Cannon (Gimballed)">
+		<select lang="ru">Шоковое орудие (на карданной подвеске)</select>
+	</match>
+
+	<match name="Shock Cannon (Turreted)">
+		<select lang="ru">Шоковое орудие (турель)</select>
+	</match>
+
+	<match name="Concordant Sequence">
+		<select lang="ru">Последовательность координации</select>
+	</match>
+
+	<match name="Regeneration Sequence">
+		<select lang="ru">Последовательность восстановления</select>
+	</match>
+
+	<match name="Thermal Conduit">
+		<select lang="ru">Проводник тепла</select>
+	</match>
+
+	<match name="Thermal Shock">
+		<select lang="ru">Тепловой удар</select>
+	</match>
+
+	<match name="Thermal Vent">
+		<select lang="ru">Теплоотдача</select>
+	</match>
+
+	<match name="Oversized">
+		<select lang="ru">Сверхразмер</select>
+	</match>
+
+	<match name="Stripped Down">
+		<select lang="ru">Урезанный вариант</select>
+	</match>
+
+	<match name="Double Braced">
+		<select lang="ru">Двойная прочность</select>
+	</match>
+
+	<match name="Flow Control">
+		<select lang="ru">Контроль интенсивности</select>
+	</match>
+
+	<match name="Inertial Impact">
+		<select lang="ru">Инерционный удар</select>
+	</match>
+
+	<match name="Phasing Sequence">
+		<select lang="ru">Последовательность фазирования</select>
+	</match>
+
+	<match name="Scramble Spectrum">
+		<select lang="ru">Отключающая сетка</select>
+	</match>
+
+	<match name="Multi-Servos">
+		<select lang="ru">Сервосистема</select>
+	</match>
+
+	<match name="Emissive Munitions">
+		<select lang="ru">Эмиссионные припасы</select>
+	</match>
+
+	<match name="Auto Loader">
+		<select lang="ru">Автоматическая система заряжания</select>
+	</match>
+
+	<match name="Corrosive Shell">
+		<select lang="ru">Разъедающие боеприпасы</select>
+	</match>
+
+	<match name="Incendiary Rounds">
+		<select lang="ru">Зажигательные припасы</select>
+	</match>
+
+	<match name="Smart Rounds">
+		<select lang="ru">Умные боеприпасы</select>
+	</match>
+
+	<match name="Dispersal Field">
+		<select lang="ru">Рассеивающее поле</select>
+	</match>
+
+	<match name="Force Shell">
+		<select lang="ru">Усиленные снаряды</select>
+	</match>
+
+	<match name="High Yield Shell">
+		<select lang="ru">Снаряды большой мощности</select>
+	</match>
+
+	<match name="Thermal Cascade">
+		<select lang="ru">Термический залп</select>
+	</match>
+
+	<match name="Dazzle Shell">
+		<select lang="ru">Ослепляющие снаряды</select>
+	</match>
+
+	<match name="Drag Munition">
+		<select lang="ru">Замедляющие боеприпасы</select>
+	</match>
+
+	<match name="Screening Shell">
+		<select lang="ru">Заслоняющие снаряды</select>
+	</match>
+
+	<match name="Drag Munition (Seeker only)">
+		<select lang="ru">Замедляющие боеприпасы (лоток с самонаведением)</select>
+	</match>
+
+	<match name="Overload Munitions">
+		<select lang="ru">Вызывающие перегрузку боеприпасы</select>
+	</match>
+
+	<match name="Penetrator Munitions (Dumbfire only)">
+		<select lang="ru">Бронебойные боеголовки</select>
+	</match>
+
+	<match name="FSD Interrupt (Dumbfire only)">
+		<select lang="ru">Помеха для FSD</select>
+	</match>
+
+	<match name="Mass Lock Munition">
+		<select lang="ru">Боеприпасы с гравитационным захватом</select>
+	</match>
+
+	<match name="Penetrator Payload">
+		<select lang="ru">Бронебойные снаряды</select>
+	</match>
+
+	<match name="Reverberating Cascade">
+		<select lang="ru">Отраженный залп</select>
+	</match>
+
+	<match name="Ion Disruptor">
+		<select lang="ru">Ионный дестабилизатор</select>
+	</match>
+
+	<match name="Radiant Canister">
+		<select lang="ru">Светящаяся кассета</select>
+	</match>
+
+	<match name="Shift-Lock Canister">
+		<select lang="ru">Рамоблокирующая кассета</select>
+	</match>
+
+	<match name="Target Lock Breaker">
+		<select lang="ru">Генератор помех для системы захвата цели</select>
+	</match>
+
+	<match name="Plasma Slug">
+		<select lang="ru">Плазменный рельсовый заряд</select>
+	</match>
+
+	<match name="Feedback Cascade">
+		<select lang="ru">Ответный залп</select>
+	</match>
+
+	<match name="Super Penetrator">
+		<select lang="ru">Модуль сверхпробития</select>
 	</match>
 
 	<match name="@Technology">
@@ -1843,5 +2063,389 @@
 
 	<match name="EDEngineer will try to remove blueprints from your shopping list if you craft them in game">
 		<select lang="ru">EDEngineer попытается удалять чертежи из списка покупок при создании их в игре</select>
+	</match>
+
+	<match name="Thermal Spread">
+		<select lang="ru">Рассеивание тепла</select>
+	</match>
+
+	<match name="Monstered">
+		<select lang="ru">Монстрация</select>
+	</match>
+
+	<match name="Angled Plating">
+		<select lang="ru">Угловая броня</select>
+	</match>
+
+	<match name="Layered Plating">
+		<select lang="ru">Многослойная броня</select>
+	</match>
+
+	<match name="Reflective Plating">
+		<select lang="ru">Отражающая броня</select>
+	</match>
+
+	<match name="Deep Plating">
+		<select lang="ru">Утолщенная броня</select>
+	</match>
+
+	<match name="Boss Cells">
+		<select lang="ru">Босс-ячейки</select>
+	</match>
+
+	<match name="Recycling Cells">
+		<select lang="ru">Рециркуляционные ячейки</select>
+	</match>
+
+	<match name="Force Block">
+		<select lang="ru">Усиленная блокировка</select>
+	</match>
+
+	<match name="Thermo Block">
+		<select lang="ru">Блокировка тепла</select>
+	</match>
+
+	<match name="Blast Block">
+		<select lang="ru">Блокировка взрыва</select>
+	</match>
+
+	<match name="Super Capacitor">
+		<select lang="ru">Суперконденсатор</select>
+	</match>
+
+	<match name="Hi-cap">
+		<select lang="ru">Высокая емкость</select>
+	</match>
+
+	<match name="Multi-weave">
+		<select lang="ru">Мультипрошивка</select>
+	</match>
+
+	<match name="Fast Charge">
+		<select lang="ru">Быстрый заряд</select>
+	</match>
+
+	<match name="Lo-draw">
+		<select lang="ru">Пониженное потребление</select>
+	</match>
+
+	<match name="Deep Charge">
+		<select lang="ru">Заряд повышенной мощности</select>
+	</match>
+
+	<match name="Mass Manager">
+		<select lang="ru">Распределитель гравитации</select>
+	</match>
+
+	<match name="Drive Distributors">
+		<select lang="ru">Распределители тяги</select>
+	</match>
+
+	<match name="Drag Drives">
+		<select lang="ru">Ускорители</select>
+	</match>
+
+	<match name="Super Conduits">
+		<select lang="ru">Сверхпроводники</select>
+	</match>
+
+	<match name="Cluster Capacitor">
+		<select lang="ru">Кассетный конденсатор</select>
+	</match>
+
+	<match name="Thargoid">
+		<select lang="ru">Таргоиды</select>
+	</match>
+
+	<match name="Thargoid Ship">
+		<select lang="ru">Корабль Таргоидов</select>
+	</match>
+
+	<match name="Thargoid Site">
+		<select lang="ru">База Таргоидов</select>
+	</match>
+
+	<match name="Top Source Systems">
+		<select lang="ru">Системы с обилием ресурсов</select>
+	</match>
+
+	<match name="System:">
+		<select lang="ru">Система:</select>
+	</match>
+
+	<match name="You have:">
+		<select lang="ru">В наличии:</select>
+	</match>
+
+	<match name="(already needed)">
+		<select lang="ru">(уже необходимо)</select>
+	</match>
+
+	<match name="Shows material trading suggestion (taking into account your cargo and the entire shopping list).">
+		<select lang="ru">Показывает предложения по торговле материалами (учитывая ваш груз и весь список покупок).</select>
+	</match>
+
+	<match name="Suggestions are sorted by how big the trade is compared to your cargo, minus an eventual amount already needed in the shopping list.">
+		<select lang="ru">Предложения сортируются по величине торговли по сравнению с вашим грузом, минус возможная сумма, уже необходимая в списке покупок.</select>
+	</match>
+
+	<match name="Orange entries indicates a trade suggestion that will not completely fulfill your requirement (but might help).">
+		<select lang="ru">Оранжевые записи указывают предложения по торговле, которые не полностью отвечают требованиям (но могут помочь).</select>
+	</match>
+
+	<match name="Materials Trader found at industrial economies, only trades in manufactured materials.">
+		<select lang="ru">Торговец материалами в системах с промышленной экономикой, обменивает только промышленные материалы.</select>
+	</match>
+
+	<match name="Materials Trader found at extraction and refinery economies, only trades in raw material found on planet surfaces and planetary rings.">
+		<select lang="ru">Торговец материалами в системах с добычей ископаемых и переработкой, обменивает только сырьевые элементы.</select>
+	</match>
+
+	<match name="Materials Trader found at High Tech and Military economies, only trades in encoded materials.">
+		<select lang="ru">Торговец материалами в системах с высокотехнологичной и военной экономикой, обменивает только зашифрованные данные.</select>
+	</match>
+
+	<match name="API ON">
+		<select lang="ru">API ВКЛ</select>
+	</match>
+
+	<match name="API OFF">
+		<select lang="ru">API ВЫКЛ</select>
+	</match>
+
+	<match name="Long Range FSD Interdictor">
+		<select lang="ru">FSD-перехватчик большой дальности</select>
+	</match>
+
+	<match name="Guardian Plasma Charger Munitions">
+		<select lang="ru">Боеприпасы для плазменных пушек Стражей</select>
+	</match>
+
+	<match name="Guardian Gauss Cannon Munitions">
+		<select lang="ru">Боеприпасы для пушек Гаусса Стражей</select>
+	</match>
+
+	<match name="AX Small Calibre Munitions">
+		<select lang="ru">Мелкокалиберные боеприпасы АИ</select>
+	</match>
+
+	<match name="+5% Damage Boost">
+		<select lang="ru">+5% к урону</select>
+	</match>
+
+	<match name="+10% Damage Boost">
+		<select lang="ru">+10% к урону</select>
+	</match>
+
+	<match name="AX Remote Flak Munitions">
+		<select lang="ru">Зенитные снаряды с дистанционным подрывом АИ</select>
+	</match>
+
+	<match name="Enzyme Missile Launcher Munitions">
+		<select lang="ru">Боеприпасы для энзимных ракетных установок</select>
+	</match>
+
+	<match name="Flechette Launcher Munitions">
+		<select lang="ru">Стреловидные боеприпасы</select>
+	</match>
+
+	<match name="Guardian Shard Cannon Munitions">
+		<select lang="ru">Боеприпасы для осколочных орудий Стражей</select>
+	</match>
+
+	<match name="AX Explosive Munitions">
+		<select lang="ru">Взрывчатые боеприпасы АИ</select>
+	</match>
+
+	<match name="+5% Damage">
+		<select lang="ru">+5% к урону</select>
+	</match>
+
+	<match name="Guardian Gauss Cannon (Fixed, Medium)">
+		<select lang="ru">Пушка Гаусса Стражей (фиксированное, средний слот)</select>
+	</match>
+
+	<match name="Guardian Gauss Cannon (Fixed, Small)">
+		<select lang="ru">Пушка Гаусса Стражей (фиксированное, малый слот)</select>
+	</match>
+
+	<match name="Guardian Hull Reinforcement">
+		<select lang="ru">Набор для усиления корпуса Стражей</select>
+	</match>
+
+	<match name="Guardian Module Reinforcement">
+		<select lang="ru">Набор для усиления модуля Стражей</select>
+	</match>
+
+	<match name="Guardian Plasma Charger (Fixed, Large)">
+		<select lang="ru">Плазменная пушка Стражей (фиксированное, большой слот)</select>
+	</match>
+
+	<match name="Guardian Plasma Charger (Fixed, Medium)">
+		<select lang="ru">Плазменная пушка Стражей (фиксированное, средний слот)</select>
+	</match>
+
+	<match name="Guardian Plasma Charger (Fixed, Small)">
+		<select lang="ru">Плазменная пушка Стражей (фиксированное, малый слот)</select>
+	</match>
+
+	<match name="Guardian Plasma Charger (Turreted, Large)">
+		<select lang="ru">Плазменная пушка Стражей (турель, большой слот)</select>
+	</match>
+
+	<match name="Guardian Plasma Charger (Turreted, Medium)">
+		<select lang="ru">Плазменная пушка Стражей (турель, средний слот)</select>
+	</match>
+
+	<match name="Guardian Plasma Charger (Turreted, Small)">
+		<select lang="ru">Плазменная пушка Стражей (турель, малый слот)</select>
+	</match>
+
+	<match name="Guardian FSD Booster">
+		<select lang="ru">Ускоритель FSD Стражей</select>
+	</match>
+
+	<match name="Guardian Power Distributor">
+		<select lang="ru">Распределитель питания Стражей</select>
+	</match>
+
+	<match name="Guardian Shard Cannon (Fixed, Large)">
+		<select lang="ru">Осколочное орудие Стражей (фиксированное, большой слот)</select>
+	</match>
+
+	<match name="Guardian Shard Cannon (Fixed, Medium)">
+		<select lang="ru">Осколочное орудие Стражей (фиксированное, средний слот)</select>
+	</match>
+
+	<match name="Guardian Shard Cannon (Fixed, Small)">
+		<select lang="ru">Осколочное орудие Стражей (фиксированное, малый слот)</select>
+	</match>
+
+	<match name="Guardian Shard Cannon (Turreted, Large)">
+		<select lang="ru">Осколочное орудие Стражей (турель, большой слот)</select>
+	</match>
+
+	<match name="Guardian Shard Cannon (Turreted, Medium)">
+		<select lang="ru">Осколочное орудие Стражей (турель, средний слот)</select>
+	</match>
+
+	<match name="Guardian Shard Cannon (Turreted, Small)">
+		<select lang="ru">Осколочное орудие Стражей (турель, малый слот)</select>
+	</match>
+
+	<match name="Guardian Shield Reinforcement">
+		<select lang="ru">Набор для усиления щита Стражей</select>
+	</match>
+
+	<match name="Javelin (Fighter)">
+		<select lang="ru">Javelin (Истребитель)</select>
+	</match>
+
+	<match name="Lance (Fighter)">
+		<select lang="ru">Lance (Истребитель)</select>
+	</match>
+
+	<match name="Trident (Fighter)">
+		<select lang="ru">Trident (Истребитель)</select>
+	</match>
+
+	<match name="Shock Cannon (Fixed, Large)">
+		<select lang="ru">Осколочное орудие Стражей (фиксированное, большой слот)</select>
+	</match>
+
+	<match name="Shock Cannon (Fixed, Medium)">
+		<select lang="ru">Шоковое орудие (фиксированное, средний слот)</select>
+	</match>
+
+	<match name="Shock Cannon (Fixed, Small)">
+		<select lang="ru">Шоковое орудие (фиксированное, малый слот)</select>
+	</match>
+
+	<match name="Shock Cannon (Gimballed, Large)">
+		<select lang="ru">Шоковое орудие (на карданной подвеске, большой слот)</select>
+	</match>
+
+	<match name="Shock Cannon (Gimballed, Medium)">
+		<select lang="ru">Шоковое орудие (на карданной подвеске, средний слот)</select>
+	</match>
+
+	<match name="Shock Cannon (Gimballed, Small)">
+		<select lang="ru">Шоковое орудие (на карданной подвеске, малый слот)</select>
+	</match>
+
+	<match name="Shock Cannon (Turreted, Large)">
+		<select lang="ru">Шоковое орудие (турель, большой слот)</select>
+	</match>
+
+	<match name="Shock Cannon (Turreted, Medium)">
+		<select lang="ru">Шоковое орудие (турель, средний слот)</select>
+	</match>
+
+	<match name="Shock Cannon (Turreted, Small)">
+		<select lang="ru">Шоковое орудие (турель, малый слот)</select>
+	</match>
+
+	<match name="Ship Value:">
+		<select lang="ru">Стоимость корабля:</select>
+	</match>
+
+	<match name="Modules Value:">
+		<select lang="ru">Стоимость модулей:</select>
+	</match>
+
+	<match name="Rebuy:">
+		<select lang="ru">Страховка:</select>
+	</match>
+
+	<match name="Loadout">
+		<select lang="ru">Оснащение</select>
+	</match>
+
+	<match name="Cargo History (require API)">
+		<select lang="ru">История грузов (необходимо API)</select>
+	</match>
+
+	<match name="Hardpoints">
+		<select lang="ru">Орудийные гнезда</select>
+	</match>
+
+	<match name="Utilities">
+		<select lang="ru">Крепления утилит</select>
+	</match>
+
+	<match name="Core Internal">
+		<select lang="ru">Зарезервированные слоты</select>
+	</match>
+
+	<match name="Optional Internal">
+		<select lang="ru">Опциональные модули</select>
+	</match>
+
+	<match name="Others/Livery">
+		<select lang="ru">Прочее/Декали</select>
+	</match>
+
+	<match name="Occupied Escape Pod">
+		<select lang="ru">Спасательная капсула с пассажиром</select>
+	</match>
+
+	<match name="Progenitor Cells">
+		<select lang="ru">Прогениторные клетки</select>
+	</match>
+
+	<match name="Sync?">
+		<select lang="ru">Синхронизировать?</select>
+	</match>
+
+	<match name="Guardian Wreckage Components">
+		<select lang="ru">Обломки часовых Стражей</select>
+	</match>
+
+	<match name="Reload all data">
+		<select lang="ru">Перезагрузить все данные</select>
+	</match>
+
+	<match name="Export/Import Settings">
+		<select lang="ru">Экспорт/Импорт настроек</select>
 	</match>
 </i10n>
