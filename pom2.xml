@@ -84,6 +84,23 @@
 			<artifactId>amqp-client</artifactId>
 			<version>5.3.0</version>
 		</dependency>
+		<!-- JNA -->
+		<dependency>
+			<groupId>net.java.dev.jna</groupId>
+			<artifactId>jna</artifactId>
+			<version>5.4.0</version>		
+		</dependency>
+		<dependency>
+			<groupId>net.java.dev.jna</groupId>
+			<artifactId>jna-platform</artifactId>
+			<version>5.4.0</version>
+		</dependency>		
+		<!-- Affinity -->
+		<dependency>
+			<groupId>net.openhft</groupId>
+			<artifactId>affinity</artifactId>
+			<version>3.1.11</version>
+		</dependency>		
 		<!-- c3s -->
 		<dependency>
 			<groupId>org.c3s</groupId>
