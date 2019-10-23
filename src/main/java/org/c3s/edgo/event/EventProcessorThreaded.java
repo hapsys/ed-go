@@ -29,8 +29,8 @@ public class EventProcessorThreaded implements Runnable {
 	public void run() {
 		
 		boolean started = false;
-		//ExecutorService executorService = Executors.newCachedThreadPool(new AffinityThreadFactory("bg", AffinityStrategies.ANY));
-		ExecutorService executorService = Executors.newFixedThreadPool(100, new AffinityThreadFactory("bg", AffinityStrategies.ANY));
+		ExecutorService executorService = Executors.newCachedThreadPool(new AffinityThreadFactory("bg", AffinityStrategies.ANY));
+		//ExecutorService executorService = Executors.newFixedThreadPool(100, new AffinityThreadFactory("bg", AffinityStrategies.ANY));
 		
 		while(!stop) {
 			try {
@@ -97,9 +97,9 @@ public class EventProcessorThreaded implements Runnable {
 				logger.error(e.getMessage(), e);
 				e.printStackTrace();
 			}
-			executorService.shutdown();
-			logger.info("Shutdown Event Processor");
 		}
+		executorService.shutdown();
+		logger.info("Shutdown Event Processor");
 	}
 	
 	private boolean stop = false;
